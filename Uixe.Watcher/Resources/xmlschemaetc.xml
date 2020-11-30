@@ -1,0 +1,130 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSetetc" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSetetc" msdata:IsDataSet="true" msdata:MainDataTable="ETC" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ETC">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LaneNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="userNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WorkState" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CarType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Charge" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CarKind" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WorkMode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="unuser" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StartWorkTime" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="yupengdeng" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="JiaoTong" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="LanGan" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="Printer" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="tianXian" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="NetWork" type="xs:base64Binary" minOccurs="0" />
+
+              <xs:element name="EtcLine1" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EtcLine2" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EtcLine3" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EtcLine4" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EtcLine5" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EtcLine6" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EtcLine7" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EtcLine8" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EtcLine9" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="EtcLine10" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="SaveLaneState" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OldState" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="badlane" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Plaza">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
