@@ -32,11 +32,11 @@ namespace Uixe.Watcher
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.applicationMenu1 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.btnRBLogin = new DevExpress.XtraBars.BarButtonItem();
@@ -219,7 +219,7 @@ namespace Uixe.Watcher
             this.repositoryItemTextEdit2,
             this.repositoryItemToggleSwitch2});
             this.ribbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
-            this.ribbon.Size = new System.Drawing.Size(1529, 138);
+            this.ribbon.Size = new System.Drawing.Size(1529, 189);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // applicationMenu1
@@ -586,7 +586,7 @@ namespace Uixe.Watcher
             // repositoryItemTimeEdit1
             // 
             this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "d";
             this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
@@ -721,11 +721,11 @@ namespace Uixe.Watcher
             this.ribbonStatusBar.ItemLinks.Add(this.txtStatus);
             this.ribbonStatusBar.ItemLinks.Add(this.chkServerStatus);
             this.ribbonStatusBar.ItemLinks.Add(this.lblPath, true);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 864);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 855);
             this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1529, 19);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1529, 28);
             // 
             // cmsTable
             // 
@@ -744,21 +744,21 @@ namespace Uixe.Watcher
             this.messageView.Location = new System.Drawing.Point(0, 0);
             this.messageView.Margin = new System.Windows.Forms.Padding(4);
             this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(1529, 600);
+            this.messageView.Size = new System.Drawing.Size(1529, 538);
             this.messageView.TabIndex = 9;
             // 
             // sccMain
             // 
             this.sccMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sccMain.Horizontal = false;
-            this.sccMain.Location = new System.Drawing.Point(0, 138);
+            this.sccMain.Location = new System.Drawing.Point(0, 189);
             this.sccMain.Margin = new System.Windows.Forms.Padding(4);
             this.sccMain.Name = "sccMain";
             this.sccMain.Panel1.Controls.Add(this.lanView);
             this.sccMain.Panel1.Text = "Panel1";
             this.sccMain.Panel2.Controls.Add(this.messageView);
             this.sccMain.Panel2.Text = "Panel2";
-            this.sccMain.Size = new System.Drawing.Size(1529, 726);
+            this.sccMain.Size = new System.Drawing.Size(1529, 666);
             this.sccMain.SplitterPosition = 118;
             this.sccMain.TabIndex = 12;
             this.sccMain.Text = "splitContainerControl1";
@@ -781,7 +781,7 @@ namespace Uixe.Watcher
             // 
             this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 96);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 87);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // xtraTabPage2

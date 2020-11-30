@@ -188,6 +188,7 @@
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUser);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Uixe.Watcher.Properties.Settings.Default, "frmLogin_Location", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmLogin.IconOptions.Icon")));
             this.Location = global::Uixe.Watcher.Properties.Settings.Default.frmLogin_Location;
