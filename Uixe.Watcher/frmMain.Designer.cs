@@ -32,11 +32,11 @@ namespace Uixe.Watcher
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.applicationMenu1 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.btnRBLogin = new DevExpress.XtraBars.BarButtonItem();
@@ -97,6 +97,10 @@ namespace Uixe.Watcher
             this.repositoryItemTimeEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             this.repositoryItemTreeListLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTreeListLookUpEdit();
             this.repositoryItemTreeListLookUpEdit2TreeList = new DevExpress.XtraTreeList.TreeList();
+            this.colCatalog = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colKinds = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colExample = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colDisplay = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
@@ -144,6 +148,10 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sccMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sccMain.Panel1)).BeginInit();
+            this.sccMain.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sccMain.Panel2)).BeginInit();
+            this.sccMain.Panel2.SuspendLayout();
             this.sccMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lanView)).BeginInit();
             this.lanView.SuspendLayout();
@@ -219,7 +227,7 @@ namespace Uixe.Watcher
             this.repositoryItemTextEdit2,
             this.repositoryItemToggleSwitch2});
             this.ribbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
-            this.ribbon.Size = new System.Drawing.Size(1529, 189);
+            this.ribbon.Size = new System.Drawing.Size(1529, 156);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // applicationMenu1
@@ -586,7 +594,7 @@ namespace Uixe.Watcher
             // repositoryItemTimeEdit1
             // 
             this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "d";
             this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
@@ -690,12 +698,46 @@ namespace Uixe.Watcher
             // 
             // repositoryItemTreeListLookUpEdit2TreeList
             // 
+            this.repositoryItemTreeListLookUpEdit2TreeList.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.colCatalog,
+            this.colKinds,
+            this.colExample,
+            this.colDisplay});
             this.repositoryItemTreeListLookUpEdit2TreeList.KeyFieldName = "Id";
             this.repositoryItemTreeListLookUpEdit2TreeList.Location = new System.Drawing.Point(0, 0);
             this.repositoryItemTreeListLookUpEdit2TreeList.Name = "repositoryItemTreeListLookUpEdit2TreeList";
             this.repositoryItemTreeListLookUpEdit2TreeList.OptionsView.ShowIndentAsRowStyle = true;
             this.repositoryItemTreeListLookUpEdit2TreeList.Size = new System.Drawing.Size(400, 200);
             this.repositoryItemTreeListLookUpEdit2TreeList.TabIndex = 0;
+            // 
+            // colCatalog
+            // 
+            this.colCatalog.FieldName = "Catalog";
+            this.colCatalog.Name = "colCatalog";
+            this.colCatalog.Visible = true;
+            this.colCatalog.VisibleIndex = 0;
+            // 
+            // colKinds
+            // 
+            this.colKinds.FieldName = "Kinds";
+            this.colKinds.Name = "colKinds";
+            this.colKinds.Visible = true;
+            this.colKinds.VisibleIndex = 1;
+            // 
+            // colExample
+            // 
+            this.colExample.FieldName = "Example";
+            this.colExample.Name = "colExample";
+            this.colExample.Visible = true;
+            this.colExample.VisibleIndex = 2;
+            // 
+            // colDisplay
+            // 
+            this.colDisplay.FieldName = "Display";
+            this.colDisplay.Name = "colDisplay";
+            this.colDisplay.OptionsColumn.ReadOnly = true;
+            this.colDisplay.Visible = true;
+            this.colDisplay.VisibleIndex = 3;
             // 
             // repositoryItemToggleSwitch1
             // 
@@ -721,11 +763,11 @@ namespace Uixe.Watcher
             this.ribbonStatusBar.ItemLinks.Add(this.txtStatus);
             this.ribbonStatusBar.ItemLinks.Add(this.chkServerStatus);
             this.ribbonStatusBar.ItemLinks.Add(this.lblPath, true);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 855);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 861);
             this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1529, 28);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1529, 22);
             // 
             // cmsTable
             // 
@@ -744,21 +786,27 @@ namespace Uixe.Watcher
             this.messageView.Location = new System.Drawing.Point(0, 0);
             this.messageView.Margin = new System.Windows.Forms.Padding(4);
             this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(1529, 538);
+            this.messageView.Size = new System.Drawing.Size(1529, 577);
             this.messageView.TabIndex = 9;
             // 
             // sccMain
             // 
             this.sccMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sccMain.Horizontal = false;
-            this.sccMain.Location = new System.Drawing.Point(0, 189);
+            this.sccMain.Location = new System.Drawing.Point(0, 156);
             this.sccMain.Margin = new System.Windows.Forms.Padding(4);
             this.sccMain.Name = "sccMain";
+            // 
+            // sccMain.Panel1
+            // 
             this.sccMain.Panel1.Controls.Add(this.lanView);
             this.sccMain.Panel1.Text = "Panel1";
+            // 
+            // sccMain.Panel2
+            // 
             this.sccMain.Panel2.Controls.Add(this.messageView);
             this.sccMain.Panel2.Text = "Panel2";
-            this.sccMain.Size = new System.Drawing.Size(1529, 666);
+            this.sccMain.Size = new System.Drawing.Size(1529, 705);
             this.sccMain.SplitterPosition = 118;
             this.sccMain.TabIndex = 12;
             this.sccMain.Text = "splitContainerControl1";
@@ -781,7 +829,7 @@ namespace Uixe.Watcher
             // 
             this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 87);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 96);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // xtraTabPage2
@@ -895,6 +943,10 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sccMain.Panel1)).EndInit();
+            this.sccMain.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sccMain.Panel2)).EndInit();
+            this.sccMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sccMain)).EndInit();
             this.sccMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lanView)).EndInit();
@@ -988,6 +1040,10 @@ namespace Uixe.Watcher
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colCatalog;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colKinds;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colExample;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colDisplay;
     }
 }
 
