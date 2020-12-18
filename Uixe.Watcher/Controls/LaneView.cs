@@ -39,7 +39,7 @@ namespace Uixe.Watcher.Controls
              gcExitLanes .RefreshDataSource();
         }
 
-        private delegate void HShowLaneInfo(string plaza, string laneno, string revdata);
+        private delegate void HShowLaneInfo(string laneid, string revdata);
 
         /// <summary>
         ///
@@ -47,27 +47,30 @@ namespace Uixe.Watcher.Controls
         /// <param name="plaza">这里的plaza 已经调用到对应的控件了， 无需区分， 但是需要传值过来</param>
         /// <param name="laneno"></param>
         /// <param name="revdata"></param>
-        public void ShowLaneInfor(string plaza, string laneno, string revdata)
+        public void ShowLaneInfor(string laneid,string revdata)
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new HShowLaneInfo(ShowLaneInfor), plaza, laneno, revdata);
+                this.Invoke(new HShowLaneInfo(ShowLaneInfor), laneid, revdata);
             }
             else
             {
                 lock (lst)
                 {
-
-                    var li = Newtonsoft.Json.JsonConvert.DeserializeObject<LaneInfo>(revdata);
-                    var index = lst.FindIndex(l => l.LaneNo == li.LaneNo);
-                    lst[index] = li;
+                    int i = lst.FindIndex(f => f.PlazaId + f.LaneName == laneid);
+                    if (i > 0)
+                    {
+                        (laneInfoBindingSource[i] as LaneInfo)?.Parse(revdata);
+                        gvExitLanes.RefreshRow(gvExitLanes.GetRowHandle(i));
+                    }
+               
                 }
             }
         }
-         
-        public int LaneCount { get; set; }
 
-        
+        public int LaneCount => lst.Count;
+
+
         private void timer1_Tick(object sender, EventArgs e)
        {
             
@@ -82,13 +85,13 @@ namespace Uixe.Watcher.Controls
             var dr = gv.GetDataRow(e.RowHandle);
             if (gv != null && dr != null)
             {
-                bool badlane = gv.GetDataRow(e.RowHandle).Field<string>("badlane") == "1";
-                e.HighPriority = badlane;
-                if (badlane)
-                {
-                    e.Appearance.BackColor = Color.FromArgb(100, 255, 225, 225);
-                    e.Appearance.ForeColor = Color.FromArgb(100, 176, 0, 22);
-                }
+                //bool badlane = gv.GetDataRow(e.RowHandle).Field<string>("badlane") == "1";
+                //e.HighPriority = badlane;
+                //if (badlane)
+                //{
+                //    e.Appearance.BackColor = Color.FromArgb(100, 255, 225, 225);
+                //    e.Appearance.ForeColor = Color.FromArgb(100, 176, 0, 22);
+                //}
             }
         }
 

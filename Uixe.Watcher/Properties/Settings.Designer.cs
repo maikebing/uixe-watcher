@@ -244,7 +244,7 @@ namespace Uixe.Watcher.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6500124")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6500256")]
         public string plazaid {
             get {
                 return ((string)(this["plazaid"]));

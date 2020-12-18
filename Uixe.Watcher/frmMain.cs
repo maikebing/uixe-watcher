@@ -28,6 +28,9 @@ using System.Drawing;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Uitls;
+using MQTTnet;
+using MQTTnet.Client;
+using MQTTnet.Client.Options;
 
 namespace Uixe.Watcher
 {
@@ -66,9 +69,46 @@ namespace Uixe.Watcher
         private CougarClockContainer control = new CougarClockContainer();
         private BarEditItem barEditItem = new BarEditItem();
         private Plaza Plaza { get; set; }
+        IMqttClient client;
         private void frmMain_Load(object sender, EventArgs e)
         {
-          
+            Task.Run(async () =>
+            {
+                var factory = new MqttFactory();
+                client = factory.CreateMqttClient();
+                var options = new MqttClientOptionsBuilder()
+        .WithTcpServer("localhost")
+        .Build();
+                client.UseDisconnectedHandler(async xe =>
+                {
+                    Console.WriteLine("### DISCONNECTED FROM SERVER ###");
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+
+                    try
+                    {
+                        await client.ConnectAsync(options, CancellationToken.None); // Since 3.0.5 with CancellationToken
+                 }
+                    catch
+                    {
+                        Console.WriteLine("### RECONNECTING FAILED ###");
+                    }
+                });
+                client.UseApplicationMessageReceivedHandler(h =>
+                {
+                    if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/status/"))
+                    {
+                        string t = h.ApplicationMessage.Topic.Split('/').Last();
+                        var plaza = t.Substring(0, 7);
+                        var laneno = t.Substring(7, 3);
+                        ShowLaneInfor(plaza, t, System.Text.Encoding.GetEncoding(936).GetString(h.ApplicationMessage.Payload));
+                    }
+                });
+                client.UseConnectedHandler(async h =>
+                {
+                    await client.SubscribeAsync("/lane/emrc_main/status/+");
+                });
+               await client.ConnectAsync(options, CancellationToken.None);
+            });
             btnUpgrade.Visibility = ApplicationDeployment.IsNetworkDeployed ? BarItemVisibility.Always : BarItemVisibility.Never;
             repositoryItem.ControlType = control.GetType();
             barEditItem.Edit = repositoryItem;
@@ -139,6 +179,7 @@ namespace Uixe.Watcher
                 btnTest.Enabled = false;
 
             }
+     
         }
 
         private void ResetSpeachMenu()
@@ -422,7 +463,12 @@ namespace Uixe.Watcher
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="plaza">6500226</param>
+        /// <param name="laneno">6500225X01</param>
+        /// <param name="revdata">json</param>
         public void ShowLaneInfor(string plaza, string laneno, string revdata)
         {
             lock (lanView)
@@ -434,7 +480,7 @@ namespace Uixe.Watcher
                     Control[] cont = xtp.Controls.Find(plaza, true);
                     if (cont.Length > 0)
                     {
-                        ((Uixe.Watcher.Controls.LaneView)cont[0]).ShowLaneInfor(plaza, laneno, revdata);
+                        ((Uixe.Watcher.Controls.LaneView)cont[0]).ShowLaneInfor(laneno, revdata);
                     }
                 }
             }

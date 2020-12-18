@@ -1,11 +1,14 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.XtraEditors;
 using MonkeyCache.LiteDB;
+using MQTTnet;
+using MQTTnet.Server;
 using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Uixe.Watcher
@@ -25,6 +28,11 @@ namespace Uixe.Watcher
             UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.SkinStyle);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Task.Run(async () =>
+            {
+                var mqttServer = new MqttFactory().CreateMqttServer();
+                await mqttServer.StartAsync(new MqttServerOptions() );
+            });
             MainForm = new frmMain();
             Application.Run(MainForm);
         }
