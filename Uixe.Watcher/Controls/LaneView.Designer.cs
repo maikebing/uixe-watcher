@@ -387,7 +387,6 @@
             this.gcCardBoxExit.MinWidth = 34;
             this.gcCardBoxExit.Name = "gcCardBoxExit";
             this.gcCardBoxExit.OptionsColumn.AllowEdit = false;
-            this.gcCardBoxExit.OptionsColumn.ReadOnly = true;
             this.gcCardBoxExit.Visible = true;
             this.gcCardBoxExit.VisibleIndex = 9;
             this.gcCardBoxExit.Width = 69;
