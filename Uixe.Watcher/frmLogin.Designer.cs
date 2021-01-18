@@ -130,10 +130,10 @@
             // lblPlaza
             // 
             this.lblPlaza.Appearance.Font = new System.Drawing.Font("宋体", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblPlaza.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblPlaza.Appearance.ForeColor = System.Drawing.Color.RoyalBlue;
             this.lblPlaza.Appearance.Options.UseFont = true;
             this.lblPlaza.Appearance.Options.UseForeColor = true;
-            this.lblPlaza.Location = new System.Drawing.Point(160, 12);
+            this.lblPlaza.Location = new System.Drawing.Point(207, 12);
             this.lblPlaza.Name = "lblPlaza";
             this.lblPlaza.Size = new System.Drawing.Size(132, 33);
             this.lblPlaza.TabIndex = 29;

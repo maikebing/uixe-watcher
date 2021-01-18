@@ -48,21 +48,21 @@
             this.colCoil1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCoil2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRSU = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colYellow = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcWeightStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcReaderStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQRPay = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Coil3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colJiaoTong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrint = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Coil4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLanGan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBaoJing = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colVPR = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCamera = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNetWork = new DevExpress.XtraGrid.Columns.GridColumn();
             this.rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.colBaoJing = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCamera = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colQRPay = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colVPR = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colYellow = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).BeginInit();
@@ -82,7 +82,7 @@
             this.repositoryItemPictureEdit1,
             this.rpbExit,
             this.cardBoxControlRepositoryItem2});
-            this.gcExitLanes.Size = new System.Drawing.Size(1771, 672);
+            this.gcExitLanes.Size = new System.Drawing.Size(1518, 576);
             this.gcExitLanes.TabIndex = 9;
             this.gcExitLanes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvExitLanes});
@@ -237,6 +237,7 @@
             this.colVPR,
             this.colCamera,
             this.colNetWork});
+            this.gvExitLanes.DetailHeight = 300;
             this.gvExitLanes.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gvExitLanes.GridControl = this.gcExitLanes;
             this.gvExitLanes.Name = "gvExitLanes";
@@ -248,7 +249,7 @@
             this.gvExitLanes.OptionsView.EnableAppearanceEvenRow = true;
             this.gvExitLanes.OptionsView.EnableAppearanceOddRow = true;
             this.gvExitLanes.OptionsView.ShowGroupPanel = false;
-            this.gvExitLanes.RowHeight = 40;
+            this.gvExitLanes.RowHeight = 34;
             this.gvExitLanes.RowSeparatorHeight = 3;
             this.gvExitLanes.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gv_RowStyle);
             // 
@@ -256,6 +257,7 @@
             // 
             this.colLaneNo.Caption = "车道";
             this.colLaneNo.FieldName = "LaneName";
+            this.colLaneNo.MinWidth = 17;
             this.colLaneNo.Name = "colLaneNo";
             this.colLaneNo.OptionsColumn.AllowEdit = false;
             this.colLaneNo.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -263,12 +265,13 @@
             this.colLaneNo.OptionsFilter.AllowFilter = false;
             this.colLaneNo.Visible = true;
             this.colLaneNo.VisibleIndex = 0;
-            this.colLaneNo.Width = 70;
+            this.colLaneNo.Width = 60;
             // 
             // colUserName
             // 
             this.colUserName.Caption = "姓名";
             this.colUserName.FieldName = "CollName";
+            this.colUserName.MinWidth = 17;
             this.colUserName.Name = "colUserName";
             this.colUserName.OptionsColumn.AllowEdit = false;
             this.colUserName.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -276,12 +279,13 @@
             this.colUserName.OptionsFilter.AllowFilter = false;
             this.colUserName.Visible = true;
             this.colUserName.VisibleIndex = 1;
-            this.colUserName.Width = 172;
+            this.colUserName.Width = 147;
             // 
             // coluserNumber
             // 
             this.coluserNumber.Caption = "工号";
             this.coluserNumber.FieldName = "CollNo";
+            this.coluserNumber.MinWidth = 17;
             this.coluserNumber.Name = "coluserNumber";
             this.coluserNumber.OptionsColumn.AllowEdit = false;
             this.coluserNumber.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -289,12 +293,13 @@
             this.coluserNumber.OptionsFilter.AllowFilter = false;
             this.coluserNumber.Visible = true;
             this.coluserNumber.VisibleIndex = 2;
-            this.coluserNumber.Width = 126;
+            this.coluserNumber.Width = 108;
             // 
             // colWorkState
             // 
             this.colWorkState.Caption = "工作状态";
             this.colWorkState.FieldName = "ClientMsg";
+            this.colWorkState.MinWidth = 17;
             this.colWorkState.Name = "colWorkState";
             this.colWorkState.OptionsColumn.AllowEdit = false;
             this.colWorkState.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -302,12 +307,13 @@
             this.colWorkState.OptionsFilter.AllowFilter = false;
             this.colWorkState.Visible = true;
             this.colWorkState.VisibleIndex = 3;
-            this.colWorkState.Width = 209;
+            this.colWorkState.Width = 179;
             // 
             // colCarKind1
             // 
             this.colCarKind1.Caption = "车型";
             this.colCarKind1.FieldName = "CarType";
+            this.colCarKind1.MinWidth = 17;
             this.colCarKind1.Name = "colCarKind1";
             this.colCarKind1.OptionsColumn.AllowEdit = false;
             this.colCarKind1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -315,12 +321,13 @@
             this.colCarKind1.OptionsFilter.AllowFilter = false;
             this.colCarKind1.Visible = true;
             this.colCarKind1.VisibleIndex = 4;
-            this.colCarKind1.Width = 74;
+            this.colCarKind1.Width = 63;
             // 
             // colCharge1
             // 
             this.colCharge1.Caption = "金额";
             this.colCharge1.FieldName = "Money";
+            this.colCharge1.MinWidth = 17;
             this.colCharge1.Name = "colCharge1";
             this.colCharge1.OptionsColumn.AllowEdit = false;
             this.colCharge1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -328,12 +335,13 @@
             this.colCharge1.OptionsFilter.AllowFilter = false;
             this.colCharge1.Visible = true;
             this.colCharge1.VisibleIndex = 5;
-            this.colCharge1.Width = 78;
+            this.colCharge1.Width = 67;
             // 
             // colCarType
             // 
             this.colCarType.Caption = "车种";
             this.colCarType.FieldName = "CarKind";
+            this.colCarType.MinWidth = 17;
             this.colCarType.Name = "colCarType";
             this.colCarType.OptionsColumn.AllowEdit = false;
             this.colCarType.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -341,12 +349,13 @@
             this.colCarType.OptionsFilter.AllowFilter = false;
             this.colCarType.Visible = true;
             this.colCarType.VisibleIndex = 6;
-            this.colCarType.Width = 105;
+            this.colCarType.Width = 90;
             // 
             // colWorkMode
             // 
             this.colWorkMode.Caption = "工作模式";
             this.colWorkMode.FieldName = "WrokMode";
+            this.colWorkMode.MinWidth = 17;
             this.colWorkMode.Name = "colWorkMode";
             this.colWorkMode.OptionsColumn.AllowEdit = false;
             this.colWorkMode.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -354,29 +363,33 @@
             this.colWorkMode.OptionsFilter.AllowFilter = false;
             this.colWorkMode.Visible = true;
             this.colWorkMode.VisibleIndex = 7;
-            this.colWorkMode.Width = 148;
+            this.colWorkMode.Width = 127;
             // 
             // gcCardBoxExit
             // 
             this.gcCardBoxExit.Caption = "卡箱";
             this.gcCardBoxExit.ColumnEdit = this.cardBoxControlRepositoryItem2;
             this.gcCardBoxExit.FieldName = "CardBox";
-            this.gcCardBoxExit.MaxWidth = 80;
-            this.gcCardBoxExit.MinWidth = 40;
+            this.gcCardBoxExit.MaxWidth = 69;
+            this.gcCardBoxExit.MinWidth = 34;
             this.gcCardBoxExit.Name = "gcCardBoxExit";
+            this.gcCardBoxExit.OptionsColumn.AllowEdit = false;
+            this.gcCardBoxExit.OptionsColumn.ReadOnly = true;
             this.gcCardBoxExit.Visible = true;
             this.gcCardBoxExit.VisibleIndex = 9;
-            this.gcCardBoxExit.Width = 80;
+            this.gcCardBoxExit.Width = 69;
             // 
             // cardBoxControlRepositoryItem2
             // 
             this.cardBoxControlRepositoryItem2.AutoHeight = false;
             this.cardBoxControlRepositoryItem2.Name = "cardBoxControlRepositoryItem2";
+            this.cardBoxControlRepositoryItem2.ReadOnly = true;
             // 
             // colStartWorkTime
             // 
             this.colStartWorkTime.Caption = "上班时间";
             this.colStartWorkTime.FieldName = "JobBeginTime";
+            this.colStartWorkTime.MinWidth = 17;
             this.colStartWorkTime.Name = "colStartWorkTime";
             this.colStartWorkTime.OptionsColumn.AllowEdit = false;
             this.colStartWorkTime.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -384,15 +397,15 @@
             this.colStartWorkTime.OptionsFilter.AllowFilter = false;
             this.colStartWorkTime.Visible = true;
             this.colStartWorkTime.VisibleIndex = 8;
-            this.colStartWorkTime.Width = 193;
+            this.colStartWorkTime.Width = 165;
             // 
             // colyupengdeng
             // 
             this.colyupengdeng.Caption = "雨棚灯";
             this.colyupengdeng.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colyupengdeng.FieldName = "YuPengDeng";
-            this.colyupengdeng.MaxWidth = 55;
-            this.colyupengdeng.MinWidth = 38;
+            this.colyupengdeng.MaxWidth = 47;
+            this.colyupengdeng.MinWidth = 33;
             this.colyupengdeng.Name = "colyupengdeng";
             this.colyupengdeng.OptionsColumn.AllowEdit = false;
             this.colyupengdeng.OptionsColumn.AllowSize = false;
@@ -401,7 +414,7 @@
             this.colyupengdeng.OptionsFilter.AllowFilter = false;
             this.colyupengdeng.Visible = true;
             this.colyupengdeng.VisibleIndex = 10;
-            this.colyupengdeng.Width = 50;
+            this.colyupengdeng.Width = 43;
             // 
             // repositoryItemPictureEdit1
             // 
@@ -412,82 +425,116 @@
             // 
             this.colCoil1.Caption = "触发";
             this.colCoil1.FieldName = "Coil1";
-            this.colCoil1.MaxWidth = 55;
-            this.colCoil1.MinWidth = 38;
+            this.colCoil1.MaxWidth = 47;
+            this.colCoil1.MinWidth = 33;
             this.colCoil1.Name = "colCoil1";
+            this.colCoil1.OptionsColumn.AllowEdit = false;
+            this.colCoil1.OptionsColumn.ReadOnly = true;
             this.colCoil1.Visible = true;
             this.colCoil1.VisibleIndex = 20;
-            this.colCoil1.Width = 55;
+            this.colCoil1.Width = 47;
             // 
             // colCoil2
             // 
             this.colCoil2.Caption = "交易";
             this.colCoil2.FieldName = "Coil2";
-            this.colCoil2.MaxWidth = 55;
-            this.colCoil2.MinWidth = 38;
+            this.colCoil2.MaxWidth = 47;
+            this.colCoil2.MinWidth = 33;
             this.colCoil2.Name = "colCoil2";
+            this.colCoil2.OptionsColumn.AllowEdit = false;
+            this.colCoil2.OptionsColumn.ReadOnly = true;
             this.colCoil2.Visible = true;
             this.colCoil2.VisibleIndex = 21;
-            this.colCoil2.Width = 55;
+            this.colCoil2.Width = 47;
             // 
             // colRSU
             // 
             this.colRSU.FieldName = "RSU";
-            this.colRSU.MaxWidth = 55;
-            this.colRSU.MinWidth = 38;
+            this.colRSU.MaxWidth = 47;
+            this.colRSU.MinWidth = 33;
             this.colRSU.Name = "colRSU";
+            this.colRSU.OptionsColumn.AllowEdit = false;
+            this.colRSU.OptionsColumn.ReadOnly = true;
             this.colRSU.Visible = true;
             this.colRSU.VisibleIndex = 19;
-            this.colRSU.Width = 55;
+            this.colRSU.Width = 47;
+            // 
+            // colYellow
+            // 
+            this.colYellow.Caption = "小黄人";
+            this.colYellow.FieldName = "Yellow";
+            this.colYellow.MaxWidth = 47;
+            this.colYellow.MinWidth = 33;
+            this.colYellow.Name = "colYellow";
+            this.colYellow.OptionsColumn.AllowEdit = false;
+            this.colYellow.OptionsColumn.ReadOnly = true;
+            this.colYellow.Visible = true;
+            this.colYellow.VisibleIndex = 26;
+            this.colYellow.Width = 47;
             // 
             // gcWeightStatus
             // 
             this.gcWeightStatus.Caption = "称台";
             this.gcWeightStatus.FieldName = "Weight";
-            this.gcWeightStatus.MaxWidth = 55;
-            this.gcWeightStatus.MinWidth = 38;
+            this.gcWeightStatus.MaxWidth = 47;
+            this.gcWeightStatus.MinWidth = 33;
             this.gcWeightStatus.Name = "gcWeightStatus";
             this.gcWeightStatus.OptionsColumn.AllowEdit = false;
             this.gcWeightStatus.OptionsColumn.ReadOnly = true;
             this.gcWeightStatus.Visible = true;
             this.gcWeightStatus.VisibleIndex = 11;
-            this.gcWeightStatus.Width = 50;
+            this.gcWeightStatus.Width = 43;
             // 
             // gcReaderStatus
             // 
             this.gcReaderStatus.Caption = "读卡器";
             this.gcReaderStatus.ColumnEdit = this.repositoryItemPictureEdit1;
             this.gcReaderStatus.FieldName = "Reader";
-            this.gcReaderStatus.MaxWidth = 55;
-            this.gcReaderStatus.MinWidth = 38;
+            this.gcReaderStatus.MaxWidth = 47;
+            this.gcReaderStatus.MinWidth = 33;
             this.gcReaderStatus.Name = "gcReaderStatus";
             this.gcReaderStatus.OptionsColumn.AllowEdit = false;
             this.gcReaderStatus.OptionsColumn.ReadOnly = true;
             this.gcReaderStatus.Visible = true;
             this.gcReaderStatus.VisibleIndex = 13;
-            this.gcReaderStatus.Width = 50;
+            this.gcReaderStatus.Width = 43;
+            // 
+            // colQRPay
+            // 
+            this.colQRPay.Caption = "移动支付";
+            this.colQRPay.FieldName = "QRPay";
+            this.colQRPay.MaxWidth = 47;
+            this.colQRPay.MinWidth = 33;
+            this.colQRPay.Name = "colQRPay";
+            this.colQRPay.OptionsColumn.AllowEdit = false;
+            this.colQRPay.OptionsColumn.ReadOnly = true;
+            this.colQRPay.Visible = true;
+            this.colQRPay.VisibleIndex = 24;
+            this.colQRPay.Width = 47;
             // 
             // Coil3
             // 
             this.Coil3.Caption = "抓拍";
             this.Coil3.ColumnEdit = this.repositoryItemPictureEdit1;
             this.Coil3.FieldName = "Coil3";
-            this.Coil3.MaxWidth = 55;
-            this.Coil3.MinWidth = 38;
+            this.Coil3.MaxWidth = 47;
+            this.Coil3.MinWidth = 33;
             this.Coil3.Name = "Coil3";
+            this.Coil3.OptionsColumn.AllowEdit = false;
             this.Coil3.OptionsColumn.AllowSize = false;
+            this.Coil3.OptionsColumn.ReadOnly = true;
             this.Coil3.OptionsFilter.AllowFilter = false;
             this.Coil3.Visible = true;
             this.Coil3.VisibleIndex = 12;
-            this.Coil3.Width = 50;
+            this.Coil3.Width = 43;
             // 
             // colJiaoTong
             // 
             this.colJiaoTong.Caption = "交通灯";
             this.colJiaoTong.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colJiaoTong.FieldName = "JiaoTongDeng";
-            this.colJiaoTong.MaxWidth = 55;
-            this.colJiaoTong.MinWidth = 38;
+            this.colJiaoTong.MaxWidth = 47;
+            this.colJiaoTong.MinWidth = 33;
             this.colJiaoTong.Name = "colJiaoTong";
             this.colJiaoTong.OptionsColumn.AllowEdit = false;
             this.colJiaoTong.OptionsColumn.AllowSize = false;
@@ -496,15 +543,15 @@
             this.colJiaoTong.OptionsFilter.AllowFilter = false;
             this.colJiaoTong.Visible = true;
             this.colJiaoTong.VisibleIndex = 15;
-            this.colJiaoTong.Width = 50;
+            this.colJiaoTong.Width = 43;
             // 
             // colPrint
             // 
             this.colPrint.Caption = "打印机";
             this.colPrint.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colPrint.FieldName = "Printer";
-            this.colPrint.MaxWidth = 55;
-            this.colPrint.MinWidth = 38;
+            this.colPrint.MaxWidth = 47;
+            this.colPrint.MinWidth = 33;
             this.colPrint.Name = "colPrint";
             this.colPrint.OptionsColumn.AllowEdit = false;
             this.colPrint.OptionsColumn.AllowSize = false;
@@ -513,31 +560,32 @@
             this.colPrint.OptionsFilter.AllowFilter = false;
             this.colPrint.Visible = true;
             this.colPrint.VisibleIndex = 14;
-            this.colPrint.Width = 50;
+            this.colPrint.Width = 43;
             // 
             // Coil4
             // 
             this.Coil4.Caption = "离开";
             this.Coil4.ColumnEdit = this.repositoryItemPictureEdit1;
             this.Coil4.FieldName = "Coil4";
-            this.Coil4.MaxWidth = 55;
-            this.Coil4.MinWidth = 38;
+            this.Coil4.MaxWidth = 47;
+            this.Coil4.MinWidth = 33;
             this.Coil4.Name = "Coil4";
+            this.Coil4.OptionsColumn.AllowEdit = false;
             this.Coil4.OptionsColumn.AllowSize = false;
             this.Coil4.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.Coil4.OptionsColumn.ReadOnly = true;
             this.Coil4.OptionsFilter.AllowFilter = false;
             this.Coil4.Visible = true;
             this.Coil4.VisibleIndex = 17;
-            this.Coil4.Width = 50;
+            this.Coil4.Width = 43;
             // 
             // colLanGan
             // 
             this.colLanGan.Caption = "栏杆";
             this.colLanGan.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colLanGan.FieldName = "LanGan";
-            this.colLanGan.MaxWidth = 55;
-            this.colLanGan.MinWidth = 38;
+            this.colLanGan.MaxWidth = 47;
+            this.colLanGan.MinWidth = 33;
             this.colLanGan.Name = "colLanGan";
             this.colLanGan.OptionsColumn.AllowEdit = false;
             this.colLanGan.OptionsColumn.AllowSize = false;
@@ -546,15 +594,54 @@
             this.colLanGan.OptionsFilter.AllowFilter = false;
             this.colLanGan.Visible = true;
             this.colLanGan.VisibleIndex = 16;
-            this.colLanGan.Width = 50;
+            this.colLanGan.Width = 43;
+            // 
+            // colBaoJing
+            // 
+            this.colBaoJing.Caption = "黄闪";
+            this.colBaoJing.FieldName = "BaoJing";
+            this.colBaoJing.MaxWidth = 47;
+            this.colBaoJing.MinWidth = 33;
+            this.colBaoJing.Name = "colBaoJing";
+            this.colBaoJing.OptionsColumn.AllowEdit = false;
+            this.colBaoJing.OptionsColumn.ReadOnly = true;
+            this.colBaoJing.Visible = true;
+            this.colBaoJing.VisibleIndex = 22;
+            this.colBaoJing.Width = 47;
+            // 
+            // colVPR
+            // 
+            this.colVPR.Caption = "车牌识别";
+            this.colVPR.FieldName = "VPR";
+            this.colVPR.MaxWidth = 47;
+            this.colVPR.MinWidth = 33;
+            this.colVPR.Name = "colVPR";
+            this.colVPR.OptionsColumn.AllowEdit = false;
+            this.colVPR.OptionsColumn.ReadOnly = true;
+            this.colVPR.Visible = true;
+            this.colVPR.VisibleIndex = 25;
+            this.colVPR.Width = 47;
+            // 
+            // colCamera
+            // 
+            this.colCamera.Caption = "车道摄像机";
+            this.colCamera.FieldName = "Camera";
+            this.colCamera.MaxWidth = 47;
+            this.colCamera.MinWidth = 33;
+            this.colCamera.Name = "colCamera";
+            this.colCamera.OptionsColumn.AllowEdit = false;
+            this.colCamera.OptionsColumn.ReadOnly = true;
+            this.colCamera.Visible = true;
+            this.colCamera.VisibleIndex = 23;
+            this.colCamera.Width = 47;
             // 
             // colNetWork
             // 
             this.colNetWork.Caption = "网络";
             this.colNetWork.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colNetWork.FieldName = "Network";
-            this.colNetWork.MaxWidth = 55;
-            this.colNetWork.MinWidth = 38;
+            this.colNetWork.MaxWidth = 47;
+            this.colNetWork.MinWidth = 33;
             this.colNetWork.Name = "colNetWork";
             this.colNetWork.OptionsColumn.AllowEdit = false;
             this.colNetWork.OptionsColumn.AllowSize = false;
@@ -563,7 +650,7 @@
             this.colNetWork.OptionsFilter.AllowFilter = false;
             this.colNetWork.Visible = true;
             this.colNetWork.VisibleIndex = 18;
-            this.colNetWork.Width = 50;
+            this.colNetWork.Width = 43;
             // 
             // rpbExit
             // 
@@ -575,69 +662,14 @@
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // colBaoJing
-            // 
-            this.colBaoJing.Caption = "黄闪";
-            this.colBaoJing.FieldName = "BaoJing";
-            this.colBaoJing.MaxWidth = 55;
-            this.colBaoJing.MinWidth = 38;
-            this.colBaoJing.Name = "colBaoJing";
-            this.colBaoJing.Visible = true;
-            this.colBaoJing.VisibleIndex = 22;
-            this.colBaoJing.Width = 55;
-            // 
-            // colCamera
-            // 
-            this.colCamera.Caption = "车道摄像机";
-            this.colCamera.FieldName = "Camera";
-            this.colCamera.MaxWidth = 55;
-            this.colCamera.MinWidth = 38;
-            this.colCamera.Name = "colCamera";
-            this.colCamera.Visible = true;
-            this.colCamera.VisibleIndex = 23;
-            this.colCamera.Width = 55;
-            // 
-            // colQRPay
-            // 
-            this.colQRPay.Caption = "移动支付";
-            this.colQRPay.FieldName = "QRPay";
-            this.colQRPay.MaxWidth = 55;
-            this.colQRPay.MinWidth = 38;
-            this.colQRPay.Name = "colQRPay";
-            this.colQRPay.Visible = true;
-            this.colQRPay.VisibleIndex = 24;
-            this.colQRPay.Width = 55;
-            // 
-            // colVPR
-            // 
-            this.colVPR.Caption = "车牌识别";
-            this.colVPR.FieldName = "VPR";
-            this.colVPR.MaxWidth = 55;
-            this.colVPR.MinWidth = 38;
-            this.colVPR.Name = "colVPR";
-            this.colVPR.Visible = true;
-            this.colVPR.VisibleIndex = 25;
-            this.colVPR.Width = 55;
-            // 
-            // colYellow
-            // 
-            this.colYellow.Caption = "小黄人";
-            this.colYellow.FieldName = "Yellow";
-            this.colYellow.MaxWidth = 55;
-            this.colYellow.MinWidth = 38;
-            this.colYellow.Name = "colYellow";
-            this.colYellow.Visible = true;
-            this.colYellow.VisibleIndex = 26;
-            this.colYellow.Width = 55;
-            // 
             // LaneView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcExitLanes);
             this.DoubleBuffered = true;
             this.Name = "LaneView";
-            this.Size = new System.Drawing.Size(1771, 672);
+            this.Size = new System.Drawing.Size(1518, 576);
             ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).EndInit();

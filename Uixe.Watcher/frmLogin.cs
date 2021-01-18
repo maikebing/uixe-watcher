@@ -80,7 +80,8 @@ namespace Uixe.Watcher
                         this.Invoke((MethodInvoker)delegate
                         {
                             Properties.Settings.Default.Save();
-
+                            lblPlaza.Text =$"{plazainfo.station_name}车道监控";
+                            lblInfo.Text = $"服务器IP:{plazainfo.ip } 站代码:{plazainfo.station_id}";
                         });
                     }
                     catch (Exception ex)

@@ -848,6 +848,7 @@ namespace Uixe.Watcher
             // 
             // tmDateTime
             // 
+            this.tmDateTime.Enabled = true;
             this.tmDateTime.Interval = 1000;
             this.tmDateTime.Tick += new System.EventHandler(this.timer1_Tick);
             // 
@@ -1004,7 +1005,6 @@ namespace Uixe.Watcher
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemPopupGalleryEdit repositoryItemPopupGalleryEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit3;
-        private System.Windows.Forms.Timer tmDateTime;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraEditors.Repository.RepositoryItemTreeListLookUpEdit repositoryItemTreeListLookUpEdit2;
@@ -1044,6 +1044,7 @@ namespace Uixe.Watcher
         private DevExpress.XtraTreeList.Columns.TreeListColumn colKinds;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colExample;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colDisplay;
+        private System.Windows.Forms.Timer tmDateTime;
     }
 }
 

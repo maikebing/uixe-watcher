@@ -46,7 +46,7 @@
             this.digitalGauge1});
             this.gaugeControl1.Location = new System.Drawing.Point(0, 0);
             this.gaugeControl1.Name = "gaugeControl1";
-            this.gaugeControl1.Size = new System.Drawing.Size(452, 72);
+            this.gaugeControl1.Size = new System.Drawing.Size(440, 65);
             this.gaugeControl1.TabIndex = 0;
             // 
             // digitalGauge1
@@ -61,24 +61,24 @@
             this.digitalGauge1.Name = "digitalGauge1";
             this.digitalGauge1.Padding = new DevExpress.XtraGauges.Core.Base.TextSpacing(26, 20, 26, 20);
             this.digitalGauge1.ProportionalStretch = false;
-            this.digitalGauge1.Text = "2017-02-23 14:42:54";
+            this.digitalGauge1.Text = "2021-01-18 14:42:54";
             // 
             // digitalBackgroundLayerComponent1
             // 
             this.digitalBackgroundLayerComponent1.BottomRight = new DevExpress.XtraGauges.Core.Base.PointF2D(812.6751F, 106.075F);
             this.digitalBackgroundLayerComponent1.Name = "digitalBackgroundLayerComponent1";
-            this.digitalBackgroundLayerComponent1.ShapeType = DevExpress.XtraGauges.Core.Model.DigitalBackgroundShapeSetType.Style17;
+            this.digitalBackgroundLayerComponent1.ShapeType = DevExpress.XtraGauges.Core.Model.DigitalBackgroundShapeSetType.Style11;
             this.digitalBackgroundLayerComponent1.TopLeft = new DevExpress.XtraGauges.Core.Base.PointF2D(26F, 0F);
             this.digitalBackgroundLayerComponent1.ZOrder = 1000;
             // 
             // CougarClockContainer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gaugeControl1);
             this.DoubleBuffered = true;
             this.Name = "CougarClockContainer";
-            this.Size = new System.Drawing.Size(452, 72);
+            this.Size = new System.Drawing.Size(440, 65);
             ((System.ComponentModel.ISupportInitialize)(this.digitalGauge1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.digitalBackgroundLayerComponent1)).EndInit();
             this.ResumeLayout(false);
