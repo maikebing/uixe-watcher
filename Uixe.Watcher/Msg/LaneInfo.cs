@@ -75,7 +75,7 @@ namespace Uixe.Watcher.Msg
 
 
 
-        public string CardBox => $"{CarBoxID};{CarBoxMax};{ CarBoxNow};{LaneNo?.Substring(0, 1)}";
+        public string CardBox => $"{CarBoxID};{CarBoxMax};{ CarBoxNow};{LaneName?.Substring(0, 1)}";
 
 
 

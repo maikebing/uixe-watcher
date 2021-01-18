@@ -463,7 +463,7 @@ namespace Uixe.Watcher
             // tsBlackListPlate
             // 
             this.tsBlackListPlate.BindableChecked = true;
-            this.tsBlackListPlate.Caption = "车牌黑名单语音播报";
+            this.tsBlackListPlate.Caption = "追缴名单、ETC状态名单语音播报";
             this.tsBlackListPlate.Checked = global::Uixe.Watcher.Properties.Settings.Default.SpeedBlackListPlate;
             this.tsBlackListPlate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Uixe.Watcher.Properties.Settings.Default, "SpeedBlackListPlate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tsBlackListPlate.Id = 36;
@@ -487,7 +487,7 @@ namespace Uixe.Watcher
             // tsLvSeTongDao
             // 
             this.tsLvSeTongDao.BindableChecked = true;
-            this.tsLvSeTongDao.Caption = "绿 色 通道 语音播报";
+            this.tsLvSeTongDao.Caption = "绿色通道和假冒绿通语音播报";
             this.tsLvSeTongDao.Checked = global::Uixe.Watcher.Properties.Settings.Default.SpeechLvSeTongDao;
             this.tsLvSeTongDao.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Uixe.Watcher.Properties.Settings.Default, "SpeechLvSeTongDao", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tsLvSeTongDao.Id = 40;
@@ -859,7 +859,7 @@ namespace Uixe.Watcher
             // tmNetworkTest
             // 
             this.tmNetworkTest.Interval = 1000;
-            this.tmNetworkTest.Tick += new System.EventHandler(this.tmNetworkTest_Tick);
+            this.tmNetworkTest.Tick += new System.EventHandler(this.tmNetworkTest_TickAsync);
             // 
             // cmsNotifyMenu
             // 

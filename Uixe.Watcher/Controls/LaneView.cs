@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
@@ -31,10 +32,13 @@ namespace Uixe.Watcher.Controls
         internal void InitLaneInfo(Plaza item)
         {
             Plaza = item;
+            var _ls= new List<LaneInfo>();
             item.lanes?.ForEach(l =>
             {
-                lst.Add(new LaneInfo(item.id, l.lane_id,l.lane_no,l.ip));
+                _ls.Add(new LaneInfo(item.id, l.lane_id,l.lane_no,l.ip));
             });
+            lst.AddRange(_ls.Where(l => l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
+            lst.AddRange(_ls.Where(l => l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());
             laneInfoBindingSource.DataSource = lst;
              gcExitLanes .RefreshDataSource();
         }

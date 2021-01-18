@@ -117,10 +117,7 @@ namespace Uixe.Watcher
             this.ResumeLayout();
             this.Activate();
             ShowStatusInfo("就绪");
-            //HandleMsg.ExitThread();
-            //HandleMsg.CreateThread(20, false);
             freshAgriProductsBindingSource.DataSource = FAP.GetFreshAgriProducts.FreshAgriProducts.ToArray();
-
             try
             {
                 SpeechUtils.Speecher.GetInstalledVoices().ToList().ForEach(iv =>
@@ -154,7 +151,7 @@ namespace Uixe.Watcher
                 var factory = new MqttFactory();
                 client = factory.CreateMqttClient();
                 var options = new MqttClientOptionsBuilder()
-        .WithTcpServer(p.ip,1883)
+        .WithTcpServer(p.ip, 1883)
         .WithCredentials($"tco_{p.id}", "")
         .WithClientId(p.id)
         .Build();
@@ -203,10 +200,10 @@ namespace Uixe.Watcher
                     }
                 }
             });
-        } 
-      
+        }
 
-      
+
+
 
         /// <summary>
         /// 加载车道
@@ -226,8 +223,8 @@ namespace Uixe.Watcher
             {
                 plasas.Add(new Plaza()
                 {
-                     road_name = "错误",
-                      id = "6509999"
+                    road_name = "错误",
+                    id = "6509999"
                 });
             }
             foreach (var item in plasas)
@@ -273,7 +270,7 @@ namespace Uixe.Watcher
             lanView.SelectedTabPage = null;
             if (lanView.TabPages.Count > 0) lanView.SelectedTabPage = lanView.TabPages[0];
             if (lanView.SelectedTabPage != null) messageView.SetPlaza(lanView.SelectedTabPage.Name);
-     
+
             messageView.ResumeLayout(false);
             lanView.ResumeLayout(false);
 
@@ -281,7 +278,7 @@ namespace Uixe.Watcher
             ShowStatusInfo("就绪");
         }
 
- 
+
         /// <summary>
         /// 用户权限控制
         /// </summary>
@@ -290,7 +287,7 @@ namespace Uixe.Watcher
             var p = Uitls.TollInfo.GetTollInfo();
             this.Text = string.Format($"{p.road_name}-{p.station_name}({p.id}) v{ Assembly.GetExecutingAssembly().GetName().Version}");
             this.Ribbon.ApplicationCaption = this.Text;
-          
+
         }
 
         #endregion 加载
@@ -299,30 +296,10 @@ namespace Uixe.Watcher
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ExitMe(e);
-        }
-
-      
-
-        private void ExitMe(FormClosingEventArgs e)
-        {
-            if (!btnLogout.Enabled && e.CloseReason == CloseReason.UserClosing)
-            {
-                var r=XtraMessageBox.Show("是否确定关闭", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (e != null)
-                {
-                    e.Cancel = r== DialogResult.No;
-                }
-            }
-            else
-            {
-                Properties.Settings.Default.SkinStyle = UserLookAndFeel.Default.ActiveSkinName;
-                Properties.Settings.Default.Save();
-
-              //  HandleMsg.ExitThread();
-                Application.ExitThread();
-                Application.Exit();
-            }
+            Properties.Settings.Default.SkinStyle = UserLookAndFeel.Default.ActiveSkinName;
+            Properties.Settings.Default.Save();
+            Application.ExitThread();
+            Application.Exit();
         }
 
         public void Login()
@@ -368,24 +345,18 @@ namespace Uixe.Watcher
         }
 
         private int autosynctime = -1;
-        private int secc = -1;
 
         private void time_Tick(object sender, EventArgs e)
         {
             if (autosynctime != System.DateTime.Now.Hour)
             {
-              //  BLLWatcher.ALLLaneTimeSet(DateTime.Now.AddSeconds(1));
                 autosynctime = System.DateTime.Now.Hour;
             }
-            //if (!AppConfig.IsNetCenterOrRoot &&  AppConfig.RunTime.TCOCall && secc != DateTime.Now.Second)
-            //{
-            // //   BLLWatcher.TellLaneTCOIsOK();
-            //    secc = DateTime.Now.Second;
-            //}
-                if (GetIdleTime() >= TimeSpan.FromMinutes(30).TotalSeconds)
-                {
-                    Logout();
-                }
+
+            if (GetIdleTime() >= TimeSpan.FromMinutes(30).TotalSeconds)
+            {
+                Logout();
+            }
         }
 
         private void frmMain_HelpRequested(object sender, HelpEventArgs hlpevent)
@@ -393,7 +364,7 @@ namespace Uixe.Watcher
             Help.ShowHelp(this, "TCOHelp.chm");
         }
 
-    
+
 
         private void btnLogin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -405,21 +376,20 @@ namespace Uixe.Watcher
             Logout();
         }
 
-    
+
         private void btnSyncTime_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             TimeSync = new frmTimeSync();
             TimeSync.ShowDialog(this);
         }
 
-      
+
 
         private void btnAbout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             frmAbout f = new frmAbout();
             f.ShowDialog();
             f.Dispose();
-            f = null;
         }
 
         private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -436,7 +406,7 @@ namespace Uixe.Watcher
             });
         }
 
- 
+
         /// <summary>
         /// 
         /// </summary>
@@ -460,9 +430,9 @@ namespace Uixe.Watcher
             }
         }
 
-        public void ShowMessageView(MsgInfo mi )
+        public void ShowMessageView(MsgInfo mi)
         {
-            messageView.ShowMessageView(mi );
+            messageView.ShowMessageView(mi);
         }
 
         private void lanView_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
@@ -494,21 +464,21 @@ namespace Uixe.Watcher
                 }
             }
         }
- 
 
-    
- 
+
+
+
         private void skinRibbonGalleryBarItem2_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
         {
             Properties.Settings.Default.SkinStyle = e.Item.Tag.ToString();
             Properties.Settings.Default.Save();
         }
 
-      
+
 
         private string temptime = null;
         private object timeobjlock = new object();
-
+        [DebuggerStepThrough]
         private void timer1_Tick(object sender, EventArgs e)
         {
             lock (timeobjlock)
@@ -522,8 +492,8 @@ namespace Uixe.Watcher
             }
         }
 
- 
- 
+
+
         private DateTime lastsend = DateTime.MinValue;
 
         private void btnSend_ItemClick(object sender, ItemClickEventArgs e)
@@ -533,7 +503,7 @@ namespace Uixe.Watcher
                 string msg = txtMsg.EditValue as string;
                 if (!string.IsNullOrEmpty(msg))
                 {
-                   //BLLWatcher.AllLaneSend(msg);
+                    //BLLWatcher.AllLaneSend(msg);
                 }
                 else
                 {
@@ -554,9 +524,9 @@ namespace Uixe.Watcher
         private int min = -1;
         private int hou = -1;
 
-     
 
-        private void tmNetworkTest_Tick(object sender, EventArgs e)
+
+        private async  void tmNetworkTest_TickAsync(object sender, EventArgs e)
         {
             if (min != DateTime.Now.Minute)
             {
@@ -564,31 +534,25 @@ namespace Uixe.Watcher
                 {
                     min = DateTime.Now.Minute;
                     var p = new Ping();
-                  //  BLLWatcher.AllLaneTimeReturn();
-                    //string ipaddress = AppConfig.GetPlazaIP();
-                    //p.SendTaskAsync(ipaddress).ContinueWith(pr =>
-                    //{
-                    //    Invoke((MethodInvoker)delegate
-                    //    {
-                    //        try
-                    //        {
-                    //            if (pr.Result.Status != IPStatus.Success)
-                    //            {
-                    //                chkServerStatus.EditValue = false;
-                    //                chkServerStatus.Caption = $"服务器{ipaddress}网络故障,{pr.Result.Status}";
-                    //                Alert("网络故障", chkServerStatus.Caption);
-                    //            }
-                    //            else
-                    //            {
-                    //                chkServerStatus.EditValue = true;
-                    //                chkServerStatus.Caption = "服务器网络正常";
-                    //            }
-                    //        }
-                    //        catch (Exception)
-                    //        {
-                    //        }
-                    //    });
-                    //});
+                    string ipaddress = Plaza.ip;
+                    var pr = await p.SendPingAsync(ipaddress);
+                    try
+                    {
+                        if (pr.Status != IPStatus.Success)
+                        {
+                            chkServerStatus.EditValue = false;
+                            chkServerStatus.Caption = $"服务器{ipaddress}网络故障,{pr.Status}";
+                            Alert("网络故障", chkServerStatus.Caption);
+                        }
+                        else
+                        {
+                            chkServerStatus.EditValue = true;
+                            chkServerStatus.Caption = "服务器网络正常";
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
                 catch (Exception)
                 {
@@ -598,7 +562,7 @@ namespace Uixe.Watcher
 
         private void btnTest_ItemClick(object sender, ItemClickEventArgs e)
         {
-            SpeechUtils.Speecher.SpeakAsync("E01 出现黑名单车辆新A515MG");//语音阅读方法
+            SpeechUtils.Speecher.SpeakAsync("E01出现黑名单车辆");//语音阅读方法
         }
 
         private void Speech_SpeakCompleted(object sender, SpeakCompletedEventArgs e)
@@ -611,16 +575,13 @@ namespace Uixe.Watcher
             Application.Exit();
         }
 
-        private void 寻找配置ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
 
         private void 软件更新ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btnUpgrade.PerformClick();
         }
 
-     
-       
+
+
     }//frmMain
 }
