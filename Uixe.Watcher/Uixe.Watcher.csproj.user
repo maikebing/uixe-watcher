@@ -2,8 +2,8 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
-    <PublishUrlHistory>publish\</PublishUrlHistory>
-    <InstallUrlHistory>http://tcs.xjsf.org/app/tco/</InstallUrlHistory>
+    <PublishUrlHistory>publish\|ftp://tco:tco123%4010.165.84.26/|ftp://10.165.84.26/|ftp://tco.uixe.net/</PublishUrlHistory>
+    <InstallUrlHistory>http://10.165.84.26/|http://tco.uixe.net/|http://tcs.xjsf.org/app/tco/</InstallUrlHistory>
     <SupportUrlHistory>http://kf.xjsf.org/</SupportUrlHistory>
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
