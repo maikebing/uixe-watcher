@@ -49,7 +49,7 @@ namespace Uixe.Watcher
         private void btnLogin_Click(object sender, EventArgs e)
         {
             RuntimeSetting.NowCollect = new Dtos.User();
-            
+            ReloadTollInfo();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -63,13 +63,20 @@ namespace Uixe.Watcher
         {
             this.Icon = Properties.Resources.LOGO;
             this.lblInfo.Text = "";
-            if (string.IsNullOrEmpty(txtPlazaId.Text))
+            ReloadTollInfo();
+            this.txtPassword.Focus();
+            RuntimeSetting.NowCollect = null;
+        }
+
+        private void ReloadTollInfo()
+        {
+            if (!string.IsNullOrEmpty(txtPlazaId.Text))
             {
                 Task.Run(() =>
                 {
                     try
                     {
-                        var plazainfo = TollInfo.GetTollInfo(txtPlazaId.Text);
+                        var plazainfo = TollInfo.GetTollInfo(txtPlazaId.Text,true);
                         this.Invoke((MethodInvoker)delegate
                         {
                             Properties.Settings.Default.Save();
@@ -80,15 +87,17 @@ namespace Uixe.Watcher
                     {
                         this.Invoke((MethodInvoker)delegate
                         {
-                            lblInfo.Text = "未能获取站信息"+ex.Message;
+                            lblInfo.Text = "未能获取站信息" + ex.Message;
                         });
 
                     }
                 });
-                 
+
             }
-            this.txtPassword.Focus();
-            RuntimeSetting.NowCollect = null;
+            else
+            {
+                lblInfo.Text = "信息为空";
+            }
         }
 
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)

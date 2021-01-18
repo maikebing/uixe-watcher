@@ -16,9 +16,13 @@ namespace Uixe.Watcher.Uitls
         {
             return GetTollInfo(Properties.Settings.Default.plazaid);
         }
-        public static Plaza GetTollInfo(string toll_id)
+        public static Plaza GetTollInfo(string toll_id,bool reset=false)
         {
               string _key = "get_toll_info"+toll_id;
+            if (reset && Barrel.Current.Exists(_key))
+            {
+                Barrel.Current.Empty(_key);
+            }
             if (!Barrel.Current.Exists(_key) || Barrel.Current.IsExpired(_key))
             {
                 var client = new RestClient("http://10.165.70.45:5000/get_toll_info");
