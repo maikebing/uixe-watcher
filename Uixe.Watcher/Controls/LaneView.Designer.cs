@@ -61,14 +61,25 @@
             this.colVPR = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCamera = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNetWork = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btnVNC = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPing = new DevExpress.XtraBars.BarButtonItem();
+            this.btnReboot = new DevExpress.XtraBars.BarButtonItem();
             this.rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardBoxControlRepositoryItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpbExit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // gcExitLanes
@@ -77,6 +88,7 @@
             this.gcExitLanes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcExitLanes.Location = new System.Drawing.Point(0, 0);
             this.gcExitLanes.MainView = this.gvExitLanes;
+            this.gcExitLanes.MenuManager = this.barManager1;
             this.gcExitLanes.Name = "gcExitLanes";
             this.gcExitLanes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit1,
@@ -86,6 +98,7 @@
             this.gcExitLanes.TabIndex = 9;
             this.gcExitLanes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvExitLanes});
+            this.gcExitLanes.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gcExitLanes_MouseUp);
             // 
             // laneInfoBindingSource
             // 
@@ -652,6 +665,70 @@
             this.colNetWork.VisibleIndex = 18;
             this.colNetWork.Width = 43;
             // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.btnVNC,
+            this.btnPing,
+            this.btnReboot});
+            this.barManager1.MaxItemId = 3;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1518, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 576);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1518, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 576);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1518, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 576);
+            // 
+            // btnVNC
+            // 
+            this.btnVNC.Caption = "VNC";
+            this.btnVNC.Id = 0;
+            this.btnVNC.Name = "btnVNC";
+            this.btnVNC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnVNC_ItemClick);
+            // 
+            // btnPing
+            // 
+            this.btnPing.Caption = "Ping";
+            this.btnPing.Id = 1;
+            this.btnPing.Name = "btnPing";
+            // 
+            // btnReboot
+            // 
+            this.btnReboot.Caption = "重启";
+            this.btnReboot.Id = 2;
+            this.btnReboot.Name = "btnReboot";
+            // 
             // rpbExit
             // 
             this.rpbExit.Name = "rpbExit";
@@ -662,11 +739,26 @@
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // radialMenu1
+            // 
+            this.radialMenu1.Glyph = global::Uixe.Watcher.Properties.Resources.promotion;
+            this.radialMenu1.ItemAutoSize = DevExpress.XtraBars.Ribbon.RadialMenuItemAutoSize.Spring;
+            this.radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnVNC),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnPing),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnReboot)});
+            this.radialMenu1.Manager = this.barManager1;
+            this.radialMenu1.Name = "radialMenu1";
+            // 
             // LaneView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcExitLanes);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.DoubleBuffered = true;
             this.Name = "LaneView";
             this.Size = new System.Drawing.Size(1518, 576);
@@ -675,8 +767,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardBoxControlRepositoryItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpbExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -716,5 +811,14 @@
         private DevExpress.XtraGrid.Columns.GridColumn colBaoJing;
         private DevExpress.XtraGrid.Columns.GridColumn colVPR;
         private DevExpress.XtraGrid.Columns.GridColumn colCamera;
+        private DevExpress.XtraBars.Ribbon.RadialMenu radialMenu1;
+        private DevExpress.XtraBars.BarButtonItem btnVNC;
+        private DevExpress.XtraBars.BarButtonItem btnPing;
+        private DevExpress.XtraBars.BarButtonItem btnReboot;
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
     }
 }

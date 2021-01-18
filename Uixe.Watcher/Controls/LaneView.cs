@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using TCS.BOSS.VNC;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Properties;
@@ -110,7 +111,22 @@ namespace Uixe.Watcher.Controls
             }
         }
 
-   
-     
+        private async void btnVNC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
+            if (fv != null)
+            {
+                var vnc=await VNCUtils.Login(this.ParentForm, fv.IPAddress, 5900, "kissme");
+                vnc.Text = $"{fv.LaneName} {fv.IPAddress} ";
+            }
+        }
+
+        private void gcExitLanes_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                radialMenu1.ShowPopup(PointToScreen( e.Location),true);
+            }
+        }
     }
 }
