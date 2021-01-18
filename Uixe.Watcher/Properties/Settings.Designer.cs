@@ -120,34 +120,6 @@ namespace Uixe.Watcher.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>44</string>
-  <string>91</string>
-  <string>92</string>
-  <string>150</string>
-  <string>65</string>
-  <string>95</string>
-  <string>77</string>
-  <string>90</string>
-  <string>200</string>
-  <string>90</string>
-  <string>106</string>
-  <string>106</string>
-  <string>80</string>
-  <string>56</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection LaneViewColWidth {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["LaneViewColWidth"]));
-            }
-            set {
-                this["LaneViewColWidth"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Office 2016 Colorful")]
         public string SkinStyle {
             get {
@@ -244,7 +216,7 @@ namespace Uixe.Watcher.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6500256")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6500124")]
         public string plazaid {
             get {
                 return ((string)(this["plazaid"]));

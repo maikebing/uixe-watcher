@@ -28,11 +28,6 @@ namespace Uixe.Watcher
             UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.SkinStyle);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Task.Run(async () =>
-            {
-                var mqttServer = new MqttFactory().CreateMqttServer();
-                await mqttServer.StartAsync(new MqttServerOptions() );
-            });
             MainForm = new frmMain();
             Application.Run(MainForm);
         }

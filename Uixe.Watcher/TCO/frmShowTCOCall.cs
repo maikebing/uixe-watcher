@@ -23,7 +23,7 @@ namespace Uixe.Watcher
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
-                    string pname = lstlane[i].lane_id+ tmlLaneNo.plaza_id;
+                    string pname = lstlane[i].lane_id+ tmlLaneNo.id;
                     XtraTabPage t = new XtraTabPage();
                     TCOConfirm tms = new TCOConfirm();
                     t.Name = pname;

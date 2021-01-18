@@ -26,25 +26,6 @@
     <Setting Name="frmparamsend_aototink" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="LaneViewColWidth" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;44&lt;/string&gt;
-  &lt;string&gt;91&lt;/string&gt;
-  &lt;string&gt;92&lt;/string&gt;
-  &lt;string&gt;150&lt;/string&gt;
-  &lt;string&gt;65&lt;/string&gt;
-  &lt;string&gt;95&lt;/string&gt;
-  &lt;string&gt;77&lt;/string&gt;
-  &lt;string&gt;90&lt;/string&gt;
-  &lt;string&gt;200&lt;/string&gt;
-  &lt;string&gt;90&lt;/string&gt;
-  &lt;string&gt;106&lt;/string&gt;
-  &lt;string&gt;106&lt;/string&gt;
-  &lt;string&gt;80&lt;/string&gt;
-  &lt;string&gt;56&lt;/string&gt;
-&lt;/ArrayOfString&gt;</Value>
-    </Setting>
     <Setting Name="SkinStyle" Type="System.String" Scope="User">
       <Value Profile="(Default)">Office 2016 Colorful</Value>
     </Setting>
@@ -70,7 +51,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="plazaid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">6500256</Value>
+      <Value Profile="(Default)">6500124</Value>
     </Setting>
   </Settings>
 </SettingsFile>

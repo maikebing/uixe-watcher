@@ -9,26 +9,18 @@ namespace Uixe.Watcher.Dtos
 
     public class Plaza
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        public string id { get; set; }
+
         public string ip { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
+
         public List<Lane> lanes { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string plaza_id { get; set; }
-        /// <summary>
-        /// 新疆木垒匝道站
-        /// </summary>
-        public string plaza_name { get; set; }
-        /// <summary>
-        /// G7奇木高速
-        /// </summary>
+
+        public string station_id { get; set; }
+
+        public string station_name { get; set; }
+
         public string road_name { get; set; }
+        public string road_id { get; set; }
     }
 
 }

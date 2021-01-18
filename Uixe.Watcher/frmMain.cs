@@ -72,43 +72,7 @@ namespace Uixe.Watcher
         IMqttClient client;
         private void frmMain_Load(object sender, EventArgs e)
         {
-            Task.Run(async () =>
-            {
-                var factory = new MqttFactory();
-                client = factory.CreateMqttClient();
-                var options = new MqttClientOptionsBuilder()
-        .WithTcpServer("localhost")
-        .Build();
-                client.UseDisconnectedHandler(async xe =>
-                {
-                    Console.WriteLine("### DISCONNECTED FROM SERVER ###");
-                    await Task.Delay(TimeSpan.FromSeconds(5));
-
-                    try
-                    {
-                        await client.ConnectAsync(options, CancellationToken.None); // Since 3.0.5 with CancellationToken
-                 }
-                    catch
-                    {
-                        Console.WriteLine("### RECONNECTING FAILED ###");
-                    }
-                });
-                client.UseApplicationMessageReceivedHandler(h =>
-                {
-                    if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/status/"))
-                    {
-                        string t = h.ApplicationMessage.Topic.Split('/').Last();
-                        var plaza = t.Substring(0, 7);
-                        var laneno = t.Substring(7, 3);
-                        ShowLaneInfor(plaza, t, System.Text.Encoding.GetEncoding(936).GetString(h.ApplicationMessage.Payload));
-                    }
-                });
-                client.UseConnectedHandler(async h =>
-                {
-                    await client.SubscribeAsync("/lane/emrc_main/status/+");
-                });
-               await client.ConnectAsync(options, CancellationToken.None);
-            });
+            StarupMqttClient();
             btnUpgrade.Visibility = ApplicationDeployment.IsNetworkDeployed ? BarItemVisibility.Always : BarItemVisibility.Never;
             repositoryItem.ControlType = control.GetType();
             barEditItem.Edit = repositoryItem;
@@ -121,10 +85,10 @@ namespace Uixe.Watcher
             this.btnLogout.Enabled = false;
 
             Plaza = TollInfo.GetTollInfo();
-                LoadLaneView(Plaza);
-            if (System.IO.Directory.Exists( "Ring"))
+            LoadLaneView(Plaza);
+            if (System.IO.Directory.Exists("Ring"))
             {
-                foreach (var item in System.IO.Directory.GetFiles( AppContext.BaseDirectory+ "\\Ring", "*.wav"))
+                foreach (var item in System.IO.Directory.GetFiles(AppContext.BaseDirectory + "\\Ring", "*.wav"))
                 {
                     System.IO.FileInfo fi = new System.IO.FileInfo(item);
                     BarButtonItem bt = new BarButtonItem() { Caption = fi.Name.Replace(fi.Extension, "") };
@@ -179,7 +143,51 @@ namespace Uixe.Watcher
                 btnTest.Enabled = false;
 
             }
-     
+
+        }
+
+        private void StarupMqttClient()
+        {
+            Task.Run(async () =>
+            {
+                var p = Uitls.TollInfo.GetTollInfo();
+                var factory = new MqttFactory();
+                client = factory.CreateMqttClient();
+                var options = new MqttClientOptionsBuilder()
+        .WithTcpServer(p.ip,1883)
+        .WithCredentials($"tco_{p.id}", "")
+        .WithClientId(p.id)
+        .Build();
+                client.UseDisconnectedHandler(async xe =>
+                {
+                    Console.WriteLine("### DISCONNECTED FROM SERVER ###");
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+
+                    try
+                    {
+                        await client.ConnectAsync(options, CancellationToken.None); // Since 3.0.5 with CancellationToken
+                    }
+                    catch
+                    {
+                        Console.WriteLine("### RECONNECTING FAILED ###");
+                    }
+                });
+                client.UseApplicationMessageReceivedHandler(h =>
+                {
+                    if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/status/"))
+                    {
+                        string t = h.ApplicationMessage.Topic.Split('/').Last();
+                        var plaza = t.Substring(0, 7);
+                        var laneno = t.Substring(7, 3);
+                        ShowLaneInfor(plaza, t, System.Text.Encoding.GetEncoding(936).GetString(h.ApplicationMessage.Payload));
+                    }
+                });
+                client.UseConnectedHandler(async h =>
+                {
+                    await client.SubscribeAsync("/lane/emrc_main/status/+");
+                });
+                await client.ConnectAsync(options, CancellationToken.None);
+            });
         }
 
         private void ResetSpeachMenu()
@@ -218,19 +226,18 @@ namespace Uixe.Watcher
             {
                 plasas.Add(new Plaza()
                 {
-                    plaza_name = "错误",
-                    plaza_id = "6509999"
-
+                     road_name = "错误",
+                      id = "6509999"
                 });
             }
             foreach (var item in plasas)
             {
                 XtraTabPage xtp = lanView.TabPages.Add();
-                xtp.Name = item.plaza_id;
-                xtp.Text = string.Format("{0}-{1}", item.road_name, item.plaza_name);
+                xtp.Name = item.id;
+                xtp.Text = string.Format("{0}-{1}", item.road_name, item.station_name);
                 Uixe.Watcher.Controls.LaneView lv = new Uixe.Watcher.Controls.LaneView();
                 xtp.Controls.Add(lv);
-                lv.Name = item.plaza_id;
+                lv.Name = item.id;
                 lv.InitLaneInfo(item);
 
                 if (lv.LaneCount > maxlanecount)
@@ -238,7 +245,7 @@ namespace Uixe.Watcher
                     maxlanecount = lv.LaneCount;
                 }
                 lv.Dock = DockStyle.Top;
-                messageView.initMessageView(item.plaza_id, 100);
+                messageView.initMessageView(item.id, 100);
             }
 
             if (lanView.TabPages.Count > 1)
@@ -246,7 +253,7 @@ namespace Uixe.Watcher
                 lanView.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
             }
             int el = 0;
-            Control[] cont = lanView.SelectedTabPage.Controls.Find(plasas[0].plaza_id, true);
+            Control[] cont = lanView.SelectedTabPage.Controls.Find(plasas[0].id, true);
             if (cont.Length > 0)
             {
                 var lv = ((Uixe.Watcher.Controls.LaneView)cont[0]);
@@ -281,7 +288,7 @@ namespace Uixe.Watcher
         private void UserAccessControl()
         {
             var p = Uitls.TollInfo.GetTollInfo();
-            this.Text = string.Format($"{p.road_name}-{p.plaza_name}({p.plaza_id}) v{ Assembly.GetExecutingAssembly().GetName().Version}");
+            this.Text = string.Format($"{p.road_name}-{p.station_name}({p.id}) v{ Assembly.GetExecutingAssembly().GetName().Version}");
             this.Ribbon.ApplicationCaption = this.Text;
           
         }
@@ -386,16 +393,7 @@ namespace Uixe.Watcher
             Help.ShowHelp(this, "TCOHelp.chm");
         }
 
-        private void lanView_LostConnect(DataRow dr)
-        {
-            MsgInfo mi = new MsgInfo();
-            mi.OccDateTime = DateTime.Now;
-            mi.MsgType = "脱机消息";
-            mi.PromptMsg = "已脱机";
-            mi.LaneNo = dr["LaneNo"].ToString();
-            mi.CollNo = dr["userNumber"].ToString();
-            messageView.ShowMessageView( mi);
-        }
+    
 
         private void btnLogin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -429,12 +427,6 @@ namespace Uixe.Watcher
             Close();
         }
 
- 
- 
-
-      
-
-    
 
         public void Alert(string caption, string text)
         {
@@ -444,25 +436,7 @@ namespace Uixe.Watcher
             });
         }
 
-     
-         
-
-        public void SetNetwork(string plaza, string laneno)
-        {
-            lock (lanView)
-            {
-                var tb = from p in lanView.TabPages.ToArray() where p.Name == plaza select p;
-                if (tb.Any())
-                {
-                    XtraTabPage xtp = tb.First();
-                    Control[] cont = xtp.Controls.Find(plaza, true);
-                    if (cont.Length > 0)
-                    {
-                    //    ((Uixe.Watcher.Controls.LaneView)cont[0]).SetNetWork(true, plaza, laneno);
-                    }
-                }
-            }
-        }
+ 
         /// <summary>
         /// 
         /// </summary>

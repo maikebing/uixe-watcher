@@ -33,7 +33,7 @@ namespace Uixe.Watcher.Controls
             Plaza = item;
             item.lanes?.ForEach(l =>
             {
-                lst.Add(new LaneInfo(item.plaza_id, l.lane_id,l.lane_no,l.ip));
+                lst.Add(new LaneInfo(item.id, l.lane_id,l.lane_no,l.ip));
             });
             laneInfoBindingSource.DataSource = lst;
              gcExitLanes .RefreshDataSource();

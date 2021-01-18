@@ -25,7 +25,7 @@ namespace Uixe.Watcher.V1
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
-                    string pname = lstlane[i].lane_id + tmlLaneNo.plaza_id;
+                    string pname = tmlLaneNo.id+ lstlane[i].lane_id ;
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
                     t.Name = pname;

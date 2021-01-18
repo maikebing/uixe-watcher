@@ -28,9 +28,16 @@ namespace Uixe.Watcher.Uitls
                 request.AddHeader("Content-Type", "application/json");
                 request.AddParameter("application/json", $"{{\r\n    \"toll_id\": \"{toll_id}\"\r\n}}", ParameterType.RequestBody);
                 IRestResponse response = client.Execute(request);
-                Debug.WriteLine(response.Content);
-                var plaza= Newtonsoft.Json.JsonConvert.DeserializeObject<Plaza>(response.Content);
-                Barrel.Current.Add(_key, plaza, TimeSpan.FromDays(7));
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    Debug.WriteLine(response.Content);
+                    var plaza = Newtonsoft.Json.JsonConvert.DeserializeObject<Plaza>(response.Content);
+                    Barrel.Current.Add(_key, plaza, TimeSpan.FromDays(7));
+                }
+                else
+                {
+                    throw response.ErrorException;
+                }
             }
             return Barrel.Current.Get<Plaza>(_key);
 
