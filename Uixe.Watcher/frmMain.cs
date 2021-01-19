@@ -72,7 +72,7 @@ namespace Uixe.Watcher
         IMqttClient client;
         private void frmMain_Load(object sender, EventArgs e)
         {
-            StarupMqttClient();
+         
             btnUpgrade.Visibility = ApplicationDeployment.IsNetworkDeployed ? BarItemVisibility.Always : BarItemVisibility.Never;
             repositoryItem.ControlType = control.GetType();
             barEditItem.Edit = repositoryItem;
@@ -81,11 +81,9 @@ namespace Uixe.Watcher
             rpgTime.ItemLinks.Add(barEditItem);
 
             this.Icon = Properties.Resources.LOGO;
-            this.SuspendLayout();
+
             this.btnLogout.Enabled = false;
 
-            Plaza = TollInfo.GetTollInfo();
-            LoadLaneView(Plaza);
             if (System.IO.Directory.Exists("Ring"))
             {
                 foreach (var item in System.IO.Directory.GetFiles(AppContext.BaseDirectory + "\\Ring", "*.wav"))
@@ -113,9 +111,7 @@ namespace Uixe.Watcher
             {
                 btnRing.Enabled = false;
             }
-            UserAccessControl();
-            this.ResumeLayout();
-            this.Activate();
+        
             ShowStatusInfo("就绪");
             freshAgriProductsBindingSource.DataSource = FAP.GetFreshAgriProducts.FreshAgriProducts.ToArray();
             try
@@ -140,7 +136,25 @@ namespace Uixe.Watcher
                 btnTest.Enabled = false;
 
             }
+            if (string.IsNullOrEmpty(Properties.Settings.Default.plazaid))
+            {
+                btnLogin.PerformClick();
+            }
+            else
+            {
+                LoadLaneInfo(Properties.Settings.Default.plazaid);
+            }
+        }
 
+        public void LoadLaneInfo(string plazaid,bool reset=false)
+        {
+            this.SuspendLayout();
+            Plaza = TollInfo.GetTollInfo(plazaid,reset);
+            LoadLaneView(Plaza);
+            UserAccessControl();
+            this.ResumeLayout();
+            this.Activate();
+            StarupMqttClient();
         }
 
         private void StarupMqttClient()

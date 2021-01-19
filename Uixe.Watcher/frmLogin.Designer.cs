@@ -155,6 +155,7 @@
             this.txtPlazaId.Properties.MaxLength = 7;
             this.txtPlazaId.Size = new System.Drawing.Size(305, 28);
             this.txtPlazaId.TabIndex = 30;
+            this.txtPlazaId.EditValueChanged += new System.EventHandler(this.txtPlazaId_EditValueChanged);
             // 
             // labelControl1
             // 

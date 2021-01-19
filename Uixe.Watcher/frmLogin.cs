@@ -106,6 +106,10 @@ namespace Uixe.Watcher
             if (e.KeyChar == 13)
                 btnLogin_Click(null, null);
         }
- 
+
+        private void txtPlazaId_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
