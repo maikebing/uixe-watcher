@@ -6,6 +6,7 @@ using MQTTnet.Server;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -21,6 +22,15 @@ namespace Uixe.Watcher
         [STAThread]
         private static void Main(string[] args)
         {
+#if DEBUG
+            Task.Run(async () =>
+            {
+                var mqttServer = new MqttFactory().CreateMqttServer();
+                var opt = new MqttServerOptions();
+                opt.DefaultEndpointOptions.BoundInterNetworkAddress = IPAddress.Any;
+                await mqttServer.StartAsync( opt);
+            });
+#endif
             Barrel.ApplicationId = Assembly.GetExecutingAssembly().GetName().Name;
             Barrel.EncryptionKey = "future";
             DevExpress.Skins.SkinManager.EnableFormSkins();

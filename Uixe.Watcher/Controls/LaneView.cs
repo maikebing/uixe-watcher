@@ -76,30 +76,36 @@ namespace Uixe.Watcher.Controls
         public int LaneCount => lst.Count;
 
 
-        private void timer1_Tick(object sender, EventArgs e)
-       {
-            
-       
-        }
+      
 
   
 
         private void gv_RowStyle(object sender, RowStyleEventArgs e)
         {
             var gv = sender as GridView;
-            var dr = gv.GetDataRow(e.RowHandle);
-            if (gv != null && dr != null)
+            var i = gv.GetDataSourceRowIndex(e.RowHandle);
+            if (gv != null && i>=0)
             {
-                //bool badlane = gv.GetDataRow(e.RowHandle).Field<string>("badlane") == "1";
-                //e.HighPriority = badlane;
-                //if (badlane)
-                //{
-                //    e.Appearance.BackColor = Color.FromArgb(100, 255, 225, 225);
-                //    e.Appearance.ForeColor = Color.FromArgb(100, 176, 0, 22);
-                //}
+                var dr = (laneInfoBindingSource[gv.GetDataSourceRowIndex(e.RowHandle)] as LaneInfo);
+                var netstatus=  dr.NetworkStatus;
+                e.HighPriority = !netstatus;
+                if (!dr.NetworkStatus)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(100, 255, 225, 225);
+                    e.Appearance.ForeColor = Color.FromArgb(100, 176, 0, 22);
+                }
             }
         }
-
+        public void ShowLaneLost(string laneid)
+        {
+            int i = lst.FindIndex(f => f.LaneName == laneid);
+            if (i >= 0)
+            {
+                (laneInfoBindingSource[i] as LaneInfo).NetworkStatus = false;
+                gvExitLanes.RefreshRow(gvExitLanes.GetRowHandle(i));
+ 
+            }
+        }
         private void ShowCardBox(CustomRowCellEditEventArgs e)
         {
             var ripb = e.RepositoryItem as RepositoryItemProgressBar;

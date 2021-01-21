@@ -70,7 +70,6 @@
             this.btnPing = new DevExpress.XtraBars.BarButtonItem();
             this.btnReboot = new DevExpress.XtraBars.BarButtonItem();
             this.rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).BeginInit();
@@ -732,12 +731,6 @@
             // 
             this.rpbExit.Name = "rpbExit";
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 10000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // radialMenu1
             // 
             this.radialMenu1.Glyph = global::Uixe.Watcher.Properties.Resources.promotion;
@@ -795,7 +788,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colNetWork;
         private DevExpress.XtraGrid.Columns.GridColumn Coil3;
         private DevExpress.XtraGrid.Columns.GridColumn Coil4;
-        private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraGrid.Columns.GridColumn gcReaderStatus;
         private DevExpress.XtraGrid.Columns.GridColumn gcWeightStatus;
         private DevExpress.XtraGrid.Columns.GridColumn gcCardBoxExit;

@@ -165,10 +165,14 @@ namespace Uixe.Watcher
                 var factory = new MqttFactory();
                 client = factory.CreateMqttClient();
                 var options = new MqttClientOptionsBuilder()
-        .WithTcpServer(p.ip, 1883)
-        .WithCredentials($"tco_{p.id}", "")
-        .WithClientId(p.id)
-        .Build();
+#if DEBUG
+                     .WithTcpServer("localhost", 1883)
+#else 
+                     .WithTcpServer(p.ip, 1883)
+#endif
+                    .WithCredentials($"tco_{p.id}", "")
+                    .WithClientId(p.id)
+                    .Build();
                 client.UseDisconnectedHandler(async xe =>
                 {
                     Console.WriteLine("### DISCONNECTED FROM SERVER ###");
@@ -185,17 +189,27 @@ namespace Uixe.Watcher
                 });
                 client.UseApplicationMessageReceivedHandler(h =>
                 {
-                    if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/status/"))
+                    var message = System.Text.Encoding.GetEncoding(936).GetString(h.ApplicationMessage.Payload);
+                    Console.WriteLine($"{h.ApplicationMessage.Topic}");
+                    if (h.ApplicationMessage.Topic == "/lane/emrc_main/willmessage" && message.Length >= 10)
+                    {
+                        var plaza = message.Substring(0, 7);
+                        var laneno = message.Substring(7, 3);
+                        ShowLaneLost(plaza, laneno);
+                    }
+                    else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/status/"))
                     {
                         string t = h.ApplicationMessage.Topic.Split('/').Last();
                         var plaza = t.Substring(0, 7);
                         var laneno = t.Substring(7, 3);
-                        ShowLaneInfor(plaza, t, System.Text.Encoding.GetEncoding(936).GetString(h.ApplicationMessage.Payload));
+                        ShowLaneInfor(plaza, t, message);
                     }
                 });
                 client.UseConnectedHandler(async h =>
                 {
-                    await client.SubscribeAsync("/lane/emrc_main/status/+");
+                  var subresult=  await client.SubscribeAsync("/lane/emrc_main/status/+");
+                  await client.SubscribeAsync("#");
+                    var pubresult= await client.PublishAsync("/tco/status/", new { message= "startup" });
                 });
                 await client.ConnectAsync(options, CancellationToken.None);
             });
@@ -439,6 +453,23 @@ namespace Uixe.Watcher
                     if (cont.Length > 0)
                     {
                         ((Uixe.Watcher.Controls.LaneView)cont[0]).ShowLaneInfor(laneno, revdata);
+                    }
+                }
+            }
+        }
+
+        public void ShowLaneLost(string plaza, string laneno)
+        {
+            lock (lanView)
+            {
+                var tb = from p in lanView.TabPages.ToArray() where p.Name == plaza select p;
+                if (tb.Any())
+                {
+                    XtraTabPage xtp = tb.First();
+                    Control[] cont = xtp.Controls.Find(plaza, true);
+                    if (cont.Length > 0)
+                    {
+                        ((Uixe.Watcher.Controls.LaneView)cont[0]).ShowLaneLost(laneno);
                     }
                 }
             }

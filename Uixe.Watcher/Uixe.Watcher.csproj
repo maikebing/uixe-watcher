@@ -299,6 +299,7 @@
     <Compile Include="Ring\PlayUitls.cs" />
     <Compile Include="Tools\SpeechUtils.cs" />
     <Compile Include="Tools\LanePingItem.cs" />
+    <Compile Include="Uitls\MqttClientExtensions.cs" />
     <Compile Include="Uitls\InheritHelper.cs" />
     <Compile Include="Uitls\TollInfo.cs" />
     <Compile Include="TCO\frmWeightTCOCall.cs">
