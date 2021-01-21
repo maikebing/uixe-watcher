@@ -787,7 +787,7 @@ namespace Uixe.Watcher
             this.messageView.Location = new System.Drawing.Point(0, 0);
             this.messageView.Margin = new System.Windows.Forms.Padding(4);
             this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(1529, 577);
+            this.messageView.Size = new System.Drawing.Size(1529, 355);
             this.messageView.TabIndex = 9;
             // 
             // sccMain
@@ -808,7 +808,7 @@ namespace Uixe.Watcher
             this.sccMain.Panel2.Controls.Add(this.messageView);
             this.sccMain.Panel2.Text = "Panel2";
             this.sccMain.Size = new System.Drawing.Size(1529, 705);
-            this.sccMain.SplitterPosition = 118;
+            this.sccMain.SplitterPosition = 340;
             this.sccMain.TabIndex = 12;
             this.sccMain.Text = "splitContainerControl1";
             // 
@@ -819,7 +819,7 @@ namespace Uixe.Watcher
             this.lanView.Margin = new System.Windows.Forms.Padding(4);
             this.lanView.Name = "lanView";
             this.lanView.SelectedTabPage = this.xtraTabPage1;
-            this.lanView.Size = new System.Drawing.Size(1529, 118);
+            this.lanView.Size = new System.Drawing.Size(1529, 340);
             this.lanView.TabIndex = 0;
             this.lanView.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -830,7 +830,7 @@ namespace Uixe.Watcher
             // 
             this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 96);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 318);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // xtraTabPage2

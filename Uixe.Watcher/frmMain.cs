@@ -31,6 +31,7 @@ using Uixe.Watcher.Uitls;
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Client.Options;
+using Newtonsoft.Json;
 
 namespace Uixe.Watcher
 {
@@ -172,6 +173,7 @@ namespace Uixe.Watcher
 #endif
                     .WithCredentials($"tco_{p.id}", "")
                     .WithClientId(p.id)
+                    .WithWillMessage(new MqttApplicationMessage() { Topic= "/tco/willmessage", QualityOfServiceLevel= MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain=true})
                     .Build();
                 client.UseDisconnectedHandler(async xe =>
                 {
@@ -204,13 +206,20 @@ namespace Uixe.Watcher
                         var laneno = t.Substring(7, 3);
                         ShowLaneInfor(plaza, t, message);
                     }
+                    else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/message/"))
+                    {
+                        ShowMessageView(JsonConvert.DeserializeObject<MsgInfo>(message));
+                    }
                 });
                 client.UseConnectedHandler(async h =>
                 {
-                  var subresult=  await client.SubscribeAsync("/lane/emrc_main/status/+");
-                  await client.SubscribeAsync("#");
+                    await client.SubscribeAsync(
+                        new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
+                        new MqttTopicFilter() { Topic = "/lane/emrc_main/message/", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce }
+                        );
                     var pubresult= await client.PublishAsync("/tco/status/", new { message= "startup" });
                 });
+                
                 await client.ConnectAsync(options, CancellationToken.None);
             });
         }
@@ -272,33 +281,21 @@ namespace Uixe.Watcher
                 lv.Dock = DockStyle.Top;
                 messageView.initMessageView(item.id, 100);
             }
+            lanView.ShowTabHeader = lanView.TabPages.Count > 1 ? DevExpress.Utils.DefaultBoolean.True: DevExpress.Utils.DefaultBoolean.False;
+         
 
-            if (lanView.TabPages.Count > 1)
-            {
-                lanView.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
-            }
             int el = 0;
             Control[] cont = lanView.SelectedTabPage.Controls.Find(plasas[0].id, true);
             if (cont.Length > 0)
             {
                 var lv = ((Uixe.Watcher.Controls.LaneView)cont[0]);
                 el = lv.LaneCount;
-                if (el > 0)
-                {
-                    lanView.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-                }
-                else
-                {
-                    sccMain.SplitterPosition = lanView.Height;
-                }
-
-                sccMain.SplitterPosition = lv.Height;
+                sccMain.SplitterPosition = lanView.Height+20;
             }
 
             lanView.SelectedTabPage = null;
             if (lanView.TabPages.Count > 0) lanView.SelectedTabPage = lanView.TabPages[0];
             if (lanView.SelectedTabPage != null) messageView.SetPlaza(lanView.SelectedTabPage.Name);
-
             messageView.ResumeLayout(false);
             lanView.ResumeLayout(false);
 

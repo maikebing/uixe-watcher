@@ -277,7 +277,7 @@
             this.colLaneNo.OptionsFilter.AllowFilter = false;
             this.colLaneNo.Visible = true;
             this.colLaneNo.VisibleIndex = 0;
-            this.colLaneNo.Width = 60;
+            this.colLaneNo.Width = 48;
             // 
             // colUserName
             // 
@@ -291,7 +291,7 @@
             this.colUserName.OptionsFilter.AllowFilter = false;
             this.colUserName.Visible = true;
             this.colUserName.VisibleIndex = 1;
-            this.colUserName.Width = 147;
+            this.colUserName.Width = 119;
             // 
             // coluserNumber
             // 
@@ -305,7 +305,7 @@
             this.coluserNumber.OptionsFilter.AllowFilter = false;
             this.coluserNumber.Visible = true;
             this.coluserNumber.VisibleIndex = 2;
-            this.coluserNumber.Width = 108;
+            this.coluserNumber.Width = 87;
             // 
             // colWorkState
             // 
@@ -319,7 +319,7 @@
             this.colWorkState.OptionsFilter.AllowFilter = false;
             this.colWorkState.Visible = true;
             this.colWorkState.VisibleIndex = 3;
-            this.colWorkState.Width = 179;
+            this.colWorkState.Width = 145;
             // 
             // colCarKind1
             // 
@@ -333,7 +333,7 @@
             this.colCarKind1.OptionsFilter.AllowFilter = false;
             this.colCarKind1.Visible = true;
             this.colCarKind1.VisibleIndex = 4;
-            this.colCarKind1.Width = 63;
+            this.colCarKind1.Width = 51;
             // 
             // colCharge1
             // 
@@ -347,7 +347,7 @@
             this.colCharge1.OptionsFilter.AllowFilter = false;
             this.colCharge1.Visible = true;
             this.colCharge1.VisibleIndex = 5;
-            this.colCharge1.Width = 67;
+            this.colCharge1.Width = 54;
             // 
             // colCarType
             // 
@@ -361,7 +361,7 @@
             this.colCarType.OptionsFilter.AllowFilter = false;
             this.colCarType.Visible = true;
             this.colCarType.VisibleIndex = 6;
-            this.colCarType.Width = 90;
+            this.colCarType.Width = 73;
             // 
             // colWorkMode
             // 
@@ -375,7 +375,7 @@
             this.colWorkMode.OptionsFilter.AllowFilter = false;
             this.colWorkMode.Visible = true;
             this.colWorkMode.VisibleIndex = 7;
-            this.colWorkMode.Width = 127;
+            this.colWorkMode.Width = 90;
             // 
             // gcCardBoxExit
             // 
@@ -399,6 +399,8 @@
             // colStartWorkTime
             // 
             this.colStartWorkTime.Caption = "上班时间";
+            this.colStartWorkTime.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.colStartWorkTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colStartWorkTime.FieldName = "JobBeginTime";
             this.colStartWorkTime.MinWidth = 17;
             this.colStartWorkTime.Name = "colStartWorkTime";
@@ -408,7 +410,7 @@
             this.colStartWorkTime.OptionsFilter.AllowFilter = false;
             this.colStartWorkTime.Visible = true;
             this.colStartWorkTime.VisibleIndex = 8;
-            this.colStartWorkTime.Width = 165;
+            this.colStartWorkTime.Width = 171;
             // 
             // colyupengdeng
             // 
@@ -425,7 +427,7 @@
             this.colyupengdeng.OptionsFilter.AllowFilter = false;
             this.colyupengdeng.Visible = true;
             this.colyupengdeng.VisibleIndex = 10;
-            this.colyupengdeng.Width = 43;
+            this.colyupengdeng.Width = 33;
             // 
             // repositoryItemPictureEdit1
             // 
@@ -443,7 +445,7 @@
             this.colCoil1.OptionsColumn.ReadOnly = true;
             this.colCoil1.Visible = true;
             this.colCoil1.VisibleIndex = 20;
-            this.colCoil1.Width = 47;
+            this.colCoil1.Width = 33;
             // 
             // colCoil2
             // 
@@ -456,7 +458,7 @@
             this.colCoil2.OptionsColumn.ReadOnly = true;
             this.colCoil2.Visible = true;
             this.colCoil2.VisibleIndex = 21;
-            this.colCoil2.Width = 47;
+            this.colCoil2.Width = 33;
             // 
             // colRSU
             // 
@@ -468,7 +470,7 @@
             this.colRSU.OptionsColumn.ReadOnly = true;
             this.colRSU.Visible = true;
             this.colRSU.VisibleIndex = 19;
-            this.colRSU.Width = 47;
+            this.colRSU.Width = 33;
             // 
             // colYellow
             // 
@@ -481,7 +483,7 @@
             this.colYellow.OptionsColumn.ReadOnly = true;
             this.colYellow.Visible = true;
             this.colYellow.VisibleIndex = 26;
-            this.colYellow.Width = 47;
+            this.colYellow.Width = 38;
             // 
             // gcWeightStatus
             // 
@@ -494,7 +496,7 @@
             this.gcWeightStatus.OptionsColumn.ReadOnly = true;
             this.gcWeightStatus.Visible = true;
             this.gcWeightStatus.VisibleIndex = 11;
-            this.gcWeightStatus.Width = 43;
+            this.gcWeightStatus.Width = 33;
             // 
             // gcReaderStatus
             // 
@@ -508,7 +510,7 @@
             this.gcReaderStatus.OptionsColumn.ReadOnly = true;
             this.gcReaderStatus.Visible = true;
             this.gcReaderStatus.VisibleIndex = 13;
-            this.gcReaderStatus.Width = 43;
+            this.gcReaderStatus.Width = 33;
             // 
             // colQRPay
             // 
@@ -521,7 +523,7 @@
             this.colQRPay.OptionsColumn.ReadOnly = true;
             this.colQRPay.Visible = true;
             this.colQRPay.VisibleIndex = 24;
-            this.colQRPay.Width = 47;
+            this.colQRPay.Width = 41;
             // 
             // Coil3
             // 
@@ -537,7 +539,7 @@
             this.Coil3.OptionsFilter.AllowFilter = false;
             this.Coil3.Visible = true;
             this.Coil3.VisibleIndex = 12;
-            this.Coil3.Width = 43;
+            this.Coil3.Width = 33;
             // 
             // colJiaoTong
             // 
@@ -554,7 +556,7 @@
             this.colJiaoTong.OptionsFilter.AllowFilter = false;
             this.colJiaoTong.Visible = true;
             this.colJiaoTong.VisibleIndex = 15;
-            this.colJiaoTong.Width = 43;
+            this.colJiaoTong.Width = 33;
             // 
             // colPrint
             // 
@@ -571,7 +573,7 @@
             this.colPrint.OptionsFilter.AllowFilter = false;
             this.colPrint.Visible = true;
             this.colPrint.VisibleIndex = 14;
-            this.colPrint.Width = 43;
+            this.colPrint.Width = 33;
             // 
             // Coil4
             // 
@@ -588,7 +590,7 @@
             this.Coil4.OptionsFilter.AllowFilter = false;
             this.Coil4.Visible = true;
             this.Coil4.VisibleIndex = 17;
-            this.Coil4.Width = 43;
+            this.Coil4.Width = 33;
             // 
             // colLanGan
             // 
@@ -605,7 +607,7 @@
             this.colLanGan.OptionsFilter.AllowFilter = false;
             this.colLanGan.Visible = true;
             this.colLanGan.VisibleIndex = 16;
-            this.colLanGan.Width = 43;
+            this.colLanGan.Width = 33;
             // 
             // colBaoJing
             // 
@@ -618,7 +620,7 @@
             this.colBaoJing.OptionsColumn.ReadOnly = true;
             this.colBaoJing.Visible = true;
             this.colBaoJing.VisibleIndex = 22;
-            this.colBaoJing.Width = 47;
+            this.colBaoJing.Width = 33;
             // 
             // colVPR
             // 
@@ -631,7 +633,7 @@
             this.colVPR.OptionsColumn.ReadOnly = true;
             this.colVPR.Visible = true;
             this.colVPR.VisibleIndex = 25;
-            this.colVPR.Width = 47;
+            this.colVPR.Width = 45;
             // 
             // colCamera
             // 
@@ -644,7 +646,7 @@
             this.colCamera.OptionsColumn.ReadOnly = true;
             this.colCamera.Visible = true;
             this.colCamera.VisibleIndex = 23;
-            this.colCamera.Width = 47;
+            this.colCamera.Width = 33;
             // 
             // colNetWork
             // 
@@ -661,7 +663,7 @@
             this.colNetWork.OptionsFilter.AllowFilter = false;
             this.colNetWork.Visible = true;
             this.colNetWork.VisibleIndex = 18;
-            this.colNetWork.Width = 43;
+            this.colNetWork.Width = 33;
             // 
             // barManager1
             // 

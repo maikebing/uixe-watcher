@@ -117,6 +117,7 @@ namespace Uixe.Watcher.Controls
         {
             this.components = new System.ComponentModel.Container();
             this.Grd = new DevExpress.XtraGrid.GridControl();
+            this.msgInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GrdV = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colmessageNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -130,10 +131,9 @@ namespace Uixe.Watcher.Controls
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cardnumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.msgInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Grd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GrdV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.msgInfoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrdV)).BeginInit();
             this.SuspendLayout();
             // 
             // Grd
@@ -143,10 +143,14 @@ namespace Uixe.Watcher.Controls
             this.Grd.Location = new System.Drawing.Point(0, 0);
             this.Grd.MainView = this.GrdV;
             this.Grd.Name = "Grd";
-            this.Grd.Size = new System.Drawing.Size(788, 325);
+            this.Grd.Size = new System.Drawing.Size(1627, 352);
             this.Grd.TabIndex = 10;
             this.Grd.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GrdV});
+            // 
+            // msgInfoBindingSource
+            // 
+            this.msgInfoBindingSource.DataSource = typeof(Uixe.Watcher.Msg.MsgInfo);
             // 
             // GrdV
             // 
@@ -323,7 +327,7 @@ namespace Uixe.Watcher.Controls
             // gridColumn1
             // 
             this.gridColumn1.Caption = "通过日期";
-            this.gridColumn1.DisplayFormat.FormatString = "d";
+            this.gridColumn1.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.gridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn1.FieldName = "OccDateTime";
             this.gridColumn1.Name = "gridColumn1";
@@ -331,7 +335,7 @@ namespace Uixe.Watcher.Controls
             this.gridColumn1.OptionsFilter.AllowFilter = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;
-            this.gridColumn1.Width = 62;
+            this.gridColumn1.Width = 182;
             // 
             // gridColumn2
             // 
@@ -421,7 +425,7 @@ namespace Uixe.Watcher.Controls
             // 
             // cardnumber
             // 
-            this.cardnumber.Caption = "卡号";
+            this.cardnumber.Caption = "发票代码";
             this.cardnumber.FieldName = "Receipt";
             this.cardnumber.Name = "cardnumber";
             this.cardnumber.OptionsColumn.AllowEdit = false;
@@ -439,18 +443,14 @@ namespace Uixe.Watcher.Controls
             this.gridColumn9.VisibleIndex = 11;
             this.gridColumn9.Width = 100;
             // 
-            // msgInfoBindingSource
-            // 
-            this.msgInfoBindingSource.DataSource = typeof(Uixe.Watcher.Msg.MsgInfo);
-            // 
             // MessageView
             // 
             this.Controls.Add(this.Grd);
             this.Name = "MessageView";
-            this.Size = new System.Drawing.Size(788, 325);
+            this.Size = new System.Drawing.Size(1627, 352);
             ((System.ComponentModel.ISupportInitialize)(this.Grd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GrdV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.msgInfoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrdV)).EndInit();
             this.ResumeLayout(false);
 
         }

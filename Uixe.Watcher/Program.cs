@@ -28,6 +28,7 @@ namespace Uixe.Watcher
                 var mqttServer = new MqttFactory().CreateMqttServer();
                 var opt = new MqttServerOptions();
                 opt.DefaultEndpointOptions.BoundInterNetworkAddress = IPAddress.Any;
+                mqttServer.UseApplicationMessageReceivedHandler(c => Debug.WriteLine($"{ c.ClientId} {c.ApplicationMessage.Topic}"));
                 await mqttServer.StartAsync( opt);
             });
 #endif
