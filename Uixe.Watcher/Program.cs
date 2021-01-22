@@ -32,6 +32,7 @@ namespace Uixe.Watcher
                 await mqttServer.StartAsync( opt);
             });
 #endif
+       
             Barrel.ApplicationId = Assembly.GetExecutingAssembly().GetName().Name;
             Barrel.EncryptionKey = "future";
             DevExpress.Skins.SkinManager.EnableFormSkins();

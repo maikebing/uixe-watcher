@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -21,7 +23,6 @@ namespace Uixe.Watcher.Msg
         public string CarKind { get; set; }
 
         public string WrokMode { get; set; }
-
         public DateTime JobBeginTime { get; set; }
 
         public bool YuPengDengStatus { get; set; }

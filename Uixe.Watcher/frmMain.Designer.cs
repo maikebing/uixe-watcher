@@ -837,7 +837,7 @@ namespace Uixe.Watcher
             // 
             this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1527, 96);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1527, 318);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
             // barButtonItem3

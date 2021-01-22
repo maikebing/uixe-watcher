@@ -208,7 +208,7 @@ namespace Uixe.Watcher
                     }
                     else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/message/"))
                     {
-                        ShowMessageView(JsonConvert.DeserializeObject<MsgInfo>(message));
+                        ShowMessageView(JsonConvert.DeserializeObject<MsgInfo>(message,new JsonSerializerSettings() {  DateTimeZoneHandling= DateTimeZoneHandling.Local}));
                     }
                 });
                 client.UseConnectedHandler(async h =>
@@ -386,7 +386,6 @@ namespace Uixe.Watcher
 
         private void frmMain_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
-            Help.ShowHelp(this, "TCOHelp.chm");
         }
 
 
