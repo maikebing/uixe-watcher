@@ -206,14 +206,27 @@ namespace Uixe.Watcher
                         var laneno = t.Substring(7, 3);
                         ShowLaneInfor(plaza, t, message);
                     }
+                    else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/confirm/"))
+                    {
+
+                        Task.Run(() =>
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                           {
+                               TCOCallUtils.ShowTCOInfo(this, h.ApplicationMessage.Topic, message);
+                           });
+                        });
+
+                    }
                     else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/message/"))
                     {
-                        ShowMessageView(JsonConvert.DeserializeObject<MsgInfo>(message,new JsonSerializerSettings() {  DateTimeZoneHandling= DateTimeZoneHandling.Local}));
+                        ShowMessageView(JsonConvert.DeserializeObject<MsgInfo>(message, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local }));
                     }
                 });
                 client.UseConnectedHandler(async h =>
                 {
                     await client.SubscribeAsync(
+                        new MqttTopicFilter() { Topic = "/lane/emrc_main/confirm/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
                         new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
                         new MqttTopicFilter() { Topic = "/lane/emrc_main/message/", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce }
                         );
@@ -285,12 +298,16 @@ namespace Uixe.Watcher
          
 
             int el = 0;
-            Control[] cont = lanView.SelectedTabPage.Controls.Find(plasas[0].id, true);
-            if (cont.Length > 0)
+            var key = plasas.FirstOrDefault()?.id;
+            if (!string.IsNullOrEmpty(key))
             {
-                var lv = ((Uixe.Watcher.Controls.LaneView)cont[0]);
-                el = lv.LaneCount;
-                sccMain.SplitterPosition = lanView.Height+20;
+                Control[] cont = lanView.SelectedTabPage.Controls.Find(key, true);
+                if (cont.Length > 0)
+                {
+                    var lv = ((Uixe.Watcher.Controls.LaneView)cont[0]);
+                    el = lv.LaneCount;
+                    sccMain.SplitterPosition = lanView.Height + 20;
+                }
             }
 
             lanView.SelectedTabPage = null;

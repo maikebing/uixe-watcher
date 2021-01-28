@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.V1;
 
@@ -22,7 +23,7 @@ namespace Uixe.Watcher
         public bool CheckPlazaInfo()
         {
             bool ret = true;
-            if (TCE.TCOTYPE == WATCHER_UnKnowPlaza)
+            if (TCE.TCOTYPE ==  WATCHER_TYPE.WATCHER_UnKnowPlaza)
             {
                 string txt = cbxModifyEntryPlaza.GetColumnValue("NetNo") as string + cbxModifyEntryPlaza.GetColumnValue("PlazaNo") as string;
                 if (string.IsNullOrEmpty(txt))
@@ -40,7 +41,7 @@ namespace Uixe.Watcher
         public void Show(TCOCall tce)
         {
             InitInfo();
-            if (tce.TCOTYPE == WATCHER_PlateInBlack)
+            if (tce.TCOTYPE == WATCHER_TYPE.WATCHER_BlacklistPlate)
             {
                 tcoPictureBox2.Visible = true;
             }
@@ -107,7 +108,7 @@ namespace Uixe.Watcher
             AUS.DifType = "0";
             switch (tce.TCOTYPE)
             {
-                case 1://WATCHER_MenuCardBox
+                case  WATCHER_TYPE.WATCHER_MenuCardBox ://WATCHER_MenuCardBox
                     gcCardInfo.Visible = false;
                     break;
 
@@ -177,7 +178,7 @@ namespace Uixe.Watcher
             {
                 try
                 {
-                    if (tce.TCOTYPE == WATCHER_PlateInBlack)
+                    if (tce.TCOTYPE == WATCHER_TYPE.WATCHER_BlacklistPlate)
                     {
                         this.Invoke((MethodInvoker)delegate ()
                         {

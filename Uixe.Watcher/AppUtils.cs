@@ -11,15 +11,29 @@ using System.Windows.Forms;
 
 namespace Uixe.Watcher
 {
-    public class AppUtils
+    public static class AppUtils
     {
-        const int SPI_SETDESKWALLPAPER = 20;
-        const int SPIF_UPDATEINIFILE = 0x01;
-        const int SPIF_SENDWININICHANGE = 0x02;
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
-
+        public static void Invoke(this Control ctl, Action action)
+        {
+            if (ctl.InvokeRequired)
+            {
+                ctl.Invoke((MethodInvoker)delegate
+               {
+                   action.Invoke();
+               });
+            }
+            else
+            {
+                action.Invoke();
+            }
+        }
+        public static void Invoke(this Form ctl, Action action)
+        {
+            ctl.Invoke((MethodInvoker)delegate
+            {
+                action.Invoke();
+            });
+        }
 
         public static void InstallUpdateSyncWithInfo()
         {

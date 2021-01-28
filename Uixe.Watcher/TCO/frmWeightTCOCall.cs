@@ -7,7 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
-
+using Uixe.Watcher;
 namespace Uixe.Watcher.V1
 {
     public partial class frmWeightTCOCall : DevExpress.XtraEditors.XtraForm
@@ -18,6 +18,10 @@ namespace Uixe.Watcher.V1
         public frmWeightTCOCall()
         {
             InitializeComponent();
+
+        }
+        public void LoadInfo()
+        {
             try
             {
                 this.tsTabs.TabPages.Clear();
@@ -25,7 +29,7 @@ namespace Uixe.Watcher.V1
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
-                    string pname = tmlLaneNo.id+ lstlane[i].lane_id ;
+                    string pname = tmlLaneNo.id + lstlane[i].lane_no;
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
                     t.Name = pname;
@@ -40,7 +44,7 @@ namespace Uixe.Watcher.V1
             }
             catch (Exception ex)
             {
-               Debug.WriteLine ("ERRORINIT:<{0}>\r\n", ex.Message);
+                Debug.WriteLine("ERRORINIT:<{0}>\r\n", ex.Message);
             }
         }
 
@@ -54,7 +58,7 @@ namespace Uixe.Watcher.V1
                 {
                     XtraTabPage t = x.Single(); ;
                     WeightTCOConfirm tms = t.Tag as WeightTCOConfirm;
-                    t.Text = string.Format("站:{1}车道{0}", mu.LaneNo , mu.Plaza);
+                    t.Text = string.Format("站:{1}车道{0}", mu.LaneNo, mu.Plaza);
                     tms.Show(mu);
                     t.PageVisible = true;
                     this.Visible = true;
@@ -69,7 +73,7 @@ namespace Uixe.Watcher.V1
 
         private static string GetPageName(MsgWeightTCOCALL mu)
         {
-            return mu.Network + mu.Plaza + mu.LaneNo;
+            return $"650{mu.Network}{ mu.Plaza}{ mu.LaneNo}";
         }
 
         public void RemoveNowTab(string name)

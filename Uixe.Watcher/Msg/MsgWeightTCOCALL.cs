@@ -1,61 +1,102 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
+using Uixe.Watcher.Dtos;
+using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher.Msg
 {
 
-    public class MsgWeightTCOCALL
+    public class MsgWeightTCOCALL : tco_confirm
     {
+        public MsgWeightTCOCALL() : base()
+        {
+            base.MsgTcoTran = new MsgTcoTran();
+        }
+        public static MsgWeightTCOCALL Parse(string json)
+        {
+            var ls = JsonConvert.DeserializeObject<MsgWeightTCOCALL>(json, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local });
+            return ls;
+        }
+
+        public string ID => $"650{Head.NetNo}{Head.PlazaNo}{ Head.LaneID}";
+
+        public string MsgType => Head.MsgType;
+
+        public string LaneType => $"{Head.LaneType}";
 
 
-        public string ID { get; set; }
-
-        public string MsgType { get; set; }
-
-        public string LaneType { get; set; }
-
-
-        public string LaneMode { get; set; }
-        public string Network { get; set; }
-        public string Plaza { get; set; }
+        public string LaneMode => $"{SubHead.LaneMode}";
+        public string Network => Head.NetNo;
+        public string Plaza => Head.PlazaNo;
 
 
 
-        public DateTime YMDHM { get; set; }
+        public DateTime YMDHM => DateTime.TryParseExact(Head.DDHM, "yyyyMMDDHHmmss", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime dt) ? dt : DateTime.MinValue;
 
 
-        public string LaneNo { get; set; }
 
-        public string Collector { get; set; }
+        public string LaneNo => Head.LaneID;
 
-        public string CallType { get; set; }
+        public string Collector => SubHead.StaffID;
+
+        public string CallType => $"{ base.WatcherID }";
+
         public string WeightFunctions { get; set; }
         public string FareFormula { get; set; }
-        public string WeightType { get; set; }
-        public string WeightCarKind { get; set; }
-        public string CarType { get; set; }
-        public int CarType_INT { get { return Int32.Parse(CarType); } set { CarType = value.ToString(); } }
+        public string WeightType => base.MsgTcoTran.WeightType;
+        public string WeightCarKind => MsgTcoTran.ExitVehiKind;
+        public string CarType => MsgTcoTran.CarClass;
 
-        public string CarKind { get; set; }
-        public int CarKind_INT { get { return Int32.Parse(CarKind); } set { CarKind = value.ToString(); } }
 
-        public string TollFareDistance { get; set; }
-        public string CarPlate { get; set; }
+        public int CarType_INT
+        {
+            get
+            {
 
-        public string CarAlex { get; set; }
-        public string CarDevWeight { get; set; }
+                int ct = 0;
+                Int32.TryParse(CarType, out ct);
+                return ct;
+            }
+        }
 
-        public string CarSpeed { get; set; }
-        public string OverLoadWeight { get; set; }
-        public string OverLoadWeightRate { get; set; }
+        public string CarKind => MsgTcoTran.ExitVehiKind;
+        public int CarKind_INT
+        {
+            get
+            {
+
+                int ct = 0;
+                Int32.TryParse(CarKind, out ct);
+                return ct;
+            }
+        }
+
+        public string TollFareDistance => MsgTcoTran.Distance;
+        public string CarPlate => MsgTcoTran.ExitPlate;
+        public string CarShortPlate => MsgTcoTran.InputPlate;
+
+        public string CarAlex => MsgTcoTran.DetectAxleCount;
+        public string CarDevWeight => MsgTcoTran.DetectWeightTotal;
+
+        public string CarSpeed => MsgTcoTran.Speed;
+        public string OverLoadWeight => MsgTcoTran.OverloadWeight;
+        [Obsolete("无转换")]
+        public string OverLoadWeightRate => MsgTcoTran.OverloadReason;
+
+        [Obsolete("无转换")]
         public float Money { get; set; }
-        public int TimeOut { get; set; }
-        public string Text { get; set; }
-        public string TCO { get; set; }
-        public string WeightLimit { get; set; }
 
-        public int TranID { get; set; }
+        public int TimeOut { get; set; }
+
+        public string CarFareWeight => MsgTcoTran.FWeightTotal;
+        public string Text => MsgTcoTran.Detail?.Trim()?.Replace("^r^n", "\r\n");
+        public string TCO => MsgTcoTran.Detail?.Trim()?.Replace("^r^n", "\r\n");
+        public string WeightLimit => MsgTcoTran.WeightLimit;
+
+        public int TranID => int.Parse(MsgTcoTran.TransNO);
 
     }
 }

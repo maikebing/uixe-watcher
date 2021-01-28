@@ -106,7 +106,6 @@ namespace Uixe.Watcher
             this.tcoPictureBox1 = new Uixe.Watcher.Controls.TCOPictureBox();
             this.btnVNC = new DevExpress.XtraEditors.SimpleButton();
             this.vPLAZALISTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnQueryOnline = new DevExpress.XtraEditors.SimpleButton();
             this.tcoPictureBox2 = new Uixe.Watcher.Controls.TCOPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tCOCallBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCardInfo)).BeginInit();
@@ -168,7 +167,7 @@ namespace Uixe.Watcher
             // 
             // tCOCallBindingSource
             // 
-            this.tCOCallBindingSource.DataSource = typeof(TCOCall);
+            this.tCOCallBindingSource.DataSource = typeof(Uixe.Watcher.Msg.TCOCall);
             // 
             // gcCardInfo
             // 
@@ -277,7 +276,7 @@ namespace Uixe.Watcher
             this.txtModifyCarKind.Location = new System.Drawing.Point(-84, 114);
             this.txtModifyCarKind.Name = "txtModifyCarKind";
             this.txtModifyCarKind.Properties.MaxLength = 2;
-            this.txtModifyCarKind.Size = new System.Drawing.Size(74, 20);
+            this.txtModifyCarKind.Size = new System.Drawing.Size(74, 18);
             this.txtModifyCarKind.TabIndex = 2;
             this.txtModifyCarKind.Visible = false;
             this.txtModifyCarKind.TextChanged += new System.EventHandler(this.txtModifyCarKind_TextChanged);
@@ -763,7 +762,7 @@ namespace Uixe.Watcher
             "大件运输货四",
             "大件运输货五"});
             this.txtModifyCarType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.txtModifyCarType.Size = new System.Drawing.Size(108, 20);
+            this.txtModifyCarType.Size = new System.Drawing.Size(108, 18);
             this.txtModifyCarType.TabIndex = 24;
             this.txtModifyCarType.SelectedIndexChanged += new System.EventHandler(this.txtModifyCarType_SelectedIndexChanged);
             // 
@@ -798,16 +797,12 @@ namespace Uixe.Watcher
             this.cbxModifyEntryPlaza.Properties.ImmediatePopup = true;
             this.cbxModifyEntryPlaza.Properties.NullText = "";
             this.cbxModifyEntryPlaza.Properties.NullValuePrompt = "入口站不明，请选择入口站";
-            this.cbxModifyEntryPlaza.Properties.NullValuePromptShowForEmptyValue = true;
             this.cbxModifyEntryPlaza.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.cbxModifyEntryPlaza.Properties.ValueMember = "Plaza_Name";
             this.cbxModifyEntryPlaza.Size = new System.Drawing.Size(245, 26);
             this.cbxModifyEntryPlaza.TabIndex = 0;
             this.cbxModifyEntryPlaza.TabStop = false;
             this.cbxModifyEntryPlaza.TextChanged += new System.EventHandler(this.cbxModifyEntryPlaza_TextChanged);
-            // 
-            // pLazaBindingSource
-            // 
             // 
             // groupControl5
             // 
@@ -869,7 +864,7 @@ namespace Uixe.Watcher
             this.textEdit4.Location = new System.Drawing.Point(-84, 114);
             this.textEdit4.Name = "textEdit4";
             this.textEdit4.Properties.MaxLength = 2;
-            this.textEdit4.Size = new System.Drawing.Size(74, 20);
+            this.textEdit4.Size = new System.Drawing.Size(74, 18);
             this.textEdit4.TabIndex = 2;
             this.textEdit4.Visible = false;
             // 
@@ -966,22 +961,6 @@ namespace Uixe.Watcher
             this.btnVNC.Text = "VNC";
             this.btnVNC.Click += new System.EventHandler(this.btnVNC_Click);
             // 
-            // vPLAZALISTBindingSource
-            // 
-            // 
-            // btnQueryOnline
-            // 
-            this.btnQueryOnline.Appearance.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Underline);
-            this.btnQueryOnline.Appearance.ForeColor = System.Drawing.Color.Blue;
-            this.btnQueryOnline.Appearance.Options.UseFont = true;
-            this.btnQueryOnline.Appearance.Options.UseForeColor = true;
-            this.btnQueryOnline.Location = new System.Drawing.Point(194, 427);
-            this.btnQueryOnline.Name = "btnQueryOnline";
-            this.btnQueryOnline.Size = new System.Drawing.Size(121, 39);
-            this.btnQueryOnline.TabIndex = 31;
-            this.btnQueryOnline.Text = "在线查询";
-            this.btnQueryOnline.Click += new System.EventHandler(this.btnQueryOnline_Click);
-            // 
             // tcoPictureBox2
             // 
             this.tcoPictureBox2.Image = null;
@@ -992,7 +971,6 @@ namespace Uixe.Watcher
             this.tcoPictureBox2.SizeMode = Cyotek.Windows.Forms.ImageBoxSizeMode.Stretch;
             this.tcoPictureBox2.TabIndex = 30;
             this.tcoPictureBox2.Visible = false;
-           
             // 
             // TCOConfirm
             // 
@@ -1004,7 +982,6 @@ namespace Uixe.Watcher
             this.Appearance.Options.UseBorderColor = true;
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.Controls.Add(this.btnQueryOnline);
             this.Controls.Add(this.btnVNC);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pcPronow);
@@ -1129,6 +1106,5 @@ namespace Uixe.Watcher
         private System.Windows.Forms.GroupBox groupBox1;
         public DevExpress.XtraEditors.SimpleButton btnVNC;
         private Uixe.Watcher.Controls.TCOPictureBox tcoPictureBox2;
-        private DevExpress.XtraEditors.SimpleButton btnQueryOnline;
     }
 }

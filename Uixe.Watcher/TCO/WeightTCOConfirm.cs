@@ -38,11 +38,6 @@ namespace Uixe.Watcher.V1
                 dbxLSTD.Reset();
                 dbxLSTD.Properties.View.SelectRow(dbxLSTD.Properties.View.GetRowHandle(0));
                 freshAgriProductsBindingSource.Position = 0;
-                if (!string.IsNullOrEmpty(tce.Text))
-                {
-                    tce.Text = tce.Text.Replace("^r^n", "\r\n");
-                    tce.Text = tce.Text.Trim();
-                }
                 CarKindComboBoxEdit.SelectedIndex = 0;
                 msgWeightTCOCALLBindingSource.ResetCurrentItem();
                 msgWeightTCOCALLBindingSource.DataSource = tce;

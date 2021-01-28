@@ -47,7 +47,7 @@
             this.tsTabs.Location = new System.Drawing.Point(2, 0);
             this.tsTabs.Name = "tsTabs";
             this.tsTabs.SelectedTabPage = this.xtraTabPage1;
-            this.tsTabs.Size = new System.Drawing.Size(743, 587);
+            this.tsTabs.Size = new System.Drawing.Size(749, 591);
             this.tsTabs.TabIndex = 0;
             this.tsTabs.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -57,7 +57,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.weightTCOConfirm1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(737, 550);
+            this.xtraTabPage1.Size = new System.Drawing.Size(747, 559);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // weightTCOConfirm1
@@ -66,27 +66,26 @@
             this.weightTCOConfirm1.Appearance.Options.UseFont = true;
             this.weightTCOConfirm1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.weightTCOConfirm1.CanDo = false;
-            this.weightTCOConfirm1.Location = new System.Drawing.Point(4, 0);
-            this.weightTCOConfirm1.Margin = new System.Windows.Forms.Padding(4);
+            this.weightTCOConfirm1.Location = new System.Drawing.Point(3, 0);
             this.weightTCOConfirm1.Name = "weightTCOConfirm1";
-            this.weightTCOConfirm1.Size = new System.Drawing.Size(735, 566);
+            this.weightTCOConfirm1.Size = new System.Drawing.Size(740, 551);
             this.weightTCOConfirm1.TabIndex = 0;
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(737, 550);
+            this.xtraTabPage2.Size = new System.Drawing.Size(635, 471);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
             // frmWeightTCOCall
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 587);
+            this.ClientSize = new System.Drawing.Size(770, 593);
             this.Controls.Add(this.tsTabs);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmWeightTCOCall.IconOptions.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmWeightTCOCall";

@@ -32,6 +32,6 @@ namespace Uixe.Watcher.Msg
         public string DevStatus { get; set; }
 
         public string PromptMsg { get; set; }
-        public string PlazaId { get; internal set; }
+        public string PlazaId { get;   set; }
     }//MsgInfo
 }//

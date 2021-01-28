@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
+using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Ring;
 
@@ -18,54 +19,7 @@ namespace Uixe.Watcher.V1
         public static object thisLock = new object();
         public static object thisLock1 = new object();
 
-        public static void ShowTCOQueryInfo(object obj)
-        {
-            try
-            {
-                
-                if (obj == null)
-                {
-                   Debug.WriteLine ("ShowTCOQueryInfo  TCS.Msg.MQL.MsgUnion mu =  obj as TCS.Msg.MQL.MsgUnion; mu为空 ");
-                }
-                else
-                {
-                    if (Program.MainForm != null && !Program.MainForm.IsDisposed && Program.MainForm.IsHandleCreated)
-                    {
-                        if (Program.MainForm.InvokeRequired)
-                        {
-                            try
-                            {
-                                Program.MainForm.Invoke((DShowTCOQueryInfo)ShowTCOQueryInfo, obj);
-                            }
-                            catch (Exception ex)
-                            {
-                                Debug.WriteLine("ShowTCOQueryInfo Program.MainForm.Invoke((DShowTCOQueryInfo)ShowTCOQueryInfo, mu);", obj.ToString(), ex);
-                            }
-                        }
-                        else
-                        {
-                            try
-                            {
-                               
-                               //    ShowTCOInfo(obj);
-                            }
-                            catch (Exception ex)
-                            {
-                                CloseTCOCall();
-                                Debug.WriteLine ("ShowTCOQueryInfo", obj.ToString(), ex);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Debug.WriteLine("ShowTCOQueryInfo 主窗体未创建或者已经释放");
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
+       
 
         public static void Submit(bool ok, WeightTCOConfirm tms)
         {
@@ -87,11 +41,12 @@ namespace Uixe.Watcher.V1
             }
         }
 
-        public static void ShowTCOInfo(string topic,string message)
+        public static void ShowTCOInfo(Form form, string topic,string message)
         {
             try
             {
-                if (topic.EndsWith("TCOWEIGHT"))
+                var tc= Newtonsoft.Json.JsonConvert.DeserializeObject<tco_confirm>(message);
+                if (tc.DlgType== DlgType.Weight)
                 {
                     lock (thisLock1)
                     {
@@ -99,12 +54,11 @@ namespace Uixe.Watcher.V1
                         {
                             if (WeightTCOCall == null || WeightTCOCall.IsDisposed || !WeightTCOCall.IsHandleCreated)
                             {
-                                WeightTCOCall = new frmWeightTCOCall
-                                {
-                                    Owner = Program.MainForm
-                                };
+                                    WeightTCOCall = new frmWeightTCOCall();
+                                WeightTCOCall.LoadInfo();
+                                    WeightTCOCall.Hide() ;
                             }
-                            WeightTCOCall.ShowTCOMsg( Newtonsoft.Json.JsonConvert.DeserializeObject<MsgWeightTCOCALL>( message));
+                               WeightTCOCall.ShowTCOMsg(Newtonsoft.Json.JsonConvert.DeserializeObject<MsgWeightTCOCALL>(message));
                             System.Threading.ThreadPool.QueueUserWorkItem(new WaitCallback(PlayUitls.PlayRing), null);
                         }
                         catch (Exception ex)
@@ -122,6 +76,7 @@ namespace Uixe.Watcher.V1
                         {
                             if (_tcocall == null || _tcocall.IsDisposed || !_tcocall.IsHandleCreated)
                             {
+
                                 _tcocall = new frmShowTCOCall
                                 {
                                     Owner = Program.MainForm
@@ -139,7 +94,7 @@ namespace Uixe.Watcher.V1
                 }
                 Application.DoEvents();
             }
-            catch (Exception)
+            catch (Exception ex1)
             {
             }
         }

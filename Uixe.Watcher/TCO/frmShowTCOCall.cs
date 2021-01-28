@@ -54,19 +54,15 @@ namespace Uixe.Watcher
                 TCOConfirm tms = (TCOConfirm)t.Tag;
                 try
                 {
-               
-                    tms.Show(TCOCallxxx);
-                    t.Text = string.Format("车道{0}", TCOCallxxx.LaneNo);
-                    tms.btnOK.Click += new EventHandler(BtnOK_Click);
-                    tms.btnCancel.Click += new EventHandler(btnCancel_Click);
-                    tsTabs.SelectedTabPage = t;
-                    tms.Reset();
-                    if ((TCOCallxxx.TCOTYPE == 5 && !Settings.Default.tco_chexingbufu)
-                      || (TCOCallxxx.TCOTYPE == 6 && !Settings.Default.tco_chepaibufu)
-                      || (TCOCallxxx.TCOTYPE == 7 && !Settings.Default.tco_chaoshichaosu))
+                    this.Invoke(() =>
                     {
-                        tms.btnOK.PerformClick();
-                    }
+                        tms.Show(TCOCallxxx);
+                        t.Text = string.Format("车道{0}", TCOCallxxx.LaneNo);
+                        tms.btnOK.Click += new EventHandler(BtnOK_Click);
+                        tms.btnCancel.Click += new EventHandler(btnCancel_Click);
+                        tsTabs.SelectedTabPage = t;
+                        tms.Reset();
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -75,9 +71,12 @@ namespace Uixe.Watcher
                 }
                 try
                 {
-                    t.PageVisible = true;
-                    this.Visible = true;
-                    this.Focus();
+                    this.Invoke(() =>
+                    {
+                        t.PageVisible = true;
+                        this.Visible = true;
+                        this.Focus();
+                    });
                 }
                 catch (Exception ex)
                 {

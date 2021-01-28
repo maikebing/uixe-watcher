@@ -229,8 +229,12 @@
     <Compile Include="Controls\CardBoxContainer.designer.cs">
       <DependentUpon>CardBoxContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dtos\Head.cs" />
     <Compile Include="Dtos\Lane.cs" />
+    <Compile Include="Dtos\MsgTcoTran.cs" />
     <Compile Include="Dtos\Plaza.cs" />
+    <Compile Include="Dtos\SubHead.cs" />
+    <Compile Include="Dtos\tco_confirm.cs" />
     <Compile Include="Dtos\User.cs" />
     <Compile Include="FAP.cs" />
     <Compile Include="Controls\LaneTime.cs" />
