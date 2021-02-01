@@ -31,16 +31,6 @@ namespace Uixe.Watcher.V1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions7 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject25 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject26 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject27 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject28 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -61,8 +51,51 @@ namespace Uixe.Watcher.V1
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.picLane = new Uixe.Watcher.Controls.TCOPictureBox();
+            this.ItemForID = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForMsgType = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForLaneMode = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForYear = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForDay = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForHour = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForYMD = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForUnuser = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForCarDevWeight = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForCarSpeed = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForFareFormula = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForMinBasicFareRate = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForBasicFareRate = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForTollFareDistance = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForWeightFunctions = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForWeightType = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForTranID = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForTimeOut = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForTCO = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnVNC = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCLose = new DevExpress.XtraEditors.SimpleButton();
+            this.btnOK = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.tcoHeart = new System.Windows.Forms.Timer(this.components);
+            this.picBig = new Uixe.Watcher.Controls.TCOPictureBox();
+            this.pcPronow = new DevExpress.XtraEditors.ProgressBarControl();
             this.WeightFunctionsComboBoxEdit = new DevExpress.XtraEditors.ComboBoxEdit();
             this.msgWeightTCOCALLBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.IDTextEdit = new DevExpress.XtraEditors.TextEdit();
@@ -111,35 +144,12 @@ namespace Uixe.Watcher.V1
             this.colCatalog = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colKinds = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colExample = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ItemForID = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForMsgType = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForLaneMode = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForYear = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForDay = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForHour = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForYMD = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForUnuser = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForCarDevWeight = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForCarSpeed = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForFareFormula = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForMinBasicFareRate = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForBasicFareRate = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForTollFareDistance = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForWeightFunctions = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForWeightType = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForTranID = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForTimeOut = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ItemForTCO = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.ItemForCarKind = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForCarType = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForCarPlate = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForCarShortPlate = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForWeightCarKind = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForMoney = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.ItemForCollector = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForYMDHM = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForCallType = new DevExpress.XtraLayout.LayoutControlItem();
@@ -147,7 +157,6 @@ namespace Uixe.Watcher.V1
             this.ItemForLaneNo = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForLaneType = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForPlaza = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.ItemForOverLoadWeight = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForWeightLimit = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForOverLoadWeightRate = new DevExpress.XtraLayout.LayoutControlItem();
@@ -155,19 +164,38 @@ namespace Uixe.Watcher.V1
             this.ItemForCarAlex = new DevExpress.XtraLayout.LayoutControlItem();
             this.lciHwleixing = new DevExpress.XtraLayout.LayoutControlItem();
             this.ItemForText = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.btnVNC = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCLose = new DevExpress.XtraEditors.SimpleButton();
-            this.pcPronow = new DevExpress.XtraEditors.ProgressBarControl();
-            this.btnOK = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.tcoHeart = new System.Windows.Forms.Timer(this.components);
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.picLaneBig = new System.Windows.Forms.PictureBox();
-            this.picBig = new Uixe.Watcher.Controls.TCOPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForMsgType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForLaneMode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForYear)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForDay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForHour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForYMD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForUnuser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForCarDevWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForCarSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForFareFormula)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForMinBasicFareRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForBasicFareRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTollFareDistance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightFunctions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTranID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTimeOut)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTCO)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcPronow.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WeightFunctionsComboBoxEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.msgWeightTCOCALLBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IDTextEdit.Properties)).BeginInit();
@@ -214,35 +242,12 @@ namespace Uixe.Watcher.V1
             ((System.ComponentModel.ISupportInitialize)(this.dbxLSTD.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.freshAgriProductsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForMsgType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForLaneMode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForYear)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForDay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForHour)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForYMD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForUnuser)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForCarDevWeight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForCarSpeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForFareFormula)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForMinBasicFareRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForBasicFareRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTollFareDistance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightFunctions)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTranID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTimeOut)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTCO)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCarKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCarType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCarPlate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCarShortPlate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightCarKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForMoney)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCollector)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForYMDHM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCallType)).BeginInit();
@@ -250,7 +255,6 @@ namespace Uixe.Watcher.V1
             ((System.ComponentModel.ISupportInitialize)(this.ItemForLaneNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForLaneType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForPlaza)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForOverLoadWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightLimit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForOverLoadWeightRate)).BeginInit();
@@ -258,10 +262,6 @@ namespace Uixe.Watcher.V1
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCarAlex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciHwleixing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForText)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcPronow.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLaneBig)).BeginInit();
             this.SuspendLayout();
@@ -342,633 +342,13 @@ namespace Uixe.Watcher.V1
             this.picLane.Image = null;
             this.picLane.ImageLocation = "";
             this.picLane.Location = new System.Drawing.Point(426, 121);
-            this.picLane.Margin = new System.Windows.Forms.Padding(13, 16, 13, 16);
+            this.picLane.Margin = new System.Windows.Forms.Padding(37, 49, 37, 49);
             this.picLane.Name = "picLane";
             this.picLane.Size = new System.Drawing.Size(318, 271);
             this.picLane.SizeMode = Cyotek.Windows.Forms.ImageBoxSizeMode.Stretch;
             this.picLane.TabIndex = 46;
             this.picLane.TabStop = false;
             this.picLane.DoubleClick += new System.EventHandler(this.picLane_DoubleClick);
-            // 
-            // WeightFunctionsComboBoxEdit
-            // 
-            this.WeightFunctionsComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.msgWeightTCOCALLBindingSource, "WeightFunctions", true));
-            this.WeightFunctionsComboBoxEdit.Location = new System.Drawing.Point(91, 174);
-            this.WeightFunctionsComboBoxEdit.Name = "WeightFunctionsComboBoxEdit";
-            this.WeightFunctionsComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.WeightFunctionsComboBoxEdit.Properties.Items.AddRange(new object[] {
-            "(无)",
-            "五型车",
-            "降级货车",
-            "计重收费"});
-            this.WeightFunctionsComboBoxEdit.Size = new System.Drawing.Size(100, 18);
-            this.WeightFunctionsComboBoxEdit.StyleController = this.dataLayoutControl1;
-            this.WeightFunctionsComboBoxEdit.TabIndex = 18;
-            // 
-            // msgWeightTCOCALLBindingSource
-            // 
-            this.msgWeightTCOCALLBindingSource.DataSource = typeof(Uixe.Watcher.Msg.TCOCall);
-            // 
-            // IDTextEdit
-            // 
-            this.IDTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "ID", true));
-            this.IDTextEdit.Location = new System.Drawing.Point(0, -3);
-            this.IDTextEdit.Name = "IDTextEdit";
-            this.IDTextEdit.Size = new System.Drawing.Size(0, 18);
-            this.IDTextEdit.StyleController = this.dataLayoutControl1;
-            this.IDTextEdit.TabIndex = 4;
-            // 
-            // MsgTypeTextEdit
-            // 
-            this.MsgTypeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "MsgType", true));
-            this.MsgTypeTextEdit.Location = new System.Drawing.Point(0, -3);
-            this.MsgTypeTextEdit.Name = "MsgTypeTextEdit";
-            this.MsgTypeTextEdit.Size = new System.Drawing.Size(0, 18);
-            this.MsgTypeTextEdit.StyleController = this.dataLayoutControl1;
-            this.MsgTypeTextEdit.TabIndex = 5;
-            // 
-            // LaneModeTextEdit
-            // 
-            this.LaneModeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "LaneMode", true));
-            this.LaneModeTextEdit.Location = new System.Drawing.Point(0, -3);
-            this.LaneModeTextEdit.Name = "LaneModeTextEdit";
-            this.LaneModeTextEdit.Size = new System.Drawing.Size(0, 18);
-            this.LaneModeTextEdit.StyleController = this.dataLayoutControl1;
-            this.LaneModeTextEdit.TabIndex = 7;
-            // 
-            // NetworkTextEdit
-            // 
-            this.NetworkTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Network", true));
-            this.NetworkTextEdit.Location = new System.Drawing.Point(100, 77);
-            this.NetworkTextEdit.Name = "NetworkTextEdit";
-            this.NetworkTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.NetworkTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.NetworkTextEdit.Properties.ReadOnly = true;
-            this.NetworkTextEdit.Size = new System.Drawing.Size(127, 28);
-            this.NetworkTextEdit.StyleController = this.dataLayoutControl1;
-            this.NetworkTextEdit.TabIndex = 8;
-            // 
-            // PlazaTextEdit
-            // 
-            this.PlazaTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Plaza", true));
-            this.PlazaTextEdit.Location = new System.Drawing.Point(231, 77);
-            this.PlazaTextEdit.Name = "PlazaTextEdit";
-            this.PlazaTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.PlazaTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.PlazaTextEdit.Properties.ReadOnly = true;
-            this.PlazaTextEdit.Size = new System.Drawing.Size(88, 28);
-            this.PlazaTextEdit.StyleController = this.dataLayoutControl1;
-            this.PlazaTextEdit.TabIndex = 9;
-            // 
-            // YearTextEdit
-            // 
-            this.YearTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Year", true));
-            this.YearTextEdit.Location = new System.Drawing.Point(0, -3);
-            this.YearTextEdit.Name = "YearTextEdit";
-            this.YearTextEdit.Size = new System.Drawing.Size(0, 18);
-            this.YearTextEdit.StyleController = this.dataLayoutControl1;
-            this.YearTextEdit.TabIndex = 10;
-            // 
-            // DayTextEdit
-            // 
-            this.DayTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Day", true));
-            this.DayTextEdit.Location = new System.Drawing.Point(0, -3);
-            this.DayTextEdit.Name = "DayTextEdit";
-            this.DayTextEdit.Size = new System.Drawing.Size(0, 18);
-            this.DayTextEdit.StyleController = this.dataLayoutControl1;
-            this.DayTextEdit.TabIndex = 11;
-            // 
-            // HourTextEdit
-            // 
-            this.HourTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Hour", true));
-            this.HourTextEdit.Location = new System.Drawing.Point(0, -3);
-            this.HourTextEdit.Name = "HourTextEdit";
-            this.HourTextEdit.Size = new System.Drawing.Size(0, 18);
-            this.HourTextEdit.StyleController = this.dataLayoutControl1;
-            this.HourTextEdit.TabIndex = 12;
-            // 
-            // YMDTextEdit
-            // 
-            this.YMDTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "YMD", true));
-            this.YMDTextEdit.Location = new System.Drawing.Point(0, -3);
-            this.YMDTextEdit.Name = "YMDTextEdit";
-            this.YMDTextEdit.Size = new System.Drawing.Size(0, 18);
-            this.YMDTextEdit.StyleController = this.dataLayoutControl1;
-            this.YMDTextEdit.TabIndex = 13;
-            // 
-            // LaneNoTextEdit
-            // 
-            this.LaneNoTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "LaneNo", true));
-            this.LaneNoTextEdit.Location = new System.Drawing.Point(399, 77);
-            this.LaneNoTextEdit.Name = "LaneNoTextEdit";
-            this.LaneNoTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LaneNoTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.LaneNoTextEdit.Properties.ReadOnly = true;
-            this.LaneNoTextEdit.Size = new System.Drawing.Size(127, 28);
-            this.LaneNoTextEdit.StyleController = this.dataLayoutControl1;
-            this.LaneNoTextEdit.TabIndex = 15;
-            // 
-            // CollectorTextEdit
-            // 
-            this.CollectorTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Collector", true));
-            this.CollectorTextEdit.Location = new System.Drawing.Point(399, 45);
-            this.CollectorTextEdit.Name = "CollectorTextEdit";
-            this.CollectorTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CollectorTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.CollectorTextEdit.Properties.ReadOnly = true;
-            this.CollectorTextEdit.Size = new System.Drawing.Size(127, 28);
-            this.CollectorTextEdit.StyleController = this.dataLayoutControl1;
-            this.CollectorTextEdit.TabIndex = 16;
-            // 
-            // FareFormulaComboBoxEdit
-            // 
-            this.FareFormulaComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.msgWeightTCOCALLBindingSource, "FareFormula", true));
-            this.FareFormulaComboBoxEdit.Location = new System.Drawing.Point(491, 149);
-            this.FareFormulaComboBoxEdit.Name = "FareFormulaComboBoxEdit";
-            this.FareFormulaComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.FareFormulaComboBoxEdit.Properties.Items.AddRange(new object[] {
-            "2012",
-            "2013"});
-            this.FareFormulaComboBoxEdit.Size = new System.Drawing.Size(121, 18);
-            this.FareFormulaComboBoxEdit.StyleController = this.dataLayoutControl1;
-            this.FareFormulaComboBoxEdit.TabIndex = 19;
-            // 
-            // CarTypeComboBoxEdit
-            // 
-            this.CarTypeComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.msgWeightTCOCALLBindingSource, "CarType", true));
-            this.CarTypeComboBoxEdit.Location = new System.Drawing.Point(100, 154);
-            this.CarTypeComboBoxEdit.Name = "CarTypeComboBoxEdit";
-            this.CarTypeComboBoxEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CarTypeComboBoxEdit.Properties.Appearance.Options.UseFont = true;
-            this.CarTypeComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.CarTypeComboBoxEdit.Properties.Items.AddRange(new object[] {
-            "(无)",
-            "客一",
-            "客二",
-            "客三",
-            "客四",
-            "货一",
-            "货二",
-            "货三",
-            "货四",
-            "货五",
-            "货六",
-            "专一",
-            "专二",
-            "专三",
-            "专四",
-            "专五",
-            "专六"});
-            this.CarTypeComboBoxEdit.Properties.ReadOnly = true;
-            this.CarTypeComboBoxEdit.Size = new System.Drawing.Size(131, 28);
-            this.CarTypeComboBoxEdit.StyleController = this.dataLayoutControl1;
-            this.CarTypeComboBoxEdit.TabIndex = 22;
-            // 
-            // BasicFareRateTextEdit
-            // 
-            this.BasicFareRateTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "BasicFareRate", true));
-            this.BasicFareRateTextEdit.Location = new System.Drawing.Point(262, 199);
-            this.BasicFareRateTextEdit.Name = "BasicFareRateTextEdit";
-            this.BasicFareRateTextEdit.Size = new System.Drawing.Size(350, 18);
-            this.BasicFareRateTextEdit.StyleController = this.dataLayoutControl1;
-            this.BasicFareRateTextEdit.TabIndex = 24;
-            // 
-            // MinBasicFareRateTextEdit
-            // 
-            this.MinBasicFareRateTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "MinBasicFareRate", true));
-            this.MinBasicFareRateTextEdit.Location = new System.Drawing.Point(491, 149);
-            this.MinBasicFareRateTextEdit.Name = "MinBasicFareRateTextEdit";
-            this.MinBasicFareRateTextEdit.Size = new System.Drawing.Size(121, 18);
-            this.MinBasicFareRateTextEdit.StyleController = this.dataLayoutControl1;
-            this.MinBasicFareRateTextEdit.TabIndex = 25;
-            // 
-            // TollFareDistanceTextEdit
-            // 
-            this.TollFareDistanceTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "TollFareDistance", true));
-            this.TollFareDistanceTextEdit.Location = new System.Drawing.Point(91, 199);
-            this.TollFareDistanceTextEdit.Name = "TollFareDistanceTextEdit";
-            this.TollFareDistanceTextEdit.Size = new System.Drawing.Size(521, 18);
-            this.TollFareDistanceTextEdit.StyleController = this.dataLayoutControl1;
-            this.TollFareDistanceTextEdit.TabIndex = 26;
-            // 
-            // CarPlateTextEdit
-            // 
-            this.CarPlateTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarPlate", true));
-            this.CarPlateTextEdit.Location = new System.Drawing.Point(100, 218);
-            this.CarPlateTextEdit.Name = "CarPlateTextEdit";
-            this.CarPlateTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CarPlateTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.CarPlateTextEdit.Size = new System.Drawing.Size(131, 28);
-            this.CarPlateTextEdit.StyleController = this.dataLayoutControl1;
-            this.CarPlateTextEdit.TabIndex = 27;
-            // 
-            // CarShortPlateTextEdit
-            // 
-            this.CarShortPlateTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarShortPlate", true));
-            this.CarShortPlateTextEdit.Location = new System.Drawing.Point(311, 218);
-            this.CarShortPlateTextEdit.Name = "CarShortPlateTextEdit";
-            this.CarShortPlateTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CarShortPlateTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.CarShortPlateTextEdit.Properties.ReadOnly = true;
-            this.CarShortPlateTextEdit.Size = new System.Drawing.Size(99, 28);
-            this.CarShortPlateTextEdit.StyleController = this.dataLayoutControl1;
-            this.CarShortPlateTextEdit.TabIndex = 28;
-            // 
-            // CarAlexTextEdit
-            // 
-            this.CarAlexTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarAlex", true));
-            this.CarAlexTextEdit.Location = new System.Drawing.Point(304, 295);
-            this.CarAlexTextEdit.Name = "CarAlexTextEdit";
-            this.CarAlexTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CarAlexTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.CarAlexTextEdit.Properties.ReadOnly = true;
-            this.CarAlexTextEdit.Size = new System.Drawing.Size(106, 28);
-            this.CarAlexTextEdit.StyleController = this.dataLayoutControl1;
-            this.CarAlexTextEdit.TabIndex = 29;
-            // 
-            // CarDevWeightTextEdit
-            // 
-            this.CarDevWeightTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarDevWeight", true));
-            this.CarDevWeightTextEdit.Location = new System.Drawing.Point(407, 275);
-            this.CarDevWeightTextEdit.Name = "CarDevWeightTextEdit";
-            this.CarDevWeightTextEdit.Size = new System.Drawing.Size(88, 18);
-            this.CarDevWeightTextEdit.StyleController = this.dataLayoutControl1;
-            this.CarDevWeightTextEdit.TabIndex = 30;
-            // 
-            // CarFareWeightTextEdit
-            // 
-            this.CarFareWeightTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarFareWeight", true));
-            this.CarFareWeightTextEdit.Location = new System.Drawing.Point(100, 295);
-            this.CarFareWeightTextEdit.Name = "CarFareWeightTextEdit";
-            this.CarFareWeightTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CarFareWeightTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.CarFareWeightTextEdit.Properties.ReadOnly = true;
-            this.CarFareWeightTextEdit.Size = new System.Drawing.Size(147, 28);
-            this.CarFareWeightTextEdit.StyleController = this.dataLayoutControl1;
-            this.CarFareWeightTextEdit.TabIndex = 31;
-            // 
-            // CarSpeedTextEdit
-            // 
-            this.CarSpeedTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarSpeed", true));
-            this.CarSpeedTextEdit.Location = new System.Drawing.Point(249, 275);
-            this.CarSpeedTextEdit.Name = "CarSpeedTextEdit";
-            this.CarSpeedTextEdit.Size = new System.Drawing.Size(87, 18);
-            this.CarSpeedTextEdit.StyleController = this.dataLayoutControl1;
-            this.CarSpeedTextEdit.TabIndex = 32;
-            // 
-            // OverLoadWeightTextEdit
-            // 
-            this.OverLoadWeightTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "OverLoadWeight", true));
-            this.OverLoadWeightTextEdit.Location = new System.Drawing.Point(195, 327);
-            this.OverLoadWeightTextEdit.Name = "OverLoadWeightTextEdit";
-            this.OverLoadWeightTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.OverLoadWeightTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.OverLoadWeightTextEdit.Properties.ReadOnly = true;
-            this.OverLoadWeightTextEdit.Size = new System.Drawing.Size(52, 28);
-            this.OverLoadWeightTextEdit.StyleController = this.dataLayoutControl1;
-            this.OverLoadWeightTextEdit.TabIndex = 35;
-            // 
-            // OverLoadWeightRateTextEdit
-            // 
-            this.OverLoadWeightRateTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "OverLoadWeightRate", true));
-            this.OverLoadWeightRateTextEdit.Location = new System.Drawing.Point(304, 327);
-            this.OverLoadWeightRateTextEdit.Name = "OverLoadWeightRateTextEdit";
-            this.OverLoadWeightRateTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.OverLoadWeightRateTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.OverLoadWeightRateTextEdit.Properties.ReadOnly = true;
-            this.OverLoadWeightRateTextEdit.Size = new System.Drawing.Size(106, 28);
-            this.OverLoadWeightRateTextEdit.StyleController = this.dataLayoutControl1;
-            this.OverLoadWeightRateTextEdit.TabIndex = 36;
-            // 
-            // MoneyTextEdit
-            // 
-            this.MoneyTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Money", true));
-            this.MoneyTextEdit.Location = new System.Drawing.Point(311, 186);
-            this.MoneyTextEdit.Name = "MoneyTextEdit";
-            this.MoneyTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.MoneyTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.MoneyTextEdit.Properties.ReadOnly = true;
-            this.MoneyTextEdit.Size = new System.Drawing.Size(99, 28);
-            this.MoneyTextEdit.StyleController = this.dataLayoutControl1;
-            this.MoneyTextEdit.TabIndex = 37;
-            // 
-            // UnuserTextEdit
-            // 
-            this.UnuserTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Unuser", true));
-            this.UnuserTextEdit.Location = new System.Drawing.Point(0, -3);
-            this.UnuserTextEdit.Name = "UnuserTextEdit";
-            this.UnuserTextEdit.Size = new System.Drawing.Size(0, 18);
-            this.UnuserTextEdit.StyleController = this.dataLayoutControl1;
-            this.UnuserTextEdit.TabIndex = 40;
-            // 
-            // TextTextEdit
-            // 
-            this.TextTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Text", true));
-            this.TextTextEdit.Location = new System.Drawing.Point(43, 396);
-            this.TextTextEdit.Name = "TextTextEdit";
-            this.TextTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TextTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.TextTextEdit.Properties.ReadOnly = true;
-            this.TextTextEdit.Size = new System.Drawing.Size(701, 110);
-            this.TextTextEdit.StyleController = this.dataLayoutControl1;
-            this.TextTextEdit.TabIndex = 39;
-            // 
-            // WeightCarKindTextEdit
-            // 
-            this.WeightCarKindTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "WeightCarKind", true));
-            this.WeightCarKindTextEdit.Location = new System.Drawing.Point(100, 186);
-            this.WeightCarKindTextEdit.Name = "WeightCarKindTextEdit";
-            this.WeightCarKindTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.WeightCarKindTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.WeightCarKindTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions7, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject25, serializableAppearanceObject26, serializableAppearanceObject27, serializableAppearanceObject28, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.WeightCarKindTextEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("KeyName", "Key Name", 65, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.WeightCarKindTextEdit.Properties.DataSource = this.bsHCCZ;
-            this.WeightCarKindTextEdit.Properties.DisplayMember = "KeyName";
-            this.WeightCarKindTextEdit.Properties.NullText = "";
-            this.WeightCarKindTextEdit.Properties.ReadOnly = true;
-            this.WeightCarKindTextEdit.Properties.ValueMember = "KeyID";
-            this.WeightCarKindTextEdit.Size = new System.Drawing.Size(131, 28);
-            this.WeightCarKindTextEdit.StyleController = this.dataLayoutControl1;
-            this.WeightCarKindTextEdit.TabIndex = 21;
-            // 
-            // bsHCCZ
-            // 
-            this.bsHCCZ.DataSource = typeof(Uixe.Watcher.KeyItem);
-            // 
-            // CarKindComboBoxEdit
-            // 
-            this.CarKindComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.msgWeightTCOCALLBindingSource, "CarKind", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CarKindComboBoxEdit.Location = new System.Drawing.Point(311, 154);
-            this.CarKindComboBoxEdit.Name = "CarKindComboBoxEdit";
-            this.CarKindComboBoxEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CarKindComboBoxEdit.Properties.Appearance.Options.UseFont = true;
-            this.CarKindComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.CarKindComboBoxEdit.Properties.Items.AddRange(new object[] {
-            "(无)",
-            "收费车",
-            "军车",
-            "公务车",
-            "紧急车",
-            "绿色通道",
-            "月票车",
-            "优惠卡车",
-            "警车",
-            "农用车",
-            "节假日",
-            "(无)",
-            "收费车",
-            "军车",
-            "公务车",
-            "紧急车",
-            "绿色通道",
-            "月票车",
-            "优惠卡车",
-            "警车",
-            "农用车",
-            "节假日",
-            "(无)",
-            "收费车",
-            "军车",
-            "公务车",
-            "紧急车",
-            "绿色通道",
-            "月票车",
-            "优惠卡车",
-            "警车",
-            "农用车",
-            "节假日",
-            "(无)",
-            "收费车",
-            "军车",
-            "公务车",
-            "紧急车",
-            "绿色通道",
-            "月票车",
-            "优惠卡车",
-            "警车",
-            "农用车",
-            "节假日"});
-            this.CarKindComboBoxEdit.Properties.ReadOnly = true;
-            this.CarKindComboBoxEdit.Size = new System.Drawing.Size(99, 28);
-            this.CarKindComboBoxEdit.StyleController = this.dataLayoutControl1;
-            this.CarKindComboBoxEdit.TabIndex = 23;
-            // 
-            // CallTypeComboBoxEdit
-            // 
-            this.CallTypeComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CallType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CallTypeComboBoxEdit.Location = new System.Drawing.Point(606, 45);
-            this.CallTypeComboBoxEdit.Name = "CallTypeComboBoxEdit";
-            this.CallTypeComboBoxEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CallTypeComboBoxEdit.Properties.Appearance.Options.UseFont = true;
-            this.CallTypeComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.CallTypeComboBoxEdit.Properties.DataSource = this.bsTcotype;
-            this.CallTypeComboBoxEdit.Properties.DisplayMember = "KeyName";
-            this.CallTypeComboBoxEdit.Properties.NullText = "";
-            this.CallTypeComboBoxEdit.Properties.PopupSizeable = false;
-            this.CallTypeComboBoxEdit.Properties.ReadOnly = true;
-            this.CallTypeComboBoxEdit.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.CallTypeComboBoxEdit.Properties.ValueMember = "KeyID";
-            this.CallTypeComboBoxEdit.Size = new System.Drawing.Size(126, 28);
-            this.CallTypeComboBoxEdit.StyleController = this.dataLayoutControl1;
-            this.CallTypeComboBoxEdit.TabIndex = 17;
-            // 
-            // bsTcotype
-            // 
-            this.bsTcotype.DataSource = typeof(Uixe.Watcher.KeyItem);
-            // 
-            // WeightTypeComboBoxEdit
-            // 
-            this.WeightTypeComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.msgWeightTCOCALLBindingSource, "WeightType", true));
-            this.WeightTypeComboBoxEdit.Location = new System.Drawing.Point(91, 174);
-            this.WeightTypeComboBoxEdit.Name = "WeightTypeComboBoxEdit";
-            this.WeightTypeComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.WeightTypeComboBoxEdit.Properties.Items.AddRange(new object[] {
-            "(无)",
-            "大件运输车",
-            "标准集装箱",
-            "特种罐装车",
-            "甩挂运输",
-            "修正车辆信息",
-            "添加车辆信息",
-            "删除车辆信息",
-            "修正车辆轴信息",
-            "长车",
-            "载有固定装置车",
-            "车型收费模式"});
-            this.WeightTypeComboBoxEdit.Size = new System.Drawing.Size(521, 18);
-            this.WeightTypeComboBoxEdit.StyleController = this.dataLayoutControl1;
-            this.WeightTypeComboBoxEdit.TabIndex = 20;
-            // 
-            // LaneTypeTextEdit
-            // 
-            this.LaneTypeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "LaneType", true));
-            this.LaneTypeTextEdit.Location = new System.Drawing.Point(606, 77);
-            this.LaneTypeTextEdit.Name = "LaneTypeTextEdit";
-            this.LaneTypeTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LaneTypeTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.LaneTypeTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.LaneTypeTextEdit.Properties.DataSource = this.bsUD;
-            this.LaneTypeTextEdit.Properties.DisplayMember = "KeyName";
-            this.LaneTypeTextEdit.Properties.NullText = "";
-            this.LaneTypeTextEdit.Properties.ReadOnly = true;
-            this.LaneTypeTextEdit.Properties.ValueMember = "KeyID";
-            this.LaneTypeTextEdit.Size = new System.Drawing.Size(126, 28);
-            this.LaneTypeTextEdit.StyleController = this.dataLayoutControl1;
-            this.LaneTypeTextEdit.TabIndex = 6;
-            // 
-            // bsUD
-            // 
-            this.bsUD.DataSource = typeof(Uixe.Watcher.KeyItem);
-            // 
-            // YMDHMTextEdit
-            // 
-            this.YMDHMTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "YMDHM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "yyyyMMddHHmmss"));
-            this.YMDHMTextEdit.EditValue = null;
-            this.YMDHMTextEdit.Location = new System.Drawing.Point(100, 45);
-            this.YMDHMTextEdit.Name = "YMDHMTextEdit";
-            this.YMDHMTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.YMDHMTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.YMDHMTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.YMDHMTextEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.YMDHMTextEdit.Properties.DisplayFormat.FormatString = "yyyy年MM月dd日 HH:mm:ss";
-            this.YMDHMTextEdit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.YMDHMTextEdit.Properties.MaskSettings.Set("mask", "");
-            this.YMDHMTextEdit.Properties.MaskSettings.Set("isAutoComplete", false);
-            this.YMDHMTextEdit.Properties.MaskSettings.Set("isOptimistic", false);
-            this.YMDHMTextEdit.Properties.ReadOnly = true;
-            this.YMDHMTextEdit.Size = new System.Drawing.Size(219, 28);
-            this.YMDHMTextEdit.StyleController = this.dataLayoutControl1;
-            this.YMDHMTextEdit.TabIndex = 14;
-            this.YMDHMTextEdit.FormatEditValue += new DevExpress.XtraEditors.Controls.ConvertEditValueEventHandler(this.YMDHMTextEdit_FormatEditValue);
-            // 
-            // TimeOutSpinEdit
-            // 
-            this.TimeOutSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "TimeOut", true));
-            this.TimeOutSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.TimeOutSpinEdit.Location = new System.Drawing.Point(141, 441);
-            this.TimeOutSpinEdit.Name = "TimeOutSpinEdit";
-            this.TimeOutSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.TimeOutSpinEdit.Size = new System.Drawing.Size(527, 20);
-            this.TimeOutSpinEdit.StyleController = this.dataLayoutControl1;
-            this.TimeOutSpinEdit.TabIndex = 41;
-            // 
-            // TCOTextEdit
-            // 
-            this.TCOTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "TCO", true));
-            this.TCOTextEdit.Location = new System.Drawing.Point(141, 466);
-            this.TCOTextEdit.Name = "TCOTextEdit";
-            this.TCOTextEdit.Size = new System.Drawing.Size(527, 18);
-            this.TCOTextEdit.StyleController = this.dataLayoutControl1;
-            this.TCOTextEdit.TabIndex = 42;
-            // 
-            // TranIDSpinEdit
-            // 
-            this.TranIDSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "TranID", true));
-            this.TranIDSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.TranIDSpinEdit.Location = new System.Drawing.Point(0, -3);
-            this.TranIDSpinEdit.Name = "TranIDSpinEdit";
-            this.TranIDSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.TranIDSpinEdit.Size = new System.Drawing.Size(0, 20);
-            this.TranIDSpinEdit.StyleController = this.dataLayoutControl1;
-            this.TranIDSpinEdit.TabIndex = 45;
-            // 
-            // WeightLimitSpinEdit
-            // 
-            this.WeightLimitSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "WeightLimit", true));
-            this.WeightLimitSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.WeightLimitSpinEdit.Location = new System.Drawing.Point(100, 327);
-            this.WeightLimitSpinEdit.Name = "WeightLimitSpinEdit";
-            this.WeightLimitSpinEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.WeightLimitSpinEdit.Properties.Appearance.Options.UseFont = true;
-            this.WeightLimitSpinEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-            this.WeightLimitSpinEdit.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.WeightLimitSpinEdit.Properties.ReadOnly = true;
-            this.WeightLimitSpinEdit.Size = new System.Drawing.Size(54, 28);
-            this.WeightLimitSpinEdit.StyleController = this.dataLayoutControl1;
-            this.WeightLimitSpinEdit.TabIndex = 43;
-            // 
-            // dbxLSTD
-            // 
-            this.dbxLSTD.EditValue = "";
-            this.dbxLSTD.Location = new System.Drawing.Point(100, 359);
-            this.dbxLSTD.Name = "dbxLSTD";
-            this.dbxLSTD.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dbxLSTD.Properties.DataSource = this.freshAgriProductsBindingSource;
-            this.dbxLSTD.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.dbxLSTD.Properties.DisplayMember = "Display";
-            this.dbxLSTD.Properties.KeyMember = "Id";
-            this.dbxLSTD.Properties.NullText = "请选择";
-            this.dbxLSTD.Properties.PopupView = this.gridLookUpEdit1View;
-            this.dbxLSTD.Properties.ValueMember = "Id";
-            this.dbxLSTD.Size = new System.Drawing.Size(310, 18);
-            this.dbxLSTD.StyleController = this.dataLayoutControl1;
-            this.dbxLSTD.TabIndex = 47;
-            // 
-            // freshAgriProductsBindingSource
-            // 
-            this.freshAgriProductsBindingSource.DataSource = typeof(Uixe.Watcher.FreshAgriProducts);
-            // 
-            // gridLookUpEdit1View
-            // 
-            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCatalog,
-            this.colKinds,
-            this.colExample});
-            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
-            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridLookUpEdit1View.OptionsView.AllowCellMerge = true;
-            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // colCatalog
-            // 
-            this.colCatalog.Caption = "目录";
-            this.colCatalog.FieldName = "Catalog";
-            this.colCatalog.Name = "colCatalog";
-            this.colCatalog.Visible = true;
-            this.colCatalog.VisibleIndex = 0;
-            // 
-            // colKinds
-            // 
-            this.colKinds.Caption = "分类";
-            this.colKinds.FieldName = "Kinds";
-            this.colKinds.Name = "colKinds";
-            this.colKinds.Visible = true;
-            this.colKinds.VisibleIndex = 1;
-            // 
-            // colExample
-            // 
-            this.colExample.Caption = "举例";
-            this.colExample.FieldName = "Example";
-            this.colExample.Name = "colExample";
-            this.colExample.Visible = true;
-            this.colExample.VisibleIndex = 2;
             // 
             // ItemForID
             // 
@@ -1205,6 +585,754 @@ namespace Uixe.Watcher.V1
             this.layoutControlGroup5.Size = new System.Drawing.Size(414, 141);
             this.layoutControlGroup5.Text = "车辆信息";
             // 
+            // layoutControlGroup6
+            // 
+            this.layoutControlGroup6.CustomizationFormText = "监控和车道信息";
+            this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.ItemForCollector,
+            this.ItemForYMDHM,
+            this.ItemForCallType,
+            this.ItemForNetwork,
+            this.ItemForLaneNo,
+            this.ItemForLaneType,
+            this.ItemForPlaza});
+            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup6.Name = "layoutControlGroup6";
+            this.layoutControlGroup6.Size = new System.Drawing.Size(736, 109);
+            this.layoutControlGroup6.Text = "监控和车道信息";
+            // 
+            // layoutControlGroup4
+            // 
+            this.layoutControlGroup4.CustomizationFormText = "车辆称重信息";
+            this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.ItemForOverLoadWeight,
+            this.ItemForWeightLimit,
+            this.ItemForOverLoadWeightRate,
+            this.ItemForCarFareWeight,
+            this.ItemForCarAlex,
+            this.lciHwleixing});
+            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 250);
+            this.layoutControlGroup4.Name = "layoutControlGroup4";
+            this.layoutControlGroup4.Size = new System.Drawing.Size(414, 134);
+            this.layoutControlGroup4.Text = "称重信息";
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.picLane;
+            this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
+            this.layoutControlItem1.Location = new System.Drawing.Point(414, 109);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(322, 275);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.panelControl1.Appearance.Options.UseFont = true;
+            this.panelControl1.Controls.Add(this.btnVNC);
+            this.panelControl1.Controls.Add(this.btnCLose);
+            this.panelControl1.Controls.Add(this.pcPronow);
+            this.panelControl1.Controls.Add(this.btnOK);
+            this.panelControl1.Controls.Add(this.btnCancel);
+            this.panelControl1.Location = new System.Drawing.Point(0, 502);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(735, 45);
+            this.panelControl1.TabIndex = 4;
+            // 
+            // btnVNC
+            // 
+            this.btnVNC.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnVNC.Appearance.Options.UseFont = true;
+            this.btnVNC.Location = new System.Drawing.Point(5, 4);
+            this.btnVNC.Name = "btnVNC";
+            this.btnVNC.Size = new System.Drawing.Size(117, 35);
+            this.btnVNC.TabIndex = 28;
+            this.btnVNC.Text = "车道远程桌面";
+            this.btnVNC.Click += new System.EventHandler(this.btnVNC_Click);
+            // 
+            // btnCLose
+            // 
+            this.btnCLose.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnCLose.Appearance.Options.UseFont = true;
+            this.btnCLose.Location = new System.Drawing.Point(659, 4);
+            this.btnCLose.Name = "btnCLose";
+            this.btnCLose.Size = new System.Drawing.Size(73, 35);
+            this.btnCLose.TabIndex = 27;
+            this.btnCLose.Text = "关闭(&Q)";
+            this.btnCLose.Click += new System.EventHandler(this.btnCLose_Click);
+            // 
+            // btnOK
+            // 
+            this.btnOK.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnOK.Appearance.Options.UseFont = true;
+            this.btnOK.Location = new System.Drawing.Point(445, 4);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(88, 35);
+            this.btnOK.TabIndex = 2;
+            this.btnOK.Text = "同意(&O)";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnCancel.Appearance.Options.UseFont = true;
+            this.btnCancel.Location = new System.Drawing.Point(550, 4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(82, 35);
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Text = "拒绝(&C)";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // tcoHeart
+            // 
+            this.tcoHeart.Enabled = true;
+            this.tcoHeart.Interval = 800;
+            this.tcoHeart.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // picBig
+            // 
+            this.picBig.Image = null;
+            this.picBig.ImageLocation = "";
+            this.picBig.Location = new System.Drawing.Point(488, 415);
+            this.picBig.Name = "picBig";
+            this.picBig.Size = new System.Drawing.Size(528, 432);
+            this.picBig.TabIndex = 47;
+            this.picBig.TabStop = false;
+            this.picBig.Visible = false;
+            this.picBig.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
+            this.picBig.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            // 
+            // pcPronow
+            // 
+            this.pcPronow.Location = new System.Drawing.Point(128, 7);
+            this.pcPronow.Name = "pcPronow";
+            this.pcPronow.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pcPronow.Properties.PercentView = false;
+            this.pcPronow.Properties.ShowTitle = true;
+            this.pcPronow.Size = new System.Drawing.Size(311, 27);
+            this.pcPronow.TabIndex = 26;
+            // 
+            // WeightFunctionsComboBoxEdit
+            // 
+            this.WeightFunctionsComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.msgWeightTCOCALLBindingSource, "WeightFunctions", true));
+            this.WeightFunctionsComboBoxEdit.Location = new System.Drawing.Point(91, 174);
+            this.WeightFunctionsComboBoxEdit.Name = "WeightFunctionsComboBoxEdit";
+            this.WeightFunctionsComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.WeightFunctionsComboBoxEdit.Properties.Items.AddRange(new object[] {
+            "(无)",
+            "五型车",
+            "降级货车",
+            "计重收费"});
+            this.WeightFunctionsComboBoxEdit.Size = new System.Drawing.Size(100, 18);
+            this.WeightFunctionsComboBoxEdit.StyleController = this.dataLayoutControl1;
+            this.WeightFunctionsComboBoxEdit.TabIndex = 18;
+            // 
+            // msgWeightTCOCALLBindingSource
+            // 
+            this.msgWeightTCOCALLBindingSource.DataSource = typeof(Uixe.Watcher.Msg.MsgWeightTCOCALL);
+            // 
+            // IDTextEdit
+            // 
+            this.IDTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "ID", true));
+            this.IDTextEdit.Location = new System.Drawing.Point(0, -3);
+            this.IDTextEdit.Name = "IDTextEdit";
+            this.IDTextEdit.Size = new System.Drawing.Size(0, 18);
+            this.IDTextEdit.StyleController = this.dataLayoutControl1;
+            this.IDTextEdit.TabIndex = 4;
+            // 
+            // MsgTypeTextEdit
+            // 
+            this.MsgTypeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "MsgType", true));
+            this.MsgTypeTextEdit.Location = new System.Drawing.Point(0, -3);
+            this.MsgTypeTextEdit.Name = "MsgTypeTextEdit";
+            this.MsgTypeTextEdit.Size = new System.Drawing.Size(0, 18);
+            this.MsgTypeTextEdit.StyleController = this.dataLayoutControl1;
+            this.MsgTypeTextEdit.TabIndex = 5;
+            // 
+            // LaneModeTextEdit
+            // 
+            this.LaneModeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "LaneMode", true));
+            this.LaneModeTextEdit.Location = new System.Drawing.Point(0, -3);
+            this.LaneModeTextEdit.Name = "LaneModeTextEdit";
+            this.LaneModeTextEdit.Size = new System.Drawing.Size(0, 18);
+            this.LaneModeTextEdit.StyleController = this.dataLayoutControl1;
+            this.LaneModeTextEdit.TabIndex = 7;
+            // 
+            // NetworkTextEdit
+            // 
+            this.NetworkTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Network", true));
+            this.NetworkTextEdit.Location = new System.Drawing.Point(100, 77);
+            this.NetworkTextEdit.Name = "NetworkTextEdit";
+            this.NetworkTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.NetworkTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.NetworkTextEdit.Properties.ReadOnly = true;
+            this.NetworkTextEdit.Size = new System.Drawing.Size(127, 28);
+            this.NetworkTextEdit.StyleController = this.dataLayoutControl1;
+            this.NetworkTextEdit.TabIndex = 8;
+            // 
+            // PlazaTextEdit
+            // 
+            this.PlazaTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Plaza", true));
+            this.PlazaTextEdit.Location = new System.Drawing.Point(231, 77);
+            this.PlazaTextEdit.Name = "PlazaTextEdit";
+            this.PlazaTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.PlazaTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.PlazaTextEdit.Properties.ReadOnly = true;
+            this.PlazaTextEdit.Size = new System.Drawing.Size(88, 28);
+            this.PlazaTextEdit.StyleController = this.dataLayoutControl1;
+            this.PlazaTextEdit.TabIndex = 9;
+            // 
+            // YearTextEdit
+            // 
+            this.YearTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Year", true));
+            this.YearTextEdit.Location = new System.Drawing.Point(0, -3);
+            this.YearTextEdit.Name = "YearTextEdit";
+            this.YearTextEdit.Size = new System.Drawing.Size(0, 18);
+            this.YearTextEdit.StyleController = this.dataLayoutControl1;
+            this.YearTextEdit.TabIndex = 10;
+            // 
+            // DayTextEdit
+            // 
+            this.DayTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Day", true));
+            this.DayTextEdit.Location = new System.Drawing.Point(0, -3);
+            this.DayTextEdit.Name = "DayTextEdit";
+            this.DayTextEdit.Size = new System.Drawing.Size(0, 18);
+            this.DayTextEdit.StyleController = this.dataLayoutControl1;
+            this.DayTextEdit.TabIndex = 11;
+            // 
+            // HourTextEdit
+            // 
+            this.HourTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Hour", true));
+            this.HourTextEdit.Location = new System.Drawing.Point(0, -3);
+            this.HourTextEdit.Name = "HourTextEdit";
+            this.HourTextEdit.Size = new System.Drawing.Size(0, 18);
+            this.HourTextEdit.StyleController = this.dataLayoutControl1;
+            this.HourTextEdit.TabIndex = 12;
+            // 
+            // YMDTextEdit
+            // 
+            this.YMDTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "YMD", true));
+            this.YMDTextEdit.Location = new System.Drawing.Point(0, -3);
+            this.YMDTextEdit.Name = "YMDTextEdit";
+            this.YMDTextEdit.Size = new System.Drawing.Size(0, 18);
+            this.YMDTextEdit.StyleController = this.dataLayoutControl1;
+            this.YMDTextEdit.TabIndex = 13;
+            // 
+            // LaneNoTextEdit
+            // 
+            this.LaneNoTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "LaneNo", true));
+            this.LaneNoTextEdit.Location = new System.Drawing.Point(399, 77);
+            this.LaneNoTextEdit.Name = "LaneNoTextEdit";
+            this.LaneNoTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LaneNoTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.LaneNoTextEdit.Properties.ReadOnly = true;
+            this.LaneNoTextEdit.Size = new System.Drawing.Size(127, 28);
+            this.LaneNoTextEdit.StyleController = this.dataLayoutControl1;
+            this.LaneNoTextEdit.TabIndex = 15;
+            // 
+            // CollectorTextEdit
+            // 
+            this.CollectorTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Collector", true));
+            this.CollectorTextEdit.Location = new System.Drawing.Point(399, 45);
+            this.CollectorTextEdit.Name = "CollectorTextEdit";
+            this.CollectorTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CollectorTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.CollectorTextEdit.Properties.ReadOnly = true;
+            this.CollectorTextEdit.Size = new System.Drawing.Size(127, 28);
+            this.CollectorTextEdit.StyleController = this.dataLayoutControl1;
+            this.CollectorTextEdit.TabIndex = 16;
+            // 
+            // FareFormulaComboBoxEdit
+            // 
+            this.FareFormulaComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.msgWeightTCOCALLBindingSource, "FareFormula", true));
+            this.FareFormulaComboBoxEdit.Location = new System.Drawing.Point(491, 149);
+            this.FareFormulaComboBoxEdit.Name = "FareFormulaComboBoxEdit";
+            this.FareFormulaComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.FareFormulaComboBoxEdit.Properties.Items.AddRange(new object[] {
+            "2012",
+            "2013"});
+            this.FareFormulaComboBoxEdit.Size = new System.Drawing.Size(121, 18);
+            this.FareFormulaComboBoxEdit.StyleController = this.dataLayoutControl1;
+            this.FareFormulaComboBoxEdit.TabIndex = 19;
+            // 
+            // CarTypeComboBoxEdit
+            // 
+            this.CarTypeComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.msgWeightTCOCALLBindingSource, "CarType", true));
+            this.CarTypeComboBoxEdit.Location = new System.Drawing.Point(100, 154);
+            this.CarTypeComboBoxEdit.Name = "CarTypeComboBoxEdit";
+            this.CarTypeComboBoxEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CarTypeComboBoxEdit.Properties.Appearance.Options.UseFont = true;
+            this.CarTypeComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.CarTypeComboBoxEdit.Properties.Items.AddRange(new object[] {
+            "(无)",
+            "客一",
+            "客二",
+            "客三",
+            "客四",
+            "货一",
+            "货二",
+            "货三",
+            "货四",
+            "货五",
+            "货六",
+            "专一",
+            "专二",
+            "专三",
+            "专四",
+            "专五",
+            "专六"});
+            this.CarTypeComboBoxEdit.Properties.ReadOnly = true;
+            this.CarTypeComboBoxEdit.Size = new System.Drawing.Size(131, 28);
+            this.CarTypeComboBoxEdit.StyleController = this.dataLayoutControl1;
+            this.CarTypeComboBoxEdit.TabIndex = 22;
+            // 
+            // BasicFareRateTextEdit
+            // 
+            this.BasicFareRateTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "BasicFareRate", true));
+            this.BasicFareRateTextEdit.Location = new System.Drawing.Point(262, 199);
+            this.BasicFareRateTextEdit.Name = "BasicFareRateTextEdit";
+            this.BasicFareRateTextEdit.Size = new System.Drawing.Size(350, 18);
+            this.BasicFareRateTextEdit.StyleController = this.dataLayoutControl1;
+            this.BasicFareRateTextEdit.TabIndex = 24;
+            // 
+            // MinBasicFareRateTextEdit
+            // 
+            this.MinBasicFareRateTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "MinBasicFareRate", true));
+            this.MinBasicFareRateTextEdit.Location = new System.Drawing.Point(491, 149);
+            this.MinBasicFareRateTextEdit.Name = "MinBasicFareRateTextEdit";
+            this.MinBasicFareRateTextEdit.Size = new System.Drawing.Size(121, 18);
+            this.MinBasicFareRateTextEdit.StyleController = this.dataLayoutControl1;
+            this.MinBasicFareRateTextEdit.TabIndex = 25;
+            // 
+            // TollFareDistanceTextEdit
+            // 
+            this.TollFareDistanceTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "TollFareDistance", true));
+            this.TollFareDistanceTextEdit.Location = new System.Drawing.Point(91, 199);
+            this.TollFareDistanceTextEdit.Name = "TollFareDistanceTextEdit";
+            this.TollFareDistanceTextEdit.Size = new System.Drawing.Size(521, 18);
+            this.TollFareDistanceTextEdit.StyleController = this.dataLayoutControl1;
+            this.TollFareDistanceTextEdit.TabIndex = 26;
+            // 
+            // CarPlateTextEdit
+            // 
+            this.CarPlateTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarPlate", true));
+            this.CarPlateTextEdit.Location = new System.Drawing.Point(100, 218);
+            this.CarPlateTextEdit.Name = "CarPlateTextEdit";
+            this.CarPlateTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CarPlateTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.CarPlateTextEdit.Size = new System.Drawing.Size(131, 28);
+            this.CarPlateTextEdit.StyleController = this.dataLayoutControl1;
+            this.CarPlateTextEdit.TabIndex = 27;
+            // 
+            // CarShortPlateTextEdit
+            // 
+            this.CarShortPlateTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarShortPlate", true));
+            this.CarShortPlateTextEdit.Location = new System.Drawing.Point(311, 218);
+            this.CarShortPlateTextEdit.Name = "CarShortPlateTextEdit";
+            this.CarShortPlateTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CarShortPlateTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.CarShortPlateTextEdit.Properties.ReadOnly = true;
+            this.CarShortPlateTextEdit.Size = new System.Drawing.Size(99, 28);
+            this.CarShortPlateTextEdit.StyleController = this.dataLayoutControl1;
+            this.CarShortPlateTextEdit.TabIndex = 28;
+            // 
+            // CarAlexTextEdit
+            // 
+            this.CarAlexTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarAlex", true));
+            this.CarAlexTextEdit.Location = new System.Drawing.Point(304, 295);
+            this.CarAlexTextEdit.Name = "CarAlexTextEdit";
+            this.CarAlexTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CarAlexTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.CarAlexTextEdit.Properties.ReadOnly = true;
+            this.CarAlexTextEdit.Size = new System.Drawing.Size(106, 28);
+            this.CarAlexTextEdit.StyleController = this.dataLayoutControl1;
+            this.CarAlexTextEdit.TabIndex = 29;
+            // 
+            // CarDevWeightTextEdit
+            // 
+            this.CarDevWeightTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarDevWeight", true));
+            this.CarDevWeightTextEdit.Location = new System.Drawing.Point(407, 275);
+            this.CarDevWeightTextEdit.Name = "CarDevWeightTextEdit";
+            this.CarDevWeightTextEdit.Size = new System.Drawing.Size(88, 18);
+            this.CarDevWeightTextEdit.StyleController = this.dataLayoutControl1;
+            this.CarDevWeightTextEdit.TabIndex = 30;
+            // 
+            // CarFareWeightTextEdit
+            // 
+            this.CarFareWeightTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarFareWeight", true));
+            this.CarFareWeightTextEdit.Location = new System.Drawing.Point(100, 295);
+            this.CarFareWeightTextEdit.Name = "CarFareWeightTextEdit";
+            this.CarFareWeightTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CarFareWeightTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.CarFareWeightTextEdit.Properties.ReadOnly = true;
+            this.CarFareWeightTextEdit.Size = new System.Drawing.Size(147, 28);
+            this.CarFareWeightTextEdit.StyleController = this.dataLayoutControl1;
+            this.CarFareWeightTextEdit.TabIndex = 31;
+            // 
+            // CarSpeedTextEdit
+            // 
+            this.CarSpeedTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CarSpeed", true));
+            this.CarSpeedTextEdit.Location = new System.Drawing.Point(249, 275);
+            this.CarSpeedTextEdit.Name = "CarSpeedTextEdit";
+            this.CarSpeedTextEdit.Size = new System.Drawing.Size(87, 18);
+            this.CarSpeedTextEdit.StyleController = this.dataLayoutControl1;
+            this.CarSpeedTextEdit.TabIndex = 32;
+            // 
+            // OverLoadWeightTextEdit
+            // 
+            this.OverLoadWeightTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "OverLoadWeight", true));
+            this.OverLoadWeightTextEdit.Location = new System.Drawing.Point(195, 327);
+            this.OverLoadWeightTextEdit.Name = "OverLoadWeightTextEdit";
+            this.OverLoadWeightTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OverLoadWeightTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.OverLoadWeightTextEdit.Properties.ReadOnly = true;
+            this.OverLoadWeightTextEdit.Size = new System.Drawing.Size(52, 28);
+            this.OverLoadWeightTextEdit.StyleController = this.dataLayoutControl1;
+            this.OverLoadWeightTextEdit.TabIndex = 35;
+            // 
+            // OverLoadWeightRateTextEdit
+            // 
+            this.OverLoadWeightRateTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "OverLoadWeightRate", true));
+            this.OverLoadWeightRateTextEdit.Location = new System.Drawing.Point(304, 327);
+            this.OverLoadWeightRateTextEdit.Name = "OverLoadWeightRateTextEdit";
+            this.OverLoadWeightRateTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OverLoadWeightRateTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.OverLoadWeightRateTextEdit.Properties.ReadOnly = true;
+            this.OverLoadWeightRateTextEdit.Size = new System.Drawing.Size(106, 28);
+            this.OverLoadWeightRateTextEdit.StyleController = this.dataLayoutControl1;
+            this.OverLoadWeightRateTextEdit.TabIndex = 36;
+            // 
+            // MoneyTextEdit
+            // 
+            this.MoneyTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Money", true));
+            this.MoneyTextEdit.Location = new System.Drawing.Point(311, 186);
+            this.MoneyTextEdit.Name = "MoneyTextEdit";
+            this.MoneyTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.MoneyTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.MoneyTextEdit.Properties.ReadOnly = true;
+            this.MoneyTextEdit.Size = new System.Drawing.Size(99, 28);
+            this.MoneyTextEdit.StyleController = this.dataLayoutControl1;
+            this.MoneyTextEdit.TabIndex = 37;
+            // 
+            // UnuserTextEdit
+            // 
+            this.UnuserTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Unuser", true));
+            this.UnuserTextEdit.Location = new System.Drawing.Point(0, -3);
+            this.UnuserTextEdit.Name = "UnuserTextEdit";
+            this.UnuserTextEdit.Size = new System.Drawing.Size(0, 18);
+            this.UnuserTextEdit.StyleController = this.dataLayoutControl1;
+            this.UnuserTextEdit.TabIndex = 40;
+            // 
+            // TextTextEdit
+            // 
+            this.TextTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Text", true));
+            this.TextTextEdit.Location = new System.Drawing.Point(43, 396);
+            this.TextTextEdit.Name = "TextTextEdit";
+            this.TextTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TextTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.TextTextEdit.Properties.ReadOnly = true;
+            this.TextTextEdit.Size = new System.Drawing.Size(701, 110);
+            this.TextTextEdit.StyleController = this.dataLayoutControl1;
+            this.TextTextEdit.TabIndex = 39;
+            // 
+            // WeightCarKindTextEdit
+            // 
+            this.WeightCarKindTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "WeightCarKind", true));
+            this.WeightCarKindTextEdit.Location = new System.Drawing.Point(100, 186);
+            this.WeightCarKindTextEdit.Name = "WeightCarKindTextEdit";
+            this.WeightCarKindTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.WeightCarKindTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.WeightCarKindTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.WeightCarKindTextEdit.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("KeyName", "Key Name", 65, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.WeightCarKindTextEdit.Properties.DataSource = this.bsHCCZ;
+            this.WeightCarKindTextEdit.Properties.DisplayMember = "KeyName";
+            this.WeightCarKindTextEdit.Properties.NullText = "";
+            this.WeightCarKindTextEdit.Properties.ReadOnly = true;
+            this.WeightCarKindTextEdit.Properties.ValueMember = "KeyID";
+            this.WeightCarKindTextEdit.Size = new System.Drawing.Size(131, 28);
+            this.WeightCarKindTextEdit.StyleController = this.dataLayoutControl1;
+            this.WeightCarKindTextEdit.TabIndex = 21;
+            // 
+            // bsHCCZ
+            // 
+            this.bsHCCZ.DataSource = typeof(Uixe.Watcher.KeyItem);
+            // 
+            // CarKindComboBoxEdit
+            // 
+            this.CarKindComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.msgWeightTCOCALLBindingSource, "CarKind", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CarKindComboBoxEdit.Location = new System.Drawing.Point(311, 154);
+            this.CarKindComboBoxEdit.Name = "CarKindComboBoxEdit";
+            this.CarKindComboBoxEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CarKindComboBoxEdit.Properties.Appearance.Options.UseFont = true;
+            this.CarKindComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.CarKindComboBoxEdit.Properties.Items.AddRange(new object[] {
+            "(无)",
+            "收费车",
+            "军车",
+            "公务车",
+            "紧急车",
+            "绿色通道",
+            "月票车",
+            "优惠卡车",
+            "警车",
+            "农用车",
+            "节假日",
+            "(无)",
+            "收费车",
+            "军车",
+            "公务车",
+            "紧急车",
+            "绿色通道",
+            "月票车",
+            "优惠卡车",
+            "警车",
+            "农用车",
+            "节假日",
+            "(无)",
+            "收费车",
+            "军车",
+            "公务车",
+            "紧急车",
+            "绿色通道",
+            "月票车",
+            "优惠卡车",
+            "警车",
+            "农用车",
+            "节假日",
+            "(无)",
+            "收费车",
+            "军车",
+            "公务车",
+            "紧急车",
+            "绿色通道",
+            "月票车",
+            "优惠卡车",
+            "警车",
+            "农用车",
+            "节假日"});
+            this.CarKindComboBoxEdit.Properties.ReadOnly = true;
+            this.CarKindComboBoxEdit.Size = new System.Drawing.Size(99, 28);
+            this.CarKindComboBoxEdit.StyleController = this.dataLayoutControl1;
+            this.CarKindComboBoxEdit.TabIndex = 23;
+            // 
+            // CallTypeComboBoxEdit
+            // 
+            this.CallTypeComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CallType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CallTypeComboBoxEdit.Location = new System.Drawing.Point(606, 45);
+            this.CallTypeComboBoxEdit.Name = "CallTypeComboBoxEdit";
+            this.CallTypeComboBoxEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CallTypeComboBoxEdit.Properties.Appearance.Options.UseFont = true;
+            this.CallTypeComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.CallTypeComboBoxEdit.Properties.DataSource = this.bsTcotype;
+            this.CallTypeComboBoxEdit.Properties.DisplayMember = "KeyName";
+            this.CallTypeComboBoxEdit.Properties.NullText = "";
+            this.CallTypeComboBoxEdit.Properties.PopupSizeable = false;
+            this.CallTypeComboBoxEdit.Properties.ReadOnly = true;
+            this.CallTypeComboBoxEdit.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.CallTypeComboBoxEdit.Properties.ValueMember = "KeyID";
+            this.CallTypeComboBoxEdit.Size = new System.Drawing.Size(126, 28);
+            this.CallTypeComboBoxEdit.StyleController = this.dataLayoutControl1;
+            this.CallTypeComboBoxEdit.TabIndex = 17;
+            // 
+            // bsTcotype
+            // 
+            this.bsTcotype.DataSource = typeof(Uixe.Watcher.KeyItem);
+            // 
+            // WeightTypeComboBoxEdit
+            // 
+            this.WeightTypeComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.msgWeightTCOCALLBindingSource, "WeightType", true));
+            this.WeightTypeComboBoxEdit.Location = new System.Drawing.Point(91, 174);
+            this.WeightTypeComboBoxEdit.Name = "WeightTypeComboBoxEdit";
+            this.WeightTypeComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.WeightTypeComboBoxEdit.Properties.Items.AddRange(new object[] {
+            "(无)",
+            "大件运输车",
+            "标准集装箱",
+            "特种罐装车",
+            "甩挂运输",
+            "修正车辆信息",
+            "添加车辆信息",
+            "删除车辆信息",
+            "修正车辆轴信息",
+            "长车",
+            "载有固定装置车",
+            "车型收费模式"});
+            this.WeightTypeComboBoxEdit.Size = new System.Drawing.Size(521, 18);
+            this.WeightTypeComboBoxEdit.StyleController = this.dataLayoutControl1;
+            this.WeightTypeComboBoxEdit.TabIndex = 20;
+            // 
+            // LaneTypeTextEdit
+            // 
+            this.LaneTypeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "LaneType", true));
+            this.LaneTypeTextEdit.Location = new System.Drawing.Point(606, 77);
+            this.LaneTypeTextEdit.Name = "LaneTypeTextEdit";
+            this.LaneTypeTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LaneTypeTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.LaneTypeTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.LaneTypeTextEdit.Properties.DataSource = this.bsUD;
+            this.LaneTypeTextEdit.Properties.DisplayMember = "KeyName";
+            this.LaneTypeTextEdit.Properties.NullText = "";
+            this.LaneTypeTextEdit.Properties.ReadOnly = true;
+            this.LaneTypeTextEdit.Properties.ValueMember = "KeyID";
+            this.LaneTypeTextEdit.Size = new System.Drawing.Size(126, 28);
+            this.LaneTypeTextEdit.StyleController = this.dataLayoutControl1;
+            this.LaneTypeTextEdit.TabIndex = 6;
+            // 
+            // bsUD
+            // 
+            this.bsUD.DataSource = typeof(Uixe.Watcher.KeyItem);
+            // 
+            // YMDHMTextEdit
+            // 
+            this.YMDHMTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "YMDHM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "yyyyMMddHHmmss"));
+            this.YMDHMTextEdit.EditValue = null;
+            this.YMDHMTextEdit.Location = new System.Drawing.Point(100, 45);
+            this.YMDHMTextEdit.Name = "YMDHMTextEdit";
+            this.YMDHMTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.YMDHMTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.YMDHMTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.YMDHMTextEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.YMDHMTextEdit.Properties.DisplayFormat.FormatString = "yyyy年MM月dd日 HH:mm:ss";
+            this.YMDHMTextEdit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.YMDHMTextEdit.Properties.MaskSettings.Set("mask", "");
+            this.YMDHMTextEdit.Properties.MaskSettings.Set("isAutoComplete", false);
+            this.YMDHMTextEdit.Properties.MaskSettings.Set("isOptimistic", false);
+            this.YMDHMTextEdit.Properties.ReadOnly = true;
+            this.YMDHMTextEdit.Size = new System.Drawing.Size(219, 28);
+            this.YMDHMTextEdit.StyleController = this.dataLayoutControl1;
+            this.YMDHMTextEdit.TabIndex = 14;
+            this.YMDHMTextEdit.FormatEditValue += new DevExpress.XtraEditors.Controls.ConvertEditValueEventHandler(this.YMDHMTextEdit_FormatEditValue);
+            // 
+            // TimeOutSpinEdit
+            // 
+            this.TimeOutSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "TimeOut", true));
+            this.TimeOutSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.TimeOutSpinEdit.Location = new System.Drawing.Point(141, 441);
+            this.TimeOutSpinEdit.Name = "TimeOutSpinEdit";
+            this.TimeOutSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.TimeOutSpinEdit.Size = new System.Drawing.Size(527, 20);
+            this.TimeOutSpinEdit.StyleController = this.dataLayoutControl1;
+            this.TimeOutSpinEdit.TabIndex = 41;
+            // 
+            // TCOTextEdit
+            // 
+            this.TCOTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "TCO", true));
+            this.TCOTextEdit.Location = new System.Drawing.Point(141, 466);
+            this.TCOTextEdit.Name = "TCOTextEdit";
+            this.TCOTextEdit.Size = new System.Drawing.Size(527, 18);
+            this.TCOTextEdit.StyleController = this.dataLayoutControl1;
+            this.TCOTextEdit.TabIndex = 42;
+            // 
+            // TranIDSpinEdit
+            // 
+            this.TranIDSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "TranID", true));
+            this.TranIDSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.TranIDSpinEdit.Location = new System.Drawing.Point(0, -3);
+            this.TranIDSpinEdit.Name = "TranIDSpinEdit";
+            this.TranIDSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.TranIDSpinEdit.Size = new System.Drawing.Size(0, 20);
+            this.TranIDSpinEdit.StyleController = this.dataLayoutControl1;
+            this.TranIDSpinEdit.TabIndex = 45;
+            // 
+            // WeightLimitSpinEdit
+            // 
+            this.WeightLimitSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "WeightLimit", true));
+            this.WeightLimitSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.WeightLimitSpinEdit.Location = new System.Drawing.Point(100, 327);
+            this.WeightLimitSpinEdit.Name = "WeightLimitSpinEdit";
+            this.WeightLimitSpinEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.WeightLimitSpinEdit.Properties.Appearance.Options.UseFont = true;
+            this.WeightLimitSpinEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.WeightLimitSpinEdit.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.WeightLimitSpinEdit.Properties.ReadOnly = true;
+            this.WeightLimitSpinEdit.Size = new System.Drawing.Size(54, 28);
+            this.WeightLimitSpinEdit.StyleController = this.dataLayoutControl1;
+            this.WeightLimitSpinEdit.TabIndex = 43;
+            // 
+            // dbxLSTD
+            // 
+            this.dbxLSTD.EditValue = "";
+            this.dbxLSTD.Location = new System.Drawing.Point(100, 359);
+            this.dbxLSTD.Name = "dbxLSTD";
+            this.dbxLSTD.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dbxLSTD.Properties.DataSource = this.freshAgriProductsBindingSource;
+            this.dbxLSTD.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.dbxLSTD.Properties.DisplayMember = "Display";
+            this.dbxLSTD.Properties.KeyMember = "Id";
+            this.dbxLSTD.Properties.NullText = "请选择";
+            this.dbxLSTD.Properties.PopupView = this.gridLookUpEdit1View;
+            this.dbxLSTD.Properties.ValueMember = "Id";
+            this.dbxLSTD.Size = new System.Drawing.Size(310, 18);
+            this.dbxLSTD.StyleController = this.dataLayoutControl1;
+            this.dbxLSTD.TabIndex = 47;
+            // 
+            // freshAgriProductsBindingSource
+            // 
+            this.freshAgriProductsBindingSource.DataSource = typeof(Uixe.Watcher.FreshAgriProducts);
+            // 
+            // gridLookUpEdit1View
+            // 
+            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCatalog,
+            this.colKinds,
+            this.colExample});
+            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
+            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit1View.OptionsView.AllowCellMerge = true;
+            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colCatalog
+            // 
+            this.colCatalog.Caption = "目录";
+            this.colCatalog.FieldName = "Catalog";
+            this.colCatalog.Name = "colCatalog";
+            this.colCatalog.Visible = true;
+            this.colCatalog.VisibleIndex = 0;
+            // 
+            // colKinds
+            // 
+            this.colKinds.Caption = "分类";
+            this.colKinds.FieldName = "Kinds";
+            this.colKinds.Name = "colKinds";
+            this.colKinds.Visible = true;
+            this.colKinds.VisibleIndex = 1;
+            // 
+            // colExample
+            // 
+            this.colExample.Caption = "举例";
+            this.colExample.FieldName = "Example";
+            this.colExample.Name = "colExample";
+            this.colExample.Visible = true;
+            this.colExample.VisibleIndex = 2;
+            // 
             // ItemForCarKind
             // 
             this.ItemForCarKind.Control = this.CarKindComboBoxEdit;
@@ -1268,22 +1396,6 @@ namespace Uixe.Watcher.V1
             this.ItemForMoney.Size = new System.Drawing.Size(179, 32);
             this.ItemForMoney.Text = "金额";
             this.ItemForMoney.TextSize = new System.Drawing.Size(64, 21);
-            // 
-            // layoutControlGroup6
-            // 
-            this.layoutControlGroup6.CustomizationFormText = "监控和车道信息";
-            this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.ItemForCollector,
-            this.ItemForYMDHM,
-            this.ItemForCallType,
-            this.ItemForNetwork,
-            this.ItemForLaneNo,
-            this.ItemForLaneType,
-            this.ItemForPlaza});
-            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(736, 109);
-            this.layoutControlGroup6.Text = "监控和车道信息";
             // 
             // ItemForCollector
             // 
@@ -1355,21 +1467,6 @@ namespace Uixe.Watcher.V1
             this.ItemForPlaza.Text = " ";
             this.ItemForPlaza.TextSize = new System.Drawing.Size(0, 0);
             this.ItemForPlaza.TextVisible = false;
-            // 
-            // layoutControlGroup4
-            // 
-            this.layoutControlGroup4.CustomizationFormText = "车辆称重信息";
-            this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.ItemForOverLoadWeight,
-            this.ItemForWeightLimit,
-            this.ItemForOverLoadWeightRate,
-            this.ItemForCarFareWeight,
-            this.ItemForCarAlex,
-            this.lciHwleixing});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 250);
-            this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(414, 134);
-            this.layoutControlGroup4.Text = "称重信息";
             // 
             // ItemForOverLoadWeight
             // 
@@ -1452,90 +1549,6 @@ namespace Uixe.Watcher.V1
             this.ItemForText.TextSize = new System.Drawing.Size(26, 84);
             this.ItemForText.TextToControlDistance = 5;
             // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.picLane;
-            this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
-            this.layoutControlItem1.Location = new System.Drawing.Point(414, 109);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(322, 275);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.panelControl1.Appearance.Options.UseFont = true;
-            this.panelControl1.Controls.Add(this.btnVNC);
-            this.panelControl1.Controls.Add(this.btnCLose);
-            this.panelControl1.Controls.Add(this.pcPronow);
-            this.panelControl1.Controls.Add(this.btnOK);
-            this.panelControl1.Controls.Add(this.btnCancel);
-            this.panelControl1.Location = new System.Drawing.Point(0, 502);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(735, 45);
-            this.panelControl1.TabIndex = 4;
-            // 
-            // btnVNC
-            // 
-            this.btnVNC.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnVNC.Appearance.Options.UseFont = true;
-            this.btnVNC.Location = new System.Drawing.Point(5, 4);
-            this.btnVNC.Name = "btnVNC";
-            this.btnVNC.Size = new System.Drawing.Size(117, 35);
-            this.btnVNC.TabIndex = 28;
-            this.btnVNC.Text = "车道远程桌面";
-            this.btnVNC.Click += new System.EventHandler(this.btnVNC_Click);
-            // 
-            // btnCLose
-            // 
-            this.btnCLose.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnCLose.Appearance.Options.UseFont = true;
-            this.btnCLose.Location = new System.Drawing.Point(659, 4);
-            this.btnCLose.Name = "btnCLose";
-            this.btnCLose.Size = new System.Drawing.Size(73, 35);
-            this.btnCLose.TabIndex = 27;
-            this.btnCLose.Text = "关闭(&Q)";
-            this.btnCLose.Click += new System.EventHandler(this.btnCLose_Click);
-            // 
-            // pcPronow
-            // 
-            this.pcPronow.Location = new System.Drawing.Point(128, 7);
-            this.pcPronow.Name = "pcPronow";
-            this.pcPronow.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pcPronow.Properties.PercentView = false;
-            this.pcPronow.Properties.ShowTitle = true;
-            this.pcPronow.Size = new System.Drawing.Size(311, 27);
-            this.pcPronow.TabIndex = 26;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnOK.Appearance.Options.UseFont = true;
-            this.btnOK.Location = new System.Drawing.Point(445, 4);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(88, 35);
-            this.btnOK.TabIndex = 2;
-            this.btnOK.Text = "同意(&O)";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(550, 4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(82, 35);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "拒绝(&C)";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // tcoHeart
-            // 
-            this.tcoHeart.Enabled = true;
-            this.tcoHeart.Interval = 800;
-            this.tcoHeart.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // pictureEdit1
             // 
             this.pictureEdit1.Location = new System.Drawing.Point(399, 127);
@@ -1553,19 +1566,6 @@ namespace Uixe.Watcher.V1
             this.picLaneBig.TabIndex = 0;
             this.picLaneBig.TabStop = false;
             // 
-            // picBig
-            // 
-            this.picBig.Image = null;
-            this.picBig.ImageLocation = "";
-            this.picBig.Location = new System.Drawing.Point(488, 415);
-            this.picBig.Name = "picBig";
-            this.picBig.Size = new System.Drawing.Size(528, 432);
-            this.picBig.TabIndex = 47;
-            this.picBig.TabStop = false;
-            this.picBig.Visible = false;
-            this.picBig.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
-            this.picBig.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
-            // 
             // WeightTCOConfirm
             // 
             this.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -1580,6 +1580,34 @@ namespace Uixe.Watcher.V1
             this.Size = new System.Drawing.Size(741, 547);
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForMsgType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForLaneMode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForYear)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForDay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForHour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForYMD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForUnuser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForCarDevWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForCarSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForFareFormula)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForMinBasicFareRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForBasicFareRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTollFareDistance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightFunctions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTranID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTimeOut)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForTCO)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcPronow.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WeightFunctionsComboBoxEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.msgWeightTCOCALLBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IDTextEdit.Properties)).EndInit();
@@ -1626,35 +1654,12 @@ namespace Uixe.Watcher.V1
             ((System.ComponentModel.ISupportInitialize)(this.dbxLSTD.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.freshAgriProductsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForMsgType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForLaneMode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForYear)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForDay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForHour)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForYMD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForUnuser)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForCarDevWeight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForCarSpeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForFareFormula)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForMinBasicFareRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForBasicFareRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTollFareDistance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightFunctions)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTranID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTimeOut)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemForTCO)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCarKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCarType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCarPlate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCarShortPlate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightCarKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForMoney)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCollector)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForYMDHM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCallType)).EndInit();
@@ -1662,7 +1667,6 @@ namespace Uixe.Watcher.V1
             ((System.ComponentModel.ISupportInitialize)(this.ItemForLaneNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForLaneType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForPlaza)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForOverLoadWeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForWeightLimit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForOverLoadWeightRate)).EndInit();
@@ -1670,10 +1674,6 @@ namespace Uixe.Watcher.V1
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCarAlex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciHwleixing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForText)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pcPronow.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLaneBig)).EndInit();
             this.ResumeLayout(false);

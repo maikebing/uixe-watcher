@@ -109,7 +109,7 @@
             this.btnLogin.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.btnLogin.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.login;
             this.btnLogin.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnLogin.Location = new System.Drawing.Point(403, 205);
+            this.btnLogin.Location = new System.Drawing.Point(207, 211);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(118, 51);
             this.btnLogin.TabIndex = 2;
@@ -121,7 +121,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.off;
             this.btnCancel.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnCancel.Location = new System.Drawing.Point(119, 205);
+            this.btnCancel.Location = new System.Drawing.Point(403, 211);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(118, 51);
             this.btnCancel.TabIndex = 3;

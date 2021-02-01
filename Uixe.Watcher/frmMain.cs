@@ -32,6 +32,7 @@ using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Client.Options;
 using Newtonsoft.Json;
+using DevExpress.XtraEditors.Repository;
 
 namespace Uixe.Watcher
 {
@@ -175,11 +176,13 @@ namespace Uixe.Watcher
                     .WithClientId(p.id)
                     .WithWillMessage(new MqttApplicationMessage() { Topic= "/tco/willmessage", QualityOfServiceLevel= MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain=true})
                     .Build();
+                chkServerStatus.Caption = $"服务器:{p.id}";
+               
                 client.UseDisconnectedHandler(async xe =>
                 {
                     Console.WriteLine("### DISCONNECTED FROM SERVER ###");
                     await Task.Delay(TimeSpan.FromSeconds(5));
-
+                    chkServerStatus.EditValue = false;
                     try
                     {
                         await client.ConnectAsync(options, CancellationToken.None); // Since 3.0.5 with CancellationToken
@@ -225,6 +228,7 @@ namespace Uixe.Watcher
                 });
                 client.UseConnectedHandler(async h =>
                 {
+                    chkServerStatus.EditValue = false;
                     await client.SubscribeAsync(
                         new MqttTopicFilter() { Topic = "/lane/emrc_main/confirm/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
                         new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
@@ -347,15 +351,17 @@ namespace Uixe.Watcher
         public void Login()
         {
             frmLogin lg = new frmLogin();
-            lg.ShowDialog();
-            UserAccessControl();
-            if (RuntimeSetting.NowCollect != null && RuntimeSetting.NowCollect.UserId.Trim().Length > 0)
+            if (lg.ShowDialog() == DialogResult.OK)
             {
-                this.btnRBLogin.Enabled = false;
-                this.btnLogin.Enabled = false;
+                UserAccessControl();
+                if (RuntimeSetting.NowCollect != null && RuntimeSetting.NowCollect.UserId.Trim().Length > 0)
+                {
+                    this.btnRBLogin.Enabled = false;
+                    this.btnLogin.Enabled = false;
 
-                this.btnLogout.Enabled = true;
-                this.btnRBLogout.Enabled = true;
+                    this.btnLogout.Enabled = true;
+                    this.btnRBLogout.Enabled = true;
+                }
             }
         }
 

@@ -881,12 +881,30 @@ namespace Uixe.Watcher.Properties {
         }
         
         /// <summary>
+        ///   查找类似 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCFX7eAHoIXp4sm1osPsuhO5ThSnaW7l320vhXDsOC4+e/MyDICmJ9COUGXHhsqTLtumayMsSsn5+4DVI/a+5daheUFbRf3f7qK/ZlAv4LDgbLUb0F7Pt5OFClsqfsx5xVpbAsfA2Jrh9WHjNNGb5eNx1uDtuXqOqkBmIzW34q6cwIDAQAB 的本地化字符串。
+        /// </summary>
+        internal static string RAS_PUBLIC_KEY {
+            get {
+                return ResourceManager.GetString("RAS_PUBLIC_KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap Reader {
             get {
                 object obj = ResourceManager.GetObject("Reader", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAIVft4AegheniybWiw+y6E7lOFKdpbuXfbS+FcOw4Lj578zIMgKYn0I5QZceGypMu26ZrIyxKyfn7gNUj9r7l1qF5QVtF/d/uor9mUC/gsOBstRvQXs+3k4UKWyp+zHnFWlsCx8DYmuH1YeM00Zvl43HW4O25eo6qQGYjNbfirpzAgMBAAECgYBJOP95a0ZozibrL6Yw/Dvl9JozYTF4B/ePnzw7r4PwiedJOi+alUf6B40m9fRcCLxuQBgnNa1Hv2FAmtBPnQi+ajb0plaqnNwM3wP4rzs/ABWFffYtGMp3yJbZPf3EjseTv4ZJmkv1kYVZXUqMwHrH3YEGImU/fO24jpPZp63ioQJBAPgetFhAW1PbLJNZ2A/KrDtKA4DdrvFndPnDtGTHIPNcIpaPAFO/mppeRgOdAKPJYcnT54Cjr+R7EHop+Nx94zUCQQCJnBb8HXkj4ny0EU4y [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string RSA_PRIVATE_KEY {
+            get {
+                return ResourceManager.GetString("RSA_PRIVATE_KEY", resourceCulture);
             }
         }
         

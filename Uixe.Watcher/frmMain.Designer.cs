@@ -405,6 +405,8 @@ namespace Uixe.Watcher
             // 
             this.repositoryItemCheckEdit1.AutoHeight = false;
             this.repositoryItemCheckEdit1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined;
+            this.repositoryItemCheckEdit1.DisplayValueChecked = "已连接";
+            this.repositoryItemCheckEdit1.DisplayValueUnchecked = "已断开";
             this.repositoryItemCheckEdit1.ImageOptions.ImageChecked = ((System.Drawing.Image)(resources.GetObject("repositoryItemCheckEdit1.ImageOptions.ImageChecked")));
             this.repositoryItemCheckEdit1.ImageOptions.ImageUnchecked = ((System.Drawing.Image)(resources.GetObject("repositoryItemCheckEdit1.ImageOptions.ImageUnchecked")));
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";

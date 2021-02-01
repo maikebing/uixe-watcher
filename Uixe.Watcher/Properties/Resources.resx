@@ -496,4 +496,10 @@
   <data name="driving_32x321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\driving_32x324.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RAS_PUBLIC_KEY" xml:space="preserve">
+    <value>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCFX7eAHoIXp4sm1osPsuhO5ThSnaW7l320vhXDsOC4+e/MyDICmJ9COUGXHhsqTLtumayMsSsn5+4DVI/a+5daheUFbRf3f7qK/ZlAv4LDgbLUb0F7Pt5OFClsqfsx5xVpbAsfA2Jrh9WHjNNGb5eNx1uDtuXqOqkBmIzW34q6cwIDAQAB</value>
+  </data>
+  <data name="RSA_PRIVATE_KEY" xml:space="preserve">
+    <value>MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAIVft4AegheniybWiw+y6E7lOFKdpbuXfbS+FcOw4Lj578zIMgKYn0I5QZceGypMu26ZrIyxKyfn7gNUj9r7l1qF5QVtF/d/uor9mUC/gsOBstRvQXs+3k4UKWyp+zHnFWlsCx8DYmuH1YeM00Zvl43HW4O25eo6qQGYjNbfirpzAgMBAAECgYBJOP95a0ZozibrL6Yw/Dvl9JozYTF4B/ePnzw7r4PwiedJOi+alUf6B40m9fRcCLxuQBgnNa1Hv2FAmtBPnQi+ajb0plaqnNwM3wP4rzs/ABWFffYtGMp3yJbZPf3EjseTv4ZJmkv1kYVZXUqMwHrH3YEGImU/fO24jpPZp63ioQJBAPgetFhAW1PbLJNZ2A/KrDtKA4DdrvFndPnDtGTHIPNcIpaPAFO/mppeRgOdAKPJYcnT54Cjr+R7EHop+Nx94zUCQQCJnBb8HXkj4ny0EU4yEUxF1iYzqhoBpjOrnH4mBJrWjQ9XwuvEOuif3MgbEkjKlbuSACRXa1bseC8hp/7bv/QHAkEAu+G0OmdxQIxksqeDvmGADd07zecPw+jNYRvai71lrCIGZu+eFcyu61mbtry6cUva6pO1Z2mLlX3Cul7x/TSuSQJAbXaAwiQfzO/JCuQJM8KWzaa/1LEm5tDyoTxnDI71LF4hKkqfiQTjLudNNluhE6VwA3+haPi1uH0R4M/l56AV2QJBAJZ0n4piDQZA+dP6BJpN9vAZlhpQ21kekm3IrNPOhhci34IstSoVVqR2Y5y2HpN+CdBkIwfazWErafPhKtwgdjE=</value>
+  </data>
 </root>

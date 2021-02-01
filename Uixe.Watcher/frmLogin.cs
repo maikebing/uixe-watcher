@@ -48,8 +48,26 @@ namespace Uixe.Watcher
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            RuntimeSetting.NowCollect = new Dtos.User();
+
             ReloadTollInfo();
+            var p = RuntimeSetting.Plaza;
+            if (p != null && !string.IsNullOrEmpty(p.ip))
+            {
+                PlazaApi api = new PlazaApi(RuntimeSetting.Plaza.ip);
+                RuntimeSetting.Token = api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
+                if (RuntimeSetting.Token?.code == 0)
+                {
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    lblInfo.Text = $"{RuntimeSetting.Token?.code} {RuntimeSetting.Token?.msg}";
+                }
+            }
+            else
+            {
+                lblInfo.Text = "站信息错误";
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -67,7 +85,7 @@ namespace Uixe.Watcher
             this.txtPassword.Focus();
             RuntimeSetting.NowCollect = null;
         }
-
+     
         private void ReloadTollInfo()
         {
             if (!string.IsNullOrEmpty(txtPlazaId.Text))
@@ -77,6 +95,7 @@ namespace Uixe.Watcher
                     try
                     {
                         var plazainfo = TollInfo.GetTollInfo(txtPlazaId.Text,true);
+                        RuntimeSetting.Plaza = plazainfo;
                         this.Invoke((MethodInvoker)delegate
                         {
                             Properties.Settings.Default.Save();

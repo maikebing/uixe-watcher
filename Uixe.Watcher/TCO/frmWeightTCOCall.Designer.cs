@@ -44,7 +44,7 @@
             this.tsTabs.AppearancePage.HeaderActive.Options.UseFont = true;
             this.tsTabs.AppearancePage.HeaderDisabled.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.tsTabs.AppearancePage.HeaderDisabled.Options.UseFont = true;
-            this.tsTabs.Location = new System.Drawing.Point(2, 0);
+            this.tsTabs.Location = new System.Drawing.Point(2, 2);
             this.tsTabs.Name = "tsTabs";
             this.tsTabs.SelectedTabPage = this.xtraTabPage1;
             this.tsTabs.Size = new System.Drawing.Size(749, 591);
@@ -74,14 +74,14 @@
             // xtraTabPage2
             // 
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(635, 471);
+            this.xtraTabPage2.Size = new System.Drawing.Size(747, 559);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
             // frmWeightTCOCall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 593);
+            this.ClientSize = new System.Drawing.Size(756, 587);
             this.Controls.Add(this.tsTabs);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

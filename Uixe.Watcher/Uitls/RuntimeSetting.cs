@@ -3,7 +3,7 @@ using Uixe.Watcher.Dtos;
 
 namespace Uixe.Watcher
 {
-    public class RuntimeSetting
+    public static class RuntimeSetting
     {
         #region 程序集特性访问器
 
@@ -102,7 +102,7 @@ namespace Uixe.Watcher
 
          internal  static User NowCollect;
 
-     
+        internal static Dtos.Plaza Plaza { get; set; }
 
         private static bool _PlazaIsModify = false;
 
@@ -111,6 +111,8 @@ namespace Uixe.Watcher
             get { return _PlazaIsModify; }
             set { _PlazaIsModify = value; }
         }
+
+        public static RptLoginResult Token { get;  set; }
 
         public static void ShowHelp()
         {
