@@ -30,6 +30,10 @@ namespace Uixe.Watcher.Uitls
             result = Newtonsoft.Json.JsonConvert.DeserializeObject<RptLoginResult>(response.Content);
             return result;
         }
+        public void Logout()
+        {
+
+        }
 
     }
 }

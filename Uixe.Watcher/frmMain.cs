@@ -176,12 +176,12 @@ namespace Uixe.Watcher
                     .WithClientId(p.id)
                     .WithWillMessage(new MqttApplicationMessage() { Topic= "/tco/willmessage", QualityOfServiceLevel= MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain=true})
                     .Build();
-                chkServerStatus.Caption = $"服务器:{p.id}";
+                chkServerStatus.Caption = $"服务器:{p.ip}";
                
                 client.UseDisconnectedHandler(async xe =>
                 {
                     Console.WriteLine("### DISCONNECTED FROM SERVER ###");
-                    await Task.Delay(TimeSpan.FromSeconds(5));
+                    await Task.Delay(TimeSpan.FromSeconds(1));
                     chkServerStatus.EditValue = false;
                     try
                     {
@@ -211,7 +211,6 @@ namespace Uixe.Watcher
                     }
                     else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/confirm/"))
                     {
-
                         Task.Run(() =>
                         {
                             this.Invoke((MethodInvoker)delegate
@@ -228,7 +227,7 @@ namespace Uixe.Watcher
                 });
                 client.UseConnectedHandler(async h =>
                 {
-                    chkServerStatus.EditValue = false;
+                    chkServerStatus.EditValue = true;
                     await client.SubscribeAsync(
                         new MqttTopicFilter() { Topic = "/lane/emrc_main/confirm/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
                         new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
@@ -333,7 +332,11 @@ namespace Uixe.Watcher
             var p = Uitls.TollInfo.GetTollInfo();
             this.Text = string.Format($"{p.road_name}-{p.station_name}({p.id}) v{ Assembly.GetExecutingAssembly().GetName().Version}");
             this.Ribbon.ApplicationCaption = this.Text;
-
+            if  (RuntimeSetting.Token?.code==0 && RuntimeSetting.Token?.expire>DateTime.Now)
+            {
+                btnLogin.Enabled = false;
+                btnLogout.Enabled = true;
+            }
         }
 
         #endregion 加载
@@ -354,7 +357,7 @@ namespace Uixe.Watcher
             if (lg.ShowDialog() == DialogResult.OK)
             {
                 UserAccessControl();
-                if (RuntimeSetting.NowCollect != null && RuntimeSetting.NowCollect.UserId.Trim().Length > 0)
+                if (RuntimeSetting.Token?.code == 0 && RuntimeSetting.Token?.expire > DateTime.Now)
                 {
                     this.btnRBLogin.Enabled = false;
                     this.btnLogin.Enabled = false;

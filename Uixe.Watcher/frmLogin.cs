@@ -49,7 +49,7 @@ namespace Uixe.Watcher
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            ReloadTollInfo();
+            _ = ReloadTollInfoAsync();
             var p = RuntimeSetting.Plaza;
             if (p != null && !string.IsNullOrEmpty(p.ip))
             {
@@ -81,37 +81,36 @@ namespace Uixe.Watcher
         {
             this.Icon = Properties.Resources.LOGO;
             this.lblInfo.Text = "";
-            ReloadTollInfo();
+            _ = ReloadTollInfoAsync();
             this.txtPassword.Focus();
-            RuntimeSetting.NowCollect = null;
         }
-     
-        private void ReloadTollInfo()
+
+        private async Task ReloadTollInfoAsync()
         {
             if (!string.IsNullOrEmpty(txtPlazaId.Text))
             {
-                Task.Run(() =>
-                {
-                    try
-                    {
-                        var plazainfo = TollInfo.GetTollInfo(txtPlazaId.Text,true);
-                        RuntimeSetting.Plaza = plazainfo;
-                        this.Invoke((MethodInvoker)delegate
-                        {
-                            Properties.Settings.Default.Save();
-                            lblPlaza.Text =$"{plazainfo.station_name}车道监控";
-                            lblInfo.Text = $"服务器IP:{plazainfo.ip } 站代码:{plazainfo.station_id}";
-                        });
-                    }
-                    catch (Exception ex)
-                    {
-                        this.Invoke((MethodInvoker)delegate
-                        {
-                            lblInfo.Text = "未能获取站信息" + ex.Message;
-                        });
+                await Task.Run(() =>
+                 {
+                     try
+                     {
+                         var plazainfo = TollInfo.GetTollInfo(txtPlazaId.Text, true);
+                         RuntimeSetting.Plaza = plazainfo;
+                         this.Invoke((MethodInvoker)delegate
+                         {
+                             Properties.Settings.Default.Save();
+                             lblPlaza.Text = $"{plazainfo.station_name}车道监控";
+                             lblInfo.Text = $"服务器IP:{plazainfo.ip } 站代码:{plazainfo.station_id}";
+                         });
+                     }
+                     catch (Exception ex)
+                     {
+                         this.Invoke((MethodInvoker)delegate
+                         {
+                             lblInfo.Text = "未能获取站信息" + ex.Message;
+                         });
 
-                    }
-                });
+                     }
+                 });
 
             }
             else

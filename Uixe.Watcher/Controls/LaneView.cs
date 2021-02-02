@@ -76,10 +76,6 @@ namespace Uixe.Watcher.Controls
         public int LaneCount => lst.Count;
 
 
-      
-
-  
-
         private void gv_RowStyle(object sender, RowStyleEventArgs e)
         {
             var gv = sender as GridView;
@@ -119,11 +115,19 @@ namespace Uixe.Watcher.Controls
 
         private async void btnVNC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
-            if (fv != null)
+            try
             {
-                var vnc=await VNCUtils.Login(this.ParentForm, fv.IPAddress, 5900, "kissme");
-                vnc.Text = $"{fv.LaneName} {fv.IPAddress} ";
+                var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
+                if (fv != null)
+                {
+                    var vnc = await VNCUtils.Login(this.ParentForm, fv.IPAddress, 5900, "kissme");
+                     if (vnc!=null ) vnc.Text = $"{fv.LaneName} {fv.IPAddress} ";
+                }
+            }
+            catch  
+            {
+
+           
             }
         }
 
