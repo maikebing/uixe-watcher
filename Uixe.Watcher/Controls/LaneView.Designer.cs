@@ -71,6 +71,7 @@
             this.btnReboot = new DevExpress.XtraBars.BarButtonItem();
             this.rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
+            this.btnRemotLane = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).BeginInit();
@@ -675,8 +676,9 @@
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btnVNC,
             this.btnPing,
-            this.btnReboot});
-            this.barManager1.MaxItemId = 3;
+            this.btnReboot,
+            this.btnRemotLane});
+            this.barManager1.MaxItemId = 4;
             // 
             // barDockControlTop
             // 
@@ -740,9 +742,17 @@
             this.radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btnVNC),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnPing),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnReboot)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnReboot),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRemotLane)});
             this.radialMenu1.Manager = this.barManager1;
             this.radialMenu1.Name = "radialMenu1";
+            // 
+            // btnRemotLane
+            // 
+            this.btnRemotLane.Caption = "远程站前劝返";
+            this.btnRemotLane.Id = 3;
+            this.btnRemotLane.Name = "btnRemotLane";
+            this.btnRemotLane.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRemotLane_ItemClick);
             // 
             // LaneView
             // 
@@ -813,5 +823,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarButtonItem btnRemotLane;
     }
 }

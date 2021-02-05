@@ -63,6 +63,16 @@ namespace Uixe.Watcher.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap _16525857840_9a6c8f2b77_o {
+            get {
+                object obj = ResourceManager.GetObject("_16525857840_9a6c8f2b77_o", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap AcceptChanges {
             get {
                 object obj = ResourceManager.GetObject("AcceptChanges", resourceCulture);

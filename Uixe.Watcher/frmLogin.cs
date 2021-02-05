@@ -55,12 +55,14 @@ namespace Uixe.Watcher
             {
                 PlazaApi api = new PlazaApi(RuntimeSetting.Plaza.ip);
                 RuntimeSetting.Token = api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
-                if (RuntimeSetting.Token?.code == 0)
+                if (!string.IsNullOrEmpty(RuntimeSetting.Token?.token))
                 {
-                    DialogResult = DialogResult.OK;
+                    RuntimeSetting.Token.LoginDateTime = DateTime.Now;
+                   DialogResult = DialogResult.OK;
                 }
                 else
                 {
+                    RuntimeSetting.Token.LoginDateTime = DateTime.MinValue;
                     lblInfo.Text = $"{RuntimeSetting.Token?.code} {RuntimeSetting.Token?.msg}";
                 }
             }

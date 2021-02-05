@@ -112,7 +112,7 @@ namespace Vnc.Viewer
         private void CloseView(object sender, EventArgs e)
         {
             // Do this in the main thread.
-            view.Close();
+            view.Dispose();
         }
 
         private void ViewClosed(object sender, EventArgs e)
@@ -253,17 +253,17 @@ namespace Vnc.Viewer
             WriteAsciiStr(verMsg);
         }
 
-        public System.Windows.Forms.Form parentForm = null;
+        public Control parentForm = null;
 
         private void CreateDisp()
         {
             view = ViewFactory.Create(this, opts, frameBufWidth, frameBufHeight);
             if (parentForm != null)
             {
-                view.Owner = parentForm;
+                view.Parent = parentForm;
             }
             view.Text = desktopName;
-            view.Closed += new EventHandler(ViewClosed);
+            view.Disposed += new EventHandler(ViewClosed);
             view.Show();
         }
 

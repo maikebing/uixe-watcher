@@ -332,12 +332,14 @@ namespace Uixe.Watcher
             var p = Uitls.TollInfo.GetTollInfo();
             this.Text = string.Format($"{p.road_name}-{p.station_name}({p.id}) v{ Assembly.GetExecutingAssembly().GetName().Version}");
             this.Ribbon.ApplicationCaption = this.Text;
-            if  (RuntimeSetting.Token?.code==0 && RuntimeSetting.Token?.expire>DateTime.Now)
+            if (RuntimeSetting.IsLogin())
             {
                 btnLogin.Enabled = false;
                 btnLogout.Enabled = true;
             }
         }
+
+     
 
         #endregion 加载
 
@@ -357,7 +359,7 @@ namespace Uixe.Watcher
             if (lg.ShowDialog() == DialogResult.OK)
             {
                 UserAccessControl();
-                if (RuntimeSetting.Token?.code == 0 && RuntimeSetting.Token?.expire > DateTime.Now)
+                if (RuntimeSetting.IsLogin())
                 {
                     this.btnRBLogin.Enabled = false;
                     this.btnLogin.Enabled = false;

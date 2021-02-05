@@ -38,8 +38,8 @@ namespace Uixe.Watcher.Controls
             {
                 _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip));
             });
-            lst.AddRange(_ls.Where(l => l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
-            lst.AddRange(_ls.Where(l => l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());
+            lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) &&  l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
+            lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());
             laneInfoBindingSource.DataSource = lst;
             gcExitLanes.RefreshDataSource();
         }
@@ -113,15 +113,15 @@ namespace Uixe.Watcher.Controls
             }
         }
 
-        private async void btnVNC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private  void btnVNC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
                 var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
                 if (fv != null)
                 {
-                    var vnc = await VNCUtils.Login(this.ParentForm, fv.IPAddress, 5900, "kissme");
-                     if (vnc!=null ) vnc.Text = $"{fv.LaneName} {fv.IPAddress} ";
+                    frmRemoteLane lane = new frmRemoteLane(fv);
+                    lane.Show(this);
                 }
             }
             catch  
@@ -137,6 +137,27 @@ namespace Uixe.Watcher.Controls
             {
                 radialMenu1.ShowPopup(PointToScreen( e.Location),true);
             }
+        }
+
+        private  void btnRemotLane_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
+                if (fv != null)
+                {
+                    frmRemoteLane lane = new frmRemoteLane(fv,false);
+                    lane.Show(this);
+                  
+                }
+            }
+            catch
+            {
+
+
+            }
+         
+
         }
     }
 }

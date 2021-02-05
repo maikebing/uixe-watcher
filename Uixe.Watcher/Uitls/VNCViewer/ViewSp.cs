@@ -507,14 +507,14 @@ namespace Vnc.Viewer
             graphics.DrawLine(viewPen, rect.Left, mouseY, rect.Right, mouseY);
             graphics.DrawLine(viewPen, mouseX, rect.Top, mouseX, rect.Bottom);
         }
-
-        protected override void OnClosed(EventArgs e)
+        protected override void Dispose(bool disposing)
         {
-            base.OnClosed(e);
             cursorTimer.Enabled = false;
             inputTimer.Enabled = false;
             mouseIdleTimer.Enabled = false;
+            base.Dispose(disposing);
         }
+    
 
         internal ViewSp(Conn conn, ConnOpts connOpts, UInt16 width, UInt16 height) : base(conn, connOpts, width, height)
         {

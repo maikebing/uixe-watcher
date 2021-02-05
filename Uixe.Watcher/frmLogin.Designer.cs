@@ -46,12 +46,12 @@
             // 
             // txtUser
             // 
+            this.txtUser.EditValue = "tcoadmin";
             this.txtUser.Location = new System.Drawing.Point(216, 109);
             this.txtUser.Name = "txtUser";
             this.txtUser.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtUser.Properties.Appearance.Options.UseFont = true;
             this.txtUser.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.txtUser.Properties.MaxLength = 6;
             this.txtUser.Size = new System.Drawing.Size(305, 28);
             this.txtUser.TabIndex = 0;
             // 
@@ -62,7 +62,6 @@
             this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtPassword.Properties.Appearance.Options.UseFont = true;
             this.txtPassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.txtPassword.Properties.MaxLength = 6;
             this.txtPassword.Properties.UseSystemPasswordChar = true;
             this.txtPassword.Size = new System.Drawing.Size(304, 28);
             this.txtPassword.TabIndex = 1;

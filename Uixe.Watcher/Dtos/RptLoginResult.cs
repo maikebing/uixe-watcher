@@ -8,6 +8,8 @@ namespace Uixe.Watcher.Dtos
 {
     public class RptLoginResult
     {
+       
+        public DateTime LoginDateTime { get; set; } = DateTime.Now;
         /// <summary>
         /// 登录成功！
         /// </summary>
@@ -19,7 +21,7 @@ namespace Uixe.Watcher.Dtos
         /// <summary>
         /// 
         /// </summary>
-        public DateTime expire { get; set; }
+        public int  expire { get; set; }
         /// <summary>
         /// 
         /// </summary>

@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using Uixe.Watcher.Dtos;
 
@@ -116,6 +117,11 @@ namespace Uixe.Watcher
 
         public static void ShowHelp()
         {
+        }
+
+        public static bool IsLogin()
+        {
+            return Token != null && !string.IsNullOrEmpty(Token.token) && DateTime.Now.Subtract(Token.LoginDateTime).TotalSeconds < Token.expire;
         }
     }
 }

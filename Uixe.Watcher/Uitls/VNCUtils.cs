@@ -8,12 +8,12 @@ namespace TCS.BOSS.VNC
 {
     public static class VNCUtils
     {
-        public static Task<Vnc.Viewer.View> Login(Form parentForm, string IP, int port, string password)
+        public static Task<Vnc.Viewer.View> Login(Control parentForm, string IP, int port, string password)
         {
             return Login(parentForm, IP, port, password, false);
         }
 
-        public static Task<Vnc.Viewer.View> Login(Form parentForm, string IP, int port, string password, bool ispc)
+        public static Task<Vnc.Viewer.View> Login(Control parentForm, string IP, int port, string password, bool ispc)
         {
             Conn conn = new Conn();
             ViewOpts vopts = new ViewOpts();
@@ -66,7 +66,7 @@ namespace TCS.BOSS.VNC
 
             if (conn != null && conn.myView != null)
             {
-                conn.myView.Menu = null;
+             //   conn.myView.ContextMenu = null;
 
             }
             return Task.FromResult(conn.myView);

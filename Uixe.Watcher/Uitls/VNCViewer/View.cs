@@ -30,7 +30,7 @@ using Vnc.RfbProto;
 
 namespace Vnc.Viewer
 {
-    public abstract class View : DevExpress.XtraEditors.XtraForm
+    public abstract class View : Control
     {
         private const byte Delta = 50; // TODO: Find an optimal value.
         private const byte BgDelta = 100;  // TODO: Find an optimal value.
@@ -627,15 +627,15 @@ namespace Vnc.Viewer
                 return;
 
             // .NET CF does not support MaximumSize...
-            if (WindowState == FormWindowState.Maximized)
-            {
-                if (FormBorderStyle != FormBorderStyle.None)
-                {
-                    WindowState = FormWindowState.Normal;
-                    ClientSize = new Size(scaledFBWidth, scaledFBHeight);
-                }
-            }
-            else
+            //if (WindowState == FormWindowState.Maximized)
+            //{
+            //    if (FormBorderStyle != FormBorderStyle.None)
+            //    {
+            //        WindowState = FormWindowState.Normal;
+            //        ClientSize = new Size(scaledFBWidth, scaledFBHeight);
+            //    }
+            //}
+            //else
             {
                 Rectangle usableRect = UsableRect;
                 if (usableRect.Width > scaledFBWidth || usableRect.Height > scaledFBHeight)
@@ -729,22 +729,26 @@ namespace Vnc.Viewer
             Close();
         }
 
+        private void Close()
+        {
+        }
+
         private void FullScrn()
         {
             // The order of execution is very important.
             // It has a big impact on the window size when we quit full screen mode.
-            Menu = null;
-            FormBorderStyle = FormBorderStyle.None;
-            WindowState = FormWindowState.Maximized; // This has to be after setting FormBorderStyle to have Resize work correctly.
+            //Menu = null;
+            //FormBorderStyle = FormBorderStyle.None;
+            //WindowState = FormWindowState.Maximized; // This has to be after setting FormBorderStyle to have Resize work correctly.
         }
 
         private void QuitFullScrn()
         {
             // The order of execution is very important.
             // If the order is altered, the program can actually loop forever.
-            WindowState = FormWindowState.Normal;
-            FormBorderStyle = FormBorderStyle.Sizable;
-            Menu = menu;
+            //WindowState = FormWindowState.Normal;
+            //FormBorderStyle = FormBorderStyle.Sizable;
+            //Menu = menu;
             ClientSize = new Size(scaledFBWidth, scaledFBHeight);
         }
 
@@ -761,10 +765,9 @@ namespace Vnc.Viewer
         {
             ToggleFullScrn();
         }
-
-        protected override void OnLoad(EventArgs e)
+        protected override void OnCreateControl()
         {
-            base.OnLoad(e);
+            base.OnCreateControl();
 
             if (connOpts.ViewOpts.IsFullScrn)
                 FullScrn();
@@ -1876,7 +1879,7 @@ namespace Vnc.Viewer
             }
             catch (IOException)
             {
-                Close();
+             
             }
         }
 
@@ -1884,12 +1887,12 @@ namespace Vnc.Viewer
         {
             App.AboutBox();
         }
-
-        protected override void OnClosed(EventArgs e)
+        protected override void Dispose(bool disposing)
         {
-            base.OnClosed(e);
             bgTimer.Enabled = false;
+            base.Dispose(disposing);    
         }
+     
 
         public View(Conn conn, ConnOpts connOpts, UInt16 width, UInt16 height) : base()
         {
@@ -2182,10 +2185,10 @@ namespace Vnc.Viewer
             // View
             //
             this.ClientSize = new System.Drawing.Size(1060, 642);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.MaximizeBox = false;
             this.Name = "View";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+          //  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);
         }
     }
