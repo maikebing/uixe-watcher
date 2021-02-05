@@ -30,6 +30,15 @@ namespace Uixe.Watcher.Uitls
             result = Newtonsoft.Json.JsonConvert.DeserializeObject<RptLoginResult>(response.Content);
             return result;
         }
+        public ApiResult<UserRole[]> getRoleByUser(string username)
+        {
+            var request = new RestRequest($"sys/user/getRoleByUser?userName={username}", Method.POST, DataFormat.Json);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("token", "d3c0790b160407261d8ebe5eae32f7a6");
+            IRestResponse response = client.Execute(request);
+            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResult<UserRole[]>>(response.Content);
+            return result;
+        }
         public void Logout()
         {
 

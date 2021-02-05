@@ -114,6 +114,7 @@ namespace Uixe.Watcher
         }
 
         public static RptLoginResult Token { get;  set; }
+        public static UserRole[] UserRole { get;  set; }
 
         public static void ShowHelp()
         {

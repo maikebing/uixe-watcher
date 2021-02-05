@@ -6,9 +6,27 @@ using System.Threading.Tasks;
 
 namespace Uixe.Watcher.Dtos
 {
+    public class ApiResult<T>
+    {
+        public string msg { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int code { get; set; }
+
+
+        public T data { get; set; }
+
+    }
+    public class UserRole
+    {
+        public int roleId { get; set; }
+        public string roleName { get; set; }
+    }
+
     public class RptLoginResult
     {
-       
+
         public DateTime LoginDateTime { get; set; } = DateTime.Now;
         /// <summary>
         /// 登录成功！
@@ -21,7 +39,7 @@ namespace Uixe.Watcher.Dtos
         /// <summary>
         /// 
         /// </summary>
-        public int  expire { get; set; }
+        public int expire { get; set; }
         /// <summary>
         /// 
         /// </summary>

@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Uitls;
@@ -55,10 +56,22 @@ namespace Uixe.Watcher
             {
                 PlazaApi api = new PlazaApi(RuntimeSetting.Plaza.ip);
                 RuntimeSetting.Token = api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
+               var result=  api.getRoleByUser(txtUser.Text);
                 if (!string.IsNullOrEmpty(RuntimeSetting.Token?.token))
                 {
-                    RuntimeSetting.Token.LoginDateTime = DateTime.Now;
-                   DialogResult = DialogResult.OK;
+                    if (result.code==0  && result.data!=null && result.data.Any(f=>f.roleId==18))
+                    {
+                        RuntimeSetting.UserRole = result.data;
+                        RuntimeSetting.Token.LoginDateTime = DateTime.Now;
+                        DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        RuntimeSetting.Token.LoginDateTime = DateTime.MinValue;
+                        lblInfo.Text = $"没有找到TCO角色(18)";
+                    }
+
+                 
                 }
                 else
                 {

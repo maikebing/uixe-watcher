@@ -1528,7 +1528,7 @@ namespace Uixe.Watcher.V1
             this.picLane.Image = null;
             this.picLane.ImageLocation = "";
             this.picLane.Location = new System.Drawing.Point(426, 121);
-            this.picLane.Margin = new System.Windows.Forms.Padding(6147, 13169, 6147, 13169);
+            this.picLane.Margin = new System.Windows.Forms.Padding(131750, 378256, 131750, 378256);
             this.picLane.Name = "picLane";
             this.picLane.Size = new System.Drawing.Size(318, 271);
             this.picLane.SizeMode = Cyotek.Windows.Forms.ImageBoxSizeMode.Stretch;
