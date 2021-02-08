@@ -32,16 +32,37 @@ namespace Uixe.Watcher
                 await mqttServer.StartAsync( opt);
             });
 #endif
-       
-            Barrel.ApplicationId = Assembly.GetExecutingAssembly().GetName().Name;
-            Barrel.EncryptionKey = "future";
-            DevExpress.Skins.SkinManager.EnableFormSkins();
-            DevExpress.UserSkins.BonusSkins.Register();
-            UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.SkinStyle);
+            Application.ThreadException += Application_ThreadException;
+            try
+            {
+                Barrel.ApplicationId = Assembly.GetExecutingAssembly().GetName().Name;
+                Barrel.EncryptionKey = "future";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.InnerException?.Message);
+
+            }
+            try
+            {
+                DevExpress.Skins.SkinManager.EnableFormSkins();
+                DevExpress.UserSkins.BonusSkins.Register();
+                UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.SkinStyle);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message + ex.InnerException?.Message);
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainForm = new frmMain();
             Application.Run(MainForm);
+        }
+
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message+e.Exception.InnerException?.Message);
         }
     }
 }

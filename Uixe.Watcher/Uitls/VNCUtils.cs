@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vnc.Viewer;
 
-namespace TCS.BOSS.VNC
+namespace Uixe.Watcher.Uitls
 {
     public static class VNCUtils
     {
@@ -31,7 +31,7 @@ namespace TCS.BOSS.VNC
                 vopts.PixelSize = PixelSize.Force8Bit;
 
                 vopts.CliScalingWidth = 1280;
-                vopts.CliScalingHeight = 800;
+                vopts.CliScalingHeight = 720;
             }
             if (parentForm != null)
             {

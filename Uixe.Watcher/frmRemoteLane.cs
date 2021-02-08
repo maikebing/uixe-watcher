@@ -10,9 +10,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TCS.BOSS.VNC;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
+using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher
 {
@@ -57,8 +57,23 @@ namespace Uixe.Watcher
             keyboard1.IPAddress = _lane.IPAddress;
             this.keyboard1.Port = Properties.Settings.Default.KeyboardPort;
             keyboard1.BackColor = vnc[1, 1];
-                this.BackColor = keyboard1.BackColor;
+            this.BackColor = keyboard1.BackColor;
 
+        }
+        bool ismax = false;
+        private void videoView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (ismax)
+            {
+                videoView1.Size = new Size(431, 372);
+                ismax = false;
+            }
+            else
+            {
+                ismax = true;
+                videoView1.Size = this.Size;
+            }
+         
         }
     }
 }
