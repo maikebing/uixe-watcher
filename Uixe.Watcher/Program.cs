@@ -16,12 +16,29 @@ namespace Uixe.Watcher
 {
     public static class Program
     {
+        [DllImport("kernel32.dll")]
+        static extern bool FreeConsole();
+        [DllImport("kernel32.dll")]
+        public static extern bool AllocConsole();
+        private enum DpiAwareness
+        {
+            None = 0,
+            SystemAware = 1,
+            PerMonitorAware = 2
+        }
+        [DllImport("Shcore.dll")]
+        static extern int SetProcessDpiAwareness(int PROCESS_DPI_AWARENESS);
         // Fields
         public static frmMain MainForm;
 
         [STAThread]
         private static void Main(string[] args)
         {
+#if NETCOREAPP
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+#else
+            SetProcessDpiAwareness((int)DpiAwareness.SystemAware);
+#endif
 #if DEBUG
             Task.Run(async () =>
             {
