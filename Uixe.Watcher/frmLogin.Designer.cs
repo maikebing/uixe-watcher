@@ -39,6 +39,7 @@
             this.lblPlaza = new DevExpress.XtraEditors.LabelControl();
             this.txtPlazaId = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lblserver = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtUser.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlazaId.Properties)).BeginInit();
@@ -52,7 +53,7 @@
             this.txtUser.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtUser.Properties.Appearance.Options.UseFont = true;
             this.txtUser.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.txtUser.Size = new System.Drawing.Size(305, 28);
+            this.txtUser.Size = new System.Drawing.Size(305, 34);
             this.txtUser.TabIndex = 0;
             // 
             // txtPassword
@@ -63,7 +64,7 @@
             this.txtPassword.Properties.Appearance.Options.UseFont = true;
             this.txtPassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtPassword.Properties.UseSystemPasswordChar = true;
-            this.txtPassword.Size = new System.Drawing.Size(304, 28);
+            this.txtPassword.Size = new System.Drawing.Size(304, 34);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
@@ -73,9 +74,9 @@
             this.lblInfo.Appearance.ForeColor = System.Drawing.Color.White;
             this.lblInfo.Appearance.Options.UseFont = true;
             this.lblInfo.Appearance.Options.UseForeColor = true;
-            this.lblInfo.Location = new System.Drawing.Point(135, 279);
+            this.lblInfo.Location = new System.Drawing.Point(216, 189);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(0, 16);
+            this.lblInfo.Size = new System.Drawing.Size(0, 20);
             this.lblInfo.TabIndex = 26;
             // 
             // labelControl2
@@ -86,7 +87,7 @@
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.Location = new System.Drawing.Point(135, 111);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(43, 16);
+            this.labelControl2.Size = new System.Drawing.Size(53, 20);
             this.labelControl2.TabIndex = 27;
             this.labelControl2.Text = "工号:";
             // 
@@ -98,7 +99,7 @@
             this.labelControl3.Appearance.Options.UseForeColor = true;
             this.labelControl3.Location = new System.Drawing.Point(136, 156);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(43, 16);
+            this.labelControl3.Size = new System.Drawing.Size(53, 20);
             this.labelControl3.TabIndex = 28;
             this.labelControl3.Text = "密码:";
             // 
@@ -108,7 +109,7 @@
             this.btnLogin.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.btnLogin.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.login;
             this.btnLogin.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnLogin.Location = new System.Drawing.Point(207, 211);
+            this.btnLogin.Location = new System.Drawing.Point(207, 214);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(118, 51);
             this.btnLogin.TabIndex = 2;
@@ -120,7 +121,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.off;
             this.btnCancel.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnCancel.Location = new System.Drawing.Point(403, 211);
+            this.btnCancel.Location = new System.Drawing.Point(403, 214);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(118, 51);
             this.btnCancel.TabIndex = 3;
@@ -134,7 +135,7 @@
             this.lblPlaza.Appearance.Options.UseForeColor = true;
             this.lblPlaza.Location = new System.Drawing.Point(207, 12);
             this.lblPlaza.Name = "lblPlaza";
-            this.lblPlaza.Size = new System.Drawing.Size(132, 33);
+            this.lblPlaza.Size = new System.Drawing.Size(164, 40);
             this.lblPlaza.TabIndex = 29;
             this.lblPlaza.Text = "车道监控";
             // 
@@ -152,7 +153,7 @@
             this.txtPlazaId.Properties.Mask.ShowPlaceHolders = false;
             this.txtPlazaId.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtPlazaId.Properties.MaxLength = 7;
-            this.txtPlazaId.Size = new System.Drawing.Size(305, 28);
+            this.txtPlazaId.Size = new System.Drawing.Size(305, 34);
             this.txtPlazaId.TabIndex = 30;
             this.txtPlazaId.EditValueChanged += new System.EventHandler(this.txtPlazaId_EditValueChanged);
             // 
@@ -164,9 +165,20 @@
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.Location = new System.Drawing.Point(137, 74);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(60, 16);
+            this.labelControl1.Size = new System.Drawing.Size(74, 20);
             this.labelControl1.TabIndex = 31;
             this.labelControl1.Text = "收费站:";
+            // 
+            // lblserver
+            // 
+            this.lblserver.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.lblserver.Appearance.ForeColor = System.Drawing.Color.White;
+            this.lblserver.Appearance.Options.UseFont = true;
+            this.lblserver.Appearance.Options.UseForeColor = true;
+            this.lblserver.Location = new System.Drawing.Point(156, 287);
+            this.lblserver.Name = "lblserver";
+            this.lblserver.Size = new System.Drawing.Size(0, 20);
+            this.lblserver.TabIndex = 32;
             // 
             // frmLogin
             // 
@@ -177,6 +189,7 @@
             this.BackgroundImageStore = global::Uixe.Watcher.Properties.Resources.login_bg;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(660, 319);
+            this.Controls.Add(this.lblserver);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.txtPlazaId);
             this.Controls.Add(this.lblPlaza);
@@ -222,5 +235,6 @@
         private DevExpress.XtraEditors.LabelControl lblPlaza;
         private DevExpress.XtraEditors.TextEdit txtPlazaId;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblserver;
     }
 }

@@ -32,7 +32,8 @@ namespace Uixe.Watcher
             this.components = new System.ComponentModel.Container();
             this.videoView1 = new LibVLCSharp.WinForms.VideoView();
             this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.vncScreen = new System.Windows.Forms.Panel();
+            this.keyboard1 = new Uixe.Watcher.Controls.Keyboard();
             ((System.ComponentModel.ISupportInitialize)(this.videoView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).BeginInit();
             this.SuspendLayout();
@@ -40,10 +41,11 @@ namespace Uixe.Watcher
             // videoView1
             // 
             this.videoView1.BackColor = System.Drawing.Color.Black;
-            this.videoView1.Location = new System.Drawing.Point(0, 396);
+            this.videoView1.Location = new System.Drawing.Point(6, 0);
+            this.videoView1.Margin = new System.Windows.Forms.Padding(4);
             this.videoView1.MediaPlayer = null;
             this.videoView1.Name = "videoView1";
-            this.videoView1.Size = new System.Drawing.Size(442, 326);
+            this.videoView1.Size = new System.Drawing.Size(451, 421);
             this.videoView1.TabIndex = 1;
             this.videoView1.Text = "videoView1";
             // 
@@ -51,22 +53,41 @@ namespace Uixe.Watcher
             // 
             this.radialMenu1.Name = "radialMenu1";
             // 
-            // panel1
+            // vncScreen
             // 
-            this.panel1.BackgroundImage = global::Uixe.Watcher.Properties.Resources._16525857840_9a6c8f2b77_o;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1280, 725);
-            this.panel1.TabIndex = 2;
+            this.vncScreen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.vncScreen.BackColor = System.Drawing.Color.Blue;
+            this.vncScreen.Location = new System.Drawing.Point(453, 0);
+            this.vncScreen.Margin = new System.Windows.Forms.Padding(4);
+            this.vncScreen.Name = "vncScreen";
+            this.vncScreen.Size = new System.Drawing.Size(1280, 941);
+            this.vncScreen.TabIndex = 2;
+            // 
+            // keyboard1
+            // 
+            this.keyboard1.BackColor = System.Drawing.Color.Transparent;
+            this.keyboard1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.keyboard1.IPAddress = null;
+            this.keyboard1.Location = new System.Drawing.Point(6, 420);
+            this.keyboard1.Name = "keyboard1";
+            this.keyboard1.Port = 0;
+            this.keyboard1.Size = new System.Drawing.Size(863, 379);
+            this.keyboard1.TabIndex = 0;
             // 
             // frmRemoteLane
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 725);
+            this.ClientSize = new System.Drawing.Size(1733, 800);
+            this.Controls.Add(this.keyboard1);
             this.Controls.Add(this.videoView1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.vncScreen);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "frmRemoteLane";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRemoteLane";
@@ -80,6 +101,7 @@ namespace Uixe.Watcher
         #endregion
         private LibVLCSharp.WinForms.VideoView videoView1;
         private DevExpress.XtraBars.Ribbon.RadialMenu radialMenu1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel vncScreen;
+        private Controls.Keyboard keyboard1;
     }
 }

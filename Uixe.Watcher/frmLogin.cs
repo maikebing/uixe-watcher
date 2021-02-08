@@ -114,14 +114,14 @@ namespace Uixe.Watcher
                          {
                              Properties.Settings.Default.Save();
                              lblPlaza.Text = $"{plazainfo.station_name}车道监控";
-                             lblInfo.Text = $"服务器IP:{plazainfo.ip } 站代码:{plazainfo.station_id}";
+                             lblserver.Text = $"服务器IP:{plazainfo.ip } 站代码:{plazainfo.station_id}";
                          });
                      }
                      catch (Exception ex)
                      {
                          this.Invoke((MethodInvoker)delegate
                          {
-                             lblInfo.Text = "未能获取站信息" + ex.Message;
+                             lblserver.Text = "未能获取站信息" + ex.Message;
                          });
 
                      }
@@ -130,7 +130,7 @@ namespace Uixe.Watcher
             }
             else
             {
-                lblInfo.Text = "信息为空";
+                lblserver.Text = "信息为空";
             }
         }
 

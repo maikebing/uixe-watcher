@@ -73,13 +73,6 @@ namespace Uixe.Watcher.Controls
                 ShowInfo?.Invoke(ex.Message);
             }
         }
-         
-         
-
-        private DateTime lastplay = DateTime.Now;
-        private decimal rept = 0;
-         
-
       
         public delegate void DShowInfo (string text);
     

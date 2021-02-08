@@ -34,7 +34,7 @@ namespace Uixe.Watcher.Uitls
         {
             var request = new RestRequest($"sys/user/getRoleByUser?userName={username}", Method.POST, DataFormat.Json);
             request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("token", "d3c0790b160407261d8ebe5eae32f7a6");
+            request.AddHeader("token",  RuntimeSetting.Token?.token);
             IRestResponse response = client.Execute(request);
             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResult<UserRole[]>>(response.Content);
             return result;

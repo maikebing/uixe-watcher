@@ -120,7 +120,7 @@ namespace Uixe.Watcher.Controls
                 var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
                 if (fv != null)
                 {
-                    frmRemoteLane lane = new frmRemoteLane(fv);
+                    frmRemoteLane lane = new frmRemoteLane(Plaza,fv);
                     lane.Show(this);
                 }
             }
@@ -146,7 +146,7 @@ namespace Uixe.Watcher.Controls
                 var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
                 if (fv != null)
                 {
-                    frmRemoteLane lane = new frmRemoteLane(fv,false);
+                    frmRemoteLane lane = new frmRemoteLane(Plaza,  fv);
                     lane.Show(this);
                   
                 }

@@ -225,5 +225,17 @@ namespace Uixe.Watcher.Properties {
                 this["plazaid"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8880")]
+        public int KeyboardPort {
+            get {
+                return ((int)(this["KeyboardPort"]));
+            }
+            set {
+                this["KeyboardPort"] = value;
+            }
+        }
     }
 }

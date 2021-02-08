@@ -53,5 +53,8 @@
     <Setting Name="plazaid" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="KeyboardPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8880</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
