@@ -31,7 +31,7 @@ namespace Uixe.Watcher.Msg
         public string PlazaId { get; set; }
         public string LaneId { get; set; }
         public string IPAddress { get; set; }
-        public string VideoRTSP { set; get; } = "rtsp://admin:admin12345@10.13.51.138:554/h264/ch1/sub/av_stream";
+        public string CameraRtspUrl  { set; get; }  
 
         public byte[] YuPengDeng => GetImage(Properties.Resources.YuPeng, nameof(YuPengDengStatus), YuPengDengStatus);
 

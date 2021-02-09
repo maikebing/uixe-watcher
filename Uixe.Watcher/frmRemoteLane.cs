@@ -46,19 +46,38 @@ namespace Uixe.Watcher
         {
             var vnc = await VNCUtils.Login(this.vncScreen, _lane.IPAddress, 5900, "kissme");
             //  this.Size =new Size (vnc.Width+(this.Width- panel1.Width)*2,vnc.Height+(this.Height-panel1.Height));
-            if (vnc != null) vnc.Text = $" {_plaza.station_name}({ _lane.PlazaId}){_lane.LaneName}   {_lane.IPAddress} ";
-            this.Text = vnc.Text;
-            Core.Initialize();
-            var LibVLC = new LibVLC();
-            var media = new Media(LibVLC,
-                new Uri(_lane.VideoRTSP));
-            this.videoView1.MediaPlayer = new MediaPlayer(media) { EnableHardwareDecoding = true };
-            this.videoView1.MediaPlayer.Play();
-            keyboard1.IPAddress = _lane.IPAddress;
-            this.keyboard1.Port = Properties.Settings.Default.KeyboardPort;
-            keyboard1.BackColor = vnc[1, 1];
-            this.BackColor = keyboard1.BackColor;
-
+            if (vnc != null)
+            {
+                vnc.Text = $" {_plaza.station_name}({ _lane.PlazaId}){_lane.LaneName}   {_lane.IPAddress} ";
+                this.Text = vnc.Text;
+                keyboard1.IPAddress = _lane.IPAddress;
+                this.keyboard1.Port = Properties.Settings.Default.KeyboardPort;
+                  try
+                {
+                    Core.Initialize();
+                    if (!string.IsNullOrEmpty(_lane.CameraRtspUrl))
+                    {
+                        var LibVLC = new LibVLC();
+                        var media = new Media(LibVLC,
+                            new Uri(_lane.CameraRtspUrl));
+                        this.videoView1.MediaPlayer = new MediaPlayer(media) { EnableHardwareDecoding = true };
+                        this.videoView1.MediaPlayer.Play();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show($"视频初始化播放{_lane.CameraRtspUrl}失败，{ex.Message}");
+                }
+                await Task.Run(() =>
+                 {
+                     Task.Delay(TimeSpan.FromSeconds(2));
+                     this.Invoke(() =>
+                     {
+                         keyboard1.BackColor = vnc[5, 5];
+                         this.BackColor = keyboard1.BackColor;
+                     });
+                 });
+            }
         }
         bool ismax = false;
         private void videoView1_DoubleClick(object sender, EventArgs e)

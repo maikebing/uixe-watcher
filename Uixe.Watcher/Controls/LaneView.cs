@@ -35,7 +35,7 @@ namespace Uixe.Watcher.Controls
             var _ls = new List<LaneInfo>();
             item.lanes?.ForEach(l =>
             {
-                _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip));
+                _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip) {  CameraRtspUrl = l.cameraRtspUrl});
             });
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) &&  l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());

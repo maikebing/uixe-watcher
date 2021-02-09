@@ -167,11 +167,11 @@ namespace Uixe.Watcher
                 var factory = new MqttFactory();
                 client = factory.CreateMqttClient();
                 var options = new MqttClientOptionsBuilder()
-#if DEBUG
-                     .WithTcpServer("localhost", 1883)
-#else 
+//#if DEBUG
+//                     .WithTcpServer("localhost", 1883)
+//#else 
                      .WithTcpServer(p.ip, 1883)
-#endif
+//#endif
                     .WithCredentials($"tco_{p.id}", "")
                     .WithClientId(p.id)
                     .WithWillMessage(new MqttApplicationMessage() { Topic= "/tco/willmessage", QualityOfServiceLevel= MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain=true})

@@ -37,7 +37,7 @@ namespace Uixe.Watcher
 #if NETCOREAPP
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
 #else
-            SetProcessDpiAwareness((int)DpiAwareness.SystemAware);
+            //SetProcessDpiAwareness((int)DpiAwareness.SystemAware);
 #endif
 #if DEBUG
             Task.Run(async () =>
