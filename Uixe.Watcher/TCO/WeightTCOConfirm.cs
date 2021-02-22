@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Speech.Synthesis;
+using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 
 namespace Uixe.Watcher.V1
@@ -23,11 +24,42 @@ namespace Uixe.Watcher.V1
         private List<string> canmodifyplate = new List<string>(new string[] { KeyItem.TCO_CK_GONGWU, KeyItem.TCO_CK_JINCHE, KeyItem.TCO_CK_LVSETONGDAO, KeyItem.TCO_CK_NONGYONGCHE, KeyItem.TCO_CK_YHCHE, KeyItem.TCO_CK_YPCHE, KeyItem.TCO_JZ_MeiTan });
 
         private Prompt prompt = null;
+        MsgWeightTCOCALL _tce;
+        public MSG_TCOConfirm GetTCOConfirm(bool _IsConfirm)
+        {
+            var r = new MSG_TCOConfirm()
+            {
+                IsConfirm = _IsConfirm,
+                TransNo = TCE.MsgTcoTran.TransNO,
+                TCOStaffID = RuntimeSetting.NowCollect?.UserId,
+                DateTime = DateTime.UtcNow,
+                FreshAgri = dbxLSTD.GetSelectedDataRow() as FreshAgriProducts,
+                CarPlate = TCE.CarPlate,
+                AxleLastNo = int.Parse(TCE.CarAlex),
+                CarClass = TCE.CarKind_INT,
+                CarType = TCE.CarType_INT,
+                ConfirmType = TCE.CallType,
+                DifKind = TCE.CarKind_INT != _tce.CarKind_INT,
+                DifPlate = TCE.CarPlate != _tce.CarPlate,
+                DifPlaza = TCE.Plaza != _tce.Plaza,
+                DifType = TCE.CarType_INT != _tce.CarType_INT,
+                EntryNetNo = TCE.Network,
+                EntryPlazaNo = TCE.Plaza,
+                WeightInput = int.Parse(TCE.CarFareWeight),
+                WeightLimit = int.Parse(TCE.WeightLimit),
+                IsDiscountCard = false,
+                TCOType = TCE.CallType,
+                WeightType = int.Parse(TCE.WeightType)
 
+            };
+            return r;
+        }
         public void Show(MsgWeightTCOCALL tce)
         {
             try
             {
+
+                _tce = tce.Clone();
                 TCE = tce;
                 bsHCCZ.ResetCurrentItem();
                 bsHCCZ.DataSource = KeyItem.GetHueChe();

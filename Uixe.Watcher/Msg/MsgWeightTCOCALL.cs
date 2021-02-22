@@ -15,6 +15,7 @@ namespace Uixe.Watcher.Msg
         {
             base.MsgTcoTran = new MsgTcoTran();
         }
+    
         public static MsgWeightTCOCALL Parse(string json)
         {
             var ls = JsonConvert.DeserializeObject<MsgWeightTCOCALL>(json, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local });
@@ -97,6 +98,6 @@ namespace Uixe.Watcher.Msg
         public string WeightLimit => MsgTcoTran.WeightLimit;
 
         public int TranID => int.Parse(MsgTcoTran.TransNO);
-
+        
     }
 }

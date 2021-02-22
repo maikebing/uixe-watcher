@@ -29,17 +29,8 @@ namespace Uixe.Watcher.V1
                 if (tms != null)
                 {
                     var lstd = tms.dbxLSTD.GetSelectedDataRow() as FreshAgriProducts;
-                    tms.MqttClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}",
-                        new
-                        {
-                            message = (ok ? "TCO_OK" : "TCO_NO"),
-                            anwser = ok,
-                            transNO= tms.TCE.MsgTcoTran.TransNO,
-                            userid = RuntimeSetting.NowCollect?.UserId,
-                            datetime = DateTime.UtcNow,
-                            fresh_agri= lstd,
-                            plate= tms.CarPlateTextEdit.Text
-                        }).Wait(TimeSpan.FromSeconds(10));
+                    tms.MqttClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}",tms.GetTCOConfirm(ok)
+                      ).Wait(TimeSpan.FromSeconds(10));
                 }
             }
             catch (Exception ex)

@@ -19,8 +19,8 @@ namespace Uixe.Watcher.Dtos
     //#define MenuPassCard    6   //通行卡菜单
     //#define MenuSaoMa       7   //扫码菜单
     //#define MenuETCSystem   8   //ETC系统菜单
-   
-    public enum WATCHER_TYPE:int 
+
+    public enum WATCHER_TYPE : int
     {
 
         WATCHER_MenuCardBox = 1,
@@ -73,8 +73,34 @@ namespace Uixe.Watcher.Dtos
         public WATCHER_TYPE WatcherID { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public DlgType DlgType { get; set; }
-
-
     }
 
+    public class MSG_TCOConfirm
+    {
+        public string TCOType { get; set; }
+
+        public string TCOStaffID { get; set; }         //000182
+        public string ConfirmType { get; set; }          //1
+        public string EntryNetNo { get; set; }       //01
+        public string EntryPlazaNo { get; set; }       //29
+        public int CarClass { get; set; }           //12
+        public int CarType { get; set; }               //1
+        public string CarPlate { get; set; }          //439
+        public bool DifPlaza { get; set; }     //0,入口站没有更改，1监控员更改入口站0
+        public bool DifPlate { get; set; }      //0,入口输入错误,   1确实不符0
+        public bool DifType { get; set; }      //0,车型没有更改，1,监控员修改车型0
+        public bool DifKind { get; set; }      //0,车种没有更改  1,监控员修改车种0
+        int UCar { get; set; }         //0,正常，1，U型；2：J型0
+        int TimeoutCar { get; set; }  //0,正常；1，超时；2：超速0
+
+        public string TransNo { get; set; }//00001
+        public int WeightType { get; set; }//2
+        public bool IsConfirm { get; set; }//1
+        public int WeightLimit { get; set; }//046000
+        public bool IsDiscountCard { get; set; }// 0
+        public int WeightInput { get; set; }//000000
+        public int AxleLastNo { get; set; }//0001
+        public DateTime DateTime { get; set; }
+        public FreshAgriProducts FreshAgri { get; set; }
+    };
 }

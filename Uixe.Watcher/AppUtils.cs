@@ -34,6 +34,11 @@ namespace Uixe.Watcher
                 action.Invoke();
             });
         }
+        public static T Clone<T>(this  T source) where T : class
+        {
+            string jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(source);
+             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonStr);
+        }
 
         public static void InstallUpdateSyncWithInfo()
         {
