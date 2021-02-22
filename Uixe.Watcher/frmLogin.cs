@@ -61,6 +61,7 @@ namespace Uixe.Watcher
                 {
                     if (result.code==0  && result.data!=null && result.data.Any(f=>f.roleId==18))
                     {
+                        RuntimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
                         RuntimeSetting.UserRole = result.data;
                         RuntimeSetting.Token.LoginDateTime = DateTime.Now;
                         DialogResult = DialogResult.OK;

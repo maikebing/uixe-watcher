@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using MQTTnet.Client;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -28,11 +29,17 @@ namespace Uixe.Watcher.V1
                 if (tms != null)
                 {
                     var lstd = tms.dbxLSTD.GetSelectedDataRow() as FreshAgriProducts;
-                    string cmd = "TCOCONFIRM";
-                    string param = (ok ? "TCO_OK" : "TCO_NO") + (RuntimeSetting.NowCollect?.UserId ?? string.Empty.PadLeft(6, ' '));
-                    param += ((char)(int.Parse(lstd?.Id ?? "0") + 'A')).ToString();// (char)(char.Parse(lstd?.Id ?? "0") + 'A');
-                    param += tms.CarPlateTextEdit.Text.PadRight(14, ' ').Substring(0, 14);
-                //    BLLWatcher.SendReturnInfoToLane(TCS.DAL.DALWatcher.GetLaneInfo(tms.TCO.Head.Network + tms.TCO.Head.Plaza, tms.TCO.Head.LaneNo), cmd, param);
+                    tms.MqttClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}",
+                        new
+                        {
+                            message = (ok ? "TCO_OK" : "TCO_NO"),
+                            anwser = ok,
+                            transNO= tms.TCE.MsgTcoTran.TransNO,
+                            userid = RuntimeSetting.NowCollect?.UserId,
+                            datetime = DateTime.UtcNow,
+                            fresh_agri= lstd,
+                            plate= tms.CarPlateTextEdit.Text
+                        }).Wait(TimeSpan.FromSeconds(10));
                 }
             }
             catch (Exception ex)
@@ -41,7 +48,7 @@ namespace Uixe.Watcher.V1
             }
         }
 
-        public static void ShowTCOInfo(Form form, string topic,string message)
+        public static void ShowTCOInfo(Form form, string topic,string message, MQTTnet.Client.IMqttClient client)
         {
             try
             {
@@ -54,11 +61,11 @@ namespace Uixe.Watcher.V1
                         {
                             if (WeightTCOCall == null || WeightTCOCall.IsDisposed || !WeightTCOCall.IsHandleCreated)
                             {
-                                    WeightTCOCall = new frmWeightTCOCall();
-                                WeightTCOCall.LoadInfo();
-                                    WeightTCOCall.Hide() ;
+                                WeightTCOCall = new frmWeightTCOCall();
+                                WeightTCOCall.LoadInfo(client);
+                                WeightTCOCall.Hide();
                             }
-                               WeightTCOCall.ShowTCOMsg(Newtonsoft.Json.JsonConvert.DeserializeObject<MsgWeightTCOCALL>(message));
+                            WeightTCOCall.ShowTCOMsg(Newtonsoft.Json.JsonConvert.DeserializeObject<MsgWeightTCOCALL>(message));
                             System.Threading.ThreadPool.QueueUserWorkItem(new WaitCallback(PlayUitls.PlayRing), null);
                         }
                         catch (Exception ex)

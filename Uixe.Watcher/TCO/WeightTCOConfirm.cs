@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MQTTnet.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Speech.Synthesis;
@@ -15,8 +16,10 @@ namespace Uixe.Watcher.V1
         }
 
  
-        private MsgWeightTCOCALL TCE;
+         public MsgWeightTCOCALL TCE { get; set; }
         public bool CanDo { get; set; }
+        public IMqttClient MqttClient { get; internal set; }
+
         private List<string> canmodifyplate = new List<string>(new string[] { KeyItem.TCO_CK_GONGWU, KeyItem.TCO_CK_JINCHE, KeyItem.TCO_CK_LVSETONGDAO, KeyItem.TCO_CK_NONGYONGCHE, KeyItem.TCO_CK_YHCHE, KeyItem.TCO_CK_YPCHE, KeyItem.TCO_JZ_MeiTan });
 
         private Prompt prompt = null;

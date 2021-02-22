@@ -167,12 +167,8 @@ namespace Uixe.Watcher
                 var factory = new MqttFactory();
                 client = factory.CreateMqttClient();
                 var options = new MqttClientOptionsBuilder()
-//#if DEBUG
-//                     .WithTcpServer("localhost", 1883)
-//#else 
-                     .WithTcpServer(p.ip, 1883)
-//#endif
                     .WithCredentials($"tco_{p.id}", "")
+                    .WithTcpServer(p.ip, 1883)
                     .WithClientId(p.id)
                     .WithWillMessage(new MqttApplicationMessage() { Topic= "/tco/willmessage", QualityOfServiceLevel= MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain=true})
                     .Build();
@@ -183,13 +179,16 @@ namespace Uixe.Watcher
                     Console.WriteLine("### DISCONNECTED FROM SERVER ###");
                     await Task.Delay(TimeSpan.FromSeconds(1));
                     chkServerStatus.EditValue = false;
-                    try
+                    if (!xe.ClientWasConnected)
                     {
-                        await client.ConnectAsync(options, CancellationToken.None); // Since 3.0.5 with CancellationToken
-                    }
-                    catch
-                    {
-                        Console.WriteLine("### RECONNECTING FAILED ###");
+                        try
+                        {
+                            await client.ConnectAsync(options, CancellationToken.None); // Since 3.0.5 with CancellationToken
+                        }
+                        catch
+                        {
+                            Console.WriteLine("### RECONNECTING FAILED ###");
+                        }
                     }
                 });
                 client.UseApplicationMessageReceivedHandler(h =>
@@ -215,7 +214,7 @@ namespace Uixe.Watcher
                         {
                             this.Invoke((MethodInvoker)delegate
                            {
-                               TCOCallUtils.ShowTCOInfo(this, h.ApplicationMessage.Topic, message);
+                               TCOCallUtils.ShowTCOInfo(this, h.ApplicationMessage.Topic, message, client);
                            });
                         });
 

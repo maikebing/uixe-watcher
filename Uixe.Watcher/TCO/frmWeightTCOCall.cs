@@ -8,11 +8,16 @@ using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher;
+using MQTTnet.Client;
+
 namespace Uixe.Watcher.V1
 {
     public partial class frmWeightTCOCall : DevExpress.XtraEditors.XtraForm
     {
         public static int TabCount = 0;
+
+    
+
         private List<Lane> lstlane = new List<Lane>();
 
         public frmWeightTCOCall()
@@ -20,7 +25,7 @@ namespace Uixe.Watcher.V1
             InitializeComponent();
 
         }
-        public void LoadInfo()
+        public void LoadInfo(IMqttClient _mqttClient)
         {
             try
             {
@@ -32,6 +37,7 @@ namespace Uixe.Watcher.V1
                     string pname = tmlLaneNo.id + lstlane[i].lane_no;
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
+                    tms.MqttClient = _mqttClient;
                     t.Name = pname;
                     tms.Name = pname;
                     tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent
