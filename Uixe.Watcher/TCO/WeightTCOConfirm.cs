@@ -21,7 +21,6 @@ namespace Uixe.Watcher.V1
         public bool CanDo { get; set; }
         public IMqttClient MqttClient { get; internal set; }
 
-        private List<string> canmodifyplate = new List<string>(new string[] { KeyItem.TCO_CK_GONGWU, KeyItem.TCO_CK_JINCHE, KeyItem.TCO_CK_LVSETONGDAO, KeyItem.TCO_CK_NONGYONGCHE, KeyItem.TCO_CK_YHCHE, KeyItem.TCO_CK_YPCHE, KeyItem.TCO_JZ_MeiTan });
 
         private Prompt prompt = null;
         MsgWeightTCOCALL _tce;
@@ -38,7 +37,7 @@ namespace Uixe.Watcher.V1
                 AxleLastNo = int.Parse(TCE.CarAlex),
                 CarClass = TCE.CarKind_INT,
                 CarType = TCE.CarType_INT,
-                ConfirmType = TCE.CallType,
+                ConfirmType = (int)TCE.CallType,
                 DifKind = TCE.CarKind_INT != _tce.CarKind_INT,
                 DifPlate = TCE.CarPlate != _tce.CarPlate,
                 DifPlaza = TCE.Plaza != _tce.Plaza,
@@ -77,21 +76,21 @@ namespace Uixe.Watcher.V1
                 msgWeightTCOCALLBindingSource.ResetCurrentItem();
                 msgWeightTCOCALLBindingSource.DataSource = tce;
                 Reset();
-                CarPlateTextEdit.Enabled =  canmodifyplate.Contains(tce.CallType);
+                CarPlateTextEdit.Enabled = tce.CallType == WATCHER_TYPE.WATCHER_State44_ModifyCarNumber;
                 CarPlateTextEdit.ReadOnly = !CarPlateTextEdit.Enabled;
                 lciHwleixing.Visibility =   DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                dbxLSTD.Enabled =tce.CallType == KeyItem.TCO_CK_LVSETONGDAO;
+                dbxLSTD.Enabled =tce.CallType == WATCHER_TYPE.WATCHER_LTORNONGYONG;
                 //picLane.ImageLocation =;/、 string.Format("ftp://root:{0}@{1}/{2}/IMAGE/TEMP/TTEMP.JPG","future", TCS.Config.AppConfig.GetLaneIP(tce.Network + tce.Plaza, tce.LaneNo), AppConfig.RunTime.LaneAppDir);
                 //picBig.ImageLocation = picLane.ImageLocation;
-                string speechtext = $"{tce.LaneNo} {KeyItem.GetTCOCK().ToList().FirstOrDefault(ki => ki.KeyID == tce.CallType)?.KeyName}";
+                var strct = Enum.GetName(typeof(WATCHER_TYPE), tce.CallType); 
+               string speechtext = $"{tce.LaneNo} {KeyItem.GetTCOCK().ToList().FirstOrDefault(ki => ki.KeyID == strct)?.KeyName}";
                 bool sound = false;
                 switch (tce.CallType)
                 {
-                    case KeyItem.TCO_CK_LVSETONGDAO:
+                    case WATCHER_TYPE.WATCHER_LTORNONGYONG:
                         sound = Properties.Settings.Default.SpeechLvSeTongDao;
                         break;
-
-                    case KeyItem.TCO_CK_BLACKPlate:
+                    case  WATCHER_TYPE.WATCHER_BlacklistPlate:
                         sound = Properties.Settings.Default.SpeedBlackListPlate;
                         break;
 
@@ -172,7 +171,7 @@ namespace Uixe.Watcher.V1
         {
             try
             {
-                if ( TCE.CallType == KeyItem.TCO_CK_LVSETONGDAO && string.IsNullOrEmpty(dbxLSTD.EditValue as string))
+                if ( TCE.CallType ==  WATCHER_TYPE.WATCHER_LTORNONGYONG   && string.IsNullOrEmpty(dbxLSTD.EditValue as string))
                 {
                     dbxLSTD.Focus();
                     dbxLSTD.PerformClick(dbxLSTD.Properties.Buttons[0]);

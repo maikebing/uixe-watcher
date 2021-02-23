@@ -43,7 +43,7 @@ namespace Uixe.Watcher.Msg
 
         public string Collector => SubHead.StaffID;
 
-        public string CallType => $"{ base.WatcherID }";
+        public WATCHER_TYPE CallType => base.WatcherID ;
 
         public string WeightFunctions { get; set; }
         public string FareFormula { get; set; }

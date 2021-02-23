@@ -1,4 +1,7 @@
-﻿namespace Uixe.Watcher
+﻿using System;
+using Uixe.Watcher.Dtos;
+
+namespace Uixe.Watcher
 {
     public class KeyItem
     {
@@ -32,30 +35,22 @@
             if (keyItems == null)
             {
                 keyItems = new KeyItem[]{
-                    new KeyItem (TCO_JZ_DJYSC               ,"大件运输车"),
-                    new KeyItem (TCO_JZ_BJJZX               ,"标准集装箱"),
-                    new KeyItem (TCO_JZ_GZC                 ,"特种罐装车"),
-                    new KeyItem (TCO_JZ_SGYS                ,"甩挂运输"),
-                    new KeyItem (TCO_JZ_MeiTan                ,"煤炭运输车"),
-                      new KeyItem (TCO_JZ_5Zhe                ,"半价优惠车"),
-                    new KeyItem (TCO_JZ_CI_ModifyCarInfo    ,"修正车辆信息"),
-                    new KeyItem (TCO_JZ_CI_AddCarInfo       ,"添加车辆信息"),
-                    new KeyItem (TCO_JZ_CI_DelCarInfo       ,"删除车辆信息"),
-                    new KeyItem (TCO_JZ_CI_ModifyAlex       ,"修正车辆轴信息"),
-                    new KeyItem (TCO_JZ_ChangChe            ,"长车"),
-                    new KeyItem (TCO_JZ_TZCL                 ,"载有固定装置车"),
-                    new KeyItem (TCO_JZ_ZXCL                 ,"车型收费模式"),
-                    new KeyItem (TCO_CK_JUNCHE               ,"军车"),
-                    new KeyItem (TCO_CK_GONGWU               ,"公务车"),
-                    new KeyItem (TCO_CK_JINJI                ,"紧急车"),
-                    new KeyItem (TCO_CK_LVSETONGDAO          ,"绿色通道"),
-                    new KeyItem (TCO_CK_YPCHE                ,"月票车"),
-                    new KeyItem (TCO_CK_YHCHE                ,"优惠卡车"),
-                    new KeyItem (TCO_CK_JINCHE               ,"警车"),
-                    new KeyItem (TCO_CK_NONGYONGCHE          ,"农用车"),
-                      new KeyItem (TCO_CK_BLACKPlate          ,"黑名单"),
-                    new KeyItem (TCO_CK_HapplyDay            ,"节假日"),
-                    new KeyItem( TCO_CK_ShowInfo            ,   "车道特殊情况上报")
+                    new KeyItem ( Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_DAJIANCHE),"大件运输车"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE. WATCHER_ContainerTruck ),"标准集装箱"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_FoundTrailer),"特种罐装车"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_ShuaiGuaChe),"甩挂运输"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_TankTruck),"煤炭运输车"),
+                      new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_YouHuiJianBan),"半价优惠车"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_IWantModifyWeightInfo)  ,"修正车辆信息"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_IWantAddWeightInfo),"添加车辆信息"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_IWantDelWeightInfo),"删除车辆信息"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_FoundALongCar),"长车"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_FixedUnitCar),"载有固定装置车"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_GreenPassage),"绿色通道"),
+                    new KeyItem(Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_State43_ModifyCarType),"修改车型"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_LTORNONGYONG)              ,"农用车"),
+                      new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_BlacklistPlate)             ,"黑名单"),
+                    new KeyItem (Enum.GetName(typeof(WATCHER_TYPE) ,WATCHER_TYPE.WATCHER_MergeVehicles)              ,"合并车辆")
             };
             }
             return keyItems;

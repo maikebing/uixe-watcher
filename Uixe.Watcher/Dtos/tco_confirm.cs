@@ -77,10 +77,27 @@ namespace Uixe.Watcher.Dtos
 
     public class MSG_TCOConfirm
     {
-        public string TCOType { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public WATCHER_TYPE TCOType { get; set; }
 
+        [JsonIgnore]
+        public string TCOType_Str
+        {
+            get
+            {
+                return Enum.GetName(typeof(WATCHER_TYPE), TCOType);
+            }
+            set
+            {
+                if (Enum.TryParse(value, out WATCHER_TYPE _TCOType))
+                {
+                    TCOType = _TCOType;
+                }
+
+            }
+        }
         public string TCOStaffID { get; set; }         //000182
-        public string ConfirmType { get; set; }          //1
+        public  int  ConfirmType { get; set; }          //1
         public string EntryNetNo { get; set; }       //01
         public string EntryPlazaNo { get; set; }       //29
         public int CarClass { get; set; }           //12
@@ -90,8 +107,8 @@ namespace Uixe.Watcher.Dtos
         public bool DifPlate { get; set; }      //0,入口输入错误,   1确实不符0
         public bool DifType { get; set; }      //0,车型没有更改，1,监控员修改车型0
         public bool DifKind { get; set; }      //0,车种没有更改  1,监控员修改车种0
-        int UCar { get; set; }         //0,正常，1，U型；2：J型0
-        int TimeoutCar { get; set; }  //0,正常；1，超时；2：超速0
+        public int   UCar { get; set; }         //0,正常，1，U型；2：J型0
+         public int    TimeoutCar { get; set; }  //0,正常；1，超时；2：超速0
 
         public string TransNo { get; set; }//00001
         public int WeightType { get; set; }//2
