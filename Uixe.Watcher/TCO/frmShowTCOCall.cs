@@ -23,7 +23,7 @@ namespace Uixe.Watcher
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
-                    string pname = lstlane[i].lane_id+ tmlLaneNo.id;
+                    string pname = tmlLaneNo.id+ lstlane[i].lane_no ;
                     XtraTabPage t = new XtraTabPage();
                     TCOConfirm tms = new TCOConfirm();
                     t.Name = pname;
@@ -46,7 +46,8 @@ namespace Uixe.Watcher
 
         public void Show(TCOCall TCOCallxxx)
         {
-            string pname = TCOCallxxx.PlazaId + TCOCallxxx.LaneNo;
+       
+            string pname = TCOCallxxx.ID;
             var x = from p in tsTabs.TabPages where p.Name == pname select p;
             if (x.Any() && x.Single() != null)
             {
@@ -54,15 +55,13 @@ namespace Uixe.Watcher
                 TCOConfirm tms = (TCOConfirm)t.Tag;
                 try
                 {
-                    this.Invoke(() =>
-                    {
+                   
                         tms.Show(TCOCallxxx);
                         t.Text = string.Format("车道{0}", TCOCallxxx.LaneNo);
                         tms.btnOK.Click += new EventHandler(BtnOK_Click);
                         tms.btnCancel.Click += new EventHandler(btnCancel_Click);
                         tsTabs.SelectedTabPage = t;
                         tms.Reset();
-                    });
                 }
                 catch (Exception ex)
                 {
@@ -71,12 +70,10 @@ namespace Uixe.Watcher
                 }
                 try
                 {
-                    this.Invoke(() =>
-                    {
+                  
                         t.PageVisible = true;
                         this.Visible = true;
                         this.Focus();
-                    });
                 }
                 catch (Exception ex)
                 {

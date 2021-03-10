@@ -260,12 +260,6 @@
     <Compile Include="Controls\MessageView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\TCOPictureBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\TCOPictureBox.Designer.cs">
-      <DependentUpon>TCOPictureBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,11 +301,17 @@
     <Compile Include="TCO\frmShowTCOCall.Designer.cs">
       <DependentUpon>frmShowTCOCall.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TCOConfirm.cs">
+    <Compile Include="TCO\TCOConfirm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\TCOConfirm.Designer.cs">
+    <Compile Include="TCO\TCOConfirm.Designer.cs">
       <DependentUpon>TCOConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TCO\TCOPictureBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TCO\TCOPictureBox.Designer.cs">
+      <DependentUpon>TCOPictureBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\frmTimeSync.cs">
       <SubType>Form</SubType>
@@ -424,10 +424,6 @@
     <EmbeddedResource Include="Controls\CardBoxContainer.resx">
       <DependentUpon>CardBoxContainer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\TCOPictureBox.resx">
-      <DependentUpon>TCOPictureBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmAbout.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmAbout.cs</DependentUpon>
@@ -447,8 +443,11 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmShowTCOCall.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\TCOConfirm.resx">
+    <EmbeddedResource Include="TCO\TCOConfirm.resx">
       <DependentUpon>TCOConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCO\TCOPictureBox.resx">
+      <DependentUpon>TCOPictureBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\frmTimeSync.resx">
       <SubType>Designer</SubType>
@@ -776,13 +775,13 @@
       <Version>1.3.0</Version>
     </PackageReference>
     <PackageReference Include="MQTTnet">
-      <Version>3.0.14</Version>
+      <Version>3.0.15</Version>
     </PackageReference>
     <PackageReference Include="MQTTnet.Extensions.ManagedClient">
-      <Version>3.0.14</Version>
+      <Version>3.0.15</Version>
     </PackageReference>
     <PackageReference Include="MQTTnet.Extensions.Rpc">
-      <Version>3.0.14</Version>
+      <Version>3.0.15</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>

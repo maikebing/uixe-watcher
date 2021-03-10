@@ -39,16 +39,16 @@ namespace Uixe.Watcher
 #else
             //SetProcessDpiAwareness((int)DpiAwareness.SystemAware);
 #endif
-//#if DEBUG
-//            Task.Run(async () =>
-//            {
-//                var mqttServer = new MqttFactory().CreateMqttServer();
-//                var opt = new MqttServerOptions();
-//                opt.DefaultEndpointOptions.BoundInterNetworkAddress = IPAddress.Any;
-//                mqttServer.UseApplicationMessageReceivedHandler(c => Debug.WriteLine($"{ c.ClientId} {c.ApplicationMessage.Topic}"));
-//                await mqttServer.StartAsync( opt);
-//            });
-//#endif
+#if DEBUG
+            Task.Run(async () =>
+            {
+                var mqttServer = new MqttFactory().CreateMqttServer();
+                var opt = new MqttServerOptions();
+                opt.DefaultEndpointOptions.BoundInterNetworkAddress = IPAddress.Any;
+                mqttServer.UseApplicationMessageReceivedHandler(c => Debug.WriteLine($"{ c.ClientId} {c.ApplicationMessage.Topic}"));
+                await mqttServer.StartAsync(opt);
+            });
+#endif
             Application.ThreadException += Application_ThreadException;
             try
             {

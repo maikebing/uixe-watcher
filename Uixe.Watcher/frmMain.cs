@@ -168,7 +168,11 @@ namespace Uixe.Watcher
                 client = factory.CreateMqttClient();
                 var options = new MqttClientOptionsBuilder()
                     .WithCredentials($"tco_{p.id}", "")
+#if DEBUG
+                          .WithTcpServer("127.0.0.1", 1883)
+#else
                     .WithTcpServer(p.ip, 1883)
+#endif
                     .WithClientId(p.id)
                     .WithWillMessage(new MqttApplicationMessage() { Topic= "/tco/willmessage", QualityOfServiceLevel= MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain=true})
                     .Build();
@@ -340,9 +344,9 @@ namespace Uixe.Watcher
 
      
 
-        #endregion 加载
+#endregion 加载
 
-        #region 卸载
+#region 卸载
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -381,7 +385,7 @@ namespace Uixe.Watcher
             Properties.Settings.Default.SkinStyle = UserLookAndFeel.Default.ActiveSkinName;
         }
 
-        #endregion 卸载
+#endregion 卸载
 
         /// <summary>
         /// 显示状态信息

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <PublishUrlHistory>publish\|ftp://tco:tco123%4010.165.84.26/|ftp://10.165.84.26/|ftp://tco.uixe.net/</PublishUrlHistory>
     <InstallUrlHistory>http://10.165.84.26/|http://tco.uixe.net/|http://tcs.xjsf.org/app/tco/</InstallUrlHistory>
     <SupportUrlHistory>http://tco.uixe.net/|http://kf.xjsf.org/</SupportUrlHistory>
