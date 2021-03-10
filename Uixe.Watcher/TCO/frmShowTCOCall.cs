@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using MQTTnet.Client;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -43,6 +44,8 @@ namespace Uixe.Watcher
         }
 
         private List<Lane> lstlane = new List<Lane>();
+
+        public IMqttClient MQTTClient { get; internal set; }
 
         public void Show(TCOCall TCOCallxxx)
         {
@@ -126,9 +129,8 @@ namespace Uixe.Watcher
         {
             if (this.tsTabs.SelectedTabPage.Tag is TCOConfirm tms)
             {
-                string cmd = "TCOCONFIRM";
-                string param = tms.GetAUS(ok).ToString(); ;
-               // BLLWatcher.SendReturnInfoToLane(TCS.DAL.DALWatcher.GetLaneInfo(tms.TCO.Head.Network + tms.TCO.Head.Plaza, tms.TCO.Head.LaneNo), cmd, param);
+                this.MQTTClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}", tms.GetAUS(ok)
+                ).Wait(TimeSpan.FromSeconds(10));
             }
         }
 

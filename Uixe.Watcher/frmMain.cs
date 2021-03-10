@@ -166,6 +166,7 @@ namespace Uixe.Watcher
                 var p = Uitls.TollInfo.GetTollInfo();
                 var factory = new MqttFactory();
                 client = factory.CreateMqttClient();
+                
                 var options = new MqttClientOptionsBuilder()
                     .WithCredentials($"tco_{p.id}", "")
 #if DEBUG
@@ -187,7 +188,7 @@ namespace Uixe.Watcher
                     {
                         try
                         {
-                            await client.ConnectAsync(options, CancellationToken.None); // Since 3.0.5 with CancellationToken
+                            await client.ReconnectAsync();
                         }
                         catch
                         {

@@ -17,7 +17,7 @@ namespace Uixe.Watcher
         }
 
 
-        private TCOCall TCE;
+        internal TCOCall TCE;
         public bool CanDo { get; set; }
 
         public bool CheckPlazaInfo()
@@ -40,7 +40,9 @@ namespace Uixe.Watcher
 
         public void Show(TCOCall tce)
         {
+          
             InitInfo();
+            _tce = tce.Clone();
             if (tce.TCOTYPE == WATCHER_TYPE.WATCHER_BlacklistPlate)
             {
                 tcoPictureBox2.Visible = true;
@@ -54,7 +56,6 @@ namespace Uixe.Watcher
             pLazaBindingSource.ResetCurrentItem();
             tCOCallBindingSource.ResetBindings(false);
             tCOCallBindingSource.ResetCurrentItem();
-            AUS = new TCOAUS();
             TCE = tce;
             tCOCallBindingSource.DataSource = tce;
             chkCarKind.Checked = tce.DifClass != 0;
@@ -102,10 +103,7 @@ namespace Uixe.Watcher
             txtcarnumber.Text = tce.ExitPlate;
             txtocartype.Text = tce.ExitCarType;
 
-            AUS.DifPlaza = "0";
-            AUS.DifPlate = "0";
-            AUS.DifClass = "0";
-            AUS.DifType = "0";
+            
             switch (tce.TCOTYPE)
             {
                 case  WATCHER_TYPE.WATCHER_MenuCardBox ://WATCHER_MenuCardBox
@@ -168,6 +166,7 @@ namespace Uixe.Watcher
             this.pcPronow.Properties.Maximum = TCE.TimeOutLong;
             pcPronow.Position = TCE.TimeOutLong;
             timer1.Start();
+            AUS = new MSG_TCOConfirm();
             CanDo = true;
             btnOK.Enabled = true;
         }
@@ -239,46 +238,46 @@ namespace Uixe.Watcher
             //ce.Properties.ValueUnchecked = !ce.Checked;
         }
 
-        private  TCOAUS AUS;
         public const int WATCHER_UnKnowPlaza = 9;	//不明入口站
         public const int WATCHER_PlateInBlack = 20; //黑名单车辆
-
-        public  TCOAUS GetAUS(bool IsSubmit)
+        MSG_TCOConfirm AUS;
+        public MSG_TCOConfirm GetAUS(bool IsSubmit)
         {
-             TCOCall tc = TCE;
-            AUS.CarAxleNumber = tc.CarAxleNumber;
-            AUS.CarClass = AUS.DifClass == "1" ? txtModifyCarKind.Text : tc.ExitCarClass;
-            AUS.CarPlate = AUS.DifPlate == "1" ? txtModifyCarNumber.Text : tc.ExitPlate;
-            AUS.CarType = AUS.DifType == "1" ? txtModifyCarType.SelectedIndex.ToString("00") : tc.ExitCarType;
+            TCOCall tc = TCE;
+            AUS.CarClass = int.Parse( AUS.DifKind   ? txtModifyCarKind.Text : tc.ExitCarClass);
+            AUS.CarPlate = AUS.DifPlate ? txtModifyCarNumber.Text : tc.ExitPlate;
+            AUS.CarType = int.Parse( AUS.DifType  ? txtModifyCarType.SelectedIndex.ToString("00") : tc.ExitCarType);
             string txt = cbxModifyEntryPlaza.GetColumnValue("NetNo") as string + cbxModifyEntryPlaza.GetColumnValue("PlazaNo") as string;
-            //if (!string.IsNullOrWhiteSpace(txt) && TCS.Config.AppConfig.GetPlaza(txt) != null)
-            //{
-            //    AUS.NetNo = AUS.DifPlaza == "1" ? txt.Substring(0, 2) : tc.EntryNetNo;
-            //    AUS.PlazaNo = AUS.DifPlaza == "1" ? txt.Substring(2, 2) : tc.EntryPlazaNo;
-            //}
-            AUS.CarWeight = tc.CarWeight;
-          //  AUS.RouteNo = "";
+            if (string.IsNullOrEmpty(txt) && int.TryParse(cbxModifyEntryPlaza.Text, out int intp))
+            {
+                txt = intp.ToString("0000");
+            }
+            if (!string.IsNullOrWhiteSpace(txt))
+            {
+                AUS.EntryNetNo = AUS.DifPlaza  ? txt.Substring(0, 2) : tc.EntryNetNo;
+                AUS.EntryPlazaNo = AUS.DifPlaza  ? txt.Substring(2, 2) : tc.EntryPlazaNo;
+            }
             AUS.TransNo = tc.TransNo;
-            AUS.TimeoutCar = tc.TimeoutCar.ToString();
+            AUS.TimeoutCar = tc.TimeoutCar;
             AUS.TCOStaffID = RuntimeSetting.NowCollect != null ? RuntimeSetting.NowCollect.UserId : "";
-            AUS.UCar = tc.UCar.ToString ();
-            AUS.ConfirmType = IsSubmit;
+            AUS.UCar = tc.UCar?1:0;
+            AUS.IsConfirm = IsSubmit;
             return AUS;
         }
 
         private void cbxModifyEntryPlaza_TextChanged(object sender, EventArgs e)
         {
-            if (AUS != null) AUS.DifPlaza = "1";
+            if (AUS != null) AUS.DifPlaza = true;
         }
 
         private void txtModifyCarKind_TextChanged(object sender, EventArgs e)
         {
-            if (AUS != null) AUS.DifClass = "1";
+            if (AUS != null) AUS.DifKind  =true;
         }
 
         private void txtModifyCarNumber_TextChanged(object sender, EventArgs e)
         {
-            if (AUS != null) AUS.DifPlate = "1";
+            if (AUS != null) AUS.DifPlate  =true;
         }
 
         private void btnReadPicture_Click(object sender, EventArgs e)
@@ -301,18 +300,19 @@ namespace Uixe.Watcher
                 if (pcPronow.Position == pcPronow.Properties.Minimum)
                 {
                     timer1.Stop();
-                    btnOK.Enabled = false;
-                    CanDo = false;
+                 //   btnOK.Enabled = false;
+                   // CanDo = false;
                 }
             }
         }
 
         private void txtModifyCarType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (AUS != null && txtModifyCarType.SelectedIndex > 0) AUS.DifType = "1";
+            if (AUS != null && txtModifyCarType.SelectedIndex > 0) AUS.DifType  =true;
         }
 
         public Vnc.Viewer.View vnc;
+        private TCOCall _tce;
 
         private void btnVNC_Click(object sender, EventArgs e)
         {

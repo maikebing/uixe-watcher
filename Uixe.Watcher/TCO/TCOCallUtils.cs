@@ -77,6 +77,7 @@ namespace Uixe.Watcher.V1
 
                                 _tcocall = new frmShowTCOCall
                                 {
+                                   MQTTClient= client,
                                     Owner = Program.MainForm
                                 };
                             }
