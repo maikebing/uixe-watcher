@@ -252,7 +252,7 @@ namespace Uixe.Watcher
             TCOCall tc = TCE;
             AUS.CarClass = int.Parse( AUS.DifKind   ? txtModifyCarKind.Text : tc.ExitCarClass);
             AUS.CarPlate = AUS.DifPlate ? txtModifyCarNumber.Text : tc.ExitPlate;
-            AUS.CarType =   AUS.DifType  ? (txtModifyCarType.EditValue as int?).GetValueOrDefault() : int.Parse( tc.ExitCarType));
+            AUS.CarType =   AUS.DifType  ? (txtModifyCarType.EditValue as int?).GetValueOrDefault() : int.Parse( tc.ExitCarType);
             string txt = cbxModifyEntryPlaza.GetColumnValue("NetNo") as string + cbxModifyEntryPlaza.GetColumnValue("PlazaNo") as string;
             if (string.IsNullOrEmpty(txt) && int.TryParse(cbxModifyEntryPlaza.Text, out int intp))
             {
@@ -314,7 +314,7 @@ namespace Uixe.Watcher
 
         private void txtModifyCarType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (AUS != null && txtModifyCarType.SelectedIndex > 0) AUS.DifType  =true;
+            if (AUS != null &&( txtModifyCarType.EditValue as int? ) > 0) AUS.DifType  =true;
         }
 
         public Vnc.Viewer.View vnc;
