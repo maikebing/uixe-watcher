@@ -29,6 +29,86 @@ namespace Uixe.Watcher
         public const string TCO_CK_ShowInfo = "K"; //显示信息
         public const string TCO_JZ_MeiTan = "M"; //煤炭
         public const string TCO_JZ_5Zhe = "N"; //半价优惠车
+
+
+
+
+
+
+
+
+        /*车型定义*/
+        public const int VEHICLE_TYPE_INPUT_MIN = 1;//录入车型的最小值
+        public const int VEHICLE_TYPE_INPUT_BUS_MAX = 4;//录入的客车车型的最大值
+        public const int VEHICLE_TYPE_INPUT_MAX = 6;//录入车型的最大值
+        public const int VEHICLE_TYPE_BUS_01 = 1;//一类客车	
+        public const int VEHICLE_TYPE_BUS_02 = 2;//二类客车
+        public const int VEHICLE_TYPE_BUS_03 = 3;//三类客车	
+        public const int VEHICLE_TYPE_BUS_04 = 4;//四类客车	
+        public const int VEHICLE_TYPE_BUS_05 = 5;//五类客车	
+        public const int VEHICLE_TYPE_BUS_06 = 6;//六类客车	
+        public const int VEHICLE_TYPE_TRUCK_01 = 11;//一类货车	
+        public const int VEHICLE_TYPE_TRUCK_02 = 12;//二类货车	
+        public const int VEHICLE_TYPE_TRUCK_03 = 13;//三类货车	
+        public const int VEHICLE_TYPE_TRUCK_04 = 14;//四类货车	
+        public const int VEHICLE_TYPE_TRUCK_05 = 15;//五类货车	
+        public const int VEHICLE_TYPE_TRUCK_06 = 16;//六类货车	
+        public const int VEHICLE_TYPE_SPECIAL_01 = 21;//一类专项作业车	
+        public const int VEHICLE_TYPE_SPECIAL_02 = 22;//二类专项作业车	
+        public const int VEHICLE_TYPE_SPECIAL_03 = 23;//三类专项作业车	
+        public const int VEHICLE_TYPE_SPECIAL_04 = 24;//四类专项作业车	
+        public const int VEHICLE_TYPE_SPECIAL_05 = 25;//五类专项作业车	
+        public const int VEHICLE_TYPE_SPECIAL_06 = 26;//六类专项作业车	
+
+        /*车型定义中文名称*/
+        public const string VEHICLE_TYPE_BUS_01_STR = "客一";
+        public const string VEHICLE_TYPE_BUS_02_STR = "客二";
+        public const string VEHICLE_TYPE_BUS_03_STR = "客三";
+        public const string VEHICLE_TYPE_BUS_04_STR = "客四";
+        public const string VEHICLE_TYPE_BUS_05_STR = "客五";
+        public const string VEHICLE_TYPE_BUS_06_STR = "客六";
+        public const string VEHICLE_TYPE_TRUCK_01_STR = "货一";
+        public const string VEHICLE_TYPE_TRUCK_02_STR = "货二";
+        public const string VEHICLE_TYPE_TRUCK_03_STR = "货三";
+        public const string VEHICLE_TYPE_TRUCK_04_STR = "货四";
+        public const string VEHICLE_TYPE_TRUCK_05_STR = "货五";
+        public const string VEHICLE_TYPE_TRUCK_06_STR = "货六";
+        public const string VEHICLE_TYPE_SPECIAL_01_STR = "专项一";
+        public const string VEHICLE_TYPE_SPECIAL_02_STR = "专项二";
+        public const string VEHICLE_TYPE_SPECIAL_03_STR = "专项三";
+        public const string VEHICLE_TYPE_SPECIAL_04_STR = "专项四";
+        public const string VEHICLE_TYPE_SPECIAL_05_STR = "专项五";
+        public const string VEHICLE_TYPE_SPECIAL_06_STR = "专项六";
+
+
+        static KeyItem[] _VEHICLE_TYPEs = null;
+        public static KeyItem[] GetVEHICLE_TYPES()
+        {
+            if (_VEHICLE_TYPEs == null)
+            {
+                _VEHICLE_TYPEs = new KeyItem[]{
+                    new KeyItem( VEHICLE_TYPE_BUS_01 ,VEHICLE_TYPE_BUS_01_STR),
+                    new KeyItem( VEHICLE_TYPE_BUS_02 ,VEHICLE_TYPE_BUS_02_STR),
+                    new KeyItem( VEHICLE_TYPE_BUS_03 ,VEHICLE_TYPE_BUS_03_STR),
+                    new KeyItem( VEHICLE_TYPE_BUS_04 ,VEHICLE_TYPE_BUS_04_STR),
+                    new KeyItem( VEHICLE_TYPE_TRUCK_01 ,VEHICLE_TYPE_TRUCK_01_STR),
+                    new KeyItem( VEHICLE_TYPE_TRUCK_02 ,VEHICLE_TYPE_TRUCK_02_STR),
+                    new KeyItem( VEHICLE_TYPE_TRUCK_03 ,VEHICLE_TYPE_TRUCK_03_STR),
+                    new KeyItem( VEHICLE_TYPE_TRUCK_04 ,VEHICLE_TYPE_TRUCK_04_STR),
+                    new KeyItem( VEHICLE_TYPE_TRUCK_05 ,VEHICLE_TYPE_TRUCK_05_STR),
+                    new KeyItem( VEHICLE_TYPE_TRUCK_06 ,VEHICLE_TYPE_TRUCK_06_STR),
+                    new KeyItem( VEHICLE_TYPE_SPECIAL_01 ,VEHICLE_TYPE_SPECIAL_01_STR),
+                    new KeyItem( VEHICLE_TYPE_SPECIAL_02 ,VEHICLE_TYPE_SPECIAL_02_STR),
+                    new KeyItem( VEHICLE_TYPE_SPECIAL_03 ,VEHICLE_TYPE_SPECIAL_03_STR),
+                    new KeyItem( VEHICLE_TYPE_SPECIAL_04 ,VEHICLE_TYPE_SPECIAL_04_STR),
+                    new KeyItem( VEHICLE_TYPE_SPECIAL_05 ,VEHICLE_TYPE_SPECIAL_05_STR),
+                    new KeyItem( VEHICLE_TYPE_SPECIAL_06 ,VEHICLE_TYPE_SPECIAL_06_STR)
+
+            };
+            }
+            return _VEHICLE_TYPEs;
+        }
+
         static KeyItem[] keyItems = null;
         public static KeyItem[] GetTCOCK()
         {
@@ -101,7 +181,14 @@ namespace Uixe.Watcher
             KeyID = id;
             KeyName = name;
         }
+        public KeyItem(int id, string name)
+        {
+            KeyId_Int = id;
+            KeyName = name;
+        }
 
+        public int  KeyId_Int { get; set; }
+    
         public string KeyID { get; set; }
         public string KeyName { get; set; }
     }

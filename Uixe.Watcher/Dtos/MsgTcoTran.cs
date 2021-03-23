@@ -238,7 +238,14 @@
         /// 
         /// </summary>
         public string AxleLastNo { get; set; }
-        public string InputPlate { get; internal set; }
+        public string InputPlate { get;  set; }
+
+        public string EntryLaneID { get; set; }
+        public string EntryStationID { get; set; }
+        public string EntryStationName { get; set; }
+        public string ETCEntryDateTime { get; set; }
+        public string ETCEntryStationNo { get; set; }
+
     }
 
 }

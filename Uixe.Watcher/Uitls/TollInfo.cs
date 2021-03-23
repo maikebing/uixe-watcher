@@ -46,5 +46,6 @@ namespace Uixe.Watcher.Uitls
             return Barrel.Current.Get<Plaza>(_key);
 
         }
+
     }
 }

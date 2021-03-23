@@ -18,6 +18,19 @@ namespace Uixe.Watcher.Dtos
         public T data { get; set; }
 
     }
+    public class ProvCode
+    {
+        public int provId { get; set; }
+        public string provName { get; set; }
+    }
+    public class ProvPlazaInfo
+    {
+        public string plazaId { get; set; }
+        public string plazaName { get; set; }
+        public string plazaHEX { get; set; }
+        public string plazaNameInitials { get; set; }
+    }
+
     public class UserRole
     {
         public int roleId { get; set; }

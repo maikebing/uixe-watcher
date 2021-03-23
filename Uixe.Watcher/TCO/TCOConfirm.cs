@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
+using Uixe.Watcher.Uitls;
 using Uixe.Watcher.V1;
 
 namespace Uixe.Watcher
@@ -51,7 +52,7 @@ namespace Uixe.Watcher
             {
                 tcoPictureBox2.Visible = false;
             }
-            //   FillPlazaNameAndList(tce);
+            FillPlazaNameAndList(tce);
             //   LoadEntryPicture(tce);
             pLazaBindingSource.ResetCurrentItem();
             tCOCallBindingSource.ResetBindings(false);
@@ -205,26 +206,31 @@ namespace Uixe.Watcher
                 }
             }).Start();
         }
-
+      
 
 
         private void FillPlazaNameAndList(TCOCall tce)
         {
             try
             {
-                //pLazaBindingSource.DataSource = Config.AppConfig.Toll.Plaza;
-                //var r = from p in Config.AppConfig.Toll.Plaza where p.NetNo == tce.EntryNetNo && p.PlazaNo == tce.EntryPlazaNo select p;
-                //if (r.Any())
-                //{
-                //    string psn = r.FirstOrDefault().Plaza_Name;
-                //    cbxModifyEntryPlaza.EditValue = psn;
-                //    txtentrysite.Text = psn;
-                //    txtexitsite.Text = psn;
-                //}
-                //else
-                //{
-                //    cbxModifyEntryPlaza.EditValue = "";
-                //}
+                UixeClient client = new UixeClient();
+                var ppi = client.GetProvPlazaInfo("65");
+                if (ppi != null)
+                {
+                    pLazaBindingSource.DataSource = ppi;
+                    var r = from p in ppi where  p.plazaId==tce.EntryStationID  select p;
+                    if (r.Any())
+                    {
+                        string psn = r.FirstOrDefault().plazaName;
+                        cbxModifyEntryPlaza.EditValue = psn;
+                        txtentrysite.Text = psn;
+                        txtexitsite.Text = psn;
+                    }
+                    else
+                    {
+                        cbxModifyEntryPlaza.EditValue = "";
+                    }
+                }
             }
             catch (System.Exception)
             {
@@ -246,7 +252,7 @@ namespace Uixe.Watcher
             TCOCall tc = TCE;
             AUS.CarClass = int.Parse( AUS.DifKind   ? txtModifyCarKind.Text : tc.ExitCarClass);
             AUS.CarPlate = AUS.DifPlate ? txtModifyCarNumber.Text : tc.ExitPlate;
-            AUS.CarType = int.Parse( AUS.DifType  ? txtModifyCarType.SelectedIndex.ToString("00") : tc.ExitCarType);
+            AUS.CarType =   AUS.DifType  ? (txtModifyCarType.EditValue as int?).GetValueOrDefault() : int.Parse( tc.ExitCarType));
             string txt = cbxModifyEntryPlaza.GetColumnValue("NetNo") as string + cbxModifyEntryPlaza.GetColumnValue("PlazaNo") as string;
             if (string.IsNullOrEmpty(txt) && int.TryParse(cbxModifyEntryPlaza.Text, out int intp))
             {
@@ -333,10 +339,6 @@ namespace Uixe.Watcher
         }
 
         private void pcPronow_DoubleClick(object sender, EventArgs e)
-        {
-        }
-
-        private void btnQueryOnline_Click(object sender, EventArgs e)
         {
         }
     }

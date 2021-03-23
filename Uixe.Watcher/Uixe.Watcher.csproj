@@ -249,6 +249,7 @@
     <Compile Include="Dtos\SubHead.cs" />
     <Compile Include="Dtos\tco_confirm.cs" />
     <Compile Include="Dtos\User.cs" />
+    <Compile Include="Extensions\UixetExtension.cs" />
     <Compile Include="FAP.cs" />
     <Compile Include="Controls\LaneTime.cs" />
     <Compile Include="Controls\LaneView.cs">
@@ -345,6 +346,7 @@
     <Compile Include="TCO\WeightTCOConfirm.Designer.cs">
       <DependentUpon>WeightTCOConfirm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uitls\UixeClient.cs" />
     <Compile Include="Uitls\VNCUtils.cs" />
     <Compile Include="Uitls\VNCViewer\App.cs" />
     <Compile Include="Uitls\VNCViewer\AuthDlg.cs">
@@ -467,25 +469,12 @@
     </EmbeddedResource>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\FreshAgriProducts.datasource" />
-    <None Include="Properties\DataSources\KeyItem.datasource" />
-    <None Include="Properties\DataSources\LaneInfo.datasource" />
+    <None Include="Properties\DataSources\KeyItem1.datasource" />
     <None Include="Properties\DataSources\MsgInfo.datasource" />
-    <None Include="Properties\DataSources\TCS.Config.Settings.PLaza.datasource" />
-    <None Include="Properties\DataSources\TCS.Config.Settings.Plaza1.datasource" />
-    <None Include="Properties\DataSources\TCS.DAL.Image.datasource" />
-    <None Include="Properties\DataSources\TCS.DAL.V_PLAZA_LIST.datasource" />
-    <None Include="Properties\DataSources\TCS.Model.MSG_TCOCALL.datasource" />
-    <None Include="Properties\DataSources\TCS.MQL.OptLog.datasource" />
-    <None Include="Properties\DataSources\TCS.MQL.TCOCall.datasource" />
-    <None Include="Properties\DataSources\TCS.MQL.TCOCallEx.datasource" />
-    <None Include="Properties\DataSources\TCS.Msg.MQL.V1.MsgWeightTCOCALL.datasource" />
-    <None Include="Properties\DataSources\TCS.Msg.MQL.V1.Msg_Weight_TCOCALL.datasource" />
-    <None Include="Properties\DataSources\TCS.Watcher.Controls.LaneTime.datasource" />
-    <None Include="Properties\DataSources\TCS.Watcher.Param.ParamItem.datasource" />
-    <None Include="Properties\DataSources\TCS.Watcher.Tools.LanePingItem.datasource" />
-    <None Include="Properties\DataSources\TCS.Watcher.V2.Msg_Revision.datasource" />
     <None Include="Properties\DataSources\Uixe.Watcher.Dtos.Lane.datasource" />
     <None Include="Properties\DataSources\Uixe.Watcher.Dtos.Plaza.datasource" />
+    <None Include="Properties\DataSources\Uixe.Watcher.Dtos.ProvCode.datasource" />
+    <None Include="Properties\DataSources\Uixe.Watcher.Dtos.ProvPlazaInfo.datasource" />
     <None Include="Properties\DataSources\Uixe.Watcher.Dtos.User.datasource" />
     <None Include="Properties\DataSources\Uixe.Watcher.Msg.LaneInfo.datasource" />
     <None Include="Properties\DataSources\Uixe.Watcher.Msg.MsgInfo.datasource" />

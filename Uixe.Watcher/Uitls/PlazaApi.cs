@@ -1,5 +1,4 @@
 ﻿using RestSharp;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -9,7 +8,7 @@ using Uixe.Watcher.Dtos;
 
 namespace Uixe.Watcher.Uitls
 {
-    public class PlazaApi
+    public partial class PlazaApi
     {
 
         RestClient client;
@@ -43,6 +42,5 @@ namespace Uixe.Watcher.Uitls
         {
 
         }
-
     }
 }
