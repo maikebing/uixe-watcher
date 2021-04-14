@@ -51,7 +51,7 @@ namespace Uixe.Watcher.Uitls
         }
         private RestClient Create(string api)
         {
-             var client= new RestClient($"http://{RuntimeSetting.Plaza.ip}:8080/api{api}");
+             var client= new RestClient($"http://{RuntimeSetting.Plaza?.ip}:8080/api{api}");
             client.Timeout = -1;
             return client;
         }

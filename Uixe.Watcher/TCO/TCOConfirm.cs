@@ -26,8 +26,8 @@ namespace Uixe.Watcher
             bool ret = true;
             if (TCE.TCOTYPE ==  WATCHER_TYPE.WATCHER_UnKnowPlaza)
             {
-                string txt = cbxModifyEntryPlaza.GetColumnValue("NetNo") as string + cbxModifyEntryPlaza.GetColumnValue("PlazaNo") as string;
-                if (string.IsNullOrEmpty(txt))
+                 var ppi= cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
+                if (ppi==null ||  string.IsNullOrEmpty(ppi.plazaId))
                 {
                     ret = false;
                 }
@@ -222,7 +222,10 @@ namespace Uixe.Watcher
                     if (r.Any())
                     {
                         string psn = r.FirstOrDefault().plazaName;
-                        cbxModifyEntryPlaza.EditValue = psn;
+                        pLazaBindingSource.Position= pLazaBindingSource.IndexOf(r.FirstOrDefault());
+                        cbxModifyEntryPlaza.Text = psn;
+                        cbxModifyEntryPlaza.EditValue = tce.EntryStationID;
+                        //cbxModifyEntryPlaza.ItemIndex= cbxModifyEntryPlaza.Properties.GetDataSourceRowIndex(cbxModifyEntryPlaza.Properties.KeyMember, tce.EntryStationID);
                         txtentrysite.Text = psn;
                         txtexitsite.Text = psn;
                     }
@@ -253,7 +256,11 @@ namespace Uixe.Watcher
             AUS.CarClass = int.Parse( AUS.DifKind   ? txtModifyCarKind.Text : tc.ExitCarClass);
             AUS.CarPlate = AUS.DifPlate ? txtModifyCarNumber.Text : tc.ExitPlate;
             AUS.CarType =   AUS.DifType  ? (txtModifyCarType.EditValue as int?).GetValueOrDefault() : int.Parse( tc.ExitCarType);
-            string txt = cbxModifyEntryPlaza.GetColumnValue("NetNo") as string + cbxModifyEntryPlaza.GetColumnValue("PlazaNo") as string;
+            var plaza = cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
+            string txt = plaza.plazaHEX.Substring(4,4);
+            AUS.EntryPlazaHEX = plaza.plazaHEX;
+            AUS.EntryPlazaId = plaza.plazaId;
+            AUS.EntryPlazaName = plaza.plazaName;
             if (string.IsNullOrEmpty(txt) && int.TryParse(cbxModifyEntryPlaza.Text, out int intp))
             {
                 txt = intp.ToString("0000");

@@ -152,6 +152,7 @@ namespace Uixe.Watcher
         {
             this.SuspendLayout();
             Plaza = TollInfo.GetTollInfo(plazaid,reset);
+            RuntimeSetting.Plaza = Plaza;
             LoadLaneView(Plaza);
             UserAccessControl();
             this.ResumeLayout();
@@ -178,7 +179,7 @@ namespace Uixe.Watcher
                     .WithWillMessage(new MqttApplicationMessage() { Topic= "/tco/willmessage", QualityOfServiceLevel= MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain=true})
                     .Build();
                 chkServerStatus.Caption = $"服务器:{p.ip}";
-               
+            
                 client.UseDisconnectedHandler(async xe =>
                 {
                     Console.WriteLine("### DISCONNECTED FROM SERVER ###");
@@ -241,6 +242,17 @@ namespace Uixe.Watcher
                 });
                 
                 await client.ConnectAsync(options, CancellationToken.None);
+                do
+                {
+                    if (!client.IsConnected)
+                    {
+                        await client.ReconnectAsync();
+                    }
+                    else
+                    {
+                        Thread.Sleep(TimeSpan.FromSeconds(10));
+                    }
+                } while (true);
             });
         }
 

@@ -1,5 +1,6 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.XtraEditors;
+using MonkeyCache;
 using MonkeyCache.LiteDB;
 using MQTTnet;
 using MQTTnet.Server;
@@ -54,6 +55,7 @@ namespace Uixe.Watcher
             {
                 Barrel.ApplicationId = Assembly.GetExecutingAssembly().GetName().Name;
                 Barrel.EncryptionKey = "future";
+                BarrelUtils.SetBaseCachePath(AppContext.BaseDirectory);
             }
             catch (Exception ex)
             {
