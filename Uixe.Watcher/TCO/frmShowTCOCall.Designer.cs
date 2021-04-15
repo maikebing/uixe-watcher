@@ -81,7 +81,7 @@
             this.tsTabs.Location = new System.Drawing.Point(1, 1);
             this.tsTabs.Name = "tsTabs";
             this.tsTabs.SelectedTabPage = this.tabPage1;
-            this.tsTabs.Size = new System.Drawing.Size(727, 503);
+            this.tsTabs.Size = new System.Drawing.Size(618, 436);
             this.tsTabs.TabIndex = 0;
             this.tsTabs.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tabPage1,
@@ -107,7 +107,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
-            this.tabPage1.Size = new System.Drawing.Size(725, 474);
+            this.tabPage1.Size = new System.Drawing.Size(616, 409);
             this.tabPage1.Text = "tabPage1";
             // 
             // tcoConfirm1
@@ -118,7 +118,7 @@
             this.tcoConfirm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcoConfirm1.Location = new System.Drawing.Point(0, 0);
             this.tcoConfirm1.Name = "tcoConfirm1";
-            this.tcoConfirm1.Size = new System.Drawing.Size(725, 474);
+            this.tcoConfirm1.Size = new System.Drawing.Size(616, 409);
             this.tcoConfirm1.TabIndex = 0;
             // 
             // tabPage2
@@ -140,20 +140,20 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(721, 471);
+            this.tabPage2.Size = new System.Drawing.Size(741, 490);
             this.tabPage2.Text = "tabPage2";
             // 
             // xtraTabPage1
             // 
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(721, 471);
+            this.xtraTabPage1.Size = new System.Drawing.Size(741, 490);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // frmShowTCOCall
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(727, 501);
+            this.ClientSize = new System.Drawing.Size(621, 440);
             this.Controls.Add(this.tsTabs);
             this.Name = "frmShowTCOCall";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

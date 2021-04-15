@@ -91,7 +91,7 @@ namespace Uixe.Watcher.Ring
                     audioFileReader.PlaySync();
               
             }
-            catch (Exception ex)
+            catch (Exception )
             {
             }
         }

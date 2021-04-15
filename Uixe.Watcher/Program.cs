@@ -32,6 +32,8 @@ namespace Uixe.Watcher
         // Fields
         public static frmMain MainForm;
 
+
+        public static bool mqttserver { get; set; }
         [STAThread]
         private static void Main(string[] args)
         {
@@ -40,7 +42,14 @@ namespace Uixe.Watcher
 #else
             //SetProcessDpiAwareness((int)DpiAwareness.SystemAware);
 #endif
-            if (args.Any(s => s == "--mqttserver"))
+            args.ToList().ForEach(s =>
+            {
+               if (s== "--mqttserver")
+                {
+                    mqttserver = true;
+                }
+            });
+            if (mqttserver)
             {
                 Task.Run(async () =>
                 {

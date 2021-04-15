@@ -167,16 +167,12 @@ namespace Uixe.Watcher
                 var p = Uitls.TollInfo.GetTollInfo();
                 var factory = new MqttFactory();
                 client = factory.CreateMqttClient();
-                
+                string ipaddress = Program.mqttserver ? "127.0.0.1" : p.ip;
                 var options = new MqttClientOptionsBuilder()
                     .WithCredentials($"tco_{p.id}", "")
-#if DEBUG
-                          .WithTcpServer("127.0.0.1", 1883)
-#else
-                    .WithTcpServer(p.ip, 1883)
-#endif
+                    .WithTcpServer(ipaddress, 1883)
                     .WithClientId(p.id)
-                    .WithWillMessage(new MqttApplicationMessage() { Topic= "/tco/willmessage", QualityOfServiceLevel= MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain=true})
+                    .WithWillMessage(new MqttApplicationMessage() { Topic = "/tco/willmessage", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain = true })
                     .Build();
                 chkServerStatus.Caption = $"服务器:{p.ip}";
             

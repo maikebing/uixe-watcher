@@ -34,6 +34,7 @@
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -43,17 +44,15 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://tcs.xjsf.org/app/tco/</InstallUrl>
-    <SupportUrl>http://kf.xjsf.org/</SupportUrl>
-    <ProductName>车道监控软件%28TCO%29</ProductName>
-    <PublisherName>新疆壹体微创软件科技有限公司</PublisherName>
-    <SuiteName>新疆联网收费系统</SuiteName>
+    <InstallUrl>http://10.165.84.26/</InstallUrl>
+    <ProductName>车道监控软件</ProductName>
+    <PublisherName>新疆交投科技有限责任公司</PublisherName>
+    <SuiteName>新e畅</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>43</ApplicationRevision>
-    <ApplicationVersion>5.18.3.%2a</ApplicationVersion>
+    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationVersion>1.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -71,7 +70,7 @@
     <NoWarn>1684</NoWarn>
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -85,7 +84,7 @@
     <NoWarn>1607</NoWarn>
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
@@ -96,17 +95,15 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>CD8D869AE7F513CF79186C635418D434203466CB</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>C1045595F954F595B2D0802D00C578E2DE77C06E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetZone>Internet</TargetZone>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Debug\</OutputPath>
@@ -117,56 +114,69 @@
     <OutputPath>bin\x86\Release\</OutputPath>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Uixe.Watcher_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.BonusSkins.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.BonusSkins.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.CodeParser.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Data.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Charts.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.CodeParser.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.DataAccess.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.DataAccess.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v19.2.Export, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v20.2.Export, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Utils.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.Desktop.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraBars.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v19.2.Wizard, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v19.2.UI, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpo.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraGauges.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGauges.v19.2.Win, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraCharts.v20.2.Wizard, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.2.UI, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGauges.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v20.2.Win, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGrid.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraLayout.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraVerticalGrid.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraTreeList.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -225,9 +235,21 @@
     <Compile Include="Controls\CardBoxContainer.designer.cs">
       <DependentUpon>CardBoxContainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Keyboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Keyboard.designer.cs">
+      <DependentUpon>Keyboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dtos\RptLoginResult.cs" />
+    <Compile Include="Dtos\Head.cs" />
     <Compile Include="Dtos\Lane.cs" />
+    <Compile Include="Dtos\MsgTcoTran.cs" />
     <Compile Include="Dtos\Plaza.cs" />
+    <Compile Include="Dtos\SubHead.cs" />
+    <Compile Include="Dtos\tco_confirm.cs" />
     <Compile Include="Dtos\User.cs" />
+    <Compile Include="Extensions\UixetExtension.cs" />
     <Compile Include="FAP.cs" />
     <Compile Include="Controls\LaneTime.cs" />
     <Compile Include="Controls\LaneView.cs">
@@ -238,12 +260,6 @@
     </Compile>
     <Compile Include="Controls\MessageView.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\TCOPictureBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\TCOPictureBox.Designer.cs">
-      <DependentUpon>TCOPictureBox.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAbout.cs">
       <SubType>Form</SubType>
@@ -263,6 +279,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRemoteLane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRemoteLane.Designer.cs">
+      <DependentUpon>frmRemoteLane.cs</DependentUpon>
+    </Compile>
     <Compile Include="Msg\LaneStatus.cs" />
     <Compile Include="Msg\LaneInfo.cs" />
     <Compile Include="Msg\MsgInfo.cs" />
@@ -280,11 +302,17 @@
     <Compile Include="TCO\frmShowTCOCall.Designer.cs">
       <DependentUpon>frmShowTCOCall.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TCOConfirm.cs">
+    <Compile Include="TCO\TCOConfirm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\TCOConfirm.Designer.cs">
+    <Compile Include="TCO\TCOConfirm.Designer.cs">
       <DependentUpon>TCOConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TCO\TCOPictureBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TCO\TCOPictureBox.Designer.cs">
+      <DependentUpon>TCOPictureBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\frmTimeSync.cs">
       <SubType>Form</SubType>
@@ -295,7 +323,10 @@
     <Compile Include="Ring\PlayUitls.cs" />
     <Compile Include="Tools\SpeechUtils.cs" />
     <Compile Include="Tools\LanePingItem.cs" />
+    <Compile Include="Extensions\RSAExtensions.cs" />
+    <Compile Include="Uitls\MqttClientExtensions.cs" />
     <Compile Include="Uitls\InheritHelper.cs" />
+    <Compile Include="Uitls\PlazaApi.cs" />
     <Compile Include="Uitls\TollInfo.cs" />
     <Compile Include="TCO\frmWeightTCOCall.cs">
       <SubType>Form</SubType>
@@ -315,6 +346,7 @@
     <Compile Include="TCO\WeightTCOConfirm.Designer.cs">
       <DependentUpon>WeightTCOConfirm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uitls\UixeClient.cs" />
     <Compile Include="Uitls\VNCUtils.cs" />
     <Compile Include="Uitls\VNCViewer\App.cs" />
     <Compile Include="Uitls\VNCViewer\AuthDlg.cs">
@@ -356,21 +388,21 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Uitls\VNCViewer\View.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Uitls\VNCViewer\ViewDt.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Uitls\VNCViewer\ViewFactory.cs" />
     <Compile Include="Uitls\VNCViewer\ViewFullCf.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Uitls\VNCViewer\ViewOpts.cs" />
     <Compile Include="Uitls\VNCViewer\ViewPpc.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Uitls\VNCViewer\ViewSp.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Uitls\VNCViewer\VncAuth.cs" />
     <Compile Include="Uitls\VNCViewer\WarnEx.cs" />
@@ -379,6 +411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CougarClockContainer.resx">
       <DependentUpon>CougarClockContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Keyboard.resx">
+      <DependentUpon>Keyboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LaneView.resx">
       <DependentUpon>LaneView.cs</DependentUpon>
@@ -390,10 +425,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CardBoxContainer.resx">
       <DependentUpon>CardBoxContainer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\TCOPictureBox.resx">
-      <DependentUpon>TCOPictureBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAbout.resx">
       <SubType>Designer</SubType>
@@ -407,12 +438,18 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRemoteLane.resx">
+      <DependentUpon>frmRemoteLane.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TCO\frmShowTCOCall.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmShowTCOCall.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\TCOConfirm.resx">
+    <EmbeddedResource Include="TCO\TCOConfirm.resx">
       <DependentUpon>TCOConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCO\TCOPictureBox.resx">
+      <DependentUpon>TCOPictureBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\frmTimeSync.resx">
       <SubType>Designer</SubType>
@@ -432,25 +469,12 @@
     </EmbeddedResource>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\FreshAgriProducts.datasource" />
-    <None Include="Properties\DataSources\KeyItem.datasource" />
-    <None Include="Properties\DataSources\LaneInfo.datasource" />
+    <None Include="Properties\DataSources\KeyItem1.datasource" />
     <None Include="Properties\DataSources\MsgInfo.datasource" />
-    <None Include="Properties\DataSources\TCS.Config.Settings.PLaza.datasource" />
-    <None Include="Properties\DataSources\TCS.Config.Settings.Plaza1.datasource" />
-    <None Include="Properties\DataSources\TCS.DAL.Image.datasource" />
-    <None Include="Properties\DataSources\TCS.DAL.V_PLAZA_LIST.datasource" />
-    <None Include="Properties\DataSources\TCS.Model.MSG_TCOCALL.datasource" />
-    <None Include="Properties\DataSources\TCS.MQL.OptLog.datasource" />
-    <None Include="Properties\DataSources\TCS.MQL.TCOCall.datasource" />
-    <None Include="Properties\DataSources\TCS.MQL.TCOCallEx.datasource" />
-    <None Include="Properties\DataSources\TCS.Msg.MQL.V1.MsgWeightTCOCALL.datasource" />
-    <None Include="Properties\DataSources\TCS.Msg.MQL.V1.Msg_Weight_TCOCALL.datasource" />
-    <None Include="Properties\DataSources\TCS.Watcher.Controls.LaneTime.datasource" />
-    <None Include="Properties\DataSources\TCS.Watcher.Param.ParamItem.datasource" />
-    <None Include="Properties\DataSources\TCS.Watcher.Tools.LanePingItem.datasource" />
-    <None Include="Properties\DataSources\TCS.Watcher.V2.Msg_Revision.datasource" />
     <None Include="Properties\DataSources\Uixe.Watcher.Dtos.Lane.datasource" />
     <None Include="Properties\DataSources\Uixe.Watcher.Dtos.Plaza.datasource" />
+    <None Include="Properties\DataSources\Uixe.Watcher.Dtos.ProvCode.datasource" />
+    <None Include="Properties\DataSources\Uixe.Watcher.Dtos.ProvPlazaInfo.datasource" />
     <None Include="Properties\DataSources\Uixe.Watcher.Dtos.User.datasource" />
     <None Include="Properties\DataSources\Uixe.Watcher.Msg.LaneInfo.datasource" />
     <None Include="Properties\DataSources\Uixe.Watcher.Msg.MsgInfo.datasource" />
@@ -500,9 +524,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.0,KB2468871">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29与 .NET Framework 4 的更新%28KB2468871%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 和 x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -661,6 +685,7 @@
     <None Include="Resources\Printer.gif" />
     <None Include="Resources\QRPayStatus.gif" />
     <None Include="Resources\driving_32x324.png" />
+    <None Include="Resources\16525857840_9a6c8f2b77_o.jpg" />
     <Content Include="Ring\facebook提示音.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -730,22 +755,46 @@
       <Version>1.2.1</Version>
     </PackageReference>
     <PackageReference Include="FluentFTP">
-      <Version>33.0.3</Version>
+      <Version>33.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="LibVLCSharp.WinForms">
+      <Version>3.5.0</Version>
     </PackageReference>
     <PackageReference Include="MonkeyCache.LiteDB">
-      <Version>1.3.0</Version>
+      <Version>1.5.2</Version>
+    </PackageReference>
+    <PackageReference Include="MQTTnet">
+      <Version>3.0.15</Version>
+    </PackageReference>
+    <PackageReference Include="MQTTnet.Extensions.ManagedClient">
+      <Version>3.0.15</Version>
+    </PackageReference>
+    <PackageReference Include="MQTTnet.Extensions.Rpc">
+      <Version>3.0.15</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.3</Version>
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Portable.BouncyCastle">
+      <Version>1.8.10</Version>
     </PackageReference>
     <PackageReference Include="RestSharp">
       <Version>106.11.7</Version>
     </PackageReference>
+    <PackageReference Include="RtspClientSharp">
+      <Version>1.3.3</Version>
+    </PackageReference>
     <PackageReference Include="SSH.NET">
-      <Version>2016.1.0</Version>
+      <Version>2020.0.1</Version>
     </PackageReference>
     <PackageReference Include="SshNet.Security.Cryptography">
       <Version>1.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.4</Version>
+    </PackageReference>
+    <PackageReference Include="VideoLAN.LibVLC.Windows">
+      <Version>3.0.12</Version>
     </PackageReference>
     <PackageReference Include="WindowsFirewallHelper">
       <Version>1.6.3.40</Version>

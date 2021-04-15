@@ -103,7 +103,7 @@ namespace Uixe.Watcher.V1
                     prompt = SpeechUtils.Speecher.SpeakAsync(speechtext);//语音阅读方法
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 //Log.LogException("Show(MsgWeightTCOCALL tce)", tce.ToString(), ex);
             }
