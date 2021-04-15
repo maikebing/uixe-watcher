@@ -54,6 +54,7 @@ namespace Uixe.Watcher
             }
             FillPlazaNameAndList(tce);
             //   LoadEntryPicture(tce);
+            keyItemBindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
             pLazaBindingSource.ResetCurrentItem();
             tCOCallBindingSource.ResetBindings(false);
             tCOCallBindingSource.ResetCurrentItem();
@@ -225,6 +226,7 @@ namespace Uixe.Watcher
                         pLazaBindingSource.Position= pLazaBindingSource.IndexOf(r.FirstOrDefault());
                         cbxModifyEntryPlaza.Text = psn;
                         cbxModifyEntryPlaza.EditValue = tce.EntryStationID;
+                        Application.DoEvents();
                         //cbxModifyEntryPlaza.ItemIndex= cbxModifyEntryPlaza.Properties.GetDataSourceRowIndex(cbxModifyEntryPlaza.Properties.KeyMember, tce.EntryStationID);
                         txtentrysite.Text = psn;
                         txtexitsite.Text = psn;
@@ -253,23 +255,24 @@ namespace Uixe.Watcher
         public MSG_TCOConfirm GetAUS(bool IsSubmit)
         {
             TCOCall tc = TCE;
+       
+            AUS.DifPlate = TCE.DifPlate;
+            AUS.DifPlaza = TCE.DifPlaza;
+            AUS.DifType = TCE.DifType;
             AUS.CarClass = int.Parse( AUS.DifKind   ? txtModifyCarKind.Text : tc.ExitCarClass);
-            AUS.CarPlate = AUS.DifPlate ? txtModifyCarNumber.Text : tc.ExitPlate;
-            AUS.CarType =   AUS.DifType  ? (txtModifyCarType.EditValue as int?).GetValueOrDefault() : int.Parse( tc.ExitCarType);
+            AUS.CarPlate = tc.DifPlate ? txtModifyCarNumber.Text : tc.ExitPlate;
+            AUS.CarType = tc.DifType  ? (txtModifyCarType.EditValue as int?).GetValueOrDefault() : int.Parse( tc.ExitCarType);
             var plaza = cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
-            string txt = plaza.plazaHEX.Substring(4,4);
-            AUS.EntryPlazaHEX = plaza.plazaHEX;
-            AUS.EntryPlazaId = plaza.plazaId;
-            AUS.EntryPlazaName = plaza.plazaName;
-            if (string.IsNullOrEmpty(txt) && int.TryParse(cbxModifyEntryPlaza.Text, out int intp))
+            if (plaza != null && !string.IsNullOrEmpty(plaza.plazaHEX) && plaza.plazaHEX.Length >= 8)
             {
-                txt = intp.ToString("0000");
+                string txt = plaza.plazaHEX.Substring(4, 4);
+                AUS.EntryPlazaHEX = plaza.plazaHEX;
+                AUS.EntryPlazaId = plaza.plazaId;
+                AUS.EntryPlazaName = plaza.plazaName;
+                AUS.EntryNetNo = txt.Substring(0, 2);
+                AUS.EntryPlazaNo = txt.Substring(2, 2);
             }
-            if (!string.IsNullOrWhiteSpace(txt))
-            {
-                AUS.EntryNetNo = AUS.DifPlaza  ? txt.Substring(0, 2) : tc.EntryNetNo;
-                AUS.EntryPlazaNo = AUS.DifPlaza  ? txt.Substring(2, 2) : tc.EntryPlazaNo;
-            }
+            AUS.DifPlaza = tc.EntryStationID != AUS.EntryPlazaId &&  AUS.EntryPlazaId!=null;
             AUS.TransNo = tc.TransNo;
             AUS.TimeoutCar = tc.TimeoutCar;
             AUS.TCOStaffID = RuntimeSetting.NowCollect != null ? RuntimeSetting.NowCollect.UserId : "";

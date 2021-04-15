@@ -22,26 +22,26 @@ namespace Uixe.Watcher.Msg
             return ls;
         }
 
-        public string ID => $"650{Head.NetNo}{Head.PlazaNo}{ Head.LaneID}";
+        public string ID => $"650{Head?.NetNo}{Head?.PlazaNo}{ Head?.LaneID}";
 
-        public string MsgType => Head.MsgType;
+        public string MsgType => Head?.MsgType;
 
-        public string LaneType => $"{Head.LaneType}";
+        public string LaneType => $"{Head?.LaneType}";
 
 
         public string LaneMode => $"{SubHead.LaneMode}";
-        public string Network => Head.NetNo;
-        public string Plaza => Head.PlazaNo;
+        public string Network => Head?.NetNo;
+        public string Plaza => Head?.PlazaNo;
 
 
 
-        public DateTime YMDHM => DateTime.TryParseExact(Head.DDHM, "yyyyMMDDHHmmss", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime dt) ? dt : DateTime.MinValue;
+        public DateTime YMDHM => DateTime.TryParseExact(Head?.DDHM, "yyyyMMDDHHmmss", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime dt) ? dt : DateTime.MinValue;
 
 
 
-        public string LaneNo => Head.LaneID;
+        public string LaneNo => Head?.LaneID;
 
-        public string Collector => SubHead.StaffID;
+        public string Collector => SubHead?.StaffID;
 
         public WATCHER_TYPE CallType => base.WatcherID ;
 
