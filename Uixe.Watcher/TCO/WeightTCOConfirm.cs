@@ -71,8 +71,10 @@ namespace Uixe.Watcher.V1
                 Reset();
                 CarPlateTextEdit.Enabled = tce.CallType == WATCHER_TYPE.WATCHER_State44_ModifyCarNumber;
                 CarPlateTextEdit.ReadOnly = !CarPlateTextEdit.Enabled;
-               // picLane.ImageLocation =string.Format("ftp://root:{0}@{1}/{2}/IMAGE/TEMP/TTEMP.JPG","future", TCS.Config.AppConfig.GetLaneIP(tce.Network + tce.Plaza, tce.LaneNo), AppConfig.RunTime.LaneAppDir);
-                //picBig.ImageLocation = picLane.ImageLocation;
+                var l = RuntimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
+                string url = string.Format($"http://{l.ip}:10000/capture ");
+                picLane.ImageLocation = url;
+                picBig.ImageLocation = url;
                 var strct = Enum.GetName(typeof(WATCHER_TYPE), tce.CallType); 
                string speechtext = $"{tce.LaneNo} {KeyItem.GetTCOCK().ToList().FirstOrDefault(ki => ki.KeyID == strct)?.KeyName}";
                 bool sound = false;

@@ -38,7 +38,7 @@ namespace Uixe.Watcher
             }
             return ret;
         }
-
+        UixeClient uixeClient = new UixeClient();
         public void Show(TCOCall tce)
         {
           
@@ -53,8 +53,14 @@ namespace Uixe.Watcher
                 tcoPictureBox2.Visible = false;
             }
             FillPlazaNameAndList(tce);
-            //   LoadEntryPicture(tce);
-            keyItemBindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
+            var l = RuntimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
+            string url = string.Format($"http://{l.ip}:10000/capture ");
+            tcoPictureBox1.ImageLocation = url;
+            tcoPictureBox2.ImageLocation = url;
+            keyItem_Vehicle_Types_BindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
+            _pbindingSource1.DataSource = uixeClient.GetProvCodes();
+            _pbindingSource1.ResetCurrentItem();
+            cbxProv.EditValue = 65;
             pLazaBindingSource.ResetCurrentItem();
             tCOCallBindingSource.ResetBindings(false);
             tCOCallBindingSource.ResetCurrentItem();
@@ -173,41 +179,7 @@ namespace Uixe.Watcher
             btnOK.Enabled = true;
         }
 
-        private void LoadEntryPicture(TCOCall tce)
-        {
-            new System.Threading.Thread((System.Threading.ThreadStart)delegate
-            {
-                try
-                {
-                    if (tce.TCOTYPE == WATCHER_TYPE.WATCHER_BlacklistPlate)
-                    {
-                        this.Invoke((MethodInvoker)delegate ()
-                        {
-                            //string url = string.Format("ftp://root:{0}@/{1}/{2}/IMAGE/TEMP/"
-                            //     , AppConfig.RunTime.VNCPassword
-                            //      , AppConfig.GetLaneIP(AppConfig.RunTime.NetNo + AppConfig.RunTime.PlazaNo, TCO.Head.LaneNo)
-                            //       , AppConfig.RunTime.LaneAppDir
-                            //    );
-                            //tcoPictureBox1.ImageLocation = url + "TTEMP.JPG";
-                            //tcoPictureBox2.ImageLocation = url + "3TEMP.JPG";
-                        });
-                    }
-                    else
-                    {
-                        //TryFindImage(tce.EntryNetNo, tce.EntryPlazaNo, tce.EntryID);
-                        //if (tcoPictureBox1.Image == null)
-                        //{
-                        //    var plza = TCS.Config.AppConfig.GetMyRoot();
-                        //    TryFindImage(plza.NetNo, plza.PlazaNo, tce.EntryID);
-                        //}
-                    }
-                }
-                catch (System.Exception)
-                {
-                }
-            }).Start();
-        }
-      
+     
 
 
         private void FillPlazaNameAndList(TCOCall tce)
@@ -215,7 +187,9 @@ namespace Uixe.Watcher
             try
             {
                 UixeClient client = new UixeClient();
-                var ppi = client.GetProvPlazaInfo("65");
+                var prov = cbxProv.GetSelectedDataRow() as ProvCode;
+
+                var ppi = client.GetProvPlazaInfo($"{prov?.provId??65}");
                 if (ppi != null)
                 {
                     pLazaBindingSource.DataSource = ppi;
@@ -350,6 +324,14 @@ namespace Uixe.Watcher
 
         private void pcPronow_DoubleClick(object sender, EventArgs e)
         {
+        }
+
+        private void cbxProv_EditValueChanged(object sender, EventArgs e)
+        {
+            if (TCE != null)
+            {
+                FillPlazaNameAndList(TCE);
+            }
         }
     }
 }

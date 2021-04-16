@@ -118,17 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="tCOCallBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>19, 18</value>
+    <value>295, 17</value>
   </metadata>
   <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>201, 18</value>
+    <value>477, 17</value>
   </metadata>
   <data name="imageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADe
-        DAAAAk1TRnQBSQFMAgEBAgEAATABBwEwAQcBIAEAASABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAGA
+        DAAAAk1TRnQBSQFMAgEBAgEAAUABBwFAAQcBIAEAASABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAGA
         AwABIAMAAQEBAAEYBgABMP8A/wD/ADAACf9mAAP/DP4D//wAA/4D/QP8A/4D/2AAA/8D/gP7BvkD+wP+
         A//2AAP+A/wBxAHSAcQD9wP7A/4D/10AA/4BywHQAeYBJQE+AasBIAE7AaoBuAG+AdgD9gP8A/7zAAP+
         A/sBMQGNASoBBgGTAQMBnwG7AZ8D9wP7A/4D/1oAAdMB2AHrARkBRwHWAS8BXwH8AS4BXAH2ARwBQgLD
@@ -420,17 +420,23 @@
         7Cp+y7btznCLzuCjRAIRDbKhA8eDW3SHpIhCbjnBLW4l3OLWAewvCwnTuHJ36v8AAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="pLazaBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>625, 18</value>
+  <metadata name="_pbindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1252, 17</value>
   </metadata>
-  <metadata name="keyItemBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>886, 18</value>
+  <metadata name="pLazaBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>799, 17</value>
+  </metadata>
+  <metadata name="keyItem_Vehicle_Types_BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="keyItemBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1060, 17</value>
   </metadata>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>796, 18</value>
+    <value>970, 17</value>
   </metadata>
   <metadata name="vPLAZALISTBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>418, 18</value>
+    <value>592, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>77</value>
