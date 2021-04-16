@@ -382,7 +382,6 @@ namespace Uixe.Watcher
             // 
             // freshAgriProductsBindingSource
             // 
-            this.freshAgriProductsBindingSource.DataSource = typeof(Uixe.Watcher.FreshAgriProducts);
             // 
             // repositoryItemGridLookUpEdit1View
             // 
@@ -857,7 +856,6 @@ namespace Uixe.Watcher
             // 
             // bindingSource1
             // 
-            this.bindingSource1.DataSource = typeof(Uixe.Watcher.FreshAgriProducts);
             // 
             // tmNetworkTest
             // 

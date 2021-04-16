@@ -115,7 +115,6 @@ namespace Uixe.Watcher
             }
         
             ShowStatusInfo("就绪");
-            freshAgriProductsBindingSource.DataSource = FAP.GetFreshAgriProducts.FreshAgriProducts.ToArray();
             try
             {
                 SpeechUtils.Speecher.GetInstalledVoices().ToList().ForEach(iv =>

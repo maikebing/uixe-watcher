@@ -51,7 +51,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationRevision>16</ApplicationRevision>
     <ApplicationVersion>1.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -250,7 +250,6 @@
     <Compile Include="Dtos\tco_confirm.cs" />
     <Compile Include="Dtos\User.cs" />
     <Compile Include="Extensions\UixetExtension.cs" />
-    <Compile Include="FAP.cs" />
     <Compile Include="Controls\LaneTime.cs" />
     <Compile Include="Controls\LaneView.cs">
       <SubType>UserControl</SubType>

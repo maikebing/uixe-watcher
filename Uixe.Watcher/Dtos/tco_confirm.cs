@@ -118,7 +118,6 @@ namespace Uixe.Watcher.Dtos
         public int WeightInput { get; set; }//000000
         public int AxleLastNo { get; set; }//0001
         public DateTime DateTime { get; set; }
-        public FreshAgriProducts FreshAgri { get; set; }
         public string EntryPlazaName { get;  set; }
         public string EntryPlazaId { get;  set; }
         public string EntryPlazaHEX { get;  set; }

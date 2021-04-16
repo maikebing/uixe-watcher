@@ -32,7 +32,6 @@ namespace Uixe.Watcher.V1
                 TransNo = TCE.MsgTcoTran.TransNO,
                 TCOStaffID = RuntimeSetting.NowCollect?.UserId,
                 DateTime = DateTime.UtcNow,
-                FreshAgri = dbxLSTD.GetSelectedDataRow() as FreshAgriProducts,
                 CarPlate = TCE.CarPlate,
                 AxleLastNo = int.Parse(TCE.CarAlex),
                 CarClass = TCE.CarKind_INT,
@@ -66,21 +65,13 @@ namespace Uixe.Watcher.V1
                 bsTcotype.DataSource = KeyItem.GetTCOCK();
                 bsUD.ResetCurrentItem();
                 bsUD.DataSource = KeyItem.GetUD();
-                freshAgriProductsBindingSource.ResetCurrentItem();
-                freshAgriProductsBindingSource.DataSource = FAP.GetFreshAgriProducts.FreshAgriProducts.ToArray();
-                dbxLSTD.ResetText();
-                dbxLSTD.Reset();
-                dbxLSTD.Properties.View.SelectRow(dbxLSTD.Properties.View.GetRowHandle(0));
-                freshAgriProductsBindingSource.Position = 0;
                 CarKindComboBoxEdit.SelectedIndex = 0;
                 msgWeightTCOCALLBindingSource.ResetCurrentItem();
                 msgWeightTCOCALLBindingSource.DataSource = tce;
                 Reset();
                 CarPlateTextEdit.Enabled = tce.CallType == WATCHER_TYPE.WATCHER_State44_ModifyCarNumber;
                 CarPlateTextEdit.ReadOnly = !CarPlateTextEdit.Enabled;
-                lciHwleixing.Visibility =   DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                dbxLSTD.Enabled =tce.CallType == WATCHER_TYPE.WATCHER_LTORNONGYONG;
-                //picLane.ImageLocation =;/、 string.Format("ftp://root:{0}@{1}/{2}/IMAGE/TEMP/TTEMP.JPG","future", TCS.Config.AppConfig.GetLaneIP(tce.Network + tce.Plaza, tce.LaneNo), AppConfig.RunTime.LaneAppDir);
+               // picLane.ImageLocation =string.Format("ftp://root:{0}@{1}/{2}/IMAGE/TEMP/TTEMP.JPG","future", TCS.Config.AppConfig.GetLaneIP(tce.Network + tce.Plaza, tce.LaneNo), AppConfig.RunTime.LaneAppDir);
                 //picBig.ImageLocation = picLane.ImageLocation;
                 var strct = Enum.GetName(typeof(WATCHER_TYPE), tce.CallType); 
                string speechtext = $"{tce.LaneNo} {KeyItem.GetTCOCK().ToList().FirstOrDefault(ki => ki.KeyID == strct)?.KeyName}";
@@ -171,18 +162,11 @@ namespace Uixe.Watcher.V1
         {
             try
             {
-                if ( TCE.CallType ==  WATCHER_TYPE.WATCHER_LTORNONGYONG   && string.IsNullOrEmpty(dbxLSTD.EditValue as string))
-                {
-                    dbxLSTD.Focus();
-                    dbxLSTD.PerformClick(dbxLSTD.Properties.Buttons[0]);
-                }
-                else
-                {
-                    TCOCallUtils.Submit(true, this);
-                    tcoHeart.Stop();
-                    TCOCallUtils.WeightTCOCall.RemoveNowTab(this.Name);
-                    SpeechUtils.Speecher.SpeakAsyncCancel(prompt);
-                }
+
+                TCOCallUtils.Submit(true, this);
+                tcoHeart.Stop();
+                TCOCallUtils.WeightTCOCall.RemoveNowTab(this.Name);
+                SpeechUtils.Speecher.SpeakAsyncCancel(prompt);
             }
             catch (Exception)
             {

@@ -28,7 +28,6 @@ namespace Uixe.Watcher.V1
             {
                 if (tms != null)
                 {
-                    var lstd = tms.dbxLSTD.GetSelectedDataRow() as FreshAgriProducts;
                     tms.MqttClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}",tms.GetTCOConfirm(ok)
                       ).Wait(TimeSpan.FromSeconds(10));
                 }
