@@ -54,7 +54,7 @@ namespace Uixe.Watcher
             }
             FillPlazaNameAndList(tce);
             var l = RuntimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
-            string url = string.Format($"http://{l.ip}:10000/capture ");
+            string url = string.Format($"http://{l.ip}:10000/capture");
             tcoPictureBox1.ImageLocation = url;
             tcoPictureBox2.ImageLocation = url;
             keyItem_Vehicle_Types_BindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
@@ -171,8 +171,8 @@ namespace Uixe.Watcher
 
         public void Reset()
         {
-            this.pcPronow.Properties.Maximum = TCE.TimeOutLong;
-            pcPronow.Position = TCE.TimeOutLong;
+            this.pcPronow.Properties.Maximum = TCE.TimeOut;
+            pcPronow.Position = TCE.TimeOut;
             timer1.Start();
             AUS = new MSG_TCOConfirm();
             CanDo = true;
@@ -187,6 +187,9 @@ namespace Uixe.Watcher
             try
             {
                 UixeClient client = new UixeClient();
+
+                  var pc=  client.GetProvByPlaza(tce.EntryStationID);
+                cbxProv.EditValue = int.Parse( pc);
                 var prov = cbxProv.GetSelectedDataRow() as ProvCode;
 
                 var ppi = client.GetProvPlazaInfo($"{prov?.provId??65}");
@@ -197,18 +200,11 @@ namespace Uixe.Watcher
                     if (r.Any())
                     {
                         string psn = r.FirstOrDefault().plazaName;
-                        pLazaBindingSource.Position= pLazaBindingSource.IndexOf(r.FirstOrDefault());
-                        cbxModifyEntryPlaza.Text = psn;
-                        cbxModifyEntryPlaza.EditValue = tce.EntryStationID;
-                        Application.DoEvents();
-                        //cbxModifyEntryPlaza.ItemIndex= cbxModifyEntryPlaza.Properties.GetDataSourceRowIndex(cbxModifyEntryPlaza.Properties.KeyMember, tce.EntryStationID);
+                      //  pLazaBindingSource.Position= pLazaBindingSource.IndexOf(r.FirstOrDefault());
                         txtentrysite.Text = psn;
                         txtexitsite.Text = psn;
                     }
-                    else
-                    {
-                        cbxModifyEntryPlaza.EditValue = "";
-                    }
+                   
                 }
             }
             catch (System.Exception)

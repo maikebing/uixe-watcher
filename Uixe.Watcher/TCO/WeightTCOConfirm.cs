@@ -72,7 +72,7 @@ namespace Uixe.Watcher.V1
                 CarPlateTextEdit.Enabled = tce.CallType == WATCHER_TYPE.WATCHER_State44_ModifyCarNumber;
                 CarPlateTextEdit.ReadOnly = !CarPlateTextEdit.Enabled;
                 var l = RuntimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
-                string url = string.Format($"http://{l.ip}:10000/capture ");
+                string url = string.Format($"http://{l.ip}:10000/capture");
                 picLane.ImageLocation = url;
                 picBig.ImageLocation = url;
                 var strct = Enum.GetName(typeof(WATCHER_TYPE), tce.CallType); 
@@ -184,7 +184,6 @@ namespace Uixe.Watcher.V1
                     TCOCallUtils.Submit(false, this);
                 }
                 tcoHeart.Stop();
-                SpeechUtils.Speecher.SpeakAsyncCancel(prompt);
                 TCOCallUtils.WeightTCOCall.RemoveNowTab(this.Name);
             }
             catch (Exception)

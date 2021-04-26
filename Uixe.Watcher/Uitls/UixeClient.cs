@@ -36,13 +36,12 @@ namespace Uixe.Watcher.Uitls
             });
         }
         public List<ProvCode> GetProvCodes() => GetDataBy<List<ProvCode>>("ProvCodes", "/Plazas/ProvCodes");
-        public List<ProvPlazaInfo> GetProvPlazaInfo(string ProvId) =>  GetDataBy<List<ProvPlazaInfo>>("ProvCodes", "/Plazas/ProvPlazaInfo", new { ProvId });
+        public List<ProvPlazaInfo> GetProvPlazaInfo(string ProvId) =>  GetDataBy<List<ProvPlazaInfo>>("ProvCodes_", "/Plazas/ProvPlazaInfo", new { ProvId });
+
+        public  string GetProvByPlaza(string plazaid) => GetDataBy<string>("ProvByPlaza", "/Plazas/ProvByPlaza", new { plazaid });
+
         private   T GetCatchOrCreate<T>(string _key,  Func<T> fc  )
         {
-            if (Barrel.Current.Exists(_key))
-            {
-                Barrel.Current.Empty(_key);
-            }
             if (!Barrel.Current.Exists(_key) || Barrel.Current.IsExpired(_key))
             {
                 Barrel.Current.Add(_key, fc.Invoke(), TimeSpan.FromDays(7));

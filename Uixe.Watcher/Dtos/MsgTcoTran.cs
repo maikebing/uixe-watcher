@@ -246,6 +246,11 @@
         public string ETCEntryDateTime { get; set; }
         public string ETCEntryStationNo { get; set; }
 
+        public string VehicleTypeChinese { get; set; }
+
+        public int  VehicleType { get; set; }
+ 
+
     }
 
 }

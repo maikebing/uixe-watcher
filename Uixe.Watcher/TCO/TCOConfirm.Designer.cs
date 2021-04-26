@@ -48,7 +48,6 @@ namespace Uixe.Watcher
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TCOConfirm));
             this.lableContext = new DevExpress.XtraEditors.LabelControl();
-            this.tCOCallBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gcCardInfo = new DevExpress.XtraEditors.GroupControl();
             this.txtentrysite = new DevExpress.XtraEditors.TextEdit();
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -83,12 +82,9 @@ namespace Uixe.Watcher
             this.btnReadPicture = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.cbxProv = new DevExpress.XtraEditors.LookUpEdit();
-            this.keyItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cbxModifyEntryPlaza = new DevExpress.XtraEditors.LookUpEdit();
-            this.pLazaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtModifyCarType = new DevExpress.XtraEditors.LookUpEdit();
-            this.keyItem_Vehicle_Types_BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
             this.txtexitsite = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -100,12 +96,15 @@ namespace Uixe.Watcher
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pcPronow = new DevExpress.XtraEditors.ProgressBarControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tcoPictureBox1 = new Uixe.Watcher.Controls.TCOPictureBox();
             this.btnVNC = new DevExpress.XtraEditors.SimpleButton();
             this.vPLAZALISTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tcoPictureBox2 = new Uixe.Watcher.Controls.TCOPictureBox();
+            this.tCOCallBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tcoPictureBox1 = new Uixe.Watcher.Controls.TCOPictureBox();
             this._pbindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.tCOCallBindingSource)).BeginInit();
+            this.pLazaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.keyItem_Vehicle_Types_BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tcoPictureBox2 = new Uixe.Watcher.Controls.TCOPictureBox();
+            this.keyItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gcCardInfo)).BeginInit();
             this.gcCardInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtentrysite.Properties)).BeginInit();
@@ -133,11 +132,8 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbxProv.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.keyItemBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxModifyEntryPlaza.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pLazaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtModifyCarType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.keyItem_Vehicle_Types_BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
             this.groupControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtexitsite.Properties)).BeginInit();
@@ -147,7 +143,11 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)(this.pcPronow.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vPLAZALISTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tCOCallBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pbindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pLazaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.keyItem_Vehicle_Types_BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.keyItemBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // lableContext
@@ -162,13 +162,9 @@ namespace Uixe.Watcher
             this.lableContext.LineLocation = DevExpress.XtraEditors.LineLocation.Bottom;
             this.lableContext.Location = new System.Drawing.Point(5, 32);
             this.lableContext.Name = "lableContext";
-            this.lableContext.Size = new System.Drawing.Size(414, 20);
+            this.lableContext.Size = new System.Drawing.Size(414, 24);
             this.lableContext.TabIndex = 0;
             this.lableContext.Text = "提示内容提示内容提示内容提示内容提示";
-            // 
-            // tCOCallBindingSource
-            // 
-            this.tCOCallBindingSource.DataSource = typeof(Uixe.Watcher.Msg.TCOCall);
             // 
             // gcCardInfo
             // 
@@ -206,7 +202,7 @@ namespace Uixe.Watcher
             this.txtentrysite.Properties.Appearance.Options.UseFont = true;
             this.txtentrysite.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtentrysite.Properties.ReadOnly = true;
-            this.txtentrysite.Size = new System.Drawing.Size(89, 24);
+            this.txtentrysite.Size = new System.Drawing.Size(89, 28);
             this.txtentrysite.TabIndex = 15;
             // 
             // comboBoxEdit1
@@ -253,7 +249,7 @@ namespace Uixe.Watcher
             this.comboBoxEdit1.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
             this.comboBoxEdit1.Properties.ShowPopupShadow = false;
             this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit1.Size = new System.Drawing.Size(84, 24);
+            this.comboBoxEdit1.Size = new System.Drawing.Size(84, 28);
             this.comboBoxEdit1.TabIndex = 28;
             // 
             // labelControl7
@@ -262,7 +258,7 @@ namespace Uixe.Watcher
             this.labelControl7.Appearance.Options.UseFont = true;
             this.labelControl7.Location = new System.Drawing.Point(7, 95);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(42, 21);
+            this.labelControl7.Size = new System.Drawing.Size(52, 27);
             this.labelControl7.TabIndex = 14;
             this.labelControl7.Text = "车  牌";
             // 
@@ -278,7 +274,7 @@ namespace Uixe.Watcher
             this.txtModifyCarKind.Location = new System.Drawing.Point(-84, 114);
             this.txtModifyCarKind.Name = "txtModifyCarKind";
             this.txtModifyCarKind.Properties.MaxLength = 2;
-            this.txtModifyCarKind.Size = new System.Drawing.Size(74, 18);
+            this.txtModifyCarKind.Size = new System.Drawing.Size(74, 22);
             this.txtModifyCarKind.TabIndex = 2;
             this.txtModifyCarKind.Visible = false;
             this.txtModifyCarKind.TextChanged += new System.EventHandler(this.txtModifyCarKind_TextChanged);
@@ -294,8 +290,9 @@ namespace Uixe.Watcher
             this.txtentrycarnumber.Properties.Appearance.Options.UseBackColor = true;
             this.txtentrycarnumber.Properties.Appearance.Options.UseFont = true;
             this.txtentrycarnumber.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.txtentrycarnumber.Properties.MaxLength = 20;
             this.txtentrycarnumber.Properties.ReadOnly = true;
-            this.txtentrycarnumber.Size = new System.Drawing.Size(89, 26);
+            this.txtentrycarnumber.Size = new System.Drawing.Size(89, 32);
             this.txtentrycarnumber.TabIndex = 12;
             // 
             // labelControl2
@@ -304,7 +301,7 @@ namespace Uixe.Watcher
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Location = new System.Drawing.Point(7, 65);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(42, 21);
+            this.labelControl2.Size = new System.Drawing.Size(52, 27);
             this.labelControl2.TabIndex = 6;
             this.labelControl2.Text = "车  型";
             // 
@@ -320,7 +317,7 @@ namespace Uixe.Watcher
             this.txtentrycartype.Properties.Appearance.Options.UseFont = true;
             this.txtentrycartype.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtentrycartype.Properties.ReadOnly = true;
-            this.txtentrycartype.Size = new System.Drawing.Size(89, 26);
+            this.txtentrycartype.Size = new System.Drawing.Size(89, 32);
             this.txtentrycartype.TabIndex = 4;
             // 
             // labelControl1
@@ -329,7 +326,7 @@ namespace Uixe.Watcher
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(7, 36);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(48, 21);
+            this.labelControl1.Size = new System.Drawing.Size(60, 27);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "入口站";
             // 
@@ -377,7 +374,7 @@ namespace Uixe.Watcher
             this.comboBoxEdit2.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
             this.comboBoxEdit2.Properties.ShowPopupShadow = false;
             this.comboBoxEdit2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit2.Size = new System.Drawing.Size(90, 24);
+            this.comboBoxEdit2.Size = new System.Drawing.Size(90, 28);
             this.comboBoxEdit2.TabIndex = 27;
             // 
             // pictureBox4
@@ -420,7 +417,7 @@ namespace Uixe.Watcher
             this.txtentryllib.Appearance.Options.UseFont = true;
             this.txtentryllib.Location = new System.Drawing.Point(367, 141);
             this.txtentryllib.Name = "txtentryllib";
-            this.txtentryllib.Size = new System.Drawing.Size(64, 21);
+            this.txtentryllib.Size = new System.Drawing.Size(80, 27);
             this.txtentryllib.TabIndex = 18;
             this.txtentryllib.Text = "入口时间";
             // 
@@ -441,7 +438,7 @@ namespace Uixe.Watcher
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtentrydate.Properties.ReadOnly = true;
             this.txtentrydate.Properties.ShowWeekNumbers = true;
-            this.txtentrydate.Size = new System.Drawing.Size(267, 26);
+            this.txtentrydate.Size = new System.Drawing.Size(267, 32);
             this.txtentrydate.TabIndex = 16;
             // 
             // labelControl6
@@ -450,7 +447,7 @@ namespace Uixe.Watcher
             this.labelControl6.Appearance.Options.UseFont = true;
             this.labelControl6.Location = new System.Drawing.Point(194, 437);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(36, 20);
+            this.labelControl6.Size = new System.Drawing.Size(46, 24);
             this.labelControl6.TabIndex = 15;
             this.labelControl6.Text = "车  牌";
             this.labelControl6.Visible = false;
@@ -465,7 +462,7 @@ namespace Uixe.Watcher
             this.txtModifyCarNumber.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.txtModifyCarNumber.Properties.Appearance.Options.UseFont = true;
             this.txtModifyCarNumber.Properties.MaxLength = 14;
-            this.txtModifyCarNumber.Size = new System.Drawing.Size(108, 26);
+            this.txtModifyCarNumber.Size = new System.Drawing.Size(108, 30);
             this.txtModifyCarNumber.TabIndex = 3;
             this.txtModifyCarNumber.Visible = false;
             this.txtModifyCarNumber.TextChanged += new System.EventHandler(this.txtModifyCarNumber_TextChanged);
@@ -476,7 +473,7 @@ namespace Uixe.Watcher
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Location = new System.Drawing.Point(11, 80);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(28, 20);
+            this.labelControl3.Size = new System.Drawing.Size(36, 24);
             this.labelControl3.TabIndex = 7;
             this.labelControl3.Text = "车型";
             // 
@@ -645,6 +642,7 @@ namespace Uixe.Watcher
             this.btnCancel.Size = new System.Drawing.Size(95, 39);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
+            this.btnCancel.Visible = false;
             // 
             // groupControl4
             // 
@@ -666,7 +664,7 @@ namespace Uixe.Watcher
             this.labelControl11.Appearance.Options.UseFont = true;
             this.labelControl11.Location = new System.Drawing.Point(430, 31);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(64, 21);
+            this.labelControl11.Size = new System.Drawing.Size(80, 27);
             this.labelControl11.TabIndex = 20;
             this.labelControl11.Text = "通行卡号";
             // 
@@ -677,7 +675,7 @@ namespace Uixe.Watcher
             this.labelControl12.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tCOCallBindingSource, "CardNo", true));
             this.labelControl12.Location = new System.Drawing.Point(516, 30);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(152, 21);
+            this.labelControl12.Size = new System.Drawing.Size(197, 27);
             this.labelControl12.TabIndex = 19;
             this.labelControl12.Text = "0123456789ABCDEF";
             // 
@@ -730,14 +728,10 @@ namespace Uixe.Watcher
             this.cbxProv.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.StartsWith;
             this.cbxProv.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.cbxProv.Properties.ValueMember = "provId";
-            this.cbxProv.Size = new System.Drawing.Size(77, 26);
+            this.cbxProv.Size = new System.Drawing.Size(77, 30);
             this.cbxProv.TabIndex = 25;
             this.cbxProv.TabStop = false;
             this.cbxProv.EditValueChanged += new System.EventHandler(this.cbxProv_EditValueChanged);
-            // 
-            // keyItemBindingSource1
-            // 
-            this.keyItemBindingSource1.DataSource = typeof(Uixe.Watcher.KeyItem);
             // 
             // labelControl4
             // 
@@ -745,12 +739,14 @@ namespace Uixe.Watcher
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.Location = new System.Drawing.Point(5, 37);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(42, 20);
+            this.labelControl4.Size = new System.Drawing.Size(54, 24);
             this.labelControl4.TabIndex = 23;
             this.labelControl4.Text = "入口站";
             // 
             // cbxModifyEntryPlaza
             // 
+            this.cbxModifyEntryPlaza.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.tCOCallBindingSource, "EntryStationID", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbxModifyEntryPlaza.DataBindings.Add(new System.Windows.Forms.Binding("ToolTip", this.tCOCallBindingSource, "EntryStationName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbxModifyEntryPlaza.Location = new System.Drawing.Point(136, 33);
             this.cbxModifyEntryPlaza.Name = "cbxModifyEntryPlaza";
             this.cbxModifyEntryPlaza.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 10.5F);
@@ -773,35 +769,32 @@ namespace Uixe.Watcher
             this.cbxModifyEntryPlaza.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.StartsWith;
             this.cbxModifyEntryPlaza.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.cbxModifyEntryPlaza.Properties.ValueMember = "plazaId";
-            this.cbxModifyEntryPlaza.Size = new System.Drawing.Size(169, 26);
+            this.cbxModifyEntryPlaza.Size = new System.Drawing.Size(169, 30);
             this.cbxModifyEntryPlaza.TabIndex = 0;
             this.cbxModifyEntryPlaza.TabStop = false;
             this.cbxModifyEntryPlaza.TextChanged += new System.EventHandler(this.cbxModifyEntryPlaza_TextChanged);
             // 
-            // pLazaBindingSource
-            // 
-            this.pLazaBindingSource.DataSource = typeof(Uixe.Watcher.Dtos.ProvPlazaInfo);
-            // 
             // txtModifyCarType
             // 
+            this.txtModifyCarType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.tCOCallBindingSource, "VehicleType", true));
             this.txtModifyCarType.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.tCOCallBindingSource, "DifType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtModifyCarType.DataBindings.Add(new System.Windows.Forms.Binding("ToolTip", this.tCOCallBindingSource, "VehicleTypeChinese", true));
             this.txtModifyCarType.Location = new System.Drawing.Point(60, 75);
             this.txtModifyCarType.Name = "txtModifyCarType";
             this.txtModifyCarType.Properties.Appearance.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtModifyCarType.Properties.Appearance.Options.UseFont = true;
             this.txtModifyCarType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtModifyCarType.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("KeyId_Int", "车型代码", 89, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("KeyName", "车型", 73, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.txtModifyCarType.Properties.DataSource = this.keyItem_Vehicle_Types_BindingSource;
             this.txtModifyCarType.Properties.DisplayMember = "KeyName";
             this.txtModifyCarType.Properties.NullText = "";
             this.txtModifyCarType.Properties.PopupSizeable = false;
             this.txtModifyCarType.Properties.ValueMember = "KeyId_Int";
-            this.txtModifyCarType.Size = new System.Drawing.Size(245, 28);
+            this.txtModifyCarType.Size = new System.Drawing.Size(245, 32);
             this.txtModifyCarType.TabIndex = 24;
-            // 
-            // keyItem_Vehicle_Types_BindingSource
-            // 
-            this.keyItem_Vehicle_Types_BindingSource.DataSource = typeof(Uixe.Watcher.KeyItem);
             // 
             // groupControl5
             // 
@@ -838,7 +831,7 @@ namespace Uixe.Watcher
             this.txtexitsite.Properties.Appearance.Options.UseFont = true;
             this.txtexitsite.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtexitsite.Properties.ReadOnly = true;
-            this.txtexitsite.Size = new System.Drawing.Size(84, 24);
+            this.txtexitsite.Size = new System.Drawing.Size(84, 28);
             this.txtexitsite.TabIndex = 16;
             // 
             // labelControl5
@@ -847,7 +840,7 @@ namespace Uixe.Watcher
             this.labelControl5.Appearance.Options.UseFont = true;
             this.labelControl5.Location = new System.Drawing.Point(7, 95);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(42, 21);
+            this.labelControl5.Size = new System.Drawing.Size(52, 27);
             this.labelControl5.TabIndex = 14;
             this.labelControl5.Text = "车  牌";
             // 
@@ -863,7 +856,7 @@ namespace Uixe.Watcher
             this.textEdit4.Location = new System.Drawing.Point(-84, 114);
             this.textEdit4.Name = "textEdit4";
             this.textEdit4.Properties.MaxLength = 2;
-            this.textEdit4.Size = new System.Drawing.Size(74, 18);
+            this.textEdit4.Size = new System.Drawing.Size(74, 22);
             this.textEdit4.TabIndex = 2;
             this.textEdit4.Visible = false;
             // 
@@ -877,8 +870,9 @@ namespace Uixe.Watcher
             this.txtcarnumber.Properties.Appearance.Options.UseBackColor = true;
             this.txtcarnumber.Properties.Appearance.Options.UseFont = true;
             this.txtcarnumber.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.txtcarnumber.Properties.MaxLength = 20;
             this.txtcarnumber.Properties.ReadOnly = true;
-            this.txtcarnumber.Size = new System.Drawing.Size(90, 26);
+            this.txtcarnumber.Size = new System.Drawing.Size(90, 32);
             this.txtcarnumber.TabIndex = 12;
             // 
             // labelControl9
@@ -887,7 +881,7 @@ namespace Uixe.Watcher
             this.labelControl9.Appearance.Options.UseFont = true;
             this.labelControl9.Location = new System.Drawing.Point(7, 65);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(42, 21);
+            this.labelControl9.Size = new System.Drawing.Size(52, 27);
             this.labelControl9.TabIndex = 6;
             this.labelControl9.Text = "车  型";
             // 
@@ -902,7 +896,7 @@ namespace Uixe.Watcher
             this.txtocartype.Properties.Appearance.Options.UseFont = true;
             this.txtocartype.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtocartype.Properties.ReadOnly = true;
-            this.txtocartype.Size = new System.Drawing.Size(84, 26);
+            this.txtocartype.Size = new System.Drawing.Size(84, 32);
             this.txtocartype.TabIndex = 4;
             // 
             // labelControl10
@@ -911,7 +905,7 @@ namespace Uixe.Watcher
             this.labelControl10.Appearance.Options.UseFont = true;
             this.labelControl10.Location = new System.Drawing.Point(7, 36);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(48, 21);
+            this.labelControl10.Size = new System.Drawing.Size(60, 27);
             this.labelControl10.TabIndex = 1;
             this.labelControl10.Text = "入口站";
             // 
@@ -939,16 +933,6 @@ namespace Uixe.Watcher
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             // 
-            // tcoPictureBox1
-            // 
-            this.tcoPictureBox1.Image = null;
-            this.tcoPictureBox1.ImageLocation = "";
-            this.tcoPictureBox1.Location = new System.Drawing.Point(0, 9);
-            this.tcoPictureBox1.Name = "tcoPictureBox1";
-            this.tcoPictureBox1.Size = new System.Drawing.Size(348, 282);
-            this.tcoPictureBox1.SizeMode = Cyotek.Windows.Forms.ImageBoxSizeMode.Stretch;
-            this.tcoPictureBox1.TabIndex = 22;
-            // 
             // btnVNC
             // 
             this.btnVNC.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -959,6 +943,32 @@ namespace Uixe.Watcher
             this.btnVNC.TabIndex = 29;
             this.btnVNC.Text = "VNC";
             this.btnVNC.Click += new System.EventHandler(this.btnVNC_Click);
+            // 
+            // tCOCallBindingSource
+            // 
+            this.tCOCallBindingSource.DataSource = typeof(Uixe.Watcher.Msg.TCOCall);
+            // 
+            // tcoPictureBox1
+            // 
+            this.tcoPictureBox1.Image = null;
+            this.tcoPictureBox1.ImageLocation = "";
+            this.tcoPictureBox1.Location = new System.Drawing.Point(0, 9);
+            this.tcoPictureBox1.Name = "tcoPictureBox1";
+            this.tcoPictureBox1.Size = new System.Drawing.Size(348, 282);
+            this.tcoPictureBox1.SizeMode = Cyotek.Windows.Forms.ImageBoxSizeMode.Stretch;
+            this.tcoPictureBox1.TabIndex = 22;
+            // 
+            // _pbindingSource1
+            // 
+            this._pbindingSource1.DataSource = typeof(Uixe.Watcher.Dtos.ProvCode);
+            // 
+            // pLazaBindingSource
+            // 
+            this.pLazaBindingSource.DataSource = typeof(Uixe.Watcher.Dtos.ProvPlazaInfo);
+            // 
+            // keyItem_Vehicle_Types_BindingSource
+            // 
+            this.keyItem_Vehicle_Types_BindingSource.DataSource = typeof(Uixe.Watcher.KeyItem);
             // 
             // tcoPictureBox2
             // 
@@ -971,9 +981,9 @@ namespace Uixe.Watcher
             this.tcoPictureBox2.TabIndex = 30;
             this.tcoPictureBox2.Visible = false;
             // 
-            // _pbindingSource1
+            // keyItemBindingSource1
             // 
-            this._pbindingSource1.DataSource = typeof(Uixe.Watcher.Dtos.ProvCode);
+            this.keyItemBindingSource1.DataSource = typeof(Uixe.Watcher.KeyItem);
             // 
             // TCOConfirm
             // 
@@ -1005,7 +1015,6 @@ namespace Uixe.Watcher
             this.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tCOCallBindingSource, "MsgTitle", true));
             this.Name = "TCOConfirm";
             this.Size = new System.Drawing.Size(717, 474);
-            ((System.ComponentModel.ISupportInitialize)(this.tCOCallBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCardInfo)).EndInit();
             this.gcCardInfo.ResumeLayout(false);
             this.gcCardInfo.PerformLayout();
@@ -1036,11 +1045,8 @@ namespace Uixe.Watcher
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbxProv.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.keyItemBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxModifyEntryPlaza.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pLazaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtModifyCarType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.keyItem_Vehicle_Types_BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
             this.groupControl5.ResumeLayout(false);
             this.groupControl5.PerformLayout();
@@ -1051,7 +1057,11 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)(this.pcPronow.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.vPLAZALISTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tCOCallBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._pbindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pLazaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.keyItem_Vehicle_Types_BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.keyItemBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

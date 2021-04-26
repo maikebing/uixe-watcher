@@ -98,6 +98,8 @@ namespace Uixe.Watcher.Msg
         public string WeightLimit => MsgTcoTran.WeightLimit;
 
         public int TranID => int.Parse(MsgTcoTran.TransNO);
-        
+
+
+
     }
 }
