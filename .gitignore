@@ -11,3 +11,5 @@
 /Uixe.Watcher/publish
 /Uixe.Watcher/bin/Release/app.publish
 /Uixe.Watcher/bin/Release
+/Uixe.Bootloader/bin
+/Uixe.Bootloader/obj

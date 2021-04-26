@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<InstallItem xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SvnUserName>readonly</SvnUserName>
+  <SvnPwd>1-q2-w3-e4-r5-t</SvnPwd>
+  <AppList>
+    <App>
+      <AppName>uixe</AppName>
+      <ICOName>NewMonitor.ico</ICOName>
+      <ExecName>Uixe.Watcher.exe</ExecName>
+      <ShortcutName>新e畅收费监控系统</ShortcutName>
+      <SvnPath>uixe</SvnPath>
+    </App>
+  </AppList>
+</InstallItem>

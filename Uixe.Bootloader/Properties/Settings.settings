@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Uixe.Bootloader.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="svnusername" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">readonly</Value>
+    </Setting>
+    <Setting Name="svnpassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1-q2-w3-e4-r5-t</Value>
+    </Setting>
+    <Setting Name="appname" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">uixe</Value>
+    </Setting>
+    <Setting Name="applocpath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Uixe\</Value>
+    </Setting>
+    <Setting Name="DefaultPlaza" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">9999</Value>
+    </Setting>
+    <Setting Name="DefaultAppName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">uixe</Value>
+    </Setting>
+    <Setting Name="DefaultRootSvr" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://10.165.84.26:18080/svn/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
