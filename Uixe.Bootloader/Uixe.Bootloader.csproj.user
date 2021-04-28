@@ -4,10 +4,10 @@
     <ProjectView>ShowAllFiles</ProjectView>
     <PublishUrlHistory>ftp://tco:1-q2-w3-e4-r5-t%4010.165.84.26/|ftp://10.165.84.26/|D:\WWWROOT\DES\ClickOnce\</PublishUrlHistory>
     <InstallUrlHistory>http://10.165.84.26/|http://des.zsjgsc.com/ClickOnce/</InstallUrlHistory>
-    <SupportUrlHistory>http://des.zsjgsc.com</SupportUrlHistory>
+    <SupportUrlHistory>http://10.165.84.26/|http://des.zsjgsc.com</SupportUrlHistory>
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
-    <ErrorReportUrlHistory>http://des.zsjgsc.com/%3f</ErrorReportUrlHistory>
+    <ErrorReportUrlHistory>http://10.165.84.26/|http://des.zsjgsc.com/%3f</ErrorReportUrlHistory>
     <FallbackCulture>zh-CN</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
