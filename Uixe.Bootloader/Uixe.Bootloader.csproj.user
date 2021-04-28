@@ -2,12 +2,12 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
-    <PublishUrlHistory>D:\WWWROOT\DES\ClickOnce\</PublishUrlHistory>
-    <InstallUrlHistory>http://des.zsjgsc.com/ClickOnce/</InstallUrlHistory>
-    <SupportUrlHistory />
+    <PublishUrlHistory>ftp://tco:1-q2-w3-e4-r5-t%4010.165.84.26/|ftp://10.165.84.26/|D:\WWWROOT\DES\ClickOnce\</PublishUrlHistory>
+    <InstallUrlHistory>http://10.165.84.26/|http://des.zsjgsc.com/ClickOnce/</InstallUrlHistory>
+    <SupportUrlHistory>http://des.zsjgsc.com</SupportUrlHistory>
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
-    <ErrorReportUrlHistory />
+    <ErrorReportUrlHistory>http://des.zsjgsc.com/%3f</ErrorReportUrlHistory>
     <FallbackCulture>zh-CN</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>

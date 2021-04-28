@@ -1,24 +1,26 @@
 ﻿<html>
 <head>
-    <title>众申联邦交规速成</title>
+    <title>交投科技</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
     <table>
         <tr>
-            <td>配置<select id="plaza" name="D1">
-                <option>9999|新e畅</option>
-            
-				 
-            </select>
-            </td>
-            <td>软件
-    <select id="app" name="D2">
-        <option>UIXE|新e场</option>
-  
+            <td>
+                配置<select id="plaza" name="D1">
+                    <option>9999|新e畅</option>
 
-    </select><input id="btnInstall" type="button" value="安装" onclick="look()" />
+
+                </select>
+            </td>
+            <td>
+                软件
+                <select id="app" name="D2">
+                    <option>UIXE|新e场</option>
+
+
+                </select><input id="btnInstall" type="button" value="安装" onclick="look()" />
 
             </td>
 
@@ -34,9 +36,9 @@
             var app = document.getElementById("app");
             var appname = new String(app.options[app.selectedIndex].value);
             var url = "http://10.165.84.26/Uixe.Bootloader.application?RootSvr=http://10.165.84.26:18080/svn/uixe";
-                    url = url + "&PlazaNo=" + plazano.substr(0, plazano.indexOf("|", 1));
-                    url = url + "&AppName=" + appname.substr(0, appname.indexOf("|", 1));
-                    window.open(url);
+            url = url + "&PlazaNo=" + plazano.substr(0, plazano.indexOf("|", 1));
+            url = url + "&AppName=" + appname.substr(0, appname.indexOf("|", 1));
+            window.open(url);
         }
     </script>
 </body>

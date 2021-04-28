@@ -19,7 +19,7 @@
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>ftp://10.165.84.26/</PublishUrl>
+    <PublishUrl>ftp://tco:1-q2-w3-e4-r5-t%4010.165.84.26/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -30,16 +30,16 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://10.165.84.26/</InstallUrl>
-    <SupportUrl>http://des.zsjgsc.com</SupportUrl>
-    <ErrorReportUrl>http://des.zsjgsc.com/%3f</ErrorReportUrl>
+    <SupportUrl>http://10.165.84.26/</SupportUrl>
+    <ErrorReportUrl>http://10.165.84.26/</ErrorReportUrl>
     <TargetCulture>zh-CN</TargetCulture>
-    <ProductName>众申联邦交规速成</ProductName>
-    <PublisherName>众申联邦交规速成</PublisherName>
-    <SuiteName>众申联邦交规速成</SuiteName>
+    <ProductName>新e畅</ProductName>
+    <PublisherName>新疆交投科技</PublisherName>
+    <SuiteName>新e畅</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>install.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>121</ApplicationRevision>
+    <ApplicationRevision>122</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -138,9 +138,6 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="index_DES.htm" />
-    <Content Include="msyh.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -161,6 +158,11 @@
       <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29与 .NET Framework 4 的更新%28KB2468871%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -170,16 +172,6 @@
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Visual.C++.10.0.x86">
-      <Visible>False</Visible>
-      <ProductName>Visual C++ 2010 运行库%28x86%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 4.5</ProductName>
-      <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
