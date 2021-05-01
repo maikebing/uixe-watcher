@@ -67,6 +67,7 @@ namespace Uixe.Bootloader
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            Music.PlayMusic_Repeat(System.IO.Path.Combine( Application.StartupPath ,"Countdown.mp3"));
             nvc = GetQueryStringParameters();
             if (nvc != null && nvc.Count > 0)
             {
@@ -123,7 +124,7 @@ namespace Uixe.Bootloader
 
                             ts = new Thread(new ThreadStart(Do));
                             ts.Start();
-
+                           
 
                         }
                         catch (Exception ex)
@@ -321,6 +322,11 @@ namespace Uixe.Bootloader
                 _formLocation = Location;
                 _mouseOffset = MousePosition;
             }
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Music.StopMusic(System.IO.Path.Combine(Application.StartupPath, "Countdown.mp3"));
         }
     }
 }

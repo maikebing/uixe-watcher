@@ -62,7 +62,7 @@ namespace Uixe.Watcher.Controls
                 lock (lst)
                 {
                     int i = lst.FindIndex(f => f.PlazaId + f.LaneName == laneid);
-                    if (i > 0)
+                    if (i >= 0)
                     {
                         (laneInfoBindingSource[i] as LaneInfo)?.Parse(revdata);
                         gvExitLanes.RefreshRow(gvExitLanes.GetRowHandle(i));

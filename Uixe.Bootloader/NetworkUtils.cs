@@ -65,10 +65,9 @@ namespace Uixe.Bootloader
             int NETWORK_ALIVE_WAN = 2;
             int NETWORK_ALIVE_AOL = 4;
 
-            string outPut = null;
             int flags;//上网方式 
             bool m_bOnline = false;//是否在线 
-
+            string outPut = "";
             m_bOnline = IsNetworkAlive(out flags);
             if (m_bOnline)//在线   
             {
@@ -89,7 +88,7 @@ namespace Uixe.Bootloader
             {
                 outPut = "不在线\n";
             }
-         //   Console.WriteLine(outPut);
+          Console.WriteLine(outPut);
             return m_bOnline;
         }
 

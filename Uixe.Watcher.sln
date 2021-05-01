@@ -5,9 +5,13 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uixe.Watcher", "Uixe.Watcher\Uixe.Watcher.csproj", "{A41303DC-D78F-48C8-9184-AB1CB237DE2E}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "UixeSetup", "UixeSetup\UixeSetup.vdproj", "{602D341C-5EDB-45F9-9845-B6E702C1AE64}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uixe.Bootloader", "Uixe.Bootloader\Uixe.Bootloader.csproj", "{263DE543-8C53-4DCD-B5ED-E2123A9727C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8B3B5CF7-AB25-4026-889F-C797AAF428D7}"
+	ProjectSection(SolutionItems) = preProject
+		GitVersion.yml = GitVersion.yml
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,18 +35,6 @@ Global
 		{A41303DC-D78F-48C8-9184-AB1CB237DE2E}.Release|x64.Build.0 = Release|x64
 		{A41303DC-D78F-48C8-9184-AB1CB237DE2E}.Release|x86.ActiveCfg = Release|x86
 		{A41303DC-D78F-48C8-9184-AB1CB237DE2E}.Release|x86.Build.0 = Release|x86
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Debug|Any CPU.ActiveCfg = Debug
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Debug|Any CPU.Build.0 = Debug
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Debug|x64.ActiveCfg = Debug
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Debug|x64.Build.0 = Debug
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Debug|x86.ActiveCfg = Debug
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Debug|x86.Build.0 = Debug
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Release|Any CPU.ActiveCfg = Release
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Release|Any CPU.Build.0 = Release
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Release|x64.ActiveCfg = Release
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Release|x64.Build.0 = Release
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Release|x86.ActiveCfg = Release
-		{602D341C-5EDB-45F9-9845-B6E702C1AE64}.Release|x86.Build.0 = Release
 		{263DE543-8C53-4DCD-B5ED-E2123A9727C5}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{263DE543-8C53-4DCD-B5ED-E2123A9727C5}.Debug|x64.ActiveCfg = Debug|x86
 		{263DE543-8C53-4DCD-B5ED-E2123A9727C5}.Debug|x86.ActiveCfg = Debug|x86
@@ -56,8 +48,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_SaveFilesImmediatelyUponChange = False
-		RESX_NeutralResourcesLanguage = zh-Hans
 		SolutionGuid = {339573ED-4417-48E7-A437-BC3549DD7DD3}
+		RESX_NeutralResourcesLanguage = zh-Hans
+		RESX_SaveFilesImmediatelyUponChange = False
 	EndGlobalSection
 EndGlobal
