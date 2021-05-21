@@ -121,5 +121,8 @@ namespace Uixe.Watcher.Dtos
         public string EntryPlazaName { get;  set; }
         public string EntryPlazaId { get;  set; }
         public string EntryPlazaHEX { get;  set; }
+        public DateTime EntryDateTime { get; set; }
+        public string EntryDHM { get; set; }
+        public string EntryLaneID { get;  set; }
     }
 }

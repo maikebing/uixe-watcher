@@ -602,7 +602,6 @@ namespace Uixe.Watcher
         }
 
         private int min = -1;
-        private int hou = -1;
 
 
 

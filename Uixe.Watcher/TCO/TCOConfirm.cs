@@ -248,6 +248,9 @@ namespace Uixe.Watcher
             AUS.TCOStaffID = RuntimeSetting.NowCollect != null ? RuntimeSetting.NowCollect.UserId : "";
             AUS.UCar = tc.UCar?1:0;
             AUS.IsConfirm = IsSubmit;
+            AUS.EntryDateTime = tc.EntryDHM;
+            AUS.EntryLaneID = tc.EntryLaneID;
+            AUS.EntryDHM = AUS.EntryDateTime.ToString("yyyyMMddHHMMss");
             return AUS;
         }
 
