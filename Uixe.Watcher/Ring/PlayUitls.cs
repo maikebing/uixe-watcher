@@ -74,7 +74,7 @@ namespace Uixe.Watcher.Ring
 
         private static PlayUitls utils;
 
-        public static void PlayRing(object s)
+        public static void PlayRing()
         {
             if (utils == null)
             {

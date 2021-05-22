@@ -3,6 +3,7 @@ using MQTTnet.Client;
 using System;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
@@ -12,13 +13,10 @@ namespace Uixe.Watcher.V1
 {
     public static class TCOCallUtils
     {
-        public static frmShowTCOCall _tcocall;
-        public static frmWeightTCOCall WeightTCOCall;
-
+ 
         private delegate void DShowTCOQueryInfo(string mu);
 
-        public static object thisLock = new object();
-        public static object thisLock1 = new object();
+       
 
        
 
@@ -38,55 +36,59 @@ namespace Uixe.Watcher.V1
             }
         }
 
-        public static void ShowTCOInfo(Form form, string topic,string message, MQTTnet.Client.IMqttClient client)
+        public static void ShowTCOInfo(this frmMain form, string topic,string message, MQTTnet.Client.IMqttClient client)
         {
             try
             {
                 var tc= Newtonsoft.Json.JsonConvert.DeserializeObject<tco_confirm>(message);
                 if (tc.DlgType== DlgType.Weight)
                 {
-                    lock (thisLock1)
+                    lock (form)
                     {
                         try
                         {
-                            if (WeightTCOCall == null || WeightTCOCall.IsDisposed || !WeightTCOCall.IsHandleCreated)
+                            if (form.WeightTCOCall == null || form.WeightTCOCall.IsDisposed || !form.WeightTCOCall.IsHandleCreated)
                             {
-                                WeightTCOCall = new frmWeightTCOCall();
-                                WeightTCOCall.LoadInfo(client);
-                                WeightTCOCall.Hide();
+                                form.WeightTCOCall = new frmWeightTCOCall();
+                                form.WeightTCOCall.Main = form;
+                               
+                                form.WeightTCOCall.LoadInfo(client);
+                                form.WeightTCOCall.Hide();
                             }
-                            WeightTCOCall.ShowTCOMsg(Newtonsoft.Json.JsonConvert.DeserializeObject<MsgWeightTCOCALL>(message));
-                            System.Threading.ThreadPool.QueueUserWorkItem(new WaitCallback(PlayUitls.PlayRing), null);
+                            form.WeightTCOCall.ShowTCOMsg(Newtonsoft.Json.JsonConvert.DeserializeObject<MsgWeightTCOCALL>(message));
+                            Task.Run(PlayUitls.PlayRing);
                         }
                         catch (Exception ex)
                         {
-                       //     TCS.Log.LogInfo("ERROR:<{0}>\r\n{1}\r\n", ex.Message, mu);
-                            WeightTCOCall = null;
+                            //     TCS.Log.LogInfo("ERROR:<{0}>\r\n{1}\r\n", ex.Message, mu);
+                            form.WeightTCOCall = null;
                         }
                     }
                 }
                 else
                 {
-                    lock (thisLock)
+                    lock (form)
                     {
                         try
                         {
-                            if (_tcocall == null || _tcocall.IsDisposed || !_tcocall.IsHandleCreated)
+                            if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
                             {
 
-                                _tcocall = new frmShowTCOCall
+                                form._tcocall = new frmShowTCOCall
                                 {
-                                   MQTTClient= client,
-                                    Owner = Program.MainForm
+                                    MQTTClient = client,
+                                    Owner = form,
+                                    Main = form
+                                   
                                 };
                             }
-                            _tcocall.Show(Newtonsoft.Json.JsonConvert.DeserializeObject<TCOCall>(message));
-                            System.Threading.ThreadPool.QueueUserWorkItem(new WaitCallback(PlayUitls.PlayRing), null);
+                            form._tcocall.Show(Newtonsoft.Json.JsonConvert.DeserializeObject<TCOCall>(message));
+                            Task.Run(PlayUitls.PlayRing);
                         }
                         catch (Exception ex)
                         {
-                          //  TCS.Log.LogInfo("ERROR:<{0}>\r\n{1}\r\n", ex.Message, mu);
-                            _tcocall = null;
+                            //  TCS.Log.LogInfo("ERROR:<{0}>\r\n{1}\r\n", ex.Message, mu);
+                            form._tcocall = null;
                         }
                     }
                 }
@@ -97,35 +99,35 @@ namespace Uixe.Watcher.V1
             }
         }
 
-        public static void CloseTCOCall()
+        public static void CloseTCOCall(this frmMain form)
         {
             try
             {
-                lock (thisLock)
+                lock (form)
                 {
                     try
                     {
-                        if (WeightTCOCall != null && !WeightTCOCall.IsDisposed && WeightTCOCall.IsHandleCreated)
+                        if (form.WeightTCOCall != null && !form.WeightTCOCall.IsDisposed && form.WeightTCOCall.IsHandleCreated)
                         {
-                            if (WeightTCOCall.InvokeRequired)
+                            if (form.WeightTCOCall.InvokeRequired)
                             {
-                                WeightTCOCall.Invoke((MethodInvoker)delegate { CloseTCOCall(); });
+                                form.WeightTCOCall.Invoke((MethodInvoker)delegate { form.CloseTCOCall(); });
                             }
                             else
                             {
-                                WeightTCOCall.Hide();
+                                form.WeightTCOCall.Hide();
                             }
                         }
 
-                        if (_tcocall != null && !_tcocall.IsDisposed && _tcocall.IsHandleCreated)
+                        if (form._tcocall != null && !form._tcocall.IsDisposed && form._tcocall.IsHandleCreated)
                         {
-                            if (_tcocall.InvokeRequired)
+                            if (form._tcocall.InvokeRequired)
                             {
-                                _tcocall.Invoke((MethodInvoker)delegate { CloseTCOCall(); });
+                                form._tcocall.Invoke((MethodInvoker)delegate { form.CloseTCOCall(); });
                             }
                             else
                             {
-                                _tcocall.Hide();
+                                form._tcocall.Hide();
                             }
                         }
                     }

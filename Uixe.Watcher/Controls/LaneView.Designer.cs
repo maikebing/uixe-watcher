@@ -69,9 +69,10 @@
             this.btnVNC = new DevExpress.XtraBars.BarButtonItem();
             this.btnPing = new DevExpress.XtraBars.BarButtonItem();
             this.btnReboot = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRemotLane = new DevExpress.XtraBars.BarButtonItem();
             this.rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
-            this.btnRemotLane = new DevExpress.XtraBars.BarButtonItem();
+            this.repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).BeginInit();
@@ -80,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpbExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // gcExitLanes
@@ -93,7 +95,8 @@
             this.gcExitLanes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit1,
             this.rpbExit,
-            this.cardBoxControlRepositoryItem2});
+            this.cardBoxControlRepositoryItem2,
+            this.repositoryItemTimeEdit1});
             this.gcExitLanes.Size = new System.Drawing.Size(1518, 576);
             this.gcExitLanes.TabIndex = 9;
             this.gcExitLanes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -731,6 +734,13 @@
             this.btnReboot.Id = 2;
             this.btnReboot.Name = "btnReboot";
             // 
+            // btnRemotLane
+            // 
+            this.btnRemotLane.Caption = "远程站前劝返";
+            this.btnRemotLane.Id = 3;
+            this.btnRemotLane.Name = "btnRemotLane";
+            this.btnRemotLane.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRemotLane_ItemClick);
+            // 
             // rpbExit
             // 
             this.rpbExit.Name = "rpbExit";
@@ -747,12 +757,16 @@
             this.radialMenu1.Manager = this.barManager1;
             this.radialMenu1.Name = "radialMenu1";
             // 
-            // btnRemotLane
+            // repositoryItemTimeEdit1
             // 
-            this.btnRemotLane.Caption = "远程站前劝返";
-            this.btnRemotLane.Id = 3;
-            this.btnRemotLane.Name = "btnRemotLane";
-            this.btnRemotLane.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRemotLane_ItemClick);
+            this.repositoryItemTimeEdit1.AutoHeight = false;
+            this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemTimeEdit1.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.repositoryItemTimeEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
             // 
             // LaneView
             // 
@@ -774,6 +788,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpbExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -824,5 +839,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem btnRemotLane;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit1;
     }
 }

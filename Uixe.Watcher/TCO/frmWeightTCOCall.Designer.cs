@@ -70,6 +70,7 @@
             this.weightTCOConfirm1.Name = "weightTCOConfirm1";
             this.weightTCOConfirm1.Size = new System.Drawing.Size(740, 551);
             this.weightTCOConfirm1.TabIndex = 0;
+            this.weightTCOConfirm1.TCE = null;
             // 
             // xtraTabPage2
             // 
@@ -79,9 +80,8 @@
             // 
             // frmWeightTCOCall
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(756, 587);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(752, 601);
             this.Controls.Add(this.tsTabs);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

@@ -36,9 +36,9 @@ namespace Uixe.Watcher.Uitls
             });
         }
         public List<ProvCode> GetProvCodes() => GetDataBy<List<ProvCode>>("ProvCodes", "/Plazas/ProvCodes");
-        public List<ProvPlazaInfo> GetProvPlazaInfo(string ProvId) =>  GetDataBy<List<ProvPlazaInfo>>("ProvCodes_", "/Plazas/ProvPlazaInfo", new { ProvId });
+        public List<ProvPlazaInfo> GetProvPlazaInfo(string ProvId) =>  GetDataBy<List<ProvPlazaInfo>>($"ProvCodes_{ProvId}", "/Plazas/ProvPlazaInfo", new { ProvId });
 
-        public  string GetProvByPlaza(string plazaid) => GetDataBy<string>("ProvByPlaza", "/Plazas/ProvByPlaza", new { plazaid });
+        public  string GetProvByPlaza(string plazaid) => GetDataBy<string>($"ProvByPlaza_{plazaid}", "/Plazas/ProvByPlaza", new { plazaid });
 
         private   T GetCatchOrCreate<T>(string _key,  Func<T> fc  )
         {

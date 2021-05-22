@@ -20,7 +20,7 @@ namespace Uixe.Watcher.V1
          public MsgWeightTCOCALL TCE { get; set; }
         public bool CanDo { get; set; }
         public IMqttClient MqttClient { get; internal set; }
-
+        public frmMain Main { get; internal set; }
 
         private Prompt prompt = null;
         MsgWeightTCOCALL _tce;
@@ -167,7 +167,7 @@ namespace Uixe.Watcher.V1
 
                 TCOCallUtils.Submit(true, this);
                 tcoHeart.Stop();
-                TCOCallUtils.WeightTCOCall.RemoveNowTab(this.Name);
+                this.Main.WeightTCOCall.RemoveNowTab(this.Name);
                 SpeechUtils.Speecher.SpeakAsyncCancel(prompt);
             }
             catch (Exception)
@@ -184,7 +184,7 @@ namespace Uixe.Watcher.V1
                     TCOCallUtils.Submit(false, this);
                 }
                 tcoHeart.Stop();
-                TCOCallUtils.WeightTCOCall.RemoveNowTab(this.Name);
+                this.Main.WeightTCOCall.RemoveNowTab(this.Name);
             }
             catch (Exception)
             {
@@ -197,7 +197,7 @@ namespace Uixe.Watcher.V1
             {
                 if (!this.CanDo)
                 {
-                    TCOCallUtils.WeightTCOCall.RemoveNowTab(this.Name);
+                    Main.WeightTCOCall.RemoveNowTab(this.Name);
                 }
                 tcoHeart.Stop();
                 SpeechUtils.Speecher.SpeakAsyncCancel(prompt);

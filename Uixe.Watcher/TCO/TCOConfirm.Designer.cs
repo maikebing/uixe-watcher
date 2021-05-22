@@ -31,16 +31,16 @@ namespace Uixe.Watcher
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TCOConfirm));
             this.lableContext = new DevExpress.XtraEditors.LabelControl();
             this.tCOCallBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -93,6 +93,7 @@ namespace Uixe.Watcher
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pcPronow = new DevExpress.XtraEditors.ProgressBarControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tcoPictureBox1 = new Uixe.Watcher.Controls.TCOPictureBox();
             this.btnVNC = new DevExpress.XtraEditors.SimpleButton();
             this.vPLAZALISTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.keyItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -134,6 +135,7 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)(this.txtcarnumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtocartype.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcPronow.Properties)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vPLAZALISTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.keyItemBindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -153,6 +155,10 @@ namespace Uixe.Watcher
             this.lableContext.Size = new System.Drawing.Size(414, 20);
             this.lableContext.TabIndex = 0;
             this.lableContext.Text = "提示内容提示内容提示内容提示内容提示";
+            // 
+            // tCOCallBindingSource
+            // 
+            this.tCOCallBindingSource.DataSource = typeof(Uixe.Watcher.Msg.TCOCall);
             // 
             // gcCardInfo
             // 
@@ -205,7 +211,7 @@ namespace Uixe.Watcher
             this.comboBoxEdit1.Properties.Appearance.Options.UseFont = true;
             this.comboBoxEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
             "(不作修改)",
             "客车一型",
@@ -330,7 +336,7 @@ namespace Uixe.Watcher
             this.comboBoxEdit2.Properties.Appearance.Options.UseFont = true;
             this.comboBoxEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.comboBoxEdit2.Properties.Items.AddRange(new object[] {
             "(不作修改)",
             "客车一型",
@@ -892,11 +898,21 @@ namespace Uixe.Watcher
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tcoPictureBox1);
             this.groupBox1.Location = new System.Drawing.Point(7, 132);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(354, 296);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
+            // 
+            // tcoPictureBox1
+            // 
+            this.tcoPictureBox1.Image = null;
+            this.tcoPictureBox1.ImageLocation = "";
+            this.tcoPictureBox1.Location = new System.Drawing.Point(1, -1);
+            this.tcoPictureBox1.Name = "tcoPictureBox1";
+            this.tcoPictureBox1.Size = new System.Drawing.Size(347, 294);
+            this.tcoPictureBox1.TabIndex = 0;
             // 
             // btnVNC
             // 
@@ -918,7 +934,7 @@ namespace Uixe.Watcher
             this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseBorderColor = true;
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.pcPronow);
             this.Controls.Add(this.btnVNC);
             this.Controls.Add(this.pictureBox4);
@@ -978,6 +994,7 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)(this.txtcarnumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtocartype.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcPronow.Properties)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.vPLAZALISTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.keyItemBindingSource1)).EndInit();
             this.ResumeLayout(false);
@@ -1014,7 +1031,6 @@ namespace Uixe.Watcher
         public DevExpress.XtraEditors.SimpleButton btnOK;
         public DevExpress.XtraEditors.SimpleButton btnCancel;
         private System.Windows.Forms.BindingSource vPLAZALISTBindingSource;
-        private Uixe.Watcher.Controls.TCOPictureBox tcoPictureBox1;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl12;
@@ -1036,12 +1052,12 @@ namespace Uixe.Watcher
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
         private System.Windows.Forms.GroupBox groupBox1;
         public DevExpress.XtraEditors.SimpleButton btnVNC;
-        private Uixe.Watcher.Controls.TCOPictureBox tcoPictureBox2;
         private DevExpress.XtraEditors.LookUpEdit txtModifyCarType;
         private System.Windows.Forms.BindingSource keyItem_Vehicle_Types_BindingSource;
         private DevExpress.XtraEditors.LookUpEdit cbxProv;
         private System.Windows.Forms.BindingSource keyItemBindingSource1;
         private System.Windows.Forms.BindingSource _pbindingSource1;
         private DevExpress.XtraEditors.DateEdit dtEntryDateTime;
+        private Controls.TCOPictureBox tcoPictureBox1;
     }
 }

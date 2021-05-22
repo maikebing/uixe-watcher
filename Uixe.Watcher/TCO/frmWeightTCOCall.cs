@@ -20,6 +20,8 @@ namespace Uixe.Watcher.V1
 
         private List<Lane> lstlane = new List<Lane>();
 
+        public frmMain Main { get; internal set; }
+
         public frmWeightTCOCall()
         {
             InitializeComponent();
@@ -37,6 +39,7 @@ namespace Uixe.Watcher.V1
                     string pname = tmlLaneNo.id + lstlane[i].lane_no;
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
+                    tms.Main = this.Main;
                     tms.MqttClient = _mqttClient;
                     t.Name = pname;
                     tms.Name = pname;

@@ -20,6 +20,7 @@ namespace Uixe.Watcher
 
         internal TCOCall TCE;
         public bool CanDo { get; set; }
+        public frmMain Main { get; internal set; }
 
         public bool CheckPlazaInfo()
         {
@@ -39,24 +40,25 @@ namespace Uixe.Watcher
             return ret;
         }
         UixeClient uixeClient = new UixeClient();
+
         public void Show(TCOCall tce)
         {
-          
+            IsShowed = false;
             InitInfo();
             _tce = tce.Clone();
             if (tce.TCOTYPE == WATCHER_TYPE.WATCHER_BlacklistPlate)
             {
-                tcoPictureBox2.Visible = true;
+                tcoPictureBox1.Visible = true;
             }
             else
             {
-                tcoPictureBox2.Visible = false;
+                tcoPictureBox1.Visible = false;
             }
-            FillPlazaNameAndList(tce);
+         
             var l = RuntimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
             string url = string.Format($"http://{l.ip}:10000/capture");
             tcoPictureBox1.ImageLocation = url;
-            tcoPictureBox2.ImageLocation = url;
+            tcoPictureBox1.ImageLocation = url;
             keyItem_Vehicle_Types_BindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
             _pbindingSource1.DataSource = uixeClient.GetProvCodes();
             _pbindingSource1.ResetCurrentItem();
@@ -65,11 +67,11 @@ namespace Uixe.Watcher
             tCOCallBindingSource.ResetBindings(false);
             tCOCallBindingSource.ResetCurrentItem();
             TCE = tce;
+            FillPlazaNameAndList(tce, true);
             tCOCallBindingSource.DataSource = tce;
             chkCarKind.Checked = tce.DifClass != 0;
             chkCarPlate.Checked = tce.DifPlate;
             chkCarType.Checked = tce.DifType;
-
             chkEntryPlaza.Text = tce.DifPlaza ? "入口站不明" : "入口正常卡";
             chkEntryPlaza.Checked = tce.DifPlaza;
             chkIsU.Checked = tce.UCar;
@@ -133,7 +135,9 @@ namespace Uixe.Watcher
                     cbxModifyEntryPlaza.EditValue = txtexitsite.Text;
                 }
             }
+            IsShowed = true;
         }
+        bool IsShowed = false;
 
         private void InitInfo()
         {
@@ -177,41 +181,45 @@ namespace Uixe.Watcher
             AUS = new MSG_TCOConfirm();
             CanDo = true;
             btnOK.Enabled = true;
+           
         }
 
      
 
 
-        private void FillPlazaNameAndList(TCOCall tce)
+        private void FillPlazaNameAndList(TCOCall tce,bool isfirst=false )
         {
             try
             {
                 UixeClient client = new UixeClient();
-
-                  var pc=  client.GetProvByPlaza(tce.EntryStationID);
-                cbxProv.EditValue = int.Parse( pc);
+                if (isfirst)
+                {
+                    var pc = client.GetProvByPlaza(tce.EntryStationID);
+                    cbxProv.EditValue = int.Parse(pc);
+                }
                 var prov = cbxProv.GetSelectedDataRow() as ProvCode;
 
                 var ppi = client.GetProvPlazaInfo($"{prov?.provId??65}");
                 if (ppi != null)
                 {
                     pLazaBindingSource.DataSource = ppi;
-                    var r = from p in ppi where  p.plazaId==tce.EntryStationID  select p;
-                    if (r.Any())
+                    if (isfirst)
                     {
-                        string psn = r.FirstOrDefault().plazaName;
-                      //  pLazaBindingSource.Position= pLazaBindingSource.IndexOf(r.FirstOrDefault());
-                        txtentrysite.Text = psn;
-                        txtexitsite.Text = psn;
+                        var r = from p in ppi where p.plazaId == tce.EntryStationID select p;
+                        if (r.Any())
+                        {
+                            string psn = r.FirstOrDefault().plazaName;
+                            pLazaBindingSource.Position= pLazaBindingSource.IndexOf(r.FirstOrDefault());
+                            
+                        }
                     }
-                   
                 }
             }
             catch (System.Exception)
             {
             }
         }
-
+       
         private void checkEdits_CheckedChanged(object sender, EventArgs e)
         {
             //CheckEdit ce = sender as CheckEdit;
@@ -282,10 +290,10 @@ namespace Uixe.Watcher
             {
                 dtold = DateTime.Now;
                 pcPronow.Position = pcPronow.Position - 1;
-                if ( TCOCallUtils._tcocall != null && TCOCallUtils._tcocall.Visible)
-                {
-                    //  BLLWatcher.TellLaneTCOIsRE(TCO.Head.Network + TCO.Head.Plaza, TCO.Head.LaneNo);
-                }
+                //if ( _tcocall != null && _tcocall.Visible)
+                //{
+                //    //  BLLWatcher.TellLaneTCOIsRE(TCO.Head.Network + TCO.Head.Plaza, TCO.Head.LaneNo);
+                //}
                 if (pcPronow.Position == pcPronow.Properties.Minimum)
                 {
                     timer1.Stop();
@@ -327,9 +335,9 @@ namespace Uixe.Watcher
 
         private void cbxProv_EditValueChanged(object sender, EventArgs e)
         {
-            if (TCE != null)
+            if (TCE != null && IsShowed)
             {
-                FillPlazaNameAndList(TCE);
+                FillPlazaNameAndList(TCE,false);
             }
         }
     }

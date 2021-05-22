@@ -46,6 +46,7 @@ namespace Uixe.Watcher
         private List<Lane> lstlane = new List<Lane>();
 
         public IMqttClient MQTTClient { get; internal set; }
+        public frmMain Main { get;   set; }
 
         public void Show(TCOCall TCOCallxxx)
         {
@@ -56,6 +57,7 @@ namespace Uixe.Watcher
             {
                 XtraTabPage t = x.Single();
                 TCOConfirm tms = (TCOConfirm)t.Tag;
+                tms.Main = this.Main;
                 try
                 {
                    

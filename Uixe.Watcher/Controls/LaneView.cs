@@ -88,6 +88,7 @@ namespace Uixe.Watcher.Controls
                 {
                     e.Appearance.BackColor = Color.FromArgb(100, 255, 225, 225);
                     e.Appearance.ForeColor = Color.FromArgb(100, 176, 0, 22);
+
                 }
             }
         }

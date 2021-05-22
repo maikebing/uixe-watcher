@@ -53,7 +53,7 @@ namespace Uixe.Watcher.Controls
             // 
             this.pic.BackColor = System.Drawing.Color.White;
             this.pic.ImageLocation = "ftp://root:kissme@192.168.50.58/EMRCV4/IMAGE/TEMP/TTEMP.JPG";
-            this.pic.Location = new System.Drawing.Point(104, 83);
+            this.pic.Location = new System.Drawing.Point(89, 71);
             this.pic.Name = "pic";
             this.pic.Size = new System.Drawing.Size(352, 288);
             this.pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -75,7 +75,7 @@ namespace Uixe.Watcher.Controls
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(636, 435);
+            this.panel1.Size = new System.Drawing.Size(545, 373);
             this.panel1.TabIndex = 2;
             this.panel1.Resize += new System.EventHandler(this.panel1_Resize);
             // 
@@ -85,7 +85,7 @@ namespace Uixe.Watcher.Controls
             this.imageBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageBox1.Location = new System.Drawing.Point(2, 2);
             this.imageBox1.Name = "imageBox1";
-            this.imageBox1.Size = new System.Drawing.Size(632, 431);
+            this.imageBox1.Size = new System.Drawing.Size(541, 369);
             this.imageBox1.TabIndex = 1;
             // 
             // propertyGridControl1
@@ -99,9 +99,9 @@ namespace Uixe.Watcher.Controls
             // 
             this.pcBPane.Controls.Add(this.pcBar);
             this.pcBPane.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pcBPane.Location = new System.Drawing.Point(0, 425);
+            this.pcBPane.Location = new System.Drawing.Point(0, 367);
             this.pcBPane.Name = "pcBPane";
-            this.pcBPane.Size = new System.Drawing.Size(636, 10);
+            this.pcBPane.Size = new System.Drawing.Size(545, 6);
             this.pcBPane.TabIndex = 3;
             this.pcBPane.Visible = false;
             // 
@@ -112,57 +112,57 @@ namespace Uixe.Watcher.Controls
             this.pcBar.Controls.Add(this.simpleButton3);
             this.pcBar.Controls.Add(this.simpleButton2);
             this.pcBar.Controls.Add(this.simpleButton1);
-            this.pcBar.Location = new System.Drawing.Point(258, -11);
+            this.pcBar.Location = new System.Drawing.Point(221, -10);
             this.pcBar.Name = "pcBar";
-            this.pcBar.Size = new System.Drawing.Size(121, 33);
+            this.pcBar.Size = new System.Drawing.Size(104, 28);
             this.pcBar.TabIndex = 0;
             // 
             // simpleButton4
             // 
-            this.simpleButton4.Location = new System.Drawing.Point(93, 5);
+            this.simpleButton4.Location = new System.Drawing.Point(80, 4);
             this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(24, 24);
+            this.simpleButton4.Size = new System.Drawing.Size(21, 21);
             this.simpleButton4.TabIndex = 3;
             this.simpleButton4.Text = "simpleButton4";
             this.simpleButton4.Click += new System.EventHandler(this.saveSToolStripButton_Click);
             // 
             // simpleButton3
             // 
-            this.simpleButton3.Location = new System.Drawing.Point(63, 5);
+            this.simpleButton3.Location = new System.Drawing.Point(54, 4);
             this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(24, 24);
+            this.simpleButton3.Size = new System.Drawing.Size(21, 21);
             this.simpleButton3.TabIndex = 2;
             this.simpleButton3.Text = "simpleButton3";
             this.simpleButton3.Click += new System.EventHandler(this.BtnZoomOut30_Click);
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Image = global::Uixe.Watcher.Properties.Resources.BtnZoomIn30_Image;
-            this.simpleButton2.Location = new System.Drawing.Point(3, 5);
+            this.simpleButton2.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.BtnZoomIn30_Image;
+            this.simpleButton2.Location = new System.Drawing.Point(3, 4);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(24, 24);
+            this.simpleButton2.Size = new System.Drawing.Size(21, 21);
             this.simpleButton2.TabIndex = 1;
             this.simpleButton2.Text = "simpleButton2";
             this.simpleButton2.Click += new System.EventHandler(this.BtnZoomIn30_Click);
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Image = global::Uixe.Watcher.Properties.Resources.BtnZoom30_Image;
-            this.simpleButton1.Location = new System.Drawing.Point(33, 5);
+            this.simpleButton1.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.BtnZoom30_Image;
+            this.simpleButton1.Location = new System.Drawing.Point(28, 4);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(24, 24);
+            this.simpleButton1.Size = new System.Drawing.Size(21, 21);
             this.simpleButton1.TabIndex = 0;
             this.simpleButton1.Text = "simpleButton1";
             this.simpleButton1.Click += new System.EventHandler(this.BtnZoom30_Click);
             // 
             // TCOPictureBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pcBPane);
             this.Controls.Add(this.panel1);
             this.Name = "TCOPictureBox";
-            this.Size = new System.Drawing.Size(636, 435);
+            this.Size = new System.Drawing.Size(545, 373);
             this.Load += new System.EventHandler(this.TCOPictureBox_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel1)).EndInit();

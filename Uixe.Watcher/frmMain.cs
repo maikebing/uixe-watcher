@@ -70,6 +70,10 @@ namespace Uixe.Watcher
         private CougarClockRepositoryItem repositoryItem = new CougarClockRepositoryItem();
         private CougarClockContainer control = new CougarClockContainer();
         private BarEditItem barEditItem = new BarEditItem();
+
+        public   frmShowTCOCall _tcocall;
+        public   frmWeightTCOCall WeightTCOCall;
+
         private Plaza Plaza { get; set; }
         IMqttClient client;
         private void frmMain_Load(object sender, EventArgs e)
@@ -99,8 +103,11 @@ namespace Uixe.Watcher
                         {
                             btnRing.Caption = "铃声:" + btx.Caption;
                             Properties.Settings.Default.Ring = btx.Caption;
-                            PlayUitls.SetMp3File(Properties.Settings.Default.Ring);
-                            PlayUitls.PlayRing(null);
+                            Task.Run(() =>
+                            {
+                                PlayUitls.SetMp3File(Properties.Settings.Default.Ring);
+                                PlayUitls.PlayRing();
+                            });
                         }
                     };
                     btnRing.AddItem(bt);
@@ -215,7 +222,7 @@ namespace Uixe.Watcher
                         {
                             this.Invoke((MethodInvoker)delegate
                            {
-                               TCOCallUtils.ShowTCOInfo(this, h.ApplicationMessage.Topic, message, client);
+                               this.ShowTCOInfo( h.ApplicationMessage.Topic, message, client);
                            });
                         });
 
