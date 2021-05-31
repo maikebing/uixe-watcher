@@ -252,6 +252,7 @@
     <Compile Include="Dtos\SubHead.cs" />
     <Compile Include="Dtos\tco_confirm.cs" />
     <Compile Include="Dtos\User.cs" />
+    <Compile Include="Extensions\AppExtension.cs" />
     <Compile Include="Extensions\UixetExtension.cs" />
     <Compile Include="Controls\LaneTime.cs" />
     <Compile Include="Controls\LaneView.cs">

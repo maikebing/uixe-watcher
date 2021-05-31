@@ -10,8 +10,10 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Uixe.Watcher.Extensions;
 
 namespace Uixe.Watcher
 {
@@ -37,61 +39,64 @@ namespace Uixe.Watcher
         [STAThread]
         private static void Main(string[] args)
         {
+            AppExtension.RunOnlyOneInstance(() =>
+            {
 #if NETCOREAPP
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
 #else
-            //SetProcessDpiAwareness((int)DpiAwareness.SystemAware);
+                // SetProcessDpiAwareness((int)DpiAwareness.SystemAware);
 #endif
-            args.ToList().ForEach(s =>
-            {
-               if (s== "--mqttserver")
+                args.ToList().ForEach(s =>
+                        {
+                            if (s == "--mqttserver")
+                            {
+                                mqttserver = true;
+                            }
+                        });
+                if (mqttserver)
                 {
-                    mqttserver = true;
+                    Task.Run(async () =>
+                    {
+                        var mqttServer = new MqttFactory().CreateMqttServer();
+                        var opt = new MqttServerOptions();
+                        opt.DefaultEndpointOptions.BoundInterNetworkAddress = IPAddress.Any;
+                        mqttServer.UseApplicationMessageReceivedHandler(c => Debug.WriteLine($"{ c.ClientId} {c.ApplicationMessage.Topic}"));
+                        await mqttServer.StartAsync(opt);
+                    });
                 }
-            });
-            if (mqttserver)
-            {
-                Task.Run(async () =>
+                Application.ThreadException += Application_ThreadException;
+                try
                 {
-                    var mqttServer = new MqttFactory().CreateMqttServer();
-                    var opt = new MqttServerOptions();
-                    opt.DefaultEndpointOptions.BoundInterNetworkAddress = IPAddress.Any;
-                    mqttServer.UseApplicationMessageReceivedHandler(c => Debug.WriteLine($"{ c.ClientId} {c.ApplicationMessage.Topic}"));
-                    await mqttServer.StartAsync(opt);
-                });
-            }
-            Application.ThreadException += Application_ThreadException;
-            try
-            {
-                Barrel.ApplicationId = Assembly.GetExecutingAssembly().GetName().Name;
-                Barrel.EncryptionKey = "future";
-                BarrelUtils.SetBaseCachePath(AppContext.BaseDirectory);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + ex.InnerException?.Message);
+                    Barrel.ApplicationId = Assembly.GetExecutingAssembly().GetName().Name;
+                    Barrel.EncryptionKey = "future";
+                    BarrelUtils.SetBaseCachePath(AppContext.BaseDirectory);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + ex.InnerException?.Message);
 
-            }
-            try
-            {
-                DevExpress.Skins.SkinManager.EnableFormSkins();
-                DevExpress.UserSkins.BonusSkins.Register();
-                UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.SkinStyle);
-            }
-            catch (Exception ex)
-            {
+                }
+                try
+                {
+                    DevExpress.Skins.SkinManager.EnableFormSkins();
+                    DevExpress.UserSkins.BonusSkins.Register();
+                    UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.SkinStyle);
+                }
+                catch (Exception ex)
+                {
 
-                MessageBox.Show(ex.Message + ex.InnerException?.Message);
-            }
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            MainForm = new frmMain();
-            Application.Run(MainForm);
+                    MessageBox.Show(ex.Message + ex.InnerException?.Message);
+                }
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                MainForm = new frmMain();
+                Application.Run(MainForm);
+
+            });
         }
-
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
-            MessageBox.Show(e.Exception.Message+e.Exception.InnerException?.Message);
+            MessageBox.Show(e.Exception.Message + e.Exception.InnerException?.Message);
         }
     }
 }
