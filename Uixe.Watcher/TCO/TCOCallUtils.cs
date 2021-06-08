@@ -9,7 +9,7 @@ using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Ring;
 
-namespace Uixe.Watcher.V1
+namespace Uixe.Watcher.TCO
 {
     public static class TCOCallUtils
     {

@@ -10,7 +10,7 @@ using Uixe.Watcher.Msg;
 using Uixe.Watcher;
 using MQTTnet.Client;
 
-namespace Uixe.Watcher.V1
+namespace Uixe.Watcher.TCO
 {
     public partial class frmWeightTCOCall : DevExpress.XtraEditors.XtraForm
     {

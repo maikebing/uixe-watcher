@@ -1,4 +1,4 @@
-﻿namespace Uixe.Watcher.V1
+﻿namespace Uixe.Watcher.TCO
 {
     partial class frmWeightTCOCall
     {
@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWeightTCOCall));
             this.tsTabs = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.weightTCOConfirm1 = new Uixe.Watcher.V1.WeightTCOConfirm();
+            this.weightTCOConfirm1 = new Uixe.Watcher.TCO.WeightTCOConfirm();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.tsTabs)).BeginInit();
             this.tsTabs.SuspendLayout();

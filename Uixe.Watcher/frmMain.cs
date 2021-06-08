@@ -11,7 +11,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Windows.Forms;
 using Uixe.Watcher.Ring;
-using Uixe.Watcher.V1;
+using Uixe.Watcher.TCO;
 using System.Linq;
 using Uixe.Watcher.Tools;
 using System.Diagnostics;

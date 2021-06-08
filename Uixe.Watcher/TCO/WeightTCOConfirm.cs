@@ -5,8 +5,9 @@ using System.Linq;
 using System.Speech.Synthesis;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
+using Uixe.Watcher.Uitls;
 
-namespace Uixe.Watcher.V1
+namespace Uixe.Watcher.TCO
 {
     public partial class WeightTCOConfirm : DevExpress.XtraEditors.XtraUserControl
     {
@@ -15,9 +16,7 @@ namespace Uixe.Watcher.V1
             InitializeComponent();
             ItemForText.Text = " 监 \n 控 \n 内 \n 容 ";
         }
-
- 
-         public MsgWeightTCOCALL TCE { get; set; }
+        public MsgWeightTCOCALL TCE { get; set; }
         public bool CanDo { get; set; }
         public IMqttClient MqttClient { get; internal set; }
         public frmMain Main { get; internal set; }
@@ -52,6 +51,7 @@ namespace Uixe.Watcher.V1
             };
             return r;
         }
+        public Lane Lane { get; private set; }
         public void Show(MsgWeightTCOCALL tce)
         {
             try
@@ -71,19 +71,19 @@ namespace Uixe.Watcher.V1
                 Reset();
                 CarPlateTextEdit.Enabled = tce.CallType == WATCHER_TYPE.WATCHER_State44_ModifyCarNumber;
                 CarPlateTextEdit.ReadOnly = !CarPlateTextEdit.Enabled;
-                var l = RuntimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
-                string url = string.Format($"http://{l.ip}:10000/capture");
+                Lane = RuntimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
+                string url = string.Format($"http://{Lane.ip}:10000/capture");
                 picLane.ImageLocation = url;
                 picBig.ImageLocation = url;
-                var strct = Enum.GetName(typeof(WATCHER_TYPE), tce.CallType); 
-               string speechtext = $"{tce.LaneNo} {KeyItem.GetTCOCK().ToList().FirstOrDefault(ki => ki.KeyID == strct)?.KeyName}";
+                var strct = Enum.GetName(typeof(WATCHER_TYPE), tce.CallType);
+                string speechtext = $"{tce.LaneNo} {KeyItem.GetTCOCK().ToList().FirstOrDefault(ki => ki.KeyID == strct)?.KeyName}";
                 bool sound = false;
                 switch (tce.CallType)
                 {
                     case WATCHER_TYPE.WATCHER_LTORNONGYONG:
                         sound = Properties.Settings.Default.SpeechLvSeTongDao;
                         break;
-                    case  WATCHER_TYPE.WATCHER_BlacklistPlate:
+                    case WATCHER_TYPE.WATCHER_BlacklistPlate:
                         sound = Properties.Settings.Default.SpeedBlackListPlate;
                         break;
 
@@ -96,7 +96,7 @@ namespace Uixe.Watcher.V1
                     prompt = SpeechUtils.Speecher.SpeakAsync(speechtext);//语音阅读方法
                 }
             }
-            catch (Exception )
+            catch (Exception)
             {
                 //Log.LogException("Show(MsgWeightTCOCALL tce)", tce.ToString(), ex);
             }
@@ -126,10 +126,6 @@ namespace Uixe.Watcher.V1
                     dtold = DateTime.Now;
                     pcPronow.Position = pcPronow.Position - 1;
                     pcPronow.Text = pcPronow.Position.ToString();
-                    if (TCE != null)
-                    {
-                        //BLLWatcher.TellLaneTCOIsRE(TCE.Network + TCE.Plaza, TCE.LaneNo);
-                    }
                     if (pcPronow.Position == pcPronow.Properties.Minimum)
                     {
                         tcoHeart.Stop();
@@ -147,13 +143,13 @@ namespace Uixe.Watcher.V1
             }
         }
 
-        private   void btnVNC_Click(object sender, EventArgs e)
+        private async void btnVNC_Click(object sender, EventArgs e)
         {
             try
             {
-                //Vnc.Viewer.View vnc = await VNCUtils.Login(Uixe.Watcher.Program.MainForm,  (TCE.Network + TCE.Plaza, TCE.LaneNo), 5900, AppConfig.RunTime.VNCPassword);
-                //vnc.Show();
-                //vnc.Focus();
+                Vnc.Viewer.View vnc = await VNCUtils.Login(Uixe.Watcher.Program.MainForm, Lane?.ip, 5900, "kissme");
+                vnc.Show();
+                vnc.Focus();
             }
             catch (Exception)
             {

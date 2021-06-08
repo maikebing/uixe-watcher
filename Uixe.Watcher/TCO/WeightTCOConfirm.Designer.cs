@@ -1,6 +1,6 @@
 ﻿using Uixe.Watcher.Msg;
 
-namespace Uixe.Watcher.V1
+namespace Uixe.Watcher.TCO
 {
     partial class WeightTCOConfirm
     {

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Uitls;
-using Uixe.Watcher.V1;
+using Uixe.Watcher.TCO;
 
 namespace Uixe.Watcher
 {
@@ -21,6 +21,7 @@ namespace Uixe.Watcher
         internal TCOCall TCE;
         public bool CanDo { get; set; }
         public frmMain Main { get; internal set; }
+        public Lane Lane { get; private set; }
 
         public bool CheckPlazaInfo()
         {
@@ -57,6 +58,7 @@ namespace Uixe.Watcher
          
             var l = RuntimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
             string url = string.Format($"http://{l.ip}:10000/capture");
+            Lane = l;
             tcoPictureBox1.ImageLocation = url;
             tcoPictureBox1.ImageLocation = url;
             keyItem_Vehicle_Types_BindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
@@ -311,28 +313,20 @@ namespace Uixe.Watcher
         public Vnc.Viewer.View vnc;
         private TCOCall _tce;
 
-        private void btnVNC_Click(object sender, EventArgs e)
+        private async void btnVNC_Click(object sender, EventArgs e)
         {
-            //string ip = TCS.Config.AppConfig.GetLaneIP(TCO.Head.Network + TCO.Head.Plaza, TCO.Head.LaneNo);
-            //try
-            //{
-            //    if (vnc == null || vnc.IsDisposed || !vnc.IsHandleCreated)
-            //    {
-            //        vnc = await VNCUtils.Login(Uixe.Watcher.Program.MainForm,ip, 5900, AppConfig.RunTime.VNCPassword);
-            //    }
-            //    vnc.Show();
-            //    vnc.Focus();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Log.LogException("btnVNC_Click", ip, ex);
-            //}
-        }
+            try
+            {
+                Vnc.Viewer.View vnc = await VNCUtils.Login(Uixe.Watcher.Program.MainForm, Lane?.ip, 5900, "kissme");
+                vnc.Show();
+                vnc.Focus();
+            }
+            catch (Exception)
+            {
 
-        private void pcPronow_DoubleClick(object sender, EventArgs e)
-        {
+            }
         }
-
+ 
         private void cbxProv_EditValueChanged(object sender, EventArgs e)
         {
             if (TCE != null && IsShowed)
