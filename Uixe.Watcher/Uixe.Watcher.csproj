@@ -51,7 +51,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationRevision>22</ApplicationRevision>
     <ApplicationVersion>1.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -764,12 +764,12 @@
       <Version>34.0.0</Version>
     </PackageReference>
     <PackageReference Include="GitVersion.MsBuild">
-      <Version>5.6.9</Version>
+      <Version>5.6.10</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="LibVLCSharp.WinForms">
-      <Version>3.5.0</Version>
+      <Version>3.5.1</Version>
     </PackageReference>
     <PackageReference Include="MonkeyCache.LiteDB">
       <Version>1.5.2</Version>
