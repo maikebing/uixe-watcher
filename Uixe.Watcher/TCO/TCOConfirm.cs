@@ -117,7 +117,7 @@ namespace Uixe.Watcher
             switch (tce.TCOTYPE)
             {
                 case  WATCHER_TYPE.WATCHER_MenuCardBox ://WATCHER_MenuCardBox
-                    gcCardInfo.Visible = false;
+                    gcCardInfo.Enabled = false;
                     break;
 
                 default:
@@ -145,7 +145,7 @@ namespace Uixe.Watcher
             {
                 tcoPictureBox1.Image = null;
                 chkTimeoutCar.Checked = false;
-                gcCardInfo.Visible = true;
+                 
                 chkIsU.Checked = false;
                 chkCarType.Checked = false;
                 chkCarPlate.Checked = false;
@@ -161,7 +161,7 @@ namespace Uixe.Watcher
 
                 tCOCallBindingSource.ResetBindings(false);
                 tCOCallBindingSource.ResetCurrentItem();
-                gcCardInfo.Visible = true;
+                gcCardInfo.Enabled = true;
             }
             catch (Exception)
             {
