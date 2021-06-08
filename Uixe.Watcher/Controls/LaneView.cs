@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Properties;
+using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher.Controls
 {
@@ -120,8 +121,15 @@ namespace Uixe.Watcher.Controls
                 var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
                 if (fv != null)
                 {
-                    frmRemoteLane lane = new frmRemoteLane(Plaza,fv);
-                    lane.Show(this);
+                    try
+                    {
+                        frmRemoteViewer viewer = new frmRemoteViewer(this.Plaza, fv);
+                        viewer.Show();
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
             }
             catch  

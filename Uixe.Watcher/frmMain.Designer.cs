@@ -227,7 +227,7 @@ namespace Uixe.Watcher
             this.repositoryItemTextEdit2,
             this.repositoryItemToggleSwitch2});
             this.ribbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
-            this.ribbon.Size = new System.Drawing.Size(1529, 193);
+            this.ribbon.Size = new System.Drawing.Size(1529, 156);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // applicationMenu1
@@ -379,9 +379,6 @@ namespace Uixe.Watcher
             this.repositoryItemGridLookUpEdit1.Name = "repositoryItemGridLookUpEdit1";
             this.repositoryItemGridLookUpEdit1.PopupView = this.repositoryItemGridLookUpEdit1View;
             this.repositoryItemGridLookUpEdit1.ValueMember = "Id";
-            // 
-            // freshAgriProductsBindingSource
-            // 
             // 
             // repositoryItemGridLookUpEdit1View
             // 
@@ -765,11 +762,11 @@ namespace Uixe.Watcher
             this.ribbonStatusBar.ItemLinks.Add(this.txtStatus);
             this.ribbonStatusBar.ItemLinks.Add(this.chkServerStatus);
             this.ribbonStatusBar.ItemLinks.Add(this.lblPath, true);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 855);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 861);
             this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1529, 28);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1529, 22);
             // 
             // cmsTable
             // 
@@ -788,14 +785,14 @@ namespace Uixe.Watcher
             this.messageView.Location = new System.Drawing.Point(0, 0);
             this.messageView.Margin = new System.Windows.Forms.Padding(4);
             this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(1529, 310);
+            this.messageView.Size = new System.Drawing.Size(1529, 355);
             this.messageView.TabIndex = 9;
             // 
             // sccMain
             // 
             this.sccMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sccMain.Horizontal = false;
-            this.sccMain.Location = new System.Drawing.Point(0, 193);
+            this.sccMain.Location = new System.Drawing.Point(0, 156);
             this.sccMain.Margin = new System.Windows.Forms.Padding(4);
             this.sccMain.Name = "sccMain";
             // 
@@ -808,7 +805,7 @@ namespace Uixe.Watcher
             // 
             this.sccMain.Panel2.Controls.Add(this.messageView);
             this.sccMain.Panel2.Text = "Panel2";
-            this.sccMain.Size = new System.Drawing.Size(1529, 662);
+            this.sccMain.Size = new System.Drawing.Size(1529, 705);
             this.sccMain.SplitterPosition = 340;
             this.sccMain.TabIndex = 12;
             this.sccMain.Text = "splitContainerControl1";
@@ -831,14 +828,14 @@ namespace Uixe.Watcher
             // 
             this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 313);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 318);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1527, 313);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1527, 318);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
             // barButtonItem3
@@ -854,9 +851,6 @@ namespace Uixe.Watcher
             this.tmDateTime.Interval = 1000;
             this.tmDateTime.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // bindingSource1
-            // 
-            // 
             // tmNetworkTest
             // 
             this.tmNetworkTest.Interval = 1000;
@@ -870,24 +864,24 @@ namespace Uixe.Watcher
             this.toolStripSeparator1,
             this.退出ToolStripMenuItem});
             this.cmsNotifyMenu.Name = "cmsNotifyMenu";
-            this.cmsNotifyMenu.Size = new System.Drawing.Size(139, 58);
+            this.cmsNotifyMenu.Size = new System.Drawing.Size(125, 54);
             // 
             // 软件更新ToolStripMenuItem
             // 
             this.软件更新ToolStripMenuItem.Name = "软件更新ToolStripMenuItem";
-            this.软件更新ToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
+            this.软件更新ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.软件更新ToolStripMenuItem.Text = "软件更新";
             this.软件更新ToolStripMenuItem.Click += new System.EventHandler(this.软件更新ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(135, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.退出ToolStripMenuItem.Text = "退出";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
@@ -901,7 +895,7 @@ namespace Uixe.Watcher
             // frmMain
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1529, 883);
             this.Controls.Add(this.sccMain);

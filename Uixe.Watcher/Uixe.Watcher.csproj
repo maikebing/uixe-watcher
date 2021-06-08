@@ -283,6 +283,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRemoteViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRemoteViewer.Designer.cs">
+      <DependentUpon>frmRemoteViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRemoteLane.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -439,6 +445,9 @@
     <EmbeddedResource Include="frmMain.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRemoteViewer.resx">
+      <DependentUpon>frmRemoteViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRemoteLane.resx">
       <DependentUpon>frmRemoteLane.cs</DependentUpon>

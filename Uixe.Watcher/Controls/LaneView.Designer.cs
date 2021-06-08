@@ -71,8 +71,8 @@
             this.btnReboot = new DevExpress.XtraBars.BarButtonItem();
             this.btnRemotLane = new DevExpress.XtraBars.BarButtonItem();
             this.rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
-            this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
             this.repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
+            this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).BeginInit();
@@ -80,8 +80,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpbExit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // gcExitLanes
@@ -717,26 +717,26 @@
             // 
             // btnVNC
             // 
-            this.btnVNC.Caption = "VNC";
+            this.btnVNC.Caption = "远程桌面";
             this.btnVNC.Id = 0;
             this.btnVNC.Name = "btnVNC";
             this.btnVNC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnVNC_ItemClick);
             // 
             // btnPing
             // 
-            this.btnPing.Caption = "Ping";
+            this.btnPing.Caption = "测试网络";
             this.btnPing.Id = 1;
             this.btnPing.Name = "btnPing";
             // 
             // btnReboot
             // 
-            this.btnReboot.Caption = "重启";
+            this.btnReboot.Caption = "重启车道";
             this.btnReboot.Id = 2;
             this.btnReboot.Name = "btnReboot";
             // 
             // btnRemotLane
             // 
-            this.btnRemotLane.Caption = "远程站前劝返";
+            this.btnRemotLane.Caption = "远程控制";
             this.btnRemotLane.Id = 3;
             this.btnRemotLane.Name = "btnRemotLane";
             this.btnRemotLane.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRemotLane_ItemClick);
@@ -744,6 +744,17 @@
             // rpbExit
             // 
             this.rpbExit.Name = "rpbExit";
+            // 
+            // repositoryItemTimeEdit1
+            // 
+            this.repositoryItemTimeEdit1.AutoHeight = false;
+            this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemTimeEdit1.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.repositoryItemTimeEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
             // 
             // radialMenu1
             // 
@@ -756,17 +767,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnRemotLane)});
             this.radialMenu1.Manager = this.barManager1;
             this.radialMenu1.Name = "radialMenu1";
-            // 
-            // repositoryItemTimeEdit1
-            // 
-            this.repositoryItemTimeEdit1.AutoHeight = false;
-            this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
-            this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.repositoryItemTimeEdit1.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
-            this.repositoryItemTimeEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
             // 
             // LaneView
             // 
@@ -787,8 +787,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rpbExit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

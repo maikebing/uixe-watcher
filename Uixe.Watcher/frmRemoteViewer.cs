@@ -13,48 +13,57 @@ using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Uitls;
-
 namespace Uixe.Watcher
 {
-    public partial class frmRemoteLane : DevExpress.XtraEditors.XtraForm
+    public partial class frmRemoteViewer : DevExpress.XtraEditors.XtraForm
     {
-        private readonly Plaza _plaza;
-        private readonly LaneInfo _lane;
-        public frmRemoteLane(Plaza  plaza,  LaneInfo lane)
+        bool ismax = false;
+        private string baseinfo = "";
+        private string ipaddresss = "";
+        private string rtspurl = "";
+        public frmRemoteViewer(Plaza plaza, LaneInfo lane)
         {
-            _plaza = plaza;
-            _lane = lane;
+            baseinfo=   $"车道远程桌面 {plaza.station_name}({ lane.PlazaId}){lane.LaneName}   {lane.IPAddress} ";
+            ipaddresss = lane.IPAddress;
+            rtspurl = lane.CameraRtspUrl;
             InitializeComponent();
         }
+
+        public frmRemoteViewer(Plaza plaza, Lane lane)
+        {
+            baseinfo = $"车道远程桌面 {plaza.station_name}({ lane.lane_id}){lane.lane_no}   {lane.ip} ";
+            ipaddresss = lane.ip;
+            rtspurl = lane.cameraRtspUrl;
+        }
+
         private async void frmRemoteLane_Load(object sender, EventArgs e)
         {
-            var vnc = await VNCUtils.Login(this.vncScreen, _lane.IPAddress, 5900, "kissme");
+            var vnc = await VNCUtils.Login(this.vncScreen, ipaddresss, 5900, "kissme");
             if (vnc != null)
             {
-                vnc.Text = $"车道远程控制 {_plaza.station_name}({ _lane.PlazaId}){_lane.LaneName}   {_lane.IPAddress} ";
+                vnc.Text = $"{baseinfo} ";
                 this.Text = vnc.Text;
-                keyboard1.IPAddress = _lane.IPAddress;
-                this.keyboard1.Port = Properties.Settings.Default.KeyboardPort;
-                  try
+                try
                 {
-                    Core.Initialize();
-                    if (!string.IsNullOrEmpty(_lane.CameraRtspUrl))
+                
+                    if (!string.IsNullOrEmpty(rtspurl))
                     {
+                        Core.Initialize();
                         var LibVLC = new LibVLC();
                         var media = new Media(LibVLC,
-                            new Uri(_lane.CameraRtspUrl));
+                            new Uri(rtspurl));
                         this.videoView1.MediaPlayer = new MediaPlayer(media) { EnableHardwareDecoding = true };
                         this.videoView1.MediaPlayer.Play();
                     }
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show($"视频初始化播放{_lane.CameraRtspUrl}失败，{ex.Message}");
+                    XtraMessageBox.Show($"视频初始化播放{rtspurl}失败，{ex.Message}");
                 }
-               
             }
         }
-        bool ismax = false;
+    
+
         private void videoView1_DoubleClick(object sender, EventArgs e)
         {
             if (ismax)
@@ -67,7 +76,7 @@ namespace Uixe.Watcher
                 ismax = true;
                 videoView1.Size = this.Size;
             }
-         
+
         }
     }
 }

@@ -143,16 +143,16 @@ namespace Uixe.Watcher.TCO
             }
         }
 
-        private async void btnVNC_Click(object sender, EventArgs e)
+        private  void btnVNC_Click(object sender, EventArgs e)
         {
             try
             {
-                Vnc.Viewer.View vnc = await VNCUtils.Login(Uixe.Watcher.Program.MainForm, Lane?.ip, 5900, "kissme");
-                vnc.Show();
-                vnc.Focus();
+                frmRemoteViewer viewer = new frmRemoteViewer(RuntimeSetting.Plaza, Lane);
+                viewer.Show();
             }
             catch (Exception)
             {
+
             }
         }
 
