@@ -18,7 +18,7 @@ namespace Uixe.Watcher
         }
 
 
-        internal TCOCall TCE;
+        internal TCOCall TCE { get; set; };
         public bool CanDo { get; set; }
         public frmMain Main { get; internal set; }
         public Lane Lane { get; private set; }
@@ -236,10 +236,13 @@ namespace Uixe.Watcher
         {
             TCOCall tc = TCE;
        
-            AUS.DifPlate = TCE.DifPlate;
-            AUS.DifPlaza = TCE.DifPlaza;
-            AUS.DifType = TCE.DifType;
-            AUS.CarClass = int.Parse( AUS.DifKind   ? txtModifyCarKind.Text : tc.ExitCarClass);
+            AUS.DifPlate = tc.DifPlate;
+            AUS.DifPlaza = tc.DifPlaza;
+            AUS.DifType = tc.DifType;
+            if ( int.TryParse( AUS.DifKind  && !string.IsNullOrEmpty(txtModifyCarKind.Text)  ? txtModifyCarKind.Text : tc.ExitCarClass,out int  cc))
+            {
+                AUS.CarClass = cc;
+            }
             AUS.CarPlate = tc.DifPlate ? txtModifyCarNumber.Text : tc.ExitPlate;
             AUS.CarType = tc.DifType  ? (txtModifyCarType.EditValue as int?).GetValueOrDefault() : int.Parse( tc.ExitCarType);
             var plaza = cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
@@ -260,7 +263,7 @@ namespace Uixe.Watcher
             AUS.IsConfirm = IsSubmit;
             AUS.EntryDateTime = tc.EntryDHM;
             AUS.EntryLaneID = tc.EntryLaneID;
-            AUS.EntryDHM = AUS.EntryDateTime.ToString("yyyyMMddHHMMss");
+            AUS.EntryDHM = AUS.EntryDateTime.ToString("yyyyMMddHHmmss");
             return AUS;
         }
 
@@ -333,5 +336,7 @@ namespace Uixe.Watcher
                 FillPlazaNameAndList(TCE,false);
             }
         }
+
+        
     }
 }
