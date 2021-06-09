@@ -33,13 +33,13 @@
     <SupportUrl>http://10.165.84.26/</SupportUrl>
     <ErrorReportUrl>http://10.165.84.26/</ErrorReportUrl>
     <TargetCulture>zh-CN</TargetCulture>
-    <ProductName>新e畅</ProductName>
+    <ProductName>新e畅通收费站监控与运维%28TCO%29</ProductName>
     <PublisherName>新疆交投科技</PublisherName>
     <SuiteName>新e畅</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>install.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>125</ApplicationRevision>
+    <ApplicationRevision>126</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
