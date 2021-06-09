@@ -18,7 +18,7 @@ namespace Uixe.Watcher
         }
 
 
-        internal TCOCall TCE { get; set; };
+        public TCOCall TCE { get; set; }
         public bool CanDo { get; set; }
         public frmMain Main { get; internal set; }
         public Lane Lane { get; private set; }
@@ -44,6 +44,8 @@ namespace Uixe.Watcher
 
         public void Show(TCOCall tce)
         {
+            TCE = tce;
+            propertyGridControl1.SelectedObject = TCE;
             IsShowed = false;
             InitInfo();
             _tce = tce.Clone();
@@ -66,11 +68,11 @@ namespace Uixe.Watcher
             _pbindingSource1.ResetCurrentItem();
             cbxProv.EditValue = 65;
             pLazaBindingSource.ResetCurrentItem();
-            tCOCallBindingSource.ResetBindings(false);
+           //tCOCallBindingSource.ResetBindings(false);
             tCOCallBindingSource.ResetCurrentItem();
-            TCE = tce;
+     
             FillPlazaNameAndList(tce, true);
-            tCOCallBindingSource.DataSource = tce;
+            tCOCallBindingSource.DataSource = TCE;
             chkCarKind.Checked = tce.DifClass != 0;
             chkCarPlate.Checked = tce.DifPlate;
             chkCarType.Checked = tce.DifType;
@@ -264,6 +266,7 @@ namespace Uixe.Watcher
             AUS.EntryDateTime = tc.EntryDHM;
             AUS.EntryLaneID = tc.EntryLaneID;
             AUS.EntryDHM = AUS.EntryDateTime.ToString("yyyyMMddHHmmss");
+            AUS.DateTime = DateTime.Now;
             return AUS;
         }
 
@@ -337,6 +340,18 @@ namespace Uixe.Watcher
             }
         }
 
-        
+        private void tCOCallBindingSource_CurrentItemChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void tCOCallBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tCOCallBindingSource_PositionChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
