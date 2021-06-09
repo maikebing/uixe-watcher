@@ -378,19 +378,19 @@ namespace Uixe.Watcher.TCO
             this.NetworkTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.NetworkTextEdit.Properties.Appearance.Options.UseFont = true;
             this.NetworkTextEdit.Properties.ReadOnly = true;
-            this.NetworkTextEdit.Size = new System.Drawing.Size(127, 28);
+            this.NetworkTextEdit.Size = new System.Drawing.Size(144, 28);
             this.NetworkTextEdit.StyleController = this.dataLayoutControl1;
             this.NetworkTextEdit.TabIndex = 8;
             // 
             // PlazaTextEdit
             // 
             this.PlazaTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Plaza", true));
-            this.PlazaTextEdit.Location = new System.Drawing.Point(231, 77);
+            this.PlazaTextEdit.Location = new System.Drawing.Point(248, 77);
             this.PlazaTextEdit.Name = "PlazaTextEdit";
             this.PlazaTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.PlazaTextEdit.Properties.Appearance.Options.UseFont = true;
             this.PlazaTextEdit.Properties.ReadOnly = true;
-            this.PlazaTextEdit.Size = new System.Drawing.Size(88, 28);
+            this.PlazaTextEdit.Size = new System.Drawing.Size(195, 28);
             this.PlazaTextEdit.StyleController = this.dataLayoutControl1;
             this.PlazaTextEdit.TabIndex = 9;
             // 
@@ -433,24 +433,24 @@ namespace Uixe.Watcher.TCO
             // LaneNoTextEdit
             // 
             this.LaneNoTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "LaneNo", true));
-            this.LaneNoTextEdit.Location = new System.Drawing.Point(399, 77);
+            this.LaneNoTextEdit.Location = new System.Drawing.Point(523, 77);
             this.LaneNoTextEdit.Name = "LaneNoTextEdit";
             this.LaneNoTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.LaneNoTextEdit.Properties.Appearance.Options.UseFont = true;
             this.LaneNoTextEdit.Properties.ReadOnly = true;
-            this.LaneNoTextEdit.Size = new System.Drawing.Size(127, 28);
+            this.LaneNoTextEdit.Size = new System.Drawing.Size(78, 28);
             this.LaneNoTextEdit.StyleController = this.dataLayoutControl1;
             this.LaneNoTextEdit.TabIndex = 15;
             // 
             // CollectorTextEdit
             // 
             this.CollectorTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Collector", true));
-            this.CollectorTextEdit.Location = new System.Drawing.Point(399, 45);
+            this.CollectorTextEdit.Location = new System.Drawing.Point(523, 45);
             this.CollectorTextEdit.Name = "CollectorTextEdit";
             this.CollectorTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.CollectorTextEdit.Properties.Appearance.Options.UseFont = true;
             this.CollectorTextEdit.Properties.ReadOnly = true;
-            this.CollectorTextEdit.Size = new System.Drawing.Size(127, 28);
+            this.CollectorTextEdit.Size = new System.Drawing.Size(209, 28);
             this.CollectorTextEdit.StyleController = this.dataLayoutControl1;
             this.CollectorTextEdit.TabIndex = 16;
             // 
@@ -640,12 +640,12 @@ namespace Uixe.Watcher.TCO
             // TextTextEdit
             // 
             this.TextTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "Text", true));
-            this.TextTextEdit.Location = new System.Drawing.Point(43, 371);
+            this.TextTextEdit.Location = new System.Drawing.Point(43, 403);
             this.TextTextEdit.Name = "TextTextEdit";
             this.TextTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TextTextEdit.Properties.Appearance.Options.UseFont = true;
             this.TextTextEdit.Properties.ReadOnly = true;
-            this.TextTextEdit.Size = new System.Drawing.Size(701, 135);
+            this.TextTextEdit.Size = new System.Drawing.Size(701, 103);
             this.TextTextEdit.StyleController = this.dataLayoutControl1;
             this.TextTextEdit.TabIndex = 39;
             // 
@@ -731,7 +731,7 @@ namespace Uixe.Watcher.TCO
             // CallTypeComboBoxEdit
             // 
             this.CallTypeComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "CallType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CallTypeComboBoxEdit.Location = new System.Drawing.Point(606, 45);
+            this.CallTypeComboBoxEdit.Location = new System.Drawing.Point(100, 359);
             this.CallTypeComboBoxEdit.Name = "CallTypeComboBoxEdit";
             this.CallTypeComboBoxEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.CallTypeComboBoxEdit.Properties.Appearance.Options.UseFont = true;
@@ -744,7 +744,7 @@ namespace Uixe.Watcher.TCO
             this.CallTypeComboBoxEdit.Properties.ReadOnly = true;
             this.CallTypeComboBoxEdit.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.CallTypeComboBoxEdit.Properties.ValueMember = "KeyID";
-            this.CallTypeComboBoxEdit.Size = new System.Drawing.Size(126, 28);
+            this.CallTypeComboBoxEdit.Size = new System.Drawing.Size(332, 28);
             this.CallTypeComboBoxEdit.StyleController = this.dataLayoutControl1;
             this.CallTypeComboBoxEdit.TabIndex = 17;
             // 
@@ -775,7 +775,7 @@ namespace Uixe.Watcher.TCO
             // LaneTypeTextEdit
             // 
             this.LaneTypeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.msgWeightTCOCALLBindingSource, "LaneType", true));
-            this.LaneTypeTextEdit.Location = new System.Drawing.Point(606, 77);
+            this.LaneTypeTextEdit.Location = new System.Drawing.Point(605, 77);
             this.LaneTypeTextEdit.Name = "LaneTypeTextEdit";
             this.LaneTypeTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.LaneTypeTextEdit.Properties.Appearance.Options.UseFont = true;
@@ -786,7 +786,7 @@ namespace Uixe.Watcher.TCO
             this.LaneTypeTextEdit.Properties.NullText = "";
             this.LaneTypeTextEdit.Properties.ReadOnly = true;
             this.LaneTypeTextEdit.Properties.ValueMember = "KeyID";
-            this.LaneTypeTextEdit.Size = new System.Drawing.Size(126, 28);
+            this.LaneTypeTextEdit.Size = new System.Drawing.Size(127, 28);
             this.LaneTypeTextEdit.StyleController = this.dataLayoutControl1;
             this.LaneTypeTextEdit.TabIndex = 6;
             // 
@@ -808,7 +808,7 @@ namespace Uixe.Watcher.TCO
             this.YMDHMTextEdit.Properties.MaskSettings.Set("isAutoComplete", false);
             this.YMDHMTextEdit.Properties.MaskSettings.Set("isOptimistic", false);
             this.YMDHMTextEdit.Properties.ReadOnly = true;
-            this.YMDHMTextEdit.Size = new System.Drawing.Size(219, 28);
+            this.YMDHMTextEdit.Size = new System.Drawing.Size(343, 28);
             this.YMDHMTextEdit.StyleController = this.dataLayoutControl1;
             this.YMDHMTextEdit.TabIndex = 14;
             this.YMDHMTextEdit.FormatEditValue += new DevExpress.XtraEditors.Controls.ConvertEditValueEventHandler(this.YMDHMTextEdit_FormatEditValue);
@@ -1178,11 +1178,10 @@ namespace Uixe.Watcher.TCO
             this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.ItemForCollector,
             this.ItemForYMDHM,
-            this.ItemForCallType,
             this.ItemForNetwork,
             this.ItemForLaneNo,
-            this.ItemForLaneType,
-            this.ItemForPlaza});
+            this.ItemForPlaza,
+            this.ItemForLaneType});
             this.layoutControlGroup6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup6.Name = "layoutControlGroup6";
             this.layoutControlGroup6.Size = new System.Drawing.Size(736, 109);
@@ -1192,9 +1191,9 @@ namespace Uixe.Watcher.TCO
             // 
             this.ItemForCollector.Control = this.CollectorTextEdit;
             this.ItemForCollector.CustomizationFormText = "Collector";
-            this.ItemForCollector.Location = new System.Drawing.Point(299, 0);
+            this.ItemForCollector.Location = new System.Drawing.Point(423, 0);
             this.ItemForCollector.Name = "ItemForCollector";
-            this.ItemForCollector.Size = new System.Drawing.Size(207, 32);
+            this.ItemForCollector.Size = new System.Drawing.Size(289, 32);
             this.ItemForCollector.Text = "工号";
             this.ItemForCollector.TextSize = new System.Drawing.Size(64, 21);
             // 
@@ -1204,7 +1203,7 @@ namespace Uixe.Watcher.TCO
             this.ItemForYMDHM.CustomizationFormText = "YMDHM";
             this.ItemForYMDHM.Location = new System.Drawing.Point(0, 0);
             this.ItemForYMDHM.Name = "ItemForYMDHM";
-            this.ItemForYMDHM.Size = new System.Drawing.Size(299, 32);
+            this.ItemForYMDHM.Size = new System.Drawing.Size(423, 32);
             this.ItemForYMDHM.Text = "时间";
             this.ItemForYMDHM.TextSize = new System.Drawing.Size(64, 21);
             // 
@@ -1212,9 +1211,9 @@ namespace Uixe.Watcher.TCO
             // 
             this.ItemForCallType.Control = this.CallTypeComboBoxEdit;
             this.ItemForCallType.CustomizationFormText = "Call Type";
-            this.ItemForCallType.Location = new System.Drawing.Point(506, 0);
+            this.ItemForCallType.Location = new System.Drawing.Point(0, 64);
             this.ItemForCallType.Name = "ItemForCallType";
-            this.ItemForCallType.Size = new System.Drawing.Size(206, 32);
+            this.ItemForCallType.Size = new System.Drawing.Size(412, 32);
             this.ItemForCallType.Text = "类型";
             this.ItemForCallType.TextSize = new System.Drawing.Size(64, 21);
             // 
@@ -1224,7 +1223,7 @@ namespace Uixe.Watcher.TCO
             this.ItemForNetwork.CustomizationFormText = "Network";
             this.ItemForNetwork.Location = new System.Drawing.Point(0, 32);
             this.ItemForNetwork.Name = "ItemForNetwork";
-            this.ItemForNetwork.Size = new System.Drawing.Size(207, 32);
+            this.ItemForNetwork.Size = new System.Drawing.Size(224, 32);
             this.ItemForNetwork.Text = "路网号";
             this.ItemForNetwork.TextSize = new System.Drawing.Size(64, 21);
             // 
@@ -1232,9 +1231,9 @@ namespace Uixe.Watcher.TCO
             // 
             this.ItemForLaneNo.Control = this.LaneNoTextEdit;
             this.ItemForLaneNo.CustomizationFormText = "Lane No";
-            this.ItemForLaneNo.Location = new System.Drawing.Point(299, 32);
+            this.ItemForLaneNo.Location = new System.Drawing.Point(423, 32);
             this.ItemForLaneNo.Name = "ItemForLaneNo";
-            this.ItemForLaneNo.Size = new System.Drawing.Size(207, 32);
+            this.ItemForLaneNo.Size = new System.Drawing.Size(158, 32);
             this.ItemForLaneNo.Text = "车道";
             this.ItemForLaneNo.TextSize = new System.Drawing.Size(64, 21);
             // 
@@ -1242,19 +1241,20 @@ namespace Uixe.Watcher.TCO
             // 
             this.ItemForLaneType.Control = this.LaneTypeTextEdit;
             this.ItemForLaneType.CustomizationFormText = "Lane Type";
-            this.ItemForLaneType.Location = new System.Drawing.Point(506, 32);
+            this.ItemForLaneType.Location = new System.Drawing.Point(581, 32);
             this.ItemForLaneType.Name = "ItemForLaneType";
-            this.ItemForLaneType.Size = new System.Drawing.Size(206, 32);
+            this.ItemForLaneType.Size = new System.Drawing.Size(131, 32);
             this.ItemForLaneType.Text = "方向";
-            this.ItemForLaneType.TextSize = new System.Drawing.Size(64, 21);
+            this.ItemForLaneType.TextSize = new System.Drawing.Size(0, 0);
+            this.ItemForLaneType.TextVisible = false;
             // 
             // ItemForPlaza
             // 
             this.ItemForPlaza.Control = this.PlazaTextEdit;
             this.ItemForPlaza.CustomizationFormText = "Plaza";
-            this.ItemForPlaza.Location = new System.Drawing.Point(207, 32);
+            this.ItemForPlaza.Location = new System.Drawing.Point(224, 32);
             this.ItemForPlaza.Name = "ItemForPlaza";
-            this.ItemForPlaza.Size = new System.Drawing.Size(92, 32);
+            this.ItemForPlaza.Size = new System.Drawing.Size(199, 32);
             this.ItemForPlaza.Text = " ";
             this.ItemForPlaza.TextSize = new System.Drawing.Size(0, 0);
             this.ItemForPlaza.TextVisible = false;
@@ -1267,10 +1267,11 @@ namespace Uixe.Watcher.TCO
             this.ItemForWeightLimit,
             this.ItemForOverLoadWeightRate,
             this.ItemForCarFareWeight,
-            this.ItemForCarAlex});
+            this.ItemForCarAlex,
+            this.ItemForCallType});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 250);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(436, 109);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(436, 141);
             this.layoutControlGroup4.Text = "称重信息";
             // 
             // ItemForOverLoadWeight
@@ -1336,10 +1337,10 @@ namespace Uixe.Watcher.TCO
             this.ItemForText.Control = this.TextTextEdit;
             this.ItemForText.CustomizationFormText = "Text";
             this.ItemForText.ImageOptions.Alignment = System.Drawing.ContentAlignment.TopLeft;
-            this.ItemForText.Location = new System.Drawing.Point(0, 359);
+            this.ItemForText.Location = new System.Drawing.Point(0, 391);
             this.ItemForText.Name = "ItemForText";
             this.ItemForText.ShowInCustomizationForm = false;
-            this.ItemForText.Size = new System.Drawing.Size(736, 139);
+            this.ItemForText.Size = new System.Drawing.Size(736, 107);
             this.ItemForText.Text = " 监 \n 控 \n 内 \n 容 ";
             this.ItemForText.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.ItemForText.TextSize = new System.Drawing.Size(26, 84);
@@ -1454,9 +1455,9 @@ namespace Uixe.Watcher.TCO
             this.picLane.Image = null;
             this.picLane.ImageLocation = "";
             this.picLane.Location = new System.Drawing.Point(448, 121);
-            this.picLane.Margin = new System.Windows.Forms.Padding(459611722, 0, 459611722, 0);
+            this.picLane.Margin = new System.Windows.Forms.Padding(766019502, 0, 766019502, 0);
             this.picLane.Name = "picLane";
-            this.picLane.Size = new System.Drawing.Size(296, 246);
+            this.picLane.Size = new System.Drawing.Size(296, 278);
             this.picLane.SizeMode = Cyotek.Windows.Forms.ImageBoxSizeMode.Stretch;
             this.picLane.TabIndex = 46;
             this.picLane.TabStop = false;
@@ -1484,7 +1485,7 @@ namespace Uixe.Watcher.TCO
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(436, 109);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(300, 250);
+            this.layoutControlItem1.Size = new System.Drawing.Size(300, 282);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 

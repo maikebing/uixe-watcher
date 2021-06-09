@@ -14,6 +14,8 @@ namespace Uixe.Watcher.Msg
         public MsgWeightTCOCALL() : base()
         {
             base.MsgTcoTran = new MsgTcoTran();
+            base.Head = new Head();
+            base.SubHead = new SubHead();
         }
     
         public static MsgWeightTCOCALL Parse(string json)
@@ -35,8 +37,22 @@ namespace Uixe.Watcher.Msg
 
 
 
-        public DateTime YMDHM => DateTime.TryParseExact(Head?.DDHM, "yyyyMMDDHHmmss", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime dt) ? dt : DateTime.MinValue;
+        public DateTime YMDHM
+        {
+            get
+            {
+                if (DateTime.TryParseExact(Head.DDHM, "yyyyMMddHHmmss", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime dt))
+                {
+                    return dt;
+                }
+                else
+                {
+                    return DateTime.MinValue;
+                }
+            }
 
+            set { Head.DDHM = value.ToString("yyyyMMddHHmmss"); }
+        }
 
 
         public string LaneNo => Head?.LaneID;
