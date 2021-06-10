@@ -257,7 +257,9 @@ namespace Uixe.Watcher
                 AUS.EntryNetNo = txt.Substring(0, 2);
                 AUS.EntryPlazaNo = txt.Substring(2, 2);
             }
-            AUS.DifPlaza = tc.EntryStationID != AUS.EntryPlazaId &&  AUS.EntryPlazaId!=null;
+            AUS.DifPlaza = _tce.EntryStationID != tc.EntryStationID;
+            AUS.DifEntryDateTime = _tce.EntryDHM != tc.EntryDHM;
+            AUS.DifPlate = _tce.EntryPlate != tc.EntryPlate;
             AUS.TransNo = tc.TransNo;
             AUS.TimeoutCar = tc.TimeoutCar;
             AUS.TCOStaffID = RuntimeSetting.NowCollect != null ? RuntimeSetting.NowCollect.UserId : "";
@@ -270,25 +272,7 @@ namespace Uixe.Watcher
             return AUS;
         }
 
-        private void cbxModifyEntryPlaza_TextChanged(object sender, EventArgs e)
-        {
-            if (AUS != null) AUS.DifPlaza = true;
-        }
-
-        private void txtModifyCarKind_TextChanged(object sender, EventArgs e)
-        {
-            if (AUS != null) AUS.DifKind  =true;
-        }
-
-        private void txtModifyCarNumber_TextChanged(object sender, EventArgs e)
-        {
-            if (AUS != null) AUS.DifPlate  =true;
-        }
-
-        private void btnReadPicture_Click(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private DateTime dtold = DateTime.Now;
 

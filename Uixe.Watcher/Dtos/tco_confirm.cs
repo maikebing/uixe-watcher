@@ -124,5 +124,6 @@ namespace Uixe.Watcher.Dtos
         public DateTime EntryDateTime { get; set; }
         public string EntryDHM { get; set; }
         public string EntryLaneID { get;  set; }
+        public bool DifEntryDateTime { get;  set; }
     }
 }
