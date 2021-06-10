@@ -45,7 +45,6 @@ namespace Uixe.Watcher
         public void Show(TCOCall tce)
         {
             TCE = tce;
-            propertyGridControl1.SelectedObject = TCE;
             IsShowed = false;
             InitInfo();
             _tce = tce.Clone();
