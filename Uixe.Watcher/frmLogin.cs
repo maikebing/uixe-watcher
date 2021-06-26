@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraEditors;
+using Microsoft.Win32;
+using MonkeyCache.LiteDB;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -49,8 +51,7 @@ namespace Uixe.Watcher
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
-            _ = ReloadTollInfoAsync();
+           _ = ReloadTollInfoAsync();
             var p = RuntimeSetting.Plaza;
             if (p != null && !string.IsNullOrEmpty(p.ip))
             {
@@ -97,6 +98,7 @@ namespace Uixe.Watcher
         {
             this.Icon = Properties.Resources.LOGO;
             this.lblInfo.Text = "";
+            txtPlazaId.Text = Barrel.Current.Get<string>("plazaid");
             _ = ReloadTollInfoAsync();
             this.txtPassword.Focus();
         }
@@ -117,6 +119,7 @@ namespace Uixe.Watcher
                              lblPlaza.Text = $"{plazainfo.station_name}车道监控";
                              lblserver.Text = $"服务器IP:{plazainfo.ip } 站代码:{plazainfo.station_id}";
                          });
+                         Barrel.Current.Add("plazaid", txtPlazaId.Text, TimeSpan.FromDays(30));
                      }
                      catch (Exception ex)
                      {

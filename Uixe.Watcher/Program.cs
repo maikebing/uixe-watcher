@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Extensions;
+using Uixe.Watcher.Properties;
 
 namespace Uixe.Watcher
 {
@@ -69,7 +70,9 @@ namespace Uixe.Watcher
                 {
                     Barrel.ApplicationId = Assembly.GetExecutingAssembly().GetName().Name;
                     Barrel.EncryptionKey = "future";
-                    BarrelUtils.SetBaseCachePath(AppContext.BaseDirectory);
+                    var f = new System.IO.DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{System.IO.Path.DirectorySeparatorChar}Uixe{System.IO.Path.DirectorySeparatorChar}");
+                    if (!f.Exists) f.Create();
+                    BarrelUtils.SetBaseCachePath(f.FullName);
                 }
                 catch (Exception ex)
                 {
@@ -94,6 +97,9 @@ namespace Uixe.Watcher
 
             });
         }
+
+       
+
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             MessageBox.Show(e.Exception.Message + e.Exception.InnerException?.Message);

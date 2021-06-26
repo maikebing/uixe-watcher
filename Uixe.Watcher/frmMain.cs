@@ -609,11 +609,23 @@ namespace Uixe.Watcher
         }
 
         private int min = -1;
+        private int sec = -1;
 
-
-
+        [DebuggerStepThrough]
         private async  void tmNetworkTest_TickAsync(object sender, EventArgs e)
         {
+
+            if (sec!=DateTime.Now.Second)
+            {
+                try
+                {
+                    await client.PublishAsync("/tco/status/", new { message = "HeartBeat" });
+                    sec = DateTime.Now.Second;
+                }
+                catch (Exception)
+                {
+                }
+            }
             if (min != DateTime.Now.Minute)
             {
                 try
@@ -621,7 +633,7 @@ namespace Uixe.Watcher
                     min = DateTime.Now.Minute;
                     var p = new Ping();
                     string ipaddress = Plaza.ip;
-                    var pr = await p.SendPingAsync(ipaddress);
+                    var pr = await p.SendPingAsync(ipaddress,1000);
                     try
                     {
                         if (pr.Status != IPStatus.Success)
