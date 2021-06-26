@@ -8,8 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
-using Uixe.Watcher.TCO;
-using Settings = Uixe.Watcher.Properties.Settings;
+
 namespace Uixe.Watcher
 {
     public partial class frmShowTCOCall : XtraForm
@@ -24,7 +23,7 @@ namespace Uixe.Watcher
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
-                    string pname = tmlLaneNo.id+ lstlane[i].lane_no ;
+                    string pname = tmlLaneNo.id + lstlane[i].lane_no;
                     XtraTabPage t = new XtraTabPage();
                     TCOConfirm tms = new TCOConfirm();
                     t.Name = pname;
@@ -46,11 +45,10 @@ namespace Uixe.Watcher
         private List<Lane> lstlane = new List<Lane>();
 
         public IMqttClient MQTTClient { get; internal set; }
-        public frmMain Main { get;   set; }
+        public frmMain Main { get; set; }
 
         public void Show(TCOCall TCOCallxxx)
         {
-       
             string pname = TCOCallxxx.ID;
             var x = from p in tsTabs.TabPages where p.Name == pname select p;
             if (x.Any() && x.Single() != null)
@@ -60,13 +58,12 @@ namespace Uixe.Watcher
                 tms.Main = this.Main;
                 try
                 {
-                   
-                        tms.Show(TCOCallxxx);
-                        t.Text = string.Format("车道{0}", TCOCallxxx.LaneNo);
-                        tms.btnOK.Click += new EventHandler(BtnOK_Click);
-                        tms.btnCancel.Click += new EventHandler(btnCancel_Click);
-                        tsTabs.SelectedTabPage = t;
-                        tms.Reset();
+                    tms.Show(TCOCallxxx);
+                    t.Text = string.Format("车道{0}", TCOCallxxx.LaneNo);
+                    tms.btnOK.Click += new EventHandler(BtnOK_Click);
+                    tms.btnCancel.Click += new EventHandler(btnCancel_Click);
+                    tsTabs.SelectedTabPage = t;
+                    tms.Reset();
                 }
                 catch (Exception ex)
                 {
@@ -76,14 +73,13 @@ namespace Uixe.Watcher
                 }
                 try
                 {
-                  
-                        t.PageVisible = true;
-                        this.Visible = true;
-                        this.Focus();
+                    t.PageVisible = true;
+                    this.Visible = true;
+                    this.Focus();
                 }
                 catch (Exception ex)
                 {
-                 Debug.WriteLine(string.Format("ERRORTCOCALL_SHOW:<{0}>\r\n{1}\r\n", ex.Message, TCOCallxxx));
+                    Debug.WriteLine(string.Format("ERRORTCOCALL_SHOW:<{0}>\r\n{1}\r\n", ex.Message, TCOCallxxx));
                 }
             }
             else
@@ -91,8 +87,6 @@ namespace Uixe.Watcher
                 Debug.WriteLine("内部错误" + pname);
             }
         }
-
-   
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

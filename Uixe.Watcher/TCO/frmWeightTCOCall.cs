@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraTab;
+using MQTTnet.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,16 +8,12 @@ using System.Linq;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
-using Uixe.Watcher;
-using MQTTnet.Client;
 
 namespace Uixe.Watcher.TCO
 {
     public partial class frmWeightTCOCall : DevExpress.XtraEditors.XtraForm
     {
         public static int TabCount = 0;
-
-    
 
         private List<Lane> lstlane = new List<Lane>();
 
@@ -25,8 +22,8 @@ namespace Uixe.Watcher.TCO
         public frmWeightTCOCall()
         {
             InitializeComponent();
-
         }
+
         public void LoadInfo(IMqttClient _mqttClient)
         {
             try

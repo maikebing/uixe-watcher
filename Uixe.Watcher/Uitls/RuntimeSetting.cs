@@ -101,7 +101,7 @@ namespace Uixe.Watcher
             }
         }
 
-         internal  static User NowCollect;
+        internal static User NowCollect;
 
         internal static Dtos.Plaza Plaza { get; set; }
 
@@ -113,8 +113,8 @@ namespace Uixe.Watcher
             set { _PlazaIsModify = value; }
         }
 
-        public static RptLoginResult Token { get;  set; }
-        public static UserRole[] UserRole { get;  set; }
+        public static RptLoginResult Token { get; set; }
+        public static UserRole[] UserRole { get; set; }
 
         public static void ShowHelp()
         {

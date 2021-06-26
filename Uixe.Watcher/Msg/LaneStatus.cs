@@ -1,14 +1,8 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using System;
 
 namespace Uixe.Watcher.Msg
 {
-    public   class LaneStatus
+    public class LaneStatus
     {
         public string LaneNo { get; set; }
 
@@ -29,13 +23,9 @@ namespace Uixe.Watcher.Msg
 
         public bool JiaoTongDengStatus { get; set; }
 
-
         public bool LanGanStatus { get; set; }
 
-
-
         public bool Coil1Status { get; set; }
-
 
         public bool Coil2Status { get; set; }
 
@@ -44,12 +34,10 @@ namespace Uixe.Watcher.Msg
 
         public bool PrinterStatus { get; set; }
 
-
         public bool NetworkStatus { get; set; }
 
         public bool RSUStatus { get; set; }
         public bool ReaderStatus { get; set; }
-
 
         public bool WeightStatus { get; set; }
         public bool VPRStatus { get; set; }
@@ -62,13 +50,10 @@ namespace Uixe.Watcher.Msg
 
         public bool BaoJingStatus { get; set; }
         public bool LWDStatus { get; set; }
-        public int  CarBoxID { get; set; }
+        public int CarBoxID { get; set; }
 
-        public int  CarBoxNow { get; set; }
+        public int CarBoxNow { get; set; }
 
-        public int  CarBoxMax { get; set; }
-
-
-
+        public int CarBoxMax { get; set; }
     }//LaneInfo
 }

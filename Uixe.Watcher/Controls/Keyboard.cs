@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
-using System.Net.Sockets;
 
 namespace Uixe.Watcher.Controls
 {
@@ -44,7 +40,7 @@ namespace Uixe.Watcher.Controls
         {
         }
 
-        public string  IPAddress { get; set; }
+        public string IPAddress { get; set; }
         public int Port { get; set; }
         private UdpClient uc = new UdpClient();
 
@@ -73,11 +69,9 @@ namespace Uixe.Watcher.Controls
                 ShowInfo?.Invoke(ex.Message);
             }
         }
-      
-        public delegate void DShowInfo (string text);
-    
+
+        public delegate void DShowInfo(string text);
+
         public event DShowInfo ShowInfo;
-   
- 
     }
 }

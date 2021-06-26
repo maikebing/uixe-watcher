@@ -1,23 +1,19 @@
 ﻿using RestSharp;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using Uixe.Watcher.Dtos;
 
 namespace Uixe.Watcher.Uitls
 {
     public partial class PlazaApi
     {
+        private RestClient client;
 
-        RestClient client;
         public PlazaApi(string serverapi)
         {
             client = new RestClient($"http://{serverapi}/rpt/api");
             client.Timeout = -1;
             client.FollowRedirects = false;
         }
+
         public RptLoginResult SysLogin(string username, string password, string stationId, string shortId)
         {
             RptLoginResult result = new RptLoginResult();
@@ -29,18 +25,19 @@ namespace Uixe.Watcher.Uitls
             result = Newtonsoft.Json.JsonConvert.DeserializeObject<RptLoginResult>(response.Content);
             return result;
         }
+
         public ApiResult<UserRole[]> getRoleByUser(string username)
         {
             var request = new RestRequest($"sys/user/getRoleByUser?userName={username}", Method.POST, DataFormat.Json);
             request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("token",  RuntimeSetting.Token?.token);
+            request.AddHeader("token", RuntimeSetting.Token?.token);
             IRestResponse response = client.Execute(request);
             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResult<UserRole[]>>(response.Content);
             return result;
         }
+
         public void Logout()
         {
-
         }
     }
 }

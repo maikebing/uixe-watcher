@@ -1,11 +1,7 @@
 ﻿using MonkeyCache.LiteDB;
 using RestSharp;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Uixe.Watcher.Dtos;
 
 namespace Uixe.Watcher.Uitls
@@ -16,9 +12,10 @@ namespace Uixe.Watcher.Uitls
         {
             return GetTollInfo(Properties.Settings.Default.plazaid);
         }
-        public static Plaza GetTollInfo(string toll_id,bool reset=false)
+
+        public static Plaza GetTollInfo(string toll_id, bool reset = false)
         {
-              string _key = "get_toll_info"+toll_id;
+            string _key = "get_toll_info" + toll_id;
             if (reset && Barrel.Current.Exists(_key))
             {
                 Barrel.Current.Empty(_key);
@@ -44,8 +41,6 @@ namespace Uixe.Watcher.Uitls
                 }
             }
             return Barrel.Current.Get<Plaza>(_key);
-
         }
-
     }
 }

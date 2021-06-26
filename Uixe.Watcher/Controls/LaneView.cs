@@ -4,13 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
-using Uixe.Watcher.Properties;
-using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher.Controls
 {
@@ -21,10 +18,8 @@ namespace Uixe.Watcher.Controls
         /// </summary>
         public Plaza Plaza { get; set; }
 
-
-
         public List<LaneInfo> lst = new List<LaneInfo>();
-       
+
         public LaneView()
         {
             InitializeComponent();
@@ -36,9 +31,9 @@ namespace Uixe.Watcher.Controls
             var _ls = new List<LaneInfo>();
             item.lanes?.ForEach(l =>
             {
-                _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip) {  CameraRtspUrl = l.cameraRtspUrl});
+                _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip) { CameraRtspUrl = l.cameraRtspUrl });
             });
-            lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) &&  l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
+            lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());
             laneInfoBindingSource.DataSource = lst;
             gcExitLanes.RefreshDataSource();
@@ -52,7 +47,7 @@ namespace Uixe.Watcher.Controls
         /// <param name="plaza">这里的plaza 已经调用到对应的控件了， 无需区分， 但是需要传值过来</param>
         /// <param name="laneno"></param>
         /// <param name="revdata"></param>
-        public void ShowLaneInfor(string laneid,string revdata)
+        public void ShowLaneInfor(string laneid, string revdata)
         {
             if (this.InvokeRequired)
             {
@@ -68,31 +63,29 @@ namespace Uixe.Watcher.Controls
                         (laneInfoBindingSource[i] as LaneInfo)?.Parse(revdata);
                         gvExitLanes.RefreshRow(gvExitLanes.GetRowHandle(i));
                     }
-               
                 }
             }
         }
 
         public int LaneCount => lst.Count;
 
-
         private void gv_RowStyle(object sender, RowStyleEventArgs e)
         {
             var gv = sender as GridView;
             var i = gv.GetDataSourceRowIndex(e.RowHandle);
-            if (gv != null && i>=0)
+            if (gv != null && i >= 0)
             {
                 var dr = (laneInfoBindingSource[gv.GetDataSourceRowIndex(e.RowHandle)] as LaneInfo);
-                var netstatus=  dr.NetworkStatus;
+                var netstatus = dr.NetworkStatus;
                 e.HighPriority = !netstatus;
                 if (!dr.NetworkStatus)
                 {
                     e.Appearance.BackColor = Color.FromArgb(100, 255, 225, 225);
                     e.Appearance.ForeColor = Color.FromArgb(100, 176, 0, 22);
-
                 }
             }
         }
+
         public void ShowLaneLost(string laneid)
         {
             int i = lst.FindIndex(f => f.LaneName == laneid);
@@ -100,9 +93,9 @@ namespace Uixe.Watcher.Controls
             {
                 (laneInfoBindingSource[i] as LaneInfo).NetworkStatus = false;
                 gvExitLanes.RefreshRow(gvExitLanes.GetRowHandle(i));
- 
             }
         }
+
         private void ShowCardBox(CustomRowCellEditEventArgs e)
         {
             var ripb = e.RepositoryItem as RepositoryItemProgressBar;
@@ -114,7 +107,7 @@ namespace Uixe.Watcher.Controls
             }
         }
 
-        private  void btnVNC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnVNC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
@@ -128,14 +121,11 @@ namespace Uixe.Watcher.Controls
                     }
                     catch (Exception)
                     {
-
                     }
                 }
             }
-            catch  
+            catch
             {
-
-           
             }
         }
 
@@ -143,29 +133,24 @@ namespace Uixe.Watcher.Controls
         {
             if (e.Button == MouseButtons.Right)
             {
-                radialMenu1.ShowPopup(PointToScreen( e.Location),true);
+                radialMenu1.ShowPopup(PointToScreen(e.Location), true);
             }
         }
 
-        private  void btnRemotLane_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnRemotLane_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
                 var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
                 if (fv != null)
                 {
-                    frmRemoteLane lane = new frmRemoteLane(Plaza,  fv);
+                    frmRemoteLane lane = new frmRemoteLane(Plaza, fv);
                     lane.Show(this);
-                  
                 }
             }
             catch
             {
-
-
             }
-         
-
         }
     }
 }

@@ -765,6 +765,7 @@ namespace Vnc.Viewer
         {
             ToggleFullScrn();
         }
+
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
@@ -1879,7 +1880,6 @@ namespace Vnc.Viewer
             }
             catch (IOException)
             {
-             
             }
         }
 
@@ -1887,12 +1887,12 @@ namespace Vnc.Viewer
         {
             App.AboutBox();
         }
+
         protected override void Dispose(bool disposing)
         {
             bgTimer.Enabled = false;
-            base.Dispose(disposing);    
+            base.Dispose(disposing);
         }
-     
 
         public View(Conn conn, ConnOpts connOpts, UInt16 width, UInt16 height) : base()
         {
@@ -2188,7 +2188,7 @@ namespace Vnc.Viewer
             //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             //this.MaximizeBox = false;
             this.Name = "View";
-          //  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            //  this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);
         }
     }

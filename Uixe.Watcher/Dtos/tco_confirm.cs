@@ -1,14 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Uixe.Watcher.Dtos
 {
-
     //#define MenuUnEnable 2//不可用未选中
     //#define MenuNone		0	//无菜单。
     //#define MenuCardBox		1	//卡机
@@ -22,7 +17,6 @@ namespace Uixe.Watcher.Dtos
 
     public enum WATCHER_TYPE : int
     {
-
         WATCHER_MenuCardBox = 1,
         WATCHER_MenuSimuate = 2,
         WATCHER_MenuWeight = 3,//
@@ -50,27 +44,33 @@ namespace Uixe.Watcher.Dtos
         WATCHER_CarRunInfoCheck = 25,//封闭式出口车辆运行信息检查
         WATCHER_MergeVehicles = 26	//告诉监控，我要删除一辆车的计重信息，是否允许
     }
+
     public enum DlgType
     {
         Weight,
         Call
     }
+
     public class tco_confirm
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Head Head { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SubHead SubHead { get; set; }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MsgTcoTran MsgTcoTran { get; set; }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public WATCHER_TYPE WatcherID { get; set; }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public DlgType DlgType { get; set; }
     }
@@ -93,11 +93,11 @@ namespace Uixe.Watcher.Dtos
                 {
                     TCOType = _TCOType;
                 }
-
             }
         }
+
         public string TCOStaffID { get; set; }         //000182
-        public  int  ConfirmType { get; set; }          //1
+        public int ConfirmType { get; set; }          //1
         public string EntryNetNo { get; set; }       //01
         public string EntryPlazaNo { get; set; }       //29
         public int CarClass { get; set; }           //12
@@ -107,8 +107,8 @@ namespace Uixe.Watcher.Dtos
         public bool DifPlate { get; set; }      //0,入口输入错误,   1确实不符0
         public bool DifType { get; set; }      //0,车型没有更改，1,监控员修改车型0
         public bool DifKind { get; set; }      //0,车种没有更改  1,监控员修改车种0
-        public int   UCar { get; set; }         //0,正常，1，U型；2：J型0
-         public int    TimeoutCar { get; set; }  //0,正常；1，超时；2：超速0
+        public int UCar { get; set; }         //0,正常，1，U型；2：J型0
+        public int TimeoutCar { get; set; }  //0,正常；1，超时；2：超速0
 
         public string TransNo { get; set; }//00001
         public int WeightType { get; set; }//2
@@ -118,12 +118,12 @@ namespace Uixe.Watcher.Dtos
         public int WeightInput { get; set; }//000000
         public int AxleLastNo { get; set; }//0001
         public DateTime DateTime { get; set; }
-        public string EntryPlazaName { get;  set; }
-        public string EntryPlazaId { get;  set; }
-        public string EntryPlazaHEX { get;  set; }
+        public string EntryPlazaName { get; set; }
+        public string EntryPlazaId { get; set; }
+        public string EntryPlazaHEX { get; set; }
         public DateTime EntryDateTime { get; set; }
         public string EntryDHM { get; set; }
-        public string EntryLaneID { get;  set; }
-        public bool DifEntryDateTime { get;  set; }
+        public string EntryLaneID { get; set; }
+        public bool DifEntryDateTime { get; set; }
     }
 }

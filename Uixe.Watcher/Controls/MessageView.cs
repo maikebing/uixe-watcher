@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using Uixe.Watcher.Msg;
-using Uixe.Watcher.Properties;
 
 namespace Uixe.Watcher.Controls
 {
@@ -50,8 +48,8 @@ namespace Uixe.Watcher.Controls
 
         private int _MsgViewRowsCount;
 
+        private List<MsgInfo> infos = new List<MsgInfo>();
 
-        List<MsgInfo> infos = new List<MsgInfo>();
         /// <summary>
         /// 这个方法目前初始化对应的站
         /// </summary>
@@ -68,7 +66,6 @@ namespace Uixe.Watcher.Controls
         /// <param name="plaza"></param>
         public void SetPlaza(string plaza)
         {
-
         }
 
         private delegate void HShowMessageView(MsgInfo msg);
@@ -81,11 +78,10 @@ namespace Uixe.Watcher.Controls
             }
             else
             {
-
                 lock (Grd)
                 {
                     infos.Insert(0, msg);
-                    if (infos.Count> _MsgViewRowsCount)
+                    if (infos.Count > _MsgViewRowsCount)
                     {
                         infos.Remove(infos[infos.Count - 1]);
                     }
@@ -101,11 +97,8 @@ namespace Uixe.Watcher.Controls
                         Console.WriteLine(string.Format("错误:{0}", System.Threading.Thread.CurrentThread.ManagedThreadId));
                     }
                 }
-
             }
         }
-
-
 
         #region Component Designer generated code
 
@@ -135,9 +128,9 @@ namespace Uixe.Watcher.Controls
             ((System.ComponentModel.ISupportInitialize)(this.msgInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GrdV)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // Grd
-            // 
+            //
             this.Grd.DataSource = this.msgInfoBindingSource;
             this.Grd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Grd.Location = new System.Drawing.Point(0, 0);
@@ -147,13 +140,13 @@ namespace Uixe.Watcher.Controls
             this.Grd.TabIndex = 10;
             this.Grd.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GrdV});
-            // 
+            //
             // msgInfoBindingSource
-            // 
+            //
             this.msgInfoBindingSource.DataSource = typeof(Uixe.Watcher.Msg.MsgInfo);
-            // 
+            //
             // GrdV
-            // 
+            //
             this.GrdV.Appearance.ColumnFilterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
             this.GrdV.Appearance.ColumnFilterButton.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(228)))));
             this.GrdV.Appearance.ColumnFilterButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
@@ -309,9 +302,9 @@ namespace Uixe.Watcher.Controls
             this.GrdV.OptionsView.ShowGroupPanel = false;
             this.GrdV.ScrollStyle = DevExpress.XtraGrid.Views.Grid.ScrollStyleFlags.None;
             this.GrdV.SynchronizeClones = false;
-            // 
+            //
             // colmessageNumber
-            // 
+            //
             this.colmessageNumber.Caption = "车道";
             this.colmessageNumber.FieldName = "LaneNo";
             this.colmessageNumber.Name = "colmessageNumber";
@@ -323,9 +316,9 @@ namespace Uixe.Watcher.Controls
             this.colmessageNumber.Visible = true;
             this.colmessageNumber.VisibleIndex = 0;
             this.colmessageNumber.Width = 30;
-            // 
+            //
             // gridColumn1
-            // 
+            //
             this.gridColumn1.Caption = "通过日期";
             this.gridColumn1.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.gridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -336,9 +329,9 @@ namespace Uixe.Watcher.Controls
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;
             this.gridColumn1.Width = 182;
-            // 
+            //
             // gridColumn2
-            // 
+            //
             this.gridColumn2.Caption = "工号";
             this.gridColumn2.FieldName = "CollNo";
             this.gridColumn2.Name = "gridColumn2";
@@ -347,9 +340,9 @@ namespace Uixe.Watcher.Controls
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 3;
             this.gridColumn2.Width = 45;
-            // 
+            //
             // colcarKind
-            // 
+            //
             this.colcarKind.Caption = "车种";
             this.colcarKind.FieldName = "CarKind";
             this.colcarKind.Name = "colcarKind";
@@ -358,9 +351,9 @@ namespace Uixe.Watcher.Controls
             this.colcarKind.Visible = true;
             this.colcarKind.VisibleIndex = 4;
             this.colcarKind.Width = 39;
-            // 
+            //
             // colcarTeam
-            // 
+            //
             this.colcarTeam.Caption = "车型";
             this.colcarTeam.FieldName = "CarType";
             this.colcarTeam.Name = "colcarTeam";
@@ -369,9 +362,9 @@ namespace Uixe.Watcher.Controls
             this.colcarTeam.Visible = true;
             this.colcarTeam.VisibleIndex = 5;
             this.colcarTeam.Width = 30;
-            // 
+            //
             // gridColumn5
-            // 
+            //
             this.gridColumn5.Caption = "消息类型";
             this.gridColumn5.FieldName = "MsgType";
             this.gridColumn5.Name = "gridColumn5";
@@ -380,9 +373,9 @@ namespace Uixe.Watcher.Controls
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 1;
             this.gridColumn5.Width = 53;
-            // 
+            //
             // colbillNumber
-            // 
+            //
             this.colbillNumber.Caption = "支付方式";
             this.colbillNumber.FieldName = "PayType";
             this.colbillNumber.Name = "colbillNumber";
@@ -391,9 +384,9 @@ namespace Uixe.Watcher.Controls
             this.colbillNumber.Visible = true;
             this.colbillNumber.VisibleIndex = 6;
             this.colbillNumber.Width = 72;
-            // 
+            //
             // gridColumn3
-            // 
+            //
             this.gridColumn3.Caption = "金额";
             this.gridColumn3.FieldName = "Cash";
             this.gridColumn3.Name = "gridColumn3";
@@ -402,9 +395,9 @@ namespace Uixe.Watcher.Controls
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 7;
             this.gridColumn3.Width = 44;
-            // 
+            //
             // gridColumn6
-            // 
+            //
             this.gridColumn6.Caption = "异常情况";
             this.gridColumn6.FieldName = "Exception";
             this.gridColumn6.Name = "gridColumn6";
@@ -412,9 +405,9 @@ namespace Uixe.Watcher.Controls
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 8;
             this.gridColumn6.Width = 73;
-            // 
+            //
             // gridColumn7
-            // 
+            //
             this.gridColumn7.Caption = "违章情况";
             this.gridColumn7.FieldName = "DevStatus";
             this.gridColumn7.Name = "gridColumn7";
@@ -422,9 +415,9 @@ namespace Uixe.Watcher.Controls
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 9;
             this.gridColumn7.Width = 100;
-            // 
+            //
             // cardnumber
-            // 
+            //
             this.cardnumber.Caption = "发票代码";
             this.cardnumber.FieldName = "Receipt";
             this.cardnumber.Name = "cardnumber";
@@ -432,9 +425,9 @@ namespace Uixe.Watcher.Controls
             this.cardnumber.Visible = true;
             this.cardnumber.VisibleIndex = 10;
             this.cardnumber.Width = 61;
-            // 
+            //
             // gridColumn9
-            // 
+            //
             this.gridColumn9.Caption = "提示信息";
             this.gridColumn9.FieldName = "PromptMsg";
             this.gridColumn9.Name = "gridColumn9";
@@ -442,9 +435,9 @@ namespace Uixe.Watcher.Controls
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 11;
             this.gridColumn9.Width = 100;
-            // 
+            //
             // MessageView
-            // 
+            //
             this.Controls.Add(this.Grd);
             this.Name = "MessageView";
             this.Size = new System.Drawing.Size(1627, 352);
@@ -452,7 +445,6 @@ namespace Uixe.Watcher.Controls
             ((System.ComponentModel.ISupportInitialize)(this.msgInfoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GrdV)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion Component Designer generated code

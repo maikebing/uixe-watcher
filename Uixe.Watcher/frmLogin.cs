@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using Microsoft.Win32;
 using MonkeyCache.LiteDB;
 using System;
 using System.Drawing;
@@ -51,16 +50,16 @@ namespace Uixe.Watcher
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           _ = ReloadTollInfoAsync();
+            _ = ReloadTollInfoAsync();
             var p = RuntimeSetting.Plaza;
             if (p != null && !string.IsNullOrEmpty(p.ip))
             {
                 PlazaApi api = new PlazaApi(RuntimeSetting.Plaza.ip);
                 RuntimeSetting.Token = api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
-               var result=  api.getRoleByUser(txtUser.Text);
+                var result = api.getRoleByUser(txtUser.Text);
                 if (!string.IsNullOrEmpty(RuntimeSetting.Token?.token))
                 {
-                    if (result.code==0  && result.data!=null && result.data.Any(f=>f.roleId==18))
+                    if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
                     {
                         RuntimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
                         RuntimeSetting.UserRole = result.data;
@@ -72,8 +71,6 @@ namespace Uixe.Watcher
                         RuntimeSetting.Token.LoginDateTime = DateTime.MinValue;
                         lblInfo.Text = $"没有找到TCO角色(18)";
                     }
-
-                 
                 }
                 else
                 {
@@ -127,10 +124,8 @@ namespace Uixe.Watcher
                          {
                              lblserver.Text = "未能获取站信息" + ex.Message;
                          });
-
                      }
                  });
-
             }
             else
             {
@@ -146,7 +141,6 @@ namespace Uixe.Watcher
 
         private void txtPlazaId_EditValueChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Uixe.Watcher.Dtos
 {
-
     public class Plaza
     {
         public string id { get; set; }
@@ -22,5 +17,4 @@ namespace Uixe.Watcher.Dtos
         public string road_name { get; set; }
         public string road_id { get; set; }
     }
-
 }

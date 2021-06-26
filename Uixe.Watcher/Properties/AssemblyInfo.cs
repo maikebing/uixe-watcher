@@ -13,4 +13,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("新e畅")]
 [assembly: AssemblyCopyright("Copyright 新疆交投科技有限责任公司")]
 [assembly: AssemblyTrademark("新e畅")]
-

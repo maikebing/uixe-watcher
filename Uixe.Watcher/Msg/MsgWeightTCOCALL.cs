@@ -1,14 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Text;
 using Uixe.Watcher.Dtos;
-using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher.Msg
 {
-
     public class MsgWeightTCOCALL : tco_confirm
     {
         public MsgWeightTCOCALL() : base()
@@ -17,7 +13,7 @@ namespace Uixe.Watcher.Msg
             base.Head = new Head();
             base.SubHead = new SubHead();
         }
-    
+
         public static MsgWeightTCOCALL Parse(string json)
         {
             var ls = JsonConvert.DeserializeObject<MsgWeightTCOCALL>(json, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local });
@@ -30,12 +26,9 @@ namespace Uixe.Watcher.Msg
 
         public string LaneType => $"{Head?.LaneType}";
 
-
         public string LaneMode => $"{SubHead.LaneMode}";
         public string Network => Head?.NetNo;
         public string Plaza => Head?.PlazaNo;
-
-
 
         public DateTime YMDHM
         {
@@ -54,12 +47,11 @@ namespace Uixe.Watcher.Msg
             set { Head.DDHM = value.ToString("yyyyMMddHHmmss"); }
         }
 
-
         public string LaneNo => Head?.LaneID;
 
         public string Collector => SubHead?.StaffID;
 
-        public WATCHER_TYPE CallType => base.WatcherID ;
+        public WATCHER_TYPE CallType => base.WatcherID;
 
         public string WeightFunctions { get; set; }
         public string FareFormula { get; set; }
@@ -67,12 +59,10 @@ namespace Uixe.Watcher.Msg
         public string WeightCarKind => MsgTcoTran.ExitVehiKind;
         public string CarType => MsgTcoTran.CarClass;
 
-
         public int CarType_INT
         {
             get
             {
-
                 int ct = 0;
                 Int32.TryParse(CarType, out ct);
                 return ct;
@@ -80,11 +70,11 @@ namespace Uixe.Watcher.Msg
         }
 
         public string CarKind => MsgTcoTran.ExitVehiKind;
+
         public int CarKind_INT
         {
             get
             {
-
                 int ct = 0;
                 Int32.TryParse(CarKind, out ct);
                 return ct;
@@ -100,6 +90,7 @@ namespace Uixe.Watcher.Msg
 
         public string CarSpeed => MsgTcoTran.Speed;
         public string OverLoadWeight => MsgTcoTran.OverloadWeight;
+
         [Obsolete("无转换")]
         public string OverLoadWeightRate => MsgTcoTran.OverloadReason;
 
@@ -114,8 +105,5 @@ namespace Uixe.Watcher.Msg
         public string WeightLimit => MsgTcoTran.WeightLimit;
 
         public int TranID => int.Parse(MsgTcoTran.TransNO);
-
-
-
     }
 }

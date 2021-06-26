@@ -1,12 +1,6 @@
 ﻿using DevExpress.XtraEditors;
-using Microsoft.Win32;
 using System;
 using System.Deployment.Application;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Uixe.Watcher
@@ -27,6 +21,7 @@ namespace Uixe.Watcher
                 action.Invoke();
             }
         }
+
         public static void Invoke(this Form ctl, Action action)
         {
             ctl.Invoke((MethodInvoker)delegate
@@ -34,10 +29,11 @@ namespace Uixe.Watcher
                 action.Invoke();
             });
         }
-        public static T Clone<T>(this  T source) where T : class
+
+        public static T Clone<T>(this T source) where T : class
         {
             string jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(source);
-             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonStr);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonStr);
         }
 
         public static void InstallUpdateSyncWithInfo()
@@ -51,7 +47,6 @@ namespace Uixe.Watcher
                 try
                 {
                     info = ad.CheckForDetailedUpdate();
-
                 }
                 catch (DeploymentDownloadException dde)
                 {
@@ -96,7 +91,6 @@ namespace Uixe.Watcher
                             ad.UpdateCompleted += Ad_UpdateCompleted;
                             ad.CheckForUpdateProgressChanged += Ad_CheckForUpdateProgressChanged;
                             ad.UpdateAsync();
-
                         }
                         catch (DeploymentDownloadException dde)
                         {
@@ -123,15 +117,7 @@ namespace Uixe.Watcher
             else
             {
                 XtraMessageBox.Show($"更新过程中遇到异常{e.Error.Message}");
-
             }
         }
-
     }
-
-
-
-
-
-
 }

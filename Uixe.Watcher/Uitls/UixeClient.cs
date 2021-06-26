@@ -7,16 +7,16 @@ using Uixe.Watcher.Dtos;
 
 namespace Uixe.Watcher.Uitls
 {
-    public   class UixeClient
+    public class UixeClient
     {
-        public T GetDataBy<T>(string _key,string api,object objparam=null)
+        public T GetDataBy<T>(string _key, string api, object objparam = null)
         {
             return GetCatchOrCreate(_key, () =>
             {
                 var result1 = default(T);
                 var client = Create(api);
                 var request = new RestRequest(Method.GET);
-                if (objparam!=null)
+                if (objparam != null)
                 {
                     objparam.GetType().GetProperties().ToList().ForEach(p =>
                     {
@@ -35,12 +35,14 @@ namespace Uixe.Watcher.Uitls
                 return result1;
             });
         }
+
         public List<ProvCode> GetProvCodes() => GetDataBy<List<ProvCode>>("ProvCodes", "/Plazas/ProvCodes");
-        public List<ProvPlazaInfo> GetProvPlazaInfo(string ProvId) =>  GetDataBy<List<ProvPlazaInfo>>($"ProvCodes_{ProvId}", "/Plazas/ProvPlazaInfo", new { ProvId });
 
-        public  string GetProvByPlaza(string plazaid) => GetDataBy<string>($"ProvByPlaza_{plazaid}", "/Plazas/ProvByPlaza", new { plazaid });
+        public List<ProvPlazaInfo> GetProvPlazaInfo(string ProvId) => GetDataBy<List<ProvPlazaInfo>>($"ProvCodes_{ProvId}", "/Plazas/ProvPlazaInfo", new { ProvId });
 
-        private   T GetCatchOrCreate<T>(string _key,  Func<T> fc  )
+        public string GetProvByPlaza(string plazaid) => GetDataBy<string>($"ProvByPlaza_{plazaid}", "/Plazas/ProvByPlaza", new { plazaid });
+
+        private T GetCatchOrCreate<T>(string _key, Func<T> fc)
         {
             if (!Barrel.Current.Exists(_key) || Barrel.Current.IsExpired(_key))
             {
@@ -48,9 +50,10 @@ namespace Uixe.Watcher.Uitls
             }
             return Barrel.Current.Get<T>(_key);
         }
+
         private RestClient Create(string api)
         {
-             var client= new RestClient($"http://{RuntimeSetting.Plaza?.ip}:8080/api{api}");
+            var client = new RestClient($"http://{RuntimeSetting.Plaza?.ip}:8080/api{api}");
             client.Timeout = -1;
             return client;
         }

@@ -1,11 +1,9 @@
 ﻿using MQTTnet.Client;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Speech.Synthesis;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
-using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher.TCO
 {
@@ -16,13 +14,15 @@ namespace Uixe.Watcher.TCO
             InitializeComponent();
             ItemForText.Text = " 监 \n 控 \n 内 \n 容 ";
         }
+
         public MsgWeightTCOCALL TCE { get; set; }
         public bool CanDo { get; set; }
         public IMqttClient MqttClient { get; internal set; }
         public frmMain Main { get; internal set; }
 
         private Prompt prompt = null;
-        MsgWeightTCOCALL _tce;
+        private MsgWeightTCOCALL _tce;
+
         public MSG_TCOConfirm GetTCOConfirm(bool _IsConfirm)
         {
             var r = new MSG_TCOConfirm()
@@ -47,16 +47,16 @@ namespace Uixe.Watcher.TCO
                 IsDiscountCard = false,
                 TCOType = TCE.CallType,
                 WeightType = int.Parse(TCE.WeightType)
-
             };
             return r;
         }
+
         public Lane Lane { get; private set; }
+
         public void Show(MsgWeightTCOCALL tce)
         {
             try
             {
-
                 _tce = tce.Clone();
                 TCE = tce;
                 bsHCCZ.ResetCurrentItem();
@@ -83,6 +83,7 @@ namespace Uixe.Watcher.TCO
                     case WATCHER_TYPE.WATCHER_LTORNONGYONG:
                         sound = Properties.Settings.Default.SpeechLvSeTongDao;
                         break;
+
                     case WATCHER_TYPE.WATCHER_BlacklistPlate:
                         sound = Properties.Settings.Default.SpeedBlackListPlate;
                         break;
@@ -143,7 +144,7 @@ namespace Uixe.Watcher.TCO
             }
         }
 
-        private  void btnVNC_Click(object sender, EventArgs e)
+        private void btnVNC_Click(object sender, EventArgs e)
         {
             try
             {
@@ -152,7 +153,6 @@ namespace Uixe.Watcher.TCO
             }
             catch (Exception)
             {
-
             }
         }
 
@@ -160,7 +160,6 @@ namespace Uixe.Watcher.TCO
         {
             try
             {
-
                 TCOCallUtils.Submit(true, this);
                 tcoHeart.Stop();
                 this.Main.WeightTCOCall.RemoveNowTab(this.Name);

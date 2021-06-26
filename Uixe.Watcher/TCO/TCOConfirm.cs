@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Uitls;
-using Uixe.Watcher.TCO;
 
 namespace Uixe.Watcher
 {
@@ -17,7 +14,6 @@ namespace Uixe.Watcher
             InitializeComponent();
         }
 
-
         public TCOCall TCE { get; set; }
         public bool CanDo { get; set; }
         public frmMain Main { get; internal set; }
@@ -26,10 +22,10 @@ namespace Uixe.Watcher
         public bool CheckPlazaInfo()
         {
             bool ret = true;
-            if (TCE.TCOTYPE ==  WATCHER_TYPE.WATCHER_UnKnowPlaza)
+            if (TCE.TCOTYPE == WATCHER_TYPE.WATCHER_UnKnowPlaza)
             {
-                 var ppi= cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
-                if (ppi==null ||  string.IsNullOrEmpty(ppi.plazaId))
+                var ppi = cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
+                if (ppi == null || string.IsNullOrEmpty(ppi.plazaId))
                 {
                     ret = false;
                 }
@@ -40,7 +36,8 @@ namespace Uixe.Watcher
             }
             return ret;
         }
-        UixeClient uixeClient = new UixeClient();
+
+        private UixeClient uixeClient = new UixeClient();
 
         public void Show(TCOCall tce)
         {
@@ -56,7 +53,7 @@ namespace Uixe.Watcher
             {
                 tcoPictureBox1.Visible = false;
             }
-         
+
             var l = RuntimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
             string url = string.Format($"http://{l.ip}:10000/capture");
             Lane = l;
@@ -67,9 +64,9 @@ namespace Uixe.Watcher
             _pbindingSource1.ResetCurrentItem();
             cbxProv.EditValue = 65;
             pLazaBindingSource.ResetCurrentItem();
-           //tCOCallBindingSource.ResetBindings(false);
+            //tCOCallBindingSource.ResetBindings(false);
             tCOCallBindingSource.ResetCurrentItem();
-     
+
             FillPlazaNameAndList(tce, true);
             tCOCallBindingSource.DataSource = TCE;
             chkCarKind.Checked = tce.DifClass != 0;
@@ -116,10 +113,9 @@ namespace Uixe.Watcher
             txtcarnumber.Text = tce.ExitPlate;
             txtocartype.Text = tce.ExitCarType;
 
-            
             switch (tce.TCOTYPE)
             {
-                case  WATCHER_TYPE.WATCHER_MenuCardBox ://WATCHER_MenuCardBox
+                case WATCHER_TYPE.WATCHER_MenuCardBox://WATCHER_MenuCardBox
                     gcCardInfo.Enabled = false;
                     break;
 
@@ -131,7 +127,6 @@ namespace Uixe.Watcher
                 if (string.IsNullOrEmpty(txtentrysite.Text))
                 {
                     cbxModifyEntryPlaza.EditValue = txtentrysite.Text;
-
                 }
                 else if (string.IsNullOrEmpty(txtexitsite.Text))
                 {
@@ -140,7 +135,8 @@ namespace Uixe.Watcher
             }
             IsShowed = true;
         }
-        bool IsShowed = false;
+
+        private bool IsShowed = false;
 
         private void InitInfo()
         {
@@ -148,7 +144,7 @@ namespace Uixe.Watcher
             {
                 tcoPictureBox1.Image = null;
                 chkTimeoutCar.Checked = false;
-                 
+
                 chkIsU.Checked = false;
                 chkCarType.Checked = false;
                 chkCarPlate.Checked = false;
@@ -184,13 +180,9 @@ namespace Uixe.Watcher
             AUS = new MSG_TCOConfirm();
             CanDo = true;
             btnOK.Enabled = true;
-           
         }
 
-     
-
-
-        private void FillPlazaNameAndList(TCOCall tce,bool isfirst=false )
+        private void FillPlazaNameAndList(TCOCall tce, bool isfirst = false)
         {
             try
             {
@@ -202,7 +194,7 @@ namespace Uixe.Watcher
                 }
                 var prov = cbxProv.GetSelectedDataRow() as ProvCode;
 
-                var ppi = client.GetProvPlazaInfo($"{prov?.provId??65}");
+                var ppi = client.GetProvPlazaInfo($"{prov?.provId ?? 65}");
                 if (ppi != null)
                 {
                     pLazaBindingSource.DataSource = ppi;
@@ -212,8 +204,7 @@ namespace Uixe.Watcher
                         if (r.Any())
                         {
                             string psn = r.FirstOrDefault().plazaName;
-                            pLazaBindingSource.Position= pLazaBindingSource.IndexOf(r.FirstOrDefault());
-                            
+                            pLazaBindingSource.Position = pLazaBindingSource.IndexOf(r.FirstOrDefault());
                         }
                     }
                 }
@@ -222,7 +213,7 @@ namespace Uixe.Watcher
             {
             }
         }
-       
+
         private void checkEdits_CheckedChanged(object sender, EventArgs e)
         {
             //CheckEdit ce = sender as CheckEdit;
@@ -232,20 +223,21 @@ namespace Uixe.Watcher
 
         public const int WATCHER_UnKnowPlaza = 9;	//不明入口站
         public const int WATCHER_PlateInBlack = 20; //黑名单车辆
-        MSG_TCOConfirm AUS;
+        private MSG_TCOConfirm AUS;
+
         public MSG_TCOConfirm GetAUS(bool IsSubmit)
         {
             TCOCall tc = TCE;
-       
+
             AUS.DifPlate = tc.DifPlate;
             AUS.DifPlaza = tc.DifPlaza;
             AUS.DifType = tc.DifType;
-            if ( int.TryParse( AUS.DifKind  && !string.IsNullOrEmpty(txtModifyCarKind.Text)  ? txtModifyCarKind.Text : tc.ExitCarClass,out int  cc))
+            if (int.TryParse(AUS.DifKind && !string.IsNullOrEmpty(txtModifyCarKind.Text) ? txtModifyCarKind.Text : tc.ExitCarClass, out int cc))
             {
                 AUS.CarClass = cc;
             }
             AUS.CarPlate = tc.DifPlate ? txtModifyCarNumber.Text : tc.ExitPlate;
-            AUS.CarType = tc.DifType  ? (txtModifyCarType.EditValue as int?).GetValueOrDefault() : int.Parse( tc.ExitCarType);
+            AUS.CarType = tc.DifType ? (txtModifyCarType.EditValue as int?).GetValueOrDefault() : int.Parse(tc.ExitCarType);
             var plaza = cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
             if (plaza != null && !string.IsNullOrEmpty(plaza.plazaHEX) && plaza.plazaHEX.Length >= 8)
             {
@@ -262,7 +254,7 @@ namespace Uixe.Watcher
             AUS.TransNo = tc.TransNo;
             AUS.TimeoutCar = tc.TimeoutCar;
             AUS.TCOStaffID = RuntimeSetting.NowCollect != null ? RuntimeSetting.NowCollect.UserId : "";
-            AUS.UCar = tc.UCar?1:0;
+            AUS.UCar = tc.UCar ? 1 : 0;
             AUS.IsConfirm = IsSubmit;
             AUS.EntryDateTime = tc.EntryDHM;
             AUS.EntryLaneID = tc.EntryLaneID;
@@ -270,8 +262,6 @@ namespace Uixe.Watcher
             AUS.DateTime = DateTime.Now;
             return AUS;
         }
-
-    
 
         private DateTime dtold = DateTime.Now;
 
@@ -288,21 +278,21 @@ namespace Uixe.Watcher
                 if (pcPronow.Position == pcPronow.Properties.Minimum)
                 {
                     timer1.Stop();
-                 //   btnOK.Enabled = false;
-                   // CanDo = false;
+                    //   btnOK.Enabled = false;
+                    // CanDo = false;
                 }
             }
         }
 
         private void txtModifyCarType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (AUS != null &&( txtModifyCarType.EditValue as int? ) > 0) AUS.DifType  =true;
+            if (AUS != null && (txtModifyCarType.EditValue as int?) > 0) AUS.DifType = true;
         }
 
         public Vnc.Viewer.View vnc;
         private TCOCall _tce;
 
-        private  void btnVNC_Click(object sender, EventArgs e)
+        private void btnVNC_Click(object sender, EventArgs e)
         {
             try
             {
@@ -311,15 +301,14 @@ namespace Uixe.Watcher
             }
             catch (Exception)
             {
-
             }
         }
- 
+
         private void cbxProv_EditValueChanged(object sender, EventArgs e)
         {
             if (TCE != null && IsShowed)
             {
-                FillPlazaNameAndList(TCE,false);
+                FillPlazaNameAndList(TCE, false);
             }
         }
 
@@ -329,12 +318,10 @@ namespace Uixe.Watcher
 
         private void tCOCallBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-
         }
 
         private void tCOCallBindingSource_PositionChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Uixe.Watcher.Extensions
@@ -25,7 +21,7 @@ namespace Uixe.Watcher.Extensions
 
         /// <summary>
         /// 创建指定窗口的线程设置到前台，并且激活该窗口。键盘输入转向该窗口，并为用户改变各种可视的记号。
-        /// 系统给创建前台窗口的线程分配的权限稍高于其他线程。 
+        /// 系统给创建前台窗口的线程分配的权限稍高于其他线程。
         /// </summary>
         /// <param name="hWnd">将被激活并被调入前台的窗口句柄</param>
         /// <returns>如果窗口设入了前台，返回值为非零；如果窗口未被设入前台，返回值为零</returns>
@@ -34,9 +30,11 @@ namespace Uixe.Watcher.Extensions
 
         // 指示窗口为普通显示
         private const int WS_SHOWNORMAL = 1;
+
         private const int SW_SHOW = 5;
         private const int SW_SHOWNOACTIVATE = 4;
         private const int SW_SHOWNA = 8;
+
         /// <summary>
         /// 获取正在运行的程序，没有运行的程序则返回null
         /// </summary>
@@ -78,21 +76,17 @@ namespace Uixe.Watcher.Extensions
             SetForegroundWindow(instance.MainWindowHandle);
         }
 
-     
         public static void RunOnlyOneInstance(Action _main)
         {
             using (Mutex mutex = new Mutex(true, Application.ProductName, out bool createNew))
             {
                 if (createNew)
                 {
-
                     _main?.Invoke();
-
                 }
                 // 程序已经运行的情况，则弹出消息提示并终止此次运行
                 else
                 {
-                  
                     var ins = RunningInstance();
                     if (ins != null)
                     {

@@ -1,5 +1,4 @@
 ﻿using DevExpress.LookAndFeel;
-using DevExpress.XtraEditors;
 using MonkeyCache;
 using MonkeyCache.LiteDB;
 using MQTTnet;
@@ -10,33 +9,35 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Extensions;
-using Uixe.Watcher.Properties;
 
 namespace Uixe.Watcher
 {
     public static class Program
     {
         [DllImport("kernel32.dll")]
-        static extern bool FreeConsole();
+        private static extern bool FreeConsole();
+
         [DllImport("kernel32.dll")]
         public static extern bool AllocConsole();
+
         private enum DpiAwareness
         {
             None = 0,
             SystemAware = 1,
             PerMonitorAware = 2
         }
+
         [DllImport("Shcore.dll")]
-        static extern int SetProcessDpiAwareness(int PROCESS_DPI_AWARENESS);
+        private static extern int SetProcessDpiAwareness(int PROCESS_DPI_AWARENESS);
+
         // Fields
         public static frmMain MainForm;
 
-
         public static bool mqttserver { get; set; }
+
         [STAThread]
         private static void Main(string[] args)
         {
@@ -77,7 +78,6 @@ namespace Uixe.Watcher
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message + ex.InnerException?.Message);
-
                 }
                 try
                 {
@@ -87,18 +87,14 @@ namespace Uixe.Watcher
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show(ex.Message + ex.InnerException?.Message);
                 }
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 MainForm = new frmMain();
                 Application.Run(MainForm);
-
             });
         }
-
-       
 
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {

@@ -1,14 +1,10 @@
 //By GER.Cmd.buildcs   CreateDate:2008-7-1 11:08:49
 using System;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Uixe.Watcher.Msg
 {
-    
-    public class MsgInfo 
+    public class MsgInfo
     {
-
         public string LaneNo { get; set; }
 
         public string MsgType { get; set; }
@@ -32,6 +28,6 @@ namespace Uixe.Watcher.Msg
         public string DevStatus { get; set; }
 
         public string PromptMsg { get; set; }
-        public string PlazaId { get;   set; }
+        public string PlazaId { get; set; }
     }//MsgInfo
 }//

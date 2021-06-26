@@ -1,11 +1,8 @@
 ﻿//By GER.Cmd.buildcs   CreateDate:2012/8/6 12:54:58
 using System;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Uixe.Watcher.Msg
 {
-    
     public class TCOAUS
     {
         public string NetNo { get; set; }
@@ -32,12 +29,10 @@ namespace Uixe.Watcher.Msg
 
         public float CarWeight { get; set; }
 
-   
         public string TransNo { get; set; }
 
         public string TCOStaffID { get; set; }
 
         public bool ConfirmType { get; set; }
-
     }//TCOAUS
 }//TCS.MQL

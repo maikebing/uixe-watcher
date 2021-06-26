@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Collections;
-using DevExpress.XtraEditors;
-using Uixe.Watcher.Controls;
-using System.Threading.Tasks;
+﻿using DevExpress.XtraEditors;
 using Renci.SshNet;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Uixe.Watcher.Controls;
 
 namespace Uixe.Watcher
 {
@@ -36,7 +30,7 @@ namespace Uixe.Watcher
 
         #region 用于设置指定车道的时间   支持多线程
 
-        public void SetTime(string plaza , string laneno, string clienttime)
+        public void SetTime(string plaza, string laneno, string clienttime)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -73,14 +67,13 @@ namespace Uixe.Watcher
 
         private static void CheckTime()
         {
-            
         }
 
         public static void SyncTime()
         {
             try
             {
-              ;
+                ;
             }
             catch (Exception)
             {
@@ -94,7 +87,6 @@ namespace Uixe.Watcher
             {
                 txtOut.Text = "正在发送指令" + System.Environment.NewLine;
                 cansynctime = false;
-            
             }
         }
 
@@ -114,12 +106,10 @@ namespace Uixe.Watcher
             this.Close();
         }
 
-       
         private void btnSetTime_Click(object sender, EventArgs e)
         {
             try
             {
-            
             }
             catch (Exception ex)
             {
@@ -155,7 +145,7 @@ namespace Uixe.Watcher
                         {
                             try
                             {
-                                txtOut.Text +=ip+ ":"+ s.Replace("\n", "\r\n") + Environment.NewLine;
+                                txtOut.Text += ip + ":" + s.Replace("\n", "\r\n") + Environment.NewLine;
                                 txtOut.SelectionStart = txtOut.Text.Length;
                                 txtOut.ScrollToCaret();
                             }
@@ -173,7 +163,7 @@ namespace Uixe.Watcher
                     {
                         this.Invoke((MethodInvoker)delegate
                         {
-                            txtOut.Text += ip +":"+ex.Message+Environment.NewLine ;
+                            txtOut.Text += ip + ":" + ex.Message + Environment.NewLine;
                             txtOut.SelectionStart = txtOut.Text.Length;
                             txtOut.ScrollToCaret();
                         });

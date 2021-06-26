@@ -1,8 +1,5 @@
 ﻿using DevExpress.XtraEditors;
-using MQTTnet.Client;
 using System;
-using System.Diagnostics;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
@@ -13,12 +10,7 @@ namespace Uixe.Watcher.TCO
 {
     public static class TCOCallUtils
     {
- 
         private delegate void DShowTCOQueryInfo(string mu);
-
-       
-
-       
 
         public static void Submit(bool ok, WeightTCOConfirm tms)
         {
@@ -26,7 +18,7 @@ namespace Uixe.Watcher.TCO
             {
                 if (tms != null)
                 {
-                    tms.MqttClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}",tms.GetTCOConfirm(ok)
+                    tms.MqttClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}", tms.GetTCOConfirm(ok)
                       ).Wait(TimeSpan.FromSeconds(10));
                 }
             }
@@ -36,12 +28,12 @@ namespace Uixe.Watcher.TCO
             }
         }
 
-        public static void ShowTCOInfo(this frmMain form, string topic,string message, MQTTnet.Client.IMqttClient client)
+        public static void ShowTCOInfo(this frmMain form, string topic, string message, MQTTnet.Client.IMqttClient client)
         {
             try
             {
-                var tc= Newtonsoft.Json.JsonConvert.DeserializeObject<tco_confirm>(message);
-                if (tc.DlgType== DlgType.Weight)
+                var tc = Newtonsoft.Json.JsonConvert.DeserializeObject<tco_confirm>(message);
+                if (tc.DlgType == DlgType.Weight)
                 {
                     lock (form)
                     {
@@ -51,7 +43,7 @@ namespace Uixe.Watcher.TCO
                             {
                                 form.WeightTCOCall = new frmWeightTCOCall();
                                 form.WeightTCOCall.Main = form;
-                               
+
                                 form.WeightTCOCall.LoadInfo(client);
                                 form.WeightTCOCall.Hide();
                             }
@@ -73,13 +65,11 @@ namespace Uixe.Watcher.TCO
                         {
                             if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
                             {
-
                                 form._tcocall = new frmShowTCOCall
                                 {
                                     MQTTClient = client,
                                     Owner = form,
                                     Main = form
-                                   
                                 };
                             }
                             form._tcocall.Show(Newtonsoft.Json.JsonConvert.DeserializeObject<TCOCall>(message));

@@ -66,8 +66,7 @@ namespace Uixe.Watcher.Uitls
 
             if (conn != null && conn.myView != null)
             {
-             //   conn.myView.ContextMenu = null;
-
+                //   conn.myView.ContextMenu = null;
             }
             return Task.FromResult(conn.myView);
         }

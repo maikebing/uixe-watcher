@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Media;
 using System.Runtime.InteropServices;
 
@@ -62,7 +61,6 @@ namespace Uixe.Watcher.Ring
 
         public static void SetMp3File(string file)
         {
-
             try
             {
                 utils = new PlayUitls(file);
@@ -88,9 +86,7 @@ namespace Uixe.Watcher.Ring
         {
             try
             {
-
                 audioFileReader.PlaySync();
-
             }
             catch (Exception)
             {

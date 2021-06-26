@@ -2,37 +2,28 @@
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Threading;
-using System.Windows.Forms;
-using Uixe.Watcher.Ring;
-using Uixe.Watcher.TCO;
-using System.Linq;
-using Uixe.Watcher.Tools;
-using System.Diagnostics;
-using System.Reflection;
-using Uixe.Watcher.Controls;
-using WindowsFirewallHelper;
-using System.Net.NetworkInformation;
-using System.Net.Http;
-using System.IO;
-using System.Threading.Tasks;
-using System.Deployment.Application;
-using System.Speech.Synthesis;
-using System.Drawing;
-using Uixe.Watcher.Dtos;
-using Uixe.Watcher.Msg;
-using Uixe.Watcher.Uitls;
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Client.Options;
 using Newtonsoft.Json;
-using DevExpress.XtraEditors.Repository;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Deployment.Application;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Speech.Synthesis;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Uixe.Watcher.Controls;
+using Uixe.Watcher.Dtos;
+using Uixe.Watcher.Msg;
+using Uixe.Watcher.Ring;
+using Uixe.Watcher.TCO;
+using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher
 {
@@ -59,7 +50,6 @@ namespace Uixe.Watcher
 
         public static frmTimeSync TimeSync;
 
-
         #region 加载
 
         public frmMain()
@@ -71,14 +61,14 @@ namespace Uixe.Watcher
         private CougarClockContainer control = new CougarClockContainer();
         private BarEditItem barEditItem = new BarEditItem();
 
-        public   frmShowTCOCall _tcocall;
-        public   frmWeightTCOCall WeightTCOCall;
+        public frmShowTCOCall _tcocall;
+        public frmWeightTCOCall WeightTCOCall;
 
         private Plaza Plaza { get; set; }
-        IMqttClient client;
+        private IMqttClient client;
+
         private void frmMain_Load(object sender, EventArgs e)
         {
-         
             btnUpgrade.Visibility = ApplicationDeployment.IsNetworkDeployed ? BarItemVisibility.Always : BarItemVisibility.Never;
             repositoryItem.ControlType = control.GetType();
             barEditItem.Edit = repositoryItem;
@@ -120,7 +110,7 @@ namespace Uixe.Watcher
             {
                 btnRing.Enabled = false;
             }
-        
+
             ShowStatusInfo("就绪");
             try
             {
@@ -142,7 +132,6 @@ namespace Uixe.Watcher
             {
                 menuVoiceList.Enabled = false;
                 btnTest.Enabled = false;
-
             }
             if (string.IsNullOrEmpty(Properties.Settings.Default.plazaid))
             {
@@ -154,10 +143,10 @@ namespace Uixe.Watcher
             }
         }
 
-        public void LoadLaneInfo(string plazaid,bool reset=false)
+        public void LoadLaneInfo(string plazaid, bool reset = false)
         {
             this.SuspendLayout();
-            Plaza = TollInfo.GetTollInfo(plazaid,reset);
+            Plaza = TollInfo.GetTollInfo(plazaid, reset);
             RuntimeSetting.Plaza = Plaza;
             LoadLaneView(Plaza);
             UserAccessControl();
@@ -181,12 +170,19 @@ namespace Uixe.Watcher
                     .WithWillMessage(new MqttApplicationMessage() { Topic = "/tco/willmessage", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain = true })
                     .Build();
                 chkServerStatus.Caption = $"服务器:{p.ip}";
-            
+
                 client.UseDisconnectedHandler(async xe =>
                 {
                     Console.WriteLine("### DISCONNECTED FROM SERVER ###");
                     await Task.Delay(TimeSpan.FromSeconds(1));
-                    chkServerStatus.EditValue = false;
+
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        chkServerStatus.EditValue = false;
+
+                        chkServerStatus.Caption = $"服务器{ipaddress}网络故障,{xe.Reason}";
+                        Alert("网络故障", chkServerStatus.Caption);
+                    });
                     if (!xe.ClientWasConnected)
                     {
                         try
@@ -222,10 +218,9 @@ namespace Uixe.Watcher
                         {
                             this.Invoke((MethodInvoker)delegate
                            {
-                               this.ShowTCOInfo( h.ApplicationMessage.Topic, message, client);
+                               this.ShowTCOInfo(h.ApplicationMessage.Topic, message, client);
                            });
                         });
-
                     }
                     else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/message/"))
                     {
@@ -240,9 +235,14 @@ namespace Uixe.Watcher
                         new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
                         new MqttTopicFilter() { Topic = "/lane/emrc_main/message/", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce }
                         );
-                    var pubresult= await client.PublishAsync("/tco/status/", new { message= "startup" });
+                    var pubresult = await client.PublishAsync("/tco/status/", new { message = "startup" });
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        chkServerStatus.EditValue = true;
+                        chkServerStatus.Caption = $"服务器{ipaddress}网络恢复";
+                    });
                 });
-                
+
                 await client.ConnectAsync(options, CancellationToken.None);
                 do
                 {
@@ -272,9 +272,6 @@ namespace Uixe.Watcher
                 }
             });
         }
-
-
-
 
         /// <summary>
         /// 加载车道
@@ -315,8 +312,7 @@ namespace Uixe.Watcher
                 lv.Dock = DockStyle.Top;
                 messageView.initMessageView(item.id, 100);
             }
-            lanView.ShowTabHeader = lanView.TabPages.Count > 1 ? DevExpress.Utils.DefaultBoolean.True: DevExpress.Utils.DefaultBoolean.False;
-         
+            lanView.ShowTabHeader = lanView.TabPages.Count > 1 ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
 
             int el = 0;
             var key = plasas.FirstOrDefault()?.id;
@@ -341,7 +337,6 @@ namespace Uixe.Watcher
             ShowStatusInfo("就绪");
         }
 
-
         /// <summary>
         /// 用户权限控制
         /// </summary>
@@ -357,11 +352,9 @@ namespace Uixe.Watcher
             }
         }
 
-     
+        #endregion 加载
 
-#endregion 加载
-
-#region 卸载
+        #region 卸载
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -400,7 +393,7 @@ namespace Uixe.Watcher
             Properties.Settings.Default.SkinStyle = UserLookAndFeel.Default.ActiveSkinName;
         }
 
-#endregion 卸载
+        #endregion 卸载
 
         /// <summary>
         /// 显示状态信息
@@ -434,8 +427,6 @@ namespace Uixe.Watcher
         {
         }
 
-
-
         private void btnLogin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Login();
@@ -446,14 +437,11 @@ namespace Uixe.Watcher
             Logout();
         }
 
-
         private void btnSyncTime_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             TimeSync = new frmTimeSync();
             TimeSync.ShowDialog(this);
         }
-
-
 
         private void btnAbout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -467,7 +455,6 @@ namespace Uixe.Watcher
             Close();
         }
 
-
         public void Alert(string caption, string text)
         {
             this.Invoke((MethodInvoker)delegate
@@ -476,9 +463,8 @@ namespace Uixe.Watcher
             });
         }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="plaza">6500226</param>
         /// <param name="laneno">6500225X01</param>
@@ -552,19 +538,15 @@ namespace Uixe.Watcher
             }
         }
 
-
-
-
         private void skinRibbonGalleryBarItem2_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
         {
             Properties.Settings.Default.SkinStyle = e.Item.Tag.ToString();
             Properties.Settings.Default.Save();
         }
 
-
-
         private string temptime = null;
         private object timeobjlock = new object();
+
         [DebuggerStepThrough]
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -578,8 +560,6 @@ namespace Uixe.Watcher
                 }
             }
         }
-
-
 
         private DateTime lastsend = DateTime.MinValue;
 
@@ -608,13 +588,12 @@ namespace Uixe.Watcher
             AppUtils.InstallUpdateSyncWithInfo();
         }
 
-        private int min = -1;
         private int sec = -1;
 
         [DebuggerStepThrough]
-        private async  void tmNetworkTest_TickAsync(object sender, EventArgs e)
+        private async void tmNetworkTest_TickAsync(object sender, EventArgs e)
         {
-            if (sec!=DateTime.Now.Second)
+            if (sec != DateTime.Now.Second && client?.IsConnected == true)
             {
                 try
                 {
@@ -625,38 +604,6 @@ namespace Uixe.Watcher
                     Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
                 }
                 sec = DateTime.Now.Second;
-            }
-            if (min != DateTime.Now.Minute && !string.IsNullOrEmpty(Plaza?.ip))
-            {
-                try
-                {
-                    min = DateTime.Now.Minute;
-                    var p = new Ping();
-                    string ipaddress = Plaza.ip;
-                    var pr = await p.SendPingAsync(ipaddress,1000);
-                    try
-                    {
-                        if (pr.Status != IPStatus.Success)
-                        {
-                            chkServerStatus.EditValue = false;
-                            chkServerStatus.Caption = $"服务器{ipaddress}网络故障,{pr.Status}";
-                            Alert("网络故障", chkServerStatus.Caption);
-                        }
-                        else
-                        {
-                            chkServerStatus.EditValue = true;
-                            chkServerStatus.Caption = "服务器网络正常";
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
-                }
             }
         }
 
@@ -675,13 +622,9 @@ namespace Uixe.Watcher
             Application.Exit();
         }
 
-
         private void 软件更新ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btnUpgrade.PerformClick();
         }
-
-
-
     }//frmMain
 }
