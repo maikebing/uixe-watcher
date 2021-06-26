@@ -60,7 +60,7 @@ namespace Uixe.Watcher.TCO
                         }
                         catch (Exception ex)
                         {
-                            //     TCS.Log.LogInfo("ERROR:<{0}>\r\n{1}\r\n", ex.Message, mu);
+                            Console.WriteLine($"ShowTCOInfo{ex.Message}");
                             form.WeightTCOCall = null;
                         }
                     }
@@ -87,7 +87,7 @@ namespace Uixe.Watcher.TCO
                         }
                         catch (Exception ex)
                         {
-                            //  TCS.Log.LogInfo("ERROR:<{0}>\r\n{1}\r\n", ex.Message, mu);
+                            Console.WriteLine($"ShowTCOInfo{ex.Message}");
                             form._tcocall = null;
                         }
                     }
@@ -96,6 +96,7 @@ namespace Uixe.Watcher.TCO
             }
             catch (Exception ex1)
             {
+                Console.WriteLine($"ShowTCOInfo{ex1.Message}");
             }
         }
 
@@ -133,12 +134,13 @@ namespace Uixe.Watcher.TCO
                     }
                     catch (Exception ex)
                     {
-                     //   Log.LogException("RemoveNowTab 2", "", ex);
+                        Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"CloseTCOCall {ex.Message}");
             }
         }
     }

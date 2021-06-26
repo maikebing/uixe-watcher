@@ -62,14 +62,15 @@ namespace Uixe.Watcher.Ring
 
         public static void SetMp3File(string file)
         {
-            
-                try
-                {
-                    utils = new PlayUitls(file);
-                }
-                catch (Exception ex)
-                {
-                }
+
+            try
+            {
+                utils = new PlayUitls(file);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
+            }
         }
 
         private static PlayUitls utils;
@@ -87,11 +88,11 @@ namespace Uixe.Watcher.Ring
         {
             try
             {
-              
-                    audioFileReader.PlaySync();
-              
+
+                audioFileReader.PlaySync();
+
             }
-            catch (Exception )
+            catch (Exception)
             {
             }
         }

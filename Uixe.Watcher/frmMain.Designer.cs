@@ -853,6 +853,7 @@ namespace Uixe.Watcher
             // 
             // tmNetworkTest
             // 
+            this.tmNetworkTest.Enabled = true;
             this.tmNetworkTest.Interval = 1000;
             this.tmNetworkTest.Tick += new System.EventHandler(this.tmNetworkTest_TickAsync);
             // 

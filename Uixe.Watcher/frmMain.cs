@@ -614,19 +614,19 @@ namespace Uixe.Watcher
         [DebuggerStepThrough]
         private async  void tmNetworkTest_TickAsync(object sender, EventArgs e)
         {
-
             if (sec!=DateTime.Now.Second)
             {
                 try
                 {
                     await client.PublishAsync("/tco/status/", new { message = "HeartBeat" });
-                    sec = DateTime.Now.Second;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
                 }
+                sec = DateTime.Now.Second;
             }
-            if (min != DateTime.Now.Minute)
+            if (min != DateTime.Now.Minute && !string.IsNullOrEmpty(Plaza?.ip))
             {
                 try
                 {
@@ -648,12 +648,14 @@ namespace Uixe.Watcher
                             chkServerStatus.Caption = "服务器网络正常";
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
                 }
             }
         }

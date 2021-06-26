@@ -72,6 +72,7 @@ namespace Uixe.Watcher
                 {
                     tms.btnOK.Click -= new EventHandler(BtnOK_Click);
                     tms.btnCancel.Click -= new EventHandler(btnCancel_Click);
+                    Console.WriteLine($"Show{ex.Message}");
                 }
                 try
                 {
