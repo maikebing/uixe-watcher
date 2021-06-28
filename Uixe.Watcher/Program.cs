@@ -61,6 +61,7 @@ namespace Uixe.Watcher
                     {
                         var mqttServer = new MqttFactory().CreateMqttServer();
                         var opt = new MqttServerOptions();
+                        opt.EnablePersistentSessions = true;
                         opt.DefaultEndpointOptions.BoundInterNetworkAddress = IPAddress.Any;
                         mqttServer.UseApplicationMessageReceivedHandler(c => Debug.WriteLine($"{ c.ClientId} {c.ApplicationMessage.Topic}"));
                         await mqttServer.StartAsync(opt);
