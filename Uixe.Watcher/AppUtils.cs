@@ -104,7 +104,6 @@ namespace Uixe.Watcher
 
         private static void Ad_CheckForUpdateProgressChanged(object sender, DeploymentProgressChangedEventArgs e)
         {
-            Program.MainForm.ShowStatusInfo($"正在更新:{e.Group},{e.BytesCompleted / 1024}/{e.BytesTotal / 1024},{e.ProgressPercentage}%,{e.State.ToString()} 。");
         }
 
         private static void Ad_UpdateCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)

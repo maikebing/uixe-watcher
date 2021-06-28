@@ -13,13 +13,15 @@ namespace Uixe.Watcher
 {
     public partial class frmShowTCOCall : XtraForm
     {
-        public frmShowTCOCall()
+        public frmPlaza Main { get; set; }
+        public frmShowTCOCall(frmPlaza _ain)
         {
+            Main = _ain;
             InitializeComponent();
             try
             {
                 this.tsTabs.TabPages.Clear();
-                var tmlLaneNo = Uitls.TollInfo.GetTollInfo();
+                var tmlLaneNo = Uitls.TollInfo.GetTollInfo(Main._runtimeSetting.Plaza.id);
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
@@ -45,7 +47,7 @@ namespace Uixe.Watcher
         private List<Lane> lstlane = new List<Lane>();
 
         public IMqttClient MQTTClient { get; internal set; }
-        public frmMain Main { get; set; }
+    
 
         public void Show(TCOCall TCOCallxxx)
         {
@@ -55,7 +57,7 @@ namespace Uixe.Watcher
             {
                 XtraTabPage t = x.Single();
                 TCOConfirm tms = (TCOConfirm)t.Tag;
-                tms.Main = this.Main;
+                tms.Plaza = this.Main;
                 try
                 {
                     tms.Show(TCOCallxxx);

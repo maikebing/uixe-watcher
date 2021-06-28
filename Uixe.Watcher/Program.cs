@@ -33,8 +33,7 @@ namespace Uixe.Watcher
         [DllImport("Shcore.dll")]
         private static extern int SetProcessDpiAwareness(int PROCESS_DPI_AWARENESS);
 
-        // Fields
-        public static frmMain MainForm;
+    
 
         public static bool mqttserver { get; set; }
 
@@ -92,8 +91,7 @@ namespace Uixe.Watcher
                 }
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                MainForm = new frmMain();
-                Application.Run(MainForm);
+                Application.Run(new frmMain());
             });
         }
 

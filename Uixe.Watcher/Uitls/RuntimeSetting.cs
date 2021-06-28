@@ -4,7 +4,7 @@ using Uixe.Watcher.Dtos;
 
 namespace Uixe.Watcher
 {
-    public static class RuntimeSetting
+    public  class RuntimeSetting
     {
         #region 程序集特性访问器
 
@@ -101,26 +101,26 @@ namespace Uixe.Watcher
             }
         }
 
-        internal static User NowCollect;
+        internal  User NowCollect;
 
-        internal static Dtos.Plaza Plaza { get; set; }
+        internal  Dtos.Plaza Plaza { get; set; }
 
-        private static bool _PlazaIsModify = false;
+        private  bool _PlazaIsModify = false;
 
-        public static bool PlazaIsModify
+        public  bool PlazaIsModify
         {
             get { return _PlazaIsModify; }
             set { _PlazaIsModify = value; }
         }
 
-        public static RptLoginResult Token { get; set; }
-        public static UserRole[] UserRole { get; set; }
+        public  RptLoginResult Token { get; set; }
+        public  UserRole[] UserRole { get; set; }
 
-        public static void ShowHelp()
+        public  void ShowHelp()
         {
         }
 
-        public static bool IsLogin()
+        public  bool IsLogin()
         {
             return Token != null && !string.IsNullOrEmpty(Token.token) && DateTime.Now.Subtract(Token.LoginDateTime).TotalSeconds < Token.expire;
         }

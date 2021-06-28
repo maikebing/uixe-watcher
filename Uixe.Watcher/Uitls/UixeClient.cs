@@ -9,12 +9,12 @@ namespace Uixe.Watcher.Uitls
 {
     public class UixeClient
     {
-        public T GetDataBy<T>(string _key, string api, object objparam = null)
+        public T GetDataBy<T>(string _key,string ip, string api, object objparam = null)
         {
             return GetCatchOrCreate(_key, () =>
             {
                 var result1 = default(T);
-                var client = Create(api);
+                var client = Create(ip,api);
                 var request = new RestRequest(Method.GET);
                 if (objparam != null)
                 {
@@ -36,11 +36,11 @@ namespace Uixe.Watcher.Uitls
             });
         }
 
-        public List<ProvCode> GetProvCodes() => GetDataBy<List<ProvCode>>("ProvCodes", "/Plazas/ProvCodes");
+        public List<ProvCode> GetProvCodes(string ip) => GetDataBy<List<ProvCode>>( "ProvCodes",ip, "/Plazas/ProvCodes");
 
-        public List<ProvPlazaInfo> GetProvPlazaInfo(string ProvId) => GetDataBy<List<ProvPlazaInfo>>($"ProvCodes_{ProvId}", "/Plazas/ProvPlazaInfo", new { ProvId });
+        public List<ProvPlazaInfo> GetProvPlazaInfo(string ip, string ProvId) => GetDataBy<List<ProvPlazaInfo>>($"ProvCodes_{ProvId}",ip, "/Plazas/ProvPlazaInfo", new { ProvId });
 
-        public string GetProvByPlaza(string plazaid) => GetDataBy<string>($"ProvByPlaza_{plazaid}", "/Plazas/ProvByPlaza", new { plazaid });
+        public string GetProvByPlaza(string ip,string plazaid) => GetDataBy<string>($"ProvByPlaza_{plazaid}",ip, "/Plazas/ProvByPlaza", new { plazaid });
 
         private T GetCatchOrCreate<T>(string _key, Func<T> fc)
         {
@@ -51,9 +51,9 @@ namespace Uixe.Watcher.Uitls
             return Barrel.Current.Get<T>(_key);
         }
 
-        private RestClient Create(string api)
+        private RestClient Create(string ip,string api)
         {
-            var client = new RestClient($"http://{RuntimeSetting.Plaza?.ip}:8080/api{api}");
+            var client = new RestClient($"http://{ip}:8080/api{api}");
             client.Timeout = -1;
             return client;
         }

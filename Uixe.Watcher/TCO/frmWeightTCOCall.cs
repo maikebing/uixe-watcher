@@ -17,26 +17,36 @@ namespace Uixe.Watcher.TCO
 
         private List<Lane> lstlane = new List<Lane>();
 
-        public frmMain Main { get; internal set; }
+        public frmPlaza Main { get; internal set; }
 
         public frmWeightTCOCall()
         {
             InitializeComponent();
         }
-
+        public RuntimeSetting _runtimeSetting
+        {
+            get
+            {
+                return Main._runtimeSetting;
+            }
+            set
+            {
+                Main._runtimeSetting = value;
+            }
+        }
         public void LoadInfo(IMqttClient _mqttClient)
         {
             try
             {
                 this.tsTabs.TabPages.Clear();
-                var tmlLaneNo = Uitls.TollInfo.GetTollInfo();
+                var tmlLaneNo = Uitls.TollInfo.GetTollInfo(_runtimeSetting.Plaza.id);
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
                     string pname = tmlLaneNo.id + lstlane[i].lane_no;
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
-                    tms.Main = this.Main;
+                    tms._plaza = this.Main;
                     tms.MqttClient = _mqttClient;
                     t.Name = pname;
                     tms.Name = pname;

@@ -28,7 +28,7 @@ namespace Uixe.Watcher.TCO
             }
         }
 
-        public static void ShowTCOInfo(this frmMain form, string topic, string message, MQTTnet.Client.IMqttClient client)
+        public static void ShowTCOInfo(this frmPlaza form, string topic, string message, MQTTnet.Client.IMqttClient client)
         {
             try
             {
@@ -65,11 +65,10 @@ namespace Uixe.Watcher.TCO
                         {
                             if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
                             {
-                                form._tcocall = new frmShowTCOCall
+                                form._tcocall = new frmShowTCOCall(form)
                                 {
                                     MQTTClient = client,
-                                    Owner = form,
-                                    Main = form
+                                    Owner = form
                                 };
                             }
                             form._tcocall.Show(Newtonsoft.Json.JsonConvert.DeserializeObject<TCOCall>(message));
@@ -90,7 +89,7 @@ namespace Uixe.Watcher.TCO
             }
         }
 
-        public static void CloseTCOCall(this frmMain form)
+        public static void CloseTCOCall(this frmPlaza form)
         {
             try
             {

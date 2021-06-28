@@ -8,10 +8,7 @@ namespace Uixe.Watcher.Uitls
 {
     public static class TollInfo
     {
-        public static Plaza GetTollInfo()
-        {
-            return GetTollInfo(Properties.Settings.Default.plazaid);
-        }
+       
 
         public static Plaza GetTollInfo(string toll_id, bool reset = false)
         {

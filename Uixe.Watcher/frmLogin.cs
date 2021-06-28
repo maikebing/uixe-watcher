@@ -11,11 +11,12 @@ namespace Uixe.Watcher
 {
     public partial class frmLogin : XtraForm
     {
-        public frmLogin()
+        frmPlaza _plaza;
+        public frmLogin(frmPlaza plaza)
         {
+            _plaza = plaza;
             InitializeComponent();
         }
-
         private bool _isMouseDown;
         private Point _formLocation; //form的location
         private Point _mouseOffset;
@@ -47,35 +48,45 @@ namespace Uixe.Watcher
                 Location = new Point(_formLocation.X - x, _formLocation.Y - y);
             }
         }
-
+        public RuntimeSetting _runtimeSetting
+        {
+            get
+            {
+                return _plaza._runtimeSetting;
+            }
+            set
+            {
+                _plaza._runtimeSetting = value;
+            }
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             _ = ReloadTollInfoAsync();
-            var p = RuntimeSetting.Plaza;
+            var p = _runtimeSetting.Plaza;
             if (p != null && !string.IsNullOrEmpty(p.ip))
             {
-                PlazaApi api = new PlazaApi(RuntimeSetting.Plaza.ip);
-                RuntimeSetting.Token = api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
-                var result = api.getRoleByUser(txtUser.Text);
-                if (!string.IsNullOrEmpty(RuntimeSetting.Token?.token))
+                PlazaApi api = new PlazaApi(_runtimeSetting.Plaza.ip);
+                _runtimeSetting.Token = api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
+                var result = api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
+                if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
                 {
                     if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
                     {
-                        RuntimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
-                        RuntimeSetting.UserRole = result.data;
-                        RuntimeSetting.Token.LoginDateTime = DateTime.Now;
+                        _runtimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
+                        _runtimeSetting.UserRole = result.data;
+                        _runtimeSetting.Token.LoginDateTime = DateTime.Now;
                         DialogResult = DialogResult.OK;
                     }
                     else
                     {
-                        RuntimeSetting.Token.LoginDateTime = DateTime.MinValue;
+                        _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
                         lblInfo.Text = $"没有找到TCO角色(18)";
                     }
                 }
                 else
                 {
-                    RuntimeSetting.Token.LoginDateTime = DateTime.MinValue;
-                    lblInfo.Text = $"{RuntimeSetting.Token?.code} {RuntimeSetting.Token?.msg}";
+                    _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
+                    lblInfo.Text = $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}";
                 }
             }
             else
@@ -86,7 +97,7 @@ namespace Uixe.Watcher
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            RuntimeSetting.NowCollect = null;
+            _runtimeSetting.NowCollect = null;
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
@@ -109,7 +120,7 @@ namespace Uixe.Watcher
                      try
                      {
                          var plazainfo = TollInfo.GetTollInfo(txtPlazaId.Text, true);
-                         RuntimeSetting.Plaza = plazainfo;
+                         _runtimeSetting.Plaza = plazainfo;
                          this.Invoke((MethodInvoker)delegate
                          {
                              Properties.Settings.Default.Save();

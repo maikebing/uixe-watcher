@@ -283,6 +283,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPlaza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPlaza.Designer.cs">
+      <DependentUpon>frmPlaza.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRemoteViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -323,12 +329,6 @@
     </Compile>
     <Compile Include="TCO\TCOPictureBox.Designer.cs">
       <DependentUpon>TCOPictureBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Tools\frmTimeSync.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Tools\frmTimeSync.Designer.cs">
-      <DependentUpon>frmTimeSync.cs</DependentUpon>
     </Compile>
     <Compile Include="Ring\PlayUitls.cs" />
     <Compile Include="Tools\SpeechUtils.cs" />
@@ -443,8 +443,11 @@
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPlaza.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmPlaza.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRemoteViewer.resx">
       <DependentUpon>frmRemoteViewer.cs</DependentUpon>
@@ -461,10 +464,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TCO\TCOPictureBox.resx">
       <DependentUpon>TCOPictureBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Tools\frmTimeSync.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmTimeSync.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

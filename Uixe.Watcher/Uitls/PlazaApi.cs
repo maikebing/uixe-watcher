@@ -26,11 +26,11 @@ namespace Uixe.Watcher.Uitls
             return result;
         }
 
-        public ApiResult<UserRole[]> getRoleByUser(string username)
+        public ApiResult<UserRole[]> getRoleByUser(string username,string token)
         {
             var request = new RestRequest($"sys/user/getRoleByUser?userName={username}", Method.POST, DataFormat.Json);
             request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("token", RuntimeSetting.Token?.token);
+            request.AddHeader("token",token);
             IRestResponse response = client.Execute(request);
             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResult<UserRole[]>>(response.Content);
             return result;
