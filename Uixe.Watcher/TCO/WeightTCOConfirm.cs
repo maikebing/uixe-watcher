@@ -1,5 +1,4 @@
-﻿using MQTTnet.Client;
-using System;
+﻿using System;
 using System.Linq;
 using System.Speech.Synthesis;
 using Uixe.Watcher.Dtos;
@@ -17,7 +16,7 @@ namespace Uixe.Watcher.TCO
 
         public MsgWeightTCOCALL TCE { get; set; }
         public bool CanDo { get; set; }
-        public IMqttClient MqttClient { get; internal set; }
+ 
         public frmPlaza _plaza { get; internal set; }
         public RuntimeSetting _runtimeSetting
         {
@@ -25,10 +24,7 @@ namespace Uixe.Watcher.TCO
             {
                 return _plaza._runtimeSetting;
             }
-            set
-            {
-                _plaza._runtimeSetting = value;
-            }
+           
         }
         private Prompt prompt = null;
         private MsgWeightTCOCALL _tce;

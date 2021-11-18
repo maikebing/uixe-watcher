@@ -13,17 +13,20 @@ namespace Uixe.Watcher
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public frmMain()
+        private readonly frmPlaza _plaza;
+
+        public frmMain(frmPlaza plaza)
         {
+
+            _plaza = plaza;
             InitializeComponent();
         }
 
         private void btnOpenPlaza_ItemClick(object sender, ItemClickEventArgs e)
         {
-            frmPlaza plaza = new frmPlaza();
-            plaza.MdiParent = this;
-            plaza.WindowState = FormWindowState.Maximized;
-            plaza.Show();
+            _plaza.MdiParent = this;
+            _plaza.WindowState = FormWindowState.Maximized;
+            _plaza.Show();
         }
     }
 }

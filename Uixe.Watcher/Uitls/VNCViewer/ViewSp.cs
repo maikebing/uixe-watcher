@@ -46,7 +46,7 @@ namespace Vnc.Viewer
 
         private Timer mouseIdleTimer = new Timer();
 
-        private MenuItem mouseAccelModeMenu = new MenuItem();
+        private ToolStripMenuItem mouseAccelModeMenu = new ToolStripMenuItem();
         private EventHandler mouseAccelModeHdr = null;
 
         [DllImport("coredll.dll")]
@@ -449,9 +449,9 @@ namespace Vnc.Viewer
         private void SendMouseLocWhenIdleClicked(object sender, EventArgs e)
         {
             connOpts.ViewOpts.SendMouseLocWhenIdle = !connOpts.ViewOpts.SendMouseLocWhenIdle;
-            for (int i = 0; i < optionsMenu.MenuItems.Count; i++)
+            for (int i = 0; i < optionsMenu.DropDownItems.Count; i++)
             {
-                MenuItem item = optionsMenu.MenuItems[i];
+                ToolStripMenuItem item =(ToolStripMenuItem) optionsMenu.DropDownItems[i];
                 if (item.Text == App.GetStr("Send mouse location when idle"))
                     item.Checked = connOpts.ViewOpts.SendMouseLocWhenIdle;
             }
@@ -464,26 +464,26 @@ namespace Vnc.Viewer
 
         private void MouseAccelModeClicked(object sender, EventArgs e)
         {
-            for (int i = 0; i < mouseAccelModeMenu.MenuItems.Count; i++)
-                mouseAccelModeMenu.MenuItems[i].Checked = false;
-            MenuItem item = (MenuItem)sender;
+            for (int i = 0; i < mouseAccelModeMenu.DropDownItems.Count; i++)
+              ( (ToolStripMenuItem) mouseAccelModeMenu.DropDownItems[i]).Checked = false;
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
             item.Checked = true;
-            if (item == mouseAccelModeMenu.MenuItems[0])
+            if (item == mouseAccelModeMenu.DropDownItems[0])
             {
                 connOpts.ViewOpts.MouseAccelMode = true;
                 connOpts.ViewOpts.MouseSpeed = MouseSpeed.Normal;
             }
-            else if (item == mouseAccelModeMenu.MenuItems[1])
+            else if (item == mouseAccelModeMenu.DropDownItems[1])
             {
                 connOpts.ViewOpts.MouseAccelMode = false;
                 connOpts.ViewOpts.MouseSpeed = MouseSpeed.Low;
             }
-            else if (item == mouseAccelModeMenu.MenuItems[2])
+            else if (item == mouseAccelModeMenu.DropDownItems[2])
             {
                 connOpts.ViewOpts.MouseAccelMode = false;
                 connOpts.ViewOpts.MouseSpeed = MouseSpeed.Normal;
             }
-            else if (item == mouseAccelModeMenu.MenuItems[3])
+            else if (item == mouseAccelModeMenu.DropDownItems[3])
             {
                 connOpts.ViewOpts.MouseAccelMode = false;
                 connOpts.ViewOpts.MouseSpeed = MouseSpeed.High;
@@ -520,62 +520,62 @@ namespace Vnc.Viewer
         {
             mouseAccelModeHdr = new EventHandler(MouseAccelModeClicked);
 
-            MenuItem item;
-            MenuItem subItem;
+            ToolStripMenuItem   item;
+            ToolStripMenuItem subItem;
 
-            item = new MenuItem();
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Left click");
             item.Click += new EventHandler(LeftClicked);
-            menu.MenuItems.Add(item);
-            item = new MenuItem();
+            menu.Items.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Menu");
-            menu.MenuItems.Add(item);
+            menu.Items.Add(item);
 
-            subItem = new MenuItem();
+            subItem = new ToolStripMenuItem();
             subItem.Text = App.GetStr("Right click");
             subItem.Click += new EventHandler(RightClicked);
-            item.MenuItems.Add(subItem);
-            subItem = new MenuItem();
+            item.DropDownItems.Add(subItem);
+            subItem = new ToolStripMenuItem();
             subItem.Text = "-";
-            item.MenuItems.Add(subItem);
-            item.MenuItems.Add(connMenu);
-            connMenu.MenuItems.Add(newConnItem);
-            connMenu.MenuItems.Add(refreshItem);
-            item.MenuItems.Add(viewMenu);
-            item.MenuItems.Add(keysMenu);
-            item.MenuItems.Add(optionsMenu);
-            subItem = new MenuItem();
+            item.DropDownItems.Add(subItem);
+            item.DropDownItems.Add(connMenu);
+            connMenu.DropDownItems.Add(newConnItem);
+            connMenu.DropDownItems.Add(refreshItem);
+            item.DropDownItems.Add(viewMenu);
+            item.DropDownItems.Add(keysMenu);
+            item.DropDownItems.Add(optionsMenu);
+            subItem = new ToolStripMenuItem();
             subItem.Text = App.GetStr("Send mouse location when idle");
             subItem.Checked = connOpts.ViewOpts.SendMouseLocWhenIdle;
             subItem.Click += new EventHandler(SendMouseLocWhenIdleClicked);
-            optionsMenu.MenuItems.Add(subItem);
+            optionsMenu.DropDownItems.Add(subItem);
             mouseAccelModeMenu.Text = App.GetStr("Mouse speed");
-            optionsMenu.MenuItems.Add(mouseAccelModeMenu);
-            subItem = new MenuItem();
+            optionsMenu.DropDownItems.Add(mouseAccelModeMenu);
+            subItem = new ToolStripMenuItem();
             subItem.Text = App.GetStr("Acceleration on");
             subItem.Checked = connOpts.ViewOpts.MouseAccelMode;
             subItem.Click += mouseAccelModeHdr;
-            mouseAccelModeMenu.MenuItems.Add(subItem);
-            subItem = new MenuItem();
+            mouseAccelModeMenu.DropDownItems.Add(subItem);
+            subItem = new ToolStripMenuItem();
             subItem.Text = App.GetStr("Low");
             subItem.Checked = !connOpts.ViewOpts.MouseAccelMode && (connOpts.ViewOpts.MouseSpeed == MouseSpeed.Low);
             subItem.Click += mouseAccelModeHdr;
-            mouseAccelModeMenu.MenuItems.Add(subItem);
-            subItem = new MenuItem();
+            mouseAccelModeMenu.DropDownItems.Add(subItem);
+            subItem = new ToolStripMenuItem();
             subItem.Text = App.GetStr("Normal");
             subItem.Checked = !connOpts.ViewOpts.MouseAccelMode && (connOpts.ViewOpts.MouseSpeed == MouseSpeed.Normal);
             subItem.Click += mouseAccelModeHdr;
-            mouseAccelModeMenu.MenuItems.Add(subItem);
-            subItem = new MenuItem();
+            mouseAccelModeMenu.DropDownItems.Add(subItem);
+            subItem = new ToolStripMenuItem();
             subItem.Text = App.GetStr("High");
             subItem.Checked = !connOpts.ViewOpts.MouseAccelMode && (connOpts.ViewOpts.MouseSpeed == MouseSpeed.High);
             subItem.Click += mouseAccelModeHdr;
-            mouseAccelModeMenu.MenuItems.Add(subItem);
-            subItem = new MenuItem();
+            mouseAccelModeMenu.DropDownItems.Add(subItem);
+            subItem = new ToolStripMenuItem();
             subItem.Text = "-";
-            item.MenuItems.Add(subItem);
-            item.MenuItems.Add(aboutItem);
-            item.MenuItems.Add(closeConnItem);
+            item.DropDownItems.Add(subItem);
+            item.DropDownItems.Add(aboutItem);
+            item.DropDownItems.Add(closeConnItem);
 
             cursorTimer.Tick += new EventHandler(CursorTicked);
             cursorTimer.Interval = CursorDelta;

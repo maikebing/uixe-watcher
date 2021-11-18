@@ -42,10 +42,6 @@ namespace Uixe.Watcher
             {
                 return Plaza._runtimeSetting;
             }
-            set
-            {
-                Plaza._runtimeSetting = value;
-            }
         }
         private UixeClient uixeClient = new UixeClient();
 

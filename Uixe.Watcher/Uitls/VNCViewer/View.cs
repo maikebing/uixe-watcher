@@ -56,23 +56,23 @@ namespace Vnc.Viewer
         protected System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         protected HScrollBar hScrlBar = new HScrollBar();
         protected VScrollBar vScrlBar = new VScrollBar();
-
-        protected MainMenu menu = new MainMenu();
-        protected MenuItem connMenu = new MenuItem();
-        protected MenuItem newConnItem = new MenuItem();
-        protected MenuItem refreshItem = new MenuItem();
-        protected MenuItem closeConnItem = new MenuItem();
-        protected MenuItem viewMenu = new MenuItem();
-        protected MenuItem viewSingleWinItem = new MenuItem();
-        protected MenuItem viewDesktopItem = new MenuItem();
-        private MenuItem rotateMenu = new MenuItem();
-        private MenuItem cliScalingMenu = new MenuItem();
-        private MenuItem servScalingMenu = new MenuItem();
-        private MenuItem pixelSizeMenu = new MenuItem();
-        protected MenuItem keysMenu = new MenuItem();
-        private MenuItem fnMenu = new MenuItem();
-        protected MenuItem optionsMenu = new MenuItem();
-        protected MenuItem aboutItem = new MenuItem();
+       
+        protected MenuStrip  menu = new  MenuStrip();
+        protected ToolStripMenuItem connMenu = new ToolStripMenuItem();
+        protected ToolStripMenuItem newConnItem = new ToolStripMenuItem();
+        protected ToolStripMenuItem refreshItem = new ToolStripMenuItem();
+        protected ToolStripMenuItem closeConnItem = new ToolStripMenuItem();
+        protected ToolStripMenuItem viewMenu = new ToolStripMenuItem();
+        protected ToolStripMenuItem viewSingleWinItem = new ToolStripMenuItem();
+        protected ToolStripMenuItem viewDesktopItem = new ToolStripMenuItem();
+        private ToolStripMenuItem rotateMenu = new ToolStripMenuItem();
+        private ToolStripMenuItem cliScalingMenu = new ToolStripMenuItem();
+        private ToolStripMenuItem servScalingMenu = new ToolStripMenuItem();
+        private ToolStripMenuItem pixelSizeMenu = new ToolStripMenuItem();
+        protected ToolStripMenuItem keysMenu = new ToolStripMenuItem();
+        private ToolStripMenuItem fnMenu = new ToolStripMenuItem();
+        protected ToolStripMenuItem optionsMenu = new ToolStripMenuItem();
+        protected ToolStripMenuItem aboutItem = new ToolStripMenuItem();
 
         private Bitmap frameBuf = null;
         private Graphics frameBufGraphics = null;
@@ -663,7 +663,7 @@ namespace Vnc.Viewer
         private void RotateClicked(object sender, EventArgs e)
         {
             Orientation newOrientation;
-            string menuText = ((MenuItem)sender).Text;
+            string menuText = ((ToolStripMenuItem)sender).Text;
             if (menuText == App.GetStr("Screen rotated clockwise"))
                 newOrientation = Orientation.Landscape90;
             else if (menuText == App.GetStr("Screen rotated counter-clockwise"))
@@ -1211,15 +1211,15 @@ namespace Vnc.Viewer
             CheckRotate(rotateMenu);
         }
 
-        protected void CheckRotate(Menu menu)
+        protected void CheckRotate(ToolStripMenuItem menu)
         {
-            MenuItem normal = null;
-            MenuItem rotateCW = null;
-            MenuItem rotateCCW = null;
-            MenuItem upsideDown = null;
-            for (int i = 0; i < menu.MenuItems.Count; i++)
+            ToolStripMenuItem normal = null;
+            ToolStripMenuItem rotateCW = null;
+            ToolStripMenuItem rotateCCW = null;
+            ToolStripMenuItem upsideDown = null;
+            for (int i = 0; i < menu.DropDownItems.Count; i++)
             {
-                MenuItem item = menu.MenuItems[i];
+                ToolStripMenuItem item =(ToolStripMenuItem) menu.DropDownItems[i];
                 if (item.Text == App.GetStr("Portrait"))
                     normal = item;
                 else if (item.Text == App.GetStr("Screen rotated clockwise"))
@@ -1304,7 +1304,7 @@ namespace Vnc.Viewer
 
         private void CliScalingClicked(object sender, EventArgs e)
         {
-            MenuItem item = (MenuItem)sender;
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
             if (item.Text == App.GetStr("None"))
                 connOpts.ViewOpts.CliScaling = CliScaling.None;
             else if (item.Text == App.GetStr("Auto"))
@@ -1342,7 +1342,7 @@ namespace Vnc.Viewer
 
         private void ServScalingClicked(object sender, EventArgs e)
         {
-            MenuItem item = (MenuItem)sender;
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
             if (item.Text == App.GetStr("None"))
                 connOpts.ViewOpts.ServScaling = ServScaling.None;
             else if (item.Text == App.GetStr("1/2"))
@@ -1384,19 +1384,19 @@ namespace Vnc.Viewer
             CheckServScaling(servScalingMenu);
         }
 
-        protected void CheckCliScaling(Menu menu)
+        protected void CheckCliScaling(ToolStripMenuItem menu)
         {
-            MenuItem noneItem = null;
-            MenuItem autoItem = null;
-            MenuItem oneHalfItem = null;
-            MenuItem oneThirdItem = null;
-            MenuItem oneFourthItem = null;
-            MenuItem oneFifthItem = null;
-            MenuItem doubleItem = null;
-            MenuItem customItem = null;
-            for (int i = 0; i < menu.MenuItems.Count; i++)
+            ToolStripMenuItem noneItem = null;
+            ToolStripMenuItem autoItem = null;
+            ToolStripMenuItem oneHalfItem = null;
+            ToolStripMenuItem oneThirdItem = null;
+            ToolStripMenuItem oneFourthItem = null;
+            ToolStripMenuItem oneFifthItem = null;
+            ToolStripMenuItem doubleItem = null;
+            ToolStripMenuItem customItem = null;
+            for (int i = 0; i < menu.DropDownItems.Count; i++)
             {
-                MenuItem item = menu.MenuItems[i];
+                ToolStripMenuItem item =(ToolStripMenuItem)menu.DropDownItems[i];
                 if (item.Text == App.GetStr("None"))
                     noneItem = item;
                 else if (item.Text == App.GetStr("Auto"))
@@ -1459,20 +1459,20 @@ namespace Vnc.Viewer
             }
         }
 
-        protected void CheckServScaling(Menu menu)
+        protected void CheckServScaling(ToolStripMenuItem menu)
         {
-            MenuItem noneItem = null;
-            MenuItem oneHalfItem = null;
-            MenuItem oneThirdItem = null;
-            MenuItem oneFourthItem = null;
-            MenuItem oneFifthItem = null;
-            MenuItem oneSixthItem = null;
-            MenuItem oneSeventhItem = null;
-            MenuItem oneEighthItem = null;
-            MenuItem oneNinthItem = null;
-            for (int i = 0; i < menu.MenuItems.Count; i++)
+            ToolStripMenuItem noneItem = null;
+            ToolStripMenuItem oneHalfItem = null;
+            ToolStripMenuItem oneThirdItem = null;
+            ToolStripMenuItem oneFourthItem = null;
+            ToolStripMenuItem oneFifthItem = null;
+            ToolStripMenuItem oneSixthItem = null;
+            ToolStripMenuItem oneSeventhItem = null;
+            ToolStripMenuItem oneEighthItem = null;
+            ToolStripMenuItem oneNinthItem = null;
+            for (int i = 0; i < menu.DropDownItems.Count; i++)
             {
-                MenuItem item = menu.MenuItems[i];
+                ToolStripMenuItem item = (ToolStripMenuItem)menu.DropDownItems[i];
                 if (item.Text == App.GetStr("None"))
                     noneItem = item;
                 else if (item.Text == App.GetStr("1/2"))
@@ -1614,9 +1614,9 @@ namespace Vnc.Viewer
         private void ViewOnlyClicked(object sender, EventArgs e)
         {
             connOpts.ViewOpts.ViewOnly = !connOpts.ViewOpts.ViewOnly;
-            for (int i = 0; i < optionsMenu.MenuItems.Count; i++)
+            for (int i = 0; i < optionsMenu.DropDownItems.Count; i++)
             {
-                MenuItem item = optionsMenu.MenuItems[i];
+                ToolStripMenuItem item = (ToolStripMenuItem)optionsMenu.DropDownItems[i];
                 if (item.Text == App.GetStr("View only"))
                     item.Checked = connOpts.ViewOpts.ViewOnly;
             }
@@ -1625,9 +1625,9 @@ namespace Vnc.Viewer
         private void ScrnUpdAlgoClicked(object sender, EventArgs e)
         {
             connOpts.ViewOpts.ScrnUpdAlgo = (connOpts.ViewOpts.ScrnUpdAlgo == ScrnUpdAlgo.Asap) ? ScrnUpdAlgo.Batch : ScrnUpdAlgo.Asap;
-            for (int i = 0; i < optionsMenu.MenuItems.Count; i++)
+            for (int i = 0; i < optionsMenu.DropDownItems.Count; i++)
             {
-                MenuItem item = optionsMenu.MenuItems[i];
+                ToolStripMenuItem item =(ToolStripMenuItem) optionsMenu.DropDownItems[i];
                 if (item.Text == App.GetStr("Update screen ASAP"))
                     item.Checked = connOpts.ViewOpts.ScrnUpdAlgo == ScrnUpdAlgo.Asap;
             }
@@ -1647,7 +1647,7 @@ namespace Vnc.Viewer
 
         private void PixelSizeClicked(object sender, EventArgs e)
         {
-            MenuItem item = (MenuItem)sender;
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
             if (item.Text == App.GetStr("Server decides") && connOpts.ViewOpts.PixelSize != PixelSize.Unspec)
             {
                 connOpts.ViewOpts.PixelSize = PixelSize.Unspec;
@@ -1671,14 +1671,14 @@ namespace Vnc.Viewer
             CheckPixelSize(pixelSizeMenu);
         }
 
-        protected void CheckPixelSize(Menu menu)
+        protected void CheckPixelSize(ToolStripMenuItem menu)
         {
-            MenuItem serverDecides = null;
-            MenuItem force8Bit = null;
-            MenuItem force16Bit = null;
-            for (int i = 0; i < menu.MenuItems.Count; i++)
+            ToolStripMenuItem serverDecides = null;
+            ToolStripMenuItem force8Bit = null;
+            ToolStripMenuItem force16Bit = null;
+            for (int i = 0; i < menu.DropDownItems.Count; i++)
             {
-                MenuItem item = menu.MenuItems[i];
+                ToolStripMenuItem item =(ToolStripMenuItem) menu.DropDownItems[i];
                 if (item.Text == App.GetStr("Server decides"))
                     serverDecides = item;
                 else if (item.Text == App.GetStr("Force 8-bit"))
@@ -1711,7 +1711,7 @@ namespace Vnc.Viewer
             if (connOpts.ViewOpts.ViewOnly)
                 return;
 
-            MenuItem item = (MenuItem)sender;
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
             try
             {
                 if (item.Text == App.GetStr("Shift down"))
@@ -1852,7 +1852,7 @@ namespace Vnc.Viewer
 
         private void ViewWinClicked(object sender, EventArgs e)
         {
-            MenuItem item = (MenuItem)sender;
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
             if (item.Text == App.GetStr("View desktop"))
             {
                 try
@@ -1930,7 +1930,7 @@ namespace Vnc.Viewer
             hScrlBar.ValueChanged += scrlHdr;
             vScrlBar.ValueChanged += scrlHdr;
 
-            MenuItem item;
+            ToolStripMenuItem item;
             fullScrnHdr = new EventHandler(FullScrnClicked);
             rotateHdr = new EventHandler(RotateClicked);
             cliScalingHdr = new EventHandler(CliScalingClicked);
@@ -1947,232 +1947,232 @@ namespace Vnc.Viewer
             closeConnItem.Click += new EventHandler(CloseClicked);
 
             viewMenu.Text = App.GetStr("View");
-            item = new MenuItem();
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Full screen");
             item.Checked = false; // If we see this we are not using full screen.
             item.Click += fullScrnHdr;
-            viewMenu.MenuItems.Add(item);
+            viewMenu.DropDownItems.Add(item);
             rotateMenu.Text = App.GetStr("Rotate");
-            viewMenu.MenuItems.Add(rotateMenu);
-            item = new MenuItem();
+            viewMenu.DropDownItems.Add(rotateMenu);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Portrait");
             item.Click += rotateHdr;
-            rotateMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            rotateMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Screen rotated clockwise");
             item.Click += rotateHdr;
-            rotateMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            rotateMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Screen rotated counter-clockwise");
             item.Click += rotateHdr;
-            rotateMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            rotateMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Upside down");
             item.Click += rotateHdr;
-            rotateMenu.MenuItems.Add(item);
+            rotateMenu.DropDownItems.Add(item);
             CheckRotate(rotateMenu);
             cliScalingMenu.Text = App.GetStr("Client-side scaling");
-            viewMenu.MenuItems.Add(cliScalingMenu);
-            item = new MenuItem();
+            viewMenu.DropDownItems.Add(cliScalingMenu);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("None");
             item.Click += cliScalingHdr;
-            cliScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            cliScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Auto");
             item.Click += cliScalingHdr;
-            cliScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            cliScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/2 of server");
             item.Click += cliScalingHdr;
-            cliScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            cliScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/3 of server");
             item.Click += cliScalingHdr;
-            cliScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            cliScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/4 of server");
             item.Click += cliScalingHdr;
-            cliScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            cliScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/5 of server");
             item.Click += cliScalingHdr;
-            cliScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            cliScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("2 of server");
             item.Click += cliScalingHdr;
-            cliScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            cliScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Custom...");
             item.Click += cliScalingHdr;
-            cliScalingMenu.MenuItems.Add(item);
+            cliScalingMenu.DropDownItems.Add(item);
             CheckCliScaling(cliScalingMenu);
             servScalingMenu.Text = App.GetStr("Server-side scaling");
-            viewMenu.MenuItems.Add(servScalingMenu);
-            item = new MenuItem();
+            viewMenu.DropDownItems.Add(servScalingMenu);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("None");
             item.Click += servScalingHdr;
-            servScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            servScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/2");
             item.Click += servScalingHdr;
-            servScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            servScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/3");
             item.Click += servScalingHdr;
-            servScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            servScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/4");
             item.Click += servScalingHdr;
-            servScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            servScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/5");
             item.Click += servScalingHdr;
-            servScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            servScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/6");
             item.Click += servScalingHdr;
-            servScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            servScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/7");
             item.Click += servScalingHdr;
-            servScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            servScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/8");
             item.Click += servScalingHdr;
-            servScalingMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            servScalingMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("1/9");
             item.Click += servScalingHdr;
-            servScalingMenu.MenuItems.Add(item);
+            servScalingMenu.DropDownItems.Add(item);
             CheckServScaling(servScalingMenu);
             pixelSizeMenu.Text = App.GetStr("Pixel size");
-            viewMenu.MenuItems.Add(pixelSizeMenu);
-            item = new MenuItem();
+            viewMenu.DropDownItems.Add(pixelSizeMenu);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Server decides");
             item.Click += pixelSizeHdr;
-            pixelSizeMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            pixelSizeMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Force 8-bit");
             item.Click += pixelSizeHdr;
-            pixelSizeMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            pixelSizeMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Force 16-bit");
             item.Click += pixelSizeHdr;
-            pixelSizeMenu.MenuItems.Add(item);
+            pixelSizeMenu.DropDownItems.Add(item);
             CheckPixelSize();
-            item = new MenuItem();
+            item = new ToolStripMenuItem();
             item.Text = "-";
-            viewMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            viewMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("View single window");
             item.Click += viewWinHdr;
-            viewMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            viewMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("View desktop");
             item.Click += viewWinHdr;
-            viewMenu.MenuItems.Add(item);
+            viewMenu.DropDownItems.Add(item);
 
             keysMenu.Text = App.GetStr("Keys");
-            item = new MenuItem();
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Shift down");
             item.Click += keysHdr;
-            keysMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            keysMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Shift up");
             item.Click += keysHdr;
-            keysMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            keysMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Esc");
             item.Click += keysHdr;
-            keysMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            keysMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Tab");
             item.Click += keysHdr;
-            keysMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            keysMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Ctrl-");
             item.Click += keysHdr;
-            keysMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            keysMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Alt-");
             item.Click += keysHdr;
-            keysMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            keysMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Ctrl-Alt-");
             item.Click += keysHdr;
-            keysMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            keysMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Ctrl-Alt-Del");
             item.Click += keysHdr;
-            keysMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            keysMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Ctrl-Esc (Start Menu)");
             item.Click += keysHdr;
-            keysMenu.MenuItems.Add(item);
+            keysMenu.DropDownItems.Add(item);
             fnMenu.Text = App.GetStr("Fn");
-            keysMenu.MenuItems.Add(fnMenu);
-            item = new MenuItem();
+            keysMenu.DropDownItems.Add(fnMenu);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F1");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F2");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F3");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F4");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F5");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F6");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F7");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F8");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F9");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F10");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F11");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            fnMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("F12");
             item.Click += keysHdr;
-            fnMenu.MenuItems.Add(item);
+            fnMenu.DropDownItems.Add(item);
 
             optionsMenu.Text = App.GetStr("Options");
-            item = new MenuItem();
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("View only");
             item.Checked = connOpts.ViewOpts.ViewOnly;
             item.Click += new EventHandler(ViewOnlyClicked);
-            optionsMenu.MenuItems.Add(item);
-            item = new MenuItem();
+            optionsMenu.DropDownItems.Add(item);
+            item = new ToolStripMenuItem();
             item.Text = App.GetStr("Update screen ASAP");
             item.Checked = connOpts.ViewOpts.ScrnUpdAlgo == ScrnUpdAlgo.Asap;
             item.Click += new EventHandler(ScrnUpdAlgoClicked);
-            optionsMenu.MenuItems.Add(item);
+            optionsMenu.DropDownItems.Add(item);
 
-            aboutItem = new MenuItem();
+            aboutItem = new ToolStripMenuItem();
             aboutItem.Text = App.GetStr("About");
             aboutItem.Click += new EventHandler(AboutClicked);
         }

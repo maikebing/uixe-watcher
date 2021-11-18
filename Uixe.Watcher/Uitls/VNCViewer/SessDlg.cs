@@ -615,7 +615,7 @@ namespace Vnc.Viewer
             MinimizeBox = false;
             MaximizeBox = false;
             Text = App.GetStr("New VNC Connection");
-            Menu = new MainMenu();
+          MainMenuStrip   = new  MenuStrip();
 
             servLbl.Text = App.GetStr("Server:");
             remoteEndPtLbl.Text = App.GetStr("(host:display or host::port)");

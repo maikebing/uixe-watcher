@@ -38,9 +38,9 @@ namespace Vnc.Viewer
         private TextBox heightBox = new TextBox();
 
         private Button okBtn = null;
-        private MenuItem okItem = null;
+        private ToolStripButton okItem = null;
         private Button cancelBtn = null;
-        private MenuItem cancelItem = null;
+        private ToolStripButton cancelItem = null;
 
         internal CliScalingDlg(ViewOpts viewOpts)
         {
@@ -62,8 +62,8 @@ namespace Vnc.Viewer
             }
             else
             {
-                okItem = new MenuItem();
-                cancelItem = new MenuItem();
+                okItem = new ToolStripButton();
+                cancelItem = new ToolStripButton();
             }
 
             widthBox.Text = String.Empty;
@@ -174,7 +174,7 @@ namespace Vnc.Viewer
             MinimizeBox = false;
             MaximizeBox = false;
             Text = App.GetStr("Custom Client-Side Scaling");
-            Menu = new MainMenu();
+            MainMenuStrip = new MenuStrip();
 
             Graphics graphics = CreateGraphics();
 
@@ -227,10 +227,10 @@ namespace Vnc.Viewer
             {
                 okItem.Text = App.GetStr("OK");
                 okItem.Click += okHdr;
-                Menu.MenuItems.Add(okItem);
+                MainMenuStrip.Items.Add(okItem);
                 cancelItem.Text = App.GetStr("Cancel");
                 cancelItem.Click += new EventHandler(CancelClicked);
-                Menu.MenuItems.Add(cancelItem);
+                MainMenuStrip.Items.Add(cancelItem);
             }
 
             widthBox.Focus();

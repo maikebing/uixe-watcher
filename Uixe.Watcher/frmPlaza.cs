@@ -2,14 +2,10 @@
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
-using MQTTnet;
-using MQTTnet.Client;
-using MQTTnet.Client.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Deployment.Application;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -36,7 +32,7 @@ namespace Uixe.Watcher
             public int cbSize;
             public int dwTime;
         }
-        public RuntimeSetting _runtimeSetting = new RuntimeSetting();
+     
         [DllImport("User32.dll")]
         private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
 
@@ -53,8 +49,10 @@ namespace Uixe.Watcher
 
         #region 加载
 
-        public frmPlaza()
+        public frmPlaza(frmLogin  login,     RuntimeSetting runtimeSetting  )
         {
+            _runtimeSetting = runtimeSetting;
+            _login = login;
             InitializeComponent();
         }
 
@@ -66,11 +64,10 @@ namespace Uixe.Watcher
         public frmWeightTCOCall WeightTCOCall;
 
         private Plaza Plaza { get; set; }
-        private IMqttClient client;
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            btnUpgrade.Visibility = ApplicationDeployment.IsNetworkDeployed ? BarItemVisibility.Always : BarItemVisibility.Never;
+            btnUpgrade.Visibility = BarItemVisibility.Never;
             repositoryItem.ControlType = control.GetType();
             barEditItem.Edit = repositoryItem;
             barEditItem.EditHeight = control.Height;
@@ -158,154 +155,154 @@ namespace Uixe.Watcher
 
         private void StarupMqttClient()
         {
-            Task.Run(async () =>
-            {
-                var p = Uitls.TollInfo.GetTollInfo(_runtimeSetting.Plaza?.id);
-                var factory = new MqttFactory();
-                client = factory.CreateMqttClient();
-                string ipaddress = Program.mqttserver ? "127.0.0.1" : p.ip;
-                var options = new MqttClientOptionsBuilder()
-                    .WithCredentials($"tco_{p.id}", "")
-                    .WithTcpServer(ipaddress, 1883)
-                    .WithClientId(p.id)
-                    .WithWillMessage(new MqttApplicationMessage() { Topic = "/tco/willmessage", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain = true })
-                    .Build();
-                chkServerStatus.Caption = $"服务器:{p.ip}";
+            //Task.Run(async () =>
+            //{
+            //    var p = Uitls.TollInfo.GetTollInfo(_runtimeSetting.Plaza?.id);
+            //    var factory = new MqttFactory();
+            //    client = factory.CreateMqttClient();
+            //    string ipaddress = Program.mqttserver ? "127.0.0.1" : p.ip;
+            //    var options = new MqttClientOptionsBuilder()
+            //        .WithCredentials($"tco_{p.id}", "")
+            //        .WithTcpServer(ipaddress, 1883)
+            //        .WithClientId(p.id)
+            //        .WithWillMessage(new MqttApplicationMessage() { Topic = "/tco/willmessage", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain = true })
+            //        .Build();
+            //    chkServerStatus.Caption = $"服务器:{p.ip}";
 
-                client.UseDisconnectedHandler(async xe =>
-                {
-                    Console.WriteLine("### DISCONNECTED FROM SERVER ###");
-                    await Task.Delay(TimeSpan.FromSeconds(1));
+            //    client.UseDisconnectedHandler(async xe =>
+            //    {
+            //        Console.WriteLine("### DISCONNECTED FROM SERVER ###");
+            //        await Task.Delay(TimeSpan.FromSeconds(1));
 
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        chkServerStatus.EditValue = false;
+            //        this.Invoke((MethodInvoker)delegate
+            //        {
+            //            chkServerStatus.EditValue = false;
 
-                        chkServerStatus.Caption = $"服务器{ipaddress}网络故障,{xe.Reason}";
-                        Alert("网络故障", chkServerStatus.Caption);
-                    });
-                    if (!xe.ClientWasConnected)
-                    {
-                        try
-                        {
-                            await client.ReconnectAsync();
-                        }
-                        catch
-                        {
-                            Console.WriteLine("### RECONNECTING FAILED ###");
-                        }
-                    }
-                });
-                client.UseApplicationMessageReceivedHandler(h =>
-                {
-                    var message = System.Text.Encoding.GetEncoding(936).GetString(h.ApplicationMessage.Payload);
-                    Console.WriteLine($"{h.ApplicationMessage.Topic}");
-                    if (h.ApplicationMessage.Topic == "/lane/emrc_main/willmessage" && message.Length >= 10)
-                    {
-                        try
-                        {
-                            var plaza = message.Substring(0, 7);
-                            var laneno = message.Substring(7, 3);
-                            ShowLaneLost(plaza, laneno);
-                        }
-                        catch (Exception ex)
-                        {
+            //            chkServerStatus.Caption = $"服务器{ipaddress}网络故障,{xe.Reason}";
+            //            Alert("网络故障", chkServerStatus.Caption);
+            //        });
+            //        if (!xe.ClientWasConnected)
+            //        {
+            //            try
+            //            {
+            //                await client.ReconnectAsync();
+            //            }
+            //            catch
+            //            {
+            //                Console.WriteLine("### RECONNECTING FAILED ###");
+            //            }
+            //        }
+            //    });
+            //    client.UseApplicationMessageReceivedHandler(h =>
+            //    {
+            //        var message = System.Text.Encoding.GetEncoding(936).GetString(h.ApplicationMessage.Payload);
+            //        Console.WriteLine($"{h.ApplicationMessage.Topic}");
+            //        if (h.ApplicationMessage.Topic == "/lane/emrc_main/willmessage" && message.Length >= 10)
+            //        {
+            //            try
+            //            {
+            //                var plaza = message.Substring(0, 7);
+            //                var laneno = message.Substring(7, 3);
+            //                ShowLaneLost(plaza, laneno);
+            //            }
+            //            catch (Exception ex)
+            //            {
 
-                            Debug.WriteLine($"willmessage:{ex.Message}");
-                        }
-                    }
-                    else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/status/"))
-                    {
-                        try
-                        {
+            //                Debug.WriteLine($"willmessage:{ex.Message}");
+            //            }
+            //        }
+            //        else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/status/"))
+            //        {
+            //            try
+            //            {
 
                      
-                        string t = h.ApplicationMessage.Topic.Split('/').Last();
-                        var plaza = t.Substring(0, 7);
-                        var laneno = t.Substring(7, 3);
-                        ShowLaneInfor(plaza, t, message);
-                        }
-                        catch (Exception ex)
-                        {
+            //            string t = h.ApplicationMessage.Topic.Split('/').Last();
+            //            var plaza = t.Substring(0, 7);
+            //            var laneno = t.Substring(7, 3);
+            //            ShowLaneInfor(plaza, t, message);
+            //            }
+            //            catch (Exception ex)
+            //            {
 
-                            Debug.WriteLine($"emrc_main_status:{ex.Message}");
-                        }
-                    }
-                    else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/confirm/"))
-                    {
-                        Task.Run(() =>
-                        {
-                            try
-                            {
-                                this.Invoke((MethodInvoker)delegate
-                                {
-                                    this.ShowTCOInfo(h.ApplicationMessage.Topic, message, client);
-                                });
-                            }
-                            catch (Exception ex)
-                            {
-                                Debug.WriteLine($"confirm:{ex.Message}");
-                            }
-                        });
-                    }
-                    else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/message/"))
-                    {
-                        try
-                        {
-                            ShowMessageView(JsonConvert.DeserializeObject<MsgInfo>(message, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local }));
-                        }
-                        catch (Exception ex)
-                        {
+            //                Debug.WriteLine($"emrc_main_status:{ex.Message}");
+            //            }
+            //        }
+            //        else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/confirm/"))
+            //        {
+            //            Task.Run(() =>
+            //            {
+            //                try
+            //                {
+            //                    this.Invoke((MethodInvoker)delegate
+            //                    {
+            //                        this.ShowTCOInfo(h.ApplicationMessage.Topic, message, client);
+            //                    });
+            //                }
+            //                catch (Exception ex)
+            //                {
+            //                    Debug.WriteLine($"confirm:{ex.Message}");
+            //                }
+            //            });
+            //        }
+            //        else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/message/"))
+            //        {
+            //            try
+            //            {
+            //                ShowMessageView(JsonConvert.DeserializeObject<MsgInfo>(message, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local }));
+            //            }
+            //            catch (Exception ex)
+            //            {
 
-                            Debug.WriteLine($"emrc_main/message:{ex.Message}");
-                        }
-                    }
-                });
-                client.UseConnectedHandler(async h =>
-                {
-                    try
-                    {
+            //                Debug.WriteLine($"emrc_main/message:{ex.Message}");
+            //            }
+            //        }
+            //    });
+            //    client.UseConnectedHandler(async h =>
+            //    {
+            //        try
+            //        {
 
                   
-                        await client.SubscribeAsync(
-                            new MqttTopicFilter() { Topic = "/lane/emrc_main/confirm/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
-                            new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
-                            new MqttTopicFilter() { Topic = "/lane/emrc_main/message/", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce }
-                            );
-                        var pubresult = await client.PublishAsync("/tco/status/", new { message = "startup" });
-                        this.Invoke((MethodInvoker)delegate
-                        {
-                            chkServerStatus.EditValue = true;
-                            chkServerStatus.EditValue = true;
-                            chkServerStatus.Caption = $"服务器{ipaddress}网络恢复";
-                        });
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"UseConnectedHandler:{ex.Message}");
+            //            await client.SubscribeAsync(
+            //                new MqttTopicFilter() { Topic = "/lane/emrc_main/confirm/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
+            //                new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
+            //                new MqttTopicFilter() { Topic = "/lane/emrc_main/message/", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce }
+            //                );
+            //            var pubresult = await client.PublishAsync("/tco/status/", new { message = "startup" });
+            //            this.Invoke((MethodInvoker)delegate
+            //            {
+            //                chkServerStatus.EditValue = true;
+            //                chkServerStatus.EditValue = true;
+            //                chkServerStatus.Caption = $"服务器{ipaddress}网络恢复";
+            //            });
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            Debug.WriteLine($"UseConnectedHandler:{ex.Message}");
 
-                    }
-                });
+            //        }
+            //    });
 
-                await client.ConnectAsync(options, CancellationToken.None);
-                do
-                {
-                    try
-                    {
-                        if (!client.IsConnected)
-                        {
-                            Debug.WriteLine($"ReconnectAsync");
-                            await client.ReconnectAsync();
-                        }
+            //    await client.ConnectAsync(options, CancellationToken.None);
+            //    do
+            //    {
+            //        try
+            //        {
+            //            if (!client.IsConnected)
+            //            {
+            //                Debug.WriteLine($"ReconnectAsync");
+            //                await client.ReconnectAsync();
+            //            }
                         
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"ReconnectAsync:{ex.Message}");
-                    }
-                    Thread.Sleep(TimeSpan.FromSeconds(10));
-                } while (true);
-            });
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            Debug.WriteLine($"ReconnectAsync:{ex.Message}");
+            //        }
+            //        Thread.Sleep(TimeSpan.FromSeconds(10));
+            //    } while (true);
+            //});
         }
 
         private void ResetSpeachMenu()
@@ -416,8 +413,8 @@ namespace Uixe.Watcher
 
         public void Login()
         {
-            frmLogin lg = new frmLogin(this);
-            if (lg.ShowDialog() == DialogResult.OK)
+       
+            if (_login.ShowDialog() == DialogResult.OK)
             {
                 UserAccessControl();
                 if (_runtimeSetting.IsLogin())
@@ -632,26 +629,26 @@ namespace Uixe.Watcher
 
         private void btnUpgrade_ItemClick(object sender, ItemClickEventArgs e)
         {
-            AppUtils.InstallUpdateSyncWithInfo();
         }
 
-        private int sec = -1;
+        internal readonly RuntimeSetting _runtimeSetting;
+        private readonly frmLogin _login;
 
         [DebuggerStepThrough]
         private async void tmNetworkTest_TickAsync(object sender, EventArgs e)
         {
-            if (sec != DateTime.Now.Second && client?.IsConnected == true)
-            {
-                try
-                {
-                    await client.PublishAsync("/tco/status/", new { message = "HeartBeat" });
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
-                }
-                sec = DateTime.Now.Second;
-            }
+            //if (sec != DateTime.Now.Second && client?.IsConnected == true)
+            //{
+            //    try
+            //    {
+            //        await client.PublishAsync("/tco/status/", new { message = "HeartBeat" });
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
+            //    }
+            //    sec = DateTime.Now.Second;
+            //}
         }
 
         private void btnTest_ItemClick(object sender, ItemClickEventArgs e)

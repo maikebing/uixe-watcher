@@ -1,6 +1,5 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
-using MQTTnet.Client;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,15 +12,18 @@ namespace Uixe.Watcher
 {
     public partial class frmShowTCOCall : XtraForm
     {
-        public frmPlaza Main { get; set; }
+        public frmShowTCOCall(RuntimeSetting runtimeSetting)
+        {
+            _runtimeSetting = runtimeSetting;
+        }
+ 
         public frmShowTCOCall(frmPlaza _ain)
         {
-            Main = _ain;
             InitializeComponent();
             try
             {
                 this.tsTabs.TabPages.Clear();
-                var tmlLaneNo = Uitls.TollInfo.GetTollInfo(Main._runtimeSetting.Plaza.id);
+                var tmlLaneNo = Uitls.TollInfo.GetTollInfo( _runtimeSetting.Plaza.id);
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
@@ -45,9 +47,7 @@ namespace Uixe.Watcher
         }
 
         private List<Lane> lstlane = new List<Lane>();
-
-        public IMqttClient MQTTClient { get; internal set; }
-    
+        private readonly RuntimeSetting _runtimeSetting;
 
         public void Show(TCOCall TCOCallxxx)
         {
@@ -57,7 +57,6 @@ namespace Uixe.Watcher
             {
                 XtraTabPage t = x.Single();
                 TCOConfirm tms = (TCOConfirm)t.Tag;
-                tms.Plaza = this.Main;
                 try
                 {
                     tms.Show(TCOCallxxx);
@@ -126,11 +125,11 @@ namespace Uixe.Watcher
 
         private void Submit(bool ok)
         {
-            if (this.tsTabs.SelectedTabPage.Tag is TCOConfirm tms)
-            {
-                this.MQTTClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}", tms.GetAUS(ok)
-                ).Wait(TimeSpan.FromSeconds(10));
-            }
+            //if (this.tsTabs.SelectedTabPage.Tag is TCOConfirm tms)
+            //{
+            //    //this.MQTTClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}", tms.GetAUS(ok)
+            //    ).Wait(TimeSpan.FromSeconds(10));
+            //}
         }
 
         private void RemoveNowTab()

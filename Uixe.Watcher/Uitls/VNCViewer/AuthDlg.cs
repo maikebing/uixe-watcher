@@ -45,9 +45,9 @@ namespace Vnc.Viewer
         private TextBox passwdBox = new TextBox();
 
         private Button logInBtn = null;
-        private MenuItem logInItem = null;
+        private ToolStripButton logInItem = null;
         private Button cancelBtn = null;
-        private MenuItem cancelItem = null;
+        private ToolStripButton cancelItem = null;
 
         internal AuthDlg()
         {
@@ -66,8 +66,8 @@ namespace Vnc.Viewer
             }
             else
             {
-                logInItem = new MenuItem();
-                cancelItem = new MenuItem();
+                logInItem = new ToolStripButton();
+                cancelItem = new ToolStripButton();
             }
         }
 
@@ -141,7 +141,7 @@ namespace Vnc.Viewer
             MinimizeBox = false;
             MaximizeBox = false;
             Text = App.GetStr("VNC Authentication");
-            Menu = new MainMenu();
+            MainMenuStrip  = new   MenuStrip();
 
             passwdLbl.Location = new Point(App.DialogSpacing, App.DialogSpacing);
             passwdLbl.Text = App.GetStr("Password:");
@@ -179,10 +179,10 @@ namespace Vnc.Viewer
             {
                 logInItem.Text = App.GetStr("Log In");
                 logInItem.Click += logInHdr;
-                Menu.MenuItems.Add(logInItem);
+                MainMenuStrip.Items.Add(logInItem);
                 cancelItem.Text = App.GetStr("Cancel");
                 cancelItem.Click += new EventHandler(CancelClicked);
-                Menu.MenuItems.Add(cancelItem);
+                MainMenuStrip.Items.Add(cancelItem);
             }
 
             passwdBox.Focus();

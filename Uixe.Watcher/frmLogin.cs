@@ -1,5 +1,5 @@
 ﻿using DevExpress.XtraEditors;
-using MonkeyCache.LiteDB;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -11,10 +11,13 @@ namespace Uixe.Watcher
 {
     public partial class frmLogin : XtraForm
     {
-        frmPlaza _plaza;
-        public frmLogin(frmPlaza plaza)
+        private readonly IMemoryCache _cache;
+        private readonly RuntimeSetting _runtimeSetting;
+
+        public frmLogin( IMemoryCache cache, RuntimeSetting runtimeSetting)
         {
-            _plaza = plaza;
+            _cache = cache;
+            _runtimeSetting= runtimeSetting;
             InitializeComponent();
         }
         private bool _isMouseDown;
@@ -48,17 +51,7 @@ namespace Uixe.Watcher
                 Location = new Point(_formLocation.X - x, _formLocation.Y - y);
             }
         }
-        public RuntimeSetting _runtimeSetting
-        {
-            get
-            {
-                return _plaza._runtimeSetting;
-            }
-            set
-            {
-                _plaza._runtimeSetting = value;
-            }
-        }
+    
         private void btnLogin_Click(object sender, EventArgs e)
         {
             _ = ReloadTollInfoAsync();
@@ -102,16 +95,17 @@ namespace Uixe.Watcher
             this.Close();
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
+        private async void frmLogin_Load(object sender, EventArgs e)
         {
             this.Icon = Properties.Resources.LOGO;
             this.lblInfo.Text = "";
-            txtPlazaId.Text = Barrel.Current.Get<string>("plazaid");
-            _ = ReloadTollInfoAsync();
+
+            await ReloadTollInfoAsync();
+            txtPlazaId.Text = _cache.Get<string>("plazaid" );
             this.txtPassword.Focus();
         }
 
-        private async Task ReloadTollInfoAsync()
+        private async  Task ReloadTollInfoAsync()
         {
             if (!string.IsNullOrEmpty(txtPlazaId.Text))
             {
@@ -127,7 +121,7 @@ namespace Uixe.Watcher
                              lblPlaza.Text = $"{plazainfo.station_name}车道监控";
                              lblserver.Text = $"服务器IP:{plazainfo.ip } 站代码:{plazainfo.station_id}";
                          });
-                         Barrel.Current.Add("plazaid", txtPlazaId.Text, TimeSpan.FromDays(30));
+                         _cache.Set("plazaid", txtPlazaId.Text, TimeSpan.FromDays(30));
                      }
                      catch (Exception ex)
                      {
@@ -142,6 +136,7 @@ namespace Uixe.Watcher
             {
                 lblserver.Text = "信息为空";
             }
+           
         }
 
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)

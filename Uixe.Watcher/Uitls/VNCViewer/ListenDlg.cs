@@ -41,7 +41,7 @@ namespace Vnc.Viewer
         private Label msgLbl = new Label();
 
         private Button cancelBtn = null;
-        private MenuItem cancelItem = null;
+        private  ToolStripButton cancelItem = null;
 
         internal ListenDlg(TcpListener listener)
         {
@@ -59,7 +59,7 @@ namespace Vnc.Viewer
                 }
             }
             else
-                cancelItem = new MenuItem();
+                cancelItem = new ToolStripButton();
         }
 
         protected override void OnClosed(EventArgs e)
@@ -104,7 +104,7 @@ namespace Vnc.Viewer
             MinimizeBox = false;
             MaximizeBox = false;
             Text = App.GetStr("Waiting for a server...");
-            Menu = new MainMenu();
+            this.MainMenuStrip = new MenuStrip();
 
             msgLbl.Location = new Point(App.DialogSpacing, App.DialogSpacing);
             msgLbl.Text = App.GetStr("Listening...");
@@ -125,7 +125,7 @@ namespace Vnc.Viewer
             {
                 cancelItem.Text = App.GetStr("Cancel");
                 cancelItem.Click += new EventHandler(CancelClicked);
-                Menu.MenuItems.Add(cancelItem);
+                MainMenuStrip.Items.Add(cancelItem);
             }
 
             timer.Tick += new EventHandler(Ticked);

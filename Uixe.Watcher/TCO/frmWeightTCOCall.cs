@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraTab;
-using MQTTnet.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,12 +28,9 @@ namespace Uixe.Watcher.TCO
             {
                 return Main._runtimeSetting;
             }
-            set
-            {
-                Main._runtimeSetting = value;
-            }
+           
         }
-        public void LoadInfo(IMqttClient _mqttClient)
+        public void LoadInfo()
         {
             try
             {
@@ -47,7 +43,6 @@ namespace Uixe.Watcher.TCO
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
                     tms._plaza = this.Main;
-                    tms.MqttClient = _mqttClient;
                     t.Name = pname;
                     tms.Name = pname;
                     tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent

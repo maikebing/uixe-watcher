@@ -29,17 +29,17 @@ namespace Vnc.Viewer
 {
     internal class SessDlgSp : SessDlg
     {
-        private MenuItem okItem = new MenuItem();
-        private MenuItem generalItem = new MenuItem();
-        private MenuItem connModeItem = new MenuItem();
-        private MenuItem displayItem = new MenuItem();
-        private MenuItem scalingItem = new MenuItem();
-        private MenuItem othersItem = new MenuItem();
-        private MenuItem saveLoadItem = new MenuItem();
-        private MenuItem dashItem = new MenuItem();
-        private MenuItem aboutItem = new MenuItem();
-        private MenuItem cancelItem = new MenuItem();
-        private MenuItem optionsItem = new MenuItem();
+        private ToolStripMenuItem okItem = new ToolStripMenuItem();
+        private ToolStripMenuItem generalItem = new ToolStripMenuItem();
+        private ToolStripMenuItem connModeItem = new ToolStripMenuItem();
+        private ToolStripMenuItem displayItem = new ToolStripMenuItem();
+        private ToolStripMenuItem scalingItem = new ToolStripMenuItem();
+        private ToolStripMenuItem othersItem = new ToolStripMenuItem();
+        private ToolStripMenuItem saveLoadItem = new ToolStripMenuItem();
+        private ToolStripMenuItem dashItem = new ToolStripMenuItem();
+        private ToolStripMenuItem aboutItem = new ToolStripMenuItem();
+        private ToolStripMenuItem cancelItem = new ToolStripMenuItem();
+        private ToolStripMenuItem optionsItem = new ToolStripMenuItem();
 
         private Panel generalPanel = new Panel();
         private ComboBox recentBox = new ComboBox();
@@ -54,8 +54,8 @@ namespace Vnc.Viewer
         private CheckBox sendMouseLocWhenIdleBox = new CheckBox();
         private ComboBox mouseSpeedBox = new ComboBox();
 
-        private MenuItem saveDefsItem = new MenuItem();
-        private MenuItem restoreDefsItem = new MenuItem();
+        private ToolStripButton saveDefsItem = new ToolStripButton();
+        private ToolStripButton restoreDefsItem = new ToolStripButton();
 
         internal SessDlgSp() : base()
         {
@@ -139,7 +139,7 @@ namespace Vnc.Viewer
                 remoteEndPt.Text = recentBox.Text;
         }
 
-        private void SwitchPanel(MenuItem item)
+        private void SwitchPanel(ToolStripMenuItem item)
         {
             generalPanel.Visible = false;
             connModePanel.Visible = false;
@@ -175,7 +175,7 @@ namespace Vnc.Viewer
 
         private void PanelItemClicked(object sender, EventArgs e)
         {
-            SwitchPanel((MenuItem)sender);
+            SwitchPanel((ToolStripMenuItem)sender);
         }
 
         protected override void OnResize(EventArgs e)
@@ -213,34 +213,34 @@ namespace Vnc.Viewer
 
             okItem.Text = App.GetStr("OK");
             okItem.Click += okHdr;
-            Menu.MenuItems.Add(okItem);
+            MainMenuStrip .Items.Add(okItem);
             optionsItem.Text = App.GetStr("Options");
-            Menu.MenuItems.Add(optionsItem);
+            MainMenuStrip.Items.Add(optionsItem);
             generalItem.Text = App.GetStr("General...");
             generalItem.Click += panelItemHdr;
-            optionsItem.MenuItems.Add(generalItem);
+            optionsItem.DropDownItems.Add(generalItem);
             connModeItem.Text = App.GetStr("Connection...");
             connModeItem.Click += panelItemHdr;
-            optionsItem.MenuItems.Add(connModeItem);
+            optionsItem.DropDownItems.Add(connModeItem);
             displayItem.Text = App.GetStr("Display...");
             displayItem.Click += panelItemHdr;
-            optionsItem.MenuItems.Add(displayItem);
+            optionsItem.DropDownItems.Add(displayItem);
             scalingItem.Text = App.GetStr("Scaling...");
             scalingItem.Click += panelItemHdr;
-            optionsItem.MenuItems.Add(scalingItem);
+            optionsItem.DropDownItems.Add(scalingItem);
             othersItem.Text = App.GetStr("Others...");
             othersItem.Click += panelItemHdr;
-            optionsItem.MenuItems.Add(othersItem);
+            optionsItem.DropDownItems.Add(othersItem);
             saveLoadItem.Text = App.GetStr("Re/Store");
-            optionsItem.MenuItems.Add(saveLoadItem);
+            optionsItem.DropDownItems.Add(saveLoadItem);
             dashItem.Text = "-";
-            optionsItem.MenuItems.Add(dashItem);
+            optionsItem.DropDownItems.Add(dashItem);
             aboutItem.Text = App.GetStr("About");
             aboutItem.Click += aboutHdr;
-            optionsItem.MenuItems.Add(aboutItem);
+            optionsItem.DropDownItems.Add(aboutItem);
             cancelItem.Text = App.GetStr("Cancel");
             cancelItem.Click += cancelHdr;
-            optionsItem.MenuItems.Add(cancelItem);
+            optionsItem.DropDownItems.Add(cancelItem);
 
             Graphics graphics = CreateGraphics();
 
@@ -351,10 +351,10 @@ namespace Vnc.Viewer
 
             saveDefsItem.Text = App.GetStr("Save settings as default");
             saveDefsItem.Click += saveDefsHdr;
-            saveLoadItem.MenuItems.Add(saveDefsItem);
+            saveLoadItem.DropDownItems.Add(saveDefsItem);
             restoreDefsItem.Text = App.GetStr("Restore default settings");
             restoreDefsItem.Click += restoreDefsHdr;
-            saveLoadItem.MenuItems.Add(restoreDefsItem);
+            saveLoadItem.DropDownItems.Add(restoreDefsItem);
 
             SwitchPanel(generalItem);
         }

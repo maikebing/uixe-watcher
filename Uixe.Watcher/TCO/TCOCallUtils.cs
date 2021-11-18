@@ -16,11 +16,11 @@ namespace Uixe.Watcher.TCO
         {
             try
             {
-                if (tms != null)
-                {
-                    tms.MqttClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}", tms.GetTCOConfirm(ok)
-                      ).Wait(TimeSpan.FromSeconds(10));
-                }
+                //if (tms != null)
+                //{
+                //    tms.MqttClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}", tms.GetTCOConfirm(ok)
+                //      ).Wait(TimeSpan.FromSeconds(10));
+                //}
             }
             catch (Exception ex)
             {
@@ -28,7 +28,7 @@ namespace Uixe.Watcher.TCO
             }
         }
 
-        public static void ShowTCOInfo(this frmPlaza form, string topic, string message, MQTTnet.Client.IMqttClient client)
+        public static void ShowTCOInfo(this frmPlaza form, string topic, string message)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Uixe.Watcher.TCO
                                 form.WeightTCOCall = new frmWeightTCOCall();
                                 form.WeightTCOCall.Main = form;
 
-                                form.WeightTCOCall.LoadInfo(client);
+                                form.WeightTCOCall.LoadInfo();
                                 form.WeightTCOCall.Hide();
                             }
                             form.WeightTCOCall.ShowTCOMsg(Newtonsoft.Json.JsonConvert.DeserializeObject<MsgWeightTCOCALL>(message));
@@ -67,7 +67,7 @@ namespace Uixe.Watcher.TCO
                             {
                                 form._tcocall = new frmShowTCOCall(form)
                                 {
-                                    MQTTClient = client,
+                                    //MQTTClient = client,
                                     Owner = form
                                 };
                             }
