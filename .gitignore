@@ -13,3 +13,5 @@
 /Uixe.Watcher/bin/Release
 /Uixe.Bootloader/bin
 /Uixe.Bootloader/obj
+/Uixe.WatcherPlus/bin/Debug/net5.0-windows
+/Uixe.WatcherPlus/obj

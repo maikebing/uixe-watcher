@@ -120,9 +120,6 @@
   <metadata name="tCOCallBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>295, 17</value>
   </metadata>
-  <metadata name="tCOCallBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>295, 17</value>
-  </metadata>
   <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>477, 17</value>
   </metadata>
@@ -131,7 +128,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADe
-        DAAAAk1TRnQBSQFMAgEBAgEAAUABCAFAAQgBIAEAASABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAGA
+        DAAAAk1TRnQBSQFMAgEBAgEAAUgBCAFIAQgBIAEAASABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAGA
         AwABIAMAAQEBAAEYBgABMP8A/wD/ADAACf9mAAP/DP4D//wAA/4D/QP8A/4D/2AAA/8D/gP7BvkD+wP+
         A//2AAP+A/wBxAHSAcQD9wP7A/4D/10AA/4BywHQAeYBJQE+AasBIAE7AaoBuAG+AdgD9gP8A/7zAAP+
         A/sBMQGNASoBBgGTAQMBnwG7AZ8D9wP7A/4D/1oAAdMB2AHrARkBRwHWAS8BXwH8AS4BXAH2ARwBQgLD

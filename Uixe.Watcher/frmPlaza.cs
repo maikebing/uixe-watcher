@@ -202,59 +202,108 @@ namespace Uixe.Watcher
                     Console.WriteLine($"{h.ApplicationMessage.Topic}");
                     if (h.ApplicationMessage.Topic == "/lane/emrc_main/willmessage" && message.Length >= 10)
                     {
-                        var plaza = message.Substring(0, 7);
-                        var laneno = message.Substring(7, 3);
-                        ShowLaneLost(plaza, laneno);
+                        try
+                        {
+                            var plaza = message.Substring(0, 7);
+                            var laneno = message.Substring(7, 3);
+                            ShowLaneLost(plaza, laneno);
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Debug.WriteLine($"willmessage:{ex.Message}");
+                        }
                     }
                     else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/status/"))
                     {
+                        try
+                        {
+
+                     
                         string t = h.ApplicationMessage.Topic.Split('/').Last();
                         var plaza = t.Substring(0, 7);
                         var laneno = t.Substring(7, 3);
                         ShowLaneInfor(plaza, t, message);
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Debug.WriteLine($"emrc_main_status:{ex.Message}");
+                        }
                     }
                     else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/confirm/"))
                     {
                         Task.Run(() =>
                         {
-                            this.Invoke((MethodInvoker)delegate
-                           {
-                               this.ShowTCOInfo(h.ApplicationMessage.Topic, message, client);
-                           });
+                            try
+                            {
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    this.ShowTCOInfo(h.ApplicationMessage.Topic, message, client);
+                                });
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.WriteLine($"confirm:{ex.Message}");
+                            }
                         });
                     }
                     else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/message/"))
                     {
-                        ShowMessageView(JsonConvert.DeserializeObject<MsgInfo>(message, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local }));
+                        try
+                        {
+                            ShowMessageView(JsonConvert.DeserializeObject<MsgInfo>(message, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local }));
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Debug.WriteLine($"emrc_main/message:{ex.Message}");
+                        }
                     }
                 });
                 client.UseConnectedHandler(async h =>
                 {
-                    chkServerStatus.EditValue = true;
-                    await client.SubscribeAsync(
-                        new MqttTopicFilter() { Topic = "/lane/emrc_main/confirm/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
-                        new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
-                        new MqttTopicFilter() { Topic = "/lane/emrc_main/message/", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce }
-                        );
-                    var pubresult = await client.PublishAsync("/tco/status/", new { message = "startup" });
-                    this.Invoke((MethodInvoker)delegate
+                    try
                     {
-                        chkServerStatus.EditValue = true;
-                        chkServerStatus.Caption = $"服务器{ipaddress}网络恢复";
-                    });
+
+                  
+                        await client.SubscribeAsync(
+                            new MqttTopicFilter() { Topic = "/lane/emrc_main/confirm/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
+                            new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
+                            new MqttTopicFilter() { Topic = "/lane/emrc_main/message/", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce }
+                            );
+                        var pubresult = await client.PublishAsync("/tco/status/", new { message = "startup" });
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            chkServerStatus.EditValue = true;
+                            chkServerStatus.EditValue = true;
+                            chkServerStatus.Caption = $"服务器{ipaddress}网络恢复";
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"UseConnectedHandler:{ex.Message}");
+
+                    }
                 });
 
                 await client.ConnectAsync(options, CancellationToken.None);
                 do
                 {
-                    if (!client.IsConnected)
+                    try
                     {
-                        await client.ReconnectAsync();
+                        if (!client.IsConnected)
+                        {
+                            Debug.WriteLine($"ReconnectAsync");
+                            await client.ReconnectAsync();
+                        }
+                        
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        Thread.Sleep(TimeSpan.FromSeconds(10));
+                        Debug.WriteLine($"ReconnectAsync:{ex.Message}");
                     }
+                    Thread.Sleep(TimeSpan.FromSeconds(10));
                 } while (true);
             });
         }

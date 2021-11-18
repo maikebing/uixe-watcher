@@ -1,4 +1,6 @@
 ﻿using DevExpress.LookAndFeel;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using MonkeyCache;
 using MonkeyCache.LiteDB;
 using MQTTnet;
@@ -12,6 +14,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Extensions;
+using WebApplication2;
 
 namespace Uixe.Watcher
 {
@@ -37,9 +40,29 @@ namespace Uixe.Watcher
 
         public static bool mqttserver { get; set; }
 
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+              .UseWindowsFormsLifetime< frmPlaza>()
+                .UseStartup<Startup>();
         [STAThread]
         private static void Main(string[] args)
         {
+            try
+            {
+                Barrel.ApplicationId = Assembly.GetExecutingAssembly().GetName().Name;
+                Barrel.EncryptionKey = "future";
+                var f = new System.IO.DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{System.IO.Path.DirectorySeparatorChar}Uixe{System.IO.Path.DirectorySeparatorChar}");
+                if (!f.Exists) f.Create();
+                BarrelUtils.SetBaseCachePath(f.FullName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.InnerException?.Message);
+            }
+
+            CreateWebHostBuilder(args).Build().Run();
+
+
             AppExtension.RunOnlyOneInstance(() =>
             {
 #if NETCOREAPP
@@ -49,36 +72,11 @@ namespace Uixe.Watcher
 #endif
                 args.ToList().ForEach(s =>
                         {
-                            if (s == "--mqttserver")
-                            {
-                                mqttserver = true;
-                            }
+                           
                         });
-                if (mqttserver)
-                {
-                    Task.Run(async () =>
-                    {
-                        var mqttServer = new MqttFactory().CreateMqttServer();
-                        var opt = new MqttServerOptions();
-                        opt.EnablePersistentSessions = true;
-                        opt.DefaultEndpointOptions.BoundInterNetworkAddress = IPAddress.Any;
-                        mqttServer.UseApplicationMessageReceivedHandler(c => Debug.WriteLine($"{ c.ClientId} {c.ApplicationMessage.Topic}"));
-                        await mqttServer.StartAsync(opt);
-                    });
-                }
+              
                 Application.ThreadException += Application_ThreadException;
-                try
-                {
-                    Barrel.ApplicationId = Assembly.GetExecutingAssembly().GetName().Name;
-                    Barrel.EncryptionKey = "future";
-                    var f = new System.IO.DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{System.IO.Path.DirectorySeparatorChar}Uixe{System.IO.Path.DirectorySeparatorChar}");
-                    if (!f.Exists) f.Create();
-                    BarrelUtils.SetBaseCachePath(f.FullName);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message + ex.InnerException?.Message);
-                }
+              
                 try
                 {
                     DevExpress.Skins.SkinManager.EnableFormSkins();
@@ -91,7 +89,7 @@ namespace Uixe.Watcher
                 }
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new frmMain());
+                Application.Run(new frmPlaza());
             });
         }
 
