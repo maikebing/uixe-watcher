@@ -2,41 +2,12 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Uixe.Watcher
 {
-    public class WindowsFormsApplicationOptions
-    {
-#if NETCOREAPP
-
-        public HighDpiMode HighDpiMode { get; set; }
-#endif
-        public bool EnableVisualStyles { get; set; }
-        public bool CompatibleTextRenderingDefault { get; set; }
-
-        public WindowsFormsApplicationOptions()
-        {
-#if NETCOREAPP
-            HighDpiMode = HighDpiMode.SystemAware;
-#endif
-            EnableVisualStyles = true;
-            CompatibleTextRenderingDefault = false;
-        }
-    }
-    public class WindowsFormsLifetimeOptions
-    {
-        /// <summary>
-        /// Gets or sets a value that indicates if host lifetime status messages should be supressed (such as on startup).
-        /// The default is false.
-        /// </summary>
-        public bool SuppressStatusMessages { get; set; }
-    }
     public class WindowsFormsApplicationHostedService : IHostedService
     {
         private readonly WindowsFormsApplicationOptions _options;

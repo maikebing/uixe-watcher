@@ -42,7 +42,7 @@ namespace Uixe.Watcher
                         return titleAttribute.Title;
                 }
                 // 如果没有 Title 属性，或者 Title 属性为一个空字符串，则返回 .exe 的名称
-                return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+                return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location);
             }
         }
 
