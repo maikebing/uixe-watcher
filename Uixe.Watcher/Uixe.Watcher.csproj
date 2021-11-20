@@ -10,17 +10,18 @@
   <ItemGroup>
     <PackageReference Include="Cyotek.Windows.Forms.ImageBox" Version="2.0.0-alpha.1" />
     <PackageReference Include="FluentFTP" Version="35.1.0" />
-    <PackageReference Include="LibVLCSharp.WinForms" Version="3.5.1" />
+    <PackageReference Include="LibVLCSharp.WinForms" Version="3.6.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
     <PackageReference Include="MonkeyCache.LiteDB" Version="1.5.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
     <PackageReference Include="RestSharp" Version="106.13.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="DevExpress.Win.Design" Version="21.2.*-*" />
 		<PackageReference Include="System.Speech" Version="6.0.0" />
+		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.16" />
 		<PackageReference Include="WindowsFirewallHelper" Version="2.1.4.81" />
 	</ItemGroup>
 	<ItemGroup>
