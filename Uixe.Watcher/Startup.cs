@@ -9,8 +9,11 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Uixe.Watcher.Extensions;
 
 namespace Uixe.Watcher
 {
@@ -26,7 +29,8 @@ namespace Uixe.Watcher
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+       
+            services.Configure<AppSettings>(Configuration);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -35,7 +39,15 @@ namespace Uixe.Watcher
             services.AddForms();
             services.AddMemoryCache();
             services.AddSingleton<RuntimeSetting>();
+            MonkeyCache.LiteDB.Barrel.ApplicationId = AppDomain.CurrentDomain.FriendlyName;
+            MonkeyCache.BarrelUtils.SetBaseCachePath(AppContext.BaseDirectory);
+            services.AddLogging(configure =>
+            {
+                configure.AddConsole();
+            });
         }
+
+ 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,8 +57,9 @@ namespace Uixe.Watcher
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Uixe.WatcherPlus v1"));
+              
             }
-
+       
             app.UseRouting();
 
             app.UseAuthorization();

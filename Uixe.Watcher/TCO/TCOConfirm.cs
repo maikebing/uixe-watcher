@@ -16,9 +16,8 @@ namespace Uixe.Watcher
 
         public TCOCall TCE { get; set; }
         public bool CanDo { get; set; }
-        public frmPlaza Plaza { get; internal set; }
-        public Lane Lane { get; private set; }
-
+        public Lane Lane { get; set; }
+        public Plaza Plaza {get;set;}
         public bool CheckPlazaInfo()
         {
             bool ret = true;
@@ -36,13 +35,7 @@ namespace Uixe.Watcher
             }
             return ret;
         }
-        public RuntimeSetting _runtimeSetting
-        {
-            get
-            {
-                return Plaza._runtimeSetting;
-            }
-        }
+  
         private UixeClient uixeClient = new UixeClient();
 
         public void Show(TCOCall tce)
@@ -60,13 +53,13 @@ namespace Uixe.Watcher
                 tcoPictureBox1.Visible = false;
             }
 
-            var l = Plaza._runtimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
+            var l =  Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
             string url = string.Format($"http://{l.ip}:10000/capture");
             Lane = l;
             tcoPictureBox1.ImageLocation = url;
             tcoPictureBox1.ImageLocation = url;
             keyItem_Vehicle_Types_BindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
-            _pbindingSource1.DataSource = uixeClient.GetProvCodes(_runtimeSetting.Plaza.ip);
+            _pbindingSource1.DataSource = uixeClient.GetProvCodes(Plaza.ip);
             _pbindingSource1.ResetCurrentItem();
             cbxProv.EditValue = 65;
             pLazaBindingSource.ResetCurrentItem();
@@ -195,12 +188,12 @@ namespace Uixe.Watcher
                 UixeClient client = new UixeClient();
                 if (isfirst)
                 {
-                    var pc = client.GetProvByPlaza(_runtimeSetting.Plaza.ip, tce.EntryStationID);
+                    var pc = client.GetProvByPlaza(Plaza.ip, tce.EntryStationID);
                     cbxProv.EditValue = int.Parse(pc);
                 }
                 var prov = cbxProv.GetSelectedDataRow() as ProvCode;
 
-                var ppi = client.GetProvPlazaInfo(_runtimeSetting.Plaza.ip, $"{prov?.provId ?? 65}");
+                var ppi = client.GetProvPlazaInfo(Plaza.ip, $"{prov?.provId ?? 65}");
                 if (ppi != null)
                 {
                     pLazaBindingSource.DataSource = ppi;
@@ -259,7 +252,7 @@ namespace Uixe.Watcher
             AUS.DifPlate = _tce.EntryPlate != tc.EntryPlate;
             AUS.TransNo = tc.TransNo;
             AUS.TimeoutCar = tc.TimeoutCar;
-            AUS.TCOStaffID = _runtimeSetting.NowCollect != null ? _runtimeSetting.NowCollect.UserId : "";
+            //AUS.TCOStaffID = _runtimeSetting.NowCollect != null ? _runtimeSetting.NowCollect.UserId : "";
             AUS.UCar = tc.UCar ? 1 : 0;
             AUS.IsConfirm = IsSubmit;
             AUS.EntryDateTime = tc.EntryDHM;
@@ -302,7 +295,7 @@ namespace Uixe.Watcher
         {
             try
             {
-                frmRemoteViewer viewer = new frmRemoteViewer(_runtimeSetting.Plaza, Lane);
+                frmRemoteViewer viewer = new frmRemoteViewer(Plaza, Lane);
                 viewer.Show();
             }
             catch (Exception)

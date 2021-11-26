@@ -27,13 +27,9 @@ namespace Uixe.Watcher
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseWindowsFormsLifetime<frmPlaza>();
+                    webBuilder.UseWindowsFormsLifetime<frmMain>();
                 });
 
-        [DllImport("kernel32.dll")]
-        private static extern bool FreeConsole();
-
-        [DllImport("kernel32.dll")]
-        public static extern bool AllocConsole();
+   
     }
 }

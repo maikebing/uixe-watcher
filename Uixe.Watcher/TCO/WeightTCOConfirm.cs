@@ -17,15 +17,7 @@ namespace Uixe.Watcher.TCO
         public MsgWeightTCOCALL TCE { get; set; }
         public bool CanDo { get; set; }
  
-        public frmPlaza _plaza { get; internal set; }
-        public RuntimeSetting _runtimeSetting
-        {
-            get
-            {
-                return _plaza._runtimeSetting;
-            }
-           
-        }
+  
         private Prompt prompt = null;
         private MsgWeightTCOCALL _tce;
 
@@ -35,7 +27,7 @@ namespace Uixe.Watcher.TCO
             {
                 IsConfirm = _IsConfirm,
                 TransNo = TCE.MsgTcoTran.TransNO,
-                TCOStaffID = _runtimeSetting.NowCollect?.UserId,
+             //   TCOStaffID = _runtimeSetting.NowCollect?.UserId,
                 DateTime = DateTime.UtcNow,
                 CarPlate = TCE.CarPlate,
                 AxleLastNo = int.Parse(TCE.CarAlex),
@@ -57,7 +49,9 @@ namespace Uixe.Watcher.TCO
             return r;
         }
 
-        public Lane Lane { get; private set; }
+        public Lane Lane { get;  set; }
+        public Plaza Plaza { get; set; }
+        public  frmWeightTCOCall  Owner { get;  set; }
 
         public void Show(MsgWeightTCOCALL tce)
         {
@@ -77,7 +71,7 @@ namespace Uixe.Watcher.TCO
                 Reset();
                 CarPlateTextEdit.Enabled = tce.CallType == WATCHER_TYPE.WATCHER_State44_ModifyCarNumber;
                 CarPlateTextEdit.ReadOnly = !CarPlateTextEdit.Enabled;
-                Lane = _runtimeSetting.Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
+                Lane =  Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
                 string url = string.Format($"http://{Lane.ip}:10000/capture");
                 picLane.ImageLocation = url;
                 picBig.ImageLocation = url;
@@ -154,7 +148,7 @@ namespace Uixe.Watcher.TCO
         {
             try
             {
-                frmRemoteViewer viewer = new frmRemoteViewer(_runtimeSetting.Plaza, Lane);
+                frmRemoteViewer viewer = new frmRemoteViewer(Plaza, Lane);
                 viewer.Show();
             }
             catch (Exception)
@@ -168,7 +162,7 @@ namespace Uixe.Watcher.TCO
             {
                 TCOCallUtils.Submit(true, this);
                 tcoHeart.Stop();
-                this._plaza.WeightTCOCall.RemoveNowTab(this.Name);
+                this.Owner.RemoveNowTab(this.Name);
                 SpeechUtils.Speecher.SpeakAsyncCancel(prompt);
             }
             catch (Exception)
@@ -185,7 +179,7 @@ namespace Uixe.Watcher.TCO
                     TCOCallUtils.Submit(false, this);
                 }
                 tcoHeart.Stop();
-                this._plaza.WeightTCOCall.RemoveNowTab(this.Name);
+                this.Owner.RemoveNowTab(this.Name);
             }
             catch (Exception)
             {
@@ -198,7 +192,7 @@ namespace Uixe.Watcher.TCO
             {
                 if (!this.CanDo)
                 {
-                    _plaza.WeightTCOCall.RemoveNowTab(this.Name);
+                    this.Owner.RemoveNowTab(this.Name);
                 }
                 tcoHeart.Stop();
                 SpeechUtils.Speecher.SpeakAsyncCancel(prompt);

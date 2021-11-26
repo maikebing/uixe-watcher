@@ -32,6 +32,7 @@ namespace Uixe.Watcher
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlaza));
+            Uixe.Watcher.Properties.Settings settings1 = new Uixe.Watcher.Properties.Settings();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -43,8 +44,6 @@ namespace Uixe.Watcher
             this.btnRBLogout = new DevExpress.XtraBars.BarButtonItem();
             this.btnRBExit = new DevExpress.XtraBars.BarButtonItem();
             this.txtStatus = new DevExpress.XtraBars.BarStaticItem();
-            this.btnLogin = new DevExpress.XtraBars.BarButtonItem();
-            this.btnLogout = new DevExpress.XtraBars.BarButtonItem();
             this.btnBuildParamsFiles = new DevExpress.XtraBars.BarButtonItem();
             this.btnSyncTime = new DevExpress.XtraBars.BarButtonItem();
             this.btnBook = new DevExpress.XtraBars.BarButtonItem();
@@ -71,7 +70,6 @@ namespace Uixe.Watcher
             this.tsLvSeTongDao = new DevExpress.XtraBars.BarToggleSwitchItem();
             this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgTime = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -102,7 +100,6 @@ namespace Uixe.Watcher
             this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.cmsTable = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tmAutoLogout = new System.Windows.Forms.Timer(this.components);
             this.messageView = new Uixe.Watcher.Controls.MessageView();
             this.sccMain = new DevExpress.XtraEditors.SplitContainerControl();
             this.lanView = new DevExpress.XtraTab.XtraTabControl();
@@ -167,8 +164,6 @@ namespace Uixe.Watcher
             this.ribbon.ExpandCollapseItem,
             this.ribbon.SearchEditItem,
             this.txtStatus,
-            this.btnLogin,
-            this.btnLogout,
             this.btnBuildParamsFiles,
             this.btnSyncTime,
             this.btnBook,
@@ -223,7 +218,7 @@ namespace Uixe.Watcher
             this.repositoryItemTextEdit2,
             this.repositoryItemToggleSwitch2});
             this.ribbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
-            this.ribbon.Size = new System.Drawing.Size(1529, 156);
+            this.ribbon.Size = new System.Drawing.Size(1529, 160);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // applicationMenu1
@@ -241,7 +236,6 @@ namespace Uixe.Watcher
             this.btnRBLogin.Id = 25;
             this.btnRBLogin.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.customer_32x32;
             this.btnRBLogin.Name = "btnRBLogin";
-            this.btnRBLogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogin_ItemClick);
             // 
             // btnRBLogout
             // 
@@ -249,7 +243,6 @@ namespace Uixe.Watcher
             this.btnRBLogout.Id = 26;
             this.btnRBLogout.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.walking_32x32;
             this.btnRBLogout.Name = "btnRBLogout";
-            this.btnRBLogout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogout_ItemClick);
             // 
             // btnRBExit
             // 
@@ -264,24 +257,6 @@ namespace Uixe.Watcher
             this.txtStatus.Caption = "就绪";
             this.txtStatus.Id = 0;
             this.txtStatus.Name = "txtStatus";
-            // 
-            // btnLogin
-            // 
-            this.btnLogin.Caption = "登录";
-            this.btnLogin.Id = 1;
-            this.btnLogin.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.customer_16x16;
-            this.btnLogin.ImageOptions.LargeImage = global::Uixe.Watcher.Properties.Resources.customer_32x32;
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogin_ItemClick);
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.Caption = "注销";
-            this.btnLogout.Id = 2;
-            this.btnLogout.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.walking_16x16;
-            this.btnLogout.ImageOptions.LargeImage = global::Uixe.Watcher.Properties.Resources.walking_32x32;
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogout_ItemClick);
             // 
             // btnBuildParamsFiles
             // 
@@ -412,19 +387,19 @@ namespace Uixe.Watcher
             this.txtMsg.EditValue = "";
             this.txtMsg.EditWidth = 200;
             this.txtMsg.Id = 31;
-            this.txtMsg.ItemAppearance.Disabled.Font = new System.Drawing.Font("宋体", 15F);
+            this.txtMsg.ItemAppearance.Disabled.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtMsg.ItemAppearance.Disabled.Options.UseFont = true;
-            this.txtMsg.ItemAppearance.Hovered.Font = new System.Drawing.Font("宋体", 15F);
+            this.txtMsg.ItemAppearance.Hovered.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtMsg.ItemAppearance.Hovered.Options.UseFont = true;
-            this.txtMsg.ItemAppearance.Normal.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMsg.ItemAppearance.Normal.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtMsg.ItemAppearance.Normal.Options.UseFont = true;
-            this.txtMsg.ItemAppearance.Pressed.Font = new System.Drawing.Font("宋体", 15F);
+            this.txtMsg.ItemAppearance.Pressed.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtMsg.ItemAppearance.Pressed.Options.UseFont = true;
             this.txtMsg.Name = "txtMsg";
             // 
             // repositoryItemTextEdit1
             // 
-            this.repositoryItemTextEdit1.Appearance.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.repositoryItemTextEdit1.Appearance.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.repositoryItemTextEdit1.Appearance.Options.UseFont = true;
             this.repositoryItemTextEdit1.AutoHeight = false;
             this.repositoryItemTextEdit1.MaxLength = 40;
@@ -459,8 +434,9 @@ namespace Uixe.Watcher
             // 
             this.tsBlackListPlate.BindableChecked = true;
             this.tsBlackListPlate.Caption = "追缴名单、ETC状态名单语音播报";
-            this.tsBlackListPlate.Checked = global::Uixe.Watcher.Properties.Settings.Default.SpeedBlackListPlate;
-            this.tsBlackListPlate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Uixe.Watcher.Properties.Settings.Default, "SpeedBlackListPlate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tsBlackListPlate.Checked = true;
+            settings1.SettingsKey = "";
+            this.tsBlackListPlate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "SpeedBlackListPlate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tsBlackListPlate.Id = 36;
             this.tsBlackListPlate.Name = "tsBlackListPlate";
             // 
@@ -483,31 +459,25 @@ namespace Uixe.Watcher
             // 
             this.tsLvSeTongDao.BindableChecked = true;
             this.tsLvSeTongDao.Caption = "绿色通道和假冒绿通语音播报";
-            this.tsLvSeTongDao.Checked = global::Uixe.Watcher.Properties.Settings.Default.SpeechLvSeTongDao;
-            this.tsLvSeTongDao.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::Uixe.Watcher.Properties.Settings.Default, "SpeechLvSeTongDao", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tsLvSeTongDao.Checked = true;
+            this.tsLvSeTongDao.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "SpeechLvSeTongDao", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tsLvSeTongDao.Id = 40;
             this.tsLvSeTongDao.Name = "tsLvSeTongDao";
             // 
             // skinDropDownButtonItem1
             // 
+            this.skinDropDownButtonItem1.ActAsDropDown = true;
+            this.skinDropDownButtonItem1.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
             this.skinDropDownButtonItem1.Id = 58;
             this.skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
             // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1,
             this.ribbonPageGroup2,
             this.rpgTime});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "常规业务";
-            // 
-            // ribbonPageGroup1
-            // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnLogin);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnLogout);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "系统";
             // 
             // ribbonPageGroup2
             // 
@@ -569,13 +539,13 @@ namespace Uixe.Watcher
             // 
             this.repositoryItemMemoEdit1.AllowFocused = false;
             this.repositoryItemMemoEdit1.AllowMouseWheel = false;
-            this.repositoryItemMemoEdit1.Appearance.Font = new System.Drawing.Font("Tahoma", 36F);
+            this.repositoryItemMemoEdit1.Appearance.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.repositoryItemMemoEdit1.Appearance.Options.UseFont = true;
-            this.repositoryItemMemoEdit1.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repositoryItemMemoEdit1.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.repositoryItemMemoEdit1.AppearanceDisabled.Options.UseFont = true;
-            this.repositoryItemMemoEdit1.AppearanceFocused.Font = new System.Drawing.Font("Tahoma", 36F);
+            this.repositoryItemMemoEdit1.AppearanceFocused.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.repositoryItemMemoEdit1.AppearanceFocused.Options.UseFont = true;
-            this.repositoryItemMemoEdit1.AppearanceReadOnly.Font = new System.Drawing.Font("Tahoma", 36F);
+            this.repositoryItemMemoEdit1.AppearanceReadOnly.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.repositoryItemMemoEdit1.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             this.repositoryItemMemoEdit1.ReadOnly = true;
@@ -728,11 +698,11 @@ namespace Uixe.Watcher
             this.ribbonStatusBar.ItemLinks.Add(this.txtStatus);
             this.ribbonStatusBar.ItemLinks.Add(this.chkServerStatus);
             this.ribbonStatusBar.ItemLinks.Add(this.lblPath, true);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 861);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 859);
             this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1529, 22);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1529, 24);
             // 
             // cmsTable
             // 
@@ -740,25 +710,20 @@ namespace Uixe.Watcher
             this.cmsTable.Name = "cmsTable";
             this.cmsTable.Size = new System.Drawing.Size(61, 4);
             // 
-            // tmAutoLogout
-            // 
-            this.tmAutoLogout.Interval = 1000;
-            this.tmAutoLogout.Tick += new System.EventHandler(this.time_Tick);
-            // 
             // messageView
             // 
             this.messageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.messageView.Location = new System.Drawing.Point(0, 0);
             this.messageView.Margin = new System.Windows.Forms.Padding(4);
             this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(1529, 355);
+            this.messageView.Size = new System.Drawing.Size(1529, 349);
             this.messageView.TabIndex = 9;
             // 
             // sccMain
             // 
             this.sccMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sccMain.Horizontal = false;
-            this.sccMain.Location = new System.Drawing.Point(0, 156);
+            this.sccMain.Location = new System.Drawing.Point(0, 160);
             this.sccMain.Margin = new System.Windows.Forms.Padding(4);
             this.sccMain.Name = "sccMain";
             // 
@@ -771,7 +736,7 @@ namespace Uixe.Watcher
             // 
             this.sccMain.Panel2.Controls.Add(this.messageView);
             this.sccMain.Panel2.Text = "Panel2";
-            this.sccMain.Size = new System.Drawing.Size(1529, 705);
+            this.sccMain.Size = new System.Drawing.Size(1529, 699);
             this.sccMain.SplitterPosition = 340;
             this.sccMain.TabIndex = 12;
             this.sccMain.Text = "splitContainerControl1";
@@ -794,14 +759,14 @@ namespace Uixe.Watcher
             // 
             this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 318);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 314);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1527, 318);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1527, 314);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
             // barButtonItem3
@@ -868,7 +833,7 @@ namespace Uixe.Watcher
             this.Controls.Add(this.sccMain);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
-            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmPlaza.IconOptions.Icon")));
             this.IconOptions.Image = global::Uixe.Watcher.Properties.Resources.monitor;
             this.IconOptions.LargeImage = global::Uixe.Watcher.Properties.Resources.monitor;
@@ -878,7 +843,6 @@ namespace Uixe.Watcher
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "车道监控软件1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.frmMain_HelpRequested);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
@@ -925,13 +889,9 @@ namespace Uixe.Watcher
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private System.Windows.Forms.ContextMenuStrip cmsTable;
-        private System.Windows.Forms.Timer tmAutoLogout;
         private MessageView messageView;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.BarStaticItem txtStatus;
-        private DevExpress.XtraBars.BarButtonItem btnLogin;
-        private DevExpress.XtraBars.BarButtonItem btnLogout;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.BarButtonItem btnBuildParamsFiles;
         private DevExpress.XtraBars.BarButtonItem btnSyncTime;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;

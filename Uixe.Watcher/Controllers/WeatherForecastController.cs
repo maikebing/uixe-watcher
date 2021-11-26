@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Uixe.Watcher;
 
 namespace Uixe.WatcherPlus.Controllers
 {
@@ -17,10 +19,12 @@ namespace Uixe.WatcherPlus.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly AppSettings option;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,IOptions<AppSettings> option)
         {
             _logger = logger;
+            this.option = option.Value;
         }
 
         [HttpGet]

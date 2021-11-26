@@ -2,6 +2,7 @@
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher
 {
-    //[System.Diagnostics.DebuggerStepThrough]
+    [ServiceLifetime(ServiceLifetime.Transient)]
     public partial class frmPlaza : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         [StructLayout(LayoutKind.Sequential)]
@@ -43,16 +44,11 @@ namespace Uixe.Watcher
             GetLastInputInfo(ref lii);
             return (Environment.TickCount - lii.dwTime) / 1000.0;
         }
-
-   
-   
-
+ 
         #region 加载
 
-        public frmPlaza(frmLogin  login,     RuntimeSetting runtimeSetting  )
+        public frmPlaza(     )
         {
-            _runtimeSetting = runtimeSetting;
-            _login = login;
             InitializeComponent();
         }
 
@@ -63,7 +59,7 @@ namespace Uixe.Watcher
         public frmShowTCOCall _tcocall;
         public frmWeightTCOCall WeightTCOCall;
 
-        private Plaza Plaza { get; set; }
+        public Plaza Plaza { get; set; }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -76,7 +72,6 @@ namespace Uixe.Watcher
 
             this.Icon = Properties.Resources.LOGO;
 
-            this.btnLogout.Enabled = false;
 
             if (System.IO.Directory.Exists("Ring"))
             {
@@ -131,21 +126,14 @@ namespace Uixe.Watcher
                 menuVoiceList.Enabled = false;
                 btnTest.Enabled = false;
             }
-            if (string.IsNullOrEmpty(Properties.Settings.Default.plazaid))
-            {
-                btnLogin.PerformClick();
-            }
-            else
-            {
+            
                 LoadLaneInfo(Properties.Settings.Default.plazaid);
-            }
         }
 
         public void LoadLaneInfo(string plazaid, bool reset = false)
         {
             this.SuspendLayout();
             Plaza = TollInfo.GetTollInfo(plazaid, reset);
-            _runtimeSetting.Plaza = Plaza;
             LoadLaneView(Plaza);
             UserAccessControl();
             this.ResumeLayout();
@@ -383,60 +371,38 @@ namespace Uixe.Watcher
             Application.DoEvents();
             ShowStatusInfo("就绪");
         }
-
         /// <summary>
         /// 用户权限控制
         /// </summary>
         private void UserAccessControl()
         {
-            var p = Uitls.TollInfo.GetTollInfo(_runtimeSetting.Plaza?.id);
+            var p = Uitls.TollInfo.GetTollInfo(Plaza?.id);
             this.Text = string.Format($"{p.road_name}-{p.station_name}({p.id}) v{ Assembly.GetExecutingAssembly().GetName().Version}");
             this.Ribbon.ApplicationCaption = this.Text;
-            if (_runtimeSetting.IsLogin())
-            {
-                btnLogin.Enabled = false;
-                btnLogout.Enabled = true;
-            }
+           
         }
 
         #endregion 加载
 
         #region 卸载
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Properties.Settings.Default.SkinStyle = UserLookAndFeel.Default.ActiveSkinName;
-            Properties.Settings.Default.Save();
-            Application.ExitThread();
-            Application.Exit();
-        }
+ 
 
         public void Login()
         {
        
-            if (_login.ShowDialog() == DialogResult.OK)
-            {
+         
                 UserAccessControl();
-                if (_runtimeSetting.IsLogin())
-                {
                     this.btnRBLogin.Enabled = false;
-                    this.btnLogin.Enabled = false;
 
-                    this.btnLogout.Enabled = true;
                     this.btnRBLogout.Enabled = true;
-                }
-            }
+          
         }
 
         public void Logout()
         {
-            _runtimeSetting.NowCollect = new User();
             UserAccessControl();
-            this.btnLogout.Enabled = false;
             btnRBLogin.Enabled = true;
             btnRBLogout.Enabled = false;
-            this.btnLogin.Enabled = true;
-            Properties.Settings.Default.SkinStyle = UserLookAndFeel.Default.ActiveSkinName;
         }
 
         #endregion 卸载
@@ -454,35 +420,14 @@ namespace Uixe.Watcher
             });
         }
 
-        private int autosynctime = -1;
 
-        private void time_Tick(object sender, EventArgs e)
-        {
-            if (autosynctime != System.DateTime.Now.Hour)
-            {
-                autosynctime = System.DateTime.Now.Hour;
-            }
-
-            if (GetIdleTime() >= TimeSpan.FromMinutes(30).TotalSeconds)
-            {
-                Logout();
-            }
-        }
+     
 
         private void frmMain_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
         }
 
-        private void btnLogin_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Login();
-        }
-
-        private void btnLogout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Logout();
-        }
-
+  
         private void btnSyncTime_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
         }
@@ -631,8 +576,7 @@ namespace Uixe.Watcher
         {
         }
 
-        internal readonly RuntimeSetting _runtimeSetting;
-        private readonly frmLogin _login;
+
 
         [DebuggerStepThrough]
         private async void tmNetworkTest_TickAsync(object sender, EventArgs e)

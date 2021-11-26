@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -9,6 +10,7 @@ using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher
 {
+    [ServiceLifetime(ServiceLifetime.Singleton)]
     public partial class frmLogin : XtraForm
     {
         private readonly IMemoryCache _cache;
@@ -23,6 +25,12 @@ namespace Uixe.Watcher
         private bool _isMouseDown;
         private Point _formLocation; //form的location
         private Point _mouseOffset;
+
+        public string PlazaId
+        {
+            get { return txtPlazaId.Text; }
+            set { txtPlazaId.Text = value; }
+        }
 
         private void frmLogin_MouseDown(object sender, MouseEventArgs e)
         {

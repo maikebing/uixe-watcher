@@ -48,22 +48,22 @@
     <Compile Update="Controls\MessageView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="frmAbout.cs">
+    <Compile Update="WinForms\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmLogin.cs">
+    <Compile Update="WinForms\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmMain.cs">
+    <Compile Update="WinForms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmPlaza.cs">
+    <Compile Update="WinForms\frmPlaza.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmRemoteLane.cs">
+    <Compile Update="WinForms\frmRemoteLane.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmRemoteViewer.cs">
+    <Compile Update="WinForms\frmRemoteViewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="TCO\frmShowTCOCall.cs">

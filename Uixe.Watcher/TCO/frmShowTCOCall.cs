@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,20 +11,21 @@ using Uixe.Watcher.Msg;
 
 namespace Uixe.Watcher
 {
+
     public partial class frmShowTCOCall : XtraForm
     {
-        public frmShowTCOCall(RuntimeSetting runtimeSetting)
+        public frmShowTCOCall(Plaza plaza)
         {
-            _runtimeSetting = runtimeSetting;
+            _plaza = plaza;
         }
  
-        public frmShowTCOCall(frmPlaza _ain)
+        public frmShowTCOCall()
         {
             InitializeComponent();
             try
             {
                 this.tsTabs.TabPages.Clear();
-                var tmlLaneNo = Uitls.TollInfo.GetTollInfo( _runtimeSetting.Plaza.id);
+                var tmlLaneNo = Uitls.TollInfo.GetTollInfo(_plaza.id);
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
@@ -47,7 +49,7 @@ namespace Uixe.Watcher
         }
 
         private List<Lane> lstlane = new List<Lane>();
-        private readonly RuntimeSetting _runtimeSetting;
+        private readonly Plaza _plaza;
 
         public void Show(TCOCall TCOCallxxx)
         {

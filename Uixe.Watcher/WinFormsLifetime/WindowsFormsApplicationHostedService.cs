@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Uixe.Watcher.Extensions;
 
 namespace Uixe.Watcher
 {
@@ -12,11 +14,13 @@ namespace Uixe.Watcher
     {
         private readonly WindowsFormsApplicationOptions _options;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IWebHostEnvironment env;
 
-        public WindowsFormsApplicationHostedService(IOptions<WindowsFormsApplicationOptions> options, IServiceProvider serviceProvider)
+        public WindowsFormsApplicationHostedService(IOptions<WindowsFormsApplicationOptions> options, IServiceProvider serviceProvider, IWebHostEnvironment env)
         {
             _options = options?.Value ?? throw new ArgumentNullException(nameof(options));
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+            this.env = env;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -33,7 +37,6 @@ namespace Uixe.Watcher
 #if NETCOREAPP
             Application.SetHighDpiMode(_options.HighDpiMode);
 #endif
-
             if (_options.EnableVisualStyles)
             {
                 Application.EnableVisualStyles();

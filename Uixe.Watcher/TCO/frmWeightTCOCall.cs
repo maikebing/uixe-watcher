@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraTab;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,39 +11,33 @@ using Uixe.Watcher.Msg;
 
 namespace Uixe.Watcher.TCO
 {
+
     public partial class frmWeightTCOCall : DevExpress.XtraEditors.XtraForm
     {
         public static int TabCount = 0;
 
         private List<Lane> lstlane = new List<Lane>();
+        private readonly Plaza _plaza;
 
-        public frmPlaza Main { get; internal set; }
 
-        public frmWeightTCOCall()
+        public frmWeightTCOCall(Plaza plaza)
         {
             InitializeComponent();
+            _plaza = plaza;
         }
-        public RuntimeSetting _runtimeSetting
-        {
-            get
-            {
-                return Main._runtimeSetting;
-            }
-           
-        }
+ 
         public void LoadInfo()
         {
             try
             {
                 this.tsTabs.TabPages.Clear();
-                var tmlLaneNo = Uitls.TollInfo.GetTollInfo(_runtimeSetting.Plaza.id);
+                var tmlLaneNo = Uitls.TollInfo.GetTollInfo(_plaza.id);
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
                     string pname = tmlLaneNo.id + lstlane[i].lane_no;
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
-                    tms._plaza = this.Main;
                     t.Name = pname;
                     tms.Name = pname;
                     tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent

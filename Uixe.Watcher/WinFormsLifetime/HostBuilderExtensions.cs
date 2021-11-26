@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Windows.Forms;
+using Uixe.Watcher.Extensions;
 
 namespace Uixe.Watcher
 {
@@ -19,7 +20,6 @@ namespace Uixe.Watcher
             {
                 throw new ArgumentNullException(nameof(hostBuilder));
             }
-
             return hostBuilder.ConfigureServices((context, services) =>
             {
                 services.AddSingleton<ApplicationContext>(c => new ApplicationContext(c.GetRequiredService<TForm>()));
