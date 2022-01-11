@@ -38,7 +38,6 @@ namespace Uixe.Watcher
             });
             services.AddForms();
             services.AddMemoryCache();
-            services.AddSingleton<RuntimeSetting>();
             MonkeyCache.LiteDB.Barrel.ApplicationId = AppDomain.CurrentDomain.FriendlyName;
             MonkeyCache.BarrelUtils.SetBaseCachePath(AppContext.BaseDirectory);
             services.AddLogging(configure =>

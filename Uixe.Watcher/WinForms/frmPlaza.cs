@@ -59,8 +59,8 @@ namespace Uixe.Watcher
         public frmShowTCOCall _tcocall;
         public frmWeightTCOCall WeightTCOCall;
 
-        public Plaza Plaza { get; set; }
-
+        public Plaza Plaza => _runtimeSetting?.Plaza;
+        public RuntimeSetting _runtimeSetting { get; set; }
         private void frmMain_Load(object sender, EventArgs e)
         {
             btnUpgrade.Visibility = BarItemVisibility.Never;
@@ -130,10 +130,9 @@ namespace Uixe.Watcher
                 LoadLaneInfo(Properties.Settings.Default.plazaid);
         }
 
-        public async void LoadLaneInfo(string plazaid, bool reset = false)
+        public  void LoadLaneInfo(string plazaid, bool reset = false)
         {
             this.SuspendLayout();
-            Plaza = await TollInfo.GetTollInfo(plazaid, reset);
             LoadLaneView(Plaza);
             UserAccessControl();
             this.ResumeLayout();

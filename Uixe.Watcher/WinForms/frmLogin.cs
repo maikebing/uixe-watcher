@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -14,12 +15,14 @@ namespace Uixe.Watcher
     public partial class frmLogin : XtraForm
     {
         private readonly IMemoryCache _cache;
-        private readonly RuntimeSetting _runtimeSetting;
+        private  RuntimeSetting _runtimeSetting;
+        private readonly AppSettings _setting;
 
-        public frmLogin( IMemoryCache cache, RuntimeSetting runtimeSetting)
+        public frmLogin( IMemoryCache cache, IOptions<AppSettings> option)
         {
             _cache = cache;
-            _runtimeSetting= runtimeSetting;
+     
+            _setting = option.Value;
             InitializeComponent();
         }
         private bool _isMouseDown;
@@ -62,32 +65,36 @@ namespace Uixe.Watcher
     
         private async void btnLogin_Click(object sender, EventArgs e)
         {
+            _runtimeSetting = _cache.GetOrCreate(txtPlazaId.Text , c => new RuntimeSetting());
             _ = ReloadTollInfoAsync();
             var p = _runtimeSetting.Plaza;
             if (p != null && !string.IsNullOrEmpty(p.ip))
             {
                 PlazaApi api = new PlazaApi(_runtimeSetting.Plaza.ip);
                 _runtimeSetting.Token = await api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
-                var result =await api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
-                if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
+                if (_runtimeSetting.Token!=null && _runtimeSetting.Token.code==0)
                 {
-                    if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
+                    var result = await api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
+                    if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
                     {
-                        _runtimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
-                        _runtimeSetting.UserRole = result.data;
-                        _runtimeSetting.Token.LoginDateTime = DateTime.Now;
-                        DialogResult = DialogResult.OK;
+                        if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
+                        {
+                            _runtimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
+                            _runtimeSetting.UserRole = result.data;
+                            _runtimeSetting.Token.LoginDateTime = DateTime.Now;
+                            DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
+                            lblInfo.Text = $"没有找到TCO角色(18)";
+                        }
                     }
                     else
                     {
                         _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
-                        lblInfo.Text = $"没有找到TCO角色(18)";
+                        lblInfo.Text = $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}";
                     }
-                }
-                else
-                {
-                    _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
-                    lblInfo.Text = $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}";
                 }
             }
             else
@@ -98,18 +105,20 @@ namespace Uixe.Watcher
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            _runtimeSetting.NowCollect = null;
+            _cache.Remove(txtPlazaId.Text);
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private async void frmLogin_Load(object sender, EventArgs e)
+        private   void frmLogin_Load(object sender, EventArgs e)
         {
             this.Icon = Properties.Resources.LOGO;
             this.lblInfo.Text = "";
-
-            await ReloadTollInfoAsync();
-            txtPlazaId.Text = _cache.Get<string>("plazaid" );
+            if (_setting.PlaceType == PlaceType.Plaza)
+            {
+                txtPlazaId.Text = _setting.PlaceId;
+                txtPlazaId.Enabled = false;
+            }
             this.txtPassword.Focus();
         }
 

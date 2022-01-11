@@ -55,7 +55,7 @@ namespace Uixe.Watcher.Uitls
         private RestClient Create(string ip,string api)
         {
             var client = new RestClient($"http://{ip}:8080/api{api}");
-        
+            client.AddDefaultHeader(KnownHeaders.Accept, "*/*");
             return client;
         }
     }

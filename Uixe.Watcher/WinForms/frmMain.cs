@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraBars;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Uixe.Watcher.Dtos;
 
 namespace Uixe.Watcher
 {
@@ -21,10 +23,11 @@ namespace Uixe.Watcher
         private readonly IServiceScopeFactory scopeFactor;
         private readonly AppSettings _setting;
         private readonly IServiceScope _scope;
+        private readonly IMemoryCache _cache;
         private readonly frmLogin _login;
         private readonly ILogger logger;
 
-        public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option, frmLogin login, ILogger<frmMain>  logger  )
+        public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option, frmLogin login, ILogger<frmMain>  logger, IMemoryCache cache )
         {
             InitializeComponent();
             this.scopeFactor = scopeFactor;
@@ -32,7 +35,7 @@ namespace Uixe.Watcher
             _login = login;
             this.logger = logger;
             _scope = scopeFactor.CreateScope();
-
+            _cache = cache;
 
         }
 
@@ -69,7 +72,7 @@ namespace Uixe.Watcher
                     _login.PlazaId = _setting.PlaceId;
 
                     this.Visible = false;
-                    Login();
+                    Login(_login.PlazaId);
                     break;
                 default:
                     break;
@@ -78,32 +81,33 @@ namespace Uixe.Watcher
         }
 
 
-        public void Login()
+        public void Login(string plazaId)
         {
-
             //List<Dtos.Plaza> plazas = _setting.Plazas;
-            //switch (_setting.PlaceType)
-            //{
-            //    case PlaceType.Plaza:
-            //        var plaza = plazas.FirstOrDefault();
-            //        var frm = _scope.ServiceProvider.GetRequiredService<frmPlaza>();
-            //        frm.Name = $"frm{plaza.station_id}";
-            //        frm.Text = $"{plaza.station_name}";
-            //        rpgPlazas.ItemLinks.Add(new BarBaseButtonItem() { Name = $"btn_{plaza.station_id}", Caption = plaza.station_name }, $"key_tip_{plaza.station_id}");
-
-            //        break;
-            //    default:
-            //        break;
-            //}
             if (_login.ShowDialog() == DialogResult.OK)
             {
-               
+                switch (_setting.PlaceType)
+                {
+                    case PlaceType.Plaza:
+                        var frm = _scope.ServiceProvider.GetRequiredService<frmPlaza>();
+                        frm._runtimeSetting = _cache.Get<RuntimeSetting>(plazaId);
+                        frm.FormClosed += Frm_FormClosed;
+                        frm.Show();
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
                 Application.Exit();
                
             }
+        }
+
+        private void Frm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
         public void Logout()

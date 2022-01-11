@@ -25,7 +25,7 @@ namespace Uixe.Watcher.Uitls
                 var request = new RestRequest();
                 request.AddHeader("Content-Type", "application/json");
                 request.AddParameter("application/json", $"{{\r\n    \"toll_id\": \"{toll_id}\"\r\n}}", ParameterType.RequestBody);
-                var response = await client.ExecutePostAsync(request);
+                var response = await client.ExecuteGetAsync(request);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     Debug.WriteLine(response.Content);
