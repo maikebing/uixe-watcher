@@ -78,9 +78,9 @@ namespace Uixe.Watcher.WinFormsLifetime
                 if (screenNum < 0)
                     screen = System.Windows.Forms.Screen.AllScreens.Where(s => !s.Primary).FirstOrDefault();
                 else
-                    screen = System.Windows.Forms.Screen.AllScreens[Math.Min(screenNum, System.Windows.Forms.Screen.AllScreens.Count() - 1)];
+                    screen = System.Windows.Forms.Screen.AllScreens[Math.Min(screenNum, Screen.AllScreens.Count() - 1)];
             }
-            catch (Exception e)
+            catch (Exception )
             {
             }
             if (bufferWidth == -1)

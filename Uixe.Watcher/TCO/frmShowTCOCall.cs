@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
@@ -25,22 +26,26 @@ namespace Uixe.Watcher
             try
             {
                 this.tsTabs.TabPages.Clear();
-                var tmlLaneNo = Uitls.TollInfo.GetTollInfo(_plaza.id);
-                lstlane.AddRange(tmlLaneNo.lanes);
-                for (int i = 0; i < lstlane.Count; i++)
+
+                Uitls.TollInfo.GetTollInfo(_plaza.id).ContinueWith(tx =>
                 {
-                    string pname = tmlLaneNo.id + lstlane[i].lane_no;
-                    XtraTabPage t = new XtraTabPage();
-                    TCOConfirm tms = new TCOConfirm();
-                    t.Name = pname;
-                    tms.Name = pname;
-                    tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent
-                    tms.Dock = DockStyle.Fill;
-                    t.Controls.Add(tms);
-                    t.Tag = tms;
-                    tsTabs.TabPages.Add(t);
-                    t.PageVisible = false;
-                }
+                    var tmlLaneNo = tx.Result;
+                    lstlane.AddRange(tmlLaneNo.lanes);
+                    for (int i = 0; i < lstlane.Count; i++)
+                    {
+                        string pname = tmlLaneNo.id + lstlane[i].lane_no;
+                        XtraTabPage t = new XtraTabPage();
+                        TCOConfirm tms = new TCOConfirm();
+                        t.Name = pname;
+                        tms.Name = pname;
+                        tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent
+                        tms.Dock = DockStyle.Fill;
+                        t.Controls.Add(tms);
+                        t.Tag = tms;
+                        tsTabs.TabPages.Add(t);
+                        t.PageVisible = false;
+                    }
+                });
             }
             catch (Exception ex)
             {

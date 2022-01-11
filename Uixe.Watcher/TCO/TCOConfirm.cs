@@ -181,19 +181,19 @@ namespace Uixe.Watcher
             btnOK.Enabled = true;
         }
 
-        private void FillPlazaNameAndList(TCOCall tce, bool isfirst = false)
+        private async void FillPlazaNameAndList(TCOCall tce, bool isfirst = false)
         {
             try
             {
                 UixeClient client = new UixeClient();
                 if (isfirst)
                 {
-                    var pc = client.GetProvByPlaza(Plaza.ip, tce.EntryStationID);
+                    var pc = await client.GetProvByPlaza(Plaza.ip, tce.EntryStationID);
                     cbxProv.EditValue = int.Parse(pc);
                 }
                 var prov = cbxProv.GetSelectedDataRow() as ProvCode;
 
-                var ppi = client.GetProvPlazaInfo(Plaza.ip, $"{prov?.provId ?? 65}");
+                var ppi = await client.GetProvPlazaInfo(Plaza.ip, $"{prov?.provId ?? 65}");
                 if (ppi != null)
                 {
                     pLazaBindingSource.DataSource = ppi;

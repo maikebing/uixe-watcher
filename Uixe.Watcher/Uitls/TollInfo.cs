@@ -2,6 +2,7 @@
 using RestSharp;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Uixe.Watcher.Dtos;
 
 namespace Uixe.Watcher.Uitls
@@ -10,7 +11,7 @@ namespace Uixe.Watcher.Uitls
     {
        
 
-        public static Plaza GetTollInfo(string toll_id, bool reset = false)
+        public static async Task<Plaza> GetTollInfo(string toll_id, bool reset = false)
         {
             string _key = "get_toll_info" + toll_id;
             if (reset && Barrel.Current.Exists(_key))
@@ -20,12 +21,11 @@ namespace Uixe.Watcher.Uitls
             if (!Barrel.Current.Exists(_key) || Barrel.Current.IsExpired(_key))
             {
                 var client = new RestClient("http://10.165.70.45:5000/get_toll_info");
-                client.Timeout = -1;
-                client.FollowRedirects = false;
-                var request = new RestRequest(Method.POST);
+          
+                var request = new RestRequest();
                 request.AddHeader("Content-Type", "application/json");
                 request.AddParameter("application/json", $"{{\r\n    \"toll_id\": \"{toll_id}\"\r\n}}", ParameterType.RequestBody);
-                IRestResponse response = client.Execute(request);
+                var response = await client.ExecutePostAsync(request);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     Debug.WriteLine(response.Content);

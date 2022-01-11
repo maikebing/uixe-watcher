@@ -130,10 +130,10 @@ namespace Uixe.Watcher
                 LoadLaneInfo(Properties.Settings.Default.plazaid);
         }
 
-        public void LoadLaneInfo(string plazaid, bool reset = false)
+        public async void LoadLaneInfo(string plazaid, bool reset = false)
         {
             this.SuspendLayout();
-            Plaza = TollInfo.GetTollInfo(plazaid, reset);
+            Plaza = await TollInfo.GetTollInfo(plazaid, reset);
             LoadLaneView(Plaza);
             UserAccessControl();
             this.ResumeLayout();
@@ -374,9 +374,9 @@ namespace Uixe.Watcher
         /// <summary>
         /// 用户权限控制
         /// </summary>
-        private void UserAccessControl()
+        private async void UserAccessControl()
         {
-            var p = Uitls.TollInfo.GetTollInfo(Plaza?.id);
+            var p = await Uitls.TollInfo.GetTollInfo(Plaza?.id);
             this.Text = string.Format($"{p.road_name}-{p.station_name}({p.id}) v{ Assembly.GetExecutingAssembly().GetName().Version}");
             this.Ribbon.ApplicationCaption = this.Text;
            
@@ -579,7 +579,7 @@ namespace Uixe.Watcher
 
 
         [DebuggerStepThrough]
-        private async void tmNetworkTest_TickAsync(object sender, EventArgs e)
+        private   void tmNetworkTest_TickAsync(object sender, EventArgs e)
         {
             //if (sec != DateTime.Now.Second && client?.IsConnected == true)
             //{

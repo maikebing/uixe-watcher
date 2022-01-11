@@ -60,15 +60,15 @@ namespace Uixe.Watcher
             }
         }
     
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
             _ = ReloadTollInfoAsync();
             var p = _runtimeSetting.Plaza;
             if (p != null && !string.IsNullOrEmpty(p.ip))
             {
                 PlazaApi api = new PlazaApi(_runtimeSetting.Plaza.ip);
-                _runtimeSetting.Token = api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
-                var result = api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
+                _runtimeSetting.Token = await api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
+                var result =await api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
                 if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
                 {
                     if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
@@ -117,11 +117,11 @@ namespace Uixe.Watcher
         {
             if (!string.IsNullOrEmpty(txtPlazaId.Text))
             {
-                await Task.Run(() =>
+                await Task.Run(async () =>
                  {
                      try
                      {
-                         var plazainfo = TollInfo.GetTollInfo(txtPlazaId.Text, true);
+                         var plazainfo =await TollInfo.GetTollInfo(txtPlazaId.Text, true);
                          _runtimeSetting.Plaza = plazainfo;
                          this.Invoke((MethodInvoker)delegate
                          {

@@ -26,12 +26,12 @@ namespace Uixe.Watcher.TCO
             _plaza = plaza;
         }
  
-        public void LoadInfo()
+        public async void LoadInfo()
         {
             try
             {
                 this.tsTabs.TabPages.Clear();
-                var tmlLaneNo = Uitls.TollInfo.GetTollInfo(_plaza.id);
+                var tmlLaneNo = await Uitls.TollInfo.GetTollInfo(_plaza.id);
                 lstlane.AddRange(tmlLaneNo.lanes);
                 for (int i = 0; i < lstlane.Count; i++)
                 {
