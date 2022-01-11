@@ -18,7 +18,10 @@ namespace Uixe.Watcher.Msg
             var ls = JsonConvert.DeserializeObject<LaneStatus>(json, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local });
             InheritHelper.FillProperties(this, ls);
         }
-
+        public void Parse(LaneStatus ls)
+        {
+            InheritHelper.FillProperties(this, ls);
+        }
         public LaneInfo(string plazaid, string laneid, string laneno, string ipaddress) : base()
         {
             PlazaId = plazaid;

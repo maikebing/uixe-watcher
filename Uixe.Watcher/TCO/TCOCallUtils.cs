@@ -27,66 +27,44 @@ namespace Uixe.Watcher.TCO
                 XtraMessageBox.Show(ex.Message);
             }
         }
-
-        public static void ShowTCOInfo(this frmPlaza form, string topic, string message)
+        public static void ShowTCOInfo(this frmPlaza form, MsgWeightTCOCALL msg)
         {
-            try
+            lock (form)
             {
-                var tc = Newtonsoft.Json.JsonConvert.DeserializeObject<tco_confirm>(message);
-                if (tc.DlgType == DlgType.Weight)
-                {
-                    lock (form)
-                    {
-                        try
-                        {
-                            if (form.WeightTCOCall == null || form.WeightTCOCall.IsDisposed || !form.WeightTCOCall.IsHandleCreated)
-                            {
-                                form.WeightTCOCall = new frmWeightTCOCall(form.Plaza);
 
-                                form.WeightTCOCall.LoadInfo();
-                                form.WeightTCOCall.Hide();
-                            }
-                            form.WeightTCOCall.ShowTCOMsg(Newtonsoft.Json.JsonConvert.DeserializeObject<MsgWeightTCOCALL>(message));
-                            Task.Run(PlayUitls.PlayRing);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"ShowTCOInfo{ex.Message}");
-                            form.WeightTCOCall = null;
-                        }
-                    }
-                }
-                else
+                if (form.WeightTCOCall == null || form.WeightTCOCall.IsDisposed || !form.WeightTCOCall.IsHandleCreated)
                 {
-                    lock (form)
-                    {
-                        try
-                        {
-                            if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
-                            {
-                                form._tcocall = new frmShowTCOCall(form.Plaza)
-                                {
-                                    //MQTTClient = client,
-                                    Owner = form
-                                };
-                            }
-                            form._tcocall.Show(Newtonsoft.Json.JsonConvert.DeserializeObject<TCOCall>(message));
-                            Task.Run(PlayUitls.PlayRing);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"ShowTCOInfo{ex.Message}");
-                            form._tcocall = null;
-                        }
-                    }
+                    form.WeightTCOCall = new frmWeightTCOCall(form.Plaza);
+
+                    form.WeightTCOCall.LoadInfo();
+                    form.WeightTCOCall.Hide();
                 }
-                Application.DoEvents();
-            }
-            catch (Exception ex1)
-            {
-                Console.WriteLine($"ShowTCOInfo{ex1.Message}");
+                form.WeightTCOCall.ShowTCOMsg(msg);
+                Task.Run(PlayUitls.PlayRing);
+
             }
         }
+
+
+        public static void ShowTCOInfo(this frmPlaza form, TCOCall call)
+        {
+
+            lock (form)
+            {
+
+                if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
+                {
+                    form._tcocall = new frmShowTCOCall(form.Plaza)
+                    {
+                        //MQTTClient = client,
+                        Owner = form
+                    };
+                }
+                form._tcocall.Show(call);
+                Task.Run(PlayUitls.PlayRing);
+            }
+        }
+
 
         public static void CloseTCOCall(this frmPlaza form)
         {

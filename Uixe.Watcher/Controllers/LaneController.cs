@@ -1,0 +1,107 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Uixe.Watcher.Dtos;
+using Uixe.Watcher.Msg;
+using Uixe.Watcher.TCO;
+namespace Uixe.Watcher.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]/[action]")]
+    public class LaneController : ControllerBase
+    {
+
+        private readonly ILogger<LaneController> _logger;
+        private readonly AppSettings option;
+        private readonly IMemoryCache _cache;
+
+        public LaneController(ILogger<LaneController> logger, IOptions<AppSettings> option, IMemoryCache cache)
+        {
+            _logger = logger;
+            this.option = option.Value;
+            _cache = cache;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ApiResult>> emrc_main_status(string plazaid, string laneno, LaneStatus status)
+        {
+            try
+            {
+                await Task.Run(() =>
+                 {
+                     var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                     frm?.ShowLaneInfor(plazaid, laneno, status);
+                 });
+                return Ok(new ApiResult(ApiCode.OK, "OK"));
+            }
+            catch (Exception)
+            {
+
+                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult<ApiResult> emrc_main_tco_weight(string plazaid, MsgWeightTCOCALL msgWeight)
+        {
+            try
+            {
+                var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                frm.ShowTCOInfo(msgWeight);
+                return Ok(new ApiResult(ApiCode.OK, "OK"));
+            }
+            catch (Exception)
+            {
+
+                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult<ApiResult> emrc_main_tco_confirm(string plazaid, TCOCall msg)
+        {
+            try
+            {
+
+                var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                frm.ShowTCOInfo(msg);
+                return Ok(new ApiResult(ApiCode.OK, "OK"));
+            }
+            catch (Exception)
+            {
+
+                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult<ApiResult>> emrc_main_message(string plazaid, MsgInfo msg)
+        {
+            try
+            {
+
+                await Task.Run(() =>
+                {
+                    var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                    frm.ShowMessageView(msg);
+                });
+                return Ok(new ApiResult(ApiCode.OK, "OK"));
+            }
+            catch (Exception)
+            {
+
+                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+            }
+        }
+
+    }
+}
+

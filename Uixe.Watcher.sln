@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{543C71EE-D9BC-49C8-8C63-B55C44A60E67}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,18 +33,6 @@ Global
 		{A41303DC-D78F-48C8-9184-AB1CB237DE2E}.Release|x64.Build.0 = Release|x64
 		{A41303DC-D78F-48C8-9184-AB1CB237DE2E}.Release|x86.ActiveCfg = Release|x86
 		{A41303DC-D78F-48C8-9184-AB1CB237DE2E}.Release|x86.Build.0 = Release|x86
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Debug|x64.Build.0 = Debug|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Debug|x86.Build.0 = Debug|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Release|Any CPU.Build.0 = Release|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Release|x64.ActiveCfg = Release|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Release|x64.Build.0 = Release|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Release|x86.ActiveCfg = Release|Any CPU
-		{543C71EE-D9BC-49C8-8C63-B55C44A60E67}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

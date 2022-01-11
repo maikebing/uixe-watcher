@@ -39,7 +39,7 @@ namespace Uixe.Watcher.Controls
             gcExitLanes.RefreshDataSource();
         }
 
-        private delegate void HShowLaneInfo(string laneid, string revdata);
+        private delegate void HShowLaneInfo(string laneid, LaneStatus revdata);
 
         /// <summary>
         ///
@@ -47,7 +47,7 @@ namespace Uixe.Watcher.Controls
         /// <param name="plaza">这里的plaza 已经调用到对应的控件了， 无需区分， 但是需要传值过来</param>
         /// <param name="laneno"></param>
         /// <param name="revdata"></param>
-        public void ShowLaneInfor(string laneid, string revdata)
+        public void ShowLaneInfor(string laneid, LaneStatus revdata)
         {
             if (this.InvokeRequired)
             {

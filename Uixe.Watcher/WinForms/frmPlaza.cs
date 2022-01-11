@@ -457,7 +457,7 @@ namespace Uixe.Watcher
         /// <param name="plaza">6500226</param>
         /// <param name="laneno">6500225X01</param>
         /// <param name="revdata">json</param>
-        public void ShowLaneInfor(string plaza, string laneno, string revdata)
+        public void ShowLaneInfor(string plaza, string laneno, LaneStatus revdata)
         {
             lock (lanView)
             {

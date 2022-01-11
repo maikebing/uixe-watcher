@@ -2,6 +2,27 @@
 
 namespace Uixe.Watcher.Dtos
 {
+    public enum ApiCode:int
+    {
+         OK=200,
+         NotFound=404,
+         BadRequst=500
+    }
+    public class ApiResult
+    {
+        public ApiResult(ApiCode _code, string _msg)
+        {
+            code =(int)_code;
+            msg = _msg;
+        }
+
+        public string msg { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public int code { get; set; }
+    }
     public class ApiResult<T>
     {
         public string msg { get; set; }

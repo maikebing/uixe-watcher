@@ -89,9 +89,13 @@ namespace Uixe.Watcher
                 switch (_setting.PlaceType)
                 {
                     case PlaceType.Plaza:
-                        var frm = _scope.ServiceProvider.GetRequiredService<frmPlaza>();
-                        frm._runtimeSetting = _cache.Get<RuntimeSetting>(plazaId);
-                        frm.FormClosed += Frm_FormClosed;
+                       var frm=  _cache.GetOrCreate($"{nameof(frmPlaza)}_{plazaId}",f=>
+                        {
+                            var frm = _scope.ServiceProvider.GetRequiredService<frmPlaza>();
+                            frm._runtimeSetting = _cache.Get<RuntimeSetting>(plazaId);
+                            frm.FormClosed += Frm_FormClosed;
+                            return frm;
+                        });
                         frm.Show();
                         break;
                     default:

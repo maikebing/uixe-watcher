@@ -13,12 +13,7 @@ namespace Uixe.Watcher.Msg
             base.Head = new Head();
             base.SubHead = new SubHead();
         }
-
-        public static MsgWeightTCOCALL Parse(string json)
-        {
-            var ls = JsonConvert.DeserializeObject<MsgWeightTCOCALL>(json, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local });
-            return ls;
-        }
+         
 
         public string ID => $"650{Head?.NetNo}{Head?.PlazaNo}{ Head?.LaneID}";
 
