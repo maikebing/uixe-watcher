@@ -4,8 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 
-namespace Uixe.Watcher.Extensions
+namespace Uixe.Watcher.WinFormsLifetime
 {
     public class ConsoleWindow
     {
@@ -28,25 +29,25 @@ namespace Uixe.Watcher.Extensions
         protected static extern bool FreeConsole();
 
         [DllImport("kernel32.dll")]
-        public static extern IntPtr GetConsoleWindow();
+        private static extern IntPtr GetConsoleWindow();
 
-        public struct COORD
+        private struct COORD
         {
             public short X;
             public short Y;
         };
 
         [DllImport("kernel32.dll")]
-        public static extern bool SetConsoleScreenBufferSize(
+        private static extern bool SetConsoleScreenBufferSize(
           IntPtr hConsoleOutput,
           COORD size
         );
 
         [DllImport("user32.dll")]
-        public static extern bool ShowWindow(System.IntPtr hWnd, int cmdShow);
+        private static extern bool ShowWindow(System.IntPtr hWnd, int cmdShow);
 
         [DllImport("user32.dll")]
-        public static extern bool MoveWindow(
+        private static extern bool MoveWindow(
                 IntPtr hWnd,
                 int X,
                 int Y,
@@ -54,16 +55,14 @@ namespace Uixe.Watcher.Extensions
                 int nHeight,
                 bool bRepaint
             );
-
-        private const int STD_OUTPUT_HANDLE = -11;
-        private const int STD_ERROR_HANDLE = -12;
+ 
 
         public static void Hide()
         {
             FreeConsole();
         }
 
-        public static void Show(int bufferWidth = -1, bool breakRedirection = true, int bufferHeight = 1600, int screenNum = -1 /*-1 = Any but primary*/)
+        public static void Show( int bufferWidth = -1, bool breakRedirection = true, int bufferHeight = -1, int screenNum = -1 /*-1 = Any but primary*/)
         {
             AllocConsole();
             IntPtr stdOut = InvalidHandleValue, stdIn, stdErr;
@@ -71,7 +70,7 @@ namespace Uixe.Watcher.Extensions
                 UnredirectConsole(out stdOut, out stdIn, out stdErr);
             var outStream = Console.OpenStandardOutput() as Stream;
             var errStream = Console.OpenStandardError() as Stream;
-            Encoding encoding = System.Text.Encoding.Default;
+            Encoding encoding = System.Text.Encoding.GetEncoding(936);
             StreamWriter standardOutput = new StreamWriter(outStream, encoding), standardError = new StreamWriter(errStream, encoding);
             System.Windows.Forms.Screen screen = null;
             try

@@ -33,15 +33,6 @@ namespace Uixe.Watcher
             this.logger = logger;
             _scope = scopeFactor.CreateScope();
 
-            switch (_setting.PlaceType)
-            {
-                case PlaceType.Plaza:
-                    logger.LogInformation($"单站运行{_setting.PlaceId}");
-                    _login.PlazaId = _setting.PlaceId;
-                    break;
-                default:
-                    break;
-            }
 
         }
 
@@ -69,7 +60,21 @@ namespace Uixe.Watcher
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            Login();
+         
+
+            switch (_setting.PlaceType)
+            {
+                case PlaceType.Plaza:
+                    logger.LogInformation($"单站运行{_setting.PlaceId}");
+                    _login.PlazaId = _setting.PlaceId;
+
+                    this.Visible = false;
+                    Login();
+                    break;
+                default:
+                    break;
+            }
+           
         }
 
 
@@ -92,6 +97,11 @@ namespace Uixe.Watcher
             //}
             if (_login.ShowDialog() == DialogResult.OK)
             {
+               
+            }
+            else
+            {
+                Application.Exit();
                
             }
         }

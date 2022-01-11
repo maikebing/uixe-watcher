@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using Uixe.Watcher.Extensions;
+using Uixe.Watcher.WinFormsLifetime;
 
 namespace Uixe.Watcher
 {
