@@ -15,25 +15,24 @@ namespace Uixe.Watcher
 
     public partial class frmShowTCOCall : XtraForm
     {
+        private readonly Plaza _plaza;
+        private List<Lane> lstlane = new List<Lane>();
         public frmShowTCOCall(Plaza plaza)
         {
             _plaza = plaza;
         }
- 
+       
         public frmShowTCOCall()
         {
             InitializeComponent();
             try
             {
                 this.tsTabs.TabPages.Clear();
-
-                Uitls.TollInfo.GetTollInfo(_plaza.id).ContinueWith(tx =>
-                {
-                    var tmlLaneNo = tx.Result;
-                    lstlane.AddRange(tmlLaneNo.lanes);
-                    for (int i = 0; i < lstlane.Count; i++)
+                
+            
+                    for (int i = 0; i < _plaza.lanes.Count; i++)
                     {
-                        string pname = tmlLaneNo.id + lstlane[i].lane_no;
+                        string pname = _plaza.id + lstlane[i].lane_no;
                         XtraTabPage t = new XtraTabPage();
                         TCOConfirm tms = new TCOConfirm();
                         t.Name = pname;
@@ -45,16 +44,15 @@ namespace Uixe.Watcher
                         tsTabs.TabPages.Add(t);
                         t.PageVisible = false;
                     }
-                });
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                
             }
         }
 
-        private List<Lane> lstlane = new List<Lane>();
-        private readonly Plaza _plaza;
+
+  
 
         public void Show(TCOCall TCOCallxxx)
         {

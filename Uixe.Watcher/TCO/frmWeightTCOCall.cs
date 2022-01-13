@@ -16,7 +16,6 @@ namespace Uixe.Watcher.TCO
     {
         public static int TabCount = 0;
 
-        private List<Lane> lstlane = new List<Lane>();
         private readonly Plaza _plaza;
 
 
@@ -26,16 +25,14 @@ namespace Uixe.Watcher.TCO
             _plaza = plaza;
         }
  
-        public async void LoadInfo()
+        public  void LoadInfo()
         {
             try
             {
                 this.tsTabs.TabPages.Clear();
-                var tmlLaneNo = await Uitls.TollInfo.GetTollInfo(_plaza.id);
-                lstlane.AddRange(tmlLaneNo.lanes);
-                for (int i = 0; i < lstlane.Count; i++)
+                for (int i = 0; i < _plaza.lanes.Count; i++)
                 {
-                    string pname = tmlLaneNo.id + lstlane[i].lane_no;
+                    string pname = _plaza.id + _plaza.lanes[i].lane_no;
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
                     t.Name = pname;

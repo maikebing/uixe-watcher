@@ -65,41 +65,49 @@ namespace Uixe.Watcher
     
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            _runtimeSetting = _cache.GetOrCreate(txtPlazaId.Text , c => new RuntimeSetting());
-            _ = ReloadTollInfoAsync();
-            var p = _runtimeSetting.Plaza;
-            if (p != null && !string.IsNullOrEmpty(p.ip))
+            try
             {
-                PlazaApi api = new PlazaApi(_runtimeSetting.Plaza.ip);
-                _runtimeSetting.Token = await api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
-                if (_runtimeSetting.Token!=null && _runtimeSetting.Token.code==0)
+                _runtimeSetting = _cache.GetOrCreate(txtPlazaId.Text, c => new RuntimeSetting());
+                await ReloadTollInfoAsync();
+                var p = _runtimeSetting.Plaza;
+                if (p != null && !string.IsNullOrEmpty(p.ip))
                 {
-                    var result = await api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
-                    if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
+                    PlazaApi api = new(_runtimeSetting.Plaza.ip);
+                    _runtimeSetting.Token = await api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
+                    if (_runtimeSetting.Token != null && _runtimeSetting.Token.code == 0)
                     {
-                        if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
+                        var result = await api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
+                        if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
                         {
-                            _runtimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
-                            _runtimeSetting.UserRole = result.data;
-                            _runtimeSetting.Token.LoginDateTime = DateTime.Now;
-                            DialogResult = DialogResult.OK;
+                            if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
+                            {
+                                _runtimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
+                                _runtimeSetting.UserRole = result.data;
+                                _runtimeSetting.Token.LoginDateTime = DateTime.Now;
+                                DialogResult = DialogResult.OK;
+                            }
+                            else
+                            {
+                                _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
+                                lblInfo.Text = $"没有找到TCO角色(18)";
+                            }
                         }
                         else
                         {
                             _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
-                            lblInfo.Text = $"没有找到TCO角色(18)";
+                            lblInfo.Text = $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}";
                         }
                     }
-                    else
-                    {
-                        _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
-                        lblInfo.Text = $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}";
-                    }
+                }
+                else
+                {
+                    lblInfo.Text = "站信息错误";
                 }
             }
-            else
+            catch (Exception)
             {
-                lblInfo.Text = "站信息错误";
+
+               
             }
         }
 
@@ -122,38 +130,36 @@ namespace Uixe.Watcher
             this.txtPassword.Focus();
         }
 
-        private async  Task ReloadTollInfoAsync()
+        private async Task ReloadTollInfoAsync()
         {
             if (!string.IsNullOrEmpty(txtPlazaId.Text))
             {
-                await Task.Run(async () =>
-                 {
-                     try
-                     {
-                         var plazainfo =await TollInfo.GetTollInfo(txtPlazaId.Text, true);
-                         _runtimeSetting.Plaza = plazainfo;
-                         this.Invoke((MethodInvoker)delegate
-                         {
-                             Properties.Settings.Default.Save();
-                             lblPlaza.Text = $"{plazainfo.station_name}车道监控";
-                             lblserver.Text = $"服务器IP:{plazainfo.ip } 站代码:{plazainfo.station_id}";
-                         });
-                         _cache.Set("plazaid", txtPlazaId.Text, TimeSpan.FromDays(30));
-                     }
-                     catch (Exception ex)
-                     {
-                         this.Invoke((MethodInvoker)delegate
-                         {
-                             lblserver.Text = "未能获取站信息" + ex.Message;
-                         });
-                     }
-                 });
+
+                try
+                {
+                    var plazainfo = await TollInfo.GetTollInfo(txtPlazaId.Text, true);
+                    _runtimeSetting.Plaza = plazainfo;
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        Properties.Settings.Default.Save();
+                        lblPlaza.Text = $"{plazainfo.station_name}车道监控";
+                        lblserver.Text = $"服务器IP:{plazainfo.ip } 站代码:{plazainfo.station_id}";
+                    });
+                    _cache.Set("plazaid", txtPlazaId.Text, TimeSpan.FromDays(30));
+                }
+                catch (Exception ex)
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        lblserver.Text = "未能获取站信息" + ex.Message;
+                    });
+                }
             }
             else
             {
                 lblserver.Text = "信息为空";
             }
-           
+
         }
 
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)

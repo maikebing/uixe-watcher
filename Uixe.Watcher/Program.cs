@@ -28,6 +28,7 @@ namespace Uixe.Watcher
                 {
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseWindowsFormsLifetime<frmMain>();
+                    webBuilder.UseUrls("http://0.0.0.0:5000/");
                 });
 
    

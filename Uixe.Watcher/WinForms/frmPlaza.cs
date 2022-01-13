@@ -373,9 +373,9 @@ namespace Uixe.Watcher
         /// <summary>
         /// 用户权限控制
         /// </summary>
-        private async void UserAccessControl()
+        private   void UserAccessControl()
         {
-            var p = await Uitls.TollInfo.GetTollInfo(Plaza?.id);
+            var p = Plaza;
             this.Text = string.Format($"{p.road_name}-{p.station_name}({p.id}) v{ Assembly.GetExecutingAssembly().GetName().Version}");
             this.Ribbon.ApplicationCaption = this.Text;
            
@@ -414,7 +414,10 @@ namespace Uixe.Watcher
         {
             this.Invoke((MethodInvoker)delegate
             {
-                this.txtStatus.Caption = text;
+                if (!this.IsDisposed && this.IsHandleCreated)
+                {
+                    this.txtStatus.Caption = text;
+                }
                 Application.DoEvents();
             });
         }
@@ -468,7 +471,7 @@ namespace Uixe.Watcher
                     Control[] cont = xtp.Controls.Find(plaza, true);
                     if (cont.Length > 0)
                     {
-                        ((Uixe.Watcher.Controls.LaneView)cont[0]).ShowLaneInfor(laneno, revdata);
+                        ((Uixe.Watcher.Controls.LaneView)cont[0]).ShowLaneInfor($"{plaza}{laneno}", revdata);
                     }
                 }
             }
