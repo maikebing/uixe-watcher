@@ -86,7 +86,7 @@ namespace Uixe.Watcher.Ring
         {
             try
             {
-                audioFileReader.PlaySync();
+                audioFileReader?.PlaySync();
             }
             catch (Exception)
             {

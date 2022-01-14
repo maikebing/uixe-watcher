@@ -67,16 +67,17 @@ namespace Uixe.Watcher.Dtos
         ///
         /// </summary>
         public MsgTcoTran MsgTcoTran { get; set; }
-
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
         [JsonConverter(typeof(StringEnumConverter))]
         public WATCHER_TYPE WatcherID { get; set; }
-
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
         [JsonConverter(typeof(StringEnumConverter))]
         public DlgType DlgType { get; set; }
     }
 
     public class MSG_TCOConfirm
     {
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
         [JsonConverter(typeof(StringEnumConverter))]
         public WATCHER_TYPE TCOType { get; set; }
 

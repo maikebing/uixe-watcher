@@ -35,6 +35,8 @@ namespace Uixe.Watcher.TCO
                     string pname = _plaza.id + _plaza.lanes[i].lane_no;
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
+                    tms.Plaza = _plaza;
+                    tms.Lane = _plaza.lanes[i];
                     t.Name = pname;
                     tms.Name = pname;
                     tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent
@@ -63,8 +65,9 @@ namespace Uixe.Watcher.TCO
                     WeightTCOConfirm tms = t.Tag as WeightTCOConfirm;
                     t.Text = string.Format("站:{1}车道{0}", mu.LaneNo, mu.Plaza);
                     tms.Show(mu);
+                    tms.Owner = this;
                     t.PageVisible = true;
-                    this.Visible = true;
+                    this.Show();
                     t.Focus();
                 }
             }

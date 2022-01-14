@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
+using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher
 {
@@ -16,39 +17,41 @@ namespace Uixe.Watcher
     public partial class frmShowTCOCall : XtraForm
     {
         private readonly Plaza _plaza;
-        private List<Lane> lstlane = new List<Lane>();
-        public frmShowTCOCall(Plaza plaza)
+        public new frmPlaza Owner { get; set; }
+        public frmShowTCOCall(Plaza plaza) : this()
         {
             _plaza = plaza;
-        }
-       
-        public frmShowTCOCall()
-        {
-            InitializeComponent();
             try
             {
                 this.tsTabs.TabPages.Clear();
-                
-            
-                    for (int i = 0; i < _plaza.lanes.Count; i++)
-                    {
-                        string pname = _plaza.id + lstlane[i].lane_no;
-                        XtraTabPage t = new XtraTabPage();
-                        TCOConfirm tms = new TCOConfirm();
-                        t.Name = pname;
-                        tms.Name = pname;
-                        tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent
-                        tms.Dock = DockStyle.Fill;
-                        t.Controls.Add(tms);
-                        t.Tag = tms;
-                        tsTabs.TabPages.Add(t);
-                        t.PageVisible = false;
-                    }
+                for (int i = 0; i < _plaza.lanes.Count; i++)
+                {
+                    string pname = _plaza.id + _plaza.lanes[i].lane_no;
+                    XtraTabPage t = new XtraTabPage();
+                    TCOConfirm tms = new TCOConfirm();
+                    tms.Plaza = _plaza;
+                    tms.Lane = _plaza.lanes[i];
+                    tms.Owner = Owner;
+                    t.Name = pname;
+                    tms.Name = pname;
+                    tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent
+                    tms.Dock = DockStyle.Fill;
+                    t.Controls.Add(tms);
+                    t.Tag = tms;
+                    tsTabs.TabPages.Add(t);
+                    t.PageVisible = false;
+                }
             }
             catch (Exception ex)
             {
-                
+
             }
+        }
+
+        public frmShowTCOCall()
+        {
+            InitializeComponent();
+          
         }
 
 
@@ -130,11 +133,10 @@ namespace Uixe.Watcher
 
         private void Submit(bool ok)
         {
-            //if (this.tsTabs.SelectedTabPage.Tag is TCOConfirm tms)
-            //{
-            //    //this.MQTTClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}", tms.GetAUS(ok)
-            //    ).Wait(TimeSpan.FromSeconds(10));
-            //}
+            if (this.tsTabs.SelectedTabPage.Tag is TCOConfirm tms)
+            {
+                _ = tms.Lane.TCO_Confirm(tms.GetAUS(ok));
+            }
         }
 
         private void RemoveNowTab()

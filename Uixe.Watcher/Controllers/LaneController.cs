@@ -48,12 +48,15 @@ namespace Uixe.Watcher.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ApiResult> emrc_main_tco_weight(string plazaid, MsgWeightTCOCALL msgWeight)
+        public async Task<ActionResult<ApiResult>> emrc_main_tco_weightAsync(string plazaid, MsgWeightTCOCALL msgWeight)
         {
             try
             {
-                var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
-                frm.ShowTCOInfo(msgWeight);
+                await Task.Run(() =>
+                {
+                    var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                    frm.ShowTCOInfo(msgWeight);
+                });
                 return Ok(new ApiResult(ApiCode.OK, "OK"));
             }
             catch (Exception)
@@ -65,13 +68,15 @@ namespace Uixe.Watcher.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ApiResult> emrc_main_tco_confirm(string plazaid, TCOCall msg)
+        public async Task<ActionResult<ApiResult>> emrc_main_tco_confirmAsync(string plazaid, TCOCall msg)
         {
             try
             {
-
-                var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
-                frm.ShowTCOInfo(msg);
+                await Task.Run(() =>
+                {
+                    var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                    frm.ShowTCOInfo(msg);
+                });
                 return Ok(new ApiResult(ApiCode.OK, "OK"));
             }
             catch (Exception)

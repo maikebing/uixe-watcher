@@ -74,30 +74,28 @@ namespace Uixe.Watcher
                 {
                     PlazaApi api = new(_runtimeSetting.Plaza.ip);
                     _runtimeSetting.Token = await api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
-                    if (_runtimeSetting.Token != null && _runtimeSetting.Token.code == 0)
+                    if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
                     {
                         var result = await api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
-                        if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
+                        if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
                         {
-                            if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
-                            {
-                                _runtimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
-                                _runtimeSetting.UserRole = result.data;
-                                _runtimeSetting.Token.LoginDateTime = DateTime.Now;
-                                DialogResult = DialogResult.OK;
-                            }
-                            else
-                            {
-                                _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
-                                lblInfo.Text = $"没有找到TCO角色(18)";
-                            }
+                            _runtimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
+                            _runtimeSetting.UserRole = result.data;
+                            _runtimeSetting.Token.LoginDateTime = DateTime.Now;
+                            DialogResult = DialogResult.OK;
                         }
                         else
                         {
                             _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
-                            lblInfo.Text = $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}";
+                            lblInfo.Text = $"没有找到TCO角色(18)";
                         }
                     }
+                    else
+                    {
+                        _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
+                        lblInfo.Text = $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}";
+                    }
+
                 }
                 else
                 {
@@ -142,8 +140,8 @@ namespace Uixe.Watcher
                     this.Invoke((MethodInvoker)delegate
                     {
                         Properties.Settings.Default.Save();
-                        lblPlaza.Text = $"{plazainfo.station_name}车道监控";
-                        lblserver.Text = $"服务器IP:{plazainfo.ip } 站代码:{plazainfo.station_id}";
+                        lblPlaza.Text = $"{plazainfo?.station_name??"(未获取到信息)"}车道监控";
+                        lblserver.Text = $"服务器IP:{plazainfo?.ip } 站代码:{plazainfo?.station_id}";
                     });
                     _cache.Set("plazaid", txtPlazaId.Text, TimeSpan.FromDays(30));
                 }

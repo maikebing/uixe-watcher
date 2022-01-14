@@ -27,7 +27,7 @@ namespace Uixe.Watcher.TCO
             {
                 IsConfirm = _IsConfirm,
                 TransNo = TCE.MsgTcoTran.TransNO,
-             //   TCOStaffID = _runtimeSetting.NowCollect?.UserId,
+               // TCOStaffID = Owner..NowCollect?.UserId,
                 DateTime = DateTime.UtcNow,
                 CarPlate = TCE.CarPlate,
                 AxleLastNo = int.Parse(TCE.CarAlex),

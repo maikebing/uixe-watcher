@@ -345,7 +345,7 @@ namespace Uixe.Watcher
         /// <returns></returns>
         public static byte[] ConvertToRgbHash(string data, string encoding = "UTF-8")
         {
-            using (MD5 md5 = new MD5CryptoServiceProvider())
+            using (MD5 md5 = MD5.Create())
             {
                 byte[] bytes_md5_in = Encoding.GetEncoding(encoding).GetBytes(data);
                 return md5.ComputeHash(bytes_md5_in);
@@ -364,13 +364,11 @@ namespace Uixe.Watcher
         /// <returns></returns>
         public static bool CheckSign(string publicKey, string data, string sign, string encoding = "UTF-8")
         {
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            RSACryptoServiceProvider rsa = new();
             rsa.FromPublicKeyJavaString(publicKey);
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-
             byte[] Data = Encoding.GetEncoding(encoding).GetBytes(data);
             byte[] rgbSignature = Convert.FromBase64String(sign);
-            if (rsa.VerifyData(Data, md5, rgbSignature))
+            if (rsa.VerifyData(Data, MD5.Create(), rgbSignature))
             {
                 return true;
             }

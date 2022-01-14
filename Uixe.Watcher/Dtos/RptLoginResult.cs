@@ -4,12 +4,18 @@ namespace Uixe.Watcher.Dtos
 {
     public enum ApiCode:int
     {
+        Error=0,
          OK=200,
          NotFound=404,
          BadRequst=500
     }
     public class ApiResult
     {
+        public ApiResult()
+        {
+            code = 0;
+            msg = null;
+        }
         public ApiResult(ApiCode _code, string _msg)
         {
             code =(int)_code;

@@ -24,7 +24,6 @@ using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher
 {
-    [ServiceLifetime(ServiceLifetime.Transient)]
     public partial class frmPlaza : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         [StructLayout(LayoutKind.Sequential)]
@@ -47,7 +46,7 @@ namespace Uixe.Watcher
  
         #region 加载
 
-        public frmPlaza(     )
+        public frmPlaza()
         {
             InitializeComponent();
         }

@@ -66,14 +66,14 @@ namespace Uixe.Watcher
         static bool _console = false;
         private static void ConfigConsole()
         {
-            if (!_console)
-            {
-                _console = true;
-                if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
-                {
-                    ConsoleWindow.Show();
-                }
-            }
+            //if (!_console)
+            //{
+            //    _console = true;
+            //    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+            //    {
+            //        ConsoleWindow.Show();
+            //    }
+            //}
         }
     }
 }

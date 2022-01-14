@@ -70,7 +70,6 @@ namespace Uixe.Watcher
                 case PlaceType.Plaza:
                     logger.LogInformation($"单站运行{_setting.PlaceId}");
                     _login.PlazaId = _setting.PlaceId;
-
                     this.Visible = false;
                     Login(_login.PlazaId);
                     break;
@@ -89,9 +88,10 @@ namespace Uixe.Watcher
                 switch (_setting.PlaceType)
                 {
                     case PlaceType.Plaza:
-                       var frm=  _cache.GetOrCreate($"{nameof(frmPlaza)}_{plazaId}",f=>
+                        string name = $"{nameof(frmPlaza)}_{plazaId}";
+                       var frm=  _cache.GetOrCreate(name, f=>
                         {
-                            var frm = _scope.ServiceProvider.GetRequiredService<frmPlaza>();
+                            var frm =  new frmPlaza() { Name= name};
                             frm._runtimeSetting = _cache.Get<RuntimeSetting>(plazaId);
                             frm.FormClosed += Frm_FormClosed;
                             return frm;

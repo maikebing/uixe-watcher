@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Ring;
+using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher.TCO
 {
@@ -16,11 +17,7 @@ namespace Uixe.Watcher.TCO
         {
             try
             {
-                //if (tms != null)
-                //{
-                //    tms.MqttClient.PublishAsync($"/tco/confirm/650{tms.TCE.Network}{tms.TCE.Plaza}{tms.TCE.LaneNo}", tms.GetTCOConfirm(ok)
-                //      ).Wait(TimeSpan.FromSeconds(10));
-                //}
+                _ = tms.Lane.TCO_Confirm(tms.GetTCOConfirm(ok));
             }
             catch (Exception ex)
             {
@@ -29,27 +26,25 @@ namespace Uixe.Watcher.TCO
         }
         public static void ShowTCOInfo(this frmPlaza form, MsgWeightTCOCALL msg)
         {
-            lock (form)
+            form.Invoke(() =>
             {
-
                 if (form.WeightTCOCall == null || form.WeightTCOCall.IsDisposed || !form.WeightTCOCall.IsHandleCreated)
                 {
                     form.WeightTCOCall = new frmWeightTCOCall(form.Plaza);
-
                     form.WeightTCOCall.LoadInfo();
                     form.WeightTCOCall.Hide();
                 }
                 form.WeightTCOCall.ShowTCOMsg(msg);
-                Task.Run(PlayUitls.PlayRing);
 
-            }
+            });
+            Task.Run(PlayUitls.PlayRing);
         }
 
 
         public static void ShowTCOInfo(this frmPlaza form, TCOCall call)
         {
 
-            lock (form)
+            form.Invoke(() =>
             {
 
                 if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
@@ -62,7 +57,7 @@ namespace Uixe.Watcher.TCO
                 }
                 form._tcocall.Show(call);
                 Task.Run(PlayUitls.PlayRing);
-            }
+            });
         }
 
 
@@ -70,38 +65,36 @@ namespace Uixe.Watcher.TCO
         {
             try
             {
-                lock (form)
-                {
-                    try
-                    {
-                        if (form.WeightTCOCall != null && !form.WeightTCOCall.IsDisposed && form.WeightTCOCall.IsHandleCreated)
-                        {
-                            if (form.WeightTCOCall.InvokeRequired)
-                            {
-                                form.WeightTCOCall.Invoke((MethodInvoker)delegate { form.CloseTCOCall(); });
-                            }
-                            else
-                            {
-                                form.WeightTCOCall.Hide();
-                            }
-                        }
 
-                        if (form._tcocall != null && !form._tcocall.IsDisposed && form._tcocall.IsHandleCreated)
+                try
+                {
+                    if (form.WeightTCOCall != null && !form.WeightTCOCall.IsDisposed && form.WeightTCOCall.IsHandleCreated)
+                    {
+                        if (form.WeightTCOCall.InvokeRequired)
                         {
-                            if (form._tcocall.InvokeRequired)
-                            {
-                                form._tcocall.Invoke((MethodInvoker)delegate { form.CloseTCOCall(); });
-                            }
-                            else
-                            {
-                                form._tcocall.Hide();
-                            }
+                            form.WeightTCOCall.Invoke((MethodInvoker)delegate { form.CloseTCOCall(); });
+                        }
+                        else
+                        {
+                            form.WeightTCOCall.Hide();
                         }
                     }
-                    catch (Exception ex)
+
+                    if (form._tcocall != null && !form._tcocall.IsDisposed && form._tcocall.IsHandleCreated)
                     {
-                        Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
+                        if (form._tcocall.InvokeRequired)
+                        {
+                            form._tcocall.Invoke((MethodInvoker)delegate { form.CloseTCOCall(); });
+                        }
+                        else
+                        {
+                            form._tcocall.Hide();
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
                 }
             }
             catch (Exception ex)

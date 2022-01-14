@@ -18,6 +18,8 @@ namespace Uixe.Watcher
         public bool CanDo { get; set; }
         public Lane Lane { get; set; }
         public Plaza Plaza {get;set;}
+        public frmPlaza Owner { get;   set; }
+
         public bool CheckPlazaInfo()
         {
             bool ret = true;
@@ -59,7 +61,7 @@ namespace Uixe.Watcher
             tcoPictureBox1.ImageLocation = url;
             tcoPictureBox1.ImageLocation = url;
             keyItem_Vehicle_Types_BindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
-            _pbindingSource1.DataSource = uixeClient.GetProvCodes(Plaza.ip);
+            _pbindingSource1.DataSource =  uixeClient.GetProvCodes(Plaza.ip);
             _pbindingSource1.ResetCurrentItem();
             cbxProv.EditValue = 65;
             pLazaBindingSource.ResetCurrentItem();
