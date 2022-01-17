@@ -65,21 +65,22 @@
 
   <ItemGroup>
     <PackageReference Include="CyotekImageBox" Version="2.0.0-beta.1" />
-    <PackageReference Include="FluentFTP" Version="35.2.3" />
-    <PackageReference Include="LibVLCSharp.WinForms" Version="3.6.5" />
+    <PackageReference Include="FluentFTP" Version="36.1.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" />
     <PackageReference Include="MonkeyCache.LiteDB" Version="1.5.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
-    <PackageReference Include="RestSharp" Version="107.0.2" />
+    <PackageReference Include="RestSharp" Version="107.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="DevExpress.Win.Design" Version="21.2.*-*" />
 		<PackageReference Include="System.Speech" Version="6.0.0" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
-		<PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.16" />
 		<PackageReference Include="WindowsFirewallHelper" Version="2.2.0.86" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\WinFormsRtspPlayer\WinFormsRtspPlayer.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Properties\Settings.Designer.cs">
