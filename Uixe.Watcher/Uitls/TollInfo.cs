@@ -1,5 +1,4 @@
-﻿using MonkeyCache.LiteDB;
-using RestSharp;
+﻿using RestSharp;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -21,6 +20,19 @@ namespace Uixe.Watcher.Uitls
                 plaza1 = Newtonsoft.Json.JsonConvert.DeserializeObject<Plaza>(response.Content);
             }
             return plaza1;
+        }
+        public static async Task<whoiam> Guesswhoiam()
+        {
+            whoiam whoiam = null;
+             var client = new RestClient("http://10.165.70.45:5000/").AddDefaultHeader(KnownHeaders.Accept, "*/*");
+            var request = new RestRequest("/guesswhoiam", Method.Post).AddHeader("Content-Type", "application/json");
+            var response = await client.ExecutePostAsync(request);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                Debug.WriteLine(response.Content);
+                whoiam = Newtonsoft.Json.JsonConvert.DeserializeObject<whoiam>(response.Content);
+            }
+            return whoiam;
         }
     }
 }

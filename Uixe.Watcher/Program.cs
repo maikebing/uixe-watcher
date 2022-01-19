@@ -1,6 +1,7 @@
 ﻿using DevExpress.LookAndFeel;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Diagnostics;
@@ -26,9 +27,13 @@ namespace Uixe.Watcher
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureAppConfiguration( config=>
+                    {
+                        config.AddJsonFile(System.IO.Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments), $"appsettings.User.json"),true,true);
+                    });
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseWindowsFormsLifetime<frmMain>();
-                    webBuilder.UseUrls("http://0.0.0.0:5000/");
+                    webBuilder.UseUrls("http://0.0.0.0:9999/");
                 });
 
    

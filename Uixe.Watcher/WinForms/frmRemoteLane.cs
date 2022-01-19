@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using LibVLCSharp.Shared;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -38,14 +37,9 @@ namespace Uixe.Watcher
                 this.keyboard1.Port = Properties.Settings.Default.KeyboardPort;
                   try
                 {
-                    Core.Initialize();
                     if (!string.IsNullOrEmpty(_lane.CameraRtspUrl))
                     {
-                        var LibVLC = new LibVLC();
-                        var media = new Media(LibVLC,
-                            new Uri(_lane.CameraRtspUrl));
-                        this.videoView1.MediaPlayer = new MediaPlayer(media) { EnableHardwareDecoding = true };
-                        this.videoView1.MediaPlayer.Play();
+                        videoView1.StartPlay(_lane.CameraRtspUrl);
                     }
                 }
                 catch (Exception ex)

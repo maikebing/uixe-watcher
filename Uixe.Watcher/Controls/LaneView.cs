@@ -31,7 +31,7 @@ namespace Uixe.Watcher.Controls
             var _ls = new List<LaneInfo>();
             item.lanes?.ForEach(l =>
             {
-                _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip) { CameraRtspUrl = l.cameraRtspUrl });
+                _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip) );
             });
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());
@@ -148,9 +148,15 @@ namespace Uixe.Watcher.Controls
                     lane.Show(this);
                 }
             }
-            catch
+            catch (Exception ex)
             {
+
             }
+        }
+
+        private void btnPing_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }

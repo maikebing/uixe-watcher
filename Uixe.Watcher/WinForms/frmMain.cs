@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
+using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher
 {
@@ -61,22 +62,24 @@ namespace Uixe.Watcher
 
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private async void frmMain_Load(object sender, EventArgs e)
         {
-         
 
-            switch (_setting.PlaceType)
+            var who = await TollInfo.Guesswhoiam();
+            this.Text = who?.name;
+            if (who?.plazas.Count == 1)
             {
-                case PlaceType.Plaza:
-                    logger.LogInformation($"单站运行{_setting.PlaceId}");
-                    _login.PlazaId = _setting.PlaceId;
-                    this.Visible = false;
-                    Login(_login.PlazaId);
-                    break;
-                default:
-                    break;
+                logger.LogInformation($"单站运行{_setting.PlaceId}");
+                _login.PlazaId = who?.plazas.FirstOrDefault()?.id;
+                this.Visible = false;
+                Login(_login.PlazaId);
             }
-           
+            else
+            {
+
+            }
+
+
         }
 
 

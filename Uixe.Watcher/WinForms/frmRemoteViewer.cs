@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using LibVLCSharp.Shared;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -29,14 +28,7 @@ namespace Uixe.Watcher
             rtspurl = lane.CameraRtspUrl;
             InitializeComponent();
         }
-
-        public frmRemoteViewer(Plaza plaza, Lane lane)
-        {
-            baseinfo = $"车道远程桌面 {plaza.station_name}({ lane.lane_id}){lane.lane_no}   {lane.ip} ";
-            ipaddresss = lane.ip;
-            rtspurl = lane.cameraRtspUrl;
-        }
-
+ 
         private async void frmRemoteLane_Load(object sender, EventArgs e)
         {
             var vnc = await VNCUtils.Login(this.vncScreen, ipaddresss, 5900, "kissme");
@@ -49,12 +41,7 @@ namespace Uixe.Watcher
                 
                     if (!string.IsNullOrEmpty(rtspurl))
                     {
-                        Core.Initialize();
-                        var LibVLC = new LibVLC();
-                        var media = new Media(LibVLC,
-                            new Uri(rtspurl));
-                        this.videoView1.MediaPlayer = new MediaPlayer(media) { EnableHardwareDecoding = true };
-                        this.videoView1.MediaPlayer.Play();
+                        videoView1.StartPlay(rtspurl);
                     }
                 }
                 catch (Exception ex)

@@ -88,8 +88,10 @@
             // 
             this.gcExitLanes.DataSource = this.laneInfoBindingSource;
             this.gcExitLanes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcExitLanes.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcExitLanes.Location = new System.Drawing.Point(0, 0);
             this.gcExitLanes.MainView = this.gvExitLanes;
+            this.gcExitLanes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcExitLanes.MenuManager = this.barManager1;
             this.gcExitLanes.Name = "gcExitLanes";
             this.gcExitLanes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -97,7 +99,7 @@
             this.rpbExit,
             this.cardBoxControlRepositoryItem2,
             this.repositoryItemTimeEdit1});
-            this.gcExitLanes.Size = new System.Drawing.Size(1518, 576);
+            this.gcExitLanes.Size = new System.Drawing.Size(1771, 672);
             this.gcExitLanes.TabIndex = 9;
             this.gcExitLanes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvExitLanes});
@@ -128,7 +130,7 @@
             this.gvExitLanes.Appearance.Empty.BackColor = System.Drawing.Color.White;
             this.gvExitLanes.Appearance.Empty.Options.UseBackColor = true;
             this.gvExitLanes.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(242)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.EvenRow.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.gvExitLanes.Appearance.EvenRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.gvExitLanes.Appearance.EvenRow.ForeColor = System.Drawing.Color.PaleVioletRed;
             this.gvExitLanes.Appearance.EvenRow.Options.UseBackColor = true;
             this.gvExitLanes.Appearance.EvenRow.Options.UseFont = true;
@@ -181,7 +183,7 @@
             this.gvExitLanes.Appearance.GroupPanel.Options.UseForeColor = true;
             this.gvExitLanes.Appearance.GroupRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(247)))));
             this.gvExitLanes.Appearance.GroupRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(247)))));
-            this.gvExitLanes.Appearance.GroupRow.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.gvExitLanes.Appearance.GroupRow.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.gvExitLanes.Appearance.GroupRow.ForeColor = System.Drawing.Color.Black;
             this.gvExitLanes.Appearance.GroupRow.Options.UseBackColor = true;
             this.gvExitLanes.Appearance.GroupRow.Options.UseBorderColor = true;
@@ -190,7 +192,7 @@
             this.gvExitLanes.Appearance.HeaderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
             this.gvExitLanes.Appearance.HeaderPanel.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(228)))));
             this.gvExitLanes.Appearance.HeaderPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.gvExitLanes.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.gvExitLanes.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
             this.gvExitLanes.Appearance.HeaderPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.gvExitLanes.Appearance.HeaderPanel.Options.UseBackColor = true;
@@ -204,7 +206,7 @@
             this.gvExitLanes.Appearance.HorzLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(127)))), ((int)(((byte)(196)))));
             this.gvExitLanes.Appearance.HorzLine.Options.UseBackColor = true;
             this.gvExitLanes.Appearance.OddRow.BackColor = System.Drawing.Color.White;
-            this.gvExitLanes.Appearance.OddRow.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.gvExitLanes.Appearance.OddRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.gvExitLanes.Appearance.OddRow.ForeColor = System.Drawing.Color.Navy;
             this.gvExitLanes.Appearance.OddRow.Options.UseBackColor = true;
             this.gvExitLanes.Appearance.OddRow.Options.UseFont = true;
@@ -253,7 +255,6 @@
             this.colVPR,
             this.colCamera,
             this.colNetWork});
-            this.gvExitLanes.DetailHeight = 300;
             this.gvExitLanes.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gvExitLanes.GridControl = this.gcExitLanes;
             this.gvExitLanes.Name = "gvExitLanes";
@@ -265,7 +266,7 @@
             this.gvExitLanes.OptionsView.EnableAppearanceEvenRow = true;
             this.gvExitLanes.OptionsView.EnableAppearanceOddRow = true;
             this.gvExitLanes.OptionsView.ShowGroupPanel = false;
-            this.gvExitLanes.RowHeight = 34;
+            this.gvExitLanes.RowHeight = 40;
             this.gvExitLanes.RowSeparatorHeight = 3;
             this.gvExitLanes.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gv_RowStyle);
             // 
@@ -273,7 +274,6 @@
             // 
             this.colLaneNo.Caption = "车道";
             this.colLaneNo.FieldName = "LaneName";
-            this.colLaneNo.MinWidth = 17;
             this.colLaneNo.Name = "colLaneNo";
             this.colLaneNo.OptionsColumn.AllowEdit = false;
             this.colLaneNo.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -281,13 +281,12 @@
             this.colLaneNo.OptionsFilter.AllowFilter = false;
             this.colLaneNo.Visible = true;
             this.colLaneNo.VisibleIndex = 0;
-            this.colLaneNo.Width = 48;
+            this.colLaneNo.Width = 56;
             // 
             // colUserName
             // 
             this.colUserName.Caption = "姓名";
             this.colUserName.FieldName = "CollName";
-            this.colUserName.MinWidth = 17;
             this.colUserName.Name = "colUserName";
             this.colUserName.OptionsColumn.AllowEdit = false;
             this.colUserName.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -295,13 +294,12 @@
             this.colUserName.OptionsFilter.AllowFilter = false;
             this.colUserName.Visible = true;
             this.colUserName.VisibleIndex = 1;
-            this.colUserName.Width = 119;
+            this.colUserName.Width = 139;
             // 
             // coluserNumber
             // 
             this.coluserNumber.Caption = "工号";
             this.coluserNumber.FieldName = "CollNo";
-            this.coluserNumber.MinWidth = 17;
             this.coluserNumber.Name = "coluserNumber";
             this.coluserNumber.OptionsColumn.AllowEdit = false;
             this.coluserNumber.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -309,13 +307,12 @@
             this.coluserNumber.OptionsFilter.AllowFilter = false;
             this.coluserNumber.Visible = true;
             this.coluserNumber.VisibleIndex = 2;
-            this.coluserNumber.Width = 87;
+            this.coluserNumber.Width = 101;
             // 
             // colWorkState
             // 
             this.colWorkState.Caption = "工作状态";
             this.colWorkState.FieldName = "ClientMsg";
-            this.colWorkState.MinWidth = 17;
             this.colWorkState.Name = "colWorkState";
             this.colWorkState.OptionsColumn.AllowEdit = false;
             this.colWorkState.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -323,13 +320,12 @@
             this.colWorkState.OptionsFilter.AllowFilter = false;
             this.colWorkState.Visible = true;
             this.colWorkState.VisibleIndex = 3;
-            this.colWorkState.Width = 145;
+            this.colWorkState.Width = 169;
             // 
             // colCarKind1
             // 
             this.colCarKind1.Caption = "车型";
             this.colCarKind1.FieldName = "CarType";
-            this.colCarKind1.MinWidth = 17;
             this.colCarKind1.Name = "colCarKind1";
             this.colCarKind1.OptionsColumn.AllowEdit = false;
             this.colCarKind1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -337,13 +333,12 @@
             this.colCarKind1.OptionsFilter.AllowFilter = false;
             this.colCarKind1.Visible = true;
             this.colCarKind1.VisibleIndex = 4;
-            this.colCarKind1.Width = 51;
+            this.colCarKind1.Width = 59;
             // 
             // colCharge1
             // 
             this.colCharge1.Caption = "金额";
             this.colCharge1.FieldName = "Money";
-            this.colCharge1.MinWidth = 17;
             this.colCharge1.Name = "colCharge1";
             this.colCharge1.OptionsColumn.AllowEdit = false;
             this.colCharge1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -351,13 +346,12 @@
             this.colCharge1.OptionsFilter.AllowFilter = false;
             this.colCharge1.Visible = true;
             this.colCharge1.VisibleIndex = 5;
-            this.colCharge1.Width = 54;
+            this.colCharge1.Width = 63;
             // 
             // colCarType
             // 
             this.colCarType.Caption = "车种";
             this.colCarType.FieldName = "CarKind";
-            this.colCarType.MinWidth = 17;
             this.colCarType.Name = "colCarType";
             this.colCarType.OptionsColumn.AllowEdit = false;
             this.colCarType.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -365,13 +359,12 @@
             this.colCarType.OptionsFilter.AllowFilter = false;
             this.colCarType.Visible = true;
             this.colCarType.VisibleIndex = 6;
-            this.colCarType.Width = 73;
+            this.colCarType.Width = 85;
             // 
             // colWorkMode
             // 
             this.colWorkMode.Caption = "工作模式";
             this.colWorkMode.FieldName = "WrokMode";
-            this.colWorkMode.MinWidth = 17;
             this.colWorkMode.Name = "colWorkMode";
             this.colWorkMode.OptionsColumn.AllowEdit = false;
             this.colWorkMode.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -379,20 +372,20 @@
             this.colWorkMode.OptionsFilter.AllowFilter = false;
             this.colWorkMode.Visible = true;
             this.colWorkMode.VisibleIndex = 7;
-            this.colWorkMode.Width = 90;
+            this.colWorkMode.Width = 105;
             // 
             // gcCardBoxExit
             // 
             this.gcCardBoxExit.Caption = "卡箱";
             this.gcCardBoxExit.ColumnEdit = this.cardBoxControlRepositoryItem2;
             this.gcCardBoxExit.FieldName = "CardBox";
-            this.gcCardBoxExit.MaxWidth = 69;
-            this.gcCardBoxExit.MinWidth = 34;
+            this.gcCardBoxExit.MaxWidth = 80;
+            this.gcCardBoxExit.MinWidth = 40;
             this.gcCardBoxExit.Name = "gcCardBoxExit";
             this.gcCardBoxExit.OptionsColumn.AllowEdit = false;
             this.gcCardBoxExit.Visible = true;
             this.gcCardBoxExit.VisibleIndex = 9;
-            this.gcCardBoxExit.Width = 69;
+            this.gcCardBoxExit.Width = 80;
             // 
             // cardBoxControlRepositoryItem2
             // 
@@ -406,7 +399,6 @@
             this.colStartWorkTime.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.colStartWorkTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colStartWorkTime.FieldName = "JobBeginTime";
-            this.colStartWorkTime.MinWidth = 17;
             this.colStartWorkTime.Name = "colStartWorkTime";
             this.colStartWorkTime.OptionsColumn.AllowEdit = false;
             this.colStartWorkTime.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
@@ -414,15 +406,15 @@
             this.colStartWorkTime.OptionsFilter.AllowFilter = false;
             this.colStartWorkTime.Visible = true;
             this.colStartWorkTime.VisibleIndex = 8;
-            this.colStartWorkTime.Width = 171;
+            this.colStartWorkTime.Width = 199;
             // 
             // colyupengdeng
             // 
             this.colyupengdeng.Caption = "雨棚灯";
             this.colyupengdeng.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colyupengdeng.FieldName = "YuPengDeng";
-            this.colyupengdeng.MaxWidth = 47;
-            this.colyupengdeng.MinWidth = 33;
+            this.colyupengdeng.MaxWidth = 55;
+            this.colyupengdeng.MinWidth = 38;
             this.colyupengdeng.Name = "colyupengdeng";
             this.colyupengdeng.OptionsColumn.AllowEdit = false;
             this.colyupengdeng.OptionsColumn.AllowSize = false;
@@ -431,7 +423,7 @@
             this.colyupengdeng.OptionsFilter.AllowFilter = false;
             this.colyupengdeng.Visible = true;
             this.colyupengdeng.VisibleIndex = 10;
-            this.colyupengdeng.Width = 33;
+            this.colyupengdeng.Width = 38;
             // 
             // repositoryItemPictureEdit1
             // 
@@ -442,100 +434,100 @@
             // 
             this.colCoil1.Caption = "触发";
             this.colCoil1.FieldName = "Coil1";
-            this.colCoil1.MaxWidth = 47;
-            this.colCoil1.MinWidth = 33;
+            this.colCoil1.MaxWidth = 55;
+            this.colCoil1.MinWidth = 38;
             this.colCoil1.Name = "colCoil1";
             this.colCoil1.OptionsColumn.AllowEdit = false;
             this.colCoil1.OptionsColumn.ReadOnly = true;
             this.colCoil1.Visible = true;
             this.colCoil1.VisibleIndex = 20;
-            this.colCoil1.Width = 33;
+            this.colCoil1.Width = 38;
             // 
             // colCoil2
             // 
             this.colCoil2.Caption = "交易";
             this.colCoil2.FieldName = "Coil2";
-            this.colCoil2.MaxWidth = 47;
-            this.colCoil2.MinWidth = 33;
+            this.colCoil2.MaxWidth = 55;
+            this.colCoil2.MinWidth = 38;
             this.colCoil2.Name = "colCoil2";
             this.colCoil2.OptionsColumn.AllowEdit = false;
             this.colCoil2.OptionsColumn.ReadOnly = true;
             this.colCoil2.Visible = true;
             this.colCoil2.VisibleIndex = 21;
-            this.colCoil2.Width = 33;
+            this.colCoil2.Width = 38;
             // 
             // colRSU
             // 
             this.colRSU.FieldName = "RSU";
-            this.colRSU.MaxWidth = 47;
-            this.colRSU.MinWidth = 33;
+            this.colRSU.MaxWidth = 55;
+            this.colRSU.MinWidth = 38;
             this.colRSU.Name = "colRSU";
             this.colRSU.OptionsColumn.AllowEdit = false;
             this.colRSU.OptionsColumn.ReadOnly = true;
             this.colRSU.Visible = true;
             this.colRSU.VisibleIndex = 19;
-            this.colRSU.Width = 33;
+            this.colRSU.Width = 38;
             // 
             // colYellow
             // 
             this.colYellow.Caption = "小黄人";
             this.colYellow.FieldName = "Yellow";
-            this.colYellow.MaxWidth = 47;
-            this.colYellow.MinWidth = 33;
+            this.colYellow.MaxWidth = 55;
+            this.colYellow.MinWidth = 38;
             this.colYellow.Name = "colYellow";
             this.colYellow.OptionsColumn.AllowEdit = false;
             this.colYellow.OptionsColumn.ReadOnly = true;
             this.colYellow.Visible = true;
             this.colYellow.VisibleIndex = 26;
-            this.colYellow.Width = 38;
+            this.colYellow.Width = 44;
             // 
             // gcWeightStatus
             // 
             this.gcWeightStatus.Caption = "称台";
             this.gcWeightStatus.FieldName = "Weight";
-            this.gcWeightStatus.MaxWidth = 47;
-            this.gcWeightStatus.MinWidth = 33;
+            this.gcWeightStatus.MaxWidth = 55;
+            this.gcWeightStatus.MinWidth = 38;
             this.gcWeightStatus.Name = "gcWeightStatus";
             this.gcWeightStatus.OptionsColumn.AllowEdit = false;
             this.gcWeightStatus.OptionsColumn.ReadOnly = true;
             this.gcWeightStatus.Visible = true;
             this.gcWeightStatus.VisibleIndex = 11;
-            this.gcWeightStatus.Width = 33;
+            this.gcWeightStatus.Width = 38;
             // 
             // gcReaderStatus
             // 
             this.gcReaderStatus.Caption = "读卡器";
             this.gcReaderStatus.ColumnEdit = this.repositoryItemPictureEdit1;
             this.gcReaderStatus.FieldName = "Reader";
-            this.gcReaderStatus.MaxWidth = 47;
-            this.gcReaderStatus.MinWidth = 33;
+            this.gcReaderStatus.MaxWidth = 55;
+            this.gcReaderStatus.MinWidth = 38;
             this.gcReaderStatus.Name = "gcReaderStatus";
             this.gcReaderStatus.OptionsColumn.AllowEdit = false;
             this.gcReaderStatus.OptionsColumn.ReadOnly = true;
             this.gcReaderStatus.Visible = true;
             this.gcReaderStatus.VisibleIndex = 13;
-            this.gcReaderStatus.Width = 33;
+            this.gcReaderStatus.Width = 38;
             // 
             // colQRPay
             // 
             this.colQRPay.Caption = "移动支付";
             this.colQRPay.FieldName = "QRPay";
-            this.colQRPay.MaxWidth = 47;
-            this.colQRPay.MinWidth = 33;
+            this.colQRPay.MaxWidth = 55;
+            this.colQRPay.MinWidth = 38;
             this.colQRPay.Name = "colQRPay";
             this.colQRPay.OptionsColumn.AllowEdit = false;
             this.colQRPay.OptionsColumn.ReadOnly = true;
             this.colQRPay.Visible = true;
             this.colQRPay.VisibleIndex = 24;
-            this.colQRPay.Width = 41;
+            this.colQRPay.Width = 48;
             // 
             // Coil3
             // 
             this.Coil3.Caption = "抓拍";
             this.Coil3.ColumnEdit = this.repositoryItemPictureEdit1;
             this.Coil3.FieldName = "Coil3";
-            this.Coil3.MaxWidth = 47;
-            this.Coil3.MinWidth = 33;
+            this.Coil3.MaxWidth = 55;
+            this.Coil3.MinWidth = 38;
             this.Coil3.Name = "Coil3";
             this.Coil3.OptionsColumn.AllowEdit = false;
             this.Coil3.OptionsColumn.AllowSize = false;
@@ -543,15 +535,15 @@
             this.Coil3.OptionsFilter.AllowFilter = false;
             this.Coil3.Visible = true;
             this.Coil3.VisibleIndex = 12;
-            this.Coil3.Width = 33;
+            this.Coil3.Width = 38;
             // 
             // colJiaoTong
             // 
             this.colJiaoTong.Caption = "交通灯";
             this.colJiaoTong.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colJiaoTong.FieldName = "JiaoTongDeng";
-            this.colJiaoTong.MaxWidth = 47;
-            this.colJiaoTong.MinWidth = 33;
+            this.colJiaoTong.MaxWidth = 55;
+            this.colJiaoTong.MinWidth = 38;
             this.colJiaoTong.Name = "colJiaoTong";
             this.colJiaoTong.OptionsColumn.AllowEdit = false;
             this.colJiaoTong.OptionsColumn.AllowSize = false;
@@ -560,15 +552,15 @@
             this.colJiaoTong.OptionsFilter.AllowFilter = false;
             this.colJiaoTong.Visible = true;
             this.colJiaoTong.VisibleIndex = 15;
-            this.colJiaoTong.Width = 33;
+            this.colJiaoTong.Width = 38;
             // 
             // colPrint
             // 
             this.colPrint.Caption = "打印机";
             this.colPrint.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colPrint.FieldName = "Printer";
-            this.colPrint.MaxWidth = 47;
-            this.colPrint.MinWidth = 33;
+            this.colPrint.MaxWidth = 55;
+            this.colPrint.MinWidth = 38;
             this.colPrint.Name = "colPrint";
             this.colPrint.OptionsColumn.AllowEdit = false;
             this.colPrint.OptionsColumn.AllowSize = false;
@@ -577,15 +569,15 @@
             this.colPrint.OptionsFilter.AllowFilter = false;
             this.colPrint.Visible = true;
             this.colPrint.VisibleIndex = 14;
-            this.colPrint.Width = 33;
+            this.colPrint.Width = 38;
             // 
             // Coil4
             // 
             this.Coil4.Caption = "离开";
             this.Coil4.ColumnEdit = this.repositoryItemPictureEdit1;
             this.Coil4.FieldName = "Coil4";
-            this.Coil4.MaxWidth = 47;
-            this.Coil4.MinWidth = 33;
+            this.Coil4.MaxWidth = 55;
+            this.Coil4.MinWidth = 38;
             this.Coil4.Name = "Coil4";
             this.Coil4.OptionsColumn.AllowEdit = false;
             this.Coil4.OptionsColumn.AllowSize = false;
@@ -594,15 +586,15 @@
             this.Coil4.OptionsFilter.AllowFilter = false;
             this.Coil4.Visible = true;
             this.Coil4.VisibleIndex = 17;
-            this.Coil4.Width = 33;
+            this.Coil4.Width = 38;
             // 
             // colLanGan
             // 
             this.colLanGan.Caption = "栏杆";
             this.colLanGan.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colLanGan.FieldName = "LanGan";
-            this.colLanGan.MaxWidth = 47;
-            this.colLanGan.MinWidth = 33;
+            this.colLanGan.MaxWidth = 55;
+            this.colLanGan.MinWidth = 38;
             this.colLanGan.Name = "colLanGan";
             this.colLanGan.OptionsColumn.AllowEdit = false;
             this.colLanGan.OptionsColumn.AllowSize = false;
@@ -611,54 +603,54 @@
             this.colLanGan.OptionsFilter.AllowFilter = false;
             this.colLanGan.Visible = true;
             this.colLanGan.VisibleIndex = 16;
-            this.colLanGan.Width = 33;
+            this.colLanGan.Width = 38;
             // 
             // colBaoJing
             // 
             this.colBaoJing.Caption = "黄闪";
             this.colBaoJing.FieldName = "BaoJing";
-            this.colBaoJing.MaxWidth = 47;
-            this.colBaoJing.MinWidth = 33;
+            this.colBaoJing.MaxWidth = 55;
+            this.colBaoJing.MinWidth = 38;
             this.colBaoJing.Name = "colBaoJing";
             this.colBaoJing.OptionsColumn.AllowEdit = false;
             this.colBaoJing.OptionsColumn.ReadOnly = true;
             this.colBaoJing.Visible = true;
             this.colBaoJing.VisibleIndex = 22;
-            this.colBaoJing.Width = 33;
+            this.colBaoJing.Width = 38;
             // 
             // colVPR
             // 
             this.colVPR.Caption = "车牌识别";
             this.colVPR.FieldName = "VPR";
-            this.colVPR.MaxWidth = 47;
-            this.colVPR.MinWidth = 33;
+            this.colVPR.MaxWidth = 55;
+            this.colVPR.MinWidth = 38;
             this.colVPR.Name = "colVPR";
             this.colVPR.OptionsColumn.AllowEdit = false;
             this.colVPR.OptionsColumn.ReadOnly = true;
             this.colVPR.Visible = true;
             this.colVPR.VisibleIndex = 25;
-            this.colVPR.Width = 45;
+            this.colVPR.Width = 52;
             // 
             // colCamera
             // 
             this.colCamera.Caption = "车道摄像机";
             this.colCamera.FieldName = "Camera";
-            this.colCamera.MaxWidth = 47;
-            this.colCamera.MinWidth = 33;
+            this.colCamera.MaxWidth = 55;
+            this.colCamera.MinWidth = 38;
             this.colCamera.Name = "colCamera";
             this.colCamera.OptionsColumn.AllowEdit = false;
             this.colCamera.OptionsColumn.ReadOnly = true;
             this.colCamera.Visible = true;
             this.colCamera.VisibleIndex = 23;
-            this.colCamera.Width = 33;
+            this.colCamera.Width = 38;
             // 
             // colNetWork
             // 
             this.colNetWork.Caption = "网络";
             this.colNetWork.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colNetWork.FieldName = "Network";
-            this.colNetWork.MaxWidth = 47;
-            this.colNetWork.MinWidth = 33;
+            this.colNetWork.MaxWidth = 55;
+            this.colNetWork.MinWidth = 38;
             this.colNetWork.Name = "colNetWork";
             this.colNetWork.OptionsColumn.AllowEdit = false;
             this.colNetWork.OptionsColumn.AllowSize = false;
@@ -667,7 +659,7 @@
             this.colNetWork.OptionsFilter.AllowFilter = false;
             this.colNetWork.Visible = true;
             this.colNetWork.VisibleIndex = 18;
-            this.colNetWork.Width = 33;
+            this.colNetWork.Width = 38;
             // 
             // barManager1
             // 
@@ -689,15 +681,17 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1518, 0);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1771, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 576);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 672);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1518, 0);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1771, 0);
             // 
             // barDockControlLeft
             // 
@@ -705,15 +699,17 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 576);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 672);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1518, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1771, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 576);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 672);
             // 
             // btnVNC
             // 
@@ -727,6 +723,7 @@
             this.btnPing.Caption = "测试网络";
             this.btnPing.Id = 1;
             this.btnPing.Name = "btnPing";
+            this.btnPing.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPing_ItemClick);
             // 
             // btnReboot
             // 
@@ -770,7 +767,7 @@
             // 
             // LaneView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcExitLanes);
             this.Controls.Add(this.barDockControlLeft);
@@ -778,8 +775,9 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LaneView";
-            this.Size = new System.Drawing.Size(1518, 576);
+            this.Size = new System.Drawing.Size(1771, 672);
             ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).EndInit();

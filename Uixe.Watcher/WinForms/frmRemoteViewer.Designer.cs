@@ -30,7 +30,7 @@ namespace Uixe.Watcher
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.videoView1 = new LibVLCSharp.WinForms.VideoView();
+            this.videoView1 = new WinFormsRtspPlayer.VideoControl();
             this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
             this.vncScreen = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.videoView1)).BeginInit();
@@ -43,7 +43,6 @@ namespace Uixe.Watcher
             this.videoView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.videoView1.BackColor = System.Drawing.Color.Black;
             this.videoView1.Location = new System.Drawing.Point(0, 369);
-            this.videoView1.MediaPlayer = null;
             this.videoView1.Name = "videoView1";
             this.videoView1.Size = new System.Drawing.Size(420, 346);
             this.videoView1.TabIndex = 1;
@@ -83,7 +82,7 @@ namespace Uixe.Watcher
         }
 
         #endregion
-        private LibVLCSharp.WinForms.VideoView videoView1;
+        private WinFormsRtspPlayer.VideoControl videoView1;
         private DevExpress.XtraBars.Ribbon.RadialMenu radialMenu1;
         private System.Windows.Forms.Panel vncScreen;
     }

@@ -5,7 +5,7 @@ namespace Uixe.Watcher.Dtos
     public class Plaza
     {
         public string id { get; set; }
-
+        public string pc_ip { get; set; }
         public string ip { get; set; }
 
         public List<Lane> lanes { get; set; }

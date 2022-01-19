@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Speech.Synthesis;
 using Uixe.Watcher.Dtos;
+using Uixe.Watcher.Extensions;
 using Uixe.Watcher.Msg;
 
 namespace Uixe.Watcher.TCO
@@ -146,14 +147,7 @@ namespace Uixe.Watcher.TCO
 
         private void btnVNC_Click(object sender, EventArgs e)
         {
-            try
-            {
-                frmRemoteViewer viewer = new frmRemoteViewer(Plaza, Lane);
-                viewer.Show();
-            }
-            catch (Exception)
-            {
-            }
+            
         }
 
         private void btnOK_Click(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using Uixe.Watcher.Dtos;
+using Uixe.Watcher.Extensions;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Uitls;
 
@@ -295,14 +296,7 @@ namespace Uixe.Watcher
 
         private void btnVNC_Click(object sender, EventArgs e)
         {
-            try
-            {
-                frmRemoteViewer viewer = new frmRemoteViewer(Plaza, Lane);
-                viewer.Show();
-            }
-            catch (Exception)
-            {
-            }
+            
         }
 
         private void cbxProv_EditValueChanged(object sender, EventArgs e)

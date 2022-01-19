@@ -60,7 +60,7 @@ namespace WinFormsRtspPlayer
         internal static void LoadNativeLibrary(string targetDirectory)
         {
             var Platform = Environment.OSVersion.Platform;
-            var files = System.IO.Directory.EnumerateFiles(System.IO.Path.Combine(targetDirectory, "lib", Environment.Is64BitProcess ? "x64" : "x86"), Platform == PlatformID.Win32NT ? "*.dll" : "*.so");
+            var files = System.IO.Directory.EnumerateFiles(System.IO.Path.Combine(targetDirectory, "runtimes", Environment.Is64BitProcess ? "win-x64" : "win-x86", "native"), Platform == PlatformID.Win32NT ? "*.dll" : "*.so");
 
             foreach (var path in files)
             {
@@ -73,7 +73,10 @@ namespace WinFormsRtspPlayer
                 {
                     ptr = LoadNixLibrary(path);
                 }
-                libs.Add(path, ptr);
+                if (!libs.ContainsKey(path) && ptr!=IntPtr.Zero)
+                {
+                    libs.Add(path, ptr);
+                }
             }
         }
 

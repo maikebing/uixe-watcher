@@ -17,7 +17,9 @@
         ///
         /// </summary>
         public string lane_no { get; set; }
-
-        public string cameraRtspUrl { get; set; }
+ 
     }
+     
+
+
 }
