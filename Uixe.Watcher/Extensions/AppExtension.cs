@@ -9,6 +9,15 @@ namespace Uixe.Watcher.Extensions
 {
     public static class AppExtension
     {
+
+        public static void SaveUserAppSetting(this AppSettings app)
+        {
+            var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"appsettings.User.json");
+            System.IO.File.WriteAllText(filename, System.Text.Json.JsonSerializer.Serialize(new { app.whoiam }));
+        }
+
+
+
         /// <summary>
         /// 设置窗口的显示状态
         /// Win32 函数定义为：http://msdn.microsoft.com/en-us/library/windows/desktop/ms633548(v=vs.85).aspx

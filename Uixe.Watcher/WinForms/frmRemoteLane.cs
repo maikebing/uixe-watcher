@@ -35,7 +35,7 @@ namespace Uixe.Watcher
                 this.Text = vnc.Text;
                 keyboard1.IPAddress = _lane.IPAddress;
                 this.keyboard1.Port = Properties.Settings.Default.KeyboardPort;
-                  try
+                try
                 {
                     if (!string.IsNullOrEmpty(_lane.CameraRtspUrl))
                     {
@@ -46,7 +46,6 @@ namespace Uixe.Watcher
                 {
                     XtraMessageBox.Show($"视频初始化播放{_lane.CameraRtspUrl}失败，{ex.Message}");
                 }
-               
             }
         }
         bool ismax = false;

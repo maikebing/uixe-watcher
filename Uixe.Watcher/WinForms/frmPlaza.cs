@@ -32,18 +32,18 @@ namespace Uixe.Watcher
             public int cbSize;
             public int dwTime;
         }
-     
+
         [DllImport("User32.dll")]
         private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
 
-        public  double GetIdleTime()
+        public double GetIdleTime()
         {
             LASTINPUTINFO lii = new LASTINPUTINFO();
             lii.cbSize = Marshal.SizeOf(lii.GetType());
             GetLastInputInfo(ref lii);
             return (Environment.TickCount - lii.dwTime) / 1000.0;
         }
- 
+
         #region 加载
 
         public frmPlaza()
@@ -125,18 +125,17 @@ namespace Uixe.Watcher
                 menuVoiceList.Enabled = false;
                 btnTest.Enabled = false;
             }
-            
-                LoadLaneInfo(Properties.Settings.Default.plazaid);
+            LoadLaneInfo();
         }
 
-        public  void LoadLaneInfo(string plazaid, bool reset = false)
+        public void LoadLaneInfo(bool reset = false)
         {
             this.SuspendLayout();
             LoadLaneView(Plaza);
             UserAccessControl();
             this.ResumeLayout();
             this.Activate();
-            StarupMqttClient();
+
         }
 
         private void StarupMqttClient()
@@ -202,7 +201,7 @@ namespace Uixe.Watcher
             //            try
             //            {
 
-                     
+
             //            string t = h.ApplicationMessage.Topic.Split('/').Last();
             //            var plaza = t.Substring(0, 7);
             //            var laneno = t.Substring(7, 3);
@@ -249,7 +248,7 @@ namespace Uixe.Watcher
             //        try
             //        {
 
-                  
+
             //            await client.SubscribeAsync(
             //                new MqttTopicFilter() { Topic = "/lane/emrc_main/confirm/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
             //                new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
@@ -280,7 +279,7 @@ namespace Uixe.Watcher
             //                Debug.WriteLine($"ReconnectAsync");
             //                await client.ReconnectAsync();
             //            }
-                        
+
             //        }
             //        catch (Exception ex)
             //        {
@@ -372,28 +371,28 @@ namespace Uixe.Watcher
         /// <summary>
         /// 用户权限控制
         /// </summary>
-        private   void UserAccessControl()
+        public void UserAccessControl()
         {
             var p = Plaza;
-            this.Text = string.Format($"{p.road_name}-{p.station_name}({p.id}) v{ Assembly.GetExecutingAssembly().GetName().Version}");
+            this.Text = string.Format($"{p.road_name}-{p.station_name}({p.id}) {_runtimeSetting.NowCollect?.UserId} ");
             this.Ribbon.ApplicationCaption = this.Text;
-           
+
         }
 
         #endregion 加载
 
         #region 卸载
- 
+
 
         public void Login()
         {
-       
-         
-                UserAccessControl();
-                    this.btnRBLogin.Enabled = false;
 
-                    this.btnRBLogout.Enabled = true;
-          
+
+            UserAccessControl();
+            this.btnRBLogin.Enabled = false;
+
+            this.btnRBLogout.Enabled = true;
+
         }
 
         public void Logout()
@@ -422,22 +421,20 @@ namespace Uixe.Watcher
         }
 
 
-     
+
 
         private void frmMain_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
         }
 
-  
+
         private void btnSyncTime_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
         }
 
         private void btnAbout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmAbout f = new frmAbout();
-            f.Show(this);
-            f.Dispose();
+
         }
 
         private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -580,7 +577,7 @@ namespace Uixe.Watcher
 
 
         [DebuggerStepThrough]
-        private   void tmNetworkTest_TickAsync(object sender, EventArgs e)
+        private void tmNetworkTest_TickAsync(object sender, EventArgs e)
         {
             //if (sec != DateTime.Now.Second && client?.IsConnected == true)
             //{

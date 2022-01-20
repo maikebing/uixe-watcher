@@ -20,5 +20,7 @@ namespace Uixe.Watcher
     {
         public PlaceType PlaceType { get;  set; }
         public string PlaceId { get; set; }
+        public whoiam whoiam { get; set; }
+
     }
 }

@@ -34,7 +34,7 @@ namespace Uixe.Watcher
             this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
             this.vncScreen = new System.Windows.Forms.Panel();
             this.keyboard1 = new Uixe.Watcher.Controls.Keyboard();
-            ((System.ComponentModel.ISupportInitialize)(this.videoView1)).BeginInit();
+        
             ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,7 +86,6 @@ namespace Uixe.Watcher
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRemoteLane";
             this.Load += new System.EventHandler(this.frmRemoteLane_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.videoView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).EndInit();
             this.ResumeLayout(false);
 

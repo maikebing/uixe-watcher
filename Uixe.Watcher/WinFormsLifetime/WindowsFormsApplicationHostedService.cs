@@ -34,9 +34,7 @@ namespace Uixe.Watcher
 
         private void UIThreadStart()
         {
-#if NETCOREAPP
             Application.SetHighDpiMode(_options.HighDpiMode);
-#endif
             if (_options.EnableVisualStyles)
             {
                 Application.EnableVisualStyles();

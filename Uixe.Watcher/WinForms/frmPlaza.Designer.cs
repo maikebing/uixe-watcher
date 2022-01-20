@@ -49,7 +49,6 @@ namespace Uixe.Watcher
             this.btnBook = new DevExpress.XtraBars.BarButtonItem();
             this.btnAbout = new DevExpress.XtraBars.BarButtonItem();
             this.cmsPlazas = new DevExpress.XtraBars.BarSubItem();
-            this.btnhelp2 = new DevExpress.XtraBars.BarButtonItem();
             this.btnRing = new DevExpress.XtraBars.BarSubItem();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.skinRibbonGalleryBarItem2 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
@@ -172,7 +171,6 @@ namespace Uixe.Watcher
             this.btnRBLogin,
             this.btnRBLogout,
             this.btnRBExit,
-            this.btnhelp2,
             this.btnRing,
             this.skinRibbonGalleryBarItem1,
             this.skinRibbonGalleryBarItem2,
@@ -191,7 +189,6 @@ namespace Uixe.Watcher
             this.ribbon.Margin = new System.Windows.Forms.Padding(4);
             this.ribbon.MaxItemId = 61;
             this.ribbon.Name = "ribbon";
-            this.ribbon.PageHeaderItemLinks.Add(this.btnhelp2);
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2,
@@ -301,14 +298,6 @@ namespace Uixe.Watcher
             this.cmsPlazas.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.documentmap_16x16;
             this.cmsPlazas.ImageOptions.LargeImage = global::Uixe.Watcher.Properties.Resources.documentmap_32x32;
             this.cmsPlazas.Name = "cmsPlazas";
-            // 
-            // btnhelp2
-            // 
-            this.btnhelp2.Caption = "关于";
-            this.btnhelp2.Id = 28;
-            this.btnhelp2.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.help;
-            this.btnhelp2.Name = "btnhelp2";
-            this.btnhelp2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAbout_ItemClick);
             // 
             // btnRing
             // 
@@ -476,6 +465,7 @@ namespace Uixe.Watcher
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2,
             this.rpgTime});
+            this.ribbonPage1.MergeOrder = 1;
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "常规业务";
             // 
@@ -492,6 +482,7 @@ namespace Uixe.Watcher
             // 
             this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup8});
+            this.ribbonPage2.MergeOrder = 2;
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "业务工具";
             // 
@@ -506,6 +497,7 @@ namespace Uixe.Watcher
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup4});
+            this.ribbonPage3.MergeOrder = 3;
             this.ribbonPage3.Name = "ribbonPage3";
             this.ribbonPage3.Text = "软件维护";
             // 
@@ -906,7 +898,6 @@ namespace Uixe.Watcher
         private DevExpress.XtraBars.BarButtonItem btnRBLogin;
         private DevExpress.XtraBars.BarButtonItem btnRBLogout;
         private DevExpress.XtraBars.BarButtonItem btnRBExit;
-        private DevExpress.XtraBars.BarButtonItem btnhelp2;
         private DevExpress.XtraBars.BarSubItem btnRing;
         private DevExpress.XtraTab.XtraTabControl lanView;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;

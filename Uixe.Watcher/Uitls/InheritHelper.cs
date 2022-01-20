@@ -5,6 +5,7 @@ namespace Uixe.Watcher.Uitls
 {
     public static class InheritHelper
     {
+
         public static void FillProperties<T, Tbase>(this T target, Tbase baseInstance)
         where T : Tbase
         {

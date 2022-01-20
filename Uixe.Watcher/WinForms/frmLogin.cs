@@ -7,33 +7,26 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher
 {
-    [ServiceLifetime(ServiceLifetime.Singleton)]
+
     public partial class frmLogin : XtraForm
     {
-        private readonly IMemoryCache _cache;
-        private  RuntimeSetting _runtimeSetting;
-        private readonly AppSettings _setting;
 
-        public frmLogin( IMemoryCache cache, IOptions<AppSettings> option)
+
+        public frmLogin( )
         {
-            _cache = cache;
-     
-            _setting = option.Value;
             InitializeComponent();
         }
+   
         private bool _isMouseDown;
         private Point _formLocation; //form的location
         private Point _mouseOffset;
-
-        public string PlazaId
-        {
-            get { return txtPlazaId.Text; }
-            set { txtPlazaId.Text = value; }
-        }
+        internal whoiam whoiam;
+        internal IMemoryCache _cache;
 
         private void frmLogin_MouseDown(object sender, MouseEventArgs e)
         {
@@ -58,60 +51,67 @@ namespace Uixe.Watcher
                 Point pt = MousePosition;
                 int x = _mouseOffset.X - pt.X;
                 int y = _mouseOffset.Y - pt.Y;
-
                 Location = new Point(_formLocation.X - x, _formLocation.Y - y);
             }
         }
     
-        private async void btnLogin_Click(object sender, EventArgs e)
+        private  void btnLogin_Click(object sender, EventArgs e)
         {
+            Invoke(() => btnLogin.Enabled = false);
             try
             {
-                _runtimeSetting = _cache.GetOrCreate(txtPlazaId.Text, c => new RuntimeSetting());
-                await ReloadTollInfoAsync();
-                var p = _runtimeSetting.Plaza;
-                if (p != null && !string.IsNullOrEmpty(p.ip))
+                whoiam.plazas.ForEach(async plaza =>
                 {
-                    PlazaApi api = new(_runtimeSetting.Plaza.ip);
-                    _runtimeSetting.Token = await api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
-                    if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
+                    RuntimeSetting _runtimeSetting = _cache.Get<RuntimeSetting>(plaza.id);
+                    var p = _runtimeSetting.Plaza;
+                    string name = $"{nameof(frmPlaza)}_{plaza.id}";
+                    var winplaza = _cache.Get<frmPlaza>(name);
+                    if (p != null && !string.IsNullOrEmpty(p.ip))
                     {
-                        var result = await api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
-                        if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
+                        PlazaApi api = new(_runtimeSetting.Plaza.ip);
+                        _runtimeSetting.Token = await api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
+                        if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
                         {
-                            _runtimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
-                            _runtimeSetting.UserRole = result.data;
-                            _runtimeSetting.Token.LoginDateTime = DateTime.Now;
-                            DialogResult = DialogResult.OK;
+                            var result = await api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
+                            if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
+                            {
+                                _runtimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
+                                _runtimeSetting.UserRole = result.data;
+                                _runtimeSetting.Token.LoginDateTime = DateTime.Now;
+                                _cache.Set(plaza.id, _runtimeSetting);
+                                Invoke(()=>   winplaza.UserAccessControl());
+                                Invoke(() => winplaza.Alert($"登录{plaza.station_name}成功", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
+                            }
+                            else
+                            {
+
+                                Invoke(() => winplaza.Alert($"登录{plaza.station_name}失败",$"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
+                            }
                         }
                         else
                         {
-                            _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
-                            lblInfo.Text = $"没有找到TCO角色(18)";
+                            Invoke(() => winplaza.Alert($"登录{plaza.station_name}错误", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
                         }
                     }
                     else
                     {
-                        _runtimeSetting.Token.LoginDateTime = DateTime.MinValue;
-                        lblInfo.Text = $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}";
+                        Invoke(() => winplaza.Alert($"{plaza.station_name}配置错误", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
                     }
-
-                }
-                else
-                {
-                    lblInfo.Text = "站信息错误";
-                }
+                });
+                Invoke(() => this.Close());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-               
+                Invoke(() => lblInfo.Text = ex.Message);
+            }
+            finally
+            {
+                Invoke(() => btnLogin.Enabled = true);
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            _cache.Remove(txtPlazaId.Text);
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
@@ -120,54 +120,15 @@ namespace Uixe.Watcher
         {
             this.Icon = Properties.Resources.LOGO;
             this.lblInfo.Text = "";
-            if (_setting.PlaceType == PlaceType.Plaza)
-            {
-                txtPlazaId.Text = _setting.PlaceId;
-                txtPlazaId.Enabled = false;
-            }
             this.txtPassword.Focus();
         }
-
-        private async Task ReloadTollInfoAsync()
-        {
-            if (!string.IsNullOrEmpty(txtPlazaId.Text))
-            {
-
-                try
-                {
-                    var plazainfo = await TollInfo.GetTollInfo(txtPlazaId.Text, true);
-                    _runtimeSetting.Plaza = plazainfo;
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        Properties.Settings.Default.Save();
-                        lblPlaza.Text = $"{plazainfo?.station_name??"(未获取到信息)"}车道监控";
-                        lblserver.Text = $"服务器IP:{plazainfo?.ip } 站代码:{plazainfo?.station_id}";
-                    });
-                    _cache.Set("plazaid", txtPlazaId.Text, TimeSpan.FromDays(30));
-                }
-                catch (Exception ex)
-                {
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        lblserver.Text = "未能获取站信息" + ex.Message;
-                    });
-                }
-            }
-            else
-            {
-                lblserver.Text = "信息为空";
-            }
-
-        }
+ 
 
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
                 btnLogin_Click(null, null);
         }
-
-        private void txtPlazaId_EditValueChanged(object sender, EventArgs e)
-        {
-        }
+         
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Uixe.Watcher.Properties.Settings settings1 = new Uixe.Watcher.Properties.Settings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.txtUser = new DevExpress.XtraEditors.TextEdit();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
@@ -37,12 +38,9 @@
             this.btnLogin = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.lblPlaza = new DevExpress.XtraEditors.LabelControl();
-            this.txtPlazaId = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lblserver = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtUser.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPlazaId.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUser
@@ -50,7 +48,7 @@
             this.txtUser.EditValue = "tcoadmin";
             this.txtUser.Location = new System.Drawing.Point(216, 109);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtUser.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtUser.Properties.Appearance.Options.UseFont = true;
             this.txtUser.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtUser.Size = new System.Drawing.Size(305, 28);
@@ -60,7 +58,7 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(217, 149);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtPassword.Properties.Appearance.Options.UseFont = true;
             this.txtPassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtPassword.Properties.UseSystemPasswordChar = true;
@@ -70,7 +68,7 @@
             // 
             // lblInfo
             // 
-            this.lblInfo.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.lblInfo.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblInfo.Appearance.ForeColor = System.Drawing.Color.White;
             this.lblInfo.Appearance.Options.UseFont = true;
             this.lblInfo.Appearance.Options.UseForeColor = true;
@@ -81,7 +79,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.White;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
@@ -93,7 +91,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.White;
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Appearance.Options.UseForeColor = true;
@@ -129,7 +127,7 @@
             // 
             // lblPlaza
             // 
-            this.lblPlaza.Appearance.Font = new System.Drawing.Font("宋体", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblPlaza.Appearance.Font = new System.Drawing.Font("宋体", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblPlaza.Appearance.ForeColor = System.Drawing.Color.RoyalBlue;
             this.lblPlaza.Appearance.Options.UseFont = true;
             this.lblPlaza.Appearance.Options.UseForeColor = true;
@@ -139,39 +137,9 @@
             this.lblPlaza.TabIndex = 29;
             this.lblPlaza.Text = "车道监控";
             // 
-            // txtPlazaId
-            // 
-            this.txtPlazaId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", global::Uixe.Watcher.Properties.Settings.Default, "plazaid", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtPlazaId.EditValue = global::Uixe.Watcher.Properties.Settings.Default.plazaid;
-            this.txtPlazaId.Location = new System.Drawing.Point(216, 70);
-            this.txtPlazaId.Name = "txtPlazaId";
-            this.txtPlazaId.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtPlazaId.Properties.Appearance.Options.UseFont = true;
-            this.txtPlazaId.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.txtPlazaId.Properties.Mask.IgnoreMaskBlank = false;
-            this.txtPlazaId.Properties.Mask.SaveLiteral = false;
-            this.txtPlazaId.Properties.Mask.ShowPlaceHolders = false;
-            this.txtPlazaId.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtPlazaId.Properties.MaxLength = 7;
-            this.txtPlazaId.Size = new System.Drawing.Size(305, 28);
-            this.txtPlazaId.TabIndex = 30;
-            this.txtPlazaId.EditValueChanged += new System.EventHandler(this.txtPlazaId_EditValueChanged);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(137, 74);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(60, 16);
-            this.labelControl1.TabIndex = 31;
-            this.labelControl1.Text = "收费站:";
-            // 
             // lblserver
             // 
-            this.lblserver.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            this.lblserver.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblserver.Appearance.ForeColor = System.Drawing.Color.White;
             this.lblserver.Appearance.Options.UseFont = true;
             this.lblserver.Appearance.Options.UseForeColor = true;
@@ -182,6 +150,7 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnLogin;
             this.Appearance.BackColor = System.Drawing.Color.Fuchsia;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -190,8 +159,6 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(660, 319);
             this.Controls.Add(this.lblserver);
-            this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.txtPlazaId);
             this.Controls.Add(this.lblPlaza);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLogin);
@@ -200,10 +167,10 @@
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUser);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Uixe.Watcher.Properties.Settings.Default, "frmLogin_Location", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            settings1.SettingsKey = "";
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", settings1, "frmLogin_Location", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmLogin.IconOptions.Icon")));
-            this.Location = global::Uixe.Watcher.Properties.Settings.Default.frmLogin_Location;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";
@@ -217,7 +184,6 @@
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.frmLogin_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.txtUser.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPlazaId.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,8 +199,6 @@
         private DevExpress.XtraEditors.SimpleButton btnLogin;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.LabelControl lblPlaza;
-        private DevExpress.XtraEditors.TextEdit txtPlazaId;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl lblserver;
     }
 }
