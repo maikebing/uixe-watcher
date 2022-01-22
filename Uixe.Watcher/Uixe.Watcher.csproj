@@ -82,9 +82,7 @@
 		<PackageReference Include="WindowsFirewallHelper" Version="2.2.0.86" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\WinFormsRtspPlayer\WinFormsRtspPlayer.csproj">
-	    <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
-	  </ProjectReference>
+	  <ProjectReference Include="..\WinFormsRtspPlayer\WinFormsRtspPlayer.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Properties\Settings.Designer.cs">
@@ -101,6 +99,38 @@
 	    <Generator>SettingsSingleFileGenerator</Generator>
 	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
 	  </None>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="runtimes\win-x64\native\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="..\WinFormsRtspPlayer\runtimes\win-x64\native\avcodec-58.dll" Link="runtimes\win-x64\native\avcodec-58.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="..\WinFormsRtspPlayer\runtimes\win-x64\native\avdevice-58.dll" Link="runtimes\win-x64\native\avdevice-58.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="..\WinFormsRtspPlayer\runtimes\win-x64\native\avfilter-7.dll" Link="runtimes\win-x64\native\avfilter-7.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="..\WinFormsRtspPlayer\runtimes\win-x64\native\avformat-58.dll" Link="runtimes\win-x64\native\avformat-58.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="..\WinFormsRtspPlayer\runtimes\win-x64\native\avutil-56.dll" Link="runtimes\win-x64\native\avutil-56.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="..\WinFormsRtspPlayer\runtimes\win-x64\native\libffmpeghelper.dll" Link="runtimes\win-x64\native\libffmpeghelper.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="..\WinFormsRtspPlayer\runtimes\win-x64\native\postproc-55.dll" Link="runtimes\win-x64\native\postproc-55.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="..\WinFormsRtspPlayer\runtimes\win-x64\native\swresample-3.dll" Link="runtimes\win-x64\native\swresample-3.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="..\WinFormsRtspPlayer\runtimes\win-x64\native\swscale-5.dll" Link="runtimes\win-x64\native\swscale-5.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 </Project>
  
