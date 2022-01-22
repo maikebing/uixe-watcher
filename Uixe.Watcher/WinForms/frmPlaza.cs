@@ -21,7 +21,6 @@ using Uixe.Watcher.Msg;
 using Uixe.Watcher.Ring;
 using Uixe.Watcher.TCO;
 using Uixe.Watcher.Uitls;
-using System.Deployment.Application;
 namespace Uixe.Watcher
 {
     public partial class frmPlaza : DevExpress.XtraBars.Ribbon.RibbonForm

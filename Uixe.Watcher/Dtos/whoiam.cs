@@ -11,7 +11,7 @@ namespace Uixe.Watcher.Dtos
         /// <summary>
         /// 
         /// </summary>
-        public string pc_ip { get; set; }
+        public string agentIp { get; set; }
         /// <summary>
         /// 
         /// </summary>

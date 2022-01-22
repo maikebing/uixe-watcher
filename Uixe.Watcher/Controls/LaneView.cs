@@ -3,6 +3,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -129,20 +130,26 @@ namespace Uixe.Watcher.Controls
             {
             }
         }
-        public void  SendHeartBeat()
+        DateTime lasconfig = DateTime.MinValue;
+        public void SendHeartBeat()
         {
+            bool config = DateTime.Now.Subtract(lasconfig).TotalMinutes > 5;
             Plaza.lanes?.ForEach(async lane =>
+        {
+            try
             {
-                try
+                await lane.SendMsg("tco/status/", new { message = "HeartBeat" });
+                if (config)
                 {
-                    await lane.SendMsg("tco/status/", new { message = "HeartBeat" });
+                    await lane.SendMsg("tco/config/", new { agentIp = Plaza?.agentIp });
                 }
-                catch (Exception ex)
-                {
-
-               
-                }
-            });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"SendHeartBeat:{ex.Message}");
+            }
+        });
+            if (config) lasconfig = DateTime.Now;
 
         }
         private void gcExitLanes_MouseUp(object sender, MouseEventArgs e)
