@@ -21,7 +21,7 @@ using Uixe.Watcher.Msg;
 using Uixe.Watcher.Ring;
 using Uixe.Watcher.TCO;
 using Uixe.Watcher.Uitls;
-
+using System.Deployment.Application;
 namespace Uixe.Watcher
 {
     public partial class frmPlaza : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -472,7 +472,7 @@ namespace Uixe.Watcher
         }
 
         private DateTime lastsend = DateTime.MinValue;
-        private int sec;
+      
 
         private void btnSend_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -481,6 +481,7 @@ namespace Uixe.Watcher
                 string msg = txtMsg.EditValue as string;
                 if (!string.IsNullOrEmpty(msg))
                 {
+
                     //BLLWatcher.AllLaneSend(msg);
                 }
                 else
@@ -496,19 +497,20 @@ namespace Uixe.Watcher
 
         private void btnUpgrade_ItemClick(object sender, ItemClickEventArgs e)
         {
-        }
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
 
+            }
+        }
 
 
         [DebuggerStepThrough]
         private void tmNetworkTest_TickAsync(object sender, EventArgs e)
         {
-            if (sec != DateTime.Now.Second )
-            {
                 try
                 {
-         
-                 //   lanView.SendHeartBeat();
+                 
+                 lanView.SendHeartBeat();
                
             
                 }
@@ -516,8 +518,6 @@ namespace Uixe.Watcher
                 {
                     Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
                 }
-                sec = DateTime.Now.Second;
-            }
         }
 
         private void btnTest_ItemClick(object sender, ItemClickEventArgs e)

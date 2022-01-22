@@ -131,13 +131,13 @@ namespace Uixe.Watcher.Controls
         }
         public void  SendHeartBeat()
         {
-            Plaza.lanes.ForEach(async lane =>
+            Plaza.lanes?.ForEach(async lane =>
             {
                 try
                 {
-                    await lane.SendMsg("/api/tco/status/", new { message = "HeartBeat" });
+                    await lane.SendMsg("tco/status/", new { message = "HeartBeat" });
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
                

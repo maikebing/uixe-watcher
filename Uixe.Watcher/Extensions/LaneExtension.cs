@@ -21,7 +21,7 @@ namespace Uixe.Watcher.Uitls
             try
             {
                 var client = lane.CreateClient();
-                var request = new RestRequest("/api/tco/confirm/", Method.Post);
+                var request = new RestRequest($"/api/{path}", Method.Post);
                 request.AddBody(Newtonsoft.Json.JsonConvert.SerializeObject(msg, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new DefaultContractResolver() }), "application/json");
                 var response = await client.PostAsync(request);
                 apiResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResult>(response.Content);
