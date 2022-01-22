@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
+using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher.Controls
 {
@@ -128,7 +129,22 @@ namespace Uixe.Watcher.Controls
             {
             }
         }
+        public void  SendHeartBeat()
+        {
+            Plaza.lanes.ForEach(async lane =>
+            {
+                try
+                {
+                    await lane.SendMsg("/api/tco/status/", new { message = "HeartBeat" });
+                }
+                catch (Exception)
+                {
 
+               
+                }
+            });
+
+        }
         private void gcExitLanes_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)

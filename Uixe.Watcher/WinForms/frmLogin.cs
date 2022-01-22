@@ -57,10 +57,12 @@ namespace Uixe.Watcher
     
         private  void btnLogin_Click(object sender, EventArgs e)
         {
-            Invoke(() => btnLogin.Enabled = false);
+            string user = txtUser.Text;
+            string password = txtPassword.Text;
+            btnLogin.Enabled = false;
             try
             {
-                whoiam.plazas.ForEach(async plaza =>
+                whoiam.plazas?.ForEach(async plaza =>
                 {
                     RuntimeSetting _runtimeSetting = _cache.Get<RuntimeSetting>(plaza.id);
                     var p = _runtimeSetting.Plaza;
@@ -69,44 +71,44 @@ namespace Uixe.Watcher
                     if (p != null && !string.IsNullOrEmpty(p.ip))
                     {
                         PlazaApi api = new(_runtimeSetting.Plaza.ip);
-                        _runtimeSetting.Token = await api.SysLogin(txtUser.Text, txtPassword.Text, p.station_id, p.id);
+                        _runtimeSetting.Token = await api.SysLogin(user, password, p.station_id, p.id);
                         if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
                         {
-                            var result = await api.getRoleByUser(txtUser.Text, _runtimeSetting.Token?.token);
+                            var result = await api.getRoleByUser(user, _runtimeSetting.Token?.token);
                             if (result.code == 0 && result.data != null && result.data.Any(f => f.roleId == 18))
                             {
-                                _runtimeSetting.NowCollect = new Dtos.User() { UserId = txtUser.Text };
+                                _runtimeSetting.NowCollect = new Dtos.User() { UserId = user };
                                 _runtimeSetting.UserRole = result.data;
                                 _runtimeSetting.Token.LoginDateTime = DateTime.Now;
                                 _cache.Set(plaza.id, _runtimeSetting);
-                                Invoke(()=>   winplaza.UserAccessControl());
-                                Invoke(() => winplaza.Alert($"登录{plaza.station_name}成功", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
+                                winplaza.Invoke(() => winplaza.UserAccessControl());
+                                winplaza.Invoke(() => winplaza.Alert($"登录{plaza.station_name}成功", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
                             }
                             else
                             {
 
-                                Invoke(() => winplaza.Alert($"登录{plaza.station_name}失败",$"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
+                                winplaza.Invoke(() => winplaza.Alert($"登录{plaza.station_name}失败", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
                             }
                         }
                         else
                         {
-                            Invoke(() => winplaza.Alert($"登录{plaza.station_name}错误", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
+                            winplaza.Invoke(() => winplaza.Alert($"登录{plaza.station_name}错误", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
                         }
                     }
                     else
                     {
-                        Invoke(() => winplaza.Alert($"{plaza.station_name}配置错误", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
+                        winplaza.Invoke(() => winplaza.Alert($"{plaza.station_name}配置错误", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
                     }
                 });
-                Invoke(() => this.Close());
+                this.Close();
             }
             catch (Exception ex)
             {
-                Invoke(() => lblInfo.Text = ex.Message);
+                lblInfo.Text = ex.Message;
             }
             finally
             {
-                Invoke(() => btnLogin.Enabled = true);
+                btnLogin.Enabled = true;
             }
         }
 

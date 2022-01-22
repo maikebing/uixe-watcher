@@ -32,12 +32,12 @@ namespace Uixe.Watcher
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlaza));
-            Uixe.Watcher.Properties.Settings settings1 = new Uixe.Watcher.Properties.Settings();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            Uixe.Watcher.Properties.Settings settings2 = new Uixe.Watcher.Properties.Settings();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.applicationMenu1 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.btnRBLogin = new DevExpress.XtraBars.BarButtonItem();
@@ -101,9 +101,6 @@ namespace Uixe.Watcher
             this.cmsTable = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.messageView = new Uixe.Watcher.Controls.MessageView();
             this.sccMain = new DevExpress.XtraEditors.SplitContainerControl();
-            this.lanView = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.tmDateTime = new System.Windows.Forms.Timer(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -114,6 +111,7 @@ namespace Uixe.Watcher
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.niMain = new System.Windows.Forms.NotifyIcon(this.components);
+            this.lanView = new Uixe.Watcher.Controls.LaneView();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.applicationMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
@@ -145,8 +143,6 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)(this.sccMain.Panel2)).BeginInit();
             this.sccMain.Panel2.SuspendLayout();
             this.sccMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lanView)).BeginInit();
-            this.lanView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.cmsNotifyMenu.SuspendLayout();
             this.SuspendLayout();
@@ -424,8 +420,8 @@ namespace Uixe.Watcher
             this.tsBlackListPlate.BindableChecked = true;
             this.tsBlackListPlate.Caption = "追缴名单、ETC状态名单语音播报";
             this.tsBlackListPlate.Checked = true;
-            settings1.SettingsKey = "";
-            this.tsBlackListPlate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "SpeedBlackListPlate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            settings2.SettingsKey = "";
+            this.tsBlackListPlate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings2, "SpeedBlackListPlate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tsBlackListPlate.Id = 36;
             this.tsBlackListPlate.Name = "tsBlackListPlate";
             // 
@@ -449,7 +445,6 @@ namespace Uixe.Watcher
             this.tsLvSeTongDao.BindableChecked = true;
             this.tsLvSeTongDao.Caption = "绿色通道和假冒绿通语音播报";
             this.tsLvSeTongDao.Checked = true;
-            this.tsLvSeTongDao.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "SpeechLvSeTongDao", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tsLvSeTongDao.Id = 40;
             this.tsLvSeTongDao.Name = "tsLvSeTongDao";
             // 
@@ -521,7 +516,7 @@ namespace Uixe.Watcher
             // repositoryItemTimeEdit1
             // 
             this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "d";
             this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
@@ -733,34 +728,6 @@ namespace Uixe.Watcher
             this.sccMain.TabIndex = 12;
             this.sccMain.Text = "splitContainerControl1";
             // 
-            // lanView
-            // 
-            this.lanView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lanView.Location = new System.Drawing.Point(0, 0);
-            this.lanView.Margin = new System.Windows.Forms.Padding(4);
-            this.lanView.Name = "lanView";
-            this.lanView.SelectedTabPage = this.xtraTabPage1;
-            this.lanView.Size = new System.Drawing.Size(1529, 340);
-            this.lanView.TabIndex = 0;
-            this.lanView.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1,
-            this.xtraTabPage2});
-            this.lanView.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.lanView_SelectedPageChanged);
-            // 
-            // xtraTabPage1
-            // 
-            this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(4);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1527, 314);
-            this.xtraTabPage1.Text = "xtraTabPage1";
-            // 
-            // xtraTabPage2
-            // 
-            this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(4);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1527, 314);
-            this.xtraTabPage2.Text = "xtraTabPage2";
-            // 
             // barButtonItem3
             // 
             this.barButtonItem3.Caption = "车道Ping";
@@ -816,6 +783,16 @@ namespace Uixe.Watcher
             this.niMain.Text = "收费车道监控";
             this.niMain.Visible = true;
             // 
+            // lanView
+            // 
+            this.lanView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lanView.Location = new System.Drawing.Point(0, 0);
+            this.lanView.Margin = new System.Windows.Forms.Padding(4);
+            this.lanView.Name = "lanView";
+            this.lanView.Plaza = null;
+            this.lanView.Size = new System.Drawing.Size(1529, 340);
+            this.lanView.TabIndex = 0;
+            // 
             // frmPlaza
             // 
             this.Appearance.Options.UseFont = true;
@@ -868,8 +845,6 @@ namespace Uixe.Watcher
             this.sccMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sccMain)).EndInit();
             this.sccMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lanView)).EndInit();
-            this.lanView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.cmsNotifyMenu.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -899,9 +874,6 @@ namespace Uixe.Watcher
         private DevExpress.XtraBars.BarButtonItem btnRBLogout;
         private DevExpress.XtraBars.BarButtonItem btnRBExit;
         private DevExpress.XtraBars.BarSubItem btnRing;
-        private DevExpress.XtraTab.XtraTabControl lanView;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemTreeListLookUpEdit repositoryItemTreeListLookUpEdit1;
@@ -954,6 +926,7 @@ namespace Uixe.Watcher
         private DevExpress.XtraTreeList.Columns.TreeListColumn colExample;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colDisplay;
         private System.Windows.Forms.Timer tmDateTime;
+        private LaneView lanView;
     }
 }
 

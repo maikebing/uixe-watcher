@@ -15,7 +15,25 @@ namespace Uixe.Watcher.Uitls
             client.AddDefaultHeader(KnownHeaders.ContentType, "application/json");
             return client;
         }
+        public static async Task<ApiResult> SendMsg<T>(this Lane lane,string path, T msg)
+        {
+            ApiResult apiResult = new ApiResult();
+            try
+            {
+                var client = lane.CreateClient();
+                var request = new RestRequest("/api/tco/confirm/", Method.Post);
+                request.AddBody(Newtonsoft.Json.JsonConvert.SerializeObject(msg, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new DefaultContractResolver() }), "application/json");
+                var response = await client.PostAsync(request);
+                apiResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResult>(response.Content);
+            }
+            catch (System.Exception ex)
+            {
 
+
+            }
+            return apiResult;
+        }
+    
         public static async Task<ApiResult> TCO_Confirm(this Lane lane, MSG_TCOConfirm confirm)
         {
             ApiResult apiResult =  new ApiResult();

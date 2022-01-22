@@ -311,57 +311,24 @@ namespace Uixe.Watcher
         private void LoadLaneView(Plaza plaza)
         {
             ShowStatusInfo("正在加载车道列表");
-            lanView.TabPages.Clear();
             lanView.SuspendLayout();
             messageView.SuspendLayout();
-            List<Plaza> plasas = new List<Plaza>();
-            int maxlanecount = 0;
-            plasas.Add(plaza);
             lanView.SuspendLayout();
-            //如果本站不在配置列表中， 则临时加一个。
-            if (plasas.Count == 0)
-            {
-                plasas.Add(new Plaza()
-                {
-                    road_name = "错误",
-                    id = "6509999"
-                });
-            }
-            foreach (var item in plasas)
-            {
-                XtraTabPage xtp = lanView.TabPages.Add();
-                xtp.Name = item.id;
-                xtp.Text = string.Format("{0}-{1}", item.road_name, item.station_name);
-                Uixe.Watcher.Controls.LaneView lv = new Uixe.Watcher.Controls.LaneView();
-                xtp.Controls.Add(lv);
-                lv.Name = item.id;
-                lv.InitLaneInfo(item);
 
-                if (lv.LaneCount > maxlanecount)
-                {
-                    maxlanecount = lv.LaneCount;
-                }
-                lv.Dock = DockStyle.Top;
-                messageView.initMessageView(item.id, 100);
-            }
-            lanView.ShowTabHeader = lanView.TabPages.Count > 1 ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            lanView.InitLaneInfo(plaza);
+
+            messageView.initMessageView(plaza.id, 100);
+
 
             int el = 0;
-            var key = plasas.FirstOrDefault()?.id;
-            if (!string.IsNullOrEmpty(key))
-            {
-                Control[] cont = lanView.SelectedTabPage.Controls.Find(key, true);
-                if (cont.Length > 0)
-                {
-                    var lv = ((Uixe.Watcher.Controls.LaneView)cont[0]);
-                    el = lv.LaneCount;
-                    sccMain.SplitterPosition = lanView.Height + 20;
-                }
-            }
+            var key = plaza?.id;
 
-            lanView.SelectedTabPage = null;
-            if (lanView.TabPages.Count > 0) lanView.SelectedTabPage = lanView.TabPages[0];
-            if (lanView.SelectedTabPage != null) messageView.SetPlaza(lanView.SelectedTabPage.Name);
+
+            el = lanView.LaneCount;
+            sccMain.SplitterPosition = lanView.Height + 20;
+
+
+
             messageView.ResumeLayout(false);
             lanView.ResumeLayout(false);
 
@@ -460,16 +427,8 @@ namespace Uixe.Watcher
         {
             lock (lanView)
             {
-                var tb = from p in lanView.TabPages.ToArray() where p.Name == plaza select p;
-                if (tb.Any())
-                {
-                    XtraTabPage xtp = tb.First();
-                    Control[] cont = xtp.Controls.Find(plaza, true);
-                    if (cont.Length > 0)
-                    {
-                        ((Uixe.Watcher.Controls.LaneView)cont[0]).ShowLaneInfor($"{plaza}{laneno}", revdata);
-                    }
-                }
+             lanView .ShowLaneInfor($"{plaza}{laneno}", revdata);
+               
             }
         }
 
@@ -477,16 +436,9 @@ namespace Uixe.Watcher
         {
             lock (lanView)
             {
-                var tb = from p in lanView.TabPages.ToArray() where p.Name == plaza select p;
-                if (tb.Any())
-                {
-                    XtraTabPage xtp = tb.First();
-                    Control[] cont = xtp.Controls.Find(plaza, true);
-                    if (cont.Length > 0)
-                    {
-                        ((Uixe.Watcher.Controls.LaneView)cont[0]).ShowLaneLost(laneno);
-                    }
-                }
+
+                lanView.ShowLaneLost(laneno);
+             
             }
         }
 
@@ -494,36 +446,7 @@ namespace Uixe.Watcher
         {
             messageView.ShowMessageView(mi);
         }
-
-        private void lanView_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
-        {
-            if (e.Page != null && !string.IsNullOrEmpty(e.Page.Name) && !string.IsNullOrEmpty(e.Page.Text))
-            {
-                messageView.SetPlaza(lanView.SelectedTabPage.Name);
-                Control[] cont = lanView.SelectedTabPage.Controls.Find(e.Page.Name, true);
-                if (cont.Length > 0)
-                {
-                    var lv = ((Uixe.Watcher.Controls.LaneView)cont[0]);
-                    int maxlanecount = lv.LaneCount;
-                    int maxe = lv.LaneCount;
-                    if (lanView.TabPages.Count > 1)
-                    {
-                        lanView.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
-                        sccMain.SplitterPosition = lv.Height;
-                    }
-                    //else if (AppConfig.RunTime.BreakShow && maxe > 0)
-                    //{
-                    //    lanView.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-                    //    sccMain.SplitterPosition = lv.Height;
-                    //}
-                    else
-                    {
-                        lanView.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-                        sccMain.SplitterPosition = lanView.Height;
-                    }
-                }
-            }
-        }
+ 
 
         private void skinRibbonGalleryBarItem2_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
         {
@@ -549,6 +472,7 @@ namespace Uixe.Watcher
         }
 
         private DateTime lastsend = DateTime.MinValue;
+        private int sec;
 
         private void btnSend_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -579,18 +503,21 @@ namespace Uixe.Watcher
         [DebuggerStepThrough]
         private void tmNetworkTest_TickAsync(object sender, EventArgs e)
         {
-            //if (sec != DateTime.Now.Second && client?.IsConnected == true)
-            //{
-            //    try
-            //    {
-            //        await client.PublishAsync("/tco/status/", new { message = "HeartBeat" });
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
-            //    }
-            //    sec = DateTime.Now.Second;
-            //}
+            if (sec != DateTime.Now.Second )
+            {
+                try
+                {
+         
+                 //   lanView.SendHeartBeat();
+               
+            
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
+                }
+                sec = DateTime.Now.Second;
+            }
         }
 
         private void btnTest_ItemClick(object sender, ItemClickEventArgs e)
