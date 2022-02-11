@@ -32,12 +32,11 @@ namespace Uixe.Watcher
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlaza));
-            Uixe.Watcher.Properties.Settings settings2 = new Uixe.Watcher.Properties.Settings();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.applicationMenu1 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.btnRBLogin = new DevExpress.XtraBars.BarButtonItem();
@@ -98,9 +97,9 @@ namespace Uixe.Watcher
             this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.cmsTable = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.messageView = new Uixe.Watcher.Controls.MessageView();
             this.sccMain = new DevExpress.XtraEditors.SplitContainerControl();
+            this.lanView = new Uixe.Watcher.Controls.LaneView();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.tmDateTime = new System.Windows.Forms.Timer(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -111,7 +110,6 @@ namespace Uixe.Watcher
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.niMain = new System.Windows.Forms.NotifyIcon(this.components);
-            this.lanView = new Uixe.Watcher.Controls.LaneView();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.applicationMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
@@ -152,6 +150,7 @@ namespace Uixe.Watcher
             this.ribbon.ApplicationButtonDropDownControl = this.applicationMenu1;
             this.ribbon.ApplicationButtonText = null;
             this.ribbon.ApplicationCaption = "车道监控软件";
+            this.ribbon.BackColor = System.Drawing.SystemColors.Control;
             this.ribbon.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Blue;
             this.ribbon.Cursor = System.Windows.Forms.Cursors.Default;
             this.ribbon.ExpandCollapseItem.Id = 0;
@@ -184,6 +183,7 @@ namespace Uixe.Watcher
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(4);
             this.ribbon.MaxItemId = 61;
+            this.ribbon.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -211,7 +211,7 @@ namespace Uixe.Watcher
             this.repositoryItemTextEdit2,
             this.repositoryItemToggleSwitch2});
             this.ribbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
-            this.ribbon.Size = new System.Drawing.Size(1529, 160);
+            this.ribbon.Size = new System.Drawing.Size(1633, 160);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // applicationMenu1
@@ -420,8 +420,6 @@ namespace Uixe.Watcher
             this.tsBlackListPlate.BindableChecked = true;
             this.tsBlackListPlate.Caption = "追缴名单、ETC状态名单语音播报";
             this.tsBlackListPlate.Checked = true;
-            settings2.SettingsKey = "";
-            this.tsBlackListPlate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings2, "SpeedBlackListPlate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tsBlackListPlate.Id = 36;
             this.tsBlackListPlate.Name = "tsBlackListPlate";
             // 
@@ -516,7 +514,7 @@ namespace Uixe.Watcher
             // repositoryItemTimeEdit1
             // 
             this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "d";
             this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
@@ -689,21 +687,19 @@ namespace Uixe.Watcher
             this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1529, 24);
-            // 
-            // cmsTable
-            // 
-            this.cmsTable.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsTable.Name = "cmsTable";
-            this.cmsTable.Size = new System.Drawing.Size(61, 4);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1633, 24);
             // 
             // messageView
             // 
-            this.messageView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.messageView.Location = new System.Drawing.Point(0, 0);
+            this.messageView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.messageView.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.messageView.Appearance.Options.UseBackColor = true;
+            this.messageView.Location = new System.Drawing.Point(4, 9);
             this.messageView.Margin = new System.Windows.Forms.Padding(4);
             this.messageView.Name = "messageView";
-            this.messageView.Size = new System.Drawing.Size(1529, 349);
+            this.messageView.Size = new System.Drawing.Size(1625, 343);
             this.messageView.TabIndex = 9;
             // 
             // sccMain
@@ -723,10 +719,24 @@ namespace Uixe.Watcher
             // 
             this.sccMain.Panel2.Controls.Add(this.messageView);
             this.sccMain.Panel2.Text = "Panel2";
-            this.sccMain.Size = new System.Drawing.Size(1529, 699);
-            this.sccMain.SplitterPosition = 340;
+            this.sccMain.Size = new System.Drawing.Size(1633, 699);
+            this.sccMain.SplitterPosition = 333;
             this.sccMain.TabIndex = 12;
             this.sccMain.Text = "splitContainerControl1";
+            // 
+            // lanView
+            // 
+            this.lanView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lanView.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.lanView.Appearance.Options.UseBackColor = true;
+            this.lanView.Location = new System.Drawing.Point(4, 4);
+            this.lanView.Margin = new System.Windows.Forms.Padding(4);
+            this.lanView.Name = "lanView";
+            this.lanView.Plaza = null;
+            this.lanView.Size = new System.Drawing.Size(1625, 320);
+            this.lanView.TabIndex = 0;
             // 
             // barButtonItem3
             // 
@@ -743,8 +753,7 @@ namespace Uixe.Watcher
             // 
             // tmNetworkTest
             // 
-            this.tmNetworkTest.Enabled = true;
-            this.tmNetworkTest.Interval = 1000;
+            this.tmNetworkTest.Interval = 5000;
             this.tmNetworkTest.Tick += new System.EventHandler(this.tmNetworkTest_TickAsync);
             // 
             // cmsNotifyMenu
@@ -783,22 +792,14 @@ namespace Uixe.Watcher
             this.niMain.Text = "收费车道监控";
             this.niMain.Visible = true;
             // 
-            // lanView
-            // 
-            this.lanView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lanView.Location = new System.Drawing.Point(0, 0);
-            this.lanView.Margin = new System.Windows.Forms.Padding(4);
-            this.lanView.Name = "lanView";
-            this.lanView.Plaza = null;
-            this.lanView.Size = new System.Drawing.Size(1529, 340);
-            this.lanView.TabIndex = 0;
-            // 
             // frmPlaza
             // 
+            this.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1529, 883);
+            this.ClientSize = new System.Drawing.Size(1633, 883);
             this.Controls.Add(this.sccMain);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
@@ -808,10 +809,11 @@ namespace Uixe.Watcher
             this.IconOptions.LargeImage = global::Uixe.Watcher.Properties.Resources.monitor;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPlaza";
+            this.ribbon.SetPopupContextMenu(this, this.applicationMenu1);
             this.Ribbon = this.ribbon;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.StatusBar = this.ribbonStatusBar;
-            this.Text = "车道监控软件1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "车道监控软件";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.frmMain_HelpRequested);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
@@ -855,7 +857,6 @@ namespace Uixe.Watcher
         #endregion
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
-        private System.Windows.Forms.ContextMenuStrip cmsTable;
         private MessageView messageView;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.BarStaticItem txtStatus;

@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,10 +18,15 @@ namespace Uixe.Watcher
     public partial class frmShowTCOCall : XtraForm
     {
         private readonly Plaza _plaza;
+        internal RuntimeSetting _runtimeSetting;
+        private readonly ILogger _logger;
+
         public new frmPlaza Owner { get; set; }
-        public frmShowTCOCall(Plaza plaza) : this()
+        public frmShowTCOCall(Plaza plaza, RuntimeSetting runtimeSetting, ILogger logger) : this()
         {
             _plaza = plaza;
+            _runtimeSetting = runtimeSetting;
+            _logger = logger;
             try
             {
                 this.tsTabs.TabPages.Clear();
@@ -44,14 +50,13 @@ namespace Uixe.Watcher
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, $"初始化监控确认窗口失败{plaza?.id}");
             }
         }
 
         public frmShowTCOCall()
         {
             InitializeComponent();
-          
         }
 
 
@@ -88,12 +93,12 @@ namespace Uixe.Watcher
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(string.Format("ERRORTCOCALL_SHOW:<{0}>\r\n{1}\r\n", ex.Message, TCOCallxxx));
+                    _logger.LogError(ex, $"ERRORTCOCALL_SHOW:<{ex.Message}>\r\n{TCOCallxxx}\r\n");
                 }
             }
             else
             {
-                Debug.WriteLine("内部错误" + pname);
+                _logger.LogWarning($"内部错误{pname}");
             }
         }
 

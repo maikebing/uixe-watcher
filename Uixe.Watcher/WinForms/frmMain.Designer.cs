@@ -35,11 +35,11 @@ namespace Uixe.Watcher
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barMdiChildrenListItem1 = new DevExpress.XtraBars.BarMdiChildrenListItem();
             this.btnAbout = new DevExpress.XtraBars.BarButtonItem();
+            this.btnLogin = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgPlazas = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManagerex1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManagerEX(this.components);
-            this.btnLogin = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManagerex1)).BeginInit();
             this.SuspendLayout();
@@ -89,6 +89,14 @@ namespace Uixe.Watcher
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAbout_ItemClick);
             // 
+            // btnLogin
+            // 
+            this.btnLogin.Caption = "登录";
+            this.btnLogin.Id = 6;
+            this.btnLogin.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogin.ImageOptions.SvgImage")));
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogin_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -115,19 +123,12 @@ namespace Uixe.Watcher
             // 
             // xtraTabbedMdiManagerex1
             // 
+            this.xtraTabbedMdiManagerex1.BackImage = global::Uixe.Watcher.Properties.Resources.backgroupimage;
+            this.xtraTabbedMdiManagerex1.BigLogo = global::Uixe.Watcher.Properties.Resources.logo3;
             this.xtraTabbedMdiManagerex1.MdiParent = this;
-            // 
-            // btnLogin
-            // 
-            this.btnLogin.Caption = "登录";
-            this.btnLogin.Id = 6;
-            this.btnLogin.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogin.ImageOptions.SvgImage")));
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogin_ItemClick);
             // 
             // frmMain
             // 
-            this.AllowMdiBar = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1432, 819);
@@ -140,7 +141,6 @@ namespace Uixe.Watcher
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "新疆交投云坐席";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
@@ -157,9 +157,9 @@ namespace Uixe.Watcher
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgPlazas;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
-        private DevExpress.XtraTabbedMdi.XtraTabbedMdiManagerEX xtraTabbedMdiManagerex1;
         private DevExpress.XtraBars.BarMdiChildrenListItem barMdiChildrenListItem1;
         private DevExpress.XtraBars.BarButtonItem btnAbout;
         private DevExpress.XtraBars.BarButtonItem btnLogin;
+        private DevExpress.XtraTabbedMdi.XtraTabbedMdiManagerEX xtraTabbedMdiManagerex1;
     }
 }

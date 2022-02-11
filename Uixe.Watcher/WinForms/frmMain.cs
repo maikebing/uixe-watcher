@@ -27,9 +27,10 @@ namespace Uixe.Watcher
         private readonly AppSettings _setting;
         private readonly IServiceScope _scope;
         private readonly IMemoryCache _cache;
+        private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger _logger;
 
-        public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option,  ILogger<frmMain>  logger, IMemoryCache cache )
+        public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option,  ILogger<frmMain>  logger, IMemoryCache cache , ILoggerFactory loggerFactory)
         {
             InitializeComponent();
             this.scopeFactor = scopeFactor;
@@ -37,6 +38,7 @@ namespace Uixe.Watcher
              _logger = logger;
             _scope = scopeFactor.CreateScope();
             _cache = cache;
+            _loggerFactory = loggerFactory;
 
         }
 
@@ -79,7 +81,7 @@ namespace Uixe.Watcher
                
                 this.Invoke(() =>
                 {
-                    this.Text = $"{who.name}云坐席";
+                    this.Text = $"{(who?.name??"(none)")}云坐席";
                     who?.plazas?.ForEach(p =>
                 {
                     wait.SetDescription($"正在加载{p?.station_name}!");
@@ -105,10 +107,10 @@ namespace Uixe.Watcher
             if (p != null && !string.IsNullOrEmpty(p.ip))
             {
                 PlazaApi api = new(_runtimeSetting.Plaza.ip);
-               
                 var frm = _cache.GetOrCreate(name, f =>
                      {
-                         var frm = new frmPlaza() { Name = name };
+                         var _log= _loggerFactory.CreateLogger(name);
+                          var frm = new frmPlaza() { Name = name ,_logger= _log };
                          frm._runtimeSetting = _cache.Get<RuntimeSetting>(plaza.id);
                          frm.FormClosed += Frm_FormClosed;
                          return frm;

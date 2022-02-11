@@ -34,7 +34,7 @@ namespace Uixe.Watcher
                 vnc.Text = $"车道远程控制 {_plaza.station_name}({ _lane.PlazaId}){_lane.LaneName}   {_lane.IPAddress} ";
                 this.Text = vnc.Text;
                 keyboard1.IPAddress = _lane.IPAddress;
-                this.keyboard1.Port = Properties.Settings.Default.KeyboardPort;
+                this.keyboard1.Port = _runtimeSetting.KeyboardPort;
                 try
                 {
                     if (!string.IsNullOrEmpty(_lane.CameraRtspUrl))
@@ -49,6 +49,8 @@ namespace Uixe.Watcher
             }
         }
         bool ismax = false;
+        internal RuntimeSetting _runtimeSetting;
+
         private void videoView1_DoubleClick(object sender, EventArgs e)
         {
             if (ismax)

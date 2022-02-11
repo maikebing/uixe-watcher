@@ -3,6 +3,7 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -67,10 +68,7 @@ namespace Uixe.Watcher
             barEditItem.EditHeight = control.Height;
             barEditItem.Width = control.Width;
             rpgTime.ItemLinks.Add(barEditItem);
-
             this.Icon = Properties.Resources.LOGO;
-
-
             if (System.IO.Directory.Exists("Ring"))
             {
                 foreach (var item in System.IO.Directory.GetFiles(AppContext.BaseDirectory + "\\Ring", "*.wav"))
@@ -83,18 +81,18 @@ namespace Uixe.Watcher
                         if (btx != null)
                         {
                             btnRing.Caption = "铃声:" + btx.Caption;
-                            Properties.Settings.Default.Ring = btx.Caption;
+                            _runtimeSetting.Ring = btx.Caption;
                             Task.Run(() =>
                             {
-                                PlayUitls.SetMp3File(Properties.Settings.Default.Ring);
+                                PlayUitls.SetMp3File(_runtimeSetting.Ring);
                                 PlayUitls.PlayRing();
                             });
                         }
                     };
                     btnRing.AddItem(bt);
                 }
-                btnRing.Caption = "铃声:" + Properties.Settings.Default.Ring;
-                PlayUitls.SetMp3File(Properties.Settings.Default.Ring);
+                btnRing.Caption = "铃声:" + _runtimeSetting.Ring;
+                PlayUitls.SetMp3File(_runtimeSetting.Ring);
                 btnRing.Enabled = true;
             }
             else
@@ -136,158 +134,7 @@ namespace Uixe.Watcher
             this.Activate();
 
         }
-
-        private void StarupMqttClient()
-        {
-            //Task.Run(async () =>
-            //{
-            //    var p = Uitls.TollInfo.GetTollInfo(_runtimeSetting.Plaza?.id);
-            //    var factory = new MqttFactory();
-            //    client = factory.CreateMqttClient();
-            //    string ipaddress = Program.mqttserver ? "127.0.0.1" : p.ip;
-            //    var options = new MqttClientOptionsBuilder()
-            //        .WithCredentials($"tco_{p.id}", "")
-            //        .WithTcpServer(ipaddress, 1883)
-            //        .WithClientId(p.id)
-            //        .WithWillMessage(new MqttApplicationMessage() { Topic = "/tco/willmessage", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce, Retain = true })
-            //        .Build();
-            //    chkServerStatus.Caption = $"服务器:{p.ip}";
-
-            //    client.UseDisconnectedHandler(async xe =>
-            //    {
-            //        Console.WriteLine("### DISCONNECTED FROM SERVER ###");
-            //        await Task.Delay(TimeSpan.FromSeconds(1));
-
-            //        this.Invoke((MethodInvoker)delegate
-            //        {
-            //            chkServerStatus.EditValue = false;
-
-            //            chkServerStatus.Caption = $"服务器{ipaddress}网络故障,{xe.Reason}";
-            //            Alert("网络故障", chkServerStatus.Caption);
-            //        });
-            //        if (!xe.ClientWasConnected)
-            //        {
-            //            try
-            //            {
-            //                await client.ReconnectAsync();
-            //            }
-            //            catch
-            //            {
-            //                Console.WriteLine("### RECONNECTING FAILED ###");
-            //            }
-            //        }
-            //    });
-            //    client.UseApplicationMessageReceivedHandler(h =>
-            //    {
-            //        var message = System.Text.Encoding.GetEncoding(936).GetString(h.ApplicationMessage.Payload);
-            //        Console.WriteLine($"{h.ApplicationMessage.Topic}");
-            //        if (h.ApplicationMessage.Topic == "/lane/emrc_main/willmessage" && message.Length >= 10)
-            //        {
-            //            try
-            //            {
-            //                var plaza = message.Substring(0, 7);
-            //                var laneno = message.Substring(7, 3);
-            //                ShowLaneLost(plaza, laneno);
-            //            }
-            //            catch (Exception ex)
-            //            {
-
-            //                Debug.WriteLine($"willmessage:{ex.Message}");
-            //            }
-            //        }
-            //        else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/status/"))
-            //        {
-            //            try
-            //            {
-
-
-            //            string t = h.ApplicationMessage.Topic.Split('/').Last();
-            //            var plaza = t.Substring(0, 7);
-            //            var laneno = t.Substring(7, 3);
-            //            ShowLaneInfor(plaza, t, message);
-            //            }
-            //            catch (Exception ex)
-            //            {
-
-            //                Debug.WriteLine($"emrc_main_status:{ex.Message}");
-            //            }
-            //        }
-            //        else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/confirm/"))
-            //        {
-            //            Task.Run(() =>
-            //            {
-            //                try
-            //                {
-            //                    this.Invoke((MethodInvoker)delegate
-            //                    {
-            //                        this.ShowTCOInfo(h.ApplicationMessage.Topic, message, client);
-            //                    });
-            //                }
-            //                catch (Exception ex)
-            //                {
-            //                    Debug.WriteLine($"confirm:{ex.Message}");
-            //                }
-            //            });
-            //        }
-            //        else if (h.ApplicationMessage.Topic.StartsWith("/lane/emrc_main/message/"))
-            //        {
-            //            try
-            //            {
-            //                ShowMessageView(JsonConvert.DeserializeObject<MsgInfo>(message, new JsonSerializerSettings() { DateTimeZoneHandling = DateTimeZoneHandling.Local }));
-            //            }
-            //            catch (Exception ex)
-            //            {
-
-            //                Debug.WriteLine($"emrc_main/message:{ex.Message}");
-            //            }
-            //        }
-            //    });
-            //    client.UseConnectedHandler(async h =>
-            //    {
-            //        try
-            //        {
-
-
-            //            await client.SubscribeAsync(
-            //                new MqttTopicFilter() { Topic = "/lane/emrc_main/confirm/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
-            //                new MqttTopicFilter() { Topic = "/lane/emrc_main/status/+", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce },
-            //                new MqttTopicFilter() { Topic = "/lane/emrc_main/message/", QualityOfServiceLevel = MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce }
-            //                );
-            //            var pubresult = await client.PublishAsync("/tco/status/", new { message = "startup" });
-            //            this.Invoke((MethodInvoker)delegate
-            //            {
-            //                chkServerStatus.EditValue = true;
-            //                chkServerStatus.EditValue = true;
-            //                chkServerStatus.Caption = $"服务器{ipaddress}网络恢复";
-            //            });
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            Debug.WriteLine($"UseConnectedHandler:{ex.Message}");
-
-            //        }
-            //    });
-
-            //    await client.ConnectAsync(options, CancellationToken.None);
-            //    do
-            //    {
-            //        try
-            //        {
-            //            if (!client.IsConnected)
-            //            {
-            //                Debug.WriteLine($"ReconnectAsync");
-            //                await client.ReconnectAsync();
-            //            }
-
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            Debug.WriteLine($"ReconnectAsync:{ex.Message}");
-            //        }
-            //        Thread.Sleep(TimeSpan.FromSeconds(10));
-            //    } while (true);
-            //});
-        }
+         
 
         private void ResetSpeachMenu()
         {
@@ -312,25 +159,10 @@ namespace Uixe.Watcher
             ShowStatusInfo("正在加载车道列表");
             lanView.SuspendLayout();
             messageView.SuspendLayout();
-            lanView.SuspendLayout();
-
-            lanView.InitLaneInfo(plaza);
-
+            lanView.InitLaneInfo(plaza,_logger,_runtimeSetting);
             messageView.initMessageView(plaza.id, 100);
-
-
-            int el = 0;
-            var key = plaza?.id;
-
-
-            el = lanView.LaneCount;
-            sccMain.SplitterPosition = lanView.Height + 20;
-
-
-
             messageView.ResumeLayout(false);
             lanView.ResumeLayout(false);
-
             Application.DoEvents();
             ShowStatusInfo("就绪");
         }
@@ -376,6 +208,7 @@ namespace Uixe.Watcher
         /// <param name="text">要显示的内容</param>
         public void ShowStatusInfo(string text)
         {
+            _logger.LogInformation(text);
             this.Invoke((MethodInvoker)delegate
             {
                 if (!this.IsDisposed && this.IsHandleCreated)
@@ -410,6 +243,7 @@ namespace Uixe.Watcher
 
         public void Alert(string caption, string text)
         {
+            _logger.LogWarning($"Alert {caption} {text}");
             this.Invoke((MethodInvoker)delegate
             {
                 acMsg.Show(this, caption, text);
@@ -449,8 +283,8 @@ namespace Uixe.Watcher
 
         private void skinRibbonGalleryBarItem2_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
         {
-            Properties.Settings.Default.SkinStyle = e.Item.Tag.ToString();
-            Properties.Settings.Default.Save();
+            _runtimeSetting.SkinStyle = e.Item.Tag.ToString();
+
         }
 
         private string temptime = null;
@@ -471,7 +305,7 @@ namespace Uixe.Watcher
         }
 
         private DateTime lastsend = DateTime.MinValue;
-      
+        internal ILogger _logger;
 
         private void btnSend_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -496,27 +330,25 @@ namespace Uixe.Watcher
 
         private void btnUpgrade_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (ApplicationDeployment.IsNetworkDeployed)
-            {
-
-            }
+           
+           
         }
 
 
         [DebuggerStepThrough]
         private void tmNetworkTest_TickAsync(object sender, EventArgs e)
         {
-                try
-                {
-                 
-                 lanView.SendHeartBeat();
-               
-            
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
-                }
+            try
+            {
+
+                lanView.SendHeartBeat();
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "心跳无法发送");
+            }
         }
 
         private void btnTest_ItemClick(object sender, ItemClickEventArgs e)

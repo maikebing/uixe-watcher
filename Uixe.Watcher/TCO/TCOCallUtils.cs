@@ -30,7 +30,7 @@ namespace Uixe.Watcher.TCO
             {
                 if (form.WeightTCOCall == null || form.WeightTCOCall.IsDisposed || !form.WeightTCOCall.IsHandleCreated)
                 {
-                    form.WeightTCOCall = new frmWeightTCOCall(form.Plaza);
+                    form.WeightTCOCall = new frmWeightTCOCall(form.Plaza, form._runtimeSetting);
                     form.WeightTCOCall.LoadInfo();
                     form.WeightTCOCall.Hide();
                 }
@@ -49,8 +49,9 @@ namespace Uixe.Watcher.TCO
 
                 if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
                 {
-                    form._tcocall = new frmShowTCOCall(form.Plaza)
+                    form._tcocall = new frmShowTCOCall(form.Plaza, form._runtimeSetting,form._logger)
                     {
+                      
                         //MQTTClient = client,
                         Owner = form
                     };

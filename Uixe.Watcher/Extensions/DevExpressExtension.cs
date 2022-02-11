@@ -9,7 +9,7 @@ namespace Uixe.Watcher.Extensions
         public static void UseDevExpress(this IApplicationBuilder app)
         {
             DevExpress.Skins.SkinManager.EnableFormSkins();
-            UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.SkinStyle);
+           // UserLookAndFeel.Default.SetSkinStyle(_runtimeSetting.SkinStyle);
         }
   
     }

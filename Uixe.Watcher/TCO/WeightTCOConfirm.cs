@@ -82,11 +82,11 @@ namespace Uixe.Watcher.TCO
                 switch (tce.CallType)
                 {
                     case WATCHER_TYPE.WATCHER_LTORNONGYONG:
-                        sound = Properties.Settings.Default.SpeechLvSeTongDao;
+                        sound = _runtimeSetting.SpeechLvSeTongDao;
                         break;
 
                     case WATCHER_TYPE.WATCHER_BlacklistPlate:
-                        sound = Properties.Settings.Default.SpeedBlackListPlate;
+                        sound = _runtimeSetting.SpeedBlackListPlate;
                         break;
 
                     default:
@@ -118,6 +118,7 @@ namespace Uixe.Watcher.TCO
         }
 
         private DateTime dtold = DateTime.Now;
+        internal RuntimeSetting _runtimeSetting;
 
         private void timer1_Tick(object sender, EventArgs e)
         {

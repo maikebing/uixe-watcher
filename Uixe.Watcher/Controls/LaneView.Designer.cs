@@ -86,12 +86,14 @@
             // 
             // gcExitLanes
             // 
+            this.gcExitLanes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gcExitLanes.DataSource = this.laneInfoBindingSource;
-            this.gcExitLanes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcExitLanes.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcExitLanes.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gcExitLanes.Location = new System.Drawing.Point(0, 0);
             this.gcExitLanes.MainView = this.gvExitLanes;
-            this.gcExitLanes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcExitLanes.Margin = new System.Windows.Forms.Padding(4);
             this.gcExitLanes.MenuManager = this.barManager1;
             this.gcExitLanes.Name = "gcExitLanes";
             this.gcExitLanes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -99,7 +101,7 @@
             this.rpbExit,
             this.cardBoxControlRepositoryItem2,
             this.repositoryItemTimeEdit1});
-            this.gcExitLanes.Size = new System.Drawing.Size(1771, 672);
+            this.gcExitLanes.Size = new System.Drawing.Size(1513, 532);
             this.gcExitLanes.TabIndex = 9;
             this.gcExitLanes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvExitLanes});
@@ -681,17 +683,17 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1771, 0);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1513, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 672);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 532);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1771, 0);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1513, 0);
             // 
             // barDockControlLeft
             // 
@@ -699,17 +701,17 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 672);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 532);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1771, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1513, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 672);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 532);
             // 
             // btnVNC
             // 
@@ -767,6 +769,8 @@
             // 
             // LaneView
             // 
+            this.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcExitLanes);
@@ -775,9 +779,9 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LaneView";
-            this.Size = new System.Drawing.Size(1771, 672);
+            this.Size = new System.Drawing.Size(1513, 532);
             ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).EndInit();

@@ -54,15 +54,27 @@ namespace Uixe.Watcher.Controllers
             {
                 await Task.Run(() =>
                 {
-                    var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
-                    frm.ShowTCOInfo(msgWeight);
+                    try
+                    {
+                        var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                        if (frm != null)
+                        {
+                            frm.ShowTCOInfo(msgWeight);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, $"无法打开{nameof(frmPlaza)} 站代码为{plazaid}");
+                      
+                    }
+                    
                 });
                 return Ok(new ApiResult(ApiCode.OK, "OK"));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+                return BadRequest(new ApiResult(ApiCode.BadRequst, ex.Message));
             }
 
         }

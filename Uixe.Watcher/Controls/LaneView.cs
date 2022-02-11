@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,11 +16,14 @@ namespace Uixe.Watcher.Controls
 {
     public partial class LaneView : DevExpress.XtraEditors.XtraUserControl
     {
+        private ILogger _logger;
+
         /// <summary>
         /// InitLaneInfo 进行初始化时赋值。
         /// </summary>
         public Plaza Plaza { get; set; }
 
+        private RuntimeSetting _runtimeSetting;
         public List<LaneInfo> lst = new List<LaneInfo>();
 
         public LaneView()
@@ -27,9 +31,11 @@ namespace Uixe.Watcher.Controls
             InitializeComponent();
         }
 
-        internal void InitLaneInfo(Plaza item)
+        internal void InitLaneInfo(Plaza item, ILogger logger, RuntimeSetting runtimeSetting)
         {
+            _logger = logger;
             Plaza = item;
+            _runtimeSetting = runtimeSetting;
             var _ls = new List<LaneInfo>();
             item.lanes?.ForEach(l =>
             {
@@ -121,32 +127,44 @@ namespace Uixe.Watcher.Controls
                         frmRemoteViewer viewer = new frmRemoteViewer(this.Plaza, fv);
                         viewer.Show();
                     }
-                    catch (Exception)
+                    catch (Exception ex) 
                     {
+                        _logger.LogError(ex, $"打开{fv.LaneName}-{fv.IPAddress}VNC时遇到错误");
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "获取当前车道信息时遇到问题");
             }
         }
         DateTime lasconfig = DateTime.MinValue;
         public void SendHeartBeat()
         {
             bool config = DateTime.Now.Subtract(lasconfig).TotalMinutes > 5;
-            Plaza.lanes?.ForEach(async lane =>
+            Plaza?.lanes?.ForEach(async lane =>
         {
             try
             {
-                await lane.SendMsg("tco/status/", new { message = "HeartBeat" });
-                if (config)
+                Application.DoEvents();
+                if (await lane.Ping())
                 {
-                    await lane.SendMsg("tco/config/", new { agentIp = Plaza?.agentIp });
+                    Application.DoEvents();
+                    await lane.SendMsg("tco/status/", new { message = "HeartBeat" });
+                    if (config)
+                    {
+                        Application.DoEvents();
+                        await lane.SendMsg("tco/config/", new { agentIp = Plaza?.agentIp });
+                    }
+                }
+                else
+                {
+                    _logger.LogWarning( $"网络不通， 无法发送{lane.lane_no} {lane.ip}心跳。");
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"SendHeartBeat:{ex.Message}");
+                _logger.LogError(ex, $"无法发送{lane.lane_no} {lane.ip}心跳");
             }
         });
             if (config) lasconfig = DateTime.Now;
@@ -168,12 +186,13 @@ namespace Uixe.Watcher.Controls
                 if (fv != null)
                 {
                     frmRemoteLane lane = new frmRemoteLane(Plaza, fv);
+                    lane._runtimeSetting = _runtimeSetting;
                     lane.Show(this);
                 }
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, "远程控制时获取当前车道信息时遇到问题");
             }
         }
 

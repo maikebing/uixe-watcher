@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Uixe.Watcher.Properties.Settings settings1 = new Uixe.Watcher.Properties.Settings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.txtUser = new DevExpress.XtraEditors.TextEdit();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
@@ -167,8 +166,6 @@
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUser);
-            settings1.SettingsKey = "";
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", settings1, "frmLogin_Location", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmLogin.IconOptions.Icon")));
