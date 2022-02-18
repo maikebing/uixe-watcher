@@ -45,18 +45,7 @@ namespace Uixe.Watcher.Ring
             Ti = 988,
             Do2 = 1046
         }
-
-        private static void PlayPc()
-        {
-            Beep((int)Music.Do, 300);
-            Beep((int)Music.Do, 300);
-            Beep((int)Music.So, 300);
-            Beep((int)Music.So, 300);
-            Beep((int)Music.La, 300);
-            Beep((int)Music.La, 300);
-            Beep((int)Music.So, 600);
-        }
-
+    
         public static string sfile;
 
         public static void SetMp3File(string file)
@@ -92,10 +81,7 @@ namespace Uixe.Watcher.Ring
             {
             }
         }
-
-        private void CloseWaveOut()
-        {
-        }
+ 
 
         public void Dispose()
         {
