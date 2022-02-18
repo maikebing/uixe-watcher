@@ -75,7 +75,7 @@ namespace Uixe.Watcher.Msg
             string keyname = $"{name}{value}";
             if (!_imgcache.ContainsKey(keyname))
             {
-                Rectangle cropArea = new Rectangle(value ? 0 : img.Width / 2, 0, img.Width / 2, img.Height);
+                Rectangle cropArea = new Rectangle(value ?  img.Width / 2:0, 0, img.Width / 2, img.Height);
                 using (Bitmap bmpImage = new Bitmap(img))
                 {
                     using (Bitmap bmpCrop = bmpImage.Clone(cropArea, bmpImage.PixelFormat))
