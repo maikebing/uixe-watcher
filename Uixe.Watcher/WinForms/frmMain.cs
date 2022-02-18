@@ -7,11 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Uixe.Watcher.Controls;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Extensions;
 using Uixe.Watcher.Uitls;
@@ -29,7 +31,9 @@ namespace Uixe.Watcher
         private readonly IMemoryCache _cache;
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger _logger;
-
+        private CougarClockRepositoryItem repositoryItem = new CougarClockRepositoryItem();
+        private CougarClockContainer control = new CougarClockContainer();
+        private BarEditItem barEditItem = new BarEditItem();
         public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option,  ILogger<frmMain>  logger, IMemoryCache cache , ILoggerFactory loggerFactory)
         {
             InitializeComponent();
@@ -39,9 +43,27 @@ namespace Uixe.Watcher
             _scope = scopeFactor.CreateScope();
             _cache = cache;
             _loggerFactory = loggerFactory;
-
+            repositoryItem.ControlType = control.GetType();
+            barEditItem.Edit = repositoryItem;
+            barEditItem.EditHeight = control.Height;
+            barEditItem.Width = control.Width;
+            rpgTime.ItemLinks.Add(barEditItem);
         }
-
+        private string temptime = null;
+        private object timeobjlock = new object();
+        [DebuggerStepThrough]
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lock (timeobjlock)
+            {
+                string timetemp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                if (timetemp != temptime)
+                {
+                    temptime = timetemp;
+                    barEditItem.EditValue = temptime;
+                }
+            }
+        }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {

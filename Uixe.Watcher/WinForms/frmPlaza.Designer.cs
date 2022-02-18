@@ -32,21 +32,22 @@ namespace Uixe.Watcher
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlaza));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.applicationMenu1 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
+            this.btnRBLogin = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRBLogout = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRBExit = new DevExpress.XtraBars.BarButtonItem();
             this.txtStatus = new DevExpress.XtraBars.BarStaticItem();
             this.btnBuildParamsFiles = new DevExpress.XtraBars.BarButtonItem();
             this.btnSyncTime = new DevExpress.XtraBars.BarButtonItem();
             this.btnBook = new DevExpress.XtraBars.BarButtonItem();
             this.btnAbout = new DevExpress.XtraBars.BarButtonItem();
             this.cmsPlazas = new DevExpress.XtraBars.BarSubItem();
-            this.btnRBLogin = new DevExpress.XtraBars.BarButtonItem();
-            this.btnRBLogout = new DevExpress.XtraBars.BarButtonItem();
-            this.btnRBExit = new DevExpress.XtraBars.BarButtonItem();
             this.btnRing = new DevExpress.XtraBars.BarSubItem();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.skinRibbonGalleryBarItem2 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
@@ -67,7 +68,6 @@ namespace Uixe.Watcher
             this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rpgTime = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -95,12 +95,10 @@ namespace Uixe.Watcher
             this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.applicationMenu1 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.messageView = new Uixe.Watcher.Controls.MessageView();
             this.sccMain = new DevExpress.XtraEditors.SplitContainerControl();
             this.lanView = new Uixe.Watcher.Controls.LaneView();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.tmDateTime = new System.Windows.Forms.Timer(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.acMsg = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.tmNetworkTest = new System.Windows.Forms.Timer(this.components);
@@ -110,6 +108,7 @@ namespace Uixe.Watcher
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.niMain = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.applicationMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
@@ -132,7 +131,6 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.applicationMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sccMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sccMain.Panel1)).BeginInit();
             this.sccMain.Panel1.SuspendLayout();
@@ -211,6 +209,37 @@ namespace Uixe.Watcher
             this.ribbon.Size = new System.Drawing.Size(1633, 160);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
+            // applicationMenu1
+            // 
+            this.applicationMenu1.ItemLinks.Add(this.btnRBLogin, true);
+            this.applicationMenu1.ItemLinks.Add(this.btnRBLogout);
+            this.applicationMenu1.ItemLinks.Add(this.btnRBExit, true, "", "", true);
+            this.applicationMenu1.Name = "applicationMenu1";
+            this.applicationMenu1.Ribbon = this.ribbon;
+            // 
+            // btnRBLogin
+            // 
+            this.btnRBLogin.Description = "登录(&L)";
+            this.btnRBLogin.Hint = "登录";
+            this.btnRBLogin.Id = 25;
+            this.btnRBLogin.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.customer_32x32;
+            this.btnRBLogin.Name = "btnRBLogin";
+            // 
+            // btnRBLogout
+            // 
+            this.btnRBLogout.Description = "注销(&O)";
+            this.btnRBLogout.Id = 26;
+            this.btnRBLogout.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.walking_32x32;
+            this.btnRBLogout.Name = "btnRBLogout";
+            // 
+            // btnRBExit
+            // 
+            this.btnRBExit.Description = "退出(&X)";
+            this.btnRBExit.Id = 27;
+            this.btnRBExit.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.close_32x32;
+            this.btnRBExit.Name = "btnRBExit";
+            this.btnRBExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExit_ItemClick);
+            // 
             // txtStatus
             // 
             this.txtStatus.Caption = "就绪";
@@ -260,29 +289,6 @@ namespace Uixe.Watcher
             this.cmsPlazas.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.documentmap_16x16;
             this.cmsPlazas.ImageOptions.LargeImage = global::Uixe.Watcher.Properties.Resources.documentmap_32x32;
             this.cmsPlazas.Name = "cmsPlazas";
-            // 
-            // btnRBLogin
-            // 
-            this.btnRBLogin.Description = "登录(&L)";
-            this.btnRBLogin.Hint = "登录";
-            this.btnRBLogin.Id = 25;
-            this.btnRBLogin.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.customer_32x32;
-            this.btnRBLogin.Name = "btnRBLogin";
-            // 
-            // btnRBLogout
-            // 
-            this.btnRBLogout.Description = "注销(&O)";
-            this.btnRBLogout.Id = 26;
-            this.btnRBLogout.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.walking_32x32;
-            this.btnRBLogout.Name = "btnRBLogout";
-            // 
-            // btnRBExit
-            // 
-            this.btnRBExit.Description = "退出(&X)";
-            this.btnRBExit.Id = 27;
-            this.btnRBExit.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.close_32x32;
-            this.btnRBExit.Name = "btnRBExit";
-            this.btnRBExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExit_ItemClick);
             // 
             // btnRing
             // 
@@ -444,8 +450,7 @@ namespace Uixe.Watcher
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup2,
-            this.rpgTime});
+            this.ribbonPageGroup2});
             this.ribbonPage1.MergeOrder = 1;
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "常规业务";
@@ -454,10 +459,6 @@ namespace Uixe.Watcher
             // 
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "操作";
-            // 
-            // rpgTime
-            // 
-            this.rpgTime.Name = "rpgTime";
             // 
             // ribbonPage2
             // 
@@ -502,7 +503,7 @@ namespace Uixe.Watcher
             // repositoryItemTimeEdit1
             // 
             this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "d";
             this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
@@ -676,14 +677,6 @@ namespace Uixe.Watcher
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1633, 24);
             // 
-            // applicationMenu1
-            // 
-            this.applicationMenu1.ItemLinks.Add(this.btnRBLogin, true);
-            this.applicationMenu1.ItemLinks.Add(this.btnRBLogout);
-            this.applicationMenu1.ItemLinks.Add(this.btnRBExit, true, "", "", true);
-            this.applicationMenu1.Name = "applicationMenu1";
-            this.applicationMenu1.Ribbon = this.ribbon;
-            // 
             // messageView
             // 
             this.messageView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -739,12 +732,6 @@ namespace Uixe.Watcher
             this.barButtonItem3.Id = 39;
             this.barButtonItem3.ImageOptions.LargeImage = global::Uixe.Watcher.Properties.Resources.GroupBlogInsertLinks;
             this.barButtonItem3.Name = "barButtonItem3";
-            // 
-            // tmDateTime
-            // 
-            this.tmDateTime.Enabled = true;
-            this.tmDateTime.Interval = 1000;
-            this.tmDateTime.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // tmNetworkTest
             // 
@@ -811,6 +798,7 @@ namespace Uixe.Watcher
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.frmMain_HelpRequested);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.applicationMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
@@ -833,7 +821,6 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.applicationMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sccMain.Panel1)).EndInit();
             this.sccMain.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sccMain.Panel2)).EndInit();
@@ -878,7 +865,6 @@ namespace Uixe.Watcher
         private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup repositoryItemRadioGroup1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgTime;
         private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repositoryItemPopupContainerEdit3;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemPopupGalleryEdit repositoryItemPopupGalleryEdit1;
@@ -918,7 +904,6 @@ namespace Uixe.Watcher
         private DevExpress.XtraTreeList.Columns.TreeListColumn colKinds;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colExample;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colDisplay;
-        private System.Windows.Forms.Timer tmDateTime;
         private LaneView lanView;
     }
 }

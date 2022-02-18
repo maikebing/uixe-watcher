@@ -51,9 +51,7 @@ namespace Uixe.Watcher
             InitializeComponent();
         }
 
-        private CougarClockRepositoryItem repositoryItem = new CougarClockRepositoryItem();
-        private CougarClockContainer control = new CougarClockContainer();
-        private BarEditItem barEditItem = new BarEditItem();
+     
 
         public frmShowTCOCall _tcocall;
         public frmWeightTCOCall WeightTCOCall;
@@ -63,11 +61,8 @@ namespace Uixe.Watcher
         private void frmMain_Load(object sender, EventArgs e)
         {
             btnUpgrade.Visibility = BarItemVisibility.Never;
-            repositoryItem.ControlType = control.GetType();
-            barEditItem.Edit = repositoryItem;
-            barEditItem.EditHeight = control.Height;
-            barEditItem.Width = control.Width;
-            rpgTime.ItemLinks.Add(barEditItem);
+         
+     
             this.Icon = Properties.Resources.LOGO;
             if (System.IO.Directory.Exists("Ring"))
             {
@@ -285,23 +280,6 @@ namespace Uixe.Watcher
         {
             _runtimeSetting.SkinStyle = e.Item.Tag.ToString();
 
-        }
-
-        private string temptime = null;
-        private object timeobjlock = new object();
-
-        [DebuggerStepThrough]
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            lock (timeobjlock)
-            {
-                string timetemp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                if (timetemp != temptime)
-                {
-                    temptime = timetemp;
-                    barEditItem.EditValue = temptime;
-                }
-            }
         }
 
         private DateTime lastsend = DateTime.MinValue;

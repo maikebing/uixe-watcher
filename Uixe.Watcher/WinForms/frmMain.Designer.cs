@@ -40,6 +40,8 @@ namespace Uixe.Watcher
             this.rpgPlazas = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManagerex1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManagerEX(this.components);
+            this.rpgTime = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.tmDateTime = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManagerex1)).BeginInit();
             this.SuspendLayout();
@@ -100,7 +102,8 @@ namespace Uixe.Watcher
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.rpgPlazas});
+            this.rpgPlazas,
+            this.rpgTime});
             this.ribbonPage1.MergeOrder = 1;
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "常规业务";
@@ -126,6 +129,10 @@ namespace Uixe.Watcher
             this.xtraTabbedMdiManagerex1.BackImage = global::Uixe.Watcher.Properties.Resources.backgroupimage;
             this.xtraTabbedMdiManagerex1.BigLogo = global::Uixe.Watcher.Properties.Resources.logo3;
             this.xtraTabbedMdiManagerex1.MdiParent = this;
+            // 
+            // rpgTime
+            // 
+            this.rpgTime.Name = "rpgTime";
             // 
             // frmMain
             // 
@@ -161,5 +168,7 @@ namespace Uixe.Watcher
         private DevExpress.XtraBars.BarButtonItem btnAbout;
         private DevExpress.XtraBars.BarButtonItem btnLogin;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManagerEX xtraTabbedMdiManagerex1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgTime;
+        private System.Windows.Forms.Timer tmDateTime;
     }
 }
