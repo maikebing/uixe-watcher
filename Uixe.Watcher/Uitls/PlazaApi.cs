@@ -37,8 +37,6 @@ namespace Uixe.Watcher.Uitls
             return result;
         }
 
-        public void Logout()
-        {
-        }
+
     }
 }
