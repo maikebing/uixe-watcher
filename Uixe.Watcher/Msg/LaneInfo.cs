@@ -42,12 +42,12 @@ namespace Uixe.Watcher.Msg
 
         public byte[] LanGan => GetImage(Properties.Resources.LanGan, nameof(LanGanStatus), LanGanStatus);
 
-        public byte[] Coil1 => GetImage(Properties.Resources.Car, nameof(Coil1Status), Coil1Status);
+        public byte[] Coil1 => GetImage(Properties.Resources.Car, nameof(Coil1Status), !Coil1Status);
 
-        public byte[] Coil2 => GetImage(Properties.Resources.Trans, nameof(Coil2Status), Coil2Status);
+        public byte[] Coil2 => GetImage(Properties.Resources.Trans, nameof(Coil2Status), !Coil2Status);
 
-        public byte[] Coil3 => GetImage(Properties.Resources.Photo, nameof(Coil3Status), Coil3Status);
-        public byte[] Coil4 => GetImage(Properties.Resources.Leave, nameof(Coil4Status), Coil4Status);
+        public byte[] Coil3 => GetImage(Properties.Resources.Photo, nameof(Coil3Status), !Coil3Status);
+        public byte[] Coil4 => GetImage(Properties.Resources.Leave, nameof(Coil4Status), !Coil4Status);
 
         public byte[] Printer => GetImage(Properties.Resources.Printer, nameof(PrinterStatus), PrinterStatus);
 
@@ -75,7 +75,7 @@ namespace Uixe.Watcher.Msg
             string keyname = $"{name}{value}";
             if (!_imgcache.ContainsKey(keyname))
             {
-                Rectangle cropArea = new Rectangle(value ?  img.Width / 2:0, 0, img.Width / 2, img.Height);
+                Rectangle cropArea = new Rectangle(value ?  0:img.Width / 2, 0, img.Width / 2, img.Height);
                 using (Bitmap bmpImage = new Bitmap(img))
                 {
                     using (Bitmap bmpCrop = bmpImage.Clone(cropArea, bmpImage.PixelFormat))
