@@ -68,7 +68,6 @@ namespace Uixe.Watcher
             this.keyboard1.Location = new System.Drawing.Point(3, 377);
             this.keyboard1.Margin = new System.Windows.Forms.Padding(2);
             this.keyboard1.Name = "keyboard1";
-            this.keyboard1.Port = 0;
             this.keyboard1.Size = new System.Drawing.Size(853, 347);
             this.keyboard1.TabIndex = 0;
             // 

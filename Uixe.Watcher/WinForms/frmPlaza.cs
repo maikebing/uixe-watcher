@@ -2,6 +2,7 @@
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -284,7 +285,8 @@ namespace Uixe.Watcher
 
         private DateTime lastsend = DateTime.MinValue;
         internal ILogger _logger;
-
+        internal ILoggerFactory _loggerFactory;
+        internal IMemoryCache  _cache;
         private void btnSend_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (DateTime.Now.Subtract(lastsend).TotalSeconds > 2)

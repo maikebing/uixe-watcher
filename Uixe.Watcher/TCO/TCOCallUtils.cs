@@ -50,9 +50,7 @@ namespace Uixe.Watcher.TCO
                 if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
                 {
                     form._tcocall = new frmShowTCOCall(form.Plaza, form._runtimeSetting,form._logger)
-                    {
-                      
-                        //MQTTClient = client,
+                    {                     
                         Owner = form
                     };
                 }

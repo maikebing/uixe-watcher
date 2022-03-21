@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using Uixe.Watcher.Uitls;
@@ -29,7 +30,7 @@ namespace Uixe.Watcher.Msg
             LaneName = laneno;
             IPAddress = ipaddress;
         }
-
+      
         public string LaneName { get; set; }
         public string PlazaId { get; set; }
         public string LaneId { get; set; }

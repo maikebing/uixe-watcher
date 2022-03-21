@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Data;
 using System.Linq;
 using Uixe.Watcher.Dtos;
@@ -15,12 +17,14 @@ namespace Uixe.Watcher
             InitializeComponent();
         }
 
+        private ILogger _logger;
+
         public TCOCall TCE { get; set; }
         public bool CanDo { get; set; }
         public Lane Lane { get; set; }
         public Plaza Plaza {get;set;}
         public frmPlaza Owner { get;   set; }
-
+        public IMemoryCache _cache => Owner._cache;
         public bool CheckPlazaInfo()
         {
             bool ret = true;
@@ -41,8 +45,9 @@ namespace Uixe.Watcher
   
         private UixeClient uixeClient = new UixeClient();
 
-        public void Show(TCOCall tce)
+        public async void Show(TCOCall tce)
         {
+            _logger = Owner?._loggerFactory.CreateLogger(nameof(TCOConfirm));
             TCE = tce;
             IsShowed = false;
             InitInfo();
@@ -62,7 +67,7 @@ namespace Uixe.Watcher
             tcoPictureBox1.ImageLocation = url;
             tcoPictureBox1.ImageLocation = url;
             keyItem_Vehicle_Types_BindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
-            _pbindingSource1.DataSource =  uixeClient.GetProvCodes(Plaza.ip);
+            _pbindingSource1.DataSource =await _cache.GetOrCreate(Plaza.ip, async c=> await uixeClient.GetProvCodes(Plaza.ip));
             _pbindingSource1.ResetCurrentItem();
             cbxProv.EditValue = 65;
             pLazaBindingSource.ResetCurrentItem();
@@ -164,8 +169,9 @@ namespace Uixe.Watcher
                 tCOCallBindingSource.ResetCurrentItem();
                 gcCardInfo.Enabled = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, $"初始化时遇到问题{ex.Message}");
             }
         }
 
@@ -191,12 +197,12 @@ namespace Uixe.Watcher
                 UixeClient client = new UixeClient();
                 if (isfirst)
                 {
-                    var pc = await client.GetProvByPlaza(Plaza.ip, tce.EntryStationID);
+                    var pc = await _cache.GetOrCreate($"{Plaza.ip}{tce.EntryStationID}", async c =>  await client.GetProvByPlaza(Plaza.ip, tce.EntryStationID));
                     cbxProv.EditValue = int.Parse(pc);
                 }
                 var prov = cbxProv.GetSelectedDataRow() as ProvCode;
 
-                var ppi = await client.GetProvPlazaInfo(Plaza.ip, $"{prov?.provId ?? 65}");
+                var ppi = await _cache.GetOrCreate( $"{Plaza.ip}{prov?.provId ?? 65}", async c =>  await client.GetProvPlazaInfo(Plaza.ip, $"{prov?.provId ?? 65}"));
                 if (ppi != null)
                 {
                     pLazaBindingSource.DataSource = ppi;
@@ -211,8 +217,9 @@ namespace Uixe.Watcher
                     }
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
+                _logger.LogError(ex, $"FillPlazaNameAndList时遇到问题{ex.Message}");
             }
         }
 
