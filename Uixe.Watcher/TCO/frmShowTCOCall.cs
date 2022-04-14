@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,37 +21,42 @@ namespace Uixe.Watcher
         private readonly Plaza _plaza;
         internal RuntimeSetting _runtimeSetting;
         private readonly ILogger _logger;
+        private readonly IMemoryCache _cache;
 
-        public new frmPlaza Owner { get; set; }
-        public frmShowTCOCall(Plaza plaza, RuntimeSetting runtimeSetting, ILogger logger) : this()
+        public frmShowTCOCall(frmPlaza owner) : this()
         {
-            _plaza = plaza;
-            _runtimeSetting = runtimeSetting;
-            _logger = logger;
-            try
+
+            if (this.DesignMode == false  &&  this.Disposing == false)
             {
-                this.tsTabs.TabPages.Clear();
-                for (int i = 0; i < _plaza.lanes.Count; i++)
+                _plaza = owner.Plaza;
+                _runtimeSetting = owner._runtimeSetting;
+                _logger = owner._logger;
+                _cache = owner._cache;
+                try
                 {
-                    string pname = _plaza.id + _plaza.lanes[i].lane_no;
-                    XtraTabPage t = new XtraTabPage();
-                    TCOConfirm tms = new TCOConfirm();
-                    tms.Plaza = _plaza;
-                    tms.Lane = _plaza.lanes[i];
-                    tms.Owner = Owner;
-                    t.Name = pname;
-                    tms.Name = pname;
-                    tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent
-                    tms.Dock = DockStyle.Fill;
-                    t.Controls.Add(tms);
-                    t.Tag = tms;
-                    tsTabs.TabPages.Add(t);
-                    t.PageVisible = false;
+                    this.tsTabs.TabPages.Clear();
+                    for (int i = 0; i < _plaza.lanes.Count; i++)
+                    {
+                        string pname = _plaza.id + _plaza.lanes[i].lane_no;
+                        XtraTabPage t = new XtraTabPage();
+                        TCOConfirm tms = new TCOConfirm();
+                        tms.Plaza = _plaza;
+                        tms.Lane = _plaza.lanes[i];
+                        tms.Owner = owner;
+                        t.Name = pname;
+                        tms.Name = pname;
+                        tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent
+                        tms.Dock = DockStyle.Fill;
+                        t.Controls.Add(tms);
+                        t.Tag = tms;
+                        tsTabs.TabPages.Add(t);
+                        t.PageVisible = false;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"初始化监控确认窗口失败{plaza?.id}");
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"初始化监控确认窗口失败{_plaza?.id}");
+                }
             }
         }
 
@@ -58,8 +64,6 @@ namespace Uixe.Watcher
         {
             InitializeComponent();
         }
-
-
   
 
         public void Show(TCOCall TCOCallxxx)

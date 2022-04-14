@@ -49,10 +49,7 @@ namespace Uixe.Watcher.TCO
 
                 if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
                 {
-                    form._tcocall = new frmShowTCOCall(form.Plaza, form._runtimeSetting,form._logger)
-                    {                     
-                        Owner = form
-                    };
+                    form._tcocall = new frmShowTCOCall(form);
                 }
                 form._tcocall.Show(call);
                 Task.Run(PlayUitls.PlayRing);

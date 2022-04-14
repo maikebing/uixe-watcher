@@ -67,15 +67,16 @@ namespace Uixe.Watcher
             tcoPictureBox1.ImageLocation = url;
             tcoPictureBox1.ImageLocation = url;
             keyItem_Vehicle_Types_BindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
+            tCOCallBindingSource.DataSource = TCE;
             _pbindingSource1.DataSource =await _cache.GetOrCreate(Plaza.ip, async c=> await uixeClient.GetProvCodes(Plaza.ip));
             _pbindingSource1.ResetCurrentItem();
             cbxProv.EditValue = 65;
             pLazaBindingSource.ResetCurrentItem();
-            //tCOCallBindingSource.ResetBindings(false);
+            tCOCallBindingSource.ResetBindings(false);
             tCOCallBindingSource.ResetCurrentItem();
 
             FillPlazaNameAndList(tce, true);
-            tCOCallBindingSource.DataSource = TCE;
+         
             chkCarKind.Checked = tce.DifClass != 0;
             chkCarPlate.Checked = tce.DifPlate;
             chkCarType.Checked = tce.DifType;
