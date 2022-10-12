@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uixe.Watcher", "Uixe.Watche
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8B3B5CF7-AB25-4026-889F-C797AAF428D7}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		GitVersion.yml = GitVersion.yml
 		README.md = README.md
 	EndProjectSection
@@ -38,8 +39,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_SaveFilesImmediatelyUponChange = False
-		RESX_NeutralResourcesLanguage = zh-Hans
 		SolutionGuid = {339573ED-4417-48E7-A437-BC3549DD7DD3}
+		RESX_NeutralResourcesLanguage = zh-Hans
+		RESX_SaveFilesImmediatelyUponChange = False
 	EndGlobalSection
 EndGlobal

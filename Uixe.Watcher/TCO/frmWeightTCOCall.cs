@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraTab;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraTab;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -65,17 +66,18 @@ namespace Uixe.Watcher.TCO
                 {
                     XtraTabPage t = x.Single(); ;
                     WeightTCOConfirm tms = t.Tag as WeightTCOConfirm;
-                    t.Text = string.Format("站:{1}车道{0}", mu.LaneNo, mu.Plaza);
+                    t.Text = string.Format($"车道:{pname}");
                     tms.Show(mu);
                     tms.Owner = this;
                     t.PageVisible = true;
+                    this.TopMost = true;
                     this.Show();
                     t.Focus();
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("内部错误" + ex.Message);
+                XtraMessageBox.Show($"展示监控确认信息时遇到问题异常:{ex.Message}");
             }
         }
 

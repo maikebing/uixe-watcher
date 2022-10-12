@@ -10,7 +10,7 @@ namespace Uixe.Watcher.Uitls
 
         public PlazaApi(string serverapi)
         {
-            client = new RestClient( new RestClientOptions($"http://{serverapi}/") { Timeout=-1, FollowRedirects=false });
+            client = new RestClient( new RestClientOptions($"http://{serverapi}/") { FollowRedirects=false });
             client.AddDefaultHeader(KnownHeaders.Accept, "*/*");
         }
 

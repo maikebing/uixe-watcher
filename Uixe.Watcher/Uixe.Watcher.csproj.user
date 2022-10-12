@@ -13,7 +13,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <EnableSecurityDebugging>false</EnableSecurityDebugging>
-    <_LastSelectedProfileId>D:\Works\JTTCO\Uixe.Watcher\Properties\PublishProfiles\ClickOnceProfile.pubxml</_LastSelectedProfileId>
+    <_LastSelectedProfileId>D:\Works\JTTCO\Uixe.Watcher\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartArguments>--mqttserver</StartArguments>
@@ -135,6 +135,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="WinForms\frmMain.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="WinForms\frmSplashScreen.resx">
       <SubType>Code</SubType>
     </EmbeddedResource>

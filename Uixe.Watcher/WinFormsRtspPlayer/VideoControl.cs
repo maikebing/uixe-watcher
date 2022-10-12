@@ -66,7 +66,7 @@ namespace WinFormsRtspPlayer
                     {
                         return;
                     }
-                    catch (RtspClientException e)
+                    catch (RtspClientException  )
                     {
                         await Task.Delay(delay);
                     }

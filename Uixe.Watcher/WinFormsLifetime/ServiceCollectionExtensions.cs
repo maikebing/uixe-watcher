@@ -63,7 +63,6 @@ namespace Uixe.Watcher
             }
             return services;
         }
-        static bool _console = false;
         private static void ConfigConsole()
         {
             //if (!_console)

@@ -12,9 +12,9 @@ namespace Uixe.Watcher.Uitls
         public static RestClient  CreateClient(this Lane lane)
         {
 #if DEBUG
-            var client = new RestClient(new RestClientOptions($"http://192.168.0.178:10000/") { Timeout = 10000, FollowRedirects = false });
+            var client = new RestClient(new RestClientOptions($"http://192.168.0.178:10000/") { FollowRedirects = false });
 #else
-            var  client = new RestClient( new RestClientOptions($"http://{lane.ip}:10000/") { Timeout=10000, FollowRedirects=false });
+            var  client = new RestClient( new RestClientOptions($"http://{lane.ip}:10000/") {  FollowRedirects=false });
 #endif
             client.AddDefaultHeader(KnownHeaders.Accept, "*/*");
             client.AddDefaultHeader(KnownHeaders.ContentType, "application/json");

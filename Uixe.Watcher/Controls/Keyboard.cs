@@ -51,7 +51,7 @@ namespace Uixe.Watcher.Controls
         {
             try
             {
-                client = new RestClient(new RestClientOptions($"http://{IPAddress}:10000/") { Timeout = -1, FollowRedirects = false });
+                client = new RestClient(new RestClientOptions($"http://{IPAddress}:10000/") {  FollowRedirects = false });
                 client.AddDefaultHeader(KnownHeaders.Accept, "*/*");
                 var request = new RestRequest("/api/control", Method.Post);
                 request.AddHeader("Content-Type", "application/json");
