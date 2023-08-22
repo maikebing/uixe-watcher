@@ -16,7 +16,7 @@ namespace Uixe.Watcher.Dtos
 
         public string road_name { get; set; }
         public string road_id { get; set; }
-        public string vnc_password { get; set; }
+        public string vncpwd { get; set; }
 
     }
 }
