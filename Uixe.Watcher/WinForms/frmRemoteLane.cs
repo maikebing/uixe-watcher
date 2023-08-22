@@ -28,7 +28,7 @@ namespace Uixe.Watcher
         }
         private async void frmRemoteLane_Load(object sender, EventArgs e)
         {
-            var vnc = await VNCUtils.Login(this.vncScreen, _lane.IPAddress, 5900, "kissme");
+            var vnc = await VNCUtils.Login(this.vncScreen, _lane.IPAddress, 5900, _plaza.vnc_password??"kissme");
             if (vnc != null)
             {
                 vnc.Text = $"车道远程控制 {_plaza.station_name}({ _lane.PlazaId}){_lane.LaneName}   {_lane.IPAddress} ";

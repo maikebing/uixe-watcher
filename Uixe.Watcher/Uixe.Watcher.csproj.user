@@ -13,7 +13,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <EnableSecurityDebugging>false</EnableSecurityDebugging>
-    <_LastSelectedProfileId>D:\Works\JTTCO\Uixe.Watcher\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+    <_LastSelectedProfileId>D:\Works\JTTCO\Uixe.Watcher\Properties\PublishProfiles\ClickOnceProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartArguments>--mqttserver</StartArguments>
@@ -108,6 +108,9 @@
     </Compile>
     <Compile Update="Uitls\VNCViewer\ViewSp.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="WinFormsRtspPlayer\VideoControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="WinForms\frmAbout.cs">
       <SubType>Form</SubType>

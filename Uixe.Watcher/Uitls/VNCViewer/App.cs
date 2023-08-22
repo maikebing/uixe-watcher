@@ -78,8 +78,7 @@ namespace Vnc.Viewer
 
         static App()
         {
-            String fullAppName = Assembly.GetExecutingAssembly().GetName().CodeBase;
-            String fullAppPath = Path.GetDirectoryName(fullAppName);
+            String fullAppPath = AppContext.BaseDirectory;
             SettingsFileName = Path.Combine(fullAppPath, "settings.xml");
             ConnHistFileName = Path.Combine(fullAppPath, "history.xml");
 

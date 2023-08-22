@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 	  <OutputType>WinExe</OutputType>
-	  <TargetFramework>net6.0-windows</TargetFramework>
+	  <TargetFramework>net7.0-windows</TargetFramework>
 	  <UseWindowsForms>true</UseWindowsForms>
 	  <ApplicationIcon>Resources\LOGO.ico</ApplicationIcon>
 	  <UseWPF>False</UseWPF>
@@ -130,9 +130,7 @@
 	  <Compile Update="Ring\PlayUitls.cs">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Compile>
-	  <Compile Update="WinFormsRtspPlayer\VideoControl.cs">
-	    <SubType>UserControl</SubType>
-	  </Compile>
+	  <Compile Update="WinFormsRtspPlayer\VideoControl.cs" />
 	  <Compile Update="WinFormsRtspPlayer\VideoControl.Designer.cs">
 	    <DependentUpon>VideoControl.cs</DependentUpon>
 	  </Compile>
