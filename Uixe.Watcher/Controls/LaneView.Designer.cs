@@ -28,772 +28,721 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.gcExitLanes = new DevExpress.XtraGrid.GridControl();
-            this.laneInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gvExitLanes = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colLaneNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUserName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.coluserNumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colWorkState = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCarKind1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCharge1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCarType = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colWorkMode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcCardBoxExit = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cardBoxControlRepositoryItem2 = new Uixe.Watcher.Controls.CardBoxControlRepositoryItem();
-            this.colStartWorkTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colyupengdeng = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
-            this.colCoil1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCoil2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colRSU = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colYellow = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcWeightStatus = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcReaderStatus = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colQRPay = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Coil3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colJiaoTong = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPrint = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Coil4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colLanGan = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBaoJing = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colVPR = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCamera = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNetWork = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.btnVNC = new DevExpress.XtraBars.BarButtonItem();
-            this.btnPing = new DevExpress.XtraBars.BarButtonItem();
-            this.btnReboot = new DevExpress.XtraBars.BarButtonItem();
-            this.btnRemotLane = new DevExpress.XtraBars.BarButtonItem();
-            this.rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
-            this.repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
-            this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cardBoxControlRepositoryItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rpbExit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).BeginInit();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            gcExitLanes = new DevExpress.XtraGrid.GridControl();
+            laneInfoBindingSource = new System.Windows.Forms.BindingSource(components);
+            gvExitLanes = new DevExpress.XtraGrid.Views.Grid.GridView();
+            colLaneNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            colUserName = new DevExpress.XtraGrid.Columns.GridColumn();
+            coluserNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            colWorkState = new DevExpress.XtraGrid.Columns.GridColumn();
+            colCarKind1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            colCharge1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            colCarType = new DevExpress.XtraGrid.Columns.GridColumn();
+            colWorkMode = new DevExpress.XtraGrid.Columns.GridColumn();
+            gcCardBoxExit = new DevExpress.XtraGrid.Columns.GridColumn();
+            cardBoxControlRepositoryItem2 = new CardBoxControlRepositoryItem();
+            colStartWorkTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            colyupengdeng = new DevExpress.XtraGrid.Columns.GridColumn();
+            repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
+            colCoil1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            colCoil2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            colRSU = new DevExpress.XtraGrid.Columns.GridColumn();
+            colYellow = new DevExpress.XtraGrid.Columns.GridColumn();
+            gcWeightStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            gcReaderStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            colQRPay = new DevExpress.XtraGrid.Columns.GridColumn();
+            Coil3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            colJiaoTong = new DevExpress.XtraGrid.Columns.GridColumn();
+            colPrint = new DevExpress.XtraGrid.Columns.GridColumn();
+            Coil4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            colLanGan = new DevExpress.XtraGrid.Columns.GridColumn();
+            colBaoJing = new DevExpress.XtraGrid.Columns.GridColumn();
+            colVPR = new DevExpress.XtraGrid.Columns.GridColumn();
+            colCamera = new DevExpress.XtraGrid.Columns.GridColumn();
+            colNetWork = new DevExpress.XtraGrid.Columns.GridColumn();
+            barManager1 = new DevExpress.XtraBars.BarManager(components);
+            barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            btnVNC = new DevExpress.XtraBars.BarButtonItem();
+            btnPing = new DevExpress.XtraBars.BarButtonItem();
+            btnRemotLane = new DevExpress.XtraBars.BarButtonItem();
+            rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
+            repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
+            radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(components);
+            ((System.ComponentModel.ISupportInitialize)gcExitLanes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)laneInfoBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gvExitLanes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cardBoxControlRepositoryItem2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemPictureEdit1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)barManager1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rpbExit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemTimeEdit1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)radialMenu1).BeginInit();
+            SuspendLayout();
             // 
             // gcExitLanes
             // 
-            this.gcExitLanes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gcExitLanes.DataSource = this.laneInfoBindingSource;
-            this.gcExitLanes.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcExitLanes.Location = new System.Drawing.Point(0, 0);
-            this.gcExitLanes.MainView = this.gvExitLanes;
-            this.gcExitLanes.Margin = new System.Windows.Forms.Padding(4);
-            this.gcExitLanes.MenuManager = this.barManager1;
-            this.gcExitLanes.Name = "gcExitLanes";
-            this.gcExitLanes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemPictureEdit1,
-            this.rpbExit,
-            this.cardBoxControlRepositoryItem2,
-            this.repositoryItemTimeEdit1});
-            this.gcExitLanes.Size = new System.Drawing.Size(1513, 532);
-            this.gcExitLanes.TabIndex = 9;
-            this.gcExitLanes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvExitLanes});
-            this.gcExitLanes.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gcExitLanes_MouseUp);
+            gcExitLanes.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            gcExitLanes.DataSource = laneInfoBindingSource;
+            gcExitLanes.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            gcExitLanes.Location = new System.Drawing.Point(0, 0);
+            gcExitLanes.MainView = gvExitLanes;
+            gcExitLanes.Margin = new System.Windows.Forms.Padding(4);
+            gcExitLanes.MenuManager = barManager1;
+            gcExitLanes.Name = "gcExitLanes";
+            gcExitLanes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemPictureEdit1, rpbExit, cardBoxControlRepositoryItem2, repositoryItemTimeEdit1 });
+            gcExitLanes.Size = new System.Drawing.Size(1513, 532);
+            gcExitLanes.TabIndex = 9;
+            gcExitLanes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gvExitLanes });
+            gcExitLanes.MouseUp += gcExitLanes_MouseUp;
             // 
             // laneInfoBindingSource
             // 
-            this.laneInfoBindingSource.DataSource = typeof(Uixe.Watcher.Msg.LaneInfo);
+            laneInfoBindingSource.DataSource = typeof(Msg.LaneInfo);
             // 
             // gvExitLanes
             // 
-            this.gvExitLanes.Appearance.ColumnFilterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.ColumnFilterButton.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(228)))));
-            this.gvExitLanes.Appearance.ColumnFilterButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.ColumnFilterButton.ForeColor = System.Drawing.Color.Black;
-            this.gvExitLanes.Appearance.ColumnFilterButton.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.gvExitLanes.Appearance.ColumnFilterButton.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.ColumnFilterButton.Options.UseBorderColor = true;
-            this.gvExitLanes.Appearance.ColumnFilterButton.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.ColumnFilterButtonActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
-            this.gvExitLanes.Appearance.ColumnFilterButtonActive.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(190)))), ((int)(((byte)(243)))));
-            this.gvExitLanes.Appearance.ColumnFilterButtonActive.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
-            this.gvExitLanes.Appearance.ColumnFilterButtonActive.ForeColor = System.Drawing.Color.Black;
-            this.gvExitLanes.Appearance.ColumnFilterButtonActive.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.gvExitLanes.Appearance.ColumnFilterButtonActive.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.ColumnFilterButtonActive.Options.UseBorderColor = true;
-            this.gvExitLanes.Appearance.ColumnFilterButtonActive.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.Empty.BackColor = System.Drawing.Color.White;
-            this.gvExitLanes.Appearance.Empty.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(242)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.EvenRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.gvExitLanes.Appearance.EvenRow.ForeColor = System.Drawing.Color.PaleVioletRed;
-            this.gvExitLanes.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.EvenRow.Options.UseFont = true;
-            this.gvExitLanes.Appearance.EvenRow.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.FilterCloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.FilterCloseButton.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(228)))));
-            this.gvExitLanes.Appearance.FilterCloseButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.FilterCloseButton.ForeColor = System.Drawing.Color.Black;
-            this.gvExitLanes.Appearance.FilterCloseButton.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.gvExitLanes.Appearance.FilterCloseButton.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.FilterCloseButton.Options.UseBorderColor = true;
-            this.gvExitLanes.Appearance.FilterCloseButton.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.FilterPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(109)))), ((int)(((byte)(185)))));
-            this.gvExitLanes.Appearance.FilterPanel.ForeColor = System.Drawing.Color.White;
-            this.gvExitLanes.Appearance.FilterPanel.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.FilterPanel.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.FixedLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
-            this.gvExitLanes.Appearance.FixedLine.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.FocusedCell.BackColor = System.Drawing.Color.White;
-            this.gvExitLanes.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
-            this.gvExitLanes.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(106)))), ((int)(((byte)(197)))));
-            this.gvExitLanes.Appearance.FocusedRow.ForeColor = System.Drawing.Color.White;
-            this.gvExitLanes.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.FocusedRow.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.FooterPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.FooterPanel.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(228)))));
-            this.gvExitLanes.Appearance.FooterPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.FooterPanel.ForeColor = System.Drawing.Color.Black;
-            this.gvExitLanes.Appearance.FooterPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.gvExitLanes.Appearance.FooterPanel.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.FooterPanel.Options.UseBorderColor = true;
-            this.gvExitLanes.Appearance.FooterPanel.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.GroupButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(247)))));
-            this.gvExitLanes.Appearance.GroupButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(247)))));
-            this.gvExitLanes.Appearance.GroupButton.ForeColor = System.Drawing.Color.Black;
-            this.gvExitLanes.Appearance.GroupButton.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.GroupButton.Options.UseBorderColor = true;
-            this.gvExitLanes.Appearance.GroupButton.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.GroupFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(247)))));
-            this.gvExitLanes.Appearance.GroupFooter.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(247)))));
-            this.gvExitLanes.Appearance.GroupFooter.ForeColor = System.Drawing.Color.Black;
-            this.gvExitLanes.Appearance.GroupFooter.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.GroupFooter.Options.UseBorderColor = true;
-            this.gvExitLanes.Appearance.GroupFooter.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.GroupPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(109)))), ((int)(((byte)(185)))));
-            this.gvExitLanes.Appearance.GroupPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.GroupPanel.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.GroupPanel.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.GroupRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(247)))));
-            this.gvExitLanes.Appearance.GroupRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(247)))));
-            this.gvExitLanes.Appearance.GroupRow.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.gvExitLanes.Appearance.GroupRow.ForeColor = System.Drawing.Color.Black;
-            this.gvExitLanes.Appearance.GroupRow.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.GroupRow.Options.UseBorderColor = true;
-            this.gvExitLanes.Appearance.GroupRow.Options.UseFont = true;
-            this.gvExitLanes.Appearance.GroupRow.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.HeaderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.HeaderPanel.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(171)))), ((int)(((byte)(228)))));
-            this.gvExitLanes.Appearance.HeaderPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(236)))), ((int)(((byte)(254)))));
-            this.gvExitLanes.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.gvExitLanes.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
-            this.gvExitLanes.Appearance.HeaderPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.gvExitLanes.Appearance.HeaderPanel.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.HeaderPanel.Options.UseBorderColor = true;
-            this.gvExitLanes.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvExitLanes.Appearance.HeaderPanel.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(153)))), ((int)(((byte)(228)))));
-            this.gvExitLanes.Appearance.HideSelectionRow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(224)))), ((int)(((byte)(251)))));
-            this.gvExitLanes.Appearance.HideSelectionRow.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.HideSelectionRow.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.HorzLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(127)))), ((int)(((byte)(196)))));
-            this.gvExitLanes.Appearance.HorzLine.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.OddRow.BackColor = System.Drawing.Color.White;
-            this.gvExitLanes.Appearance.OddRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.gvExitLanes.Appearance.OddRow.ForeColor = System.Drawing.Color.Navy;
-            this.gvExitLanes.Appearance.OddRow.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.OddRow.Options.UseFont = true;
-            this.gvExitLanes.Appearance.OddRow.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.Preview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(252)))), ((int)(((byte)(255)))));
-            this.gvExitLanes.Appearance.Preview.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(129)))), ((int)(((byte)(185)))));
-            this.gvExitLanes.Appearance.Preview.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.Preview.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.Row.BackColor = System.Drawing.Color.White;
-            this.gvExitLanes.Appearance.Row.ForeColor = System.Drawing.Color.Black;
-            this.gvExitLanes.Appearance.Row.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.Row.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.RowSeparator.BackColor = System.Drawing.Color.White;
-            this.gvExitLanes.Appearance.RowSeparator.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(126)))), ((int)(((byte)(217)))));
-            this.gvExitLanes.Appearance.SelectedRow.ForeColor = System.Drawing.Color.White;
-            this.gvExitLanes.Appearance.SelectedRow.Options.UseBackColor = true;
-            this.gvExitLanes.Appearance.SelectedRow.Options.UseForeColor = true;
-            this.gvExitLanes.Appearance.VertLine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(127)))), ((int)(((byte)(196)))));
-            this.gvExitLanes.Appearance.VertLine.Options.UseBackColor = true;
-            this.gvExitLanes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colLaneNo,
-            this.colUserName,
-            this.coluserNumber,
-            this.colWorkState,
-            this.colCarKind1,
-            this.colCharge1,
-            this.colCarType,
-            this.colWorkMode,
-            this.gcCardBoxExit,
-            this.colStartWorkTime,
-            this.colyupengdeng,
-            this.colCoil1,
-            this.colCoil2,
-            this.colRSU,
-            this.colYellow,
-            this.gcWeightStatus,
-            this.gcReaderStatus,
-            this.colQRPay,
-            this.Coil3,
-            this.colJiaoTong,
-            this.colPrint,
-            this.Coil4,
-            this.colLanGan,
-            this.colBaoJing,
-            this.colVPR,
-            this.colCamera,
-            this.colNetWork});
-            this.gvExitLanes.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gvExitLanes.GridControl = this.gcExitLanes;
-            this.gvExitLanes.Name = "gvExitLanes";
-            this.gvExitLanes.OptionsMenu.EnableColumnMenu = false;
-            this.gvExitLanes.OptionsMenu.EnableFooterMenu = false;
-            this.gvExitLanes.OptionsMenu.EnableGroupPanelMenu = false;
-            this.gvExitLanes.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gvExitLanes.OptionsSelection.EnableAppearanceFocusedRow = false;
-            this.gvExitLanes.OptionsView.EnableAppearanceEvenRow = true;
-            this.gvExitLanes.OptionsView.EnableAppearanceOddRow = true;
-            this.gvExitLanes.OptionsView.ShowGroupPanel = false;
-            this.gvExitLanes.RowHeight = 40;
-            this.gvExitLanes.RowSeparatorHeight = 3;
-            this.gvExitLanes.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gv_RowStyle);
+            gvExitLanes.Appearance.ColumnFilterButton.BackColor = System.Drawing.Color.FromArgb(221, 236, 254);
+            gvExitLanes.Appearance.ColumnFilterButton.BackColor2 = System.Drawing.Color.FromArgb(132, 171, 228);
+            gvExitLanes.Appearance.ColumnFilterButton.BorderColor = System.Drawing.Color.FromArgb(221, 236, 254);
+            gvExitLanes.Appearance.ColumnFilterButton.ForeColor = System.Drawing.Color.Black;
+            gvExitLanes.Appearance.ColumnFilterButton.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            gvExitLanes.Appearance.ColumnFilterButton.Options.UseBackColor = true;
+            gvExitLanes.Appearance.ColumnFilterButton.Options.UseBorderColor = true;
+            gvExitLanes.Appearance.ColumnFilterButton.Options.UseForeColor = true;
+            gvExitLanes.Appearance.ColumnFilterButtonActive.BackColor = System.Drawing.Color.FromArgb(247, 251, 255);
+            gvExitLanes.Appearance.ColumnFilterButtonActive.BackColor2 = System.Drawing.Color.FromArgb(154, 190, 243);
+            gvExitLanes.Appearance.ColumnFilterButtonActive.BorderColor = System.Drawing.Color.FromArgb(247, 251, 255);
+            gvExitLanes.Appearance.ColumnFilterButtonActive.ForeColor = System.Drawing.Color.Black;
+            gvExitLanes.Appearance.ColumnFilterButtonActive.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            gvExitLanes.Appearance.ColumnFilterButtonActive.Options.UseBackColor = true;
+            gvExitLanes.Appearance.ColumnFilterButtonActive.Options.UseBorderColor = true;
+            gvExitLanes.Appearance.ColumnFilterButtonActive.Options.UseForeColor = true;
+            gvExitLanes.Appearance.Empty.BackColor = System.Drawing.Color.White;
+            gvExitLanes.Appearance.Empty.Options.UseBackColor = true;
+            gvExitLanes.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(231, 242, 254);
+            gvExitLanes.Appearance.EvenRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            gvExitLanes.Appearance.EvenRow.ForeColor = System.Drawing.Color.PaleVioletRed;
+            gvExitLanes.Appearance.EvenRow.Options.UseBackColor = true;
+            gvExitLanes.Appearance.EvenRow.Options.UseFont = true;
+            gvExitLanes.Appearance.EvenRow.Options.UseForeColor = true;
+            gvExitLanes.Appearance.FilterCloseButton.BackColor = System.Drawing.Color.FromArgb(221, 236, 254);
+            gvExitLanes.Appearance.FilterCloseButton.BackColor2 = System.Drawing.Color.FromArgb(132, 171, 228);
+            gvExitLanes.Appearance.FilterCloseButton.BorderColor = System.Drawing.Color.FromArgb(221, 236, 254);
+            gvExitLanes.Appearance.FilterCloseButton.ForeColor = System.Drawing.Color.Black;
+            gvExitLanes.Appearance.FilterCloseButton.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            gvExitLanes.Appearance.FilterCloseButton.Options.UseBackColor = true;
+            gvExitLanes.Appearance.FilterCloseButton.Options.UseBorderColor = true;
+            gvExitLanes.Appearance.FilterCloseButton.Options.UseForeColor = true;
+            gvExitLanes.Appearance.FilterPanel.BackColor = System.Drawing.Color.FromArgb(62, 109, 185);
+            gvExitLanes.Appearance.FilterPanel.ForeColor = System.Drawing.Color.White;
+            gvExitLanes.Appearance.FilterPanel.Options.UseBackColor = true;
+            gvExitLanes.Appearance.FilterPanel.Options.UseForeColor = true;
+            gvExitLanes.Appearance.FixedLine.BackColor = System.Drawing.Color.FromArgb(59, 97, 156);
+            gvExitLanes.Appearance.FixedLine.Options.UseBackColor = true;
+            gvExitLanes.Appearance.FocusedCell.BackColor = System.Drawing.Color.White;
+            gvExitLanes.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
+            gvExitLanes.Appearance.FocusedCell.Options.UseBackColor = true;
+            gvExitLanes.Appearance.FocusedCell.Options.UseForeColor = true;
+            gvExitLanes.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(49, 106, 197);
+            gvExitLanes.Appearance.FocusedRow.ForeColor = System.Drawing.Color.White;
+            gvExitLanes.Appearance.FocusedRow.Options.UseBackColor = true;
+            gvExitLanes.Appearance.FocusedRow.Options.UseForeColor = true;
+            gvExitLanes.Appearance.FooterPanel.BackColor = System.Drawing.Color.FromArgb(221, 236, 254);
+            gvExitLanes.Appearance.FooterPanel.BackColor2 = System.Drawing.Color.FromArgb(132, 171, 228);
+            gvExitLanes.Appearance.FooterPanel.BorderColor = System.Drawing.Color.FromArgb(221, 236, 254);
+            gvExitLanes.Appearance.FooterPanel.ForeColor = System.Drawing.Color.Black;
+            gvExitLanes.Appearance.FooterPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            gvExitLanes.Appearance.FooterPanel.Options.UseBackColor = true;
+            gvExitLanes.Appearance.FooterPanel.Options.UseBorderColor = true;
+            gvExitLanes.Appearance.FooterPanel.Options.UseForeColor = true;
+            gvExitLanes.Appearance.GroupButton.BackColor = System.Drawing.Color.FromArgb(193, 216, 247);
+            gvExitLanes.Appearance.GroupButton.BorderColor = System.Drawing.Color.FromArgb(193, 216, 247);
+            gvExitLanes.Appearance.GroupButton.ForeColor = System.Drawing.Color.Black;
+            gvExitLanes.Appearance.GroupButton.Options.UseBackColor = true;
+            gvExitLanes.Appearance.GroupButton.Options.UseBorderColor = true;
+            gvExitLanes.Appearance.GroupButton.Options.UseForeColor = true;
+            gvExitLanes.Appearance.GroupFooter.BackColor = System.Drawing.Color.FromArgb(193, 216, 247);
+            gvExitLanes.Appearance.GroupFooter.BorderColor = System.Drawing.Color.FromArgb(193, 216, 247);
+            gvExitLanes.Appearance.GroupFooter.ForeColor = System.Drawing.Color.Black;
+            gvExitLanes.Appearance.GroupFooter.Options.UseBackColor = true;
+            gvExitLanes.Appearance.GroupFooter.Options.UseBorderColor = true;
+            gvExitLanes.Appearance.GroupFooter.Options.UseForeColor = true;
+            gvExitLanes.Appearance.GroupPanel.BackColor = System.Drawing.Color.FromArgb(62, 109, 185);
+            gvExitLanes.Appearance.GroupPanel.ForeColor = System.Drawing.Color.FromArgb(221, 236, 254);
+            gvExitLanes.Appearance.GroupPanel.Options.UseBackColor = true;
+            gvExitLanes.Appearance.GroupPanel.Options.UseForeColor = true;
+            gvExitLanes.Appearance.GroupRow.BackColor = System.Drawing.Color.FromArgb(193, 216, 247);
+            gvExitLanes.Appearance.GroupRow.BorderColor = System.Drawing.Color.FromArgb(193, 216, 247);
+            gvExitLanes.Appearance.GroupRow.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            gvExitLanes.Appearance.GroupRow.ForeColor = System.Drawing.Color.Black;
+            gvExitLanes.Appearance.GroupRow.Options.UseBackColor = true;
+            gvExitLanes.Appearance.GroupRow.Options.UseBorderColor = true;
+            gvExitLanes.Appearance.GroupRow.Options.UseFont = true;
+            gvExitLanes.Appearance.GroupRow.Options.UseForeColor = true;
+            gvExitLanes.Appearance.HeaderPanel.BackColor = System.Drawing.Color.FromArgb(221, 236, 254);
+            gvExitLanes.Appearance.HeaderPanel.BackColor2 = System.Drawing.Color.FromArgb(132, 171, 228);
+            gvExitLanes.Appearance.HeaderPanel.BorderColor = System.Drawing.Color.FromArgb(221, 236, 254);
+            gvExitLanes.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            gvExitLanes.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
+            gvExitLanes.Appearance.HeaderPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            gvExitLanes.Appearance.HeaderPanel.Options.UseBackColor = true;
+            gvExitLanes.Appearance.HeaderPanel.Options.UseBorderColor = true;
+            gvExitLanes.Appearance.HeaderPanel.Options.UseFont = true;
+            gvExitLanes.Appearance.HeaderPanel.Options.UseForeColor = true;
+            gvExitLanes.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.FromArgb(106, 153, 228);
+            gvExitLanes.Appearance.HideSelectionRow.ForeColor = System.Drawing.Color.FromArgb(208, 224, 251);
+            gvExitLanes.Appearance.HideSelectionRow.Options.UseBackColor = true;
+            gvExitLanes.Appearance.HideSelectionRow.Options.UseForeColor = true;
+            gvExitLanes.Appearance.HorzLine.BackColor = System.Drawing.Color.FromArgb(99, 127, 196);
+            gvExitLanes.Appearance.HorzLine.Options.UseBackColor = true;
+            gvExitLanes.Appearance.OddRow.BackColor = System.Drawing.Color.White;
+            gvExitLanes.Appearance.OddRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            gvExitLanes.Appearance.OddRow.ForeColor = System.Drawing.Color.Navy;
+            gvExitLanes.Appearance.OddRow.Options.UseBackColor = true;
+            gvExitLanes.Appearance.OddRow.Options.UseFont = true;
+            gvExitLanes.Appearance.OddRow.Options.UseForeColor = true;
+            gvExitLanes.Appearance.Preview.BackColor = System.Drawing.Color.FromArgb(249, 252, 255);
+            gvExitLanes.Appearance.Preview.ForeColor = System.Drawing.Color.FromArgb(88, 129, 185);
+            gvExitLanes.Appearance.Preview.Options.UseBackColor = true;
+            gvExitLanes.Appearance.Preview.Options.UseForeColor = true;
+            gvExitLanes.Appearance.Row.BackColor = System.Drawing.Color.White;
+            gvExitLanes.Appearance.Row.ForeColor = System.Drawing.Color.Black;
+            gvExitLanes.Appearance.Row.Options.UseBackColor = true;
+            gvExitLanes.Appearance.Row.Options.UseForeColor = true;
+            gvExitLanes.Appearance.RowSeparator.BackColor = System.Drawing.Color.White;
+            gvExitLanes.Appearance.RowSeparator.Options.UseBackColor = true;
+            gvExitLanes.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(69, 126, 217);
+            gvExitLanes.Appearance.SelectedRow.ForeColor = System.Drawing.Color.White;
+            gvExitLanes.Appearance.SelectedRow.Options.UseBackColor = true;
+            gvExitLanes.Appearance.SelectedRow.Options.UseForeColor = true;
+            gvExitLanes.Appearance.VertLine.BackColor = System.Drawing.Color.FromArgb(99, 127, 196);
+            gvExitLanes.Appearance.VertLine.Options.UseBackColor = true;
+            gvExitLanes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colLaneNo, colUserName, coluserNumber, colWorkState, colCarKind1, colCharge1, colCarType, colWorkMode, gcCardBoxExit, colStartWorkTime, colyupengdeng, colCoil1, colCoil2, colRSU, colYellow, gcWeightStatus, gcReaderStatus, colQRPay, Coil3, colJiaoTong, colPrint, Coil4, colLanGan, colBaoJing, colVPR, colCamera, colNetWork });
+            gvExitLanes.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            gvExitLanes.GridControl = gcExitLanes;
+            gvExitLanes.Name = "gvExitLanes";
+            gvExitLanes.OptionsMenu.EnableColumnMenu = false;
+            gvExitLanes.OptionsMenu.EnableFooterMenu = false;
+            gvExitLanes.OptionsMenu.EnableGroupPanelMenu = false;
+            gvExitLanes.OptionsSelection.EnableAppearanceFocusedCell = false;
+            gvExitLanes.OptionsSelection.EnableAppearanceFocusedRow = false;
+            gvExitLanes.OptionsView.EnableAppearanceEvenRow = true;
+            gvExitLanes.OptionsView.EnableAppearanceOddRow = true;
+            gvExitLanes.OptionsView.ShowGroupPanel = false;
+            gvExitLanes.RowHeight = 40;
+            gvExitLanes.RowSeparatorHeight = 3;
+            gvExitLanes.RowStyle += gv_RowStyle;
             // 
             // colLaneNo
             // 
-            this.colLaneNo.Caption = "车道";
-            this.colLaneNo.FieldName = "LaneName";
-            this.colLaneNo.Name = "colLaneNo";
-            this.colLaneNo.OptionsColumn.AllowEdit = false;
-            this.colLaneNo.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colLaneNo.OptionsColumn.ReadOnly = true;
-            this.colLaneNo.OptionsFilter.AllowFilter = false;
-            this.colLaneNo.Visible = true;
-            this.colLaneNo.VisibleIndex = 0;
-            this.colLaneNo.Width = 56;
+            colLaneNo.Caption = "车道";
+            colLaneNo.FieldName = "LaneName";
+            colLaneNo.Name = "colLaneNo";
+            colLaneNo.OptionsColumn.AllowEdit = false;
+            colLaneNo.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colLaneNo.OptionsColumn.ReadOnly = true;
+            colLaneNo.OptionsFilter.AllowFilter = false;
+            colLaneNo.Visible = true;
+            colLaneNo.VisibleIndex = 0;
+            colLaneNo.Width = 56;
             // 
             // colUserName
             // 
-            this.colUserName.Caption = "姓名";
-            this.colUserName.FieldName = "CollName";
-            this.colUserName.Name = "colUserName";
-            this.colUserName.OptionsColumn.AllowEdit = false;
-            this.colUserName.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colUserName.OptionsColumn.ReadOnly = true;
-            this.colUserName.OptionsFilter.AllowFilter = false;
-            this.colUserName.Visible = true;
-            this.colUserName.VisibleIndex = 1;
-            this.colUserName.Width = 139;
+            colUserName.Caption = "姓名";
+            colUserName.FieldName = "CollName";
+            colUserName.Name = "colUserName";
+            colUserName.OptionsColumn.AllowEdit = false;
+            colUserName.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colUserName.OptionsColumn.ReadOnly = true;
+            colUserName.OptionsFilter.AllowFilter = false;
+            colUserName.Visible = true;
+            colUserName.VisibleIndex = 1;
+            colUserName.Width = 139;
             // 
             // coluserNumber
             // 
-            this.coluserNumber.Caption = "工号";
-            this.coluserNumber.FieldName = "CollNo";
-            this.coluserNumber.Name = "coluserNumber";
-            this.coluserNumber.OptionsColumn.AllowEdit = false;
-            this.coluserNumber.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.coluserNumber.OptionsColumn.ReadOnly = true;
-            this.coluserNumber.OptionsFilter.AllowFilter = false;
-            this.coluserNumber.Visible = true;
-            this.coluserNumber.VisibleIndex = 2;
-            this.coluserNumber.Width = 101;
+            coluserNumber.Caption = "工号";
+            coluserNumber.FieldName = "CollNo";
+            coluserNumber.Name = "coluserNumber";
+            coluserNumber.OptionsColumn.AllowEdit = false;
+            coluserNumber.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            coluserNumber.OptionsColumn.ReadOnly = true;
+            coluserNumber.OptionsFilter.AllowFilter = false;
+            coluserNumber.Visible = true;
+            coluserNumber.VisibleIndex = 2;
+            coluserNumber.Width = 101;
             // 
             // colWorkState
             // 
-            this.colWorkState.Caption = "工作状态";
-            this.colWorkState.FieldName = "ClientMsg";
-            this.colWorkState.Name = "colWorkState";
-            this.colWorkState.OptionsColumn.AllowEdit = false;
-            this.colWorkState.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colWorkState.OptionsColumn.ReadOnly = true;
-            this.colWorkState.OptionsFilter.AllowFilter = false;
-            this.colWorkState.Visible = true;
-            this.colWorkState.VisibleIndex = 3;
-            this.colWorkState.Width = 169;
+            colWorkState.Caption = "工作状态";
+            colWorkState.FieldName = "ClientMsg";
+            colWorkState.Name = "colWorkState";
+            colWorkState.OptionsColumn.AllowEdit = false;
+            colWorkState.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colWorkState.OptionsColumn.ReadOnly = true;
+            colWorkState.OptionsFilter.AllowFilter = false;
+            colWorkState.Visible = true;
+            colWorkState.VisibleIndex = 3;
+            colWorkState.Width = 169;
             // 
             // colCarKind1
             // 
-            this.colCarKind1.Caption = "车型";
-            this.colCarKind1.FieldName = "CarType";
-            this.colCarKind1.Name = "colCarKind1";
-            this.colCarKind1.OptionsColumn.AllowEdit = false;
-            this.colCarKind1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colCarKind1.OptionsColumn.ReadOnly = true;
-            this.colCarKind1.OptionsFilter.AllowFilter = false;
-            this.colCarKind1.Visible = true;
-            this.colCarKind1.VisibleIndex = 4;
-            this.colCarKind1.Width = 59;
+            colCarKind1.Caption = "车型";
+            colCarKind1.FieldName = "CarType";
+            colCarKind1.Name = "colCarKind1";
+            colCarKind1.OptionsColumn.AllowEdit = false;
+            colCarKind1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colCarKind1.OptionsColumn.ReadOnly = true;
+            colCarKind1.OptionsFilter.AllowFilter = false;
+            colCarKind1.Visible = true;
+            colCarKind1.VisibleIndex = 4;
+            colCarKind1.Width = 59;
             // 
             // colCharge1
             // 
-            this.colCharge1.Caption = "金额";
-            this.colCharge1.FieldName = "Money";
-            this.colCharge1.Name = "colCharge1";
-            this.colCharge1.OptionsColumn.AllowEdit = false;
-            this.colCharge1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colCharge1.OptionsColumn.ReadOnly = true;
-            this.colCharge1.OptionsFilter.AllowFilter = false;
-            this.colCharge1.Visible = true;
-            this.colCharge1.VisibleIndex = 5;
-            this.colCharge1.Width = 63;
+            colCharge1.Caption = "金额";
+            colCharge1.FieldName = "Money";
+            colCharge1.Name = "colCharge1";
+            colCharge1.OptionsColumn.AllowEdit = false;
+            colCharge1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colCharge1.OptionsColumn.ReadOnly = true;
+            colCharge1.OptionsFilter.AllowFilter = false;
+            colCharge1.Visible = true;
+            colCharge1.VisibleIndex = 5;
+            colCharge1.Width = 63;
             // 
             // colCarType
             // 
-            this.colCarType.Caption = "车种";
-            this.colCarType.FieldName = "CarKind";
-            this.colCarType.Name = "colCarType";
-            this.colCarType.OptionsColumn.AllowEdit = false;
-            this.colCarType.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colCarType.OptionsColumn.ReadOnly = true;
-            this.colCarType.OptionsFilter.AllowFilter = false;
-            this.colCarType.Visible = true;
-            this.colCarType.VisibleIndex = 6;
-            this.colCarType.Width = 85;
+            colCarType.Caption = "车种";
+            colCarType.FieldName = "CarKind";
+            colCarType.Name = "colCarType";
+            colCarType.OptionsColumn.AllowEdit = false;
+            colCarType.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colCarType.OptionsColumn.ReadOnly = true;
+            colCarType.OptionsFilter.AllowFilter = false;
+            colCarType.Visible = true;
+            colCarType.VisibleIndex = 6;
+            colCarType.Width = 85;
             // 
             // colWorkMode
             // 
-            this.colWorkMode.Caption = "工作模式";
-            this.colWorkMode.FieldName = "WrokMode";
-            this.colWorkMode.Name = "colWorkMode";
-            this.colWorkMode.OptionsColumn.AllowEdit = false;
-            this.colWorkMode.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colWorkMode.OptionsColumn.ReadOnly = true;
-            this.colWorkMode.OptionsFilter.AllowFilter = false;
-            this.colWorkMode.Visible = true;
-            this.colWorkMode.VisibleIndex = 7;
-            this.colWorkMode.Width = 105;
+            colWorkMode.Caption = "工作模式";
+            colWorkMode.FieldName = "WrokMode";
+            colWorkMode.Name = "colWorkMode";
+            colWorkMode.OptionsColumn.AllowEdit = false;
+            colWorkMode.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colWorkMode.OptionsColumn.ReadOnly = true;
+            colWorkMode.OptionsFilter.AllowFilter = false;
+            colWorkMode.Visible = true;
+            colWorkMode.VisibleIndex = 7;
+            colWorkMode.Width = 105;
             // 
             // gcCardBoxExit
             // 
-            this.gcCardBoxExit.Caption = "卡箱";
-            this.gcCardBoxExit.ColumnEdit = this.cardBoxControlRepositoryItem2;
-            this.gcCardBoxExit.FieldName = "CardBox";
-            this.gcCardBoxExit.MaxWidth = 80;
-            this.gcCardBoxExit.MinWidth = 40;
-            this.gcCardBoxExit.Name = "gcCardBoxExit";
-            this.gcCardBoxExit.OptionsColumn.AllowEdit = false;
-            this.gcCardBoxExit.Visible = true;
-            this.gcCardBoxExit.VisibleIndex = 9;
-            this.gcCardBoxExit.Width = 80;
+            gcCardBoxExit.Caption = "卡箱";
+            gcCardBoxExit.ColumnEdit = cardBoxControlRepositoryItem2;
+            gcCardBoxExit.FieldName = "CardBox";
+            gcCardBoxExit.MaxWidth = 80;
+            gcCardBoxExit.MinWidth = 40;
+            gcCardBoxExit.Name = "gcCardBoxExit";
+            gcCardBoxExit.OptionsColumn.AllowEdit = false;
+            gcCardBoxExit.Visible = true;
+            gcCardBoxExit.VisibleIndex = 9;
+            gcCardBoxExit.Width = 80;
             // 
             // cardBoxControlRepositoryItem2
             // 
-            this.cardBoxControlRepositoryItem2.AutoHeight = false;
-            this.cardBoxControlRepositoryItem2.Name = "cardBoxControlRepositoryItem2";
-            this.cardBoxControlRepositoryItem2.ReadOnly = true;
+            cardBoxControlRepositoryItem2.AutoHeight = false;
+            cardBoxControlRepositoryItem2.Name = "cardBoxControlRepositoryItem2";
+            cardBoxControlRepositoryItem2.ReadOnly = true;
             // 
             // colStartWorkTime
             // 
-            this.colStartWorkTime.Caption = "上班时间";
-            this.colStartWorkTime.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
-            this.colStartWorkTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colStartWorkTime.FieldName = "JobBeginTime";
-            this.colStartWorkTime.Name = "colStartWorkTime";
-            this.colStartWorkTime.OptionsColumn.AllowEdit = false;
-            this.colStartWorkTime.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colStartWorkTime.OptionsColumn.ReadOnly = true;
-            this.colStartWorkTime.OptionsFilter.AllowFilter = false;
-            this.colStartWorkTime.Visible = true;
-            this.colStartWorkTime.VisibleIndex = 8;
-            this.colStartWorkTime.Width = 199;
+            colStartWorkTime.Caption = "上班时间";
+            colStartWorkTime.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            colStartWorkTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            colStartWorkTime.FieldName = "JobBeginTime";
+            colStartWorkTime.Name = "colStartWorkTime";
+            colStartWorkTime.OptionsColumn.AllowEdit = false;
+            colStartWorkTime.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colStartWorkTime.OptionsColumn.ReadOnly = true;
+            colStartWorkTime.OptionsFilter.AllowFilter = false;
+            colStartWorkTime.Visible = true;
+            colStartWorkTime.VisibleIndex = 8;
+            colStartWorkTime.Width = 199;
             // 
             // colyupengdeng
             // 
-            this.colyupengdeng.Caption = "雨棚灯";
-            this.colyupengdeng.ColumnEdit = this.repositoryItemPictureEdit1;
-            this.colyupengdeng.FieldName = "YuPengDeng";
-            this.colyupengdeng.MaxWidth = 55;
-            this.colyupengdeng.MinWidth = 38;
-            this.colyupengdeng.Name = "colyupengdeng";
-            this.colyupengdeng.OptionsColumn.AllowEdit = false;
-            this.colyupengdeng.OptionsColumn.AllowSize = false;
-            this.colyupengdeng.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colyupengdeng.OptionsColumn.ReadOnly = true;
-            this.colyupengdeng.OptionsFilter.AllowFilter = false;
-            this.colyupengdeng.Visible = true;
-            this.colyupengdeng.VisibleIndex = 10;
-            this.colyupengdeng.Width = 38;
+            colyupengdeng.Caption = "雨棚灯";
+            colyupengdeng.ColumnEdit = repositoryItemPictureEdit1;
+            colyupengdeng.FieldName = "YuPengDeng";
+            colyupengdeng.MaxWidth = 55;
+            colyupengdeng.MinWidth = 38;
+            colyupengdeng.Name = "colyupengdeng";
+            colyupengdeng.OptionsColumn.AllowEdit = false;
+            colyupengdeng.OptionsColumn.AllowSize = false;
+            colyupengdeng.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colyupengdeng.OptionsColumn.ReadOnly = true;
+            colyupengdeng.OptionsFilter.AllowFilter = false;
+            colyupengdeng.Visible = true;
+            colyupengdeng.VisibleIndex = 10;
+            colyupengdeng.Width = 38;
             // 
             // repositoryItemPictureEdit1
             // 
-            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
-            this.repositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
+            repositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             // 
             // colCoil1
             // 
-            this.colCoil1.Caption = "触发";
-            this.colCoil1.FieldName = "Coil1";
-            this.colCoil1.MaxWidth = 55;
-            this.colCoil1.MinWidth = 38;
-            this.colCoil1.Name = "colCoil1";
-            this.colCoil1.OptionsColumn.AllowEdit = false;
-            this.colCoil1.OptionsColumn.ReadOnly = true;
-            this.colCoil1.Visible = true;
-            this.colCoil1.VisibleIndex = 20;
-            this.colCoil1.Width = 38;
+            colCoil1.Caption = "触发";
+            colCoil1.FieldName = "Coil1";
+            colCoil1.MaxWidth = 55;
+            colCoil1.MinWidth = 38;
+            colCoil1.Name = "colCoil1";
+            colCoil1.OptionsColumn.AllowEdit = false;
+            colCoil1.OptionsColumn.ReadOnly = true;
+            colCoil1.Visible = true;
+            colCoil1.VisibleIndex = 20;
+            colCoil1.Width = 38;
             // 
             // colCoil2
             // 
-            this.colCoil2.Caption = "交易";
-            this.colCoil2.FieldName = "Coil2";
-            this.colCoil2.MaxWidth = 55;
-            this.colCoil2.MinWidth = 38;
-            this.colCoil2.Name = "colCoil2";
-            this.colCoil2.OptionsColumn.AllowEdit = false;
-            this.colCoil2.OptionsColumn.ReadOnly = true;
-            this.colCoil2.Visible = true;
-            this.colCoil2.VisibleIndex = 21;
-            this.colCoil2.Width = 38;
+            colCoil2.Caption = "交易";
+            colCoil2.FieldName = "Coil2";
+            colCoil2.MaxWidth = 55;
+            colCoil2.MinWidth = 38;
+            colCoil2.Name = "colCoil2";
+            colCoil2.OptionsColumn.AllowEdit = false;
+            colCoil2.OptionsColumn.ReadOnly = true;
+            colCoil2.Visible = true;
+            colCoil2.VisibleIndex = 21;
+            colCoil2.Width = 38;
             // 
             // colRSU
             // 
-            this.colRSU.FieldName = "RSU";
-            this.colRSU.MaxWidth = 55;
-            this.colRSU.MinWidth = 38;
-            this.colRSU.Name = "colRSU";
-            this.colRSU.OptionsColumn.AllowEdit = false;
-            this.colRSU.OptionsColumn.ReadOnly = true;
-            this.colRSU.Visible = true;
-            this.colRSU.VisibleIndex = 19;
-            this.colRSU.Width = 38;
+            colRSU.FieldName = "RSU";
+            colRSU.MaxWidth = 55;
+            colRSU.MinWidth = 38;
+            colRSU.Name = "colRSU";
+            colRSU.OptionsColumn.AllowEdit = false;
+            colRSU.OptionsColumn.ReadOnly = true;
+            colRSU.Visible = true;
+            colRSU.VisibleIndex = 19;
+            colRSU.Width = 38;
             // 
             // colYellow
             // 
-            this.colYellow.Caption = "小黄人";
-            this.colYellow.FieldName = "Yellow";
-            this.colYellow.MaxWidth = 55;
-            this.colYellow.MinWidth = 38;
-            this.colYellow.Name = "colYellow";
-            this.colYellow.OptionsColumn.AllowEdit = false;
-            this.colYellow.OptionsColumn.ReadOnly = true;
-            this.colYellow.Visible = true;
-            this.colYellow.VisibleIndex = 26;
-            this.colYellow.Width = 44;
+            colYellow.Caption = "小黄人";
+            colYellow.FieldName = "Yellow";
+            colYellow.MaxWidth = 55;
+            colYellow.MinWidth = 38;
+            colYellow.Name = "colYellow";
+            colYellow.OptionsColumn.AllowEdit = false;
+            colYellow.OptionsColumn.ReadOnly = true;
+            colYellow.Visible = true;
+            colYellow.VisibleIndex = 26;
+            colYellow.Width = 44;
             // 
             // gcWeightStatus
             // 
-            this.gcWeightStatus.Caption = "称台";
-            this.gcWeightStatus.FieldName = "Weight";
-            this.gcWeightStatus.MaxWidth = 55;
-            this.gcWeightStatus.MinWidth = 38;
-            this.gcWeightStatus.Name = "gcWeightStatus";
-            this.gcWeightStatus.OptionsColumn.AllowEdit = false;
-            this.gcWeightStatus.OptionsColumn.ReadOnly = true;
-            this.gcWeightStatus.Visible = true;
-            this.gcWeightStatus.VisibleIndex = 11;
-            this.gcWeightStatus.Width = 38;
+            gcWeightStatus.Caption = "称台";
+            gcWeightStatus.FieldName = "Weight";
+            gcWeightStatus.MaxWidth = 55;
+            gcWeightStatus.MinWidth = 38;
+            gcWeightStatus.Name = "gcWeightStatus";
+            gcWeightStatus.OptionsColumn.AllowEdit = false;
+            gcWeightStatus.OptionsColumn.ReadOnly = true;
+            gcWeightStatus.Visible = true;
+            gcWeightStatus.VisibleIndex = 11;
+            gcWeightStatus.Width = 38;
             // 
             // gcReaderStatus
             // 
-            this.gcReaderStatus.Caption = "读卡器";
-            this.gcReaderStatus.ColumnEdit = this.repositoryItemPictureEdit1;
-            this.gcReaderStatus.FieldName = "Reader";
-            this.gcReaderStatus.MaxWidth = 55;
-            this.gcReaderStatus.MinWidth = 38;
-            this.gcReaderStatus.Name = "gcReaderStatus";
-            this.gcReaderStatus.OptionsColumn.AllowEdit = false;
-            this.gcReaderStatus.OptionsColumn.ReadOnly = true;
-            this.gcReaderStatus.Visible = true;
-            this.gcReaderStatus.VisibleIndex = 13;
-            this.gcReaderStatus.Width = 38;
+            gcReaderStatus.Caption = "读卡器";
+            gcReaderStatus.ColumnEdit = repositoryItemPictureEdit1;
+            gcReaderStatus.FieldName = "Reader";
+            gcReaderStatus.MaxWidth = 55;
+            gcReaderStatus.MinWidth = 38;
+            gcReaderStatus.Name = "gcReaderStatus";
+            gcReaderStatus.OptionsColumn.AllowEdit = false;
+            gcReaderStatus.OptionsColumn.ReadOnly = true;
+            gcReaderStatus.Visible = true;
+            gcReaderStatus.VisibleIndex = 13;
+            gcReaderStatus.Width = 38;
             // 
             // colQRPay
             // 
-            this.colQRPay.Caption = "移动支付";
-            this.colQRPay.FieldName = "QRPay";
-            this.colQRPay.MaxWidth = 55;
-            this.colQRPay.MinWidth = 38;
-            this.colQRPay.Name = "colQRPay";
-            this.colQRPay.OptionsColumn.AllowEdit = false;
-            this.colQRPay.OptionsColumn.ReadOnly = true;
-            this.colQRPay.Visible = true;
-            this.colQRPay.VisibleIndex = 24;
-            this.colQRPay.Width = 48;
+            colQRPay.Caption = "移动支付";
+            colQRPay.FieldName = "QRPay";
+            colQRPay.MaxWidth = 55;
+            colQRPay.MinWidth = 38;
+            colQRPay.Name = "colQRPay";
+            colQRPay.OptionsColumn.AllowEdit = false;
+            colQRPay.OptionsColumn.ReadOnly = true;
+            colQRPay.Visible = true;
+            colQRPay.VisibleIndex = 24;
+            colQRPay.Width = 48;
             // 
             // Coil3
             // 
-            this.Coil3.Caption = "抓拍";
-            this.Coil3.ColumnEdit = this.repositoryItemPictureEdit1;
-            this.Coil3.FieldName = "Coil3";
-            this.Coil3.MaxWidth = 55;
-            this.Coil3.MinWidth = 38;
-            this.Coil3.Name = "Coil3";
-            this.Coil3.OptionsColumn.AllowEdit = false;
-            this.Coil3.OptionsColumn.AllowSize = false;
-            this.Coil3.OptionsColumn.ReadOnly = true;
-            this.Coil3.OptionsFilter.AllowFilter = false;
-            this.Coil3.Visible = true;
-            this.Coil3.VisibleIndex = 12;
-            this.Coil3.Width = 38;
+            Coil3.Caption = "抓拍";
+            Coil3.ColumnEdit = repositoryItemPictureEdit1;
+            Coil3.FieldName = "Coil3";
+            Coil3.MaxWidth = 55;
+            Coil3.MinWidth = 38;
+            Coil3.Name = "Coil3";
+            Coil3.OptionsColumn.AllowEdit = false;
+            Coil3.OptionsColumn.AllowSize = false;
+            Coil3.OptionsColumn.ReadOnly = true;
+            Coil3.OptionsFilter.AllowFilter = false;
+            Coil3.Visible = true;
+            Coil3.VisibleIndex = 12;
+            Coil3.Width = 38;
             // 
             // colJiaoTong
             // 
-            this.colJiaoTong.Caption = "交通灯";
-            this.colJiaoTong.ColumnEdit = this.repositoryItemPictureEdit1;
-            this.colJiaoTong.FieldName = "JiaoTongDeng";
-            this.colJiaoTong.MaxWidth = 55;
-            this.colJiaoTong.MinWidth = 38;
-            this.colJiaoTong.Name = "colJiaoTong";
-            this.colJiaoTong.OptionsColumn.AllowEdit = false;
-            this.colJiaoTong.OptionsColumn.AllowSize = false;
-            this.colJiaoTong.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colJiaoTong.OptionsColumn.ReadOnly = true;
-            this.colJiaoTong.OptionsFilter.AllowFilter = false;
-            this.colJiaoTong.Visible = true;
-            this.colJiaoTong.VisibleIndex = 15;
-            this.colJiaoTong.Width = 38;
+            colJiaoTong.Caption = "交通灯";
+            colJiaoTong.ColumnEdit = repositoryItemPictureEdit1;
+            colJiaoTong.FieldName = "JiaoTongDeng";
+            colJiaoTong.MaxWidth = 55;
+            colJiaoTong.MinWidth = 38;
+            colJiaoTong.Name = "colJiaoTong";
+            colJiaoTong.OptionsColumn.AllowEdit = false;
+            colJiaoTong.OptionsColumn.AllowSize = false;
+            colJiaoTong.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colJiaoTong.OptionsColumn.ReadOnly = true;
+            colJiaoTong.OptionsFilter.AllowFilter = false;
+            colJiaoTong.Visible = true;
+            colJiaoTong.VisibleIndex = 15;
+            colJiaoTong.Width = 38;
             // 
             // colPrint
             // 
-            this.colPrint.Caption = "打印机";
-            this.colPrint.ColumnEdit = this.repositoryItemPictureEdit1;
-            this.colPrint.FieldName = "Printer";
-            this.colPrint.MaxWidth = 55;
-            this.colPrint.MinWidth = 38;
-            this.colPrint.Name = "colPrint";
-            this.colPrint.OptionsColumn.AllowEdit = false;
-            this.colPrint.OptionsColumn.AllowSize = false;
-            this.colPrint.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colPrint.OptionsColumn.ReadOnly = true;
-            this.colPrint.OptionsFilter.AllowFilter = false;
-            this.colPrint.Visible = true;
-            this.colPrint.VisibleIndex = 14;
-            this.colPrint.Width = 38;
+            colPrint.Caption = "打印机";
+            colPrint.ColumnEdit = repositoryItemPictureEdit1;
+            colPrint.FieldName = "Printer";
+            colPrint.MaxWidth = 55;
+            colPrint.MinWidth = 38;
+            colPrint.Name = "colPrint";
+            colPrint.OptionsColumn.AllowEdit = false;
+            colPrint.OptionsColumn.AllowSize = false;
+            colPrint.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colPrint.OptionsColumn.ReadOnly = true;
+            colPrint.OptionsFilter.AllowFilter = false;
+            colPrint.Visible = true;
+            colPrint.VisibleIndex = 14;
+            colPrint.Width = 38;
             // 
             // Coil4
             // 
-            this.Coil4.Caption = "离开";
-            this.Coil4.ColumnEdit = this.repositoryItemPictureEdit1;
-            this.Coil4.FieldName = "Coil4";
-            this.Coil4.MaxWidth = 55;
-            this.Coil4.MinWidth = 38;
-            this.Coil4.Name = "Coil4";
-            this.Coil4.OptionsColumn.AllowEdit = false;
-            this.Coil4.OptionsColumn.AllowSize = false;
-            this.Coil4.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.Coil4.OptionsColumn.ReadOnly = true;
-            this.Coil4.OptionsFilter.AllowFilter = false;
-            this.Coil4.Visible = true;
-            this.Coil4.VisibleIndex = 17;
-            this.Coil4.Width = 38;
+            Coil4.Caption = "离开";
+            Coil4.ColumnEdit = repositoryItemPictureEdit1;
+            Coil4.FieldName = "Coil4";
+            Coil4.MaxWidth = 55;
+            Coil4.MinWidth = 38;
+            Coil4.Name = "Coil4";
+            Coil4.OptionsColumn.AllowEdit = false;
+            Coil4.OptionsColumn.AllowSize = false;
+            Coil4.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            Coil4.OptionsColumn.ReadOnly = true;
+            Coil4.OptionsFilter.AllowFilter = false;
+            Coil4.Visible = true;
+            Coil4.VisibleIndex = 17;
+            Coil4.Width = 38;
             // 
             // colLanGan
             // 
-            this.colLanGan.Caption = "栏杆";
-            this.colLanGan.ColumnEdit = this.repositoryItemPictureEdit1;
-            this.colLanGan.FieldName = "LanGan";
-            this.colLanGan.MaxWidth = 55;
-            this.colLanGan.MinWidth = 38;
-            this.colLanGan.Name = "colLanGan";
-            this.colLanGan.OptionsColumn.AllowEdit = false;
-            this.colLanGan.OptionsColumn.AllowSize = false;
-            this.colLanGan.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colLanGan.OptionsColumn.ReadOnly = true;
-            this.colLanGan.OptionsFilter.AllowFilter = false;
-            this.colLanGan.Visible = true;
-            this.colLanGan.VisibleIndex = 16;
-            this.colLanGan.Width = 38;
+            colLanGan.Caption = "栏杆";
+            colLanGan.ColumnEdit = repositoryItemPictureEdit1;
+            colLanGan.FieldName = "LanGan";
+            colLanGan.MaxWidth = 55;
+            colLanGan.MinWidth = 38;
+            colLanGan.Name = "colLanGan";
+            colLanGan.OptionsColumn.AllowEdit = false;
+            colLanGan.OptionsColumn.AllowSize = false;
+            colLanGan.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colLanGan.OptionsColumn.ReadOnly = true;
+            colLanGan.OptionsFilter.AllowFilter = false;
+            colLanGan.Visible = true;
+            colLanGan.VisibleIndex = 16;
+            colLanGan.Width = 38;
             // 
             // colBaoJing
             // 
-            this.colBaoJing.Caption = "黄闪";
-            this.colBaoJing.FieldName = "BaoJing";
-            this.colBaoJing.MaxWidth = 55;
-            this.colBaoJing.MinWidth = 38;
-            this.colBaoJing.Name = "colBaoJing";
-            this.colBaoJing.OptionsColumn.AllowEdit = false;
-            this.colBaoJing.OptionsColumn.ReadOnly = true;
-            this.colBaoJing.Visible = true;
-            this.colBaoJing.VisibleIndex = 22;
-            this.colBaoJing.Width = 38;
+            colBaoJing.Caption = "黄闪";
+            colBaoJing.FieldName = "BaoJing";
+            colBaoJing.MaxWidth = 55;
+            colBaoJing.MinWidth = 38;
+            colBaoJing.Name = "colBaoJing";
+            colBaoJing.OptionsColumn.AllowEdit = false;
+            colBaoJing.OptionsColumn.ReadOnly = true;
+            colBaoJing.Visible = true;
+            colBaoJing.VisibleIndex = 22;
+            colBaoJing.Width = 38;
             // 
             // colVPR
             // 
-            this.colVPR.Caption = "车牌识别";
-            this.colVPR.FieldName = "VPR";
-            this.colVPR.MaxWidth = 55;
-            this.colVPR.MinWidth = 38;
-            this.colVPR.Name = "colVPR";
-            this.colVPR.OptionsColumn.AllowEdit = false;
-            this.colVPR.OptionsColumn.ReadOnly = true;
-            this.colVPR.Visible = true;
-            this.colVPR.VisibleIndex = 25;
-            this.colVPR.Width = 52;
+            colVPR.Caption = "车牌识别";
+            colVPR.FieldName = "VPR";
+            colVPR.MaxWidth = 55;
+            colVPR.MinWidth = 38;
+            colVPR.Name = "colVPR";
+            colVPR.OptionsColumn.AllowEdit = false;
+            colVPR.OptionsColumn.ReadOnly = true;
+            colVPR.Visible = true;
+            colVPR.VisibleIndex = 25;
+            colVPR.Width = 52;
             // 
             // colCamera
             // 
-            this.colCamera.Caption = "车道摄像机";
-            this.colCamera.FieldName = "Camera";
-            this.colCamera.MaxWidth = 55;
-            this.colCamera.MinWidth = 38;
-            this.colCamera.Name = "colCamera";
-            this.colCamera.OptionsColumn.AllowEdit = false;
-            this.colCamera.OptionsColumn.ReadOnly = true;
-            this.colCamera.Visible = true;
-            this.colCamera.VisibleIndex = 23;
-            this.colCamera.Width = 38;
+            colCamera.Caption = "车道摄像机";
+            colCamera.FieldName = "Camera";
+            colCamera.MaxWidth = 55;
+            colCamera.MinWidth = 38;
+            colCamera.Name = "colCamera";
+            colCamera.OptionsColumn.AllowEdit = false;
+            colCamera.OptionsColumn.ReadOnly = true;
+            colCamera.Visible = true;
+            colCamera.VisibleIndex = 23;
+            colCamera.Width = 38;
             // 
             // colNetWork
             // 
-            this.colNetWork.Caption = "网络";
-            this.colNetWork.ColumnEdit = this.repositoryItemPictureEdit1;
-            this.colNetWork.FieldName = "Network";
-            this.colNetWork.MaxWidth = 55;
-            this.colNetWork.MinWidth = 38;
-            this.colNetWork.Name = "colNetWork";
-            this.colNetWork.OptionsColumn.AllowEdit = false;
-            this.colNetWork.OptionsColumn.AllowSize = false;
-            this.colNetWork.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.colNetWork.OptionsColumn.ReadOnly = true;
-            this.colNetWork.OptionsFilter.AllowFilter = false;
-            this.colNetWork.Visible = true;
-            this.colNetWork.VisibleIndex = 18;
-            this.colNetWork.Width = 38;
+            colNetWork.Caption = "网络";
+            colNetWork.ColumnEdit = repositoryItemPictureEdit1;
+            colNetWork.FieldName = "Network";
+            colNetWork.MaxWidth = 55;
+            colNetWork.MinWidth = 38;
+            colNetWork.Name = "colNetWork";
+            colNetWork.OptionsColumn.AllowEdit = false;
+            colNetWork.OptionsColumn.AllowSize = false;
+            colNetWork.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            colNetWork.OptionsColumn.ReadOnly = true;
+            colNetWork.OptionsFilter.AllowFilter = false;
+            colNetWork.Visible = true;
+            colNetWork.VisibleIndex = 18;
+            colNetWork.Width = 38;
             // 
             // barManager1
             // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btnVNC,
-            this.btnPing,
-            this.btnReboot,
-            this.btnRemotLane});
-            this.barManager1.MaxItemId = 4;
+            barManager1.DockControls.Add(barDockControlTop);
+            barManager1.DockControls.Add(barDockControlBottom);
+            barManager1.DockControls.Add(barDockControlLeft);
+            barManager1.DockControls.Add(barDockControlRight);
+            barManager1.Form = this;
+            barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { btnVNC, btnPing, btnRemotLane });
+            barManager1.MaxItemId = 4;
             // 
             // barDockControlTop
             // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1513, 0);
+            barDockControlTop.CausesValidation = false;
+            barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            barDockControlTop.Manager = barManager1;
+            barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
+            barDockControlTop.Size = new System.Drawing.Size(1513, 0);
             // 
             // barDockControlBottom
             // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 532);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1513, 0);
+            barDockControlBottom.CausesValidation = false;
+            barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            barDockControlBottom.Location = new System.Drawing.Point(0, 532);
+            barDockControlBottom.Manager = barManager1;
+            barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
+            barDockControlBottom.Size = new System.Drawing.Size(1513, 0);
             // 
             // barDockControlLeft
             // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 532);
+            barDockControlLeft.CausesValidation = false;
+            barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            barDockControlLeft.Manager = barManager1;
+            barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
+            barDockControlLeft.Size = new System.Drawing.Size(0, 532);
             // 
             // barDockControlRight
             // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1513, 0);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 532);
+            barDockControlRight.CausesValidation = false;
+            barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            barDockControlRight.Location = new System.Drawing.Point(1513, 0);
+            barDockControlRight.Manager = barManager1;
+            barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
+            barDockControlRight.Size = new System.Drawing.Size(0, 532);
             // 
             // btnVNC
             // 
-            this.btnVNC.Caption = "远程桌面";
-            this.btnVNC.Id = 0;
-            this.btnVNC.Name = "btnVNC";
-            this.btnVNC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnVNC_ItemClick);
+            btnVNC.Caption = "远程桌面";
+            btnVNC.Id = 0;
+            btnVNC.Name = "btnVNC";
+            btnVNC.ItemClick += btnVNC_ItemClick;
             // 
             // btnPing
             // 
-            this.btnPing.Caption = "测试网络";
-            this.btnPing.Id = 1;
-            this.btnPing.Name = "btnPing";
-            this.btnPing.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPing_ItemClick);
-            // 
-            // btnReboot
-            // 
-            this.btnReboot.Caption = "重启车道";
-            this.btnReboot.Id = 2;
-            this.btnReboot.Name = "btnReboot";
-            // 
+            btnPing.Caption = "测试网络";
+            btnPing.Id = 1;
+            btnPing.Name = "btnPing";
+            btnPing.ItemClick += btnPing_ItemClick;
+   
             // btnRemotLane
             // 
-            this.btnRemotLane.Caption = "远程控制";
-            this.btnRemotLane.Id = 3;
-            this.btnRemotLane.Name = "btnRemotLane";
-            this.btnRemotLane.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRemotLane_ItemClick);
+            btnRemotLane.Caption = "远程控制";
+            btnRemotLane.Id = 3;
+            btnRemotLane.Name = "btnRemotLane";
+            btnRemotLane.ItemClick += btnRemotLane_ItemClick;
             // 
             // rpbExit
             // 
-            this.rpbExit.Name = "rpbExit";
+            rpbExit.Name = "rpbExit";
             // 
             // repositoryItemTimeEdit1
             // 
-            this.repositoryItemTimeEdit1.AutoHeight = false;
-            this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
-            this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.repositoryItemTimeEdit1.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
-            this.repositoryItemTimeEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
+            repositoryItemTimeEdit1.AutoHeight = false;
+            repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            repositoryItemTimeEdit1.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            repositoryItemTimeEdit1.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            repositoryItemTimeEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
             // 
             // radialMenu1
             // 
-            this.radialMenu1.Glyph = global::Uixe.Watcher.Properties.Resources.promotion;
-            this.radialMenu1.ItemAutoSize = DevExpress.XtraBars.Ribbon.RadialMenuItemAutoSize.Spring;
-            this.radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnVNC),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnPing),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnReboot),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnRemotLane)});
-            this.radialMenu1.Manager = this.barManager1;
-            this.radialMenu1.Name = "radialMenu1";
+            radialMenu1.Glyph = Properties.Resources.promotion;
+            radialMenu1.ItemAutoSize = DevExpress.XtraBars.Ribbon.RadialMenuItemAutoSize.Spring;
+            radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(btnVNC), new DevExpress.XtraBars.LinkPersistInfo(btnPing),  new DevExpress.XtraBars.LinkPersistInfo(btnRemotLane) });
+            radialMenu1.Manager = barManager1;
+            radialMenu1.Name = "radialMenu1";
             // 
             // LaneView
             // 
-            this.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.Appearance.Options.UseBackColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gcExitLanes);
-            this.Controls.Add(this.barDockControlLeft);
-            this.Controls.Add(this.barDockControlRight);
-            this.Controls.Add(this.barDockControlBottom);
-            this.Controls.Add(this.barDockControlTop);
-            this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "LaneView";
-            this.Size = new System.Drawing.Size(1513, 532);
-            ((System.ComponentModel.ISupportInitialize)(this.gcExitLanes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.laneInfoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvExitLanes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cardBoxControlRepositoryItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rpbExit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            Appearance.BackColor = System.Drawing.SystemColors.Control;
+            Appearance.Options.UseBackColor = true;
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(gcExitLanes);
+            Controls.Add(barDockControlLeft);
+            Controls.Add(barDockControlRight);
+            Controls.Add(barDockControlBottom);
+            Controls.Add(barDockControlTop);
+            DoubleBuffered = true;
+            Margin = new System.Windows.Forms.Padding(4);
+            Name = "LaneView";
+            Size = new System.Drawing.Size(1513, 532);
+            ((System.ComponentModel.ISupportInitialize)gcExitLanes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)laneInfoBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gvExitLanes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cardBoxControlRepositoryItem2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemPictureEdit1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)barManager1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rpbExit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemTimeEdit1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)radialMenu1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -834,7 +783,6 @@
         private DevExpress.XtraBars.Ribbon.RadialMenu radialMenu1;
         private DevExpress.XtraBars.BarButtonItem btnVNC;
         private DevExpress.XtraBars.BarButtonItem btnPing;
-        private DevExpress.XtraBars.BarButtonItem btnReboot;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;

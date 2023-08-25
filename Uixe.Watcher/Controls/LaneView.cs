@@ -39,7 +39,7 @@ namespace Uixe.Watcher.Controls
             var _ls = new List<LaneInfo>();
             item.lanes?.ForEach(l =>
             {
-                _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip) );
+                _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip));
             });
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());
@@ -127,7 +127,7 @@ namespace Uixe.Watcher.Controls
                         frmRemoteViewer viewer = new frmRemoteViewer(this.Plaza, fv);
                         viewer.Show();
                     }
-                    catch (Exception ex) 
+                    catch (Exception ex)
                     {
                         _logger.LogError(ex, $"打开{fv.LaneName}-{fv.IPAddress}VNC时遇到错误");
                     }
@@ -159,7 +159,7 @@ namespace Uixe.Watcher.Controls
                 }
                 else
                 {
-                    _logger.LogWarning( $"网络不通， 无法发送{lane.lane_no} {lane.ip}心跳。");
+                    _logger.LogWarning($"网络不通， 无法发送{lane.lane_no} {lane.ip}心跳。");
                 }
             }
             catch (Exception ex)
