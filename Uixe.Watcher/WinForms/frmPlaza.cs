@@ -205,7 +205,7 @@ namespace Uixe.Watcher
         public void ShowStatusInfo(string text)
         {
             _logger.LogInformation(text);
-            this.Invoke((MethodInvoker)delegate
+            this.Invoke((System.Windows.Forms.MethodInvoker)delegate
             {
                 if (!this.IsDisposed && this.IsHandleCreated)
                 {
@@ -240,7 +240,7 @@ namespace Uixe.Watcher
         public void Alert(string caption, string text)
         {
             _logger.LogWarning($"Alert {caption} {text}");
-            this.Invoke((MethodInvoker)delegate
+            this.Invoke((System.Windows.Forms.MethodInvoker)delegate
             {
                 acMsg.Show(this, caption, text);
             });

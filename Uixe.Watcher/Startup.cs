@@ -54,7 +54,7 @@ namespace Uixe.Watcher
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Uixe.WatcherPlus v1"));
-                app.UseDebugLane("192.168.0.178", "192.1689.0.105");
+                app.UseDebugLane("10.11.51.169", "10.11.52.132");
             }
        
             app.UseRouting();

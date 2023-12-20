@@ -138,6 +138,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="TCO\TCOConfirm.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="WinForms\frmMain.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
