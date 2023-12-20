@@ -29,161 +29,161 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.txtUser = new DevExpress.XtraEditors.TextEdit();
-            this.txtPassword = new DevExpress.XtraEditors.TextEdit();
-            this.lblInfo = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.btnLogin = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.lblPlaza = new DevExpress.XtraEditors.LabelControl();
-            this.lblserver = new DevExpress.XtraEditors.LabelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUser.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
-            this.SuspendLayout();
+            txtUser = new DevExpress.XtraEditors.TextEdit();
+            txtPassword = new DevExpress.XtraEditors.TextEdit();
+            lblInfo = new DevExpress.XtraEditors.LabelControl();
+            labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            btnLogin = new DevExpress.XtraEditors.SimpleButton();
+            btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            lblPlaza = new DevExpress.XtraEditors.LabelControl();
+            lblserver = new DevExpress.XtraEditors.LabelControl();
+            ((System.ComponentModel.ISupportInitialize)txtUser.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtPassword.Properties).BeginInit();
+            SuspendLayout();
             // 
             // txtUser
             // 
-            this.txtUser.EditValue = "tcoadmin";
-            this.txtUser.Location = new System.Drawing.Point(216, 109);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtUser.Properties.Appearance.Options.UseFont = true;
-            this.txtUser.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.txtUser.Size = new System.Drawing.Size(305, 28);
-            this.txtUser.TabIndex = 0;
+            txtUser.EditValue = "tcoadmin";
+            txtUser.Location = new System.Drawing.Point(216, 109);
+            txtUser.Name = "txtUser";
+            txtUser.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F);
+            txtUser.Properties.Appearance.Options.UseFont = true;
+            txtUser.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            txtUser.Size = new System.Drawing.Size(305, 28);
+            txtUser.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(217, 149);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtPassword.Properties.Appearance.Options.UseFont = true;
-            this.txtPassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.txtPassword.Properties.UseSystemPasswordChar = true;
-            this.txtPassword.Size = new System.Drawing.Size(304, 28);
-            this.txtPassword.TabIndex = 1;
-            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
+            txtPassword.Location = new System.Drawing.Point(217, 149);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Properties.Appearance.Font = new System.Drawing.Font("宋体", 18F);
+            txtPassword.Properties.Appearance.Options.UseFont = true;
+            txtPassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            txtPassword.Properties.UseSystemPasswordChar = true;
+            txtPassword.Size = new System.Drawing.Size(304, 28);
+            txtPassword.TabIndex = 1;
+            txtPassword.KeyPress += txtPassword_KeyPress;
             // 
             // lblInfo
             // 
-            this.lblInfo.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblInfo.Appearance.ForeColor = System.Drawing.Color.White;
-            this.lblInfo.Appearance.Options.UseFont = true;
-            this.lblInfo.Appearance.Options.UseForeColor = true;
-            this.lblInfo.Location = new System.Drawing.Point(216, 189);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(0, 16);
-            this.lblInfo.TabIndex = 26;
+            lblInfo.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            lblInfo.Appearance.ForeColor = System.Drawing.Color.White;
+            lblInfo.Appearance.Options.UseFont = true;
+            lblInfo.Appearance.Options.UseForeColor = true;
+            lblInfo.Location = new System.Drawing.Point(216, 189);
+            lblInfo.Name = "lblInfo";
+            lblInfo.Size = new System.Drawing.Size(0, 16);
+            lblInfo.TabIndex = 26;
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(135, 111);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(43, 16);
-            this.labelControl2.TabIndex = 27;
-            this.labelControl2.Text = "工号:";
+            labelControl2.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            labelControl2.Appearance.ForeColor = System.Drawing.Color.White;
+            labelControl2.Appearance.Options.UseFont = true;
+            labelControl2.Appearance.Options.UseForeColor = true;
+            labelControl2.Location = new System.Drawing.Point(135, 111);
+            labelControl2.Name = "labelControl2";
+            labelControl2.Size = new System.Drawing.Size(43, 16);
+            labelControl2.TabIndex = 27;
+            labelControl2.Text = "工号:";
             // 
             // labelControl3
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.White;
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(136, 156);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(43, 16);
-            this.labelControl3.TabIndex = 28;
-            this.labelControl3.Text = "密码:";
+            labelControl3.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            labelControl3.Appearance.ForeColor = System.Drawing.Color.White;
+            labelControl3.Appearance.Options.UseFont = true;
+            labelControl3.Appearance.Options.UseForeColor = true;
+            labelControl3.Location = new System.Drawing.Point(136, 156);
+            labelControl3.Name = "labelControl3";
+            labelControl3.Size = new System.Drawing.Size(43, 16);
+            labelControl3.TabIndex = 28;
+            labelControl3.Text = "密码:";
             // 
             // btnLogin
             // 
-            this.btnLogin.BackgroundImage = global::Uixe.Watcher.Properties.Resources.login;
-            this.btnLogin.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.btnLogin.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.login;
-            this.btnLogin.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnLogin.Location = new System.Drawing.Point(207, 214);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(118, 51);
-            this.btnLogin.TabIndex = 2;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            btnLogin.BackgroundImage = Properties.Resources.login;
+            btnLogin.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            btnLogin.ImageOptions.Image = Properties.Resources.login;
+            btnLogin.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            btnLogin.Location = new System.Drawing.Point(207, 214);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new System.Drawing.Size(118, 51);
+            btnLogin.TabIndex = 2;
+            btnLogin.Click += btnLogin_Click;
             // 
             // btnCancel
             // 
-            this.btnCancel.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.ImageOptions.Image = global::Uixe.Watcher.Properties.Resources.off;
-            this.btnCancel.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnCancel.Location = new System.Drawing.Point(403, 214);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(118, 51);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            btnCancel.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            btnCancel.ImageOptions.Image = Properties.Resources.off;
+            btnCancel.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            btnCancel.Location = new System.Drawing.Point(403, 214);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new System.Drawing.Size(118, 51);
+            btnCancel.TabIndex = 3;
+            btnCancel.Click += btnCancel_Click;
             // 
             // lblPlaza
             // 
-            this.lblPlaza.Appearance.Font = new System.Drawing.Font("宋体", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblPlaza.Appearance.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblPlaza.Appearance.Options.UseFont = true;
-            this.lblPlaza.Appearance.Options.UseForeColor = true;
-            this.lblPlaza.Location = new System.Drawing.Point(207, 12);
-            this.lblPlaza.Name = "lblPlaza";
-            this.lblPlaza.Size = new System.Drawing.Size(132, 33);
-            this.lblPlaza.TabIndex = 29;
-            this.lblPlaza.Text = "车道监控";
+            lblPlaza.Appearance.Font = new System.Drawing.Font("宋体", 24F, System.Drawing.FontStyle.Bold);
+            lblPlaza.Appearance.ForeColor = System.Drawing.Color.RoyalBlue;
+            lblPlaza.Appearance.Options.UseFont = true;
+            lblPlaza.Appearance.Options.UseForeColor = true;
+            lblPlaza.Location = new System.Drawing.Point(207, 12);
+            lblPlaza.Name = "lblPlaza";
+            lblPlaza.Size = new System.Drawing.Size(132, 33);
+            lblPlaza.TabIndex = 29;
+            lblPlaza.Text = "车道监控";
             // 
             // lblserver
             // 
-            this.lblserver.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblserver.Appearance.ForeColor = System.Drawing.Color.White;
-            this.lblserver.Appearance.Options.UseFont = true;
-            this.lblserver.Appearance.Options.UseForeColor = true;
-            this.lblserver.Location = new System.Drawing.Point(156, 287);
-            this.lblserver.Name = "lblserver";
-            this.lblserver.Size = new System.Drawing.Size(0, 16);
-            this.lblserver.TabIndex = 32;
+            lblserver.Appearance.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
+            lblserver.Appearance.ForeColor = System.Drawing.Color.White;
+            lblserver.Appearance.Options.UseFont = true;
+            lblserver.Appearance.Options.UseForeColor = true;
+            lblserver.Location = new System.Drawing.Point(156, 287);
+            lblserver.Name = "lblserver";
+            lblserver.Size = new System.Drawing.Size(0, 16);
+            lblserver.TabIndex = 32;
             // 
             // frmLogin
             // 
-            this.AcceptButton = this.btnLogin;
-            this.Appearance.BackColor = System.Drawing.Color.Fuchsia;
-            this.Appearance.Options.UseBackColor = true;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Tile;
-            this.BackgroundImageStore = global::Uixe.Watcher.Properties.Resources.login_bg;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(660, 319);
-            this.Controls.Add(this.lblserver);
-            this.Controls.Add(this.lblPlaza);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.lblInfo);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUser);
-            this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmLogin.IconOptions.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmLogin";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "登录";
-            this.TransparencyKey = System.Drawing.Color.Fuchsia;
-            this.Load += new System.EventHandler(this.frmLogin_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmLogin_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmLogin_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.frmLogin_MouseUp);
-            ((System.ComponentModel.ISupportInitialize)(this.txtUser.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AcceptButton = btnLogin;
+            Appearance.BackColor = System.Drawing.Color.Fuchsia;
+            Appearance.Options.UseBackColor = true;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Tile;
+            BackgroundImageStore = Properties.Resources.login_bg;
+            CancelButton = btnCancel;
+            ClientSize = new System.Drawing.Size(660, 319);
+            Controls.Add(lblserver);
+            Controls.Add(lblPlaza);
+            Controls.Add(btnCancel);
+            Controls.Add(btnLogin);
+            Controls.Add(labelControl3);
+            Controls.Add(labelControl2);
+            Controls.Add(lblInfo);
+            Controls.Add(txtPassword);
+            Controls.Add(txtUser);
+            DoubleBuffered = true;
+            Font = new System.Drawing.Font("Segoe UI", 9F);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            IconOptions.Icon = (System.Drawing.Icon)resources.GetObject("frmLogin.IconOptions.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "frmLogin";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "登录";
+            TransparencyKey = System.Drawing.Color.Fuchsia;
+            Load += frmLogin_Load;
+            MouseDown += frmLogin_MouseDown;
+            MouseMove += frmLogin_MouseMove;
+            MouseUp += frmLogin_MouseUp;
+            ((System.ComponentModel.ISupportInitialize)txtUser.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtPassword.Properties).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

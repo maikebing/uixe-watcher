@@ -29,132 +29,123 @@ namespace Uixe.Watcher
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
-            this.barMdiChildrenListItem1 = new DevExpress.XtraBars.BarMdiChildrenListItem();
-            this.btnAbout = new DevExpress.XtraBars.BarButtonItem();
-            this.btnLogin = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.rpgPlazas = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.xtraTabbedMdiManagerex1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManagerEX(this.components);
-            this.rpgTime = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.tmDateTime = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManagerex1)).BeginInit();
-            this.SuspendLayout();
+            ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+            barMdiChildrenListItem1 = new DevExpress.XtraBars.BarMdiChildrenListItem();
+            btnAbout = new DevExpress.XtraBars.BarButtonItem();
+            btnLogin = new DevExpress.XtraBars.BarButtonItem();
+            ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            rpgPlazas = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            rpgTime = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            xtraTabbedMdiManagerex1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManagerEX(components);
+            tmDateTime = new System.Windows.Forms.Timer(components);
+            ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)xtraTabbedMdiManagerex1).BeginInit();
+            SuspendLayout();
             // 
             // ribbon
             // 
-            this.ribbon.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Blue;
-            this.ribbon.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35);
-            this.ribbon.ExpandCollapseItem.Id = 0;
-            this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbon.ExpandCollapseItem,
-            this.ribbon.SearchEditItem,
-            this.skinRibbonGalleryBarItem1,
-            this.barMdiChildrenListItem1,
-            this.btnAbout,
-            this.btnLogin});
-            this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbon.MaxItemId = 7;
-            this.ribbon.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
-            this.ribbon.Name = "ribbon";
-            this.ribbon.OptionsMenuMinWidth = 385;
-            this.ribbon.PageHeaderItemLinks.Add(this.btnAbout);
-            this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPage1});
-            this.ribbon.Size = new System.Drawing.Size(1432, 160);
-            this.ribbon.StatusBar = this.ribbonStatusBar;
+            ribbon.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Blue;
+            ribbon.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35, 37, 35, 37);
+            ribbon.ExpandCollapseItem.Id = 0;
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, skinRibbonGalleryBarItem1, barMdiChildrenListItem1, btnAbout, btnLogin });
+            ribbon.Location = new System.Drawing.Point(0, 0);
+            ribbon.Margin = new System.Windows.Forms.Padding(4);
+            ribbon.MaxItemId = 7;
+            ribbon.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
+            ribbon.Name = "ribbon";
+            ribbon.OptionsMenuMinWidth = 385;
+            ribbon.PageHeaderItemLinks.Add(btnAbout);
+            ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1 });
+            ribbon.Size = new System.Drawing.Size(1432, 167);
+            ribbon.StatusBar = ribbonStatusBar;
             // 
             // skinRibbonGalleryBarItem1
             // 
-            this.skinRibbonGalleryBarItem1.Caption = "skinRibbonGalleryBarItem1";
-            this.skinRibbonGalleryBarItem1.Id = 3;
-            this.skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
+            skinRibbonGalleryBarItem1.Caption = "skinRibbonGalleryBarItem1";
+            skinRibbonGalleryBarItem1.Id = 3;
+            skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
             // 
             // barMdiChildrenListItem1
             // 
-            this.barMdiChildrenListItem1.Caption = "收费站";
-            this.barMdiChildrenListItem1.Id = 4;
-            this.barMdiChildrenListItem1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barMdiChildrenListItem1.ImageOptions.SvgImage")));
-            this.barMdiChildrenListItem1.Name = "barMdiChildrenListItem1";
+            barMdiChildrenListItem1.Caption = "收费站";
+            barMdiChildrenListItem1.Id = 4;
+            barMdiChildrenListItem1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barMdiChildrenListItem1.ImageOptions.SvgImage");
+            barMdiChildrenListItem1.Name = "barMdiChildrenListItem1";
             // 
             // btnAbout
             // 
-            this.btnAbout.Caption = "barButtonItem1";
-            this.btnAbout.Id = 5;
-            this.btnAbout.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAbout.ImageOptions.SvgImage")));
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAbout_ItemClick);
+            btnAbout.Caption = "barButtonItem1";
+            btnAbout.Id = 5;
+            btnAbout.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btnAbout.ImageOptions.SvgImage");
+            btnAbout.Name = "btnAbout";
+            btnAbout.ItemClick += btnAbout_ItemClick;
             // 
             // btnLogin
             // 
-            this.btnLogin.Caption = "登录";
-            this.btnLogin.Id = 6;
-            this.btnLogin.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogin.ImageOptions.SvgImage")));
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogin_ItemClick);
+            btnLogin.Caption = "登录";
+            btnLogin.Id = 6;
+            btnLogin.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btnLogin.ImageOptions.SvgImage");
+            btnLogin.Name = "btnLogin";
+            btnLogin.ItemClick += btnLogin_ItemClick;
             // 
             // ribbonPage1
             // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.rpgPlazas,
-            this.rpgTime});
-            this.ribbonPage1.MergeOrder = 1;
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "常规业务";
+            ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { rpgPlazas, rpgTime });
+            ribbonPage1.MergeOrder = 1;
+            ribbonPage1.Name = "ribbonPage1";
+            ribbonPage1.Text = "常规业务";
             // 
             // rpgPlazas
             // 
-            this.rpgPlazas.ItemLinks.Add(this.btnLogin);
-            this.rpgPlazas.ItemLinks.Add(this.barMdiChildrenListItem1);
-            this.rpgPlazas.ItemLinks.Add(this.skinRibbonGalleryBarItem1);
-            this.rpgPlazas.Name = "rpgPlazas";
-            this.rpgPlazas.Text = "收费站";
-            // 
-            // ribbonStatusBar
-            // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 795);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonStatusBar.Name = "ribbonStatusBar";
-            this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1432, 24);
-            // 
-            // xtraTabbedMdiManagerex1
-            // 
-            this.xtraTabbedMdiManagerex1.BackImage = global::Uixe.Watcher.Properties.Resources.backgroupimage;
-            this.xtraTabbedMdiManagerex1.BigLogo = global::Uixe.Watcher.Properties.Resources.logo3;
-            this.xtraTabbedMdiManagerex1.MdiParent = this;
+            rpgPlazas.ItemLinks.Add(btnLogin);
+            rpgPlazas.ItemLinks.Add(barMdiChildrenListItem1);
+            rpgPlazas.ItemLinks.Add(skinRibbonGalleryBarItem1);
+            rpgPlazas.Name = "rpgPlazas";
+            rpgPlazas.Text = "收费站";
             // 
             // rpgTime
             // 
-            this.rpgTime.Name = "rpgTime";
+            rpgTime.Name = "rpgTime";
+            // 
+            // ribbonStatusBar
+            // 
+            ribbonStatusBar.Location = new System.Drawing.Point(0, 856);
+            ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
+            ribbonStatusBar.Name = "ribbonStatusBar";
+            ribbonStatusBar.Ribbon = ribbon;
+            ribbonStatusBar.Size = new System.Drawing.Size(1432, 22);
+            // 
+            // xtraTabbedMdiManagerex1
+            // 
+            xtraTabbedMdiManagerex1.BackImage = Properties.Resources.backgroupimage;
+            xtraTabbedMdiManagerex1.BigLogo = Properties.Resources.logo3;
+            xtraTabbedMdiManagerex1.MdiParent = this;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1432, 819);
-            this.Controls.Add(this.ribbonStatusBar);
-            this.Controls.Add(this.ribbon);
-            this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmMain";
-            this.Ribbon = this.ribbon;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.StatusBar = this.ribbonStatusBar;
-            this.Text = "新疆交投云坐席";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
-            this.Load += new System.EventHandler(this.frmMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManagerex1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(1432, 878);
+            Controls.Add(ribbonStatusBar);
+            Controls.Add(ribbon);
+            Font = new System.Drawing.Font("Segoe UI", 9F);
+            IsMdiContainer = true;
+            Margin = new System.Windows.Forms.Padding(4);
+            Name = "frmMain";
+            Ribbon = ribbon;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            StatusBar = ribbonStatusBar;
+            Text = "新疆交投云坐席";
+            FormClosed += frmMain_FormClosed;
+            Load += frmMain_Load;
+            ((System.ComponentModel.ISupportInitialize)ribbon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)xtraTabbedMdiManagerex1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
