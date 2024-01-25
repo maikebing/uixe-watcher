@@ -25,7 +25,7 @@ namespace Uixe.Watcher
         {
             baseinfo=   $"车道远程桌面 {plaza.station_name}({ lane.PlazaId}){lane.LaneName}   {lane.IPAddress} ";
             ipaddresss = lane.IPAddress;
-            rtspurl = lane.CameraRtspUrl;
+            rtspurl = lane.VideoRtsp;
             InitializeComponent();
         }
  

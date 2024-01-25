@@ -2,4 +2,9 @@
 <!--
 https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
-<Project />
+<Project>
+  <PropertyGroup>
+    <History>False|2024-01-25T18:02:49.8003969Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

@@ -1,12 +1,17 @@
-﻿using DevExpress.XtraEditors.Repository;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.Templates;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic.Devices;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
@@ -40,6 +45,14 @@ namespace Uixe.Watcher.Controls
             item.lanes?.ForEach(l =>
             {
                 _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip));
+                Task.Run(async () =>
+                {
+                    var client = new RestClient(new RestClientOptions($"http://{l.ip}:10000/") { FollowRedirects = false });
+                    client.AddDefaultHeader(KnownHeaders.Accept, "*/*");
+                    var request = new RestRequest("/heartbeat", RestSharp.Method.Get);
+                    var response = await client.GetAsync(request);
+                });
+               
             });
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());

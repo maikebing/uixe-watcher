@@ -35,7 +35,7 @@ namespace Uixe.Watcher.Msg
         public string PlazaId { get; set; }
         public string LaneId { get; set; }
         public string IPAddress { get; set; }
-        public string CameraRtspUrl { set; get; }
+       
 
         public byte[] YuPengDeng => GetImage(Properties.Resources.YuPeng, nameof(YuPengDengStatus), YuPengDengStatus);
 

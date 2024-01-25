@@ -125,6 +125,11 @@ namespace Uixe.Watcher
             xtraTabbedMdiManagerex1.BigLogo = Properties.Resources.logo3;
             xtraTabbedMdiManagerex1.MdiParent = this;
             // 
+            // tmDateTime
+            // 
+            tmDateTime.Enabled = true;
+            tmDateTime.Tick += timer1_Tick;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -132,7 +137,6 @@ namespace Uixe.Watcher
             ClientSize = new System.Drawing.Size(1432, 878);
             Controls.Add(ribbonStatusBar);
             Controls.Add(ribbon);
-            Font = new System.Drawing.Font("Segoe UI", 9F);
             IsMdiContainer = true;
             Margin = new System.Windows.Forms.Padding(4);
             Name = "frmMain";

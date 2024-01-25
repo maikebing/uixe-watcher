@@ -15,6 +15,7 @@ namespace Uixe.Watcher
         public TCOConfirm()
         {
             InitializeComponent();
+
         }
 
         private ILogger _logger;
@@ -22,8 +23,8 @@ namespace Uixe.Watcher
         public TCOCall TCE { get; set; }
         public bool CanDo { get; set; }
         public Lane Lane { get; set; }
-        public Plaza Plaza {get;set;}
-        public frmPlaza Owner { get;   set; }
+        public Plaza Plaza { get; set; }
+        public frmPlaza Owner { get; set; }
         public IMemoryCache _cache => Owner._cache;
         public bool CheckPlazaInfo()
         {
@@ -42,7 +43,7 @@ namespace Uixe.Watcher
             }
             return ret;
         }
-  
+
         private UixeClient uixeClient = new UixeClient();
 
         public async void Show(TCOCall tce)
@@ -61,14 +62,14 @@ namespace Uixe.Watcher
                 tcoPictureBox1.Visible = false;
             }
 
-            var l =  Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
+            var l = Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
             string url = string.Format($"http://{l.ip}:10000/capture");
             Lane = l;
             tcoPictureBox1.ImageLocation = url;
             tcoPictureBox1.ImageLocation = url;
             keyItem_Vehicle_Types_BindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
             tCOCallBindingSource.DataSource = TCE;
-            _pbindingSource1.DataSource =await _cache.GetOrCreate(Plaza.ip, async c=> await uixeClient.GetProvCodes(Plaza.ip));
+            _pbindingSource1.DataSource = await _cache.GetOrCreate(Plaza.ip, async c => await uixeClient.GetProvCodes(Plaza.ip));
             _pbindingSource1.ResetCurrentItem();
             cbxProv.EditValue = 65;
             pLazaBindingSource.ResetCurrentItem();
@@ -76,7 +77,7 @@ namespace Uixe.Watcher
             tCOCallBindingSource.ResetCurrentItem();
 
             FillPlazaNameAndList(tce, true);
-         
+
             chkCarKind.Checked = tce.DifClass != 0;
             chkCarPlate.Checked = tce.DifPlate;
             chkCarType.Checked = tce.DifType;
@@ -198,12 +199,12 @@ namespace Uixe.Watcher
                 UixeClient client = new UixeClient();
                 if (isfirst)
                 {
-                    var pc = await _cache.GetOrCreate($"{Plaza.ip}{tce.EntryStationID}", async c =>  await client.GetProvByPlaza(Plaza.ip, tce.EntryStationID));
+                    var pc = await _cache.GetOrCreate($"{Plaza.ip}{tce.EntryStationID}", async c => await client.GetProvByPlaza(Plaza.ip, tce.EntryStationID));
                     cbxProv.EditValue = int.Parse(pc);
                 }
                 var prov = cbxProv.GetSelectedDataRow() as ProvCode;
 
-                var ppi = await _cache.GetOrCreate( $"{Plaza.ip}{prov?.provId ?? 65}", async c =>  await client.GetProvPlazaInfo(Plaza.ip, $"{prov?.provId ?? 65}"));
+                var ppi = await _cache.GetOrCreate($"{Plaza.ip}{prov?.provId ?? 65}", async c => await client.GetProvPlazaInfo(Plaza.ip, $"{prov?.provId ?? 65}"));
                 if (ppi != null)
                 {
                     pLazaBindingSource.DataSource = ppi;
@@ -293,7 +294,7 @@ namespace Uixe.Watcher
                 }
             }
         }
-        
+
         private void txtModifyCarType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (AUS != null && (txtModifyCarType.EditValue as int?) > 0) AUS.DifType = true;
@@ -304,7 +305,7 @@ namespace Uixe.Watcher
 
         private void btnVNC_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void cbxProv_EditValueChanged(object sender, EventArgs e)
@@ -325,6 +326,16 @@ namespace Uixe.Watcher
 
         private void tCOCallBindingSource_PositionChanged(object sender, EventArgs e)
         {
+        }
+
+        private void TCOConfirm_Load(object sender, EventArgs e)
+        {
+            if (!IsDisposed && !DesignMode && IsHandleCreated)
+            {
+                imageList1.Images.Add("1", Properties.Resources.ImageChecked);
+                imageList1.Images.Add("0", Properties.Resources.ImageUnchecked);
+            }
+            
         }
     }
 }

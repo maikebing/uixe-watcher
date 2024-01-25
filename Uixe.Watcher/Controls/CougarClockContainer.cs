@@ -57,5 +57,6 @@ namespace Uixe.Watcher.Controls
         {
             return base.IsInputChar(charCode);
         }
+    
     }
 }

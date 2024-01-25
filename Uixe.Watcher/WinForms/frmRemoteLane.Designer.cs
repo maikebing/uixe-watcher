@@ -29,71 +29,70 @@ namespace Uixe.Watcher
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.videoView1 = new WinFormsRtspPlayer.VideoControl();
-            this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
-            this.vncScreen = new System.Windows.Forms.Panel();
-            this.keyboard1 = new Uixe.Watcher.Controls.Keyboard();
-        
-            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // videoView1
-            // 
-            this.videoView1.BackColor = System.Drawing.Color.Black;
-            this.videoView1.Location = new System.Drawing.Point(4, 0);
-            this.videoView1.Name = "videoView1";
-            this.videoView1.Size = new System.Drawing.Size(431, 372);
-            this.videoView1.TabIndex = 1;
-            this.videoView1.Text = "videoView1";
-            this.videoView1.DoubleClick += new System.EventHandler(this.videoView1_DoubleClick);
+            components = new System.ComponentModel.Container();
+            radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(components);
+            vncScreen = new System.Windows.Forms.Panel();
+            keyboard1 = new Controls.Keyboard();
+            videoView1 = new WinFormsRtspPlayer.VideoControl();
+            ((System.ComponentModel.ISupportInitialize)radialMenu1).BeginInit();
+            SuspendLayout();
             // 
             // radialMenu1
             // 
-            this.radialMenu1.Name = "radialMenu1";
+            radialMenu1.Name = "radialMenu1";
             // 
             // vncScreen
             // 
-            this.vncScreen.BackColor = System.Drawing.Color.Blue;
-            this.vncScreen.Location = new System.Drawing.Point(438, 2);
-            this.vncScreen.Name = "vncScreen";
-            this.vncScreen.Size = new System.Drawing.Size(1280, 720);
-            this.vncScreen.TabIndex = 2;
+            vncScreen.BackColor = System.Drawing.Color.Blue;
+            vncScreen.Location = new System.Drawing.Point(438, 2);
+            vncScreen.Name = "vncScreen";
+            vncScreen.Size = new System.Drawing.Size(1280, 720);
+            vncScreen.TabIndex = 2;
             // 
             // keyboard1
             // 
-            this.keyboard1.BackColor = System.Drawing.Color.Transparent;
-            this.keyboard1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.keyboard1.IPAddress = null;
-            this.keyboard1.Location = new System.Drawing.Point(3, 377);
-            this.keyboard1.Margin = new System.Windows.Forms.Padding(2);
-            this.keyboard1.Name = "keyboard1";
-            this.keyboard1.Size = new System.Drawing.Size(853, 347);
-            this.keyboard1.TabIndex = 0;
+            keyboard1.BackColor = System.Drawing.Color.Transparent;
+            keyboard1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            keyboard1.client = null;
+            keyboard1.IPAddress = null;
+            keyboard1.LaneToken = null;
+            keyboard1.Location = new System.Drawing.Point(3, 377);
+            keyboard1.Margin = new System.Windows.Forms.Padding(2);
+            keyboard1.Name = "keyboard1";
+            keyboard1.Size = new System.Drawing.Size(853, 347);
+            keyboard1.TabIndex = 0;
+            // 
+            // videoView1
+            // 
+            videoView1.BackColor = System.Drawing.Color.Black;
+            videoView1.Location = new System.Drawing.Point(13, 2);
+            videoView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            videoView1.Name = "videoView1";
+            videoView1.Size = new System.Drawing.Size(418, 369);
+            videoView1.TabIndex = 3;
             // 
             // frmRemoteLane
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1723, 726);
-            this.Controls.Add(this.keyboard1);
-            this.Controls.Add(this.videoView1);
-            this.Controls.Add(this.vncScreen);
-            this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
-            this.Name = "frmRemoteLane";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmRemoteLane";
-            this.Load += new System.EventHandler(this.frmRemoteLane_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            ClientSize = new System.Drawing.Size(1723, 726);
+            Controls.Add(videoView1);
+            Controls.Add(keyboard1);
+            Controls.Add(vncScreen);
+            DoubleBuffered = true;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
+            Name = "frmRemoteLane";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "frmRemoteLane";
+            Load += frmRemoteLane_Load;
+            ((System.ComponentModel.ISupportInitialize)radialMenu1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
-        private  WinFormsRtspPlayer.VideoControl videoView1;
         private DevExpress.XtraBars.Ribbon.RadialMenu radialMenu1;
         private System.Windows.Forms.Panel vncScreen;
         private Controls.Keyboard keyboard1;
+        private WinFormsRtspPlayer.VideoControl videoView1;
     }
 }

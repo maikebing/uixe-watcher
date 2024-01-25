@@ -372,10 +372,8 @@ namespace Uixe.Watcher
             // imageList1
             // 
             imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-            imageList1.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.ImageSize = new System.Drawing.Size(32, 32);
             imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            imageList1.Images.SetKeyName(0, "0");
-            imageList1.Images.SetKeyName(1, "1");
             // 
             // chkEntryPlaza
             // 
@@ -880,6 +878,7 @@ namespace Uixe.Watcher
             DataBindings.Add(new System.Windows.Forms.Binding("Text", tCOCallBindingSource, "MsgTitle", true));
             Name = "TCOConfirm";
             Size = new System.Drawing.Size(717, 474);
+            Load += TCOConfirm_Load;
             ((System.ComponentModel.ISupportInitialize)tCOCallBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)gcCardInfo).EndInit();
             gcCardInfo.ResumeLayout(false);

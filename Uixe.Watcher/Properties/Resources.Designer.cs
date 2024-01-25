@@ -583,6 +583,26 @@ namespace Uixe.Watcher.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap ImageChecked {
+            get {
+                object obj = ResourceManager.GetObject("ImageChecked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ImageUnchecked {
+            get {
+                object obj = ResourceManager.GetObject("ImageUnchecked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap JiaoTong {
             get {
                 object obj = ResourceManager.GetObject("JiaoTong", resourceCulture);

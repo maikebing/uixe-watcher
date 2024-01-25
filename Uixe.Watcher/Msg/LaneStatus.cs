@@ -56,5 +56,6 @@ namespace Uixe.Watcher.Msg
 
         public int CarBoxMax { get; set; }
         public string terminalId { get; set; }
+        public string VideoRtsp { get; set; }
     }//LaneInfo
 }

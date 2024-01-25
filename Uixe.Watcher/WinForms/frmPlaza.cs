@@ -52,7 +52,7 @@ namespace Uixe.Watcher
             InitializeComponent();
         }
 
-     
+
 
         public frmShowTCOCall _tcocall;
         public frmWeightTCOCall WeightTCOCall;
@@ -62,8 +62,8 @@ namespace Uixe.Watcher
         private void frmMain_Load(object sender, EventArgs e)
         {
             btnUpgrade.Visibility = BarItemVisibility.Never;
-         
-     
+
+
             this.Icon = Properties.Resources.LOGO;
             if (System.IO.Directory.Exists("Ring"))
             {
@@ -130,7 +130,7 @@ namespace Uixe.Watcher
             this.Activate();
 
         }
-         
+
 
         private void ResetSpeachMenu()
         {
@@ -155,7 +155,7 @@ namespace Uixe.Watcher
             ShowStatusInfo("正在加载车道列表");
             lanView.SuspendLayout();
             messageView.SuspendLayout();
-            lanView.InitLaneInfo(plaza,_logger,_runtimeSetting);
+            lanView.InitLaneInfo(plaza, _logger, _runtimeSetting);
             messageView.initMessageView(plaza.id, 100);
             messageView.ResumeLayout(false);
             lanView.ResumeLayout(false);
@@ -256,8 +256,8 @@ namespace Uixe.Watcher
         {
             lock (lanView)
             {
-             lanView .ShowLaneInfor($"{plaza}{laneno}", revdata);
-               
+                lanView.ShowLaneInfor($"{plaza}{laneno}", revdata);
+
             }
         }
 
@@ -267,7 +267,7 @@ namespace Uixe.Watcher
             {
 
                 lanView.ShowLaneLost(laneno);
-             
+
             }
         }
 
@@ -275,7 +275,7 @@ namespace Uixe.Watcher
         {
             messageView.ShowMessageView(mi);
         }
- 
+
 
         private void skinRibbonGalleryBarItem2_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
         {
@@ -286,7 +286,7 @@ namespace Uixe.Watcher
         private DateTime lastsend = DateTime.MinValue;
         internal ILogger _logger;
         internal ILoggerFactory _loggerFactory;
-        internal IMemoryCache  _cache;
+        internal IMemoryCache _cache;
         private void btnSend_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (DateTime.Now.Subtract(lastsend).TotalSeconds > 2)
@@ -310,8 +310,8 @@ namespace Uixe.Watcher
 
         private void btnUpgrade_ItemClick(object sender, ItemClickEventArgs e)
         {
-           
-           
+
+
         }
 
 
@@ -350,5 +350,7 @@ namespace Uixe.Watcher
         {
             btnUpgrade.PerformClick();
         }
+
+    
     }//frmMain
 }

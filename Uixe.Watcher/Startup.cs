@@ -41,9 +41,6 @@ namespace Uixe.Watcher
             services.AddLogging(configure =>
             {
                 configure.AddConsole();
-                 var di=new DirectoryInfo ( System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Uixe"));
-                if (!di.Exists)di.Create(); 
-                configure.AddZLoggerFile(di.FullName);
             });
         }
 

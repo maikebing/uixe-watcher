@@ -25,13 +25,14 @@ namespace WinFormsRtspPlayer
 
         public VideoControl()
         {
-            if (!this.DesignMode)
+         
+            InitializeComponent();
+            if (!IsDisposed && !this.DesignMode && IsHandleCreated)
             {
                 NativeLibraryHelper.LoadNativeLibrary();
+                this.DoubleBuffered = true;
+                this.Paint += VideoControl_Paint;
             }
-            InitializeComponent();
-            this.DoubleBuffered = true;
-            this.Paint += VideoControl_Paint;
         }
 
         private void VideoControl_Paint(object sender, PaintEventArgs e)

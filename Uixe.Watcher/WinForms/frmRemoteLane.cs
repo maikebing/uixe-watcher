@@ -45,14 +45,15 @@ namespace Uixe.Watcher
             await LaneAuth(auth3, client);
             try
             {
-                if (!string.IsNullOrEmpty(_lane.CameraRtspUrl))
+                
+                if (!string.IsNullOrEmpty(_lane.VideoRtsp))
                 {
-                    videoView1.StartPlay(_lane.CameraRtspUrl);
+                    videoView1.StartPlay(_lane.VideoRtsp);
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"视频初始化播放{_lane.CameraRtspUrl}失败，{ex.Message}");
+                XtraMessageBox.Show($"视频初始化播放{_lane.VideoRtsp}失败，{ex.Message}");
             }
             var vnc = await VNCUtils.Login(this.vncScreen, _lane.IPAddress, 5900, _plaza.vncpwd ?? "kissme");
             if (vnc != null)
@@ -107,7 +108,7 @@ namespace Uixe.Watcher
             else
             {
                 ismax = true;
-                videoView1.Size = this.Size;
+               videoView1.Size = this.Size;
             }
          
         }
