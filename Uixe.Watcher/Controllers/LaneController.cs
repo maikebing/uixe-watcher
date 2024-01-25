@@ -59,7 +59,7 @@ namespace Uixe.Watcher.Controllers
                         var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
                         if (frm != null)
                         {
-                            frm.ShowTCOInfo(msgWeight);
+                            frm?.ShowTCOInfo(msgWeight);
                         }
                     }
                     catch (Exception ex)
@@ -87,7 +87,7 @@ namespace Uixe.Watcher.Controllers
                 await Task.Run(() =>
                 {
                     var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
-                    frm.ShowTCOInfo(msg);
+                    frm?.ShowTCOInfo(msg);
                 });
                 return Ok(new ApiResult(ApiCode.OK, "OK"));
             }
@@ -108,7 +108,7 @@ namespace Uixe.Watcher.Controllers
                 await Task.Run(() =>
                 {
                     var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
-                    frm.ShowMessageView(msg);
+                    frm?.ShowMessageView(msg);
                 });
                 return Ok(new ApiResult(ApiCode.OK, "OK"));
             }

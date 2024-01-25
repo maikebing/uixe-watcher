@@ -87,9 +87,9 @@
             labelProductName.Dock = System.Windows.Forms.DockStyle.Fill;
             labelProductName.Location = new System.Drawing.Point(176, 0);
             labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 4, 0);
-            labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
+            labelProductName.MaximumSize = new System.Drawing.Size(0, 16);
             labelProductName.Name = "labelProductName";
-            labelProductName.Size = new System.Drawing.Size(336, 17);
+            labelProductName.Size = new System.Drawing.Size(336, 16);
             labelProductName.TabIndex = 19;
             labelProductName.Text = "产品名称";
             labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -99,9 +99,9 @@
             labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
             labelVersion.Location = new System.Drawing.Point(176, 30);
             labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 4, 0);
-            labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
+            labelVersion.MaximumSize = new System.Drawing.Size(0, 16);
             labelVersion.Name = "labelVersion";
-            labelVersion.Size = new System.Drawing.Size(336, 17);
+            labelVersion.Size = new System.Drawing.Size(336, 16);
             labelVersion.TabIndex = 0;
             labelVersion.Text = "版本";
             labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -111,9 +111,9 @@
             labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
             labelCopyright.Location = new System.Drawing.Point(176, 60);
             labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 4, 0);
-            labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
+            labelCopyright.MaximumSize = new System.Drawing.Size(0, 16);
             labelCopyright.Name = "labelCopyright";
-            labelCopyright.Size = new System.Drawing.Size(336, 17);
+            labelCopyright.Size = new System.Drawing.Size(336, 16);
             labelCopyright.TabIndex = 21;
             labelCopyright.Text = "Copyright";
             labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,9 +123,9 @@
             labelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill;
             labelCompanyName.Location = new System.Drawing.Point(176, 90);
             labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 4, 0);
-            labelCompanyName.MaximumSize = new System.Drawing.Size(0, 17);
+            labelCompanyName.MaximumSize = new System.Drawing.Size(0, 16);
             labelCompanyName.Name = "labelCompanyName";
-            labelCompanyName.Size = new System.Drawing.Size(336, 17);
+            labelCompanyName.Size = new System.Drawing.Size(336, 16);
             labelCompanyName.TabIndex = 22;
             labelCompanyName.Text = "公司名称";
             labelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

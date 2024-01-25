@@ -6,6 +6,9 @@ namespace Uixe.Watcher
 {
     public  class RuntimeSetting
     {
+        public RuntimeSetting() {
+            serialNum=Guid.NewGuid().ToString("N").ToLower();
+        }
         internal  User NowCollect;
 
         internal  Dtos.Plaza Plaza { get; set; }
@@ -17,7 +20,7 @@ namespace Uixe.Watcher
         public bool SpeedBlackListPlate { get; set; } = true;
         public bool SpeechLvSeTongDao { get; set; } = true;
         public int KeyboardPort { get; set; } = 8080;
-
+        public string serialNum { get; set; }
 
     }
 }

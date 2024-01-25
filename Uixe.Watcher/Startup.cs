@@ -14,7 +14,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Uixe.Watcher.Extensions;
-
+using ZLogger;
 namespace Uixe.Watcher
 {
     public class Startup
@@ -41,6 +41,9 @@ namespace Uixe.Watcher
             services.AddLogging(configure =>
             {
                 configure.AddConsole();
+                 var di=new DirectoryInfo ( System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Uixe"));
+                if (!di.Exists)di.Create(); 
+                configure.AddZLoggerFile(di.FullName);
             });
         }
 
@@ -54,7 +57,7 @@ namespace Uixe.Watcher
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Uixe.WatcherPlus v1"));
-                app.UseDebugLane("10.11.51.169", "10.11.52.132");
+                app.UseDebugLane("10.37.47.136", "10.37.48.135");
             }
        
             app.UseRouting();

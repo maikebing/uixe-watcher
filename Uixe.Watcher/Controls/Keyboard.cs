@@ -11,7 +11,7 @@ namespace Uixe.Watcher.Controls
     [DefaultEvent("ShowInfo")]
     public partial class Keyboard : UserControl
     {
-        private RestClient client;
+
         public Keyboard()
         {
             InitializeComponent();
@@ -45,16 +45,17 @@ namespace Uixe.Watcher.Controls
         }
 
         public string IPAddress { get; set; }
-
-
+   
+        public string  LaneToken { get;  set; }
+        public RestClient client { get; set; }
         private async Task SendKeyMessageAsync(int message, int wParam, long lParam)
         {
             try
             {
-                client = new RestClient(new RestClientOptions($"http://{IPAddress}:10000/") {  FollowRedirects = false });
-                client.AddDefaultHeader(KnownHeaders.Accept, "*/*");
+              
                 var request = new RestRequest("/api/control", Method.Post);
                 request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("Authorization",$"Bearer {LaneToken}" );
                 var body = new { message, wParam, lParam };
                 request.AddJsonBody(body);
                 var response = await client.PostAsync<(int code, string msg)>(request);
