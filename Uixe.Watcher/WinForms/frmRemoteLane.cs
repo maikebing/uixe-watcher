@@ -25,13 +25,13 @@ namespace Uixe.Watcher
     {
         private readonly Plaza _plaza;
         private readonly LaneInfo _lane;
-        public frmRemoteLane(Plaza  plaza,  LaneInfo lane)
+        public frmRemoteLane(Plaza plaza, LaneInfo lane)
         {
             _plaza = plaza;
             _lane = lane;
             InitializeComponent();
         }
-    
+
         private async void frmRemoteLane_Load(object sender, EventArgs e)
         {
             keyboard1.IPAddress = _lane.IPAddress;
@@ -45,7 +45,7 @@ namespace Uixe.Watcher
             await LaneAuth(auth3, client);
             try
             {
-                
+
                 if (!string.IsNullOrEmpty(_lane.VideoRtsp))
                 {
                     videoView1.StartPlay(_lane.VideoRtsp);
@@ -80,7 +80,7 @@ namespace Uixe.Watcher
                     {
                         this.Invoke(new Action(() =>
                         {
-                            XtraMessageBox.Show($"车道认证失败{response.code}-{response.msg}");
+                            libInfo.Text = $"车道认证失败{response.code}-{response.msg}";
                         }));
                     }
                 }
@@ -88,7 +88,7 @@ namespace Uixe.Watcher
                 {
                     this.Invoke(new Action(() =>
                     {
-                        XtraMessageBox.Show($"车道认证失败{ex.Message}");
+                        libInfo.Text = $"车道认证失败{ex.Message}，旧版本车道软件请忽略此问题。";
                     }));
                 }
 
@@ -108,9 +108,22 @@ namespace Uixe.Watcher
             else
             {
                 ismax = true;
-               videoView1.Size = this.Size;
+                videoView1.Size = this.Size;
             }
-         
+
+        }
+
+        private void labelControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void keyboard1_ShowInfo(string text)
+        {
+            this.Invoke(new Action(() =>
+            {
+                libInfo.Text = text;
+            }));
         }
     }
 }

@@ -34,6 +34,7 @@ namespace Uixe.Watcher
             vncScreen = new System.Windows.Forms.Panel();
             keyboard1 = new Controls.Keyboard();
             videoView1 = new WinFormsRtspPlayer.VideoControl();
+            libInfo = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)radialMenu1).BeginInit();
             SuspendLayout();
             // 
@@ -59,8 +60,9 @@ namespace Uixe.Watcher
             keyboard1.Location = new System.Drawing.Point(3, 377);
             keyboard1.Margin = new System.Windows.Forms.Padding(2);
             keyboard1.Name = "keyboard1";
-            keyboard1.Size = new System.Drawing.Size(853, 347);
+            keyboard1.Size = new System.Drawing.Size(853, 345);
             keyboard1.TabIndex = 0;
+            keyboard1.ShowInfo += keyboard1_ShowInfo;
             // 
             // videoView1
             // 
@@ -71,10 +73,20 @@ namespace Uixe.Watcher
             videoView1.Size = new System.Drawing.Size(418, 369);
             videoView1.TabIndex = 3;
             // 
+            // libInfo
+            // 
+            libInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
+            libInfo.LineLocation = DevExpress.XtraEditors.LineLocation.Top;
+            libInfo.Location = new System.Drawing.Point(134, 377);
+            libInfo.Name = "libInfo";
+            libInfo.Size = new System.Drawing.Size(298, 0);
+            libInfo.TabIndex = 4;
+            // 
             // frmRemoteLane
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             ClientSize = new System.Drawing.Size(1723, 726);
+            Controls.Add(libInfo);
             Controls.Add(videoView1);
             Controls.Add(keyboard1);
             Controls.Add(vncScreen);
@@ -94,5 +106,6 @@ namespace Uixe.Watcher
         private System.Windows.Forms.Panel vncScreen;
         private Controls.Keyboard keyboard1;
         private WinFormsRtspPlayer.VideoControl videoView1;
+        private DevExpress.XtraEditors.LabelControl libInfo;
     }
 }
