@@ -33,9 +33,10 @@ namespace Uixe.Watcher
             radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(components);
             vncScreen = new System.Windows.Forms.Panel();
             keyboard1 = new Controls.Keyboard();
-            videoView1 = new WinFormsRtspPlayer.VideoControl();
             libInfo = new DevExpress.XtraEditors.LabelControl();
+            videoView1 = new LibVLCSharp.WinForms.VideoView();
             ((System.ComponentModel.ISupportInitialize)radialMenu1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)videoView1).BeginInit();
             SuspendLayout();
             // 
             // radialMenu1
@@ -64,15 +65,6 @@ namespace Uixe.Watcher
             keyboard1.TabIndex = 0;
             keyboard1.ShowInfo += keyboard1_ShowInfo;
             // 
-            // videoView1
-            // 
-            videoView1.BackColor = System.Drawing.Color.Black;
-            videoView1.Location = new System.Drawing.Point(13, 2);
-            videoView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            videoView1.Name = "videoView1";
-            videoView1.Size = new System.Drawing.Size(418, 369);
-            videoView1.TabIndex = 3;
-            // 
             // libInfo
             // 
             libInfo.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
@@ -82,15 +74,26 @@ namespace Uixe.Watcher
             libInfo.Size = new System.Drawing.Size(298, 0);
             libInfo.TabIndex = 4;
             // 
+            // videoView1
+            // 
+            videoView1.BackColor = System.Drawing.Color.Black;
+            videoView1.Location = new System.Drawing.Point(12, 2);
+            videoView1.MediaPlayer = null;
+            videoView1.Name = "videoView1";
+            videoView1.Size = new System.Drawing.Size(420, 375);
+            videoView1.TabIndex = 5;
+            videoView1.Text = "videoView1";
+            // 
             // frmRemoteLane
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             ClientSize = new System.Drawing.Size(1723, 726);
-            Controls.Add(libInfo);
             Controls.Add(videoView1);
+            Controls.Add(libInfo);
             Controls.Add(keyboard1);
             Controls.Add(vncScreen);
             DoubleBuffered = true;
+            Font = new System.Drawing.Font("Segoe UI", 9F);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "frmRemoteLane";
@@ -98,6 +101,7 @@ namespace Uixe.Watcher
             Text = "frmRemoteLane";
             Load += frmRemoteLane_Load;
             ((System.ComponentModel.ISupportInitialize)radialMenu1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)videoView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -105,7 +109,7 @@ namespace Uixe.Watcher
         private DevExpress.XtraBars.Ribbon.RadialMenu radialMenu1;
         private System.Windows.Forms.Panel vncScreen;
         private Controls.Keyboard keyboard1;
-        private WinFormsRtspPlayer.VideoControl videoView1;
         private DevExpress.XtraEditors.LabelControl libInfo;
+        private LibVLCSharp.WinForms.VideoView videoView1;
     }
 }

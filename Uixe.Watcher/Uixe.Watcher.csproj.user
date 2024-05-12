@@ -109,9 +109,6 @@
     <Compile Update="Uitls\VNCViewer\ViewSp.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="WinFormsRtspPlayer\VideoControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="WinForms\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,9 +122,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="WinForms\frmRemoteLane.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="WinForms\frmRemoteViewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="WinForms\frmSplashScreen.cs">

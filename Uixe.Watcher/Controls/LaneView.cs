@@ -137,8 +137,8 @@ namespace Uixe.Watcher.Controls
                 {
                     try
                     {
-                        frmRemoteViewer viewer = new frmRemoteViewer(this.Plaza, fv);
-                        viewer.Show();
+                    ////    frmRemoteViewer viewer = new frmRemoteViewer(this.Plaza, fv);
+                    //    viewer.Show();
                     }
                     catch (Exception ex)
                     {

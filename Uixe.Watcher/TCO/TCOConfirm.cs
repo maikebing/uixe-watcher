@@ -29,7 +29,8 @@ namespace Uixe.Watcher
         public bool CheckPlazaInfo()
         {
             bool ret = true;
-            if (TCE.TCOTYPE == WATCHER_TYPE.WATCHER_UnKnowPlaza)
+            if (TCE.TCOTYPE == WATCHER_TYPE.WATCHER_UnKnowPlaza 
+                 || TCE.DifPlate || TCE.DifPlaza || TCE.DifType)
             {
                 var ppi = cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
                 if (ppi == null || string.IsNullOrEmpty(ppi.plazaId))
@@ -316,17 +317,6 @@ namespace Uixe.Watcher
             }
         }
 
-        private void tCOCallBindingSource_CurrentItemChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void tCOCallBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void tCOCallBindingSource_PositionChanged(object sender, EventArgs e)
-        {
-        }
 
         private void TCOConfirm_Load(object sender, EventArgs e)
         {

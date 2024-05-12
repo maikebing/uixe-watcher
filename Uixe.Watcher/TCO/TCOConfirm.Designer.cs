@@ -157,9 +157,7 @@ namespace Uixe.Watcher
             // 
             tCOCallBindingSource.AllowNew = false;
             tCOCallBindingSource.DataSource = typeof(TCOCall);
-            tCOCallBindingSource.CurrentChanged += tCOCallBindingSource_CurrentChanged;
-            tCOCallBindingSource.CurrentItemChanged += tCOCallBindingSource_CurrentItemChanged;
-            tCOCallBindingSource.PositionChanged += tCOCallBindingSource_PositionChanged;
+          
             // 
             // gcCardInfo
             // 

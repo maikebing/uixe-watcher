@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraBars;
+using LibVLCSharp.Shared;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -48,6 +49,7 @@ namespace Uixe.Watcher
             barEditItem.EditHeight = control.Height;
             barEditItem.Width = control.Width;
             rpgTime.ItemLinks.Add(barEditItem);
+            Core.Initialize();
         }
         private string temptime = null;
         private object timeobjlock = new object();

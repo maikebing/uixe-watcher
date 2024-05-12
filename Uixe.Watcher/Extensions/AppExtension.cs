@@ -12,8 +12,16 @@ namespace Uixe.Watcher.Extensions
 
         public static void SaveUserAppSetting(this AppSettings app)
         {
-            var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"appsettings.User.json");
-            System.IO.File.WriteAllText(filename, System.Text.Json.JsonSerializer.Serialize(new { app.whoiam }));
+            try
+            {
+                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"appsettings.User.json");
+                System.IO.File.WriteAllText(filename, System.Text.Json.JsonSerializer.Serialize(new { app.whoiam }));
+            }
+            catch (Exception)
+            {
+
+           
+            }
         }
 
 

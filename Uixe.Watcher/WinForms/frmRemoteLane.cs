@@ -1,6 +1,8 @@
 ﻿using DevExpress.CodeParser;
 using DevExpress.DataAccess.Native.Web;
 using DevExpress.XtraEditors;
+using LibVLCSharp.Shared;
+using LibVLCSharp.WinForms;
 using Microsoft.Extensions.DependencyInjection;
 using RestSharp;
 using System;
@@ -13,11 +15,13 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.ServiceModel.Channels;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Uitls;
+using Method = RestSharp.Method;
 
 namespace Uixe.Watcher
 {
@@ -45,11 +49,27 @@ namespace Uixe.Watcher
             await LaneAuth(auth3, client);
             try
             {
-
+                LibVLC libVLC = new LibVLC();
+                string rtspurl = null;
                 if (!string.IsNullOrEmpty(_lane.VideoRtsp))
                 {
-                    videoView1.StartPlay(_lane.VideoRtsp);
+                    rtspurl = _lane.VideoRtsp;
                 }
+                else
+                {
+                    var request = new RestRequest("/api/laneinfo", Method.Get);
+                    request.AddHeader("Content-Type", "application/json");
+                    if (client != null)
+                    {
+                        var result = await client.GetAsync<ApiResult<LaneInfoDtos>>(request);
+                        rtspurl = result?.data?.laneVideoRTSPUrl;
+                    }
+                }
+                videoView1.MediaPlayer = new MediaPlayer(libVLC);
+                videoView1.MediaPlayer.EndReached += vlc_EndReached;
+                var media = new Media(libVLC, rtspurl, FromType.FromLocation); //播放本地文件
+                videoView1.MediaPlayer.Media = media;
+                videoView1.MediaPlayer.Play();
             }
             catch (Exception ex)
             {
@@ -63,6 +83,14 @@ namespace Uixe.Watcher
             }
         }
 
+        private void vlc_EndReached(object sender, EventArgs e)
+        {
+            ThreadPool.QueueUserWorkItem(ThreadProc);
+        }
+        private void ThreadProc(Object stateInfo)
+        {
+            videoView1.MediaPlayer.Stop();
+        }
         private async Task LaneAuth(string auth3, RestClient client)
         {
             await Task.Run(async () =>
