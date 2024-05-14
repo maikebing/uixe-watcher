@@ -10,6 +10,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +51,31 @@ namespace Uixe.Watcher
             barEditItem.EditHeight = control.Height;
             barEditItem.Width = control.Width;
             rpgTime.ItemLinks.Add(barEditItem);
-            Core.Initialize();
+            var libvlcpath =new DirectoryInfo( Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "libvlc"));
+            if (!libvlcpath.Exists )
+            {
+                try
+                {
+                    _logger.LogInformation($"VLC不存在， 正在解压libvlc至{libvlcpath.FullName}");
+                    using var stem = new MemoryStream(Properties.Resources.libvlc);
+                    using ZipArchive zip = new ZipArchive(stem);
+                    zip.ExtractToDirectory(libvlcpath.FullName,true);
+                    _logger.LogInformation($"VLC已经解压libvlc至{libvlcpath.FullName}");
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError($"VLC解压libvlc至{libvlcpath.FullName}时遇到错误{ex.Message}");
+                }
+            }
+            libvlcpath.Refresh();
+            if (libvlcpath.Exists)
+            {
+                Core.Initialize(libvlcpath.FullName);
+            }
+            else
+            {
+                _logger.LogInformation($"VLC已经不存在");
+            }
         }
         private string temptime = null;
         private object timeobjlock = new object();
@@ -105,11 +131,11 @@ namespace Uixe.Watcher
                
                 this.Invoke(() =>
                 {
-                    this.Text = $"{(who?.name??"(none)")}云坐席";
+                    this.Text = $"{(who?.name??"(none)")}远程值守";
                     who?.plazas?.ForEach(p =>
                 {
                     wait.SetDescription($"正在加载{p?.station_name}!");
-                    LoadPlazaAsync(p);
+                    LoadPlaza(p);
                     Application.DoEvents();
 
                 });
@@ -122,7 +148,7 @@ namespace Uixe.Watcher
         }
 
 
-        public    void  LoadPlazaAsync(Plaza plaza)
+        public    void  LoadPlaza(Plaza plaza)
         {
             string name = $"{nameof(frmPlaza)}_{plaza.id}";
             var _runtimeSetting = _cache.GetOrCreate(plaza.id, c => new RuntimeSetting());

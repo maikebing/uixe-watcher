@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DevExpress.Diagram.Core.Native;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -12,8 +13,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Uixe.Watcher.Extensions;
+using Utf8StringInterpolation;
 using ZLogger;
 namespace Uixe.Watcher
 {
@@ -40,7 +43,18 @@ namespace Uixe.Watcher
             services.AddMemoryCache();
             services.AddLogging(configure =>
             {
-                configure.AddConsole();
+                var logdir = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "uixe", "uixe.log"));
+                if (!logdir.Directory.Exists) logdir.Directory.Create();
+                configure.AddZLoggerFile(logdir.FullName, cfg =>
+                {
+                    cfg.UsePlainTextFormatter(formatter =>
+                    {
+                        formatter.SetPrefixFormatter($"{0}|{1}|", (in MessageTemplate template, in LogInfo info) => template.Format(info.Timestamp, info.LogLevel));
+                        formatter.SetSuffixFormatter($" ({0})", (in MessageTemplate template, in LogInfo info) => template.Format(info.Category));
+                        formatter.SetExceptionFormatter((writer, ex) => Utf8String.Format(writer, $"{ex.Message}"));
+                    }
+                            );
+                });
             });
         }
 
