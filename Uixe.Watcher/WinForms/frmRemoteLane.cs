@@ -36,9 +36,17 @@ namespace Uixe.Watcher
             InitializeComponent();
         }
 
-        private async void frmRemoteLane_Load(object sender, EventArgs e)
+        private  void frmRemoteLane_Load(object sender, EventArgs e)
         {
             keyboard1.IPAddress = _lane.IPAddress;
+            var vnc =  VNCUtils.Login(this.vncScreen, _lane.IPAddress, 5900, _plaza.vncpwd ?? "kissme");
+            if (vnc != null)
+            {
+                vnc.Text = $"车道远程控制 {_plaza.station_name}({_lane.PlazaId}){_lane.LaneName}   {_lane.IPAddress} ";
+                this.Text = vnc.Text;
+            }
+            _ = Task.Run(async () =>
+            {
             var auth1 = $"{_lane.PlazaId}{_lane.LaneName}{_lane.terminalId}";
             var auth2 = BitConverter.ToString(MD5.HashData(Encoding.ASCII.GetBytes(auth1))).Replace("-", "").ToLower();
             var auth3 = BitConverter.ToString(MD5.HashData(Encoding.ASCII.GetBytes($"{auth2}{_runtimeSetting.serialNum}"))).Replace("-", "").ToLower();
@@ -65,22 +73,21 @@ namespace Uixe.Watcher
                         rtspurl = result?.data?.laneVideoRTSPUrl;
                     }
                 }
-                videoView1.MediaPlayer = new MediaPlayer(libVLC);
-                videoView1.MediaPlayer.EndReached += vlc_EndReached;
-                var media = new Media(libVLC, rtspurl, FromType.FromLocation); //播放本地文件
-                videoView1.MediaPlayer.Media = media;
-                videoView1.MediaPlayer.Play();
+                    this.Invoke(() =>
+                    {
+                        videoView1.MediaPlayer = new MediaPlayer(libVLC);
+                        videoView1.MediaPlayer.EndReached += vlc_EndReached;
+                        var media = new Media(libVLC, rtspurl, FromType.FromLocation); //播放本地文件
+                        videoView1.MediaPlayer.Media = media;
+                        videoView1.MediaPlayer.Play();
+                    });
+          
             }
             catch (Exception ex)
             {
                 XtraMessageBox.Show($"视频初始化播放{_lane.VideoRtsp}失败，{ex.Message}");
             }
-            var vnc = await VNCUtils.Login(this.vncScreen, _lane.IPAddress, 5900, _plaza.vncpwd ?? "kissme");
-            if (vnc != null)
-            {
-                vnc.Text = $"车道远程控制 {_plaza.station_name}({_lane.PlazaId}){_lane.LaneName}   {_lane.IPAddress} ";
-                this.Text = vnc.Text;
-            }
+            });
         }
 
         private void vlc_EndReached(object sender, EventArgs e)

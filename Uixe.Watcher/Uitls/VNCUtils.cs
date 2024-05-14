@@ -8,12 +8,12 @@ namespace Uixe.Watcher.Uitls
 {
     public static class VNCUtils
     {
-        public static Task<Vnc.Viewer.View> Login(Control parentForm, string IP, int port, string password)
+        public static  Vnc.Viewer.View  Login(Control parentForm, string IP, int port, string password)
         {
             return Login(parentForm, IP, port, password, false);
         }
 
-        public static Task<Vnc.Viewer.View> Login(Control parentForm, string IP, int port, string password, bool ispc)
+        public static  Vnc.Viewer.View Login(Control parentForm, string IP, int port, string password, bool ispc)
         {
             Conn conn = new Conn();
             ViewOpts vopts = new ViewOpts();
@@ -68,7 +68,7 @@ namespace Uixe.Watcher.Uitls
             {
                 //   conn.myView.ContextMenu = null;
             }
-            return Task.FromResult(conn.myView);
+            return conn.myView;
         }
     }
 }
