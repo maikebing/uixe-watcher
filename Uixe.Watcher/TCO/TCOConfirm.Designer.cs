@@ -31,16 +31,16 @@ namespace Uixe.Watcher
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TCOConfirm));
             lableContext = new DevExpress.XtraEditors.LabelControl();
             tCOCallBindingSource = new System.Windows.Forms.BindingSource(components);
@@ -93,7 +93,6 @@ namespace Uixe.Watcher
             pcPronow = new DevExpress.XtraEditors.ProgressBarControl();
             groupBox1 = new System.Windows.Forms.GroupBox();
             tcoPictureBox1 = new Controls.TCOPictureBox();
-            btnVNC = new DevExpress.XtraEditors.SimpleButton();
             keyItemBindingSource1 = new System.Windows.Forms.BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)tCOCallBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gcCardInfo).BeginInit();
@@ -157,7 +156,6 @@ namespace Uixe.Watcher
             // 
             tCOCallBindingSource.AllowNew = false;
             tCOCallBindingSource.DataSource = typeof(TCOCall);
-          
             // 
             // gcCardInfo
             // 
@@ -209,7 +207,7 @@ namespace Uixe.Watcher
             comboBoxEdit1.Properties.Appearance.Options.UseBackColor = true;
             comboBoxEdit1.Properties.Appearance.Options.UseFont = true;
             comboBoxEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
+            comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
             comboBoxEdit1.Properties.Items.AddRange(new object[] { "(不作修改)", "客车一型", "客车二型", "客车三型", "客车四型", "客车五型", "货车一型", "货车二型", "货车三型", "货车四型", "货车五型", "转换货一", "转换货二", "转换货三", "转换货四", "转换货五", "特种货一", "特种货二", "特种货三", "特种货四", "特种货五", "大件运输货一", "大件运输货二", "大件运输货三", "大件运输货四", "大件运输货五" });
             comboBoxEdit1.Properties.ReadOnly = true;
             comboBoxEdit1.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
@@ -302,7 +300,7 @@ namespace Uixe.Watcher
             comboBoxEdit2.Properties.Appearance.Options.UseBackColor = true;
             comboBoxEdit2.Properties.Appearance.Options.UseFont = true;
             comboBoxEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
+            comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default) });
             comboBoxEdit2.Properties.Items.AddRange(new object[] { "(不作修改)", "客车一型", "客车二型", "客车三型", "客车四型", "客车五型", "货车一型", "货车二型", "货车三型", "货车四型", "货车五型", "转换货一", "转换货二", "转换货三", "转换货四", "转换货五", "特种货一", "特种货二", "特种货三", "特种货四", "特种货五", "大件运输货一", "大件运输货二", "大件运输货三", "大件运输货四", "大件运输货五" });
             comboBoxEdit2.Properties.ReadOnly = true;
             comboBoxEdit2.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
@@ -679,7 +677,6 @@ namespace Uixe.Watcher
             // 
             txtModifyCarType.CausesValidation = false;
             txtModifyCarType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", tCOCallBindingSource, "VehicleType", true));
-            txtModifyCarType.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", tCOCallBindingSource, "DifType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             txtModifyCarType.DataBindings.Add(new System.Windows.Forms.Binding("ToolTip", tCOCallBindingSource, "VehicleTypeChinese", true));
             txtModifyCarType.Location = new System.Drawing.Point(83, 30);
             txtModifyCarType.Name = "txtModifyCarType";
@@ -812,11 +809,11 @@ namespace Uixe.Watcher
             // 
             // pcPronow
             // 
-            pcPronow.Location = new System.Drawing.Point(107, 434);
+            pcPronow.Location = new System.Drawing.Point(9, 434);
             pcPronow.Name = "pcPronow";
             pcPronow.Properties.ShowTitle = true;
             pcPronow.ShowProgressInTaskBar = true;
-            pcPronow.Size = new System.Drawing.Size(359, 28);
+            pcPronow.Size = new System.Drawing.Size(457, 28);
             pcPronow.TabIndex = 25;
             // 
             // groupBox1
@@ -839,17 +836,6 @@ namespace Uixe.Watcher
             tcoPictureBox1.Size = new System.Drawing.Size(354, 312);
             tcoPictureBox1.TabIndex = 0;
             // 
-            // btnVNC
-            // 
-            btnVNC.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnVNC.Appearance.Options.UseFont = true;
-            btnVNC.Location = new System.Drawing.Point(7, 428);
-            btnVNC.Name = "btnVNC";
-            btnVNC.Size = new System.Drawing.Size(94, 37);
-            btnVNC.TabIndex = 29;
-            btnVNC.Text = "远程桌面";
-            btnVNC.Click += btnVNC_Click;
-            // 
             // TCOConfirm
             // 
             Appearance.BackColor = System.Drawing.Color.FromArgb(207, 221, 238);
@@ -861,7 +847,6 @@ namespace Uixe.Watcher
             Appearance.Options.UseFont = true;
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             Controls.Add(pcPronow);
-            Controls.Add(btnVNC);
             Controls.Add(pictureBox4);
             Controls.Add(groupBox1);
             Controls.Add(groupControl5);
@@ -972,7 +957,6 @@ namespace Uixe.Watcher
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
         private System.Windows.Forms.GroupBox groupBox1;
-        public DevExpress.XtraEditors.SimpleButton btnVNC;
         private DevExpress.XtraEditors.LookUpEdit txtModifyCarType;
         private System.Windows.Forms.BindingSource keyItem_Vehicle_Types_BindingSource;
         private DevExpress.XtraEditors.LookUpEdit cbxProv;
