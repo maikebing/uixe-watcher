@@ -19,3 +19,5 @@
 /WinFormsRtspPlayer/obj
 /Uixe.Watcher/bin
 /WinFormsRtspPlayer/bin/Release
+/libvlc_zip/obj
+/libvlc_zip/bin/Debug/net8.0
