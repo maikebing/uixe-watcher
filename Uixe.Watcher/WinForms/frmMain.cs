@@ -57,7 +57,7 @@ namespace Uixe.Watcher
                 try
                 {
                     _logger.LogInformation($"VLC不存在， 正在解压libvlc至{libvlcpath.FullName}");
-                    using var stem = new MemoryStream(Properties.Resources.libvlc);
+                    using var stem = new MemoryStream(libvlc_zip.Properties.Resources.libvlc);
                     using ZipArchive zip = new ZipArchive(stem);
                     zip.ExtractToDirectory(libvlcpath.FullName,true);
                     _logger.LogInformation($"VLC已经解压libvlc至{libvlcpath.FullName}");
