@@ -137,13 +137,14 @@ namespace Uixe.Watcher
             ClientSize = new System.Drawing.Size(1432, 878);
             Controls.Add(ribbonStatusBar);
             Controls.Add(ribbon);
+            IconOptions.Icon = (System.Drawing.Icon)resources.GetObject("frmMain.IconOptions.Icon");
             IsMdiContainer = true;
             Margin = new System.Windows.Forms.Padding(4);
             Name = "frmMain";
             Ribbon = ribbon;
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             StatusBar = ribbonStatusBar;
-            Text = "新疆交投云坐席";
+            Text = "新疆收费站远程值守";
             FormClosed += frmMain_FormClosed;
             Load += frmMain_Load;
             ((System.ComponentModel.ISupportInitialize)ribbon).EndInit();

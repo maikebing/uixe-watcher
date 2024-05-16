@@ -119,6 +119,8 @@ namespace Uixe.Watcher
                 btnTest.Enabled = false;
             }
             LoadLaneInfo();
+            EnableLanespecialSpeeker = tsLanespecial.Checked;
+            Onley6769 = tsOnly6769.Checked;
         }
 
         public void LoadLaneInfo(bool reset = false)
@@ -236,6 +238,8 @@ namespace Uixe.Watcher
         {
             Close();
         }
+        public bool EnableLanespecialSpeeker { get; set; }
+        public bool Onley6769 { get; set; }
 
         public void Alert(string caption, string text)
         {
@@ -243,6 +247,7 @@ namespace Uixe.Watcher
             this.Invoke((System.Windows.Forms.MethodInvoker)delegate
             {
                 acMsg.Show(this, caption, text);
+
             });
         }
 
@@ -351,6 +356,19 @@ namespace Uixe.Watcher
             btnUpgrade.PerformClick();
         }
 
-    
+        private void acMsg_HyperlinkClick(object sender, DevExpress.Utils.HyperlinkClickEventArgs e)
+        {
+
+        }
+
+        private void tsLanespecial_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+            EnableLanespecialSpeeker = tsLanespecial.Checked;
+        }
+
+        private void tsOnly6769_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+            Onley6769 = tsOnly6769.Checked;
+        }
     }//frmMain
 }

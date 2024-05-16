@@ -127,4 +127,5 @@ namespace Uixe.Watcher.Dtos
         public string EntryLaneID { get; set; }
         public bool DifEntryDateTime { get; set; }
     }
+
 }

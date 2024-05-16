@@ -66,10 +66,11 @@ namespace Uixe.Watcher
             menuVoiceList = new DevExpress.XtraBars.BarSubItem();
             tsLvSeTongDao = new DevExpress.XtraBars.BarToggleSwitchItem();
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
+            btnLanespecial = new DevExpress.XtraBars.BarCheckItem();
+            tsLanespecial = new DevExpress.XtraBars.BarToggleSwitchItem();
+            tsOnly6769 = new DevExpress.XtraBars.BarToggleSwitchItem();
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
@@ -107,6 +108,7 @@ namespace Uixe.Watcher
             toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             niMain = new System.Windows.Forms.NotifyIcon(components);
+            alertControl1 = new DevExpress.XtraBars.Alerter.AlertControl(components);
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)applicationMenu1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemGridLookUpEdit1).BeginInit();
@@ -149,13 +151,13 @@ namespace Uixe.Watcher
             ribbon.BackColor = System.Drawing.SystemColors.Control;
             ribbon.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Blue;
             ribbon.ExpandCollapseItem.Id = 0;
-            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, txtStatus, btnBuildParamsFiles, btnSyncTime, btnBook, btnAbout, cmsPlazas, btnRBLogin, btnRBLogout, btnRBExit, btnRing, skinRibbonGalleryBarItem1, skinRibbonGalleryBarItem2, barEditItem2, chkServerStatus, txtMsg, btnSend, btnUpgrade, lblPath, tsBlackListPlate, btnTest, menuVoiceList, tsLvSeTongDao, skinDropDownButtonItem1 });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, txtStatus, btnBuildParamsFiles, btnSyncTime, btnBook, btnAbout, cmsPlazas, btnRBLogin, btnRBLogout, btnRBExit, btnRing, skinRibbonGalleryBarItem1, skinRibbonGalleryBarItem2, barEditItem2, chkServerStatus, txtMsg, btnSend, btnUpgrade, lblPath, tsBlackListPlate, btnTest, menuVoiceList, tsLvSeTongDao, skinDropDownButtonItem1, btnLanespecial, tsLanespecial, tsOnly6769 });
             ribbon.Location = new System.Drawing.Point(0, 0);
             ribbon.Margin = new System.Windows.Forms.Padding(4);
-            ribbon.MaxItemId = 61;
+            ribbon.MaxItemId = 64;
             ribbon.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             ribbon.Name = "ribbon";
-            ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
+            ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage3 });
             ribbon.QuickToolbarItemLinks.Add(skinRibbonGalleryBarItem1);
             ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemPopupContainerEdit1, repositoryItemTimeEdit1, repositoryItemMemoEdit1, repositoryItemPopupContainerEdit2, repositoryItemTreeListLookUpEdit1, repositoryItemHyperLinkEdit1, repositoryItemRadioGroup1, repositoryItemTimeEdit2, repositoryItemPopupContainerEdit3, repositoryItemPictureEdit1, repositoryItemPopupGalleryEdit1, repositoryItemTimeEdit3, repositoryItemTreeListLookUpEdit2, repositoryItemGridLookUpEdit1, repositoryItemCheckEdit1, repositoryItemTextEdit1, repositoryItemToggleSwitch1, repositoryItemTextEdit2, repositoryItemToggleSwitch2 });
             ribbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
@@ -399,6 +401,28 @@ namespace Uixe.Watcher
             skinDropDownButtonItem1.Id = 58;
             skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
             // 
+            // btnLanespecial
+            // 
+            btnLanespecial.Caption = "播报特情告警";
+            btnLanespecial.Id = 61;
+            btnLanespecial.Name = "btnLanespecial";
+            // 
+            // tsLanespecial
+            // 
+            tsLanespecial.BindableChecked = true;
+            tsLanespecial.Caption = "播报特情告警";
+            tsLanespecial.Checked = true;
+            tsLanespecial.Id = 62;
+            tsLanespecial.Name = "tsLanespecial";
+            tsLanespecial.CheckedChanged += tsLanespecial_CheckedChanged;
+            // 
+            // tsOnly6769
+            // 
+            tsOnly6769.Caption = "仅播报发卡机和ETC专用道特情";
+            tsOnly6769.Id = 63;
+            tsOnly6769.Name = "tsOnly6769";
+            tsOnly6769.CheckedChanged += tsOnly6769_CheckedChanged;
+            // 
             // ribbonPage1
             // 
             ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup2 });
@@ -410,20 +434,6 @@ namespace Uixe.Watcher
             // 
             ribbonPageGroup2.Name = "ribbonPageGroup2";
             ribbonPageGroup2.Text = "操作";
-            // 
-            // ribbonPage2
-            // 
-            ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup8 });
-            ribbonPage2.MergeOrder = 2;
-            ribbonPage2.Name = "ribbonPage2";
-            ribbonPage2.Text = "业务工具";
-            // 
-            // ribbonPageGroup8
-            // 
-            ribbonPageGroup8.ItemLinks.Add(txtMsg);
-            ribbonPageGroup8.ItemLinks.Add(btnSend);
-            ribbonPageGroup8.Name = "ribbonPageGroup8";
-            ribbonPageGroup8.Text = "消息通知";
             // 
             // ribbonPage3
             // 
@@ -437,6 +447,8 @@ namespace Uixe.Watcher
             ribbonPageGroup4.ItemLinks.Add(menuVoiceList);
             ribbonPageGroup4.ItemLinks.Add(tsLvSeTongDao);
             ribbonPageGroup4.ItemLinks.Add(tsBlackListPlate);
+            ribbonPageGroup4.ItemLinks.Add(tsOnly6769);
+            ribbonPageGroup4.ItemLinks.Add(tsLanespecial);
             ribbonPageGroup4.ItemLinks.Add(btnTest);
             ribbonPageGroup4.ItemLinks.Add(btnRing);
             ribbonPageGroup4.Name = "ribbonPageGroup4";
@@ -655,7 +667,7 @@ namespace Uixe.Watcher
             lanView.Margin = new System.Windows.Forms.Padding(4);
             lanView.Name = "lanView";
             lanView.Plaza = null;
-            lanView.Size = new System.Drawing.Size(1625, 343);
+            lanView.Size = new System.Drawing.Size(1625, 394);
             lanView.TabIndex = 0;
             // 
             // barButtonItem3
@@ -664,6 +676,11 @@ namespace Uixe.Watcher
             barButtonItem3.Id = 39;
             barButtonItem3.ImageOptions.LargeImage = Properties.Resources.GroupBlogInsertLinks;
             barButtonItem3.Name = "barButtonItem3";
+            // 
+            // acMsg
+            // 
+            acMsg.AutoFormDelay = 10000;
+            acMsg.HyperlinkClick += acMsg_HyperlinkClick;
             // 
             // tmNetworkTest
             // 
@@ -773,7 +790,6 @@ namespace Uixe.Watcher
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.BarButtonItem btnBook;
         private DevExpress.XtraBars.BarButtonItem btnAbout;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.BarSubItem cmsPlazas;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repositoryItemPopupContainerEdit1;
@@ -820,7 +836,6 @@ namespace Uixe.Watcher
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
         private DevExpress.XtraBars.BarSubItem menuVoiceList;
         private DevExpress.XtraBars.BarToggleSwitchItem tsLvSeTongDao;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch2;
         private System.Windows.Forms.ContextMenuStrip cmsNotifyMenu;
         private System.Windows.Forms.NotifyIcon niMain;
@@ -833,6 +848,10 @@ namespace Uixe.Watcher
         private DevExpress.XtraTreeList.Columns.TreeListColumn colExample;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colDisplay;
         private LaneView lanView;
+        private DevExpress.XtraBars.Alerter.AlertControl alertControl1;
+        private DevExpress.XtraBars.BarCheckItem btnLanespecial;
+        private DevExpress.XtraBars.BarToggleSwitchItem tsLanespecial;
+        private DevExpress.XtraBars.BarToggleSwitchItem tsOnly6769;
     }
 }
 

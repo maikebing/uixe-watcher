@@ -118,7 +118,54 @@ namespace Uixe.Watcher.Controllers
                 return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
             }
         }
+        [HttpPost]
+        public async Task<ActionResult<ApiResult>> Lanespecial(string plazaid, Lanespecial msg)
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                    bool canshow = true;
+                    if (frm.Onley6769)
+                    {
+                        if (msg.SubHead.StaffID == "777777" || msg.SubHead.StaffID == "999999")
+                        {
+                            canshow = true;
+                        }
+                        else
+                        {
+                            canshow=false;
+                        }
+                    }
+                    else
+                    {
+                        canshow = true;
+                    }
+                    if (canshow)
+                    {
+                        string laneid = $"650{msg.Head.NetNo}{msg.Head.PlazaNo}{msg.Head.LaneID}";
+                        Lanespecial msgold = null;
+                        if (!_cache.TryGetValue(laneid, out msgold))
+                        {
+                            var msg1 = _cache.Set(laneid, msg, TimeSpan.FromSeconds(3));
 
+                            frm?.Invoke(() => frm.Alert(msg.Title, msg.Context));
+                            if (frm?.EnableLanespecialSpeeker == true)
+                            {
+                                SpeechUtils.Speecher.SpeakAsync(msg.Title);
+                            }
+                        }
+                    }
+                });
+                return Ok(new ApiResult(ApiCode.OK, "OK"));
+            }
+            catch (Exception)
+            {
+
+                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+            }
+        }
     }
 }
 
