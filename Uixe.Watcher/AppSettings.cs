@@ -18,9 +18,15 @@ namespace Uixe.Watcher
     }
     public class AppSettings
     {
-        public PlaceType PlaceType { get;  set; }
-        public string PlaceId { get; set; }
         public whoiam whoiam { get; set; }
+        public string Ring { get; set; }
+        public string SkinStyle { get; set; }
+        public bool SpeedBlackListPlate { get; set; } = true;
+        public bool SpeechLvSeTongDao { get; set; } = true;
+        public bool Only6769 { get; set; } = false;
+        public bool Lanespecial { get; set; } = true;
+        public bool CanPlayVideo { get; set; } = true;
+        public bool laneVideoMute { get; set; } = false;
 
     }
 }

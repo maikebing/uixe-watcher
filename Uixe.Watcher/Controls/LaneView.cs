@@ -29,6 +29,7 @@ namespace Uixe.Watcher.Controls
         public Plaza Plaza { get; set; }
 
         private RuntimeSetting _runtimeSetting;
+        private AppSettings _settings;
         public List<LaneInfo> lst = new List<LaneInfo>();
 
         public LaneView()
@@ -36,11 +37,12 @@ namespace Uixe.Watcher.Controls
             InitializeComponent();
         }
 
-        internal void InitLaneInfo(Plaza item, ILogger logger, RuntimeSetting runtimeSetting)
+        internal void InitLaneInfo(Plaza item, ILogger logger, RuntimeSetting runtimeSetting, AppSettings settings)
         {
             _logger = logger;
             Plaza = item;
             _runtimeSetting = runtimeSetting;
+            _settings = settings;
             var _ls = new List<LaneInfo>();
             item.lanes?.ForEach(l =>
             {
@@ -200,6 +202,7 @@ namespace Uixe.Watcher.Controls
                 {
                     frmRemoteLane lane = new frmRemoteLane(Plaza, fv);
                     lane._runtimeSetting = _runtimeSetting;
+                    lane._settings = _settings;
                     lane.Show(this);
                 }
             }

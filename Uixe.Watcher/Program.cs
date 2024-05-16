@@ -30,7 +30,9 @@ namespace Uixe.Watcher
                 {
                     webBuilder.ConfigureAppConfiguration( config=>
                     {
-                        config.AddJsonFile(System.IO.Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments), $"appsettings.User.json"),true,true);
+                        var cfg = new System.IO.FileInfo( System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Uixe", "appsettings.User.json"));
+                        if (!cfg.Directory.Exists) cfg.Directory.Create();
+                        config.AddJsonFile(cfg.FullName,true,true);
                     });
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseWindowsFormsLifetime<frmMain>();

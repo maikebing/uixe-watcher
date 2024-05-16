@@ -14,8 +14,9 @@ namespace Uixe.Watcher.Extensions
         {
             try
             {
-                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"appsettings.User.json");
-                System.IO.File.WriteAllText(filename, System.Text.Json.JsonSerializer.Serialize(new { app.whoiam }));
+                var cfg = new System.IO.FileInfo(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Uixe", "appsettings.User.json"));
+                if (!cfg.Directory.Exists) cfg.Directory.Create();
+                System.IO.File.WriteAllText(cfg.FullName, System.Text.Json.JsonSerializer.Serialize(app));
             }
             catch (Exception)
             {

@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Uixe.Watcher.Controls;
 using Uixe.Watcher.Dtos;
+using Uixe.Watcher.Extensions;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Ring;
 using Uixe.Watcher.TCO;
@@ -56,7 +57,7 @@ namespace Uixe.Watcher
 
         public frmShowTCOCall _tcocall;
         public frmWeightTCOCall WeightTCOCall;
-
+        public AppSettings settings { get; set; }
         public Plaza Plaza => _runtimeSetting?.Plaza;
         public RuntimeSetting _runtimeSetting { get; set; }
         private void frmMain_Load(object sender, EventArgs e)
@@ -77,18 +78,18 @@ namespace Uixe.Watcher
                         if (btx != null)
                         {
                             btnRing.Caption = "铃声:" + btx.Caption;
-                            _runtimeSetting.Ring = btx.Caption;
+                            settings.Ring = btx.Caption;
                             Task.Run(() =>
                             {
-                                PlayUitls.SetMp3File(_runtimeSetting.Ring);
+                                PlayUitls.SetMp3File(settings.Ring);
                                 PlayUitls.PlayRing();
                             });
                         }
                     };
                     btnRing.AddItem(bt);
                 }
-                btnRing.Caption = "铃声:" + _runtimeSetting.Ring;
-                PlayUitls.SetMp3File(_runtimeSetting.Ring);
+                btnRing.Caption = "铃声:" + settings.Ring;
+                PlayUitls.SetMp3File(settings.Ring);
                 btnRing.Enabled = true;
             }
             else
@@ -119,8 +120,7 @@ namespace Uixe.Watcher
                 btnTest.Enabled = false;
             }
             LoadLaneInfo();
-            EnableLanespecialSpeeker = tsLanespecial.Checked;
-            Onley6769 = tsOnly6769.Checked;
+            appSettingsBindingSource.DataSource = settings;
         }
 
         public void LoadLaneInfo(bool reset = false)
@@ -157,7 +157,7 @@ namespace Uixe.Watcher
             ShowStatusInfo("正在加载车道列表");
             lanView.SuspendLayout();
             messageView.SuspendLayout();
-            lanView.InitLaneInfo(plaza, _logger, _runtimeSetting);
+            lanView.InitLaneInfo(plaza, _logger, _runtimeSetting,settings);
             messageView.initMessageView(plaza.id, 100);
             messageView.ResumeLayout(false);
             lanView.ResumeLayout(false);
@@ -284,7 +284,7 @@ namespace Uixe.Watcher
 
         private void skinRibbonGalleryBarItem2_GalleryItemClick(object sender, DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
         {
-            _runtimeSetting.SkinStyle = e.Item.Tag.ToString();
+            settings.SkinStyle = e.Item.Tag.ToString();
 
         }
 
@@ -368,7 +368,12 @@ namespace Uixe.Watcher
 
         private void tsOnly6769_CheckedChanged(object sender, ItemClickEventArgs e)
         {
-            Onley6769 = tsOnly6769.Checked;
+        
+        }
+
+        private void frmPlaza_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            settings.SaveUserAppSetting();
         }
     }//frmMain
 }

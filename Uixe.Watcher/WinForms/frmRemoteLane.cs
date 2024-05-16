@@ -57,31 +57,34 @@ namespace Uixe.Watcher
             await LaneAuth(auth3, client);
             try
             {
-                LibVLC libVLC = new LibVLC();
-                string rtspurl = null;
-                if (!string.IsNullOrEmpty(_lane.VideoRtsp))
-                {
-                    rtspurl = _lane.VideoRtsp;
-                }
-                else
-                {
-                    var request = new RestRequest("/api/laneinfo", Method.Get);
-                    request.AddHeader("Content-Type", "application/json");
-                    if (client != null)
+                    if (_settings.CanPlayVideo)
                     {
-                        var result = await client.GetAsync<ApiResult<LaneInfoDtos>>(request);
-                        rtspurl = result?.data?.laneVideoRTSPUrl;
+                        LibVLC libVLC = new LibVLC();
+                        string rtspurl = null;
+                        if (!string.IsNullOrEmpty(_lane.VideoRtsp))
+                        {
+                            rtspurl = _lane.VideoRtsp;
+                        }
+                        else
+                        {
+                            var request = new RestRequest("/api/laneinfo", Method.Get);
+                            request.AddHeader("Content-Type", "application/json");
+                            if (client != null)
+                            {
+                                var result = await client.GetAsync<ApiResult<LaneInfoDtos>>(request);
+                                rtspurl = result?.data?.laneVideoRTSPUrl;
+                            }
+                        }
+                        this.Invoke(() =>
+                        {
+                            videoView1.MediaPlayer = new MediaPlayer(libVLC);
+                            videoView1.MediaPlayer.EndReached += vlc_EndReached;
+                            var media = new Media(libVLC, rtspurl, FromType.FromLocation); //播放本地文件
+                            videoView1.MediaPlayer.Media = media;
+                            videoView1.MediaPlayer.Play();
+                            videoView1.MediaPlayer.Mute = _settings.laneVideoMute;
+                        });
                     }
-                }
-                    this.Invoke(() =>
-                    {
-                        videoView1.MediaPlayer = new MediaPlayer(libVLC);
-                        videoView1.MediaPlayer.EndReached += vlc_EndReached;
-                        var media = new Media(libVLC, rtspurl, FromType.FromLocation); //播放本地文件
-                        videoView1.MediaPlayer.Media = media;
-                        videoView1.MediaPlayer.Play();
-                    });
-          
             }
             catch (Exception ex)
             {
@@ -123,7 +126,7 @@ namespace Uixe.Watcher
                 {
                     this.Invoke(new Action(() =>
                     {
-                        libInfo.Text = $"车道认证失败{ex.Message}，旧版本车道软件请忽略此问题。";
+                        libInfo.Text = $"车道认证失败{ex.Message}";
                     }));
                 }
 
@@ -132,6 +135,7 @@ namespace Uixe.Watcher
 
         bool ismax = false;
         internal RuntimeSetting _runtimeSetting;
+        internal AppSettings _settings;
 
         private void videoView1_DoubleClick(object sender, EventArgs e)
         {
@@ -148,10 +152,7 @@ namespace Uixe.Watcher
 
         }
 
-        private void labelControl1_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void keyboard1_ShowInfo(string text)
         {

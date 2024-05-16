@@ -68,11 +68,15 @@ namespace Uixe.Watcher
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             btnLanespecial = new DevExpress.XtraBars.BarCheckItem();
             tsLanespecial = new DevExpress.XtraBars.BarToggleSwitchItem();
+            appSettingsBindingSource = new System.Windows.Forms.BindingSource(components);
             tsOnly6769 = new DevExpress.XtraBars.BarToggleSwitchItem();
+            barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
+            barToggleSwitchItem2 = new DevExpress.XtraBars.BarToggleSwitchItem();
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
             repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
@@ -115,6 +119,7 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)repositoryItemGridLookUpEdit1View).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemCheckEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)appSettingsBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemPopupContainerEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTimeEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemMemoEdit1).BeginInit();
@@ -151,10 +156,10 @@ namespace Uixe.Watcher
             ribbon.BackColor = System.Drawing.SystemColors.Control;
             ribbon.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Blue;
             ribbon.ExpandCollapseItem.Id = 0;
-            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, txtStatus, btnBuildParamsFiles, btnSyncTime, btnBook, btnAbout, cmsPlazas, btnRBLogin, btnRBLogout, btnRBExit, btnRing, skinRibbonGalleryBarItem1, skinRibbonGalleryBarItem2, barEditItem2, chkServerStatus, txtMsg, btnSend, btnUpgrade, lblPath, tsBlackListPlate, btnTest, menuVoiceList, tsLvSeTongDao, skinDropDownButtonItem1, btnLanespecial, tsLanespecial, tsOnly6769 });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, txtStatus, btnBuildParamsFiles, btnSyncTime, btnBook, btnAbout, cmsPlazas, btnRBLogin, btnRBLogout, btnRBExit, btnRing, skinRibbonGalleryBarItem1, skinRibbonGalleryBarItem2, barEditItem2, chkServerStatus, txtMsg, btnSend, btnUpgrade, lblPath, tsBlackListPlate, btnTest, menuVoiceList, tsLvSeTongDao, skinDropDownButtonItem1, btnLanespecial, tsLanespecial, tsOnly6769, barToggleSwitchItem1, barToggleSwitchItem2 });
             ribbon.Location = new System.Drawing.Point(0, 0);
             ribbon.Margin = new System.Windows.Forms.Padding(4);
-            ribbon.MaxItemId = 64;
+            ribbon.MaxItemId = 66;
             ribbon.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             ribbon.Name = "ribbon";
             ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage3 });
@@ -412,16 +417,38 @@ namespace Uixe.Watcher
             tsLanespecial.BindableChecked = true;
             tsLanespecial.Caption = "播报特情告警";
             tsLanespecial.Checked = true;
+            tsLanespecial.DataBindings.Add(new System.Windows.Forms.Binding("BindableChecked", appSettingsBindingSource, "Lanespecial", true));
             tsLanespecial.Id = 62;
             tsLanespecial.Name = "tsLanespecial";
             tsLanespecial.CheckedChanged += tsLanespecial_CheckedChanged;
             // 
+            // appSettingsBindingSource
+            // 
+            appSettingsBindingSource.DataSource = typeof(AppSettings);
+            // 
             // tsOnly6769
             // 
             tsOnly6769.Caption = "仅播报发卡机和ETC专用道特情";
+            tsOnly6769.DataBindings.Add(new System.Windows.Forms.Binding("BindableChecked", appSettingsBindingSource, "Only6769", true));
             tsOnly6769.Id = 63;
             tsOnly6769.Name = "tsOnly6769";
             tsOnly6769.CheckedChanged += tsOnly6769_CheckedChanged;
+            // 
+            // barToggleSwitchItem1
+            // 
+            barToggleSwitchItem1.BindableChecked = true;
+            barToggleSwitchItem1.Caption = "自动播放车道视频";
+            barToggleSwitchItem1.Checked = true;
+            barToggleSwitchItem1.DataBindings.Add(new System.Windows.Forms.Binding("BindableChecked", appSettingsBindingSource, "CanPlayVideo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            barToggleSwitchItem1.Id = 64;
+            barToggleSwitchItem1.Name = "barToggleSwitchItem1";
+            // 
+            // barToggleSwitchItem2
+            // 
+            barToggleSwitchItem2.Caption = "静音";
+            barToggleSwitchItem2.DataBindings.Add(new System.Windows.Forms.Binding("BindableChecked", appSettingsBindingSource, "laneVideoMute", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            barToggleSwitchItem2.Id = 65;
+            barToggleSwitchItem2.Name = "barToggleSwitchItem2";
             // 
             // ribbonPage1
             // 
@@ -437,10 +464,10 @@ namespace Uixe.Watcher
             // 
             // ribbonPage3
             // 
-            ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup4 });
+            ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup4, ribbonPageGroup1 });
             ribbonPage3.MergeOrder = 3;
             ribbonPage3.Name = "ribbonPage3";
-            ribbonPage3.Text = "软件维护";
+            ribbonPage3.Text = "设置";
             // 
             // ribbonPageGroup4
             // 
@@ -453,6 +480,13 @@ namespace Uixe.Watcher
             ribbonPageGroup4.ItemLinks.Add(btnRing);
             ribbonPageGroup4.Name = "ribbonPageGroup4";
             ribbonPageGroup4.Text = "监控确认提示";
+            // 
+            // ribbonPageGroup1
+            // 
+            ribbonPageGroup1.ItemLinks.Add(barToggleSwitchItem1);
+            ribbonPageGroup1.ItemLinks.Add(barToggleSwitchItem2);
+            ribbonPageGroup1.Name = "ribbonPageGroup1";
+            ribbonPageGroup1.Text = "车道远程控制";
             // 
             // repositoryItemPopupContainerEdit1
             // 
@@ -741,6 +775,7 @@ namespace Uixe.Watcher
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             StatusBar = ribbonStatusBar;
             Text = "车道监控软件";
+            FormClosing += frmPlaza_FormClosing;
             Load += frmMain_Load;
             HelpRequested += frmMain_HelpRequested;
             ((System.ComponentModel.ISupportInitialize)ribbon).EndInit();
@@ -749,6 +784,7 @@ namespace Uixe.Watcher
             ((System.ComponentModel.ISupportInitialize)repositoryItemGridLookUpEdit1View).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemCheckEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)appSettingsBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemPopupContainerEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTimeEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemMemoEdit1).EndInit();
@@ -852,6 +888,10 @@ namespace Uixe.Watcher
         private DevExpress.XtraBars.BarCheckItem btnLanespecial;
         private DevExpress.XtraBars.BarToggleSwitchItem tsLanespecial;
         private DevExpress.XtraBars.BarToggleSwitchItem tsOnly6769;
+        private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem1;
+        private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem2;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private System.Windows.Forms.BindingSource appSettingsBindingSource;
     }
 }
 

@@ -160,7 +160,7 @@ namespace Uixe.Watcher
                 var frm = _cache.GetOrCreate(name, f =>
                      {
                          var _log= _loggerFactory.CreateLogger(name);
-                          var frm = new frmPlaza() { Name = name ,_logger= _log, _loggerFactory= _loggerFactory, _cache = _cache };
+                          var frm = new frmPlaza() { Name = name ,_logger= _log, _loggerFactory= _loggerFactory, _cache = _cache ,settings= _setting };
                          frm._runtimeSetting = _cache.Get<RuntimeSetting>(plaza.id);
                          frm.FormClosed += Frm_FormClosed;
                          return frm;

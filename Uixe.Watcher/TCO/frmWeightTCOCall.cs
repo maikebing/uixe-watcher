@@ -19,12 +19,14 @@ namespace Uixe.Watcher.TCO
 
         private readonly Plaza _plaza;
         private readonly RuntimeSetting _runtimeSetting;
+        private readonly AppSettings _settings;
 
-        public frmWeightTCOCall(Plaza plaza, RuntimeSetting runtimeSetting)
+        public frmWeightTCOCall(Plaza plaza, RuntimeSetting runtimeSetting, AppSettings settings)
         {
             InitializeComponent();
             _plaza = plaza;
             _runtimeSetting = runtimeSetting;
+            _settings=settings;
         }
  
         public  void LoadInfo()
@@ -38,6 +40,7 @@ namespace Uixe.Watcher.TCO
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
                     tms._runtimeSetting = _runtimeSetting;
+                    tms._settings = _settings;
                     tms.Plaza = _plaza;
                     tms.Lane = _plaza.lanes[i];
                     t.Name = pname;
