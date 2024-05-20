@@ -6,6 +6,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Extensions;
 
 namespace Uixe.Watcher
@@ -22,13 +23,12 @@ namespace Uixe.Watcher
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
             this.env = env;
         }
-
+        Thread thread = null;
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            var thread = new Thread(UIThreadStart);
+            thread = new Thread(UIThreadStart);
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
-
             return Task.CompletedTask;
         }
 
@@ -39,12 +39,15 @@ namespace Uixe.Watcher
             {
                 Application.EnableVisualStyles();
             }
-
             Application.SetCompatibleTextRenderingDefault(_options.CompatibleTextRenderingDefault);
-
             var applicationContext = _serviceProvider.GetRequiredService<ApplicationContext>();
-
+            applicationContext.MainForm.FormClosed += MainForm_FormClosed;
             Application.Run(applicationContext);
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

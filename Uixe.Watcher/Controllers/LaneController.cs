@@ -127,7 +127,7 @@ namespace Uixe.Watcher.Controllers
                 {
                     var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
                     bool canshow = true;
-                    if (frm.Onley6769)
+                    if (frm?.settings?.Only6769==true)
                     {
                         if (msg.SubHead.StaffID == "777777" || msg.SubHead.StaffID == "999999")
                         {
@@ -144,16 +144,19 @@ namespace Uixe.Watcher.Controllers
                     }
                     if (canshow)
                     {
-                        string laneid = $"650{msg.Head.NetNo}{msg.Head.PlazaNo}{msg.Head.LaneID}";
-                        Lanespecial msgold = null;
-                        if (!_cache.TryGetValue(laneid, out msgold))
+                        if (frm?.settings?.Lanespecial == true)
                         {
-                            var msg1 = _cache.Set(laneid, msg, TimeSpan.FromSeconds(3));
-
-                            frm?.Invoke(() => frm.Alert(msg.Title, msg.Context));
-                            if (frm?.EnableLanespecialSpeeker == true)
+                            string laneid = $"650{msg.Head.NetNo}{msg.Head.PlazaNo}{msg.Head.LaneID}";
+                            Lanespecial msgold = null;
+                            if (!_cache.TryGetValue(laneid, out msgold))
                             {
-                                SpeechUtils.Speecher.SpeakAsync(msg.Title);
+                                var msg1 = _cache.Set(laneid, msg, TimeSpan.FromSeconds(3));
+
+                                frm?.Invoke(() => frm.Alert(msg.Title, msg.Context));
+                                if (frm.settings?.laneVideoMute == false)
+                                {
+                                    SpeechUtils.Speecher.SpeakAsync(msg.Title);
+                                }
                             }
                         }
                     }

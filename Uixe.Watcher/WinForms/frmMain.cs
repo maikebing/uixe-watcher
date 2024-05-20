@@ -96,8 +96,6 @@ namespace Uixe.Watcher
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             _logger.LogInformation($"窗口已关闭， 开始关闭经常， 关闭原因为{e.CloseReason}");
-            Application.ExitThread();
-            Application.Exit();
         }
  
 
