@@ -2,8 +2,6 @@
 
 namespace Uixe.Watcher.Dtos
 {
-
-
     public class Lanespecial
     {
 

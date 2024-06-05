@@ -119,6 +119,28 @@ namespace Uixe.Watcher.Controllers
             }
         }
         [HttpPost]
+        public async Task<ActionResult<ApiResult>> OverloadAlarm(string plazaid, OverloadWarning warn)
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                    frm?.Invoke(() => frm.Alert(warn.Title, warn.Context));
+                    if (frm?.settings?.laneVideoMute == false)
+                    {
+                        SpeechUtils.Speecher.SpeakAsync(warn.Title);
+                    }
+                });
+                return Ok(new ApiResult(ApiCode.OK, "OK"));
+            }
+            catch (Exception)
+            {
+
+                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+            }
+        }
+        [HttpPost]
         public async Task<ActionResult<ApiResult>> Lanespecial(string plazaid, Lanespecial msg)
         {
             try
