@@ -17,9 +17,23 @@
         ///
         /// </summary>
         public string lane_no { get; set; }
- 
-    }
-     
 
+    }
+
+    public class t_lane
+    {
+
+        public string Id { get; set; }
+        public string plazaid { get; set; }
+        public string ip { get; set; }
+
+        public string lane_id { get; set; }
+
+        public string lane_no { get; set; }
+
+        public string usename { get; set; }
+        public string password { get; set; }
+
+    }
 
 }

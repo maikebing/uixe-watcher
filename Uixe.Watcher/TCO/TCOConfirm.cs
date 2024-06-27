@@ -240,7 +240,6 @@ namespace Uixe.Watcher
         public MSG_TCOConfirm GetAUS(bool IsSubmit)
         {
             TCOCall tc = TCE;
-
             AUS.DifPlate = tc.DifPlate;
             AUS.DifPlaza = tc.DifPlaza;
             AUS.DifType = tc.DifType;
@@ -248,8 +247,8 @@ namespace Uixe.Watcher
             {
                 AUS.CarClass = cc;
             }
-            AUS.CarPlate = tc.DifPlate ? txtModifyCarNumber.Text : tc.ExitPlate;
-            AUS.CarType = tc.DifType ? (txtModifyCarType.EditValue as int?).GetValueOrDefault() : int.Parse(tc.ExitCarType);
+            AUS.CarPlate = txtModifyCarNumber.Text ;
+            AUS.CarType =  (txtModifyCarType.EditValue as int?).GetValueOrDefault() ;
             var plaza = cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
             if (plaza != null && !string.IsNullOrEmpty(plaza.plazaHEX) && plaza.plazaHEX.Length >= 8)
             {
@@ -265,7 +264,6 @@ namespace Uixe.Watcher
             AUS.DifPlate = _tce.EntryPlate != tc.EntryPlate;
             AUS.TransNo = tc.TransNo;
             AUS.TimeoutCar = tc.TimeoutCar;
-            //AUS.TCOStaffID = _runtimeSetting.NowCollect != null ? _runtimeSetting.NowCollect.UserId : "";
             AUS.UCar = tc.UCar ? 1 : 0;
             AUS.IsConfirm = IsSubmit;
             AUS.EntryDateTime = tc.EntryDHM;

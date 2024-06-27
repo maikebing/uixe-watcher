@@ -157,7 +157,7 @@ namespace Uixe.Watcher
             ShowStatusInfo("正在加载车道列表");
             lanView.SuspendLayout();
             messageView.SuspendLayout();
-            lanView.InitLaneInfo(plaza, _logger, _runtimeSetting,settings);
+            lanView.InitLaneInfo(plaza, _logger, _runtimeSetting,settings, _connection,this);
             messageView.initMessageView(plaza.id, 100);
             messageView.ResumeLayout(false);
             lanView.ResumeLayout(false);
@@ -292,6 +292,8 @@ namespace Uixe.Watcher
         internal ILogger _logger;
         internal ILoggerFactory _loggerFactory;
         internal IMemoryCache _cache;
+        internal LiteDB.ConnectionString _connection;
+
         private void btnSend_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (DateTime.Now.Subtract(lastsend).TotalSeconds > 2)

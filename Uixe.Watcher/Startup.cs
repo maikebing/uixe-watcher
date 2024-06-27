@@ -1,5 +1,4 @@
-﻿using DevExpress.Diagram.Core.Native;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Quartz;
+using Quartz.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -56,6 +57,22 @@ namespace Uixe.Watcher
                             );
                 });
             });
+            var cfg = new System.IO.FileInfo(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Uixe", "data.db"));
+            if (!cfg.Directory.Exists) cfg.Directory.Create();
+            services.AddSingleton(new LiteDB.ConnectionString() { Filename = cfg.FullName, Connection = LiteDB.ConnectionType.Shared, Password = "kissme", Upgrade = true });
+
+            services.AddQuartz(q =>
+            {
+                q.DiscoverJobs();
+            });
+            // ASP.NET Core hosting
+            services.AddQuartzServer(options =>
+            {
+                options.StartDelay = TimeSpan.FromSeconds(10);
+                // when shutting down we want jobs to complete gracefully
+                options.WaitForJobsToComplete = true;
+            });
+
         }
 
  

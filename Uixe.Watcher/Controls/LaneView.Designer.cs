@@ -69,6 +69,8 @@
             btnVNC = new DevExpress.XtraBars.BarButtonItem();
             btnPing = new DevExpress.XtraBars.BarButtonItem();
             btnRemotLane = new DevExpress.XtraBars.BarButtonItem();
+            btnLaneReboot = new DevExpress.XtraBars.BarButtonItem();
+            btnLaneControl = new DevExpress.XtraBars.BarSubItem();
             rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(components);
@@ -94,7 +96,7 @@
             gcExitLanes.MenuManager = barManager1;
             gcExitLanes.Name = "gcExitLanes";
             gcExitLanes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemPictureEdit1, rpbExit, cardBoxControlRepositoryItem2, repositoryItemTimeEdit1 });
-            gcExitLanes.Size = new System.Drawing.Size(1513, 532);
+            gcExitLanes.Size = new System.Drawing.Size(1513, 570);
             gcExitLanes.TabIndex = 9;
             gcExitLanes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gvExitLanes });
             gcExitLanes.MouseUp += gcExitLanes_MouseUp;
@@ -124,7 +126,7 @@
             gvExitLanes.Appearance.Empty.BackColor = System.Drawing.Color.White;
             gvExitLanes.Appearance.Empty.Options.UseBackColor = true;
             gvExitLanes.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(231, 242, 254);
-            gvExitLanes.Appearance.EvenRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            gvExitLanes.Appearance.EvenRow.Font = new System.Drawing.Font("Tahoma", 12F);
             gvExitLanes.Appearance.EvenRow.ForeColor = System.Drawing.Color.PaleVioletRed;
             gvExitLanes.Appearance.EvenRow.Options.UseBackColor = true;
             gvExitLanes.Appearance.EvenRow.Options.UseFont = true;
@@ -177,7 +179,7 @@
             gvExitLanes.Appearance.GroupPanel.Options.UseForeColor = true;
             gvExitLanes.Appearance.GroupRow.BackColor = System.Drawing.Color.FromArgb(193, 216, 247);
             gvExitLanes.Appearance.GroupRow.BorderColor = System.Drawing.Color.FromArgb(193, 216, 247);
-            gvExitLanes.Appearance.GroupRow.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            gvExitLanes.Appearance.GroupRow.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
             gvExitLanes.Appearance.GroupRow.ForeColor = System.Drawing.Color.Black;
             gvExitLanes.Appearance.GroupRow.Options.UseBackColor = true;
             gvExitLanes.Appearance.GroupRow.Options.UseBorderColor = true;
@@ -186,7 +188,7 @@
             gvExitLanes.Appearance.HeaderPanel.BackColor = System.Drawing.Color.FromArgb(221, 236, 254);
             gvExitLanes.Appearance.HeaderPanel.BackColor2 = System.Drawing.Color.FromArgb(132, 171, 228);
             gvExitLanes.Appearance.HeaderPanel.BorderColor = System.Drawing.Color.FromArgb(221, 236, 254);
-            gvExitLanes.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            gvExitLanes.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F);
             gvExitLanes.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
             gvExitLanes.Appearance.HeaderPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             gvExitLanes.Appearance.HeaderPanel.Options.UseBackColor = true;
@@ -200,7 +202,7 @@
             gvExitLanes.Appearance.HorzLine.BackColor = System.Drawing.Color.FromArgb(99, 127, 196);
             gvExitLanes.Appearance.HorzLine.Options.UseBackColor = true;
             gvExitLanes.Appearance.OddRow.BackColor = System.Drawing.Color.White;
-            gvExitLanes.Appearance.OddRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            gvExitLanes.Appearance.OddRow.Font = new System.Drawing.Font("Tahoma", 12F);
             gvExitLanes.Appearance.OddRow.ForeColor = System.Drawing.Color.Navy;
             gvExitLanes.Appearance.OddRow.Options.UseBackColor = true;
             gvExitLanes.Appearance.OddRow.Options.UseFont = true;
@@ -222,6 +224,7 @@
             gvExitLanes.Appearance.VertLine.BackColor = System.Drawing.Color.FromArgb(99, 127, 196);
             gvExitLanes.Appearance.VertLine.Options.UseBackColor = true;
             gvExitLanes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colLaneNo, colUserName, coluserNumber, colWorkState, colCarKind1, colCharge1, colCarType, colWorkMode, gcCardBoxExit, colStartWorkTime, colyupengdeng, colCoil1, colCoil2, colRSU, colYellow, gcWeightStatus, gcReaderStatus, colQRPay, Coil3, colJiaoTong, colPrint, Coil4, colLanGan, colBaoJing, colVPR, colCamera, colNetWork });
+            gvExitLanes.DetailHeight = 375;
             gvExitLanes.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             gvExitLanes.GridControl = gcExitLanes;
             gvExitLanes.Name = "gvExitLanes";
@@ -233,7 +236,7 @@
             gvExitLanes.OptionsView.EnableAppearanceEvenRow = true;
             gvExitLanes.OptionsView.EnableAppearanceOddRow = true;
             gvExitLanes.OptionsView.ShowGroupPanel = false;
-            gvExitLanes.RowHeight = 40;
+            gvExitLanes.RowHeight = 43;
             gvExitLanes.RowSeparatorHeight = 3;
             gvExitLanes.RowStyle += gv_RowStyle;
             // 
@@ -635,8 +638,8 @@
             barManager1.DockControls.Add(barDockControlLeft);
             barManager1.DockControls.Add(barDockControlRight);
             barManager1.Form = this;
-            barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { btnVNC, btnPing, btnRemotLane });
-            barManager1.MaxItemId = 4;
+            barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { btnVNC, btnPing, btnRemotLane, btnLaneReboot, btnLaneControl });
+            barManager1.MaxItemId = 8;
             // 
             // barDockControlTop
             // 
@@ -651,7 +654,7 @@
             // 
             barDockControlBottom.CausesValidation = false;
             barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            barDockControlBottom.Location = new System.Drawing.Point(0, 532);
+            barDockControlBottom.Location = new System.Drawing.Point(0, 570);
             barDockControlBottom.Manager = barManager1;
             barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
             barDockControlBottom.Size = new System.Drawing.Size(1513, 0);
@@ -663,7 +666,7 @@
             barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             barDockControlLeft.Manager = barManager1;
             barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            barDockControlLeft.Size = new System.Drawing.Size(0, 532);
+            barDockControlLeft.Size = new System.Drawing.Size(0, 570);
             // 
             // barDockControlRight
             // 
@@ -672,7 +675,7 @@
             barDockControlRight.Location = new System.Drawing.Point(1513, 0);
             barDockControlRight.Manager = barManager1;
             barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            barDockControlRight.Size = new System.Drawing.Size(0, 532);
+            barDockControlRight.Size = new System.Drawing.Size(0, 570);
             // 
             // btnVNC
             // 
@@ -687,13 +690,27 @@
             btnPing.Id = 1;
             btnPing.Name = "btnPing";
             btnPing.ItemClick += btnPing_ItemClick;
-   
+            // 
             // btnRemotLane
             // 
             btnRemotLane.Caption = "远程控制";
             btnRemotLane.Id = 3;
             btnRemotLane.Name = "btnRemotLane";
             btnRemotLane.ItemClick += btnRemotLane_ItemClick;
+            // 
+            // btnLaneReboot
+            // 
+            btnLaneReboot.Caption = "重启";
+            btnLaneReboot.Id = 6;
+            btnLaneReboot.Name = "btnLaneReboot";
+            btnLaneReboot.ItemClick += btnLaneReboot_ItemClick;
+            // 
+            // btnLaneControl
+            // 
+            btnLaneControl.Caption = "工控机";
+            btnLaneControl.Id = 5;
+            btnLaneControl.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(btnLaneReboot) });
+            btnLaneControl.Name = "btnLaneControl";
             // 
             // rpbExit
             // 
@@ -713,7 +730,7 @@
             // 
             radialMenu1.Glyph = Properties.Resources.promotion;
             radialMenu1.ItemAutoSize = DevExpress.XtraBars.Ribbon.RadialMenuItemAutoSize.Spring;
-            radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(btnVNC), new DevExpress.XtraBars.LinkPersistInfo(btnPing),  new DevExpress.XtraBars.LinkPersistInfo(btnRemotLane) });
+            radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(btnVNC), new DevExpress.XtraBars.LinkPersistInfo(btnPing), new DevExpress.XtraBars.LinkPersistInfo(btnRemotLane), new DevExpress.XtraBars.LinkPersistInfo(btnLaneControl) });
             radialMenu1.Manager = barManager1;
             radialMenu1.Name = "radialMenu1";
             // 
@@ -721,7 +738,7 @@
             // 
             Appearance.BackColor = System.Drawing.SystemColors.Control;
             Appearance.Options.UseBackColor = true;
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Controls.Add(gcExitLanes);
             Controls.Add(barDockControlLeft);
@@ -731,7 +748,7 @@
             DoubleBuffered = true;
             Margin = new System.Windows.Forms.Padding(4);
             Name = "LaneView";
-            Size = new System.Drawing.Size(1513, 532);
+            Size = new System.Drawing.Size(1513, 570);
             ((System.ComponentModel.ISupportInitialize)gcExitLanes).EndInit();
             ((System.ComponentModel.ISupportInitialize)laneInfoBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)gvExitLanes).EndInit();
@@ -790,5 +807,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem btnRemotLane;
         private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit1;
+        private DevExpress.XtraBars.BarButtonItem btnLaneReboot;
+        private DevExpress.XtraBars.BarSubItem btnLaneControl;
     }
 }

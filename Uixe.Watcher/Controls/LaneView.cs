@@ -1,9 +1,12 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.CodeParser;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.Templates;
+using LiteDB;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic.Devices;
+using Renci.SshNet;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -16,11 +19,13 @@ using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Uitls;
+using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
 namespace Uixe.Watcher.Controls
 {
     public partial class LaneView : DevExpress.XtraEditors.XtraUserControl
     {
+        private frmPlaza _frmPlaza;
         private ILogger _logger;
 
         /// <summary>
@@ -30,6 +35,7 @@ namespace Uixe.Watcher.Controls
 
         private RuntimeSetting _runtimeSetting;
         private AppSettings _settings;
+        private LiteDB.ConnectionString _connection;
         public List<LaneInfo> lst = new List<LaneInfo>();
 
         public LaneView()
@@ -37,12 +43,14 @@ namespace Uixe.Watcher.Controls
             InitializeComponent();
         }
 
-        internal void InitLaneInfo(Plaza item, ILogger logger, RuntimeSetting runtimeSetting, AppSettings settings)
+        internal void InitLaneInfo(Plaza item, ILogger logger, RuntimeSetting runtimeSetting, AppSettings settings, LiteDB.ConnectionString connection, frmPlaza frmPlaza)
         {
+            _frmPlaza = frmPlaza;
             _logger = logger;
             Plaza = item;
             _runtimeSetting = runtimeSetting;
             _settings = settings;
+            _connection = connection;
             var _ls = new List<LaneInfo>();
             item.lanes?.ForEach(l =>
             {
@@ -54,7 +62,7 @@ namespace Uixe.Watcher.Controls
                     var request = new RestRequest("/heartbeat", RestSharp.Method.Get);
                     var response = await client.GetAsync(request);
                 });
-               
+
             });
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
             lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());
@@ -139,8 +147,8 @@ namespace Uixe.Watcher.Controls
                 {
                     try
                     {
-                    ////    frmRemoteViewer viewer = new frmRemoteViewer(this.Plaza, fv);
-                    //    viewer.Show();
+                        //frmRemoteViewer viewer = new frmRemoteViewer(this.Plaza, fv);
+                        //viewer.Show();
                     }
                     catch (Exception ex)
                     {
@@ -215,6 +223,62 @@ namespace Uixe.Watcher.Controls
         private void btnPing_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+        }
+
+        private void btnLaneReboot_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
+                if (fv != null)
+                {
+                    try
+                    {
+                        using (var db = new LiteDatabase(_connection))
+                        {
+
+                            var tlane = db.GetCollection<t_lane>();
+                            if (tlane != null)
+                            {
+                                var lane = tlane.FindOne(t => t.plazaid == fv.PlazaId && t.lane_no == fv.LaneName);
+                                if (lane != null)
+                                {
+                                    if (string.IsNullOrEmpty(lane.password))
+                                    {
+                                        _frmPlaza.Alert("重启车道", "车道基础信息缺失,网络不通?");
+                                    }
+                                    else
+                                    {
+                                        using (SshClient ssh = new SshClient(lane.ip, lane.usename, lane.password))
+                                        {
+                                            var result = ssh.CreateCommand("reboot;exit;").Execute();
+                                            _frmPlaza.Alert("重启车道", "重启命令执行完成:" + result);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    _frmPlaza.Alert("重启车道", $"车道{fv.PlazaId}{fv.LaneName}未能找到");
+                                }
+                            }
+                            else
+                            {
+                                _frmPlaza.Alert("重启车道", $"车道本地基础信息异常");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "远程控制重启时遇到问题");
+                        _frmPlaza.Alert("重启车道", $"远程控制重启时遇到问题1{ex.Message}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "远程控制时获取当前车道信息时遇到问题");
+                _frmPlaza.Alert("重启车道", $"远程控制重启时遇到问题2{ex.Message}");
+            }
         }
     }
 }

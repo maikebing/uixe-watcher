@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraBars;
 using LibVLCSharp.Shared;
+using LiteDB;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -34,10 +35,11 @@ namespace Uixe.Watcher
         private readonly IMemoryCache _cache;
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger _logger;
+        private readonly ConnectionString _connection;
         private CougarClockRepositoryItem repositoryItem = new CougarClockRepositoryItem();
         private CougarClockContainer control = new CougarClockContainer();
         private BarEditItem barEditItem = new BarEditItem();
-        public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option,  ILogger<frmMain>  logger, IMemoryCache cache , ILoggerFactory loggerFactory)
+        public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option,  ILogger<frmMain>  logger, IMemoryCache cache , ILoggerFactory loggerFactory, LiteDB.ConnectionString connection)
         {
             InitializeComponent();
             this.scopeFactor = scopeFactor;
@@ -51,6 +53,7 @@ namespace Uixe.Watcher
             barEditItem.EditHeight = control.Height;
             barEditItem.Width = control.Width;
             rpgTime.ItemLinks.Add(barEditItem);
+            _connection = connection;
             var libvlcpath =new DirectoryInfo( Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "libvlc"));
             if (!libvlcpath.Exists )
             {
@@ -158,7 +161,7 @@ namespace Uixe.Watcher
                 var frm = _cache.GetOrCreate(name, f =>
                      {
                          var _log= _loggerFactory.CreateLogger(name);
-                          var frm = new frmPlaza() { Name = name ,_logger= _log, _loggerFactory= _loggerFactory, _cache = _cache ,settings= _setting };
+                          var frm = new frmPlaza() { Name = name ,_logger= _log, _loggerFactory= _loggerFactory, _cache = _cache ,settings= _setting ,  _connection = _connection };
                          frm._runtimeSetting = _cache.Get<RuntimeSetting>(plaza.id);
                          frm.FormClosed += Frm_FormClosed;
                          return frm;
