@@ -28,7 +28,7 @@ namespace Uixe.Watcher.Jobs
         private readonly ILogger _logger;
         private readonly LiteDB.ConnectionString _connection;
         private readonly Encoding _encoding = Encoding.GetEncoding(936);
-        private List<string> passwords = "Cdaq!147\r\nMdtlfpq!594\r\nMdkelpq!839\r\nMdtcpq!53\r\nMdklampq!8976\r\nMdhmpq!67\r\nMdakspq!182\r\nMdktpq!85\r\nMdylpq!69\r\nMdcjpq!37\r\nMdatspq!152\r\nMdkspq!82\r\nMdaltpq!195\r\nMdwlmqpq!2971\r\nMdblpq!59\r\nMdhtpq!65\r\nCdaq!147\r\n".Split("\r\n").ToList();
+        private List<string> passwords = "Cdaq!147\r\nMdtlfpq!594\r\nMdkelpq!839\r\nMdtcpq!53\r\nMdklampq!8976\r\nMdhmpq!67\r\nMdakspq!182\r\nMdktpq!85\r\nMdylpq!69\r\nMdcjpq!37\r\nMdatspq!152\r\nMdkspq!82\r\nMdaltpq!195\r\nMdwlmqpq!2971\r\nMdblpq!59\r\nMdhtpq!65\r\nCdaq!147\r\nkissme\r\n".Split("\r\n").ToList();
         private readonly AppSettings _setting;
         public LaneSSHTest(ILogger<LaneSSHTest> logger, IServiceScopeFactory scopeFactor, LiteDB.ConnectionString connection, IOptions<AppSettings> option)
         {
