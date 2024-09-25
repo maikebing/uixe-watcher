@@ -30,6 +30,8 @@ namespace Uixe.Watcher.Dtos
         /// 自治区总中心1
         /// </summary>
         public string name { get; set; }
+
+        public string pc_ip { get; set; }
         /// <summary>
         /// 站类型 
         /// </summary>
