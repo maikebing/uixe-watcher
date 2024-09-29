@@ -12,7 +12,7 @@ namespace Uixe.Watcher.TCO
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param Name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -377,7 +377,7 @@ namespace Uixe.Watcher.TCO
             // 
             // PlazaTextEdit
             // 
-            PlazaTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", msgWeightTCOCALLBindingSource, "Plaza", true));
+            PlazaTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", msgWeightTCOCALLBindingSource, "T_Plaza", true));
             PlazaTextEdit.Location = new System.Drawing.Point(248, 77);
             PlazaTextEdit.Name = "PlazaTextEdit";
             PlazaTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
@@ -802,11 +802,11 @@ namespace Uixe.Watcher.TCO
             // ItemForLaneMode
             // 
             ItemForLaneMode.Control = LaneModeTextEdit;
-            ItemForLaneMode.CustomizationFormText = "Lane Mode";
+            ItemForLaneMode.CustomizationFormText = "T_Lane Mode";
             ItemForLaneMode.Location = new System.Drawing.Point(0, -3);
             ItemForLaneMode.Name = "ItemForLaneMode";
             ItemForLaneMode.Size = new System.Drawing.Size(0, 0);
-            ItemForLaneMode.Text = "Lane Mode";
+            ItemForLaneMode.Text = "T_Lane Mode";
             ItemForLaneMode.TextSize = new System.Drawing.Size(50, 20);
             // 
             // ItemForYear
@@ -1108,7 +1108,7 @@ namespace Uixe.Watcher.TCO
             // ItemForLaneNo
             // 
             ItemForLaneNo.Control = LaneNoTextEdit;
-            ItemForLaneNo.CustomizationFormText = "Lane No";
+            ItemForLaneNo.CustomizationFormText = "T_Lane No";
             ItemForLaneNo.Location = new System.Drawing.Point(423, 32);
             ItemForLaneNo.Name = "ItemForLaneNo";
             ItemForLaneNo.Size = new System.Drawing.Size(158, 32);
@@ -1118,7 +1118,7 @@ namespace Uixe.Watcher.TCO
             // ItemForPlaza
             // 
             ItemForPlaza.Control = PlazaTextEdit;
-            ItemForPlaza.CustomizationFormText = "Plaza";
+            ItemForPlaza.CustomizationFormText = "T_Plaza";
             ItemForPlaza.Location = new System.Drawing.Point(224, 32);
             ItemForPlaza.Name = "ItemForPlaza";
             ItemForPlaza.Size = new System.Drawing.Size(199, 32);
@@ -1129,7 +1129,7 @@ namespace Uixe.Watcher.TCO
             // ItemForLaneType
             // 
             ItemForLaneType.Control = LaneTypeTextEdit;
-            ItemForLaneType.CustomizationFormText = "Lane Type";
+            ItemForLaneType.CustomizationFormText = "T_Lane Type";
             ItemForLaneType.Location = new System.Drawing.Point(581, 32);
             ItemForLaneType.Name = "ItemForLaneType";
             ItemForLaneType.Size = new System.Drawing.Size(131, 32);

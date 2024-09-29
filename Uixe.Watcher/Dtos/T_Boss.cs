@@ -23,20 +23,22 @@ namespace Uixe.Watcher.Dtos
         Supervisor 
     }
 #pragma warning disable CS8981 // 该类型名称仅包含小写 ascii 字符。此类名称可能会成为该语言的保留值。
-    public class whoiam
+    public class T_Boss
 #pragma warning restore CS8981 // 该类型名称仅包含小写 ascii 字符。此类名称可能会成为该语言的保留值。
     {
+
+        public string Id { get; set; } = string.Empty;
         /// <summary>
         /// 自治区总中心1
         /// </summary>
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string pc_ip { get; set; }
+        public string AgentIp { get; set; }
         /// <summary>
         /// 站类型 
         /// </summary>
-        public PlazaType plazaType { get; set; } = PlazaType.None;
+        public PlazaType PlazaType { get; set; } = PlazaType.None;
  
-        public List<Plaza> plazas { get; set; }
+        public List<T_Plaza> Plazas { get; set; }
     }
 }

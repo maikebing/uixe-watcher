@@ -9,7 +9,7 @@ namespace Uixe.Watcher.Uitls
     public  static class LaneExtension
     {
 
-        public static RestClient  CreateClient(this Lane lane)
+        public static RestClient  CreateClient(this T_Lane lane)
         {
 #if DEBUG
             var client = new RestClient(new RestClientOptions($"http://192.168.0.178:10000/") { FollowRedirects = false });
@@ -20,13 +20,13 @@ namespace Uixe.Watcher.Uitls
             client.AddDefaultHeader(KnownHeaders.ContentType, "application/json");
             return client;
         }
-        public static async  Task<bool> Ping(this Lane lane)
+        public static async  Task<bool> Ping(this T_Lane lane)
         {
             var p = new Ping();
-            var ping = await p.SendPingAsync(lane.ip);
+            var ping = await p.SendPingAsync(lane.Ip);
             return ping.Status== IPStatus.Success;
         }
-        public static async Task<ApiResult> SendMsg<T>(this Lane lane, string path, T msg)
+        public static async Task<ApiResult> SendMsg<T>(this T_Lane lane, string path, T msg)
         {
             var client = lane.CreateClient();
             var request = new RestRequest($"/api/{path}", Method.Post);
@@ -36,7 +36,7 @@ namespace Uixe.Watcher.Uitls
             return apiResult;
         }
 
-        public static async Task<ApiResult> TCO_Confirm(this Lane lane, MSG_TCOConfirm confirm)
+        public static async Task<ApiResult> TCO_Confirm(this T_Lane lane, MSG_TCOConfirm confirm)
         {
             var client = lane.CreateClient();
             var request = new RestRequest("/api/tco/confirm/", Method.Post);

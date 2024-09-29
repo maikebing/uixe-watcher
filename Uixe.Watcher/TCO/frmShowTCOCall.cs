@@ -18,7 +18,7 @@ namespace Uixe.Watcher
 
     public partial class frmShowTCOCall : XtraForm
     {
-        private readonly Plaza _plaza;
+        private readonly T_Plaza _plaza;
         internal RuntimeSetting _runtimeSetting;
         private readonly ILogger _logger;
         private readonly IMemoryCache _cache;
@@ -35,13 +35,13 @@ namespace Uixe.Watcher
                 try
                 {
                     this.tsTabs.TabPages.Clear();
-                    for (int i = 0; i < _plaza.lanes.Count; i++)
+                    for (int i = 0; i < _plaza.Lanes.Count; i++)
                     {
-                        string pname = _plaza.id + _plaza.lanes[i].lane_no;
+                        string pname = _plaza.Id + _plaza.Lanes[i].LaneNo;
                         XtraTabPage t = new XtraTabPage();
                         TCOConfirm tms = new TCOConfirm();
                         tms.Plaza = _plaza;
-                        tms.Lane = _plaza.lanes[i];
+                        tms.Lane = _plaza.Lanes[i];
                         tms.Owner = owner;
                         t.Name = pname;
                         tms.Name = pname;
@@ -55,7 +55,7 @@ namespace Uixe.Watcher
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, $"初始化监控确认窗口失败{_plaza?.id}");
+                    _logger.LogError(ex, $"初始化监控确认窗口失败{_plaza?.Id}");
                 }
             }
         }

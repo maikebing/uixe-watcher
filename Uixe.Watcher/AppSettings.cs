@@ -18,7 +18,7 @@ namespace Uixe.Watcher
     }
     public class AppSettings
     {
-        public whoiam whoiam { get; set; }
+        public T_Boss whoiam { get; set; }
         public string Ring { get; set; }
         public string SkinStyle { get; set; }
         public bool SpeedBlackListPlate { get; set; } = true;

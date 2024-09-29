@@ -58,7 +58,7 @@ namespace Uixe.Watcher
         public frmShowTCOCall _tcocall;
         public frmWeightTCOCall WeightTCOCall;
         public AppSettings settings { get; set; }
-        public Plaza Plaza => _runtimeSetting?.Plaza;
+        public T_Plaza Plaza => _runtimeSetting?.Plaza;
         public RuntimeSetting _runtimeSetting { get; set; }
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -152,13 +152,13 @@ namespace Uixe.Watcher
         /// <summary>
         /// 加载车道
         /// </summary>
-        private void LoadLaneView(Plaza plaza)
+        private void LoadLaneView(T_Plaza plaza)
         {
             ShowStatusInfo("正在加载车道列表");
             lanView.SuspendLayout();
             messageView.SuspendLayout();
             lanView.InitLaneInfo(plaza, _logger, _runtimeSetting,settings, _connection,this);
-            messageView.initMessageView(plaza.id, 100);
+            messageView.initMessageView(plaza.Id, 100);
             messageView.ResumeLayout(false);
             lanView.ResumeLayout(false);
             Application.DoEvents();
@@ -170,7 +170,7 @@ namespace Uixe.Watcher
         public void UserAccessControl()
         {
             var p = Plaza;
-            this.Text = string.Format($"{p.road_name}-{p.station_name}({p.id}) {_runtimeSetting.NowCollect?.UserId} ");
+            this.Text = string.Format($"{p.RoadName}-{p.StationName}({p.Id}) {_runtimeSetting.NowCollect?.UserId} ");
             this.Ribbon.ApplicationCaption = this.Text;
 
         }
@@ -203,7 +203,7 @@ namespace Uixe.Watcher
         /// <summary>
         /// 显示状态信息
         /// </summary>
-        /// <param name="text">要显示的内容</param>
+        /// <param Name="text">要显示的内容</param>
         public void ShowStatusInfo(string text)
         {
             _logger.LogInformation(text);
@@ -254,9 +254,9 @@ namespace Uixe.Watcher
         /// <summary>
         ///
         /// </summary>
-        /// <param name="plaza">6500226</param>
-        /// <param name="laneno">6500225X01</param>
-        /// <param name="revdata">json</param>
+        /// <param Name="plaza">6500226</param>
+        /// <param Name="laneno">6500225X01</param>
+        /// <param Name="revdata">json</param>
         public void ShowLaneInfor(string plaza, string laneno, LaneStatus revdata)
         {
             lock (lanView)

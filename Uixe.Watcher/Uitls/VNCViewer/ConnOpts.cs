@@ -152,7 +152,7 @@ namespace Vnc.Viewer
                 if (list.Count > 0)
                     Host = list[0].InnerText;
                 else
-                    throw new FormatException("Host name is not found.");
+                    throw new FormatException("Host Name is not found.");
             }
             else
                 Host = "localhost";

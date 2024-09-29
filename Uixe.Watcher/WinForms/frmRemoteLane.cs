@@ -27,9 +27,9 @@ namespace Uixe.Watcher
 {
     public partial class frmRemoteLane : DevExpress.XtraEditors.XtraForm
     {
-        private readonly Plaza _plaza;
+        private readonly T_Plaza _plaza;
         private readonly LaneInfo _lane;
-        public frmRemoteLane(Plaza plaza, LaneInfo lane)
+        public frmRemoteLane(T_Plaza plaza, LaneInfo lane)
         {
             _plaza = plaza;
             _lane = lane;
@@ -39,10 +39,10 @@ namespace Uixe.Watcher
         private  void frmRemoteLane_Load(object sender, EventArgs e)
         {
             keyboard1.IPAddress = _lane.IPAddress;
-            var vnc =  VNCUtils.Login(this.vncScreen, _lane.IPAddress, 5900, _plaza.vncpwd ?? "kissme");
+            var vnc =  VNCUtils.Login(this.vncScreen, _lane.IPAddress, 5900, _plaza.VncPwd ?? "kissme");
             if (vnc != null)
             {
-                vnc.Text = $"车道远程控制 {_plaza.station_name}({_lane.PlazaId}){_lane.LaneName}   {_lane.IPAddress} ";
+                vnc.Text = $"车道远程控制 {_plaza.StationName}({_lane.PlazaId}){_lane.LaneName}   {_lane.IPAddress} ";
                 this.Text = vnc.Text;
             }
             _ = Task.Run(async () =>

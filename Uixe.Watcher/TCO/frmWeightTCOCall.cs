@@ -17,11 +17,11 @@ namespace Uixe.Watcher.TCO
     {
         public static int TabCount = 0;
 
-        private readonly Plaza _plaza;
+        private readonly T_Plaza _plaza;
         private readonly RuntimeSetting _runtimeSetting;
         private readonly AppSettings _settings;
 
-        public frmWeightTCOCall(Plaza plaza, RuntimeSetting runtimeSetting, AppSettings settings)
+        public frmWeightTCOCall(T_Plaza plaza, RuntimeSetting runtimeSetting, AppSettings settings)
         {
             InitializeComponent();
             _plaza = plaza;
@@ -34,15 +34,15 @@ namespace Uixe.Watcher.TCO
             try
             {
                 this.tsTabs.TabPages.Clear();
-                for (int i = 0; i < _plaza.lanes.Count; i++)
+                for (int i = 0; i < _plaza.Lanes.Count; i++)
                 {
-                    string pname = _plaza.id + _plaza.lanes[i].lane_no;
+                    string pname = _plaza.Id + _plaza.Lanes[i].LaneNo;
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
                     tms._runtimeSetting = _runtimeSetting;
                     tms._settings = _settings;
                     tms.Plaza = _plaza;
-                    tms.Lane = _plaza.lanes[i];
+                    tms.Lane = _plaza.Lanes[i];
                     t.Name = pname;
                     tms.Name = pname;
                     tms.Parent = t;//由于在现实数据时使用到TabPage 在给TCO属性赋值前必须赋值Parent

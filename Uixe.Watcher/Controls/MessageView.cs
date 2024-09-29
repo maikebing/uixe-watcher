@@ -53,7 +53,7 @@ namespace Uixe.Watcher.Controls
         /// <summary>
         /// 这个方法目前初始化对应的站
         /// </summary>
-        /// <param name="plazano"></param>
+        /// <param Name="plazano"></param>
         internal void initMessageView(string plazano, int MsgViewRowsCount)
         {
             _MsgViewRowsCount = MsgViewRowsCount;
@@ -63,7 +63,7 @@ namespace Uixe.Watcher.Controls
         /// <summary>
         ///  这个方法用来设置当前这个试图中显示那个站的消息数据 。
         /// </summary>
-        /// <param name="plaza"></param>
+        /// <param Name="plaza"></param>
         public void SetPlaza(string plaza)
         {
         }

@@ -25,7 +25,7 @@ namespace Uixe.Watcher
         private bool _isMouseDown;
         private Point _formLocation; //form的location
         private Point _mouseOffset;
-        internal whoiam whoiam;
+        internal T_Boss whoiam;
         internal IMemoryCache _cache;
 
         private void frmLogin_MouseDown(object sender, MouseEventArgs e)
@@ -62,16 +62,16 @@ namespace Uixe.Watcher
             btnLogin.Enabled = false;
             try
             {
-                whoiam.plazas?.ForEach(async plaza =>
+                whoiam.Plazas?.ForEach(async plaza =>
                 {
-                    RuntimeSetting _runtimeSetting = _cache.Get<RuntimeSetting>(plaza.id);
+                    RuntimeSetting _runtimeSetting = _cache.Get<RuntimeSetting>(plaza.Id);
                     var p = _runtimeSetting.Plaza;
-                    string name = $"{nameof(frmPlaza)}_{plaza.id}";
+                    string name = $"{nameof(frmPlaza)}_{plaza.Id}";
                     var winplaza = _cache.Get<frmPlaza>(name);
-                    if (p != null && !string.IsNullOrEmpty(p.ip))
+                    if (p != null && !string.IsNullOrEmpty(p.Ip))
                     {
-                        PlazaApi api = new(_runtimeSetting.Plaza.ip);
-                        _runtimeSetting.Token = await api.SysLogin(user, password, p.station_id, p.id);
+                        PlazaApi api = new(_runtimeSetting.Plaza.Ip);
+                        _runtimeSetting.Token = await api.SysLogin(user, password, p.StationId, p.Id);
                         if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
                         {
                             var result = await api.getRoleByUser(user, _runtimeSetting.Token?.token);
@@ -80,24 +80,24 @@ namespace Uixe.Watcher
                                 _runtimeSetting.NowCollect = new Dtos.User() { UserId = user };
                                 _runtimeSetting.UserRole = result.data;
                                 _runtimeSetting.Token.LoginDateTime = DateTime.Now;
-                                _cache.Set(plaza.id, _runtimeSetting);
+                                _cache.Set(plaza.Id, _runtimeSetting);
                                 winplaza.Invoke(() => winplaza.UserAccessControl());
-                                winplaza.Invoke(() => winplaza.Alert($"登录{plaza.station_name}成功", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
+                                winplaza.Invoke(() => winplaza.Alert($"登录{plaza.StationName}成功", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
                             }
                             else
                             {
 
-                                winplaza.Invoke(() => winplaza.Alert($"登录{plaza.station_name}失败", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
+                                winplaza.Invoke(() => winplaza.Alert($"登录{plaza.StationName}失败", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
                             }
                         }
                         else
                         {
-                            winplaza.Invoke(() => winplaza.Alert($"登录{plaza.station_name}错误", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
+                            winplaza.Invoke(() => winplaza.Alert($"登录{plaza.StationName}错误", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
                         }
                     }
                     else
                     {
-                        winplaza.Invoke(() => winplaza.Alert($"{plaza.station_name}配置错误", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
+                        winplaza.Invoke(() => winplaza.Alert($"{plaza.StationName}配置错误", $"{_runtimeSetting.Token?.code} {_runtimeSetting.Token?.msg}"));
                     }
                 });
                 this.Close();

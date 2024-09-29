@@ -11,7 +11,7 @@ namespace Uixe.Watcher
         }
         internal  User NowCollect;
 
-        internal  Dtos.Plaza Plaza { get; set; }
+        internal  Dtos.T_Plaza Plaza { get; set; }
 
         public  RptLoginResult Token { get; set; }
         public  UserRole[] UserRole { get; set; }

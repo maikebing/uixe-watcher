@@ -113,15 +113,25 @@ namespace Uixe.Watcher
              });
 
             _logger.LogInformation("开始加载窗体....");
-            await TollInfo.Guesswhoiam().ContinueWith(t =>
+            await TollInfo.GuessMyInfo().ContinueWith(t =>
             {
                 var who = _setting.whoiam;
                 if (!t.IsFaulted && !t.IsCanceled)
                 {
-                    who = t.Result;
-                    _setting.whoiam = who;
-                    _setting.SaveUserAppSetting();
-                    _logger.LogInformation("信息已保存。");
+                    if (t.Result!=null && t.Result.code==200)
+                    {
+                        who = t.Result.data;
+                        _setting.whoiam = who;
+                        _setting.SaveUserAppSetting();
+                        _logger.LogInformation("信息已保存。");
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"远程返回错误{t.Result.code}-{t.Result.msg}");
+                        Invoke(() => wait.SetDescription($"远程返回错误{t.Result.code}-{t.Result.msg}"));
+                        Application.DoEvents();
+                    }
+                    
                 }
                 else
                 {
@@ -132,10 +142,10 @@ namespace Uixe.Watcher
                
                 this.Invoke(() =>
                 {
-                    this.Text = $"{(who?.name??"(none)")}远程值守";
-                    who?.plazas?.ForEach(p =>
+                    this.Text = $"{(who?.Name??"(none)")}远程值守";
+                    who?.Plazas?.ForEach(p =>
                 {
-                    wait.SetDescription($"正在加载{p?.station_name}!");
+                    wait.SetDescription($"正在加载{p?.StationName}!");
                     LoadPlaza(p);
                     Application.DoEvents();
 
@@ -149,20 +159,20 @@ namespace Uixe.Watcher
         }
 
 
-        public    void  LoadPlaza(Plaza plaza)
+        public    void  LoadPlaza(T_Plaza plaza)
         {
-            string name = $"{nameof(frmPlaza)}_{plaza.id}";
-            var _runtimeSetting = _cache.GetOrCreate(plaza.id, c => new RuntimeSetting());
+            string name = $"{nameof(frmPlaza)}_{plaza.Id}";
+            var _runtimeSetting = _cache.GetOrCreate(plaza.Id, c => new RuntimeSetting());
             _runtimeSetting.Plaza = plaza;
             var p = _runtimeSetting.Plaza;
-            if (p != null && !string.IsNullOrEmpty(p.ip))
+            if (p != null && !string.IsNullOrEmpty(p.Ip))
             {
-                PlazaApi api = new(_runtimeSetting.Plaza.ip);
+                PlazaApi api = new(_runtimeSetting.Plaza.Ip);
                 var frm = _cache.GetOrCreate(name, f =>
                      {
                          var _log= _loggerFactory.CreateLogger(name);
                           var frm = new frmPlaza() { Name = name ,_logger= _log, _loggerFactory= _loggerFactory, _cache = _cache ,settings= _setting ,  _connection = _connection };
-                         frm._runtimeSetting = _cache.Get<RuntimeSetting>(plaza.id);
+                         frm._runtimeSetting = _cache.Get<RuntimeSetting>(plaza.Id);
                          frm.FormClosed += Frm_FormClosed;
                          return frm;
                       });

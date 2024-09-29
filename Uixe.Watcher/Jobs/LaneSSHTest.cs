@@ -45,34 +45,22 @@ namespace Uixe.Watcher.Jobs
                 {
                     if (db.BeginTrans())
                     {
-                        var tlane = db.GetCollection<t_lane>();
+                        var tlane = db.GetCollection<T_Lane>();
                         if (tlane.Count() == 0)
                         {
-                            _setting.whoiam?.plazas?.ForEach(p =>
+                            _setting.whoiam?.Plazas?.ForEach(p =>
                             {
-                                p.lanes?.ForEach(l =>
-                                {
-
-                                    t_lane tl = new t_lane();
-                                    tl.plazaid = p.id;
-                                    tl.lane_id = l.lane_id;
-                                    tl.lane_no = l.lane_no;
-                                    tl.ip = l.ip;
-                                    tl.password = "";
-                                    tl.usename = "root";
-                                    tl.Id = p.id + l.lane_no;
-                                    tlane.Insert(tl);
-                                });
+                                tlane.InsertBulk(p.Lanes);
                             });
                         }
                         db.Commit();
                     }
-                    var ltb = db.GetCollection<t_lane>();
+                    var ltb = db.GetCollection<T_Lane>();
                     var lanes = ltb.FindAll().ToList();
                     lanes.ForEach(lan =>
                     {
                         SshClient client = null;
-                        var password = lan.password;
+                        var password = lan.UserPassword;
                         if (!passwords.Contains(password))
                         {
                             passwords.Insert(0, password);
@@ -80,7 +68,7 @@ namespace Uixe.Watcher.Jobs
                         string msg = "";
                         try
                         {
-                            client = new SshClient(lan.ip, lan.usename, password);
+                            client = new SshClient(lan.Ip, lan.UserPassword, password);
                             client.ConnectionInfo.Timeout = TimeSpan.FromSeconds(10);
                             client.Connect();
                             if (!client.IsConnected)
@@ -108,7 +96,7 @@ namespace Uixe.Watcher.Jobs
                             {
                                 try
                                 {
-                                    var clientx = new SshClient(lan.ip, lan.usename, passwd);
+                                    var clientx = new SshClient(lan.Ip, lan.UserPassword, passwd);
                                     clientx.ConnectionInfo.Timeout = TimeSpan.FromSeconds(5);
                                     clientx.Connect();
                                     if (clientx.IsConnected)
@@ -126,11 +114,11 @@ namespace Uixe.Watcher.Jobs
                         }
                         if (client == null || !client.IsConnected)
                         {
-                            lan.password = "";
+                            lan.UserPassword = "";
                         }
                         else if (client != null && client.IsConnected)
                         {
-                            lan.ip = password;
+                            lan.UserPassword = password;
                         }
                         ltb.Update(lan);
                     });

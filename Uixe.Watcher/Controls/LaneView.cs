@@ -31,7 +31,7 @@ namespace Uixe.Watcher.Controls
         /// <summary>
         /// InitLaneInfo 进行初始化时赋值。
         /// </summary>
-        public Plaza Plaza { get; set; }
+        public T_Plaza Plaza { get; set; }
 
         private RuntimeSetting _runtimeSetting;
         private AppSettings _settings;
@@ -43,7 +43,7 @@ namespace Uixe.Watcher.Controls
             InitializeComponent();
         }
 
-        internal void InitLaneInfo(Plaza item, ILogger logger, RuntimeSetting runtimeSetting, AppSettings settings, LiteDB.ConnectionString connection, frmPlaza frmPlaza)
+        internal void InitLaneInfo(T_Plaza item, ILogger logger, RuntimeSetting runtimeSetting, AppSettings settings, LiteDB.ConnectionString connection, frmPlaza frmPlaza)
         {
             _frmPlaza = frmPlaza;
             _logger = logger;
@@ -52,12 +52,12 @@ namespace Uixe.Watcher.Controls
             _settings = settings;
             _connection = connection;
             var _ls = new List<LaneInfo>();
-            item.lanes?.ForEach(l =>
+            item.Lanes?.ForEach(l =>
             {
-                _ls.Add(new LaneInfo(item.id, l.lane_id, l.lane_no, l.ip));
+                _ls.Add(new LaneInfo(item.Id, l.LaneId, l.LaneNo, l.Ip));
                 Task.Run(async () =>
                 {
-                    var client = new RestClient(new RestClientOptions($"http://{l.ip}:10000/") { FollowRedirects = false });
+                    var client = new RestClient(new RestClientOptions($"http://{l.Ip}:10000/") { FollowRedirects = false });
                     client.AddDefaultHeader(KnownHeaders.Accept, "*/*");
                     var request = new RestRequest("/heartbeat", RestSharp.Method.Get);
                     var response = await client.GetAsync(request);
@@ -75,9 +75,9 @@ namespace Uixe.Watcher.Controls
         /// <summary>
         ///
         /// </summary>
-        /// <param name="plaza">这里的plaza 已经调用到对应的控件了， 无需区分， 但是需要传值过来</param>
-        /// <param name="laneno"></param>
-        /// <param name="revdata"></param>
+        /// <param Name="plaza">这里的plaza 已经调用到对应的控件了， 无需区分， 但是需要传值过来</param>
+        /// <param Name="laneno"></param>
+        /// <param Name="revdata"></param>
         public void ShowLaneInfor(string laneid, LaneStatus revdata)
         {
             if (this.InvokeRequired)
@@ -147,7 +147,7 @@ namespace Uixe.Watcher.Controls
                 {
                     try
                     {
-                        //frmRemoteViewer viewer = new frmRemoteViewer(this.Plaza, fv);
+                        //frmRemoteViewer viewer = new frmRemoteViewer(this.T_Plaza, fv);
                         //viewer.Show();
                     }
                     catch (Exception ex)
@@ -165,7 +165,7 @@ namespace Uixe.Watcher.Controls
         public void SendHeartBeat()
         {
             bool config = DateTime.Now.Subtract(lasconfig).TotalMinutes > 5;
-            Plaza?.lanes?.ForEach(async lane =>
+            Plaza?.Lanes?.ForEach(async lane =>
         {
             try
             {
@@ -177,17 +177,17 @@ namespace Uixe.Watcher.Controls
                     if (config)
                     {
                         Application.DoEvents();
-                        await lane.SendMsg("tco/config/", new { agentIp = Plaza?.agentIp });
+                        await lane.SendMsg("tco/config/", new { agentIp = Plaza?.AgentIp });
                     }
                 }
                 else
                 {
-                    _logger.LogWarning($"网络不通， 无法发送{lane.lane_no} {lane.ip}心跳。");
+                    _logger.LogWarning($"网络不通， 无法发送{lane.LaneNo} {lane.Ip}心跳。");
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"无法发送{lane.lane_no} {lane.ip}心跳");
+                _logger.LogError(ex, $"无法发送{lane.LaneNo} {lane.Ip}心跳");
             }
         });
             if (config) lasconfig = DateTime.Now;
@@ -237,19 +237,19 @@ namespace Uixe.Watcher.Controls
                         using (var db = new LiteDatabase(_connection))
                         {
 
-                            var tlane = db.GetCollection<t_lane>();
+                            var tlane = db.GetCollection<T_Lane>();
                             if (tlane != null)
                             {
-                                var lane = tlane.FindOne(t => t.plazaid == fv.PlazaId && t.lane_no == fv.LaneName);
+                                var lane = tlane.FindOne(t => t.Id ==$"{fv.PlazaId}{fv.LaneName}");
                                 if (lane != null)
                                 {
-                                    if (string.IsNullOrEmpty(lane.password))
+                                    if (string.IsNullOrEmpty(lane.UserPassword))
                                     {
                                         _frmPlaza.Alert("重启车道", "车道基础信息缺失,网络不通?");
                                     }
                                     else
                                     {
-                                        using (SshClient ssh = new SshClient(lane.ip, lane.usename, lane.password))
+                                        using (SshClient ssh = new SshClient(lane.Ip, lane.UserName, lane.UserPassword))
                                         {
                                             var result = ssh.CreateCommand("reboot;exit;").Execute();
                                             _frmPlaza.Alert("重启车道", "重启命令执行完成:" + result);

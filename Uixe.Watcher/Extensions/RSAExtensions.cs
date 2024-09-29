@@ -35,8 +35,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// RSA加密
         /// </summary>
-        /// <param name="publicKeyJava"></param>
-        /// <param name="data"></param>
+        /// <param Name="publicKeyJava"></param>
+        /// <param Name="data"></param>
         /// <returns></returns>
         public static string EncryptJava(string publicKeyJava, string data, string encoding = "UTF-8")
         {
@@ -59,8 +59,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// RSA加密
         /// </summary>
-        /// <param name="publicKeyCSharp"></param>
-        /// <param name="data"></param>
+        /// <param Name="publicKeyCSharp"></param>
+        /// <param Name="data"></param>
         /// <returns></returns>
         public static string EncryptCSharp(string publicKeyCSharp, string data, string encoding = "UTF-8")
         {
@@ -83,8 +83,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// RSA加密PEM秘钥
         /// </summary>
-        /// <param name="publicKeyPEM"></param>
-        /// <param name="data"></param>
+        /// <param Name="publicKeyPEM"></param>
+        /// <param Name="data"></param>
         /// <returns></returns>
         public static string EncryptPEM(string publicKeyPEM, string data, string encoding = "UTF-8")
         {
@@ -111,8 +111,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// RSA解密
         /// </summary>
-        /// <param name="privateKeyJava"></param>
-        /// <param name="content"></param>
+        /// <param Name="privateKeyJava"></param>
+        /// <param Name="content"></param>
         /// <returns></returns>
         public static string DecryptJava(string privateKeyJava, string data, string encoding = "UTF-8")
         {
@@ -133,8 +133,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// RSA解密
         /// </summary>
-        /// <param name="privateKeyCSharp"></param>
-        /// <param name="content"></param>
+        /// <param Name="privateKeyCSharp"></param>
+        /// <param Name="content"></param>
         /// <returns></returns>
         public static string DecryptCSharp(string privateKeyCSharp, string data, string encoding = "UTF-8")
         {
@@ -155,8 +155,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// RSA解密
         /// </summary>
-        /// <param name="privateKeyPEM"></param>
-        /// <param name="content"></param>
+        /// <param Name="privateKeyPEM"></param>
+        /// <param Name="content"></param>
         /// <returns></returns>
         public static string DecryptPEM(string privateKeyPEM, string data, string encoding = "UTF-8")
         {
@@ -181,8 +181,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// RSA签名
         /// </summary>
-        /// <param name="privateKeyJava">私钥</param>
-        /// <param name="data">待签名的内容</param>
+        /// <param Name="privateKeyJava">私钥</param>
+        /// <param Name="data">待签名的内容</param>
         /// <returns></returns>
         public static string RSASignJava(string data, string privateKeyJava, string hashAlgorithm = "MD5", string encoding = "UTF-8")
         {
@@ -210,8 +210,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// RSA签名
         /// </summary>
-        /// <param name="privateKeyPEM">私钥</param>
-        /// <param name="data">待签名的内容</param>
+        /// <param Name="privateKeyPEM">私钥</param>
+        /// <param Name="data">待签名的内容</param>
         /// <returns></returns>
         public static string RSASignPEM(string data, string privateKeyPEM, string hashAlgorithm = "MD5", string encoding = "UTF-8")
         {
@@ -225,8 +225,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// RSA签名CSharp
         /// </summary>
-        /// <param name="privateKeyCSharp">私钥</param>
-        /// <param name="data">待签名的内容</param>
+        /// <param Name="privateKeyCSharp">私钥</param>
+        /// <param Name="data">待签名的内容</param>
         /// <returns></returns>
         public static string RSASignCSharp(string data, string privateKeyCSharp, string hashAlgorithm = "MD5", string encoding = "UTF-8")
         {
@@ -244,9 +244,9 @@ namespace Uixe.Watcher
         /// <summary>
         /// 验证签名-方法一
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="signature"></param>
-        /// <param name="encoding"></param>
+        /// <param Name="data"></param>
+        /// <param Name="signature"></param>
+        /// <param Name="encoding"></param>
         /// <returns></returns>
         public static bool VerifyJava(string data, string publicKeyJava, string signature, string hashAlgorithm = "MD5", string encoding = "UTF-8")
         {
@@ -269,9 +269,9 @@ namespace Uixe.Watcher
         /// <summary>
         /// 验证签名PEM
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="signature"></param>
-        /// <param name="encoding"></param>
+        /// <param Name="data"></param>
+        /// <param Name="signature"></param>
+        /// <param Name="encoding"></param>
         /// <returns></returns>
         public static bool VerifyPEM(string data, string publicKeyPEM, string signature, string hashAlgorithm = "MD5", string encoding = "UTF-8")
         {
@@ -288,9 +288,9 @@ namespace Uixe.Watcher
         /// <summary>
         /// 验证签名CSharp
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="signature"></param>
-        /// <param name="encoding"></param>
+        /// <param Name="data"></param>
+        /// <param Name="signature"></param>
+        /// <param Name="encoding"></param>
         /// <returns></returns>
         public static bool VerifyCSharp(string data, string publicKeyCSharp, string signature, string hashAlgorithm = "MD5", string encoding = "UTF-8")
         {
@@ -309,9 +309,9 @@ namespace Uixe.Watcher
         /// <summary>
         /// 签名验证
         /// </summary>
-        /// <param name="publicKey">公钥</param>
-        /// <param name="p_strHashbyteDeformatter">待验证的用户名</param>
-        /// <param name="signature">注册码</param>
+        /// <param Name="publicKey">公钥</param>
+        /// <param Name="p_strHashbyteDeformatter">待验证的用户名</param>
+        /// <param Name="signature">注册码</param>
         /// <returns>签名是否符合</returns>
         public static bool SignatureDeformatter(string publicKey, string data, string signature, string hashAlgorithm = "MD5")
         {
@@ -340,8 +340,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// 签名数据转化为RgbHash
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="encoding"></param>
+        /// <param Name="data"></param>
+        /// <param Name="encoding"></param>
         /// <returns></returns>
         public static byte[] ConvertToRgbHash(string data, string encoding = "UTF-8")
         {
@@ -359,8 +359,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// 验证签名
         /// </summary>
-        /// <param name="data">原始数据</param>
-        /// <param name="sign">签名</param>
+        /// <param Name="data">原始数据</param>
+        /// <param Name="sign">签名</param>
         /// <returns></returns>
         public static bool CheckSign(string publicKey, string data, string sign, string encoding = "UTF-8")
         {
@@ -399,8 +399,8 @@ namespace Uixe.Watcher
         /// <summary>
         /// 基于BouncyCastle的RSA私钥加密
         /// </summary>
-        /// <param name="privateKeyJava"></param>
-        /// <param name="data"></param>
+        /// <param Name="privateKeyJava"></param>
+        /// <param Name="data"></param>
         /// <returns></returns>
         public static string EncryptPrivateKeyJava(string privateKeyJava, string data, string encoding = "UTF-8")
         {
@@ -419,9 +419,9 @@ namespace Uixe.Watcher
         /// <summary>
         /// 基于BouncyCastle的RSA公钥解密
         /// </summary>
-        /// <param name="publicKeyJava"></param>
-        /// <param name="data"></param>
-        /// <param name="encoding"></param>
+        /// <param Name="publicKeyJava"></param>
+        /// <param Name="data"></param>
+        /// <param Name="encoding"></param>
         /// <returns></returns>
         public static string DecryptPublicKeyJava(string publicKeyJava, string data, string encoding = "UTF-8")
         {
@@ -440,10 +440,10 @@ namespace Uixe.Watcher
         /// <summary>
         /// 基于BouncyCastle的RSA签名
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="privateKeyJava"></param>
-        /// <param name="hashAlgorithm">JAVA的和.NET的不一样，如：MD5(.NET)等同于MD5withRSA(JAVA)</param>
-        /// <param name="encoding"></param>
+        /// <param Name="data"></param>
+        /// <param Name="privateKeyJava"></param>
+        /// <param Name="hashAlgorithm">JAVA的和.NET的不一样，如：MD5(.NET)等同于MD5withRSA(JAVA)</param>
+        /// <param Name="encoding"></param>
         /// <returns></returns>
         public static string RSASignJavaBouncyCastle(string data, string privateKeyJava, string hashAlgorithm = "MD5withRSA", string encoding = "UTF-8")
         {
@@ -463,11 +463,11 @@ namespace Uixe.Watcher
         /// <summary>
         /// 基于BouncyCastle的RSA签名
         /// </summary>
-        /// <param name="data">源数据</param>
-        /// <param name="publicKeyJava"></param>
-        /// <param name="signature">base64签名</param>
-        /// <param name="hashAlgorithm">JAVA的和.NET的不一样，如：MD5(.NET)等同于MD5withRSA(JAVA)</param>
-        /// <param name="encoding"></param>
+        /// <param Name="data">源数据</param>
+        /// <param Name="publicKeyJava"></param>
+        /// <param Name="signature">base64签名</param>
+        /// <param Name="hashAlgorithm">JAVA的和.NET的不一样，如：MD5(.NET)等同于MD5withRSA(JAVA)</param>
+        /// <param Name="encoding"></param>
         /// <returns></returns>
         public static bool VerifyJavaBouncyCastle(string data, string publicKeyJava, string signature, string hashAlgorithm = "MD5withRSA", string encoding = "UTF-8")
         {
@@ -489,8 +489,8 @@ namespace Uixe.Watcher
         /// <summary>
         ///  把java的私钥转换成.net的xml格式
         /// </summary>
-        /// <param name="rsa"></param>
-        /// <param name="privateJavaKey"></param>
+        /// <param Name="rsa"></param>
+        /// <param Name="privateJavaKey"></param>
         /// <returns></returns>
         public static string ConvertToXmlPrivateKey(this RSA rsa, string privateJavaKey)
         {
@@ -510,7 +510,7 @@ namespace Uixe.Watcher
         /// <summary>
         /// RSA加载JAVA  PrivateKey
         /// </summary>
-        /// <param name="privateJavaKey">java提供的第三方私钥</param>
+        /// <param Name="privateJavaKey">java提供的第三方私钥</param>
         /// <returns></returns>
         public static void FromPrivateKeyJavaString(this RSA rsa, string privateJavaKey)
         {
@@ -521,7 +521,7 @@ namespace Uixe.Watcher
         /// <summary>
         /// 把java的公钥转换成.net的xml格式
         /// </summary>
-        /// <param name="privateKey">java提供的第三方公钥</param>
+        /// <param Name="privateKey">java提供的第三方公钥</param>
         /// <returns></returns>
         public static string ConvertToXmlPublicJavaKey(this RSA rsa, string publicJavaKey)
         {
@@ -535,7 +535,7 @@ namespace Uixe.Watcher
         /// <summary>
         /// 把java的私钥转换成.net的xml格式
         /// </summary>
-        /// <param name="privateKey">java提供的第三方公钥</param>
+        /// <param Name="privateKey">java提供的第三方公钥</param>
         /// <returns></returns>
         public static void FromPublicKeyJavaString(this RSA rsa, string publicJavaKey)
         {
@@ -546,7 +546,7 @@ namespace Uixe.Watcher
         ///// <summary>
         ///// RSA公钥格式转换，java->.net
         ///// </summary>
-        ///// <param name="publicKey">java生成的公钥</param>
+        ///// <param Name="publicKey">java生成的公钥</param>
         ///// <returns></returns>
         //private static string ConvertJavaPublicKeyToDotNet(this RSA rsa,string publicKey)
         //{

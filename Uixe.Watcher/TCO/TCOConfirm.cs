@@ -22,8 +22,8 @@ namespace Uixe.Watcher
 
         public TCOCall TCE { get; set; }
         public bool CanDo { get; set; }
-        public Lane Lane { get; set; }
-        public Plaza Plaza { get; set; }
+        public T_Lane Lane { get; set; }
+        public T_Plaza Plaza { get; set; }
         public frmPlaza Owner { get; set; }
         public IMemoryCache _cache => Owner._cache;
         public bool CheckPlazaInfo()
@@ -63,14 +63,14 @@ namespace Uixe.Watcher
                 tcoPictureBox1.Visible = false;
             }
 
-            var l = Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
-            string url = string.Format($"http://{l.ip}:10000/capture");
+            var l = Plaza.Lanes.FirstOrDefault(f => f.LaneNo == tce.LaneNo);
+            string url = string.Format($"http://{l.Ip}:10000/capture");
             Lane = l;
             tcoPictureBox1.ImageLocation = url;
             tcoPictureBox1.ImageLocation = url;
             keyItem_Vehicle_Types_BindingSource.DataSource = KeyItem.GetVEHICLE_TYPES();
             tCOCallBindingSource.DataSource = TCE;
-            _pbindingSource1.DataSource = await _cache.GetOrCreate(Plaza.ip, async c => await uixeClient.GetProvCodes(Plaza.ip));
+            _pbindingSource1.DataSource = await _cache.GetOrCreate(Plaza.Ip, async c => await uixeClient.GetProvCodes(Plaza.Ip));
             _pbindingSource1.ResetCurrentItem();
             cbxProv.EditValue = 65;
             pLazaBindingSource.ResetCurrentItem();
@@ -200,12 +200,12 @@ namespace Uixe.Watcher
                 UixeClient client = new UixeClient();
                 if (isfirst)
                 {
-                    var pc = await _cache.GetOrCreate($"{Plaza.ip}{tce.EntryStationID}", async c => await client.GetProvByPlaza(Plaza.ip, tce.EntryStationID));
+                    var pc = await _cache.GetOrCreate($"{Plaza.Ip}{tce.EntryStationID}", async c => await client.GetProvByPlaza(Plaza.Ip, tce.EntryStationID));
                     cbxProv.EditValue = int.Parse(pc);
                 }
                 var prov = cbxProv.GetSelectedDataRow() as ProvCode;
 
-                var ppi = await _cache.GetOrCreate($"{Plaza.ip}{prov?.provId ?? 65}", async c => await client.GetProvPlazaInfo(Plaza.ip, $"{prov?.provId ?? 65}"));
+                var ppi = await _cache.GetOrCreate($"{Plaza.Ip}{prov?.provId ?? 65}", async c => await client.GetProvPlazaInfo(Plaza.Ip, $"{prov?.provId ?? 65}"));
                 if (ppi != null)
                 {
                     pLazaBindingSource.DataSource = ppi;
@@ -283,7 +283,7 @@ namespace Uixe.Watcher
                 pcPronow.Position = pcPronow.Position - 1;
                 //if ( _tcocall != null && _tcocall.Visible)
                 //{
-                //    //  BLLWatcher.TellLaneTCOIsRE(TCO.Head.Network + TCO.Head.Plaza, TCO.Head.LaneNo);
+                //    //  BLLWatcher.TellLaneTCOIsRE(TCO.Head.Network + TCO.Head.T_Plaza, TCO.Head.LaneNo);
                 //}
                 if (pcPronow.Position == pcPronow.Properties.Minimum)
                 {

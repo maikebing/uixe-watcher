@@ -31,8 +31,8 @@ namespace Uixe.Watcher.Extensions
         /// 设置窗口的显示状态
         /// Win32 函数定义为：http://msdn.microsoft.com/en-us/library/windows/desktop/ms633548(v=vs.85).aspx
         /// </summary>
-        /// <param name="hWnd">窗口句柄</param>
-        /// <param name="cmdShow">指示窗口如何被显示</param>
+        /// <param Name="hWnd">窗口句柄</param>
+        /// <param Name="cmdShow">指示窗口如何被显示</param>
         /// <returns>如果窗体之前是可见，返回值为非零；如果窗体之前被隐藏，返回值为零</returns>
         [DllImport("User32.dll")]
         private static extern bool ShowWindow(IntPtr hWnd, int cmdShow);
@@ -41,7 +41,7 @@ namespace Uixe.Watcher.Extensions
         /// 创建指定窗口的线程设置到前台，并且激活该窗口。键盘输入转向该窗口，并为用户改变各种可视的记号。
         /// 系统给创建前台窗口的线程分配的权限稍高于其他线程。
         /// </summary>
-        /// <param name="hWnd">将被激活并被调入前台的窗口句柄</param>
+        /// <param Name="hWnd">将被激活并被调入前台的窗口句柄</param>
         /// <returns>如果窗口设入了前台，返回值为非零；如果窗口未被设入前台，返回值为零</returns>
         [DllImport("User32.dll")]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
@@ -84,7 +84,7 @@ namespace Uixe.Watcher.Extensions
         /// <summary>
         /// 显示已运行的程序
         /// </summary>
-        /// <param name="instance"></param>
+        /// <param Name="instance"></param>
         private static void HandleRunningInstance(Process instance)
         {
             // 显示窗口

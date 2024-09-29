@@ -50,8 +50,8 @@ namespace Uixe.Watcher.TCO
             return r;
         }
 
-        public Lane Lane { get;  set; }
-        public Plaza Plaza { get; set; }
+        public T_Lane Lane { get;  set; }
+        public T_Plaza Plaza { get; set; }
         public  frmWeightTCOCall  Owner { get;  set; }
 
         public void Show(MsgWeightTCOCALL tce)
@@ -72,8 +72,8 @@ namespace Uixe.Watcher.TCO
                 Reset();
                 CarPlateTextEdit.Enabled = tce.CallType == WATCHER_TYPE.WATCHER_State44_ModifyCarNumber;
                 CarPlateTextEdit.ReadOnly = !CarPlateTextEdit.Enabled;
-                Lane =  Plaza.lanes.FirstOrDefault(f => f.lane_no == tce.LaneNo);
-                string url = string.Format($"http://{Lane.ip}:10000/capture");
+                Lane =  Plaza.Lanes.FirstOrDefault(f => f.LaneNo == tce.LaneNo);
+                string url = string.Format($"http://{Lane.Ip}:10000/capture");
                 picLane.ImageLocation = url;
                 picBig.ImageLocation = url;
                 var strct = Enum.GetName(typeof(WATCHER_TYPE), tce.CallType);
