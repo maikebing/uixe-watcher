@@ -13,11 +13,12 @@ namespace Uixe.Watcher
 
         internal  Dtos.T_Plaza Plaza { get; set; }
 
+        internal Dtos.T_Boss  Boss { get; set; }
+
         public  RptLoginResult Token { get; set; }
         public  UserRole[] UserRole { get; set; }
        
         public int KeyboardPort { get; set; } = 8080;
         public string serialNum { get; set; }
-  
     }
 }

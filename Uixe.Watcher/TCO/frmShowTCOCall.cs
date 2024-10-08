@@ -22,13 +22,13 @@ namespace Uixe.Watcher
         internal RuntimeSetting _runtimeSetting;
         private readonly ILogger _logger;
         private readonly IMemoryCache _cache;
-
-        public frmShowTCOCall(frmPlaza owner) : this()
+        TCOCall TCOCallxxx;
+        public frmShowTCOCall(frmPlaza owner, TCOCall call) : this()
         {
-
+            TCOCallxxx = call;
             if (this.DesignMode == false  &&  this.Disposing == false)
             {
-                _plaza = owner.Plaza;
+                _plaza = owner.GetPlaza(call.PlazaId);
                 _runtimeSetting = owner._runtimeSetting;
                 _logger = owner._logger;
                 _cache = owner._cache;
@@ -66,7 +66,7 @@ namespace Uixe.Watcher
         }
   
 
-        public void Show(TCOCall TCOCallxxx)
+        public new void Show()
         {
             string pname = TCOCallxxx.ID;
             var x = from p in tsTabs.TabPages where p.Name == pname select p;
@@ -93,6 +93,7 @@ namespace Uixe.Watcher
                 {
                     t.PageVisible = true;
                     this.Visible = true;
+                    base.Show();
                     this.Focus();
                 }
                 catch (Exception ex)

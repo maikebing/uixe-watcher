@@ -143,13 +143,10 @@ namespace Uixe.Watcher
                 this.Invoke(() =>
                 {
                     this.Text = $"{(who?.Name??"(none)")}远程值守";
-                    who?.Plazas?.ForEach(p =>
-                {
-                    wait.SetDescription($"正在加载{p?.StationName}!");
-                    LoadPlaza(p);
-                    Application.DoEvents();
-
-                });
+                
+                        wait.SetDescription($"正在加载{(who?.Name ?? "(none)")}!");
+                        LoadPlaza(who);
+                        Application.DoEvents();
                 });
                 Invoke(() => wait.SetDescription("加载完成!"));
             }).ContinueWith(t =>
@@ -158,7 +155,24 @@ namespace Uixe.Watcher
             });
         }
 
-
+        public void LoadPlaza(T_Boss tb)
+        {
+            string name = $"{nameof(frmPlaza)}_{tb.Id}";
+            var frm = _cache.GetOrCreate(name, f =>
+            {
+                var _log = _loggerFactory.CreateLogger(name);
+                var frm = new frmPlaza() { Name = name, _logger = _log, _loggerFactory = _loggerFactory, _cache = _cache, settings = _setting, _connection = _connection };
+                frm.FormClosed += Frm_FormClosed;
+                frm.Boss = tb;
+                return frm;
+            });
+            tb.Plazas.ForEach(p =>
+            {
+                _cache.Set($"{nameof(frmPlaza)}_{p.Id}",frm);
+            } );
+            frm.MdiParent = this;
+            frm.Show();
+        }
         public    void  LoadPlaza(T_Plaza plaza)
         {
             string name = $"{nameof(frmPlaza)}_{plaza.Id}";

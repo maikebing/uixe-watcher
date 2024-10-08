@@ -2,7 +2,7 @@
 using System;
 namespace Uixe.Watcher
 {
-    partial class frmPlaza
+    partial class frmSupervisor
     {
         /// <summary>
         /// 必需的设计器变量。

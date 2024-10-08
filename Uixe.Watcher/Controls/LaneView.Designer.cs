@@ -74,6 +74,7 @@
             rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(components);
+            colPlazaId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)gcExitLanes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)laneInfoBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gvExitLanes).BeginInit();
@@ -223,10 +224,11 @@
             gvExitLanes.Appearance.SelectedRow.Options.UseForeColor = true;
             gvExitLanes.Appearance.VertLine.BackColor = System.Drawing.Color.FromArgb(99, 127, 196);
             gvExitLanes.Appearance.VertLine.Options.UseBackColor = true;
-            gvExitLanes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colLaneNo, colUserName, coluserNumber, colWorkState, colCarKind1, colCharge1, colCarType, colWorkMode, gcCardBoxExit, colStartWorkTime, colyupengdeng, colCoil1, colCoil2, colRSU, colYellow, gcWeightStatus, gcReaderStatus, colQRPay, Coil3, colJiaoTong, colPrint, Coil4, colLanGan, colBaoJing, colVPR, colCamera, colNetWork });
+            gvExitLanes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { colPlazaId, colLaneNo, colUserName, coluserNumber, colWorkState, colCarKind1, colCharge1, colCarType, colWorkMode, gcCardBoxExit, colStartWorkTime, colyupengdeng, colCoil1, colCoil2, colRSU, colYellow, gcWeightStatus, gcReaderStatus, colQRPay, Coil3, colJiaoTong, colPrint, Coil4, colLanGan, colBaoJing, colVPR, colCamera, colNetWork });
             gvExitLanes.DetailHeight = 375;
             gvExitLanes.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             gvExitLanes.GridControl = gcExitLanes;
+            gvExitLanes.GroupCount = 1;
             gvExitLanes.Name = "gvExitLanes";
             gvExitLanes.OptionsMenu.EnableColumnMenu = false;
             gvExitLanes.OptionsMenu.EnableFooterMenu = false;
@@ -235,9 +237,11 @@
             gvExitLanes.OptionsSelection.EnableAppearanceFocusedRow = false;
             gvExitLanes.OptionsView.EnableAppearanceEvenRow = true;
             gvExitLanes.OptionsView.EnableAppearanceOddRow = true;
+            gvExitLanes.OptionsView.ShowFooter = true;
             gvExitLanes.OptionsView.ShowGroupPanel = false;
             gvExitLanes.RowHeight = 43;
             gvExitLanes.RowSeparatorHeight = 3;
+            gvExitLanes.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] { new DevExpress.XtraGrid.Columns.GridColumnSortInfo(colPlazaId, DevExpress.Data.ColumnSortOrder.Ascending) });
             gvExitLanes.RowStyle += gv_RowStyle;
             // 
             // colLaneNo
@@ -734,6 +738,15 @@
             radialMenu1.Manager = barManager1;
             radialMenu1.Name = "radialMenu1";
             // 
+            // colPlazaId
+            // 
+            colPlazaId.FieldName = "PlazaId";
+            colPlazaId.GroupInterval = DevExpress.XtraGrid.ColumnGroupInterval.Value;
+            colPlazaId.Name = "colPlazaId";
+            colPlazaId.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
+            colPlazaId.Visible = true;
+            colPlazaId.VisibleIndex = 27;
+            // 
             // LaneView
             // 
             Appearance.BackColor = System.Drawing.SystemColors.Control;
@@ -809,5 +822,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit1;
         private DevExpress.XtraBars.BarButtonItem btnLaneReboot;
         private DevExpress.XtraBars.BarSubItem btnLaneControl;
+        private DevExpress.XtraGrid.Columns.GridColumn colPlazaId;
     }
 }

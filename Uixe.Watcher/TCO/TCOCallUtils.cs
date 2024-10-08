@@ -30,7 +30,8 @@ namespace Uixe.Watcher.TCO
             {
                 if (form.WeightTCOCall == null || form.WeightTCOCall.IsDisposed || !form.WeightTCOCall.IsHandleCreated)
                 {
-                    form.WeightTCOCall = new frmWeightTCOCall(form.Plaza, form._runtimeSetting, form.settings);
+                    var plaza=form.GetPlaza($"650{msg.Plaza}");
+                    form.WeightTCOCall = new frmWeightTCOCall(plaza, form._runtimeSetting, form.settings);
                     form.WeightTCOCall.LoadInfo();
                     form.WeightTCOCall.Hide();
                 }
@@ -43,15 +44,13 @@ namespace Uixe.Watcher.TCO
 
         public static void ShowTCOInfo(this frmPlaza form, TCOCall call)
         {
-
             form.Invoke(() =>
             {
-
                 if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
                 {
-                    form._tcocall = new frmShowTCOCall(form);
+                    form._tcocall = new frmShowTCOCall(form, call);
                 }
-                form._tcocall.Show(call);
+                form._tcocall.Show();
                 Task.Run(PlayUitls.PlayRing);
             });
         }

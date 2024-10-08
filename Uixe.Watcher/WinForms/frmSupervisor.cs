@@ -24,10 +24,9 @@ using Uixe.Watcher.Msg;
 using Uixe.Watcher.Ring;
 using Uixe.Watcher.TCO;
 using Uixe.Watcher.Uitls;
-using WhoIamDtos;
 namespace Uixe.Watcher
 {
-    public partial class frmPlaza : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class frmSupervisor : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         [StructLayout(LayoutKind.Sequential)]
         private struct LASTINPUTINFO
@@ -49,26 +48,23 @@ namespace Uixe.Watcher
 
         #region 加载
 
-        public frmPlaza()
+        public frmSupervisor()
         {
             InitializeComponent();
         }
 
-        public T_Boss Boss { get; set; }
+
 
         public frmShowTCOCall _tcocall;
         public frmWeightTCOCall WeightTCOCall;
         public AppSettings settings { get; set; }
         public T_Plaza Plaza => _runtimeSetting?.Plaza;
-        public T_Plaza GetPlaza( string id)
-        {
-            return Boss.Plazas.FirstOrDefault(x => x.Id == id);
-        }
         public RuntimeSetting _runtimeSetting { get; set; }
         private void frmMain_Load(object sender, EventArgs e)
         {
             btnUpgrade.Visibility = BarItemVisibility.Never;
-              _runtimeSetting = _cache.GetOrCreate(Boss.Id, c => new RuntimeSetting() { Boss=Boss });
+
+
             this.Icon = Properties.Resources.LOGO;
             if (System.IO.Directory.Exists("Ring"))
             {
@@ -130,7 +126,7 @@ namespace Uixe.Watcher
         public void LoadLaneInfo(bool reset = false)
         {
             this.SuspendLayout();
-            LoadLaneView(Boss);
+            LoadLaneView(Plaza);
             UserAccessControl();
             this.ResumeLayout();
             this.Activate();
@@ -156,13 +152,13 @@ namespace Uixe.Watcher
         /// <summary>
         /// 加载车道
         /// </summary>
-        private void LoadLaneView(T_Boss boss)
+        private void LoadLaneView(T_Plaza plaza)
         {
             ShowStatusInfo("正在加载车道列表");
             lanView.SuspendLayout();
             messageView.SuspendLayout();
-            lanView.InitLaneInfo(boss, _logger, _runtimeSetting,settings, _connection,this);
-            messageView.initMessageView(boss.Id, 100);
+           // lanView.InitLaneInfo(plaza, _logger, _runtimeSetting,settings, _connection,this);
+            messageView.initMessageView(plaza.Id, 100);
             messageView.ResumeLayout(false);
             lanView.ResumeLayout(false);
             Application.DoEvents();
@@ -173,7 +169,8 @@ namespace Uixe.Watcher
         /// </summary>
         public void UserAccessControl()
         {
-            this.Text = string.Format($"{Boss.Name} {_runtimeSetting.NowCollect?.UserId} ");
+            var p = Plaza;
+            this.Text = string.Format($"{p.RoadName}-{p.StationName}({p.Id}) {_runtimeSetting.NowCollect?.UserId} ");
             this.Ribbon.ApplicationCaption = this.Text;
 
         }

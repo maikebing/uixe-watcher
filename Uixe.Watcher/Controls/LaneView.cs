@@ -31,8 +31,8 @@ namespace Uixe.Watcher.Controls
         /// <summary>
         /// InitLaneInfo 进行初始化时赋值。
         /// </summary>
-        public T_Plaza Plaza { get; set; }
 
+        T_Boss _boss;
         private RuntimeSetting _runtimeSetting;
         private AppSettings _settings;
         private LiteDB.ConnectionString _connection;
@@ -43,33 +43,37 @@ namespace Uixe.Watcher.Controls
             InitializeComponent();
         }
 
-        internal void InitLaneInfo(T_Plaza item, ILogger logger, RuntimeSetting runtimeSetting, AppSettings settings, LiteDB.ConnectionString connection, frmPlaza frmPlaza)
+        internal void InitLaneInfo(T_Boss item, ILogger logger, RuntimeSetting runtimeSetting, AppSettings settings, LiteDB.ConnectionString connection, frmPlaza frmPlaza)
         {
             _frmPlaza = frmPlaza;
             _logger = logger;
-            Plaza = item;
+            _boss = item;
             _runtimeSetting = runtimeSetting;
             _settings = settings;
             _connection = connection;
-            var _ls = new List<LaneInfo>();
-            item.Lanes?.ForEach(l =>
+        
+            item.Plazas.ForEach(p =>
             {
-                _ls.Add(new LaneInfo(item.Id, l.LaneId, l.LaneNo, l.Ip));
-                Task.Run(async () =>
+                var _ls = new List<LaneInfo>();
+                p.Lanes?.ForEach(l =>
                 {
-                    var client = new RestClient(new RestClientOptions($"http://{l.Ip}:10000/") { FollowRedirects = false });
-                    client.AddDefaultHeader(KnownHeaders.Accept, "*/*");
-                    var request = new RestRequest("/heartbeat", RestSharp.Method.Get);
-                    var response = await client.GetAsync(request);
-                });
+                    _ls.Add(new LaneInfo(p.Id, l.LaneId, l.LaneNo, l.Ip));
+                    Task.Run(async () =>
+                    {
+                        var client = new RestClient(new RestClientOptions($"http://{l.Ip}:10000/") { FollowRedirects = false });
+                        client.AddDefaultHeader(KnownHeaders.Accept, "*/*");
+                        var request = new RestRequest("/heartbeat", RestSharp.Method.Get);
+                        var response = await client.GetAsync(request);
+                    });
 
+                });
+                lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
+                lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());
+             
             });
-            lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("E")).OrderByDescending(e => e.LaneName).ToArray());
-            lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());
             laneInfoBindingSource.DataSource = lst;
             gcExitLanes.RefreshDataSource();
         }
-
         private delegate void HShowLaneInfo(string laneid, LaneStatus revdata);
 
         /// <summary>
@@ -165,31 +169,34 @@ namespace Uixe.Watcher.Controls
         public void SendHeartBeat()
         {
             bool config = DateTime.Now.Subtract(lasconfig).TotalMinutes > 5;
-            Plaza?.Lanes?.ForEach(async lane =>
-        {
-            try
+            Parallel.ForEach(_boss.Plazas, p =>
             {
-                Application.DoEvents();
-                if (await lane.Ping())
-                {
-                    Application.DoEvents();
-                    await lane.SendMsg("tco/status/", new { message = "HeartBeat" });
-                    if (config)
+                  p?.Lanes?.ForEach(async lane =>
                     {
-                        Application.DoEvents();
-                        await lane.SendMsg("tco/config/", new { agentIp = Plaza?.AgentIp });
-                    }
-                }
-                else
-                {
-                    _logger.LogWarning($"网络不通， 无法发送{lane.LaneNo} {lane.Ip}心跳。");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"无法发送{lane.LaneNo} {lane.Ip}心跳");
-            }
-        });
+                        try
+                        {
+                            Application.DoEvents();
+                            if (await lane.Ping())
+                            {
+                                Application.DoEvents();
+                                await lane.SendMsg("tco/status/", new { message = "HeartBeat" });
+                                if (config)
+                                {
+                                    Application.DoEvents();
+                                    await lane.SendMsg("tco/config/", new { agentIp = p?.AgentIp });
+                                }
+                            }
+                            else
+                            {
+                                _logger.LogWarning($"网络不通， 无法发送{lane.LaneNo} {lane.Ip}心跳。");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError(ex, $"无法发送{lane.LaneNo} {lane.Ip}心跳");
+                        }
+                    });
+            });
             if (config) lasconfig = DateTime.Now;
 
         }
@@ -206,12 +213,17 @@ namespace Uixe.Watcher.Controls
             try
             {
                 var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
-                if (fv != null)
+                var plaza= _boss.Plazas.FirstOrDefault(p => p.Id == fv.PlazaId); 
+                if (fv != null && plaza!=null)
                 {
-                    frmRemoteLane lane = new frmRemoteLane(Plaza, fv);
+                    frmRemoteLane lane = new frmRemoteLane(plaza, fv);
                     lane._runtimeSetting = _runtimeSetting;
                     lane._settings = _settings;
                     lane.Show(this);
+                }
+                else
+                {
+                    _logger.LogWarning($"车道为空？{fv==null}站信息{fv?.PlazaId}为空？{plaza==null}");
                 }
             }
             catch (Exception ex)
