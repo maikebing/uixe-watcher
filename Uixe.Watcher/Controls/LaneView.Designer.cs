@@ -32,6 +32,9 @@
             gcExitLanes = new DevExpress.XtraGrid.GridControl();
             laneInfoBindingSource = new System.Windows.Forms.BindingSource(components);
             gvExitLanes = new DevExpress.XtraGrid.Views.Grid.GridView();
+            colPlazaId = new DevExpress.XtraGrid.Columns.GridColumn();
+            luePlaza = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            tPlazaBindingSource = new System.Windows.Forms.BindingSource(components);
             colLaneNo = new DevExpress.XtraGrid.Columns.GridColumn();
             colUserName = new DevExpress.XtraGrid.Columns.GridColumn();
             coluserNumber = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,16 +76,19 @@
             btnLaneControl = new DevExpress.XtraBars.BarSubItem();
             rpbExit = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
+            cbxPlaza = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(components);
-            colPlazaId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)gcExitLanes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)laneInfoBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gvExitLanes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)luePlaza).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tPlazaBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cardBoxControlRepositoryItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemPictureEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)barManager1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rpbExit).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTimeEdit1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cbxPlaza).BeginInit();
             ((System.ComponentModel.ISupportInitialize)radialMenu1).BeginInit();
             SuspendLayout();
             // 
@@ -96,7 +102,7 @@
             gcExitLanes.Margin = new System.Windows.Forms.Padding(4);
             gcExitLanes.MenuManager = barManager1;
             gcExitLanes.Name = "gcExitLanes";
-            gcExitLanes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemPictureEdit1, rpbExit, cardBoxControlRepositoryItem2, repositoryItemTimeEdit1 });
+            gcExitLanes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemPictureEdit1, rpbExit, cardBoxControlRepositoryItem2, repositoryItemTimeEdit1, cbxPlaza, luePlaza });
             gcExitLanes.Size = new System.Drawing.Size(1513, 570);
             gcExitLanes.TabIndex = 9;
             gcExitLanes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gvExitLanes });
@@ -243,6 +249,30 @@
             gvExitLanes.RowSeparatorHeight = 3;
             gvExitLanes.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] { new DevExpress.XtraGrid.Columns.GridColumnSortInfo(colPlazaId, DevExpress.Data.ColumnSortOrder.Ascending) });
             gvExitLanes.RowStyle += gv_RowStyle;
+            // 
+            // colPlazaId
+            // 
+            colPlazaId.Caption = "收费站";
+            colPlazaId.ColumnEdit = luePlaza;
+            colPlazaId.FieldName = "PlazaId";
+            colPlazaId.GroupInterval = DevExpress.XtraGrid.ColumnGroupInterval.Value;
+            colPlazaId.Name = "colPlazaId";
+            colPlazaId.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
+            colPlazaId.Visible = true;
+            colPlazaId.VisibleIndex = 27;
+            // 
+            // luePlaza
+            // 
+            luePlaza.AutoHeight = false;
+            luePlaza.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            luePlaza.DataSource = tPlazaBindingSource;
+            luePlaza.DisplayMember = "StationName";
+            luePlaza.Name = "luePlaza";
+            luePlaza.ValueMember = "Id";
+            // 
+            // tPlazaBindingSource
+            // 
+            tPlazaBindingSource.DataSource = typeof(Dtos.T_Plaza);
             // 
             // colLaneNo
             // 
@@ -730,6 +760,12 @@
             repositoryItemTimeEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
             // 
+            // cbxPlaza
+            // 
+            cbxPlaza.AutoHeight = false;
+            cbxPlaza.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            cbxPlaza.Name = "cbxPlaza";
+            // 
             // radialMenu1
             // 
             radialMenu1.Glyph = Properties.Resources.promotion;
@@ -737,15 +773,6 @@
             radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(btnVNC), new DevExpress.XtraBars.LinkPersistInfo(btnPing), new DevExpress.XtraBars.LinkPersistInfo(btnRemotLane), new DevExpress.XtraBars.LinkPersistInfo(btnLaneControl) });
             radialMenu1.Manager = barManager1;
             radialMenu1.Name = "radialMenu1";
-            // 
-            // colPlazaId
-            // 
-            colPlazaId.FieldName = "PlazaId";
-            colPlazaId.GroupInterval = DevExpress.XtraGrid.ColumnGroupInterval.Value;
-            colPlazaId.Name = "colPlazaId";
-            colPlazaId.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
-            colPlazaId.Visible = true;
-            colPlazaId.VisibleIndex = 27;
             // 
             // LaneView
             // 
@@ -765,11 +792,14 @@
             ((System.ComponentModel.ISupportInitialize)gcExitLanes).EndInit();
             ((System.ComponentModel.ISupportInitialize)laneInfoBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)gvExitLanes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)luePlaza).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tPlazaBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)cardBoxControlRepositoryItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemPictureEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)barManager1).EndInit();
             ((System.ComponentModel.ISupportInitialize)rpbExit).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTimeEdit1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cbxPlaza).EndInit();
             ((System.ComponentModel.ISupportInitialize)radialMenu1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -823,5 +853,8 @@
         private DevExpress.XtraBars.BarButtonItem btnLaneReboot;
         private DevExpress.XtraBars.BarSubItem btnLaneControl;
         private DevExpress.XtraGrid.Columns.GridColumn colPlazaId;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbxPlaza;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit luePlaza;
+        private System.Windows.Forms.BindingSource tPlazaBindingSource;
     }
 }

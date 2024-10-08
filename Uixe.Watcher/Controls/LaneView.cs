@@ -51,7 +51,7 @@ namespace Uixe.Watcher.Controls
             _runtimeSetting = runtimeSetting;
             _settings = settings;
             _connection = connection;
-        
+  
             item.Plazas.ForEach(p =>
             {
                 var _ls = new List<LaneInfo>();
@@ -71,13 +71,14 @@ namespace Uixe.Watcher.Controls
                 lst.AddRange(_ls.Where(l => !string.IsNullOrEmpty(l.LaneName) && l.LaneName.StartsWith("X")).OrderBy(e => e.LaneName).ToArray());
              
             });
+            tPlazaBindingSource.DataSource = item.Plazas;
             laneInfoBindingSource.DataSource = lst;
             gcExitLanes.RefreshDataSource();
         }
         private delegate void HShowLaneInfo(string laneid, LaneStatus revdata);
 
         /// <summary>
-        ///
+        /// 显示车道信息
         /// </summary>
         /// <param Name="plaza">这里的plaza 已经调用到对应的控件了， 无需区分， 但是需要传值过来</param>
         /// <param Name="laneno"></param>
