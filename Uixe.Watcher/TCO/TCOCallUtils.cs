@@ -30,7 +30,7 @@ namespace Uixe.Watcher.TCO
             {
                 if (form.WeightTCOCall == null || form.WeightTCOCall.IsDisposed || !form.WeightTCOCall.IsHandleCreated)
                 {
-                    var plaza=form.GetPlaza($"650{msg.Plaza}");
+                    var plaza=form.GetPlaza($"650{msg.Network}{msg.Plaza}");
                     form.WeightTCOCall = new frmWeightTCOCall(plaza, form._runtimeSetting, form.settings);
                     form.WeightTCOCall.LoadInfo();
                     form.WeightTCOCall.Hide();

@@ -149,7 +149,6 @@ namespace Uixe.Watcher.TCO
             ItemForCallType = new DevExpress.XtraLayout.LayoutControlItem();
             ItemForText = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            freshAgriProductsBindingSource = new System.Windows.Forms.BindingSource(components);
             panelControl1 = new DevExpress.XtraEditors.PanelControl();
             btnVNC = new DevExpress.XtraEditors.SimpleButton();
             btnCLose = new DevExpress.XtraEditors.SimpleButton();
@@ -249,7 +248,6 @@ namespace Uixe.Watcher.TCO
             ((System.ComponentModel.ISupportInitialize)ItemForCallType).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ItemForText).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)freshAgriProductsBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
             panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pcPronow.Properties).BeginInit();
@@ -377,7 +375,7 @@ namespace Uixe.Watcher.TCO
             // 
             // PlazaTextEdit
             // 
-            PlazaTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", msgWeightTCOCALLBindingSource, "T_Plaza", true));
+            PlazaTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", msgWeightTCOCALLBindingSource, "Plaza", true));
             PlazaTextEdit.Location = new System.Drawing.Point(248, 77);
             PlazaTextEdit.Name = "PlazaTextEdit";
             PlazaTextEdit.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
@@ -1333,10 +1331,10 @@ namespace Uixe.Watcher.TCO
             // 
             picBig.Image = null;
             picBig.ImageLocation = "";
-            picBig.Location = new System.Drawing.Point(604, 445);
-            picBig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            picBig.Location = new System.Drawing.Point(604, 477);
+            picBig.Margin = new System.Windows.Forms.Padding(4);
             picBig.Name = "picBig";
-            picBig.Size = new System.Drawing.Size(528, 463);
+            picBig.Size = new System.Drawing.Size(528, 496);
             picBig.TabIndex = 47;
             picBig.TabStop = false;
             picBig.Visible = false;
@@ -1444,7 +1442,6 @@ namespace Uixe.Watcher.TCO
             ((System.ComponentModel.ISupportInitialize)ItemForCallType).EndInit();
             ((System.ComponentModel.ISupportInitialize)ItemForText).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)freshAgriProductsBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
             panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pcPronow.Properties).EndInit();
@@ -1552,7 +1549,6 @@ namespace Uixe.Watcher.TCO
         private Uixe.Watcher.Controls.TCOPictureBox  picBig;
         public System.Windows.Forms.Timer tcoHeart;
         public Uixe.Watcher.Controls.TCOPictureBox picLane;
-        private System.Windows.Forms.BindingSource freshAgriProductsBindingSource;
         public DevExpress.XtraEditors.TextEdit CarPlateTextEdit;
     }
 }

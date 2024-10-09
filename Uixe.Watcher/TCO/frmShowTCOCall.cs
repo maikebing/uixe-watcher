@@ -78,21 +78,21 @@ namespace Uixe.Watcher
                 {
                     tms.Show(TCOCallxxx);
                     t.Text = string.Format("车道{0}", TCOCallxxx.LaneNo);
-                    tms.btnOK.Click += new EventHandler(BtnOK_Click);
-                    tms.btnCancel.Click += new EventHandler(btnCancel_Click);
+                    tms.btnOK.Click += BtnOK_Click;
+                    tms.btnCancel.Click += btnCancel_Click;
                     tsTabs.SelectedTabPage = t;
                     tms.Reset();
                 }
                 catch (Exception ex)
                 {
-                    tms.btnOK.Click -= new EventHandler(BtnOK_Click);
-                    tms.btnCancel.Click -= new EventHandler(btnCancel_Click);
+                    tms.btnOK.Click -= BtnOK_Click;
+                    tms.btnCancel.Click -= btnCancel_Click;
                     Console.WriteLine($"Show{ex.Message}");
                 }
                 try
                 {
                     t.PageVisible = true;
-                    this.Visible = true;
+               
                     base.Show();
                     this.Focus();
                 }

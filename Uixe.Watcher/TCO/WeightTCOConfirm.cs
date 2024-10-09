@@ -98,7 +98,7 @@ namespace Uixe.Watcher.TCO
                     prompt = SpeechUtils.Speecher.SpeakAsync(speechtext);//语音阅读方法
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Log.LogException("Show(MsgWeightTCOCALL tce)", tce.ToString(), ex);
             }

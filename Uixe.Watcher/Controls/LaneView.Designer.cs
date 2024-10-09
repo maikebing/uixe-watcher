@@ -236,6 +236,8 @@
             gvExitLanes.GridControl = gcExitLanes;
             gvExitLanes.GroupCount = 1;
             gvExitLanes.Name = "gvExitLanes";
+            gvExitLanes.OptionsBehavior.AutoExpandAllGroups = true;
+            gvExitLanes.OptionsBehavior.KeepGroupExpandedOnSorting = false;
             gvExitLanes.OptionsMenu.EnableColumnMenu = false;
             gvExitLanes.OptionsMenu.EnableFooterMenu = false;
             gvExitLanes.OptionsMenu.EnableGroupPanelMenu = false;

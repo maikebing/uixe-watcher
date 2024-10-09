@@ -127,8 +127,8 @@ namespace Uixe.Watcher
                     }
                     else
                     {
-                        _logger.LogWarning($"远程返回错误{t.Result.code}-{t.Result.msg}");
-                        Invoke(() => wait.SetDescription($"远程返回错误{t.Result.code}-{t.Result.msg}"));
+                        _logger.LogWarning($"远程返回错误{t.Result?.code}-{t.Result?.msg}");
+                        Invoke(() => wait.SetDescription($"远程返回错误{t.Result?.code}-{t.Result?.msg}"));
                         Application.DoEvents();
                     }
                     
