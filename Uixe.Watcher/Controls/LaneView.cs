@@ -235,7 +235,11 @@ namespace Uixe.Watcher.Controls
 
         private void btnPing_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            var fv = gvExitLanes.GetFocusedRow() as LaneInfo;
+            if (fv != null)
+            {
+                Process.Start("cmd.exe", $"/K ping {fv.IPAddress}");
+            }
         }
 
         private void btnLaneReboot_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

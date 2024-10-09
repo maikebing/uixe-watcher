@@ -69,7 +69,6 @@
             barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            btnVNC = new DevExpress.XtraBars.BarButtonItem();
             btnPing = new DevExpress.XtraBars.BarButtonItem();
             btnRemotLane = new DevExpress.XtraBars.BarButtonItem();
             btnLaneReboot = new DevExpress.XtraBars.BarButtonItem();
@@ -674,7 +673,7 @@
             barManager1.DockControls.Add(barDockControlLeft);
             barManager1.DockControls.Add(barDockControlRight);
             barManager1.Form = this;
-            barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { btnVNC, btnPing, btnRemotLane, btnLaneReboot, btnLaneControl });
+            barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { btnPing, btnRemotLane, btnLaneReboot, btnLaneControl });
             barManager1.MaxItemId = 8;
             // 
             // barDockControlTop
@@ -712,13 +711,6 @@
             barDockControlRight.Manager = barManager1;
             barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
             barDockControlRight.Size = new System.Drawing.Size(0, 570);
-            // 
-            // btnVNC
-            // 
-            btnVNC.Caption = "远程桌面";
-            btnVNC.Id = 0;
-            btnVNC.Name = "btnVNC";
-            btnVNC.ItemClick += btnVNC_ItemClick;
             // 
             // btnPing
             // 
@@ -772,7 +764,7 @@
             // 
             radialMenu1.Glyph = Properties.Resources.promotion;
             radialMenu1.ItemAutoSize = DevExpress.XtraBars.Ribbon.RadialMenuItemAutoSize.Spring;
-            radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(btnVNC), new DevExpress.XtraBars.LinkPersistInfo(btnPing), new DevExpress.XtraBars.LinkPersistInfo(btnRemotLane), new DevExpress.XtraBars.LinkPersistInfo(btnLaneControl) });
+            radialMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(btnPing), new DevExpress.XtraBars.LinkPersistInfo(btnRemotLane), new DevExpress.XtraBars.LinkPersistInfo(btnLaneControl) });
             radialMenu1.Manager = barManager1;
             radialMenu1.Name = "radialMenu1";
             // 
@@ -843,7 +835,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colVPR;
         private DevExpress.XtraGrid.Columns.GridColumn colCamera;
         private DevExpress.XtraBars.Ribbon.RadialMenu radialMenu1;
-        private DevExpress.XtraBars.BarButtonItem btnVNC;
         private DevExpress.XtraBars.BarButtonItem btnPing;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
