@@ -173,28 +173,7 @@ namespace Uixe.Watcher
             frm.MdiParent = this;
             frm.Show();
         }
-        public    void  LoadPlaza(T_Plaza plaza)
-        {
-            string name = $"{nameof(frmPlaza)}_{plaza.Id}";
-            var _runtimeSetting = _cache.GetOrCreate(plaza.Id, c => new RuntimeSetting());
-            _runtimeSetting.Plaza = plaza;
-            var p = _runtimeSetting.Plaza;
-            if (p != null && !string.IsNullOrEmpty(p.Ip))
-            {
-                PlazaApi api = new(_runtimeSetting.Plaza.Ip);
-                var frm = _cache.GetOrCreate(name, f =>
-                     {
-                         var _log= _loggerFactory.CreateLogger(name);
-                          var frm = new frmPlaza() { Name = name ,_logger= _log, _loggerFactory= _loggerFactory, _cache = _cache ,settings= _setting ,  _connection = _connection };
-                         frm._runtimeSetting = _cache.Get<RuntimeSetting>(plaza.Id);
-                         frm.FormClosed += Frm_FormClosed;
-                         return frm;
-                      });
-                frm.MdiParent = this;
-                frm.Show();
-            }
-        }
-
+  
         private void Frm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();

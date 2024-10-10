@@ -64,14 +64,13 @@ namespace Uixe.Watcher
             {
                 whoiam.Plazas?.ForEach(async plaza =>
                 {
-                    RuntimeSetting _runtimeSetting = _cache.Get<RuntimeSetting>(plaza.Id);
-                    var p = _runtimeSetting.Plaza;
+                    var _runtimeSetting = _cache.Get<RuntimeSetting>(plaza.Id);
                     string name = $"{nameof(frmPlaza)}_{plaza.Id}";
                     var winplaza = _cache.Get<frmPlaza>(name);
-                    if (p != null && !string.IsNullOrEmpty(p.Ip))
+                    if (plaza != null && !string.IsNullOrEmpty(plaza.Ip))
                     {
-                        PlazaApi api = new(_runtimeSetting.Plaza.Ip);
-                        _runtimeSetting.Token = await api.SysLogin(user, password, p.StationId, p.Id);
+                        PlazaApi api = new(plaza.Ip);
+                        _runtimeSetting.Token = await api.SysLogin(user, password, plaza.StationId, plaza.Id);
                         if (!string.IsNullOrEmpty(_runtimeSetting.Token?.token))
                         {
                             var result = await api.getRoleByUser(user, _runtimeSetting.Token?.token);

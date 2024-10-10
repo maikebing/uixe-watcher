@@ -59,7 +59,6 @@ namespace Uixe.Watcher
         public frmShowTCOCall _tcocall;
         public frmWeightTCOCall WeightTCOCall;
         public AppSettings settings { get; set; }
-        public T_Plaza Plaza => _runtimeSetting?.Plaza;
         public T_Plaza GetPlaza( string id)
         {
             return Boss.Plazas.FirstOrDefault(x => x.Id == id);

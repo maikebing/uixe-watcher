@@ -11,7 +11,6 @@ namespace Uixe.Watcher
         }
         internal  User NowCollect;
 
-        internal  Dtos.T_Plaza Plaza { get; set; }
 
         internal Dtos.T_Boss  Boss { get; set; }
 
