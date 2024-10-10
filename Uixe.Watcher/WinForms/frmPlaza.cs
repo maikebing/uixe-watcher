@@ -24,6 +24,7 @@ using Uixe.Watcher.Msg;
 using Uixe.Watcher.Ring;
 using Uixe.Watcher.TCO;
 using Uixe.Watcher.Uitls;
+using Uixe.Watcher.WinForms;
 using WhoIamDtos;
 namespace Uixe.Watcher
 {
@@ -59,7 +60,7 @@ namespace Uixe.Watcher
         public frmShowTCOCall _tcocall;
         public frmWeightTCOCall WeightTCOCall;
         public AppSettings settings { get; set; }
-        public T_Plaza GetPlaza( string id)
+        public T_Plaza GetPlaza(string id)
         {
             return Boss.Plazas.FirstOrDefault(x => x.Id == id);
         }
@@ -67,7 +68,7 @@ namespace Uixe.Watcher
         private void frmMain_Load(object sender, EventArgs e)
         {
             btnUpgrade.Visibility = BarItemVisibility.Never;
-              _runtimeSetting = _cache.GetOrCreate(Boss.Id, c => new RuntimeSetting() { Boss=Boss });
+            _runtimeSetting = _cache.GetOrCreate(Boss.Id, c => new RuntimeSetting() { Boss = Boss });
             this.Icon = Properties.Resources.LOGO;
             if (System.IO.Directory.Exists("Ring"))
             {
@@ -160,7 +161,7 @@ namespace Uixe.Watcher
             ShowStatusInfo("正在加载车道列表");
             lanView.SuspendLayout();
             messageView.SuspendLayout();
-            lanView.InitLaneInfo(boss, _logger, _runtimeSetting,settings, _connection,this);
+            lanView.InitLaneInfo(boss, _logger, _runtimeSetting, settings, _connection, this);
             messageView.initMessageView(boss.Id, 100);
             messageView.ResumeLayout(false);
             lanView.ResumeLayout(false);
@@ -372,12 +373,18 @@ namespace Uixe.Watcher
 
         private void tsOnly6769_CheckedChanged(object sender, ItemClickEventArgs e)
         {
-        
+
         }
 
         private void frmPlaza_FormClosing(object sender, FormClosingEventArgs e)
         {
             settings.SaveUserAppSetting();
+        }
+        frmVNCViewer viewer;
+        private void btnVnc_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            viewer = new frmVNCViewer( Boss   );
+            viewer.Show();
         }
     }//frmMain
 }

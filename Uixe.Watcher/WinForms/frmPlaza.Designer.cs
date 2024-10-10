@@ -72,6 +72,7 @@ namespace Uixe.Watcher
             tsOnly6769 = new DevExpress.XtraBars.BarToggleSwitchItem();
             barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
             barToggleSwitchItem2 = new DevExpress.XtraBars.BarToggleSwitchItem();
+            btnVnc = new DevExpress.XtraBars.BarButtonItem();
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -156,10 +157,10 @@ namespace Uixe.Watcher
             ribbon.BackColor = System.Drawing.SystemColors.Control;
             ribbon.ColorScheme = DevExpress.XtraBars.Ribbon.RibbonControlColorScheme.Blue;
             ribbon.ExpandCollapseItem.Id = 0;
-            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, txtStatus, btnBuildParamsFiles, btnSyncTime, btnBook, btnAbout, cmsPlazas, btnRBLogin, btnRBLogout, btnRBExit, btnRing, skinRibbonGalleryBarItem1, skinRibbonGalleryBarItem2, barEditItem2, chkServerStatus, txtMsg, btnSend, btnUpgrade, lblPath, tsBlackListPlate, btnTest, menuVoiceList, tsLvSeTongDao, skinDropDownButtonItem1, btnLanespecial, tsLanespecial, tsOnly6769, barToggleSwitchItem1, barToggleSwitchItem2 });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, txtStatus, btnBuildParamsFiles, btnSyncTime, btnBook, btnAbout, cmsPlazas, btnRBLogin, btnRBLogout, btnRBExit, btnRing, skinRibbonGalleryBarItem1, skinRibbonGalleryBarItem2, barEditItem2, chkServerStatus, txtMsg, btnSend, btnUpgrade, lblPath, tsBlackListPlate, btnTest, menuVoiceList, tsLvSeTongDao, skinDropDownButtonItem1, btnLanespecial, tsLanespecial, tsOnly6769, barToggleSwitchItem1, barToggleSwitchItem2, btnVnc });
             ribbon.Location = new System.Drawing.Point(0, 0);
             ribbon.Margin = new System.Windows.Forms.Padding(4);
-            ribbon.MaxItemId = 66;
+            ribbon.MaxItemId = 67;
             ribbon.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             ribbon.Name = "ribbon";
             ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage3 });
@@ -450,6 +451,14 @@ namespace Uixe.Watcher
             barToggleSwitchItem2.Id = 65;
             barToggleSwitchItem2.Name = "barToggleSwitchItem2";
             // 
+            // btnVnc
+            // 
+            btnVnc.Caption = "VNC";
+            btnVnc.Id = 66;
+            btnVnc.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btnVnc.ImageOptions.SvgImage");
+            btnVnc.Name = "btnVnc";
+            btnVnc.ItemClick += btnVnc_ItemClick;
+            // 
             // ribbonPage1
             // 
             ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup2 });
@@ -459,6 +468,7 @@ namespace Uixe.Watcher
             // 
             // ribbonPageGroup2
             // 
+            ribbonPageGroup2.ItemLinks.Add(btnVnc);
             ribbonPageGroup2.Name = "ribbonPageGroup2";
             ribbonPageGroup2.Text = "操作";
             // 
@@ -891,6 +901,7 @@ namespace Uixe.Watcher
         private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private System.Windows.Forms.BindingSource appSettingsBindingSource;
+        private DevExpress.XtraBars.BarButtonItem btnVnc;
     }
 }
 

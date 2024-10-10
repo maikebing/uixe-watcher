@@ -49,6 +49,9 @@
     <Compile Update="Controls\MessageView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Controls\VNCViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Controls\XtraTabbedMdiManagerEX.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -129,6 +132,9 @@
     </Compile>
     <Compile Update="WinForms\frmSplashScreen.Designer.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WinForms\frmVNCViewer.cs">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
