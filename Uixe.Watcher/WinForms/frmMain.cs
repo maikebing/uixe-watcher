@@ -142,7 +142,7 @@ namespace Uixe.Watcher
                
                 this.Invoke(() =>
                 {
-                    this.Text = $"{(who?.Name??"(none)")}远程值守";
+                    this.Text = $"{(who?.Name??"(none)")}{GetPlazaTypeName(who.PlazaType)}";
                 
                         wait.SetDescription($"正在加载{(who?.Name ?? "(none)")}!");
                         LoadPlaza(who);
@@ -153,6 +153,28 @@ namespace Uixe.Watcher
             {
                 Invoke(() => wait?.Close());
             });
+        }
+        public string GetPlazaTypeName(PlazaType type)
+        {
+            var name = "";
+            switch (type)
+            {
+                case PlazaType.ProvCenter:
+                    name = "省中心收费监控";
+                    break;
+                case  PlazaType.BranchCenter:
+                    name = "分中心收费监控";
+                    break;
+                case PlazaType.Supervisor:
+                    name = "集约化中心收费监控";
+                    break;
+                case  PlazaType.Plaza:
+                case  PlazaType.None:
+                default:
+                    name = "站级收费监控";
+                    break;
+            }
+            return name;
         }
 
         public void LoadPlaza(T_Boss tb)
