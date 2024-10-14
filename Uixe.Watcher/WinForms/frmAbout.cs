@@ -2,6 +2,7 @@
 using System;
 using System.Reflection;
 using System.Windows.Forms;
+using Uixe.Watcher.Uitls;
 
 namespace Uixe.Watcher
 {
@@ -15,13 +16,13 @@ namespace Uixe.Watcher
             //  也可以通过以下方法更改应用程序的程序集信息设置:
             //  - 项目->属性->应用程序->程序集信息
             //  - AssemblyInfo.cs
-       
+
             this.Text = String.Format("关于 {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("版本 {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text =   AssemblyDescription + "\r\n" + AssemblyInformationalVersion;
+            this.textBoxDescription.Text = AssemblyDescription + "\r\n" + AssemblyInformationalVersion;
         }
 
         #region 程序集属性访问器
@@ -50,7 +51,12 @@ namespace Uixe.Watcher
         {
             get
             {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                var version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                if (ApplicationDeployment.IsNetworkDeployed)
+                {
+                    version = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                }
+                return version;
             }
         }
 
@@ -126,12 +132,10 @@ namespace Uixe.Watcher
 
         #endregion 程序集属性访问器
 
-        private void textBoxDescription_MouseDoubleClick(object sender, MouseEventArgs e)
+     
+        private void okButton_Click(object sender, EventArgs e)
         {
-        }
-
-        private void logoPictureBox_Click(object sender, EventArgs e)
-        {
+            this.Close();
         }
     }
 }

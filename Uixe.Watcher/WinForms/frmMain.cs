@@ -205,7 +205,6 @@ namespace Uixe.Watcher
         {
             frmAbout f = new frmAbout();
             f.Show(this);
-            f.Dispose();
         }
 
         private void btnLogin_ItemClick(object sender, ItemClickEventArgs e)

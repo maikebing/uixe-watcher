@@ -80,7 +80,6 @@
             logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             logoPictureBox.TabIndex = 12;
             logoPictureBox.TabStop = false;
-            logoPictureBox.Click += logoPictureBox_Click;
             // 
             // labelProductName
             // 
@@ -139,7 +138,6 @@
             textBoxDescription.Properties.ReadOnly = true;
             textBoxDescription.Size = new System.Drawing.Size(338, 131);
             textBoxDescription.TabIndex = 25;
-            textBoxDescription.MouseDoubleClick += textBoxDescription_MouseDoubleClick;
             // 
             // okButton
             // 
@@ -151,6 +149,7 @@
             okButton.Size = new System.Drawing.Size(94, 36);
             okButton.TabIndex = 26;
             okButton.Text = "确定(&O)";
+            okButton.Click += okButton_Click;
             // 
             // labelControl1
             // 
@@ -177,8 +176,8 @@
             Name = "frmAbout";
             Padding = new System.Windows.Forms.Padding(10);
             ShowInTaskbar = false;
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            Text = "frmAbout";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "关于";
             tableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)logoPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)textBoxDescription.Properties).EndInit();
