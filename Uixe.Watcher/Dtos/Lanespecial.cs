@@ -232,6 +232,18 @@ namespace Uixe.Watcher.Dtos
        public const int SPECIAL_CODE_Backing_Coil = 201;//线圈倒车
        public const int SPECIAL_CODE_Change_Lane = 202;//换道
        public const int SPECIAL_CODE_NotFound_OBU = 203;//未检测到OBU
+
+
+
+        //用于闯道车辆的特情 
+        public const int SPECIAL_CODE_FeeEvasion = 220;//未知原因闯关
+      public const int SPECIAL_CODE_FeeEvasion_REVERSING = 221;//倒车原因闯关
+        public const int SPECIAL_CODE_FeeEvasion_WOODTRUCK = 222;//长车原因闯关
+        public const int SPECIAL_CODE_FeeEvasion_VIOLATION = 223;//一般违章原因闯关
+        public const int SPECIAL_CODE_FeeEvasion_ALARMWITHOUTREASON = 224;//误报警原因闯关
+        public const int SPECIAL_CODE_FeeEvasion_USERINHURRY = 225;//用户匆忙原因闯关
+        public const int SPECIAL_CODE_FeeEvasion_TOWINGVEHICING = 226;//被拖车原因闯关
+
         static Dictionary<int, string> pairs = null;
         public static Dictionary<int, string> lanespecal 
         {
@@ -342,7 +354,16 @@ namespace Uixe.Watcher.Dtos
                     pairs[SPECIAL_CODE_Backing_Coil] = "线圈倒车";
                     pairs[SPECIAL_CODE_Change_Lane] = "换道";
                     pairs[SPECIAL_CODE_NotFound_OBU] = "未检测到OBU";
-                }
+                    pairs[SPECIAL_CODE_FeeEvasion] = "未知原因闯关";
+                    pairs[SPECIAL_CODE_FeeEvasion_REVERSING] = "倒车原因闯关";
+                    pairs[SPECIAL_CODE_FeeEvasion_WOODTRUCK] = "长车原因闯关";
+                    pairs[SPECIAL_CODE_FeeEvasion_VIOLATION] = "一般违章原因闯关";
+                    pairs[SPECIAL_CODE_FeeEvasion_ALARMWITHOUTREASON] = "误报警原因闯关";
+                    pairs[SPECIAL_CODE_FeeEvasion_USERINHURRY] = "用户匆忙原因闯关";
+                    pairs[SPECIAL_CODE_FeeEvasion_TOWINGVEHICING] = "被拖车原因闯关";
+
+
+    }
                 return pairs;
             }
 

@@ -6,6 +6,7 @@ using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Ring;
 using Uixe.Watcher.Uitls;
+using WhoIamDtos;
 
 namespace Uixe.Watcher.TCO
 {
@@ -24,36 +25,9 @@ namespace Uixe.Watcher.TCO
                 XtraMessageBox.Show(ex.Message);
             }
         }
-        public static void ShowTCOInfo(this frmPlaza form, MsgWeightTCOCALL msg)
-        {
-            form.Invoke(() =>
-            {
-                if (form.WeightTCOCall == null || form.WeightTCOCall.IsDisposed || !form.WeightTCOCall.IsHandleCreated)
-                {
-                    var plaza=form.GetPlaza($"650{msg.Network}{msg.Plaza}");
-                    form.WeightTCOCall = new frmWeightTCOCall(plaza, form._runtimeSetting, form.settings);
-                    form.WeightTCOCall.LoadInfo();
-                    form.WeightTCOCall.Hide();
-                }
-                form.WeightTCOCall.ShowTCOMsg(msg);
+       
 
-            });
-            Task.Run(PlayUitls.PlayRing);
-        }
-
-
-        public static void ShowTCOInfo(this frmPlaza form, TCOCall call)
-        {
-            form.Invoke(() =>
-            {
-                if (form._tcocall == null || form._tcocall.IsDisposed || !form._tcocall.IsHandleCreated)
-                {
-                    form._tcocall = new frmShowTCOCall(form, call);
-                }
-                form._tcocall.Show();
-                Task.Run(PlayUitls.PlayRing);
-            });
-        }
+ 
 
 
         public static void CloseTCOCall(this frmPlaza form)

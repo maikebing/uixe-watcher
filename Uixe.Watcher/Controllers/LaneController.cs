@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevExpress.Utils.Drawing.Helpers;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -6,9 +7,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
+using Uixe.Watcher.Ring;
 using Uixe.Watcher.TCO;
+using static DevExpress.Xpo.DB.DataStoreLongrunnersWatch;
 namespace Uixe.Watcher.Controllers
 {
     [ApiController]
@@ -59,7 +63,23 @@ namespace Uixe.Watcher.Controllers
                         var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
                         if (frm != null)
                         {
-                            frm?.ShowTCOInfo(msgWeight);
+                            frm.Invoke(() =>
+                            {
+                                var tco = _cache.GetOrCreate($"{nameof(frmWeightTCOCall)}_{plazaid}", c =>
+                                {
+                                    var wtco= new frmWeightTCOCall(frm.GetPlaza(plazaid), frm._runtimeSetting, frm.settings);
+                                    wtco.LoadInfo();
+                                    wtco.Hide();
+                                    return wtco;
+                                });
+                                tco.ShowTCOMsg(msgWeight);
+
+                            });
+                            Task.Run(PlayUitls.PlayRing);
+                        }
+                        else
+                        {
+                            _logger.LogWarning($"没有找到{plazaid}的收费站ID");
                         }
                     }
                     catch (Exception ex)
@@ -87,7 +107,20 @@ namespace Uixe.Watcher.Controllers
                 await Task.Run(() =>
                 {
                     var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
-                    frm?.ShowTCOInfo(msg);
+                    if (frm != null)
+                    {
+                        frm.Invoke(() =>
+                        {
+                            var tco = _cache.GetOrCreate<frmShowTCOCall>($"{nameof(frmShowTCOCall)}_{plazaid}", c => new frmShowTCOCall(frm, frm.GetPlaza(plazaid)));
+                            tco.TCOCallxxx = msg;
+                            tco.Show();
+                            Task.Run(PlayUitls.PlayRing);
+                        });
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"没有找到{plazaid}的收费站ID");
+                    }
                 });
                 return Ok(new ApiResult(ApiCode.OK, "OK"));
             }

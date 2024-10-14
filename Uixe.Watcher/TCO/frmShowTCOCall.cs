@@ -22,13 +22,14 @@ namespace Uixe.Watcher
         internal RuntimeSetting _runtimeSetting;
         private readonly ILogger _logger;
         private readonly IMemoryCache _cache;
-        TCOCall TCOCallxxx;
-        public frmShowTCOCall(frmPlaza owner, TCOCall call) : this()
+        public TCOCall TCOCallxxx { get; set; }
+       
+        public frmShowTCOCall(frmPlaza owner, T_Plaza plaza) : this()
         {
-            TCOCallxxx = call;
+            
             if (this.DesignMode == false  &&  this.Disposing == false)
             {
-                _plaza = owner.GetPlaza(call.PlazaId);
+                _plaza = plaza;
                 _runtimeSetting = owner._runtimeSetting;
                 _logger = owner._logger;
                 _cache = owner._cache;

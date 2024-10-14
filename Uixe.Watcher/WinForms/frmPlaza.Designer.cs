@@ -710,7 +710,7 @@ namespace Uixe.Watcher
             lanView.Location = new System.Drawing.Point(4, 4);
             lanView.Margin = new System.Windows.Forms.Padding(4);
             lanView.Name = "lanView";
-            lanView.Size = new System.Drawing.Size(1625, 394);
+            lanView.Size = new System.Drawing.Size(1625, 340);
             lanView.TabIndex = 0;
             // 
             // barButtonItem3

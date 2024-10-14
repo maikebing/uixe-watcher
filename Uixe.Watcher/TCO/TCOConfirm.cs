@@ -161,7 +161,7 @@ namespace Uixe.Watcher
                 chkEntryPlaza.Checked = false;
                 chkCarKind.Checked = false;
 
-                tCOCallBindingSource.DataSource = null;
+                tCOCallBindingSource.DataSource = new TCOCall();
                 tCOCallBindingSource.Clear();
                 pLazaBindingSource.Clear();
                 pLazaBindingSource.Position = -1;

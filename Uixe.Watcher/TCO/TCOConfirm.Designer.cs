@@ -536,7 +536,7 @@ namespace Uixe.Watcher
             groupControl4.Controls.Add(labelControl11);
             groupControl4.Controls.Add(labelControl12);
             groupControl4.Controls.Add(lableContext);
-            groupControl4.DataBindings.Add(new System.Windows.Forms.Binding("Text", tCOCallBindingSource, "MsgTitle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            groupControl4.DataBindings.Add(new System.Windows.Forms.Binding("Text", tCOCallBindingSource, "MsgTitle", true));
             groupControl4.Location = new System.Drawing.Point(4, 2);
             groupControl4.Name = "groupControl4";
             groupControl4.Size = new System.Drawing.Size(715, 56);
@@ -831,9 +831,9 @@ namespace Uixe.Watcher
             tcoPictureBox1.Image = null;
             tcoPictureBox1.ImageLocation = "";
             tcoPictureBox1.Location = new System.Drawing.Point(0, 0);
-            tcoPictureBox1.Margin = new System.Windows.Forms.Padding(28, 184, 28, 184);
+            tcoPictureBox1.Margin = new System.Windows.Forms.Padding(28, 197, 28, 197);
             tcoPictureBox1.Name = "tcoPictureBox1";
-            tcoPictureBox1.Size = new System.Drawing.Size(354, 312);
+            tcoPictureBox1.Size = new System.Drawing.Size(354, 334);
             tcoPictureBox1.TabIndex = 0;
             // 
             // TCOConfirm
