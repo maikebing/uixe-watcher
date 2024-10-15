@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using DevExpress.XtraSpellChecker.Parser;
+using Newtonsoft.Json.Serialization;
 using RestSharp;
+using System;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Uixe.Watcher.Dtos;
@@ -11,7 +13,7 @@ namespace Uixe.Watcher.Uitls
 
         public static RestClient  CreateClient(this T_Lane lane)
         {
-            var  client = new RestClient( new RestClientOptions($"http://{lane.Ip}:10000/") {  FollowRedirects=false });
+            var  client = new RestClient( new RestClientOptions($"http://{lane.Ip}:10000/") {  FollowRedirects=false , Timeout=TimeSpan.FromSeconds(10)});
             client.AddDefaultHeader(KnownHeaders.Accept, "*/*");
             client.AddDefaultHeader(KnownHeaders.ContentType, "application/json");
             return client;
@@ -34,12 +36,15 @@ namespace Uixe.Watcher.Uitls
 
         public static async Task<ApiResult> TCO_Confirm(this T_Lane lane, MSG_TCOConfirm confirm)
         {
-            var client = lane.CreateClient();
-            var request = new RestRequest("/api/tco/confirm/", Method.Post);
-            request.AddBody(Newtonsoft.Json.JsonConvert.SerializeObject(confirm, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new DefaultContractResolver() }), "application/json");
-            var response = await client.PostAsync(request);
-            var apiResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResult>(response.Content);
-            return apiResult;
+            using (var client = lane.CreateClient())
+            {
+                var request = new RestRequest("/api/tco/confirm/", Method.Post);
+                request.AddBody(Newtonsoft.Json.JsonConvert.SerializeObject(confirm, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new DefaultContractResolver() }), "application/json");
+                var response = await client.PostAsync(request);
+                var apiResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResult>(response.Content);
+                client.Dispose();
+                return apiResult;
+            }
         }
  
     }

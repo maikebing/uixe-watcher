@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Uixe.Watcher.Dtos;
@@ -154,20 +155,16 @@ namespace Uixe.Watcher
             {
                 tcoPictureBox1.Image = null;
                 chkTimeoutCar.Checked = false;
-
                 chkIsU.Checked = false;
                 chkCarType.Checked = false;
                 chkCarPlate.Checked = false;
                 chkEntryPlaza.Checked = false;
                 chkCarKind.Checked = false;
-
                 tCOCallBindingSource.DataSource = new TCOCall();
-                tCOCallBindingSource.Clear();
-                pLazaBindingSource.Clear();
+                pLazaBindingSource.DataSource= new List<ProvPlazaInfo>();
                 pLazaBindingSource.Position = -1;
                 pLazaBindingSource.ResetBindings(false);
                 pLazaBindingSource.ResetCurrentItem();
-
                 tCOCallBindingSource.ResetBindings(false);
                 tCOCallBindingSource.ResetCurrentItem();
                 gcCardInfo.Enabled = true;
@@ -200,12 +197,12 @@ namespace Uixe.Watcher
                 UixeClient client = new UixeClient();
                 if (isfirst)
                 {
-                    var pc = await _cache.GetOrCreate($"{Plaza.Ip}{tce.EntryStationID}", async c => await client.GetProvByPlaza(Plaza.Ip, tce.EntryStationID));
+                    var pc = await _cache.GetOrCreate($"{Plaza.Ip}|{tce.EntryStationID}",  async c => await client.GetProvByPlaza(Plaza.Ip, tce.EntryStationID));
                     cbxProv.EditValue = int.Parse(pc);
                 }
                 var prov = cbxProv.GetSelectedDataRow() as ProvCode;
 
-                var ppi = await _cache.GetOrCreate($"{Plaza.Ip}{prov?.provId ?? 65}", async c => await client.GetProvPlazaInfo(Plaza.Ip, $"{prov?.provId ?? 65}"));
+                var ppi =  await _cache.GetOrCreate($"{Plaza.Ip}|{prov?.provId ?? 65}", async c => await client.GetProvPlazaInfo(Plaza.Ip, $"{prov?.provId ?? 65}"));
                 if (ppi != null)
                 {
                     pLazaBindingSource.DataSource = ppi;
@@ -259,6 +256,7 @@ namespace Uixe.Watcher
                 AUS.EntryNetNo = txt.Substring(0, 2);
                 AUS.EntryPlazaNo = txt.Substring(2, 2);
             }
+            AUS.DifType = AUS.CarType != tc.VehicleType;
             AUS.DifPlaza = _tce.EntryStationID != tc.EntryStationID;
             AUS.DifEntryDateTime = _tce.EntryDHM != tc.EntryDHM;
             AUS.DifPlate = _tce.EntryPlate != tc.EntryPlate;

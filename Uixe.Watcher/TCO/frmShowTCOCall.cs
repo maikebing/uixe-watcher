@@ -3,6 +3,7 @@ using DevExpress.XtraTab;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,7 +28,7 @@ namespace Uixe.Watcher
         public frmShowTCOCall(frmPlaza owner, T_Plaza plaza) : this()
         {
             
-            if (this.DesignMode == false  &&  this.Disposing == false)
+            if (!DesignMode && !Disposing)
             {
                 _plaza = plaza;
                 _runtimeSetting = owner._runtimeSetting;
@@ -114,8 +115,8 @@ namespace Uixe.Watcher
             {
                 if (this.tsTabs.SelectedTabPage.Tag is TCOConfirm tms && tms.CanDo)
                 {
-                    tms.btnOK.Click -= new EventHandler(BtnOK_Click);
-                    tms.btnCancel.Click -= new EventHandler(btnCancel_Click);
+                    tms.btnOK.Click -= BtnOK_Click;
+                    tms.btnCancel.Click -= btnCancel_Click;
                     Submit(false);
                     RemoveNowTab();
                 }
@@ -124,30 +125,78 @@ namespace Uixe.Watcher
 
         private void BtnOK_Click(object sender, EventArgs e)
         {
-            if (tsTabs.SelectedTabPage == null) return;
-            if (sender != null && sender.GetType() == typeof(SimpleButton) && ((SimpleButton)sender).Parent != null && ((SimpleButton)sender).Parent.Name == tsTabs.SelectedTabPage.Name)
+           if (tsTabs.SelectedTabPage == null)
+            {
+                _logger.LogWarning($"选择的选项卡为空，无法继续。");
+            }
+           else if (sender != null && sender.GetType() == typeof(SimpleButton) && ((SimpleButton)sender).Parent != null && ((SimpleButton)sender).Parent.Name == tsTabs.SelectedTabPage.Name)
             {
                 TCOConfirm tms = this.tsTabs.SelectedTabPage.Tag as TCOConfirm;
-                if (!tms.CheckPlazaInfo())
+                if (tms != null)
                 {
-                    tms.ShowPlazaPopup();
+                    if (!tms.CheckPlazaInfo())
+                    {
+                        _logger.LogWarning($"收费站没有选择， 需要选择。 ");
+                        tms.ShowPlazaPopup();
+                    }
+                    else
+                    {
+                        _logger.LogInformation($"开始提交确认 ");
+                        tms.btnCancel.Enabled = false;
+                        tms.btnOK.Enabled = false;
+                        var result = Submit(true);
+                        if (result)
+                        {
+                            tms.btnOK.Click -= BtnOK_Click;
+                            tms.btnCancel.Click -= btnCancel_Click;
+                            RemoveNowTab();
+                        }
+                        else
+                        {
+                            tms.btnCancel.Enabled = true;
+                            tms.btnOK.Enabled = true;
+                        }
+
+                    }
                 }
                 else
                 {
-                    tms.btnOK.Click -= new EventHandler(BtnOK_Click);
-                    tms.btnCancel.Click -= new EventHandler(btnCancel_Click);
-                    Submit(true);
-                    RemoveNowTab();
+                    _logger.LogWarning($"提交确认时TAG无法转换为TCOConfirm ");
                 }
+            }
+           else
+            {
+                _logger.LogWarning($"选择的选项卡为{tsTabs.SelectedTabPage.Name}条件不一致，无法继续。");
             }
         }
 
-        private void Submit(bool ok)
+        private bool Submit(bool ok)
         {
+            bool result = false;
             if (this.tsTabs.SelectedTabPage.Tag is TCOConfirm tms)
             {
-                _ = tms.Lane.TCO_Confirm(tms.GetAUS(ok));
+                var aus = tms.GetAUS(ok);
+                var task= Task.Run(async () =>
+                {
+                    try
+                    {
+                        var apiResult    = await tms.Lane.TCO_Confirm(aus);
+                        _logger.LogInformation($"提交了{JsonConvert.SerializeObject(aus)}, 返回{JsonConvert.SerializeObject(apiResult)}");
+                        result = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex,$"提交失败");
+                    }
+                });
+                task.Wait(TimeSpan.FromSeconds(10));
+                _logger.LogInformation($"提交任务IsCompletedSuccessfully?{task.IsCompletedSuccessfully} IsCompleted:{task.IsCompleted} IsFaulted:{task.IsFaulted} IsCanceled:{task.IsCanceled} Exception:{task.Exception?.InnerException?.Message}");
             }
+            else
+            {
+                _logger.LogWarning($"提交确认时TAG无法转换为TCOConfirm ");
+            }
+            return result;
         }
 
         private void RemoveNowTab()
