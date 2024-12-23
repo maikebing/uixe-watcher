@@ -113,7 +113,7 @@ namespace Uixe.Watcher
              });
 
             _logger.LogInformation("开始加载窗体....");
-            await TollInfo.GuessMyInfo().ContinueWith(t =>
+            await TollInfo.GuessMyInfo(_setting.LaneBossServer).ContinueWith(t =>
             {
                 var who = _setting.whoiam;
                 if (!t.IsFaulted && !t.IsCanceled)

@@ -168,13 +168,14 @@
             ClientSize = new System.Drawing.Size(536, 326);
             Controls.Add(labelControl1);
             Controls.Add(tableLayoutPanel);
+            Font = new System.Drawing.Font("Segoe UI", 9F);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             IconOptions.ShowIcon = false;
             Margin = new System.Windows.Forms.Padding(4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmAbout";
-            Padding = new System.Windows.Forms.Padding(10);
+            Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
             ShowInTaskbar = false;
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "关于";

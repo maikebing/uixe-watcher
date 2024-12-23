@@ -27,6 +27,6 @@ namespace Uixe.Watcher
         public bool Lanespecial { get; set; } = true;
         public bool CanPlayVideo { get; set; } = true;
         public bool laneVideoMute { get; set; } = false;
-
+        public string LaneBossServer { get;  set; }
     }
 }
