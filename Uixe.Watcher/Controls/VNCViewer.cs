@@ -18,9 +18,13 @@ namespace Uixe.Watcher.Controls
         {
             InitializeComponent();
         }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string IPAddress { get; set; }
-        public int Port { get; set; }   
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int Port { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Password { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Caption { get; set; }
 
 

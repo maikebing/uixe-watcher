@@ -23,6 +23,7 @@
 using DevExpress.XtraEditors.Registrator;
 using DevExpress.XtraEditors.Repository;
 using System;
+using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -95,7 +96,7 @@ namespace Uixe.Watcher.Controls
         }
 
         private Type _controlType;
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Type ControlType
         {
             get { return _controlType; }

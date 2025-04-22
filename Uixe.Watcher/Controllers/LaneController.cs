@@ -210,7 +210,14 @@ namespace Uixe.Watcher.Controllers
                                 frm?.Invoke(() => frm.Alert(msg.Title, msg.Context));
                                 if (frm.settings?.laneVideoMute == false)
                                 {
-                                    SpeechUtils.Speecher.SpeakAsync(msg.Title);
+                                    if (int.Parse(msg.MsgT_Lanespecial_Waste.SPECIAL_TYPE) == 175)
+                                    {
+                                        SpeechUtils.Speecher.SpeakAsync(msg.Context);
+                                    }
+                                    else
+                                    {
+                                        SpeechUtils.Speecher.SpeakAsync(msg.Title);
+                                    }
                                 }
                             }
                         }

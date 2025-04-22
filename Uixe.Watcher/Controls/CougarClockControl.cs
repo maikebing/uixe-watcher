@@ -106,7 +106,7 @@ namespace Uixe.Watcher.Controls
             base.OnPropertiesChanged();
             this.RaiseHeightChanged();
         }
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override object EditValue
         {
             get

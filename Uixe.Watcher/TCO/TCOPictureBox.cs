@@ -139,7 +139,7 @@ namespace Uixe.Watcher.Controls
             get { return imageBox1.SizeMode; }
             set { imageBox1.SizeMode = value; }
         }
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string ImageLocation
         {
             get { return pic.ImageLocation; }
@@ -155,7 +155,7 @@ namespace Uixe.Watcher.Controls
                 }
             }
         }
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Image Image
         {
             get { return pic.Image; }

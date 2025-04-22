@@ -200,6 +200,14 @@ namespace Uixe.Watcher.Dtos
         public const int SPECIAL_CODE_PLATE_NOT_MATCH_SPECIAL = 173;//车牌识别和卡内车牌不一致
         public const string SPECIAL_CODE_PLATE_NOT_MATCH_SPECIAL_STR = "车牌识别和卡内车牌不一致";
 
+        public const int SPECIAL_CODE_VEHICLE_TYPE_NOT_MATCH_SPECIAL = 174;//车型轴数不一致
+        public const string SPECIAL_CODE_VEHICLE_TYPE_NOT_MATCH_SPECIAL_STR = "车型轴数不一致";
+
+
+        public const int SPECIAL_CODE_HighFrequencyVehicle_SPECIAL = 175;//高频车
+        public const string SPECIAL_CODE_HighFrequencyVehicle_SPECIAL_STR = "高频车";
+
+
         /*专用于省内的SPECIAL_TYPE的特情类型定义,1-99*/
         public const int SPECIAL_TYPE_PRO_ONLINE_FAILD = 49;//省内在线计费失败
         public const int SPECIAL_TYPE_PRO_ONLINE_FEE0 = 50;//省内在线计费金额为0
@@ -214,7 +222,7 @@ namespace Uixe.Watcher.Dtos
         public const int SPECIAL_TYPE_CPC_CARDFILES_OK = 59;//CPC卡文件计费正常
         public const int SPECIAL_TYPE_CPC_MINGUATEE_ERROR = 60;//兜底计费失败
 
-        public const string  SPECIAL_TYPE_PRO_ONLINE_FAILD_STR = "省内在线计费失败";
+        public const string SPECIAL_TYPE_PRO_ONLINE_FAILD_STR = "省内在线计费失败";
         public const string SPECIAL_TYPE_PRO_ONLINE_FEE0_STR = "省内在线计费金额为0";
         public const string SPECIAL_TYPE_PRO_ONLINE_SMALL_STR = "省内在线计费金额小于兜底费额";
         public const string SPECIAL_TYPE_PRO_ONLINE_BIG_STR = "省内在线计费金额大于兜底的倍率";
@@ -229,15 +237,15 @@ namespace Uixe.Watcher.Dtos
 
 
         public const int SPECIAL_CODE_Backing_Weight = 200;//秤台倒车
-       public const int SPECIAL_CODE_Backing_Coil = 201;//线圈倒车
-       public const int SPECIAL_CODE_Change_Lane = 202;//换道
-       public const int SPECIAL_CODE_NotFound_OBU = 203;//未检测到OBU
+        public const int SPECIAL_CODE_Backing_Coil = 201;//线圈倒车
+        public const int SPECIAL_CODE_Change_Lane = 202;//换道
+        public const int SPECIAL_CODE_NotFound_OBU = 203;//未检测到OBU
 
 
 
         //用于闯道车辆的特情 
         public const int SPECIAL_CODE_FeeEvasion = 220;//未知原因闯关
-      public const int SPECIAL_CODE_FeeEvasion_REVERSING = 221;//倒车原因闯关
+        public const int SPECIAL_CODE_FeeEvasion_REVERSING = 221;//倒车原因闯关
         public const int SPECIAL_CODE_FeeEvasion_WOODTRUCK = 222;//长车原因闯关
         public const int SPECIAL_CODE_FeeEvasion_VIOLATION = 223;//一般违章原因闯关
         public const int SPECIAL_CODE_FeeEvasion_ALARMWITHOUTREASON = 224;//误报警原因闯关
@@ -245,13 +253,13 @@ namespace Uixe.Watcher.Dtos
         public const int SPECIAL_CODE_FeeEvasion_TOWINGVEHICING = 226;//被拖车原因闯关
 
         static Dictionary<int, string> pairs = null;
-        public static Dictionary<int, string> lanespecal 
+        public static Dictionary<int, string> lanespecal
         {
             get
             {
                 if (pairs == null)
                 {
-                    pairs=new Dictionary<int, string>(175);
+                    pairs = new Dictionary<int, string>(175);
                     pairs[SPECIAL_CODE_OBU_POWER_LOW] = SPECIAL_CODE_OBU_POWER_LOW_STR;
                     pairs[SPECIAL_CODE_OBU_REMOVAL] = SPECIAL_CODE_OBU_REMOVAL_STR;
                     pairs[SPECIAL_CODE_OBU_EXPIRED] = SPECIAL_CODE_OBU_EXPIRED_STR;
@@ -361,13 +369,15 @@ namespace Uixe.Watcher.Dtos
                     pairs[SPECIAL_CODE_FeeEvasion_ALARMWITHOUTREASON] = "误报警原因闯关";
                     pairs[SPECIAL_CODE_FeeEvasion_USERINHURRY] = "用户匆忙原因闯关";
                     pairs[SPECIAL_CODE_FeeEvasion_TOWINGVEHICING] = "被拖车原因闯关";
+                    pairs[SPECIAL_CODE_VEHICLE_TYPE_NOT_MATCH_SPECIAL] = SPECIAL_CODE_VEHICLE_TYPE_NOT_MATCH_SPECIAL_STR;
+                    pairs[SPECIAL_CODE_HighFrequencyVehicle_SPECIAL] = SPECIAL_CODE_HighFrequencyVehicle_SPECIAL_STR;
 
-
+ 
     }
                 return pairs;
             }
 
-        } 
+        }
 
         /// <summary>
         /// 

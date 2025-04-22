@@ -26,6 +26,7 @@ using Uixe.Watcher.TCO;
 using Uixe.Watcher.Uitls;
 using Uixe.Watcher.WinForms;
 using WhoIamDtos;
+using System.ComponentModel;
 namespace Uixe.Watcher
 {
     public partial class frmPlaza : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -54,16 +55,18 @@ namespace Uixe.Watcher
         {
             InitializeComponent();
         }
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public T_Boss Boss { get; set; }
 
         public frmShowTCOCall _tcocall;
         public frmWeightTCOCall WeightTCOCall;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public AppSettings settings { get; set; }
         public T_Plaza GetPlaza(string id)
         {
             return Boss.Plazas.FirstOrDefault(x => x.Id == id);
         }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public RuntimeSetting _runtimeSetting { get; set; }
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -241,7 +244,9 @@ namespace Uixe.Watcher
         {
             Close();
         }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool EnableLanespecialSpeeker { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Onley6769 { get; set; }
 
         public void Alert(string caption, string text)

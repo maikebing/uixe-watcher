@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Uixe.Watcher.Controls
@@ -14,7 +15,7 @@ namespace Uixe.Watcher.Controls
         #region IEditValue Members
 
         private bool EditValueEventBlock = false;
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object EditValue
         {
             get { return (object)digitalGauge1.Text; }

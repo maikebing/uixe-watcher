@@ -43,10 +43,11 @@ namespace Uixe.Watcher.Controls
         private void KeyButton_KeyPress(object sender, KeyPressEventArgs e)
         {
         }
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string IPAddress { get; set; }
-   
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string  LaneToken { get;  set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public RestClient client { get; set; }
         private async Task SendKeyMessageAsync(int message, int wParam, long lParam)
         {

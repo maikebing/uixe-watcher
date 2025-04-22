@@ -8,6 +8,7 @@ using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Extensions;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Uitls;
+using System.ComponentModel;
 
 namespace Uixe.Watcher
 {
@@ -21,10 +22,15 @@ namespace Uixe.Watcher
 
         private ILogger _logger;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TCOCall TCE { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool CanDo { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public T_Lane Lane { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public T_Plaza Plaza { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public frmPlaza Owner { get; set; }
         public IMemoryCache _cache => Owner._cache;
         public bool CheckPlazaInfo()

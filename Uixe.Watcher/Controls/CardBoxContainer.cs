@@ -22,6 +22,7 @@
 
 using DevExpress.XtraEditors;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 
@@ -35,9 +36,9 @@ namespace Uixe.Watcher.Controls
         {
             InitializeComponent();
         }
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public CardBoxInfo CardBoxInfo { get; set; } = null;
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object EditValue
         {
             get { return (object)(CardBoxInfo); }

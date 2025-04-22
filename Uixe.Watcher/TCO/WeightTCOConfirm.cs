@@ -4,6 +4,7 @@ using System.Speech.Synthesis;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Extensions;
 using Uixe.Watcher.Msg;
+using System.ComponentModel;
 
 namespace Uixe.Watcher.TCO
 {
@@ -15,7 +16,9 @@ namespace Uixe.Watcher.TCO
             ItemForText.Text = " 监 \n 控 \n 内 \n 容 ";
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public MsgWeightTCOCALL TCE { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool CanDo { get; set; }
  
   
@@ -50,9 +53,13 @@ namespace Uixe.Watcher.TCO
             return r;
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public T_Lane Lane { get;  set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public T_Plaza Plaza { get; set; }
-        public  frmWeightTCOCall  Owner { get;  set; }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        internal  frmWeightTCOCall  Owner { get;  set; }
 
         public void Show(MsgWeightTCOCALL tce)
         {

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace Uixe.Watcher
         internal RuntimeSetting _runtimeSetting;
         private readonly ILogger _logger;
         private readonly IMemoryCache _cache;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TCOCall TCOCallxxx { get; set; }
        
         public frmShowTCOCall(frmPlaza owner, T_Plaza plaza) : this()

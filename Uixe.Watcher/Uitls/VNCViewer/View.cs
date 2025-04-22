@@ -22,6 +22,7 @@
 // the authors on vnc@uk.research.att.com for information on obtaining it.
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Threading;
@@ -290,7 +291,7 @@ namespace Vnc.Viewer
             x = x16;
             y = y16;
         }
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color this[UInt16 x, UInt16 y]
         {
             get
