@@ -65,10 +65,11 @@ namespace Uixe.Watcher.Jobs
                         {
                             passwords.Insert(0, password);
                         }
+                        if (string.IsNullOrEmpty(lan.UserName)) lan.UserName = "root";
                         string msg = "";
                         try
                         {
-                            client = new SshClient(lan.Ip, lan.UserPassword, password);
+                            client = new SshClient(lan.Ip, lan.UserName, password);
                             client.ConnectionInfo.Timeout = TimeSpan.FromSeconds(10);
                             client.Connect();
                             if (!client.IsConnected)
@@ -96,7 +97,7 @@ namespace Uixe.Watcher.Jobs
                             {
                                 try
                                 {
-                                    var clientx = new SshClient(lan.Ip, lan.UserPassword, passwd);
+                                    var clientx = new SshClient(lan.Ip, lan.UserName, passwd);
                                     clientx.ConnectionInfo.Timeout = TimeSpan.FromSeconds(5);
                                     clientx.Connect();
                                     if (clientx.IsConnected)
