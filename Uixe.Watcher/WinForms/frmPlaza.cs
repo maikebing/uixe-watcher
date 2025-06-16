@@ -27,6 +27,7 @@ using Uixe.Watcher.Uitls;
 using Uixe.Watcher.WinForms;
 using WhoIamDtos;
 using System.ComponentModel;
+using Uixe.Watcher.Controllers;
 namespace Uixe.Watcher
 {
     public partial class frmPlaza : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -390,6 +391,18 @@ namespace Uixe.Watcher
         {
             viewer = new frmVNCViewer( Boss   );
             viewer.Show();
+        }
+
+        public void ShowBulktrans(string laneid,  BulklyDto dto)
+        {
+            frmBulktrans fb=new frmBulktrans();
+            var plaza = Boss.Plazas.FirstOrDefault(p => p.Id == $"650{dto.Head.NetNo}{dto.Head.PlazaNo}");
+             var lane = plaza?.Lanes?.FirstOrDefault(l=>l.LaneNo==dto.Head.LaneID);
+            if (plaza!=null && lane != null)
+            {
+                fb.Owner = this;
+                fb.ShowBulktrans(plaza,lane, dto);
+            }
         }
     }//frmMain
 }

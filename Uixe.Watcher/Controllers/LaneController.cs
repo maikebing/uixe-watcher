@@ -17,7 +17,7 @@ namespace Uixe.Watcher.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class LaneController : ControllerBase
+    public partial class LaneController : ControllerBase
     {
 
         private readonly ILogger<LaneController> _logger;
@@ -231,6 +231,31 @@ namespace Uixe.Watcher.Controllers
                 return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
             }
         }
+
+      
+
+        [HttpPost]
+        public async Task<ActionResult<ApiResult>> Bulktrans(string plazaid, BulklyDto dto)
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                    frm.Invoke(() =>
+                    {
+                        string laneid = $"650{dto.Head.NetNo}{dto.Head.PlazaNo}{dto.Head.LaneID}";
+                        frm.ShowBulktrans(laneid, dto);
+                    });
+                });
+                return Ok(new ApiResult(ApiCode.OK, "OK"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+            }
+        }
+
     }
 }
 
