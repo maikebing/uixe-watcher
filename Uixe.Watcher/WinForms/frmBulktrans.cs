@@ -49,7 +49,7 @@ namespace Uixe.Watcher.WinForms
                 StartCall();
                 try
                 {
-                    var result = await _lane.SendMsg<(float vehWeight, int vehAxles)>("toll/bulktrans", new((float)numWeight.Value, (int)numAlex.Value));
+                    var result = await _lane.SendMsg("toll/bulktrans", new LaneBulkTransDto() { vehWeight =(float) numWeight.Value, vehAxles = (int)numAlex.Value });
                     this.Invoke(new Action(() =>
                     {
 

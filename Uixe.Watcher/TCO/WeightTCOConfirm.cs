@@ -107,6 +107,7 @@ namespace Uixe.Watcher.TCO
             }
             catch (Exception ex)
             {
+               
                 //Log.LogException("Show(MsgWeightTCOCALL tce)", tce.ToString(), ex);
             }
         }

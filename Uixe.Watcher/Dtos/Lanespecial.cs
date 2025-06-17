@@ -207,7 +207,8 @@ namespace Uixe.Watcher.Dtos
         public const int SPECIAL_CODE_HighFrequencyVehicle_SPECIAL = 175;//高频车
         public const string SPECIAL_CODE_HighFrequencyVehicle_SPECIAL_STR = "高频车";
 
-
+        public const int SPECIAL_CODE_BULKTRANS_SPECIAL = 176;//大件运输车
+        public const string SPECIAL_CODE_BULKTRANS_SPECIAL_STR = "大件运输车";
         /*专用于省内的SPECIAL_TYPE的特情类型定义,1-99*/
         public const int SPECIAL_TYPE_PRO_ONLINE_FAILD = 49;//省内在线计费失败
         public const int SPECIAL_TYPE_PRO_ONLINE_FEE0 = 50;//省内在线计费金额为0
@@ -259,7 +260,7 @@ namespace Uixe.Watcher.Dtos
             {
                 if (pairs == null)
                 {
-                    pairs = new Dictionary<int, string>(175);
+                    pairs = new Dictionary<int, string>(200);
                     pairs[SPECIAL_CODE_OBU_POWER_LOW] = SPECIAL_CODE_OBU_POWER_LOW_STR;
                     pairs[SPECIAL_CODE_OBU_REMOVAL] = SPECIAL_CODE_OBU_REMOVAL_STR;
                     pairs[SPECIAL_CODE_OBU_EXPIRED] = SPECIAL_CODE_OBU_EXPIRED_STR;
@@ -371,8 +372,10 @@ namespace Uixe.Watcher.Dtos
                     pairs[SPECIAL_CODE_FeeEvasion_TOWINGVEHICING] = "被拖车原因闯关";
                     pairs[SPECIAL_CODE_VEHICLE_TYPE_NOT_MATCH_SPECIAL] = SPECIAL_CODE_VEHICLE_TYPE_NOT_MATCH_SPECIAL_STR;
                     pairs[SPECIAL_CODE_HighFrequencyVehicle_SPECIAL] = SPECIAL_CODE_HighFrequencyVehicle_SPECIAL_STR;
+                    pairs[SPECIAL_CODE_BULKTRANS_SPECIAL] = SPECIAL_CODE_BULKTRANS_SPECIAL_STR;
+                    
 
- 
+
     }
                 return pairs;
             }

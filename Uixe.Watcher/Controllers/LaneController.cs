@@ -239,16 +239,28 @@ namespace Uixe.Watcher.Controllers
         {
             try
             {
-                await Task.Run(() =>
-                {
+               
                     var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
-                    frm.Invoke(() =>
+                if (frm != null)
+                {
+
+                    await Task.Run(() =>
                     {
-                        string laneid = $"650{dto.Head.NetNo}{dto.Head.PlazaNo}{dto.Head.LaneID}";
-                        frm.ShowBulktrans(laneid, dto);
+                        frm.Invoke(() =>
+                        {
+
+                            string laneid = $"650{dto.Head.NetNo}{dto.Head.PlazaNo}{dto.Head.LaneID}";
+                            frm.ShowBulktrans(laneid, dto);
+
+                        });
                     });
-                });
-                return Ok(new ApiResult(ApiCode.OK, "OK"));
+                    return Ok(new ApiResult(ApiCode.NotFound, $"{nameof(frmPlaza)}_{plazaid}"));
+                }
+                else
+                {
+                    return NotFound(new ApiResult(ApiCode.OK, "OK"));
+                }
+                
             }
             catch (Exception)
             {
