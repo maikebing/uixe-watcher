@@ -34,6 +34,7 @@ namespace Uixe.Watcher.WinForms
             numAlex.Value = dto.Alex;
             lARGEWOODSBindingSource.DataSource = dto.LARGEWOODS;
             this.Show();
+            this.Focus();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -45,11 +46,10 @@ namespace Uixe.Watcher.WinForms
         {
             if (_lane != null)
             {
-                btnOk.Enabled = false;
-                btnCancel.Enabled = false;
+                StartCall();
                 try
                 {
-                    var result = await _lane.SendMsg<(float vehWeight, int vehAxles)>("/api/toll/bulktrans", new((float)numWeight.Value, (int)numAlex.Value));
+                    var result = await _lane.SendMsg<(float vehWeight, int vehAxles)>("toll/bulktrans", new((float)numWeight.Value, (int)numAlex.Value));
                     this.Invoke(new Action(() =>
                     {
 
@@ -59,9 +59,8 @@ namespace Uixe.Watcher.WinForms
                         }
                         else
                         {
-                            btnOk.Enabled = false;
-                            btnCancel.Enabled = false;
-                            lblInfo.Text = $"{result.code}-{result.msg}";
+                            StopCall();
+                            mpPorgress.Text = $"{result.code}-{result.msg}";
                         }
                     }));
                 }
@@ -69,9 +68,8 @@ namespace Uixe.Watcher.WinForms
                 {
                     this.Invoke(new Action(() =>
                     {
-                        lblInfo.Text = ex.Message;
-                        btnOk.Enabled = false;
-                        btnCancel.Enabled = false;
+                        mpPorgress.Text = ex.Message;
+                        StopCall();
                     }));
                 }
 
@@ -80,11 +78,25 @@ namespace Uixe.Watcher.WinForms
             {
                 this.Invoke(new Action(() =>
                 {
-                    lblInfo.Text = "车道号为空， 无法下一步。";
-                    btnOk.Enabled = false;
-                    btnCancel.Enabled = false;
+                    mpPorgress.Text = "车道号为空， 无法下一步。";
+                    StopCall();
                 }));
             }
+        }
+
+        private void StopCall()
+        {
+            btnOk.Enabled = true;
+            btnCancel.Enabled = true;
+            mpPorgress.Properties.Stopped = true;
+        }
+
+        private void StartCall()
+        {
+            btnOk.Enabled = false;
+            btnCancel.Enabled = false;
+            mpPorgress.Visible = true;
+            mpPorgress.Properties.Stopped = false;
         }
     }
 }
