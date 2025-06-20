@@ -69,6 +69,7 @@
             tsIsValid = new DevExpress.XtraEditors.ToggleSwitch();
             mpPorgress = new DevExpress.XtraEditors.MarqueeProgressBarControl();
             numAlex = new DevExpress.XtraEditors.SpinEdit();
+            lblTitle = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)dataLayoutControl1).BeginInit();
             dataLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PLATETextEdit.Properties).BeginInit();
@@ -435,7 +436,7 @@
             // 
             // numWeight
             // 
-            numWeight.Location = new System.Drawing.Point(814, 281);
+            numWeight.Location = new System.Drawing.Point(811, 311);
             numWeight.Margin = new System.Windows.Forms.Padding(4);
             numWeight.Name = "numWeight";
             numWeight.Properties.Appearance.Font = new System.Drawing.Font("宋体", 15F);
@@ -458,7 +459,7 @@
             // 
             labelControl1.Appearance.Font = new System.Drawing.Font("宋体", 15F);
             labelControl1.Appearance.Options.UseFont = true;
-            labelControl1.Location = new System.Drawing.Point(715, 284);
+            labelControl1.Location = new System.Drawing.Point(712, 314);
             labelControl1.Margin = new System.Windows.Forms.Padding(4);
             labelControl1.Name = "labelControl1";
             labelControl1.Size = new System.Drawing.Size(60, 20);
@@ -469,7 +470,7 @@
             // 
             labelControl2.Appearance.Font = new System.Drawing.Font("宋体", 15F);
             labelControl2.Appearance.Options.UseFont = true;
-            labelControl2.Location = new System.Drawing.Point(715, 384);
+            labelControl2.Location = new System.Drawing.Point(715, 411);
             labelControl2.Margin = new System.Windows.Forms.Padding(4);
             labelControl2.Name = "labelControl2";
             labelControl2.Size = new System.Drawing.Size(60, 20);
@@ -501,7 +502,7 @@
             // 
             labelControl4.Appearance.Font = new System.Drawing.Font("宋体", 15F);
             labelControl4.Appearance.Options.UseFont = true;
-            labelControl4.Location = new System.Drawing.Point(715, 100);
+            labelControl4.Location = new System.Drawing.Point(715, 158);
             labelControl4.Margin = new System.Windows.Forms.Padding(4);
             labelControl4.Name = "labelControl4";
             labelControl4.Size = new System.Drawing.Size(60, 20);
@@ -512,7 +513,7 @@
             // 
             labelControl5.Appearance.Font = new System.Drawing.Font("宋体", 15F);
             labelControl5.Appearance.Options.UseFont = true;
-            labelControl5.Location = new System.Drawing.Point(675, 192);
+            labelControl5.Location = new System.Drawing.Point(675, 245);
             labelControl5.Margin = new System.Windows.Forms.Padding(4);
             labelControl5.Name = "labelControl5";
             labelControl5.Size = new System.Drawing.Size(100, 20);
@@ -521,7 +522,7 @@
             // 
             // txtVehId
             // 
-            txtVehId.Location = new System.Drawing.Point(814, 94);
+            txtVehId.Location = new System.Drawing.Point(814, 152);
             txtVehId.Name = "txtVehId";
             txtVehId.Properties.Appearance.Font = new System.Drawing.Font("宋体", 15F);
             txtVehId.Properties.Appearance.Options.UseFont = true;
@@ -531,7 +532,7 @@
             // 
             // tsIsValid
             // 
-            tsIsValid.Location = new System.Drawing.Point(814, 188);
+            tsIsValid.Location = new System.Drawing.Point(814, 241);
             tsIsValid.Name = "tsIsValid";
             tsIsValid.Properties.Appearance.Font = new System.Drawing.Font("宋体", 15F);
             tsIsValid.Properties.Appearance.Options.UseFont = true;
@@ -558,7 +559,7 @@
             // numAlex
             // 
             numAlex.EditValue = new decimal(new int[] { 2, 0, 0, 0 });
-            numAlex.Location = new System.Drawing.Point(811, 381);
+            numAlex.Location = new System.Drawing.Point(811, 408);
             numAlex.Margin = new System.Windows.Forms.Padding(4);
             numAlex.Name = "numAlex";
             numAlex.Properties.Appearance.Font = new System.Drawing.Font("宋体", 15F);
@@ -572,6 +573,16 @@
             numAlex.Size = new System.Drawing.Size(278, 26);
             numAlex.TabIndex = 1;
             // 
+            // lblTitle
+            // 
+            lblTitle.Appearance.Font = new System.Drawing.Font("宋体", 15F);
+            lblTitle.Appearance.Options.UseFont = true;
+            lblTitle.Location = new System.Drawing.Point(715, 80);
+            lblTitle.Margin = new System.Windows.Forms.Padding(4);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new System.Drawing.Size(0, 20);
+            lblTitle.TabIndex = 13;
+            // 
             // frmBulktrans
             // 
             AcceptButton = btnOk;
@@ -580,6 +591,7 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             CancelButton = btnCancel;
             ClientSize = new System.Drawing.Size(1143, 616);
+            Controls.Add(lblTitle);
             Controls.Add(mpPorgress);
             Controls.Add(tsIsValid);
             Controls.Add(txtVehId);
@@ -602,6 +614,7 @@
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "大件运输车监控确认";
             TopMost = true;
+            Load += frmBulktrans_Load;
             ((System.ComponentModel.ISupportInitialize)dataLayoutControl1).EndInit();
             dataLayoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PLATETextEdit.Properties).EndInit();
@@ -682,5 +695,6 @@
         private DevExpress.XtraLayout.LayoutControlItem ItemForEN_STATION_ID;
         private DevExpress.XtraLayout.LayoutControlItem ItemForEX_STATION_ID;
         private DevExpress.XtraEditors.SpinEdit numAlex;
+        private DevExpress.XtraEditors.LabelControl lblTitle;
     }
 }

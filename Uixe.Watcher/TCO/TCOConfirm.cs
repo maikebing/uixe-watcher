@@ -36,7 +36,7 @@ namespace Uixe.Watcher
         public bool CheckPlazaInfo()
         {
             bool ret = true;
-            if (TCE.TCOTYPE == WATCHER_TYPE.WATCHER_UnKnowPlaza 
+            if (TCE.TCOTYPE == WATCHER_TYPE.WATCHER_UnKnowPlaza
                  || TCE.DifPlate || TCE.DifPlaza || TCE.DifType)
             {
                 var ppi = cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
@@ -167,7 +167,7 @@ namespace Uixe.Watcher
                 chkEntryPlaza.Checked = false;
                 chkCarKind.Checked = false;
                 tCOCallBindingSource.DataSource = new TCOCall();
-                pLazaBindingSource.DataSource= new List<ProvPlazaInfo>();
+                pLazaBindingSource.DataSource = new List<ProvPlazaInfo>();
                 pLazaBindingSource.Position = -1;
                 pLazaBindingSource.ResetBindings(false);
                 pLazaBindingSource.ResetCurrentItem();
@@ -203,12 +203,12 @@ namespace Uixe.Watcher
                 UixeClient client = new UixeClient();
                 if (isfirst)
                 {
-                    var pc = await _cache.GetOrCreate($"{Plaza.Ip}|{tce.EntryStationID}",  async c => await client.GetProvByPlaza(Plaza.Ip, tce.EntryStationID));
+                    var pc = await _cache.GetOrCreate($"{Plaza.Ip}|{tce.EntryStationID}", async c => await client.GetProvByPlaza(Plaza.Ip, tce.EntryStationID));
                     cbxProv.EditValue = int.Parse(pc);
                 }
                 var prov = cbxProv.GetSelectedDataRow() as ProvCode;
 
-                var ppi =  await _cache.GetOrCreate($"{Plaza.Ip}|{prov?.provId ?? 65}", async c => await client.GetProvPlazaInfo(Plaza.Ip, $"{prov?.provId ?? 65}"));
+                var ppi = await _cache.GetOrCreate($"{Plaza.Ip}|{prov?.provId ?? 65}", async c => await client.GetProvPlazaInfo(Plaza.Ip, $"{prov?.provId ?? 65}"));
                 if (ppi != null)
                 {
                     pLazaBindingSource.DataSource = ppi;
@@ -250,8 +250,8 @@ namespace Uixe.Watcher
             {
                 AUS.CarClass = cc;
             }
-            AUS.CarPlate = txtModifyCarNumber.Text ;
-            AUS.CarType =  (txtModifyCarType.EditValue as int?).GetValueOrDefault() ;
+            AUS.CarPlate = txtModifyCarNumber.Text;
+            AUS.CarType = (txtModifyCarType.EditValue as int?).GetValueOrDefault();
             var plaza = cbxModifyEntryPlaza.GetSelectedDataRow() as ProvPlazaInfo;
             if (plaza != null && !string.IsNullOrEmpty(plaza.plazaHEX) && plaza.plazaHEX.Length >= 8)
             {
@@ -327,7 +327,7 @@ namespace Uixe.Watcher
                 imageList1.Images.Add("1", Properties.Resources.ImageChecked);
                 imageList1.Images.Add("0", Properties.Resources.ImageUnchecked);
             }
-            
+
         }
     }
 }

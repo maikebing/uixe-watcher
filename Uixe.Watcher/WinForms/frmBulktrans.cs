@@ -30,8 +30,13 @@ namespace Uixe.Watcher.WinForms
             Text = $"大件运输车确认 {plaza.StationName} {lane.LaneNo}";
             txtVehId.Text = dto.VehId;
             tsIsValid.IsOn = dto.IsValid;
-            numWeight.Value = dto.Weight;
+            numWeight.Value = (decimal)dto.Weight;
             numAlex.Value = dto.Alex;
+            lblTitle.Text=dto.Title;
+            if (dto.LARGEWOODS == null)
+            {
+                dto.LARGEWOODS = new LARGEWOODS() { };
+            }
             lARGEWOODSBindingSource.DataSource = dto.LARGEWOODS;
             this.Show();
             this.Focus();
@@ -49,7 +54,7 @@ namespace Uixe.Watcher.WinForms
                 StartCall();
                 try
                 {
-                    var result = await _lane.SendMsg("toll/bulktrans", new LaneBulkTransDto() { vehWeight =(float) numWeight.Value, vehAxles = (int)numAlex.Value });
+                    var result = await _lane.SendMsg("toll/bulktrans", new LaneBulkTransDto() { vehWeight = (float)numWeight.Value, vehAxles = (int)numAlex.Value });
                     this.Invoke(new Action(() =>
                     {
 
@@ -97,6 +102,11 @@ namespace Uixe.Watcher.WinForms
             btnCancel.Enabled = false;
             mpPorgress.Visible = true;
             mpPorgress.Properties.Stopped = false;
+        }
+
+        private void frmBulktrans_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

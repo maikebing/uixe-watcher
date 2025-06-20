@@ -28,7 +28,7 @@ namespace Uixe.Watcher.Dtos
         /// <summary>
         /// 
         /// </summary>
-        public int Weight { get; set; }
+        public float Weight { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -37,6 +37,8 @@ namespace Uixe.Watcher.Dtos
         /// 
         /// </summary>
         public bool IsValid { get; set; }
+
+        public string Title { get; set; }
     }
 
 }
