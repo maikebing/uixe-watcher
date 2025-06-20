@@ -232,35 +232,25 @@ namespace Uixe.Watcher.Controllers
             }
         }
 
-      
+
 
         [HttpPost]
         public async Task<ActionResult<ApiResult>> Bulktrans(string plazaid, BulklyDto dto)
         {
+
             try
             {
-               
-                    var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
-                if (frm != null)
-                {
-
-                    await Task.Run(() =>
+                await Task.Run(() =>
+                  {
+                      var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                      frm?.Invoke(() =>
                     {
-                        frm.Invoke(() =>
-                        {
+                             string laneid = $"650{dto.Head.NetNo}{dto.Head.PlazaNo}{dto.Head.LaneID}";
+                             frm.ShowBulktrans(laneid, dto);
+                         });
+                  });
+                return NotFound(new ApiResult(ApiCode.OK, "OK"));
 
-                            string laneid = $"650{dto.Head.NetNo}{dto.Head.PlazaNo}{dto.Head.LaneID}";
-                            frm.ShowBulktrans(laneid, dto);
-
-                        });
-                    });
-                    return Ok(new ApiResult(ApiCode.NotFound, $"{nameof(frmPlaza)}_{plazaid}"));
-                }
-                else
-                {
-                    return NotFound(new ApiResult(ApiCode.OK, "OK"));
-                }
-                
             }
             catch (Exception)
             {
