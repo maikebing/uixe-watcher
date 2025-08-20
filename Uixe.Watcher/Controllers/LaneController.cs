@@ -258,6 +258,29 @@ namespace Uixe.Watcher.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<ActionResult<ApiResult>> bill_info(string plazaid, BillInfoDto dto)
+        {
+
+            try
+            {
+                await Task.Run(() =>
+                {
+                    var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaid}");
+                    frm?.Invoke(() =>
+                    {
+                        string laneid = $"650{dto.Head.NetNo}{dto.Head.PlazaNo}{dto.Head.LaneID}";
+                        frm.ShowBillInfo(laneid, dto);
+                    });
+                });
+                return NotFound(new ApiResult(ApiCode.OK, "OK"));
+
+            }
+            catch (Exception)
+            {
+                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+            }
+        }
     }
 }
 

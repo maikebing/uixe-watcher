@@ -408,7 +408,25 @@ namespace Uixe.Watcher
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, "大件运输车");
+            }
+        }
+        public void ShowBillInfo(string laneid,  BillInfoDto dto)
+        {
+            try
+            {
+                frmBillInfo fb = new frmBillInfo();
+                var plaza = Boss.Plazas.FirstOrDefault(p => p.Id == $"650{dto.Head.NetNo}{dto.Head.PlazaNo}");
+                var lane = plaza?.Lanes?.FirstOrDefault(l => l.LaneNo == dto.Head.LaneID);
+                if (plaza != null && lane != null)
+                {
+                    fb.Owner = this;
+                    fb.Show(plaza, lane, dto);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "发票");
             }
         }
     }//frmMain

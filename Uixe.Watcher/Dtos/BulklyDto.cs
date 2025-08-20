@@ -40,6 +40,5 @@ namespace Uixe.Watcher.Dtos
 
         public string Title { get; set; }
     }
-
 }
 

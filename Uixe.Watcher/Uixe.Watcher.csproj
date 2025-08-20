@@ -116,6 +116,7 @@
     <Compile Update="Ring\PlayUitls.cs">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Compile>
+    <Compile Update="WinForms\frmBillInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
