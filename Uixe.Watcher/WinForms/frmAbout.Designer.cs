@@ -156,13 +156,14 @@
             labelControl1.Location = new System.Drawing.Point(47, 329);
             labelControl1.Margin = new System.Windows.Forms.Padding(4);
             labelControl1.Name = "labelControl1";
-            labelControl1.Size = new System.Drawing.Size(71, 15);
+            labelControl1.Size = new System.Drawing.Size(70, 14);
             labelControl1.TabIndex = 1;
             labelControl1.Text = "labelControl1";
             // 
             // frmAbout
             // 
             AcceptButton = okButton;
+            Appearance.Options.UseFont = true;
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(536, 326);
@@ -175,7 +176,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmAbout";
-            Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            Padding = new System.Windows.Forms.Padding(10);
             ShowInTaskbar = false;
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "关于";
