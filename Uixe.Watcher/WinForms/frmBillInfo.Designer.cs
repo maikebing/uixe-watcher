@@ -101,10 +101,15 @@
             // 
             // txtBillCode
             // 
+            txtBillCode.EditValue = "";
             txtBillCode.Location = new System.Drawing.Point(225, 193);
             txtBillCode.Name = "txtBillCode";
+            txtBillCode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             txtBillCode.Properties.Appearance.Font = new System.Drawing.Font("宋体", 15F);
             txtBillCode.Properties.Appearance.Options.UseFont = true;
+            txtBillCode.Properties.BeepOnError = true;
+            txtBillCode.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            txtBillCode.Properties.MaxLength = 12;
             txtBillCode.Size = new System.Drawing.Size(279, 26);
             txtBillCode.TabIndex = 15;
             // 
@@ -121,10 +126,13 @@
             // 
             // txtBillNumber
             // 
+            txtBillNumber.EditValue = "";
             txtBillNumber.Location = new System.Drawing.Point(225, 286);
             txtBillNumber.Name = "txtBillNumber";
             txtBillNumber.Properties.Appearance.Font = new System.Drawing.Font("宋体", 15F);
             txtBillNumber.Properties.Appearance.Options.UseFont = true;
+            txtBillNumber.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            txtBillNumber.Properties.MaxLength = 8;
             txtBillNumber.Size = new System.Drawing.Size(279, 26);
             txtBillNumber.TabIndex = 17;
             // 

@@ -44,7 +44,7 @@ namespace Uixe.Watcher
             services.AddMemoryCache();
             services.AddLogging(configure =>
             {
-                var logdir = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "uixe", "uixe.log"));
+                var logdir = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "uixe", $"uixe{DateTime.Now:yyyyMMddhhmm}.log"));
                 if (!logdir.Directory.Exists) logdir.Directory.Create();
                 configure.AddZLoggerFile(logdir.FullName, cfg =>
                 {
