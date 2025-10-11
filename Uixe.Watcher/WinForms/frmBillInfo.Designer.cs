@@ -35,8 +35,8 @@
             mpPorgress = new DevExpress.XtraEditors.MarqueeProgressBarControl();
             txtBillCode = new DevExpress.XtraEditors.TextEdit();
             labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            txtBillNumber = new DevExpress.XtraEditors.TextEdit();
             labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            txtBillNumber = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)mpPorgress.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtBillCode.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtBillNumber.Properties).BeginInit();
@@ -101,14 +101,13 @@
             // 
             // txtBillCode
             // 
-            txtBillCode.EditValue = "";
+            txtBillCode.EditValue = "123456789012";
             txtBillCode.Location = new System.Drawing.Point(225, 193);
             txtBillCode.Name = "txtBillCode";
             txtBillCode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             txtBillCode.Properties.Appearance.Font = new System.Drawing.Font("宋体", 15F);
             txtBillCode.Properties.Appearance.Options.UseFont = true;
             txtBillCode.Properties.BeepOnError = true;
-            txtBillCode.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             txtBillCode.Properties.MaxLength = 12;
             txtBillCode.Size = new System.Drawing.Size(279, 26);
             txtBillCode.TabIndex = 15;
@@ -124,18 +123,6 @@
             labelControl1.TabIndex = 14;
             labelControl1.Text = "发票代码";
             // 
-            // txtBillNumber
-            // 
-            txtBillNumber.EditValue = "";
-            txtBillNumber.Location = new System.Drawing.Point(225, 286);
-            txtBillNumber.Name = "txtBillNumber";
-            txtBillNumber.Properties.Appearance.Font = new System.Drawing.Font("宋体", 15F);
-            txtBillNumber.Properties.Appearance.Options.UseFont = true;
-            txtBillNumber.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            txtBillNumber.Properties.MaxLength = 8;
-            txtBillNumber.Size = new System.Drawing.Size(279, 26);
-            txtBillNumber.TabIndex = 17;
-            // 
             // labelControl2
             // 
             labelControl2.Appearance.Font = new System.Drawing.Font("宋体", 15F);
@@ -147,6 +134,17 @@
             labelControl2.TabIndex = 16;
             labelControl2.Text = "发票号码";
             // 
+            // txtBillNumber
+            // 
+            txtBillNumber.EditValue = "12345678";
+            txtBillNumber.Location = new System.Drawing.Point(225, 286);
+            txtBillNumber.Name = "txtBillNumber";
+            txtBillNumber.Properties.Appearance.Font = new System.Drawing.Font("宋体", 15F);
+            txtBillNumber.Properties.Appearance.Options.UseFont = true;
+            txtBillNumber.Properties.MaxLength = 8;
+            txtBillNumber.Size = new System.Drawing.Size(279, 26);
+            txtBillNumber.TabIndex = 17;
+            // 
             // frmBillInfo
             // 
             AcceptButton = btnOk;
@@ -155,7 +153,6 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             CancelButton = btnCancel;
             ClientSize = new System.Drawing.Size(707, 540);
-            Controls.Add(txtBillNumber);
             Controls.Add(labelControl2);
             Controls.Add(txtBillCode);
             Controls.Add(labelControl1);
@@ -164,6 +161,7 @@
             Controls.Add(labelControl3);
             Controls.Add(btnCancel);
             Controls.Add(btnOk);
+            Controls.Add(txtBillNumber);
             Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             Margin = new System.Windows.Forms.Padding(4);
@@ -189,7 +187,7 @@
         private DevExpress.XtraEditors.MarqueeProgressBarControl mpPorgress;
         private DevExpress.XtraEditors.TextEdit txtBillCode;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit txtBillNumber;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.TextEdit txtBillNumber;
     }
 }

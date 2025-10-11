@@ -249,7 +249,7 @@ namespace Uixe.Watcher.Controllers
                              frm.ShowBulktrans(laneid, dto);
                          });
                   });
-                return NotFound(new ApiResult(ApiCode.OK, "OK"));
+                return Ok(new ApiResult(ApiCode.OK, "OK"));
 
             }
             catch (Exception)
@@ -273,7 +273,7 @@ namespace Uixe.Watcher.Controllers
                         frm.ShowBillInfo(laneid, dto);
                     });
                 });
-                return NotFound(new ApiResult(ApiCode.OK, "OK"));
+                return Ok(new ApiResult(ApiCode.OK, "OK"));
 
             }
             catch (Exception)
@@ -281,6 +281,30 @@ namespace Uixe.Watcher.Controllers
                 return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ApiResult>> ConfirmEnInfo(string plazaId, ConfirmEnInfo dto)
+        {
+
+            try
+            {
+                await Task.Run(() =>
+                {
+                    var frm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaId}");
+                    frm?.Invoke(() =>
+                    {
+                        frm.ShowConfirmEnInfo( dto);
+                    });
+                });
+                return Ok(new ApiResult(ApiCode.OK, "OK"));
+
+            }
+            catch (Exception)
+            {
+                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+            }
+        }
+
     }
 }
 

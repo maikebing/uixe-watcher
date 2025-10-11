@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraSpellChecker.Parser;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,6 @@ using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Uitls;
 using WhoIamDtos;
-
 namespace Uixe.Watcher.WinForms
 {
     public partial class frmBulktrans : DevExpress.XtraEditors.XtraForm

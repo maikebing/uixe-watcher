@@ -411,6 +411,27 @@ namespace Uixe.Watcher
                 _logger.LogError(ex, "大件运输车");
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="laneid"></param>
+        /// <param name="dto">{"laneId":"6500256X02","genTime":"2025-10-11T12:18:47","vehicleId":"冀J6P728","vehicleType":0,"resCount":1,"retQuery":1,"enStations":[{"cardId":"65012434230300263745","enStationId":"G0007650010020","enTime":"2025-10-11T12:15:13","enTollLaneId":"G00076500100201010040","mediaNo":"6501240100097076","mediaType":1,"resultVoucher":1}]}</param>
+        public void ShowConfirmEnInfo(ConfirmEnInfo dto)
+        {
+            try
+            {
+
+                frmConfirmEnInfo fb =  new frmConfirmEnInfo ();
+              
+                    fb.Owner = this;
+                    fb.ShowConfirmEnInfoAsync(dto,this);
+             
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "大件运输车");
+            }
+        }
         public void ShowBillInfo(string laneid,  BillInfoDto dto)
         {
             try

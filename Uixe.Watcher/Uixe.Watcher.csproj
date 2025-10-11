@@ -5,12 +5,11 @@
 		<CETCompat>false</CETCompat>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ApplicationIcon>Resources\LOGO.ico</ApplicationIcon>
-		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
-		<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
-		<UseWPF>False</UseWPF>
 		<RepositoryType>git</RepositoryType>
 		<PlatformTarget>x64</PlatformTarget>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+		<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Remove="appsettings.Development.json" />

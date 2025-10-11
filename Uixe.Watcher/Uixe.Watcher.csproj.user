@@ -121,6 +121,9 @@
     <Compile Update="WinForms\frmBulktrans.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="WinForms\frmConfirmEnInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="WinForms\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
