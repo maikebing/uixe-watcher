@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +23,7 @@ namespace Uixe.Watcher.TCO
             }
             catch (Exception ex)
             {
+                tms?._logger.LogError(ex, "提交TCO确认信息时遇到异常");
                 XtraMessageBox.Show(ex.Message);
             }
         }
@@ -63,12 +65,12 @@ namespace Uixe.Watcher.TCO
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"tmNetworkTest_TickAsync{ex.Message}");
+                    form._logger.LogError(ex, "tmNetworkTest_TickAsync异常");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"CloseTCOCall {ex.Message}");
+                form._logger.LogError(ex, "tmNetworkTest_TickAsync异常");
             }
         }
     }

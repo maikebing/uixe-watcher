@@ -5,6 +5,7 @@ using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Extensions;
 using Uixe.Watcher.Msg;
 using System.ComponentModel;
+using Microsoft.Extensions.Logging;
 
 namespace Uixe.Watcher.TCO
 {
@@ -107,7 +108,6 @@ namespace Uixe.Watcher.TCO
             }
             catch (Exception ex)
             {
-               
                 //Log.LogException("Show(MsgWeightTCOCALL tce)", tce.ToString(), ex);
             }
         }
@@ -128,6 +128,7 @@ namespace Uixe.Watcher.TCO
         private DateTime dtold = DateTime.Now;
         internal RuntimeSetting _runtimeSetting;
         internal AppSettings _settings;
+        internal ILogger _logger;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -149,9 +150,9 @@ namespace Uixe.Watcher.TCO
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //   Log.Write("btnVNC_Click", ex, "");
+                _logger.LogError(ex, "WeightTCOConfirm timer1_Tick异常");
             }
         }
 
@@ -169,8 +170,9 @@ namespace Uixe.Watcher.TCO
                 this.Owner.RemoveNowTab(this.Name);
                 SpeechUtils.Speecher.SpeakAsyncCancel(prompt);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "WeightTCOConfirm btnOK_Click异常");
             }
         }
 
@@ -185,8 +187,9 @@ namespace Uixe.Watcher.TCO
                 tcoHeart.Stop();
                 this.Owner.RemoveNowTab(this.Name);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "WeightTCOConfirm btnCancel_Click异常");
             }
         }
 
@@ -201,8 +204,9 @@ namespace Uixe.Watcher.TCO
                 tcoHeart.Stop();
                 SpeechUtils.Speecher.SpeakAsyncCancel(prompt);
             }
-            catch (Exception)
+            catch (Exception ex )
             {
+                _logger.LogError(ex, "WeightTCOConfirm btnCLose_Click异常");
             }
         }
 
@@ -236,8 +240,9 @@ namespace Uixe.Watcher.TCO
                         YMDHMTextEdit.DateTime = Convert.ToDateTime(e.Value);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    _logger.LogError(ex, "WeightTCOConfirm YMDHMTextEdit_FormatEditValue异常");
                 }
                 e.Handled = true;
             }

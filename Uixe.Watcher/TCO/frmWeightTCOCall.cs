@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,13 +21,15 @@ namespace Uixe.Watcher.TCO
         private readonly T_Plaza _plaza;
         private readonly RuntimeSetting _runtimeSetting;
         private readonly AppSettings _settings;
+        private readonly ILogger _logger;
 
-        public frmWeightTCOCall(T_Plaza plaza, RuntimeSetting runtimeSetting, AppSettings settings)
+        public frmWeightTCOCall(T_Plaza plaza, RuntimeSetting runtimeSetting, AppSettings settings,  ILogger logger)
         {
             InitializeComponent();
             _plaza = plaza;
             _runtimeSetting = runtimeSetting;
             _settings=settings;
+            _logger = logger;
         }
  
         public  void LoadInfo()
@@ -39,6 +42,7 @@ namespace Uixe.Watcher.TCO
                     string pname = _plaza.Id + _plaza.Lanes[i].LaneNo;
                     XtraTabPage t = new XtraTabPage();
                     WeightTCOConfirm tms = new WeightTCOConfirm();
+                    tms._logger = _logger;  
                     tms._runtimeSetting = _runtimeSetting;
                     tms._settings = _settings;
                     tms.Plaza = _plaza;
@@ -55,7 +59,7 @@ namespace Uixe.Watcher.TCO
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("ERRORINIT:<{0}>\r\n", ex.Message);
+                _logger.LogError(ex, "初始化TCO监控确认界面时遇到异常");
             }
         }
 
@@ -80,6 +84,7 @@ namespace Uixe.Watcher.TCO
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "展示监控确认信息时遇到问题异常");
                 XtraMessageBox.Show($"展示监控确认信息时遇到问题异常:{ex.Message}");
             }
         }

@@ -67,7 +67,7 @@ namespace Uixe.Watcher.Controllers
                             {
                                 var tco = _cache.GetOrCreate($"{nameof(frmWeightTCOCall)}_{plazaid}", c =>
                                 {
-                                    var wtco= new frmWeightTCOCall(frm.GetPlaza(plazaid), frm._runtimeSetting, frm.settings);
+                                    var wtco= new frmWeightTCOCall(frm.GetPlaza(plazaid), frm._runtimeSetting, frm.settings, _logger);
                                     wtco.LoadInfo();
                                     wtco.Hide();
                                     return wtco;
