@@ -450,5 +450,30 @@ namespace Uixe.Watcher
                 _logger.LogError(ex, "发票");
             }
         }
+
+        /// <summary>
+        /// 显示交通事件提醒弹窗并播报摘要。
+        /// </summary>
+        public frmTrafficEvent ShowTrafficEvent(T_Plaza plaza, T_Lane lane, TrafficEventPushRequest request)
+        {
+            try
+            {
+                frmTrafficEvent frm = new frmTrafficEvent();
+                frm.Owner = this;
+                frm.ShowTrafficEvent(plaza, lane, request);
+
+                if (settings?.laneVideoMute == false)
+                {
+                    SpeechUtils.Speecher.SpeakAsync(request.GetSummary(plaza?.StationName, lane?.LaneNo));
+                }
+
+                return frm;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "交通事件提醒");
+                return null;
+            }
+        }
     }//frmMain
 }

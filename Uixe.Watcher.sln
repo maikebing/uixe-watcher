@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32014.148
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11612.150 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uixe.Watcher", "Uixe.Watcher\Uixe.Watcher.csproj", "{A41303DC-D78F-48C8-9184-AB1CB237DE2E}"
 EndProject
@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		GitVersion.yml = GitVersion.yml
 		README.md = README.md
+		docs\交通事件管理接口文档.md = docs\交通事件管理接口文档.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libvlc_zip", "libvlc_zip\libvlc_zip.csproj", "{D7F36F67-9874-4BDD-A98F-52FAE0D53F1A}"
@@ -53,8 +54,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_SaveFilesImmediatelyUponChange = False
-		RESX_NeutralResourcesLanguage = zh-Hans
 		SolutionGuid = {339573ED-4417-48E7-A437-BC3549DD7DD3}
+		RESX_SaveFilesImmediatelyUponChange = False
 	EndGlobalSection
 EndGlobal

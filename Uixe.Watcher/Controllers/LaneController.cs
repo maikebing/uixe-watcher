@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
 using Uixe.Watcher.Ring;
+using Uixe.Watcher.Services;
 using Uixe.Watcher.TCO;
 using static DevExpress.Xpo.DB.DataStoreLongrunnersWatch;
 namespace Uixe.Watcher.Controllers
@@ -23,12 +24,14 @@ namespace Uixe.Watcher.Controllers
         private readonly ILogger<LaneController> _logger;
         private readonly AppSettings option;
         private readonly IMemoryCache _cache;
+        private readonly TrafficEventQueueService _trafficEventQueue;
 
-        public LaneController(ILogger<LaneController> logger, IOptions<AppSettings> option, IMemoryCache cache)
+        public LaneController(ILogger<LaneController> logger, IOptions<AppSettings> option, IMemoryCache cache, TrafficEventQueueService trafficEventQueue)
         {
             _logger = logger;
             this.option = option.Value;
             _cache = cache;
+            _trafficEventQueue = trafficEventQueue;
         }
 
         [HttpPost]
@@ -303,6 +306,114 @@ namespace Uixe.Watcher.Controllers
             {
                 return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
             }
+        }
+
+        [HttpPost]
+        public ActionResult<TrafficEventPushResponse> TrafficEvent([FromBody] TrafficEventPushRequest request)
+        {
+            if (request == null)
+            {
+                return BadRequest(CreateTrafficEventResponse(1, "请求体不能为空"));
+            }
+
+            if (string.IsNullOrWhiteSpace(request.LaneNo))
+            {
+                return BadRequest(CreateTrafficEventResponse(1, "LaneNo不能为空"));
+            }
+
+            try
+            {
+                if (!TryResolveTrafficEventTarget(request, out var frm, out var plaza, out var lane))
+                {
+                    _logger.LogWarning("交通事件未匹配到车道，LaneNo={LaneNo}, RecordId={RecordId}", request.LaneNo, request.RecordId);
+                    return BadRequest(CreateTrafficEventResponse(1, $"未匹配到车道：{request.LaneNo}"));
+                }
+
+                _trafficEventQueue.Enqueue(frm, plaza, lane, request);
+                return Ok(CreateTrafficEventResponse(0, "推送成功"));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "交通事件接收失败，LaneNo={LaneNo}, RecordId={RecordId}", request.LaneNo, request.RecordId);
+                return BadRequest(CreateTrafficEventResponse(1, ex.Message));
+            }
+        }
+
+        private bool TryResolveTrafficEventTarget(TrafficEventPushRequest request, out frmPlaza frm, out T_Plaza plaza, out T_Lane lane)
+        {
+            frm = null;
+            plaza = null;
+            lane = null;
+
+            if (request == null || string.IsNullOrWhiteSpace(request.LaneNo) || option?.whoiam?.Plazas == null)
+            {
+                return false;
+            }
+
+            foreach (var currentPlaza in option.whoiam.Plazas)
+            {
+                var currentLane = currentPlaza?.Lanes?.FirstOrDefault(item => IsLaneMatch(item, request.LaneNo));
+                if (currentLane == null)
+                {
+                    continue;
+                }
+
+                var currentForm = _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{currentPlaza.Id}");
+                if (currentForm == null)
+                {
+                    continue;
+                }
+
+                frm = currentForm;
+                plaza = currentPlaza;
+                lane = currentLane;
+                return true;
+            }
+
+            return false;
+        }
+
+        private static bool IsLaneMatch(T_Lane lane, string laneNo)
+        {
+            if (lane == null || string.IsNullOrWhiteSpace(laneNo))
+            {
+                return false;
+            }
+
+            return IsLaneTokenMatch(laneNo, lane.LaneNo)
+                || IsLaneTokenMatch(laneNo, lane.LaneId);
+        }
+
+        private static bool IsLaneTokenMatch(string left, string right)
+        {
+            var leftValue = NormalizeLaneToken(left);
+            var rightValue = NormalizeLaneToken(right);
+            if (string.IsNullOrEmpty(leftValue) || string.IsNullOrEmpty(rightValue))
+            {
+                return false;
+            }
+
+            return leftValue == rightValue || leftValue.EndsWith(rightValue) || rightValue.EndsWith(leftValue);
+        }
+
+        private static string NormalizeLaneToken(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return string.Empty;
+            }
+
+            return new string(value.Where(c => !char.IsWhiteSpace(c) && c != '-' && c != '_').ToArray()).ToUpperInvariant();
+        }
+
+        private static TrafficEventPushResponse CreateTrafficEventResponse(int code, string message)
+        {
+            return new TrafficEventPushResponse()
+            {
+                Code = code,
+                Message = message,
+                Timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds()
+            };
         }
 
     }

@@ -167,7 +167,7 @@ namespace Uixe.Watcher
             ribbon.QuickToolbarItemLinks.Add(skinRibbonGalleryBarItem1);
             ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemPopupContainerEdit1, repositoryItemTimeEdit1, repositoryItemMemoEdit1, repositoryItemPopupContainerEdit2, repositoryItemTreeListLookUpEdit1, repositoryItemHyperLinkEdit1, repositoryItemRadioGroup1, repositoryItemTimeEdit2, repositoryItemPopupContainerEdit3, repositoryItemPictureEdit1, repositoryItemPopupGalleryEdit1, repositoryItemTimeEdit3, repositoryItemTreeListLookUpEdit2, repositoryItemGridLookUpEdit1, repositoryItemCheckEdit1, repositoryItemTextEdit1, repositoryItemToggleSwitch1, repositoryItemTextEdit2, repositoryItemToggleSwitch2 });
             ribbon.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
-            ribbon.Size = new System.Drawing.Size(1633, 167);
+            ribbon.Size = new System.Drawing.Size(1633, 162);
             ribbon.StatusBar = ribbonStatusBar;
             // 
             // applicationMenu1
@@ -402,8 +402,6 @@ namespace Uixe.Watcher
             // 
             // skinDropDownButtonItem1
             // 
-            skinDropDownButtonItem1.ActAsDropDown = true;
-            skinDropDownButtonItem1.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
             skinDropDownButtonItem1.Id = 58;
             skinDropDownButtonItem1.Name = "skinDropDownButtonItem1";
             // 
@@ -677,14 +675,14 @@ namespace Uixe.Watcher
             messageView.Location = new System.Drawing.Point(4, 9);
             messageView.Margin = new System.Windows.Forms.Padding(4);
             messageView.Name = "messageView";
-            messageView.Size = new System.Drawing.Size(1625, 338);
+            messageView.Size = new System.Drawing.Size(1625, 343);
             messageView.TabIndex = 9;
             // 
             // sccMain
             // 
             sccMain.Dock = System.Windows.Forms.DockStyle.Fill;
             sccMain.Horizontal = false;
-            sccMain.Location = new System.Drawing.Point(0, 167);
+            sccMain.Location = new System.Drawing.Point(0, 162);
             sccMain.Margin = new System.Windows.Forms.Padding(4);
             sccMain.Name = "sccMain";
             // 
@@ -697,7 +695,7 @@ namespace Uixe.Watcher
             // 
             sccMain.Panel2.Controls.Add(messageView);
             sccMain.Panel2.Text = "Panel2";
-            sccMain.Size = new System.Drawing.Size(1633, 694);
+            sccMain.Size = new System.Drawing.Size(1633, 699);
             sccMain.SplitterPosition = 333;
             sccMain.TabIndex = 12;
             sccMain.Text = "splitContainerControl1";
@@ -772,8 +770,8 @@ namespace Uixe.Watcher
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1633, 883);
             Controls.Add(sccMain);
-            Controls.Add(ribbonStatusBar);
             Controls.Add(ribbon);
+            Controls.Add(ribbonStatusBar);
             Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold);
             IconOptions.Icon = (System.Drawing.Icon)resources.GetObject("frmPlaza.IconOptions.Icon");
             IconOptions.Image = Properties.Resources.monitor;

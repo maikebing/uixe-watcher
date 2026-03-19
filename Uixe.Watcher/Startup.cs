@@ -17,6 +17,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Uixe.Watcher.Extensions;
+using Uixe.Watcher.Services;
 using Utf8StringInterpolation;
 using ZLogger;
 namespace Uixe.Watcher
@@ -42,6 +43,7 @@ namespace Uixe.Watcher
             });
             services.AddForms();
             services.AddMemoryCache();
+            services.AddSingleton<TrafficEventQueueService>();
             services.AddLogging(configure =>
             {
                 var logdir = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "uixe", $"uixe{DateTime.Now:yyyyMMddhhmm}.log"));
