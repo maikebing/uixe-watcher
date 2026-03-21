@@ -32,3 +32,16 @@ export async function fetchEventById(eventId: string) {
 
   return response.json()
 }
+
+export async function submitTrafficEvent(payload: Record<string, unknown>) {
+  const response = await fetch(`${baseUrl}/api/traffic-events`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+
+  const data = await response.json()
+  return { ok: response.ok, data }
+}

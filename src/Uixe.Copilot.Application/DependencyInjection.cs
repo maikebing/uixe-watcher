@@ -10,6 +10,7 @@ public static class DependencyInjection
     {
         services.AddSingleton<IPlazaContextService, InMemoryPlazaContextService>();
         services.AddScoped<INotificationApplicationService, NotificationApplicationService>();
+        services.AddScoped<ITcoWindowApplicationService, TcoWindowApplicationService>();
         services.AddScoped<ITrafficEventApplicationService, TrafficEventApplicationService>();
         services.AddScoped<ITrafficEventQueryService, TrafficEventQueryService>();
         services.AddScoped<ITrafficEventWorkflowService, TrafficEventWorkflowService>();

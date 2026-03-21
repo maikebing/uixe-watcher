@@ -25,6 +25,7 @@ namespace Uixe.Watcher.Services
         private readonly ITrafficEventApplicationService _trafficEventApplicationService;
         private readonly INotificationApplicationService _notificationApplicationService;
         private readonly ILegacyWindowCoordinator _legacyWindowCoordinator;
+        private readonly ITcoWindowApplicationService _tcoWindowApplicationService;
 
         public LaneApplicationService(
             ILogger<LaneApplicationService> logger,
@@ -34,7 +35,8 @@ namespace Uixe.Watcher.Services
             ILegacyLaneInteractionService legacyLaneInteractionService,
             ITrafficEventApplicationService trafficEventApplicationService,
             INotificationApplicationService notificationApplicationService,
-            ILegacyWindowCoordinator legacyWindowCoordinator)
+            ILegacyWindowCoordinator legacyWindowCoordinator,
+            ITcoWindowApplicationService tcoWindowApplicationService)
         {
             _logger = logger;
             _settings = options.Value;
@@ -44,6 +46,7 @@ namespace Uixe.Watcher.Services
             _trafficEventApplicationService = trafficEventApplicationService;
             _notificationApplicationService = notificationApplicationService;
             _legacyWindowCoordinator = legacyWindowCoordinator;
+            _tcoWindowApplicationService = tcoWindowApplicationService;
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, object status, CancellationToken cancellationToken = default)
@@ -52,6 +55,7 @@ namespace Uixe.Watcher.Services
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowWeightMessageAsync(string plazaId, object message, CancellationToken cancellationToken = default)
         {
             await _notificationApplicationService.ShowWeightMessageAsync(plazaId, message, cancellationToken);
+            await _tcoWindowApplicationService.ShowWeightMessageAsync(plazaId, message, cancellationToken);
             var frm = GetPlazaForm(plazaId);
             if (frm == null)
             {
@@ -80,6 +84,7 @@ namespace Uixe.Watcher.Services
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowTcoConfirmAsync(string plazaId, object message, CancellationToken cancellationToken = default)
         {
             await _notificationApplicationService.ShowTcoConfirmAsync(plazaId, message, cancellationToken);
+            await _tcoWindowApplicationService.ShowTcoConfirmAsync(plazaId, message, cancellationToken);
             var frm = GetPlazaForm(plazaId);
             if (frm == null)
             {
