@@ -21,17 +21,23 @@ namespace Uixe.Watcher.Services
         private readonly IMemoryCache _cache;
         private readonly AppSettings _settings;
         private readonly TrafficEventQueueService _trafficEventQueue;
+        private readonly IPlazaContextService _plazaContextService;
+        private readonly ILegacyLaneInteractionService _legacyLaneInteractionService;
 
         public LaneApplicationService(
             ILogger<LaneApplicationService> logger,
             IMemoryCache cache,
             IOptions<AppSettings> options,
-            TrafficEventQueueService trafficEventQueue)
+            TrafficEventQueueService trafficEventQueue,
+            IPlazaContextService plazaContextService,
+            ILegacyLaneInteractionService legacyLaneInteractionService)
         {
             _logger = logger;
             _cache = cache;
             _settings = options.Value;
             _trafficEventQueue = trafficEventQueue;
+            _plazaContextService = plazaContextService;
+            _legacyLaneInteractionService = legacyLaneInteractionService;
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, object status, CancellationToken cancellationToken = default)
@@ -151,30 +157,21 @@ namespace Uixe.Watcher.Services
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowBulkTransAsync(string plazaId, object dto, CancellationToken cancellationToken = default)
-            => ExecuteOnPlazaAsync(plazaId, frm =>
+            => ExecuteLegacyInteractionAsync(plazaId, dto, static data =>
             {
-                var data = (BulklyDto)dto;
-                _ = data.ToBulkTransportDto();
-                string laneid = $"650{data.Head.NetNo}{data.Head.PlazaNo}{data.Head.LaneID}";
-                frm.ShowBulktrans(laneid, data);
-            });
+                string laneId = $"650{data.Head?.NetNo}{data.Head?.PlazaNo}{data.Head?.LaneId}";
+                return laneId;
+            }, (service, host, laneId, data, ct) => service.ShowBulkTransportAsync(host, laneId, data, ct), ((BulklyDto)dto).ToBulkTransportDto(), cancellationToken);
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowBillInfoAsync(string plazaId, object dto, CancellationToken cancellationToken = default)
-            => ExecuteOnPlazaAsync(plazaId, frm =>
+            => ExecuteLegacyInteractionAsync(plazaId, dto, static data =>
             {
-                var data = (BillInfoDto)dto;
-                _ = data.ToBillInfoRequestDto();
-                string laneid = $"650{data.Head.NetNo}{data.Head.PlazaNo}{data.Head.LaneID}";
-                frm.ShowBillInfo(laneid, data);
-            });
+                string laneId = $"650{data.Head?.NetNo}{data.Head?.PlazaNo}{data.Head?.LaneId}";
+                return laneId;
+            }, (service, host, laneId, data, ct) => service.ShowBillInfoAsync(host, laneId, data, ct), ((BillInfoDto)dto).ToBillInfoRequestDto(), cancellationToken);
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowConfirmEnInfoAsync(string plazaId, object dto, CancellationToken cancellationToken = default)
-            => ExecuteOnPlazaAsync(plazaId, frm =>
-            {
-                var data = (ConfirmEnInfo)dto;
-                _ = data.ToConfirmEnInfoDto();
-                frm.ShowConfirmEnInfo(data);
-            });
+            => ExecuteLegacyInteractionAsync(plazaId, dto, static data => data.PlazaId ?? string.Empty, (service, host, _, data, ct) => service.ShowConfirmEnInfoAsync(host, data, ct), ((ConfirmEnInfo)dto).ToConfirmEnInfoDto(), cancellationToken);
 
         public Task<Uixe.Copilot.Contracts.Responses.TrafficEventPushResponse> EnqueueTrafficEventAsync(TrafficEventPushRequestDto request, CancellationToken cancellationToken = default)
         {
@@ -205,14 +202,15 @@ namespace Uixe.Watcher.Services
             lane = null;
             formRequest = null;
 
-            if (request == null || string.IsNullOrWhiteSpace(request.LaneNo) || _settings?.whoiam?.Plazas == null)
+            var plazas = _plazaContextService.GetPlazas();
+            if (request == null || string.IsNullOrWhiteSpace(request.LaneNo) || plazas.Count == 0)
             {
                 return false;
             }
 
-            foreach (var currentPlaza in _settings.whoiam.Plazas)
+            foreach (var currentPlaza in plazas)
             {
-                var currentLane = currentPlaza?.Lanes?.FirstOrDefault(item => IsLaneMatch(item, request.LaneNo));
+                var currentLane = currentPlaza?.Lanes?.FirstOrDefault(item => IsLaneMatch(item?.LaneNo, item?.LaneId, request.LaneNo));
                 if (currentLane == null)
                 {
                     continue;
@@ -225,8 +223,8 @@ namespace Uixe.Watcher.Services
                 }
 
                 handler = new PlazaTrafficEventDisplayHandler(currentForm);
-                plaza = currentPlaza;
-                lane = currentLane;
+                plaza = new T_Plaza { Id = currentPlaza.Id, StationId = currentPlaza.StationId, StationName = currentPlaza.StationName, Lanes = currentPlaza.Lanes?.Select(x => new T_Lane { Id = x.Id, LaneId = x.LaneId, LaneNo = x.LaneNo }).ToList() };
+                lane = new T_Lane { Id = currentLane.Id, LaneId = currentLane.LaneId, LaneNo = currentLane.LaneNo };
                 formRequest = MapRequest(request);
                 return true;
             }
@@ -236,7 +234,28 @@ namespace Uixe.Watcher.Services
 
         private frmPlaza GetPlazaForm(string plazaId)
         {
-            return _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaId}");
+            return _plazaContextService.GetPlazaHost(plazaId) as frmPlaza ?? _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaId}");
+        }
+
+        private async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ExecuteLegacyInteractionAsync<TLegacy>(
+            string plazaId,
+            object originalDto,
+            Func<TLegacy, string> laneIdFactory,
+            Func<ILegacyLaneInteractionService, object, string, TLegacy, CancellationToken, Task<bool>> executor,
+            TLegacy mappedDto,
+            CancellationToken cancellationToken)
+        {
+            var host = _plazaContextService.GetPlazaHost(plazaId);
+            if (host == null)
+            {
+                return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.NotFound, $"没有找到{plazaId}的收费站ID");
+            }
+
+            var laneId = laneIdFactory(mappedDto);
+            var success = await executor(_legacyLaneInteractionService, host, laneId, mappedDto, cancellationToken);
+            return success
+                ? new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.OK, "OK")
+                : new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.BadRequest, $"兼容处理失败: {originalDto.GetType().Name}");
         }
 
         private Task<Uixe.Copilot.Contracts.Responses.ApiResult> ExecuteOnPlazaAsync(string plazaId, Action<frmPlaza> action)
@@ -254,15 +273,15 @@ namespace Uixe.Watcher.Services
             });
         }
 
-        private static bool IsLaneMatch(T_Lane lane, string laneNo)
+        private static bool IsLaneMatch(string laneNoValue, string laneIdValue, string laneNo)
         {
-            if (lane == null || string.IsNullOrWhiteSpace(laneNo))
+            if (string.IsNullOrWhiteSpace(laneNo))
             {
                 return false;
             }
 
-            return IsLaneTokenMatch(laneNo, lane.LaneNo)
-                || IsLaneTokenMatch(laneNo, lane.LaneId);
+            return IsLaneTokenMatch(laneNo, laneNoValue)
+                || IsLaneTokenMatch(laneNo, laneIdValue);
         }
 
         private static bool IsLaneTokenMatch(string left, string right)
