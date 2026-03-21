@@ -13,8 +13,18 @@
     </div>
     <div class="glass-panel rounded-3xl p-6">
       <div class="text-lg font-medium text-white">√ΩÃÂ‘§¿¿</div>
-      <div class="mt-5 rounded-2xl border border-dashed border-sky-400/20 bg-slate-900/40 p-8 text-center text-slate-400">
-        ‘§¡ÙÕº∆¨ /  ”∆µ‘§¿¿«¯”Ú
+      <div class="mt-5 space-y-4">
+        <div v-if="event?.imageUrl" class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-3">
+          <div class="mb-2 text-sm text-slate-300">Õº∆¨‘§¿¿</div>
+          <img :src="event.imageUrl" alt=" ¬º˛Õº∆¨" class="max-h-64 w-full rounded-xl object-cover" />
+        </div>
+        <div v-if="event?.videoUrl" class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-3">
+          <div class="mb-2 text-sm text-slate-300"> ”∆µ‘§¿¿</div>
+          <video :src="event.videoUrl" controls class="max-h-64 w-full rounded-xl" />
+        </div>
+        <div v-if="!event?.imageUrl && !event?.videoUrl" class="rounded-2xl border border-dashed border-sky-400/20 bg-slate-900/40 p-8 text-center text-slate-400">
+          ‘›ŒﬁÕº∆¨ /  ”∆µ‘§¿¿
+        </div>
       </div>
     </div>
   </div>

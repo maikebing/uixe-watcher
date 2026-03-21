@@ -14,5 +14,9 @@ public sealed class TrafficEvent
 
     public string Status { get; set; } = "´ı´¦Àí";
 
+    public string? ImageUrl { get; set; }
+
+    public string? VideoUrl { get; set; }
+
     public DateTime OccurredAt { get; set; }
 }

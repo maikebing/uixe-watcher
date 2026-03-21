@@ -17,6 +17,8 @@ internal static class TrafficEventMappingExtensions
             LaneNo = request.LaneNo ?? string.Empty,
             Level = ResolveLevel(request.EventType),
             Status = "´ý´¦Àí",
+            ImageUrl = ResolveFirstMedia(request.ImageList),
+            VideoUrl = ResolveFirstMedia(request.VideoList),
             OccurredAt = occurredAt
         };
     }
@@ -31,8 +33,22 @@ internal static class TrafficEventMappingExtensions
             LaneNo = entity.LaneNo,
             Level = entity.Level,
             Time = entity.OccurredAt.ToString("HH:mm:ss"),
-            Status = entity.Status
+            Status = entity.Status,
+            ImageUrl = entity.ImageUrl,
+            VideoUrl = entity.VideoUrl
         };
+    }
+
+    private static string? ResolveFirstMedia(string? raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            return null;
+        }
+
+        return raw
+            .Split(new[] { ',', ';', '|', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .FirstOrDefault();
     }
 
     private static string ResolveLevel(string? eventType)

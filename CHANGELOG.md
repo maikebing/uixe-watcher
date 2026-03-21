@@ -35,6 +35,7 @@
 - `overview/detail` 已不再依赖固定示例数据，而是读取真实提交后写入的内存事件数据。
 - `HistoryPage` 已接入真实后端历史查询接口，并支持基础过滤。
 - `SettingsPage` 已接入真实后端配置接口，并支持基础读取与保存。
+- `EventDetailPage` 已接入基础媒体预览，并可显示事件图片与视频地址。
 
 ### Pending
 

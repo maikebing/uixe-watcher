@@ -26,6 +26,8 @@ export interface EventItem {
   level: 'high' | 'medium' | 'low'
   time: string
   status: string
+  imageUrl?: string
+  videoUrl?: string
 }
 
 export interface App {
@@ -77,7 +79,9 @@ export const useAppStore = defineStore('app', {
         laneNo: item.laneNo,
         level: item.level as 'high' | 'medium' | 'low',
         time: item.time,
-        status: item.status
+        status: item.status,
+        imageUrl: item.imageUrl,
+        videoUrl: item.videoUrl
       }))
     },
     async loadEvent(eventId: string) {
@@ -95,7 +99,9 @@ export const useAppStore = defineStore('app', {
           laneNo: event.laneNo,
           level: event.level as 'high' | 'medium' | 'low',
           time: event.time,
-          status: event.status
+          status: event.status,
+          imageUrl: event.imageUrl,
+          videoUrl: event.videoUrl
         })
       }
 
