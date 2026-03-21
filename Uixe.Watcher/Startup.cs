@@ -16,6 +16,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Uixe.Copilot.Application;
 using Uixe.Watcher.Extensions;
 using Uixe.Watcher.Services;
 using Utf8StringInterpolation;
@@ -43,7 +44,9 @@ namespace Uixe.Watcher
             });
             services.AddForms();
             services.AddMemoryCache();
+            services.AddUixeCopilotApplication();
             services.AddSingleton<TrafficEventQueueService>();
+            services.AddSingleton<ILaneApplicationService, LaneApplicationService>();
             services.AddLogging(configure =>
             {
                 var logdir = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "uixe", $"uixe{DateTime.Now:yyyyMMddhhmm}.log"));

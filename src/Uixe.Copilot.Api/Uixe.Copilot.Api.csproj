@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uixe.Copilot.Application\Uixe.Copilot.Application.csproj" />
+    <ProjectReference Include="..\Uixe.Copilot.Contracts\Uixe.Copilot.Contracts.csproj" />
+    <ProjectReference Include="..\Uixe.Copilot.Infrastructure\Uixe.Copilot.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.0.1" />
+  </ItemGroup>
+</Project>

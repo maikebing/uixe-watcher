@@ -95,6 +95,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\libvlc_zip\libvlc_zip.csproj" />
+		<ProjectReference Include="..\src\Uixe.Copilot.Application\Uixe.Copilot.Application.csproj" />
+		<ProjectReference Include="..\src\Uixe.Copilot.Contracts\Uixe.Copilot.Contracts.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Update="Properties\Resources.Designer.cs">
