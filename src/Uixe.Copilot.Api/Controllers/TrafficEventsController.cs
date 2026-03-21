@@ -31,6 +31,12 @@ public sealed class TrafficEventsController : ControllerBase
         return eventItem is null ? NotFound() : Ok(eventItem);
     }
 
+    [HttpGet("history")]
+    public async Task<ActionResult<TrafficEventHistoryResponseDto>> GetHistory([FromQuery] TrafficEventHistoryQueryDto query, CancellationToken cancellationToken)
+    {
+        return Ok(await _queryService.GetHistoryAsync(query, cancellationToken));
+    }
+
     [HttpPost]
     public async Task<ActionResult<TrafficEventPushResponse>> Submit([FromBody] TrafficEventPushRequestDto request, CancellationToken cancellationToken)
     {

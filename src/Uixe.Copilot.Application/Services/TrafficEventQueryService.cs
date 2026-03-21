@@ -22,6 +22,16 @@ public sealed class TrafficEventQueryService : ITrafficEventQueryService
         return await _trafficEventRepository.GetByIdAsync(eventId, cancellationToken);
     }
 
+    public async Task<TrafficEventHistoryResponseDto> GetHistoryAsync(TrafficEventHistoryQueryDto query, CancellationToken cancellationToken = default)
+    {
+        var items = (await _trafficEventRepository.QueryAsync(query, cancellationToken)).ToList();
+        return new TrafficEventHistoryResponseDto
+        {
+            Total = items.Count,
+            Items = items
+        };
+    }
+
     private async Task<TrafficEventOverviewDto> BuildOverviewAsync(CancellationToken cancellationToken)
     {
         var events = (await _trafficEventRepository.GetRecentEventsAsync(cancellationToken)).ToList();

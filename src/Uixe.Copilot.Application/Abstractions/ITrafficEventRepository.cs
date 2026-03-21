@@ -9,4 +9,6 @@ public interface ITrafficEventRepository
     Task<IReadOnlyCollection<TrafficEventListItemDto>> GetRecentEventsAsync(CancellationToken cancellationToken = default);
 
     Task<TrafficEventListItemDto?> GetByIdAsync(string eventId, CancellationToken cancellationToken = default);
+
+    Task<IReadOnlyCollection<TrafficEventListItemDto>> QueryAsync(TrafficEventHistoryQueryDto query, CancellationToken cancellationToken = default);
 }

@@ -33,6 +33,15 @@ public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Pr
     }
 
     [Fact]
+    public async Task GetTrafficHistory_ShouldReturnOk()
+    {
+        using var client = _factory.CreateClient();
+        var response = await client.GetAsync("/api/traffic-events/history");
+
+        response.EnsureSuccessStatusCode();
+    }
+
+    [Fact]
     public async Task SubmitTrafficEvent_ShouldReturnBadRequest_WhenLaneMissing()
     {
         using var client = _factory.CreateClient();

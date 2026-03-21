@@ -1,5 +1,6 @@
 using Uixe.Copilot.Application.Services;
 using Uixe.Copilot.Contracts.Dtos;
+using Uixe.Copilot.Infrastructure.TrafficEvents;
 using Xunit;
 
 namespace Uixe.Copilot.Application.Tests;

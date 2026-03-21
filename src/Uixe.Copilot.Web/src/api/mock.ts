@@ -37,6 +37,16 @@ export async function fetchEventById(eventId: string) {
   return response.json()
 }
 
+export async function fetchHistory(params: Record<string, string>) {
+  const query = new URLSearchParams(params)
+  const response = await fetch(`${baseUrl}/api/traffic-events/history?${query.toString()}`)
+  if (!response.ok) {
+    throw new Error('无法加载历史事件')
+  }
+
+  return response.json()
+}
+
 export async function submitTrafficEvent(payload: Record<string, unknown>) {
   const response = await fetch(`${baseUrl}/api/traffic-events`, {
     method: 'POST',

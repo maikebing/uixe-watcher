@@ -2,13 +2,14 @@ using Uixe.Copilot.Application;
 using Uixe.Copilot.Api.Hubs;
 using Uixe.Copilot.Api.Services;
 using Uixe.Copilot.Application.Abstractions;
+using Uixe.Copilot.Infrastructure.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddUixeCopilotApplication();
+builder.Services.AddUixeCopilotInfrastructure();
 builder.Services.AddSignalR();
 builder.Services.AddScoped<IRealtimePushService, SignalRTrafficEventPushService>();
 

@@ -9,7 +9,6 @@ public static class DependencyInjection
     public static IServiceCollection AddUixeCopilotApplication(this IServiceCollection services)
     {
         services.AddSingleton<IPlazaContextService, InMemoryPlazaContextService>();
-        services.AddSingleton<ITrafficEventRepository, InMemoryTrafficEventRepository>();
         services.AddScoped<INotificationApplicationService, NotificationApplicationService>();
         services.AddScoped<ITcoWindowApplicationService, TcoWindowApplicationService>();
         services.AddScoped<ITrafficEventApplicationService, TrafficEventApplicationService>();
