@@ -47,7 +47,6 @@ namespace Uixe.Watcher
             services.AddUixeCopilotApplication();
             services.AddSingleton<TrafficEventQueueService>();
             services.AddSingleton<ILaneApplicationService, LaneApplicationService>();
-            services.AddSingleton<ILegacyLaneInteractionService, LegacyLaneInteractionService>();
             services.AddSingleton<ILegacyTcoInteractionService, LegacyTcoInteractionService>();
             services.AddSingleton<ILegacyWindowCoordinator, LegacyWindowCoordinator>();
             services.AddSingleton<IHostBootstrapService, HostBootstrapService>();

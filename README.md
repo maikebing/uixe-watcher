@@ -261,6 +261,19 @@
 
 ## 六、当前实施进度（2026-03-21）
 
+### 0. 当前阶段统一判断
+
+基于当前代码与迁移文档，现阶段进展统一认定为：
+
+- **第 0 阶段：已完成**
+- **第 1 阶段：主体已完成，已进入后半段/收尾阶段**
+- **第 2 阶段：部分能力已提前落地**
+- **第 3 阶段：前端一期骨架已启动并已有真实联通**
+
+当前最准确的项目状态描述不是“刚开始解耦”，而是：
+
+> 已完成新后端分层骨架、控制器主链路解耦与部分持久化/查询能力建设，当前重点是继续清理旧 `WinForms` 宿主中的剩余展示与编排耦合。
+
 ### 1. 已完成
 
 #### 架构与工程骨架
@@ -278,10 +291,12 @@
 
 #### 第一阶段解耦
 
-- `LaneController` 已改为通过 `ILaneApplicationService` 调用，不再直接承担主要业务编排。
-- `TrafficEventQueueService` 已引入展示处理抽象，避免继续直接绑定具体窗体实现。
+- `LaneController` 已改为通过 `ILaneApplicationService` 调用，不再直接依赖 `frmPlaza`，控制器已基本收敛为“接收参数 + 调用应用服务 + 返回结果”的薄层。
+- `TrafficEventQueueService` 已引入 `ITrafficEventDisplayHandler` 展示处理抽象，队列服务本体已不再直接绑定具体窗体类型。
 - 已建立兼容适配层与映射扩展，覆盖部分旧 DTO 到新契约的转换。
 - 已把部分窗体/宿主上下文整理为应用层可消费的上下文服务，如 `IPlazaContextService`。
+- `Startup.cs` 已将 `Uixe.Copilot.Application`、`ILaneApplicationService`、`ILegacyLaneInteractionService`、`ILegacyTcoInteractionService`、`ILegacyWindowCoordinator` 等新旧桥接依赖接入当前旧宿主。
+- 旧宿主仍通过 `Program.cs` 维持 `WinForms + 进程内 ASP.NET Core` 的兼容运行模式，说明部署形态仍处于过渡期而非最终独立后端形态。
 
 #### TrafficEvent 主链路第一版
 
@@ -317,6 +332,8 @@
 ### 2. 进行中
 
 - `LaneApplicationService` 仍是兼容编排入口，但已开始把收费站 UI 直接调用收敛到 `ILegacyPlazaUiBridge` 适配层，逐步减少对 WinForms 宿主细节的直接耦合。
+- `frmMain` 仍承担收费站窗体创建、宿主缓存注册、Plaza Host 装配等职责，尚未完全降级为纯展示壳层。
+- `frmPlaza` 仍集中承载弹窗展示、语音播报、部分窗口协调与媒体提醒等宿主能力，说明剩余 WinForms 依赖当前主要集中在该层及其桥接实现。
 - `TrafficEvent` 主链路已通，查询已支持内存仓储、文件持久化仓储、SQLite 数据库仓储与 PostgreSQL 仓储实现；其中文件/SQLite 仅用于过渡验证，当前统一目标数据库为 PostgreSQL。
 - 已抽出 SQL 方言无关的 `DbTrafficEventStore` 共享读取/过滤基础逻辑，并补齐 PostgreSQL 仓储骨架与切换入口。
 - `PostgresTrafficEventRepository` 已补齐真实 SQL 实现代码，当前只受目标环境与连接串可用性约束。
@@ -327,12 +344,9 @@
 
 #### 第二阶段：实时与存储
 
-- 事件持久化能力未完成。
 - 事件持久化已具备文件模式、SQLite 模式与 PostgreSQL 模式实现，后续重点转向 PostgreSQL 环境验证与读写稳定性增强。
-- PostgreSQL 仓储骨架与配置入口已建立，但当前受驱动依赖拉取失败影响，尚未完成真实可运行实现。
 - PostgreSQL 驱动依赖已恢复，仓储真实实现已补齐；当前仍需可用 PostgreSQL 实例与连接串来完成运行验证。
 - 站点/车道状态缓存体系未完成。
-- 历史查询接口已打通，但读模型仍为基础版，尚未支持分页、导出、复杂筛选。
 - 历史查询接口已支持基础分页与时间范围，但导出与更复杂筛选仍未完成。
 - 历史查询接口已修正分页总数语义，当前 `Total` 为符合筛选条件的总记录数。
 - 更丰富的 SignalR 消息契约与订阅粒度未完成。
@@ -355,39 +369,28 @@
 
 ### 4. 当前建议的直接下一步
 
-按迁移计划，下一步优先进入“第二阶段：实时与存储”的第一批实现：
+按当前统一判断，下一步不再是重复搭建主骨架，而是继续完成第 1 阶段剩余清尾项，并为第 2 阶段稳定落地扫清边界：
 
-1. 为 `TrafficEvent` 建立应用层事件仓储抽象。
-2. 将提交成功的事件保存到内存仓储中，替代当前纯示例查询数据。
-3. 让 `overview` / `detail` 基于真实提交结果返回。
-4. 为后续接入数据库保留基础边界。
-
-这一步完成后，新后端链路会从“演示型接口”进入“可积累、可查询、可回放”的真实业务形态。
-
-当前这一步已完成，下一步建议继续：
-
-1. 在 `Infrastructure` 中补充数据库版仓储实现。
-2. 将 `History` 查询页面接到统一查询服务。
-3. 补充分页、筛选、状态流转等读模型能力。
+1. 继续梳理 `frmMain.cs` 中宿主装配、窗体缓存、收费站 Host 注册职责，明确哪些可迁入桥接层或宿主协调器。
+2. 继续收敛 `frmPlaza.cs` 中的弹窗、语音播报、VNC、媒体提醒等宿主能力，减少窗体直接承担业务编排。
+3. 核查并补齐 `ILegacyPlazaUiBridge` 与相关桥接实现的覆盖面，让旧 UI 能力通过统一接口暴露，而不是继续散落在窗体方法里。
+4. 在保持旧接口与旧界面可运行的前提下，逐步把剩余展示驱动逻辑从 `LaneApplicationService` 等应用服务中继续抽离到清晰的兼容边界。
+5. 在上述边界稳定后，再继续推进 PostgreSQL 运行验证、状态缓存体系和更细粒度实时消息契约。
 
 ### 第一批优先改造文件
 
 按优先级执行：
 
-1. `Program.cs`
-   - 去掉“WinForms 进程内自托管 API”作为长期核心模式
-   - 为独立后端启动方式做准备
-2. `Startup.cs`
-   - 保留现有服务注册经验
-   - 后续迁移到独立后端项目
-3. `Controllers/LaneController.cs`
-   - 去掉对 `frmPlaza` 的直接访问
-   - 改为调用应用服务接口
-4. `Services/TrafficEventQueueService.cs`
-   - 去掉对窗体的直接依赖
-   - 改成标准事件处理与推送流程
-5. `WinForms/frmMain.cs`、`WinForms/frmPlaza.cs`
-   - 从业务承载层降级为展示端或 Agent 本地能力层
+1. `WinForms/frmMain.cs`
+  - 继续清理窗体创建、宿主注册、Plaza Host 装配等非纯展示职责
+2. `WinForms/frmPlaza.cs`
+  - 继续清理弹窗、播报、媒体提醒、窗口协调等宿主编排职责
+3. `Application` 下桥接与宿主协调相关实现
+  - 补齐 `ILegacyPlazaUiBridge`、窗口协调器等兼容边界覆盖
+4. `Program.cs` / `Startup.cs`
+  - 维持兼容运行模式，同时持续为独立后端部署做准备
+5. `Infrastructure/Persistence/TrafficEvents/*`
+  - 在第 1 阶段边界更稳后，继续推进 PostgreSQL 运行验证与稳定性增强
 
 ### 输出要求
 

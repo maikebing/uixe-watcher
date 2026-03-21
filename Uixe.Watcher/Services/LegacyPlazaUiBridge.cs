@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Windows.Forms;
 using System.Threading;
 using System.Threading.Tasks;
 using Uixe.Copilot.Application.Abstractions;
@@ -25,6 +26,127 @@ public sealed class LegacyPlazaUiBridge : ILegacyPlazaUiBridge
 
     public Task<ApiResult> ShowMessageAsync(string plazaId, object message, CancellationToken cancellationToken = default)
         => ExecuteOnPlazaAsync(plazaId, frm => frm.ShowMessageView((MsgInfo)message));
+
+    public Task<ApiResult> ShowBulkTransportAsync(string plazaId, BulkTransportDto dto, CancellationToken cancellationToken = default)
+        => ExecuteOnPlazaAsync(plazaId, frm =>
+        {
+            if (dto.Head is null)
+            {
+                return;
+            }
+
+            string laneId = $"650{dto.Head.NetNo}{dto.Head.PlazaNo}{dto.Head.LaneId}";
+            frm.ShowBulktrans(laneId, new BulklyDto
+            {
+                Head = new Head
+                {
+                    NetNo = dto.Head.NetNo,
+                    PlazaNo = dto.Head.PlazaNo,
+                    LaneID = dto.Head.LaneId,
+                    DDHM = dto.Head.Ddhm,
+                    LaneType = dto.Head.LaneType,
+                    MsgLen = dto.Head.MsgLen,
+                    MsgType = dto.Head.MsgType,
+                    MsgVersion = dto.Head.MsgVersion,
+                    Reserved = dto.Head.Reserved
+                },
+                SubHead = dto.SubHead is null ? null : new SubHead
+                {
+                    LaneMode = dto.SubHead.LaneMode,
+                    CETC = dto.SubHead.CETC,
+                    StaffID = dto.SubHead.StaffId,
+                    StaffName = dto.SubHead.StaffName,
+                    JobNo = dto.SubHead.JobNo,
+                    SquadID = dto.SubHead.SquadId,
+                    ShiftNo = dto.SubHead.ShiftNo
+                },
+                VehId = dto.VehId,
+                VehColor = dto.VehColor,
+                Alex = dto.Alex,
+                Weight = dto.Weight,
+                IsValid = dto.IsValid,
+                Title = dto.Title,
+                LARGEWOODS = dto.LargeWoods is null ? null : new LARGEWOODS
+                {
+                    LINCENSE = dto.LargeWoods.Lincense,
+                    PLATE = dto.LargeWoods.Plate,
+                    EN_STATION_ID = dto.LargeWoods.EnStationId,
+                    EX_STATION_ID = dto.LargeWoods.ExStationId,
+                    START_PASS_DATE = dto.LargeWoods.StartPassDate,
+                    END_PASS_DATE = dto.LargeWoods.EndPassDate,
+                    CARS_TOTAL_WEIGHT = dto.LargeWoods.CarsTotalWeight,
+                    CAR_LENGTH = dto.LargeWoods.CarLength,
+                    CAR_WIDTH = dto.LargeWoods.CarWidth,
+                    CAR_HEIGHT = dto.LargeWoods.CarHeight,
+                    CAR_AXLENUM = dto.LargeWoods.CarAxleNum,
+                    VERSION = dto.LargeWoods.Version
+                }
+            });
+        });
+
+    public Task<ApiResult> ShowBillInfoAsync(string plazaId, BillInfoRequestDto dto, CancellationToken cancellationToken = default)
+        => ExecuteOnPlazaAsync(plazaId, frm =>
+        {
+            if (dto.Head is null)
+            {
+                return;
+            }
+
+            string laneId = $"650{dto.Head.NetNo}{dto.Head.PlazaNo}{dto.Head.LaneId}";
+            frm.ShowBillInfo(laneId, new BillInfoDto
+            {
+                Head = new Head
+                {
+                    NetNo = dto.Head.NetNo,
+                    PlazaNo = dto.Head.PlazaNo,
+                    LaneID = dto.Head.LaneId,
+                    DDHM = dto.Head.Ddhm,
+                    LaneType = dto.Head.LaneType,
+                    MsgLen = dto.Head.MsgLen,
+                    MsgType = dto.Head.MsgType,
+                    MsgVersion = dto.Head.MsgVersion,
+                    Reserved = dto.Head.Reserved
+                },
+                SubHead = dto.SubHead is null ? null : new SubHead
+                {
+                    LaneMode = dto.SubHead.LaneMode,
+                    CETC = dto.SubHead.CETC,
+                    StaffID = dto.SubHead.StaffId,
+                    StaffName = dto.SubHead.StaffName,
+                    JobNo = dto.SubHead.JobNo,
+                    SquadID = dto.SubHead.SquadId,
+                    ShiftNo = dto.SubHead.ShiftNo
+                },
+                billCode = dto.BillCode,
+                billNumber = dto.BillNumber
+            });
+        });
+
+    public Task<ApiResult> ShowConfirmEnInfoAsync(string plazaId, ConfirmEnInfoDto dto, CancellationToken cancellationToken = default)
+        => ExecuteOnPlazaAsync(plazaId, frm =>
+        {
+            frm.ShowConfirmEnInfo(new ConfirmEnInfo
+            {
+                laneId = dto.LaneId,
+                genTime = dto.GenTime,
+                vehicleId = dto.VehicleId,
+                vehicleType = dto.VehicleType,
+                resCount = dto.ResCount,
+                retQuery = dto.RetQuery,
+                code = dto.Code,
+                msg = dto.Msg,
+                enStations = dto.EnStations.Select(x => new EnStations
+                {
+                    cardId = x.CardId,
+                    enStationId = x.EnStationId,
+                    enDateTime = x.EnDateTime,
+                    enTollLaneId = x.EnTollLaneId,
+                    mediaNo = x.MediaNo,
+                    mediaType = x.MediaType,
+                    resultVoucher = x.ResultVoucher
+                }).ToList()
+            });
+        });
 
     public async Task<ApiResult> ShowOverloadAlarmAsync(string plazaId, string title, string context, bool playSpeech, CancellationToken cancellationToken = default)
     {
@@ -56,9 +178,6 @@ public sealed class LegacyPlazaUiBridge : ILegacyPlazaUiBridge
         Task.Run(PlayUitls.PlayRing);
     }
 
-    public object? GetTrafficEventDisplayHost(string plazaId)
-        => _plazaContextService.GetPlazaHost(plazaId) as frmPlaza;
-
     public TrafficEventTargetResolutionResult? TryResolveTrafficEventTarget(TrafficEventPushRequestDto request)
     {
         var plazas = _plazaContextService.GetPlazas();
@@ -83,7 +202,7 @@ public sealed class LegacyPlazaUiBridge : ILegacyPlazaUiBridge
 
             return new TrafficEventTargetResolutionResult
             {
-                DisplayHost = currentForm,
+                DisplayAction = cancellationToken => ShowTrafficEventAsync(currentForm, currentPlaza, currentLane, request, cancellationToken),
                 Plaza = new T_Plaza
                 {
                     Id = currentPlaza.Id,
@@ -112,6 +231,77 @@ public sealed class LegacyPlazaUiBridge : ILegacyPlazaUiBridge
             action(frm);
             return new ApiResult(ApiCode.OK, "OK");
         });
+    }
+
+    private static Task ShowTrafficEventAsync(frmPlaza form, PlazaInfo currentPlaza, LaneInfo currentLane, TrafficEventPushRequestDto request, CancellationToken cancellationToken)
+    {
+        TaskCompletionSource<bool> taskCompletionSource = new(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        try
+        {
+            if (form.IsDisposed || !form.IsHandleCreated)
+            {
+                taskCompletionSource.SetResult(true);
+                return taskCompletionSource.Task;
+            }
+
+            form.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                {
+                    if (form.IsDisposed || !form.IsHandleCreated)
+                    {
+                        taskCompletionSource.TrySetResult(true);
+                        return;
+                    }
+
+                    var trafficForm = form.ShowTrafficEvent(
+                        new T_Plaza
+                        {
+                            Id = currentPlaza.Id,
+                            StationId = currentPlaza.StationId,
+                            StationName = currentPlaza.StationName,
+                            Lanes = currentPlaza.Lanes?.Select(x => new T_Lane { Id = x.Id, LaneId = x.LaneId, LaneNo = x.LaneNo }).ToList()
+                        },
+                        new T_Lane
+                        {
+                            Id = currentLane.Id,
+                            LaneId = currentLane.LaneId,
+                            LaneNo = currentLane.LaneNo
+                        },
+                        MapRequest(request));
+
+                    if (trafficForm == null || trafficForm.IsDisposed)
+                    {
+                        taskCompletionSource.TrySetResult(true);
+                        return;
+                    }
+
+                    FormClosedEventHandler? closedHandler = null;
+                    closedHandler = delegate
+                    {
+                        trafficForm.FormClosed -= closedHandler;
+                        taskCompletionSource.TrySetResult(true);
+                    };
+                    trafficForm.FormClosed += closedHandler;
+                }
+                catch (Exception ex)
+                {
+                    taskCompletionSource.TrySetException(ex);
+                }
+            });
+        }
+        catch (Exception ex)
+        {
+            taskCompletionSource.TrySetException(ex);
+        }
+
+        if (cancellationToken.CanBeCanceled)
+        {
+            cancellationToken.Register(() => taskCompletionSource.TrySetCanceled(cancellationToken));
+        }
+
+        return taskCompletionSource.Task;
     }
 
     private static bool IsLaneMatch(string laneNoValue, string laneIdValue, string laneNo)
