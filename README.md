@@ -376,6 +376,14 @@ D:\Uixe\uixe-watcher\
 - `GET /api/health`
 - `GET /api/traffic-events/overview`
 - `GET /api/traffic-events/{eventId}`
+- `POST /api/traffic-events`
+- `SignalR /hubs/traffic-events`
+
+当前实时推送状态：
+
+- `Uixe.Copilot.Api` 已新增 `TrafficEventsHub`
+- `TrafficEvent` 提交成功后会触发实时广播
+- `Uixe.Copilot.Web` 已接入 SignalR 客户端骨架，并在收到 `trafficEventSubmitted` 后刷新总览
 
 前端启动方式：
 
