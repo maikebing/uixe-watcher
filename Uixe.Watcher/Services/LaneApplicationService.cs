@@ -18,32 +18,32 @@ namespace Uixe.Watcher.Services
     public sealed class LaneApplicationService : ILaneApplicationService
     {
         private readonly ILogger<LaneApplicationService> _logger;
-        private readonly IMemoryCache _cache;
         private readonly AppSettings _settings;
         private readonly TrafficEventQueueService _trafficEventQueue;
         private readonly IPlazaContextService _plazaContextService;
         private readonly ILegacyLaneInteractionService _legacyLaneInteractionService;
         private readonly ITrafficEventApplicationService _trafficEventApplicationService;
         private readonly INotificationApplicationService _notificationApplicationService;
+        private readonly ILegacyWindowCoordinator _legacyWindowCoordinator;
 
         public LaneApplicationService(
             ILogger<LaneApplicationService> logger,
-            IMemoryCache cache,
             IOptions<AppSettings> options,
             TrafficEventQueueService trafficEventQueue,
             IPlazaContextService plazaContextService,
             ILegacyLaneInteractionService legacyLaneInteractionService,
             ITrafficEventApplicationService trafficEventApplicationService,
-            INotificationApplicationService notificationApplicationService)
+            INotificationApplicationService notificationApplicationService,
+            ILegacyWindowCoordinator legacyWindowCoordinator)
         {
             _logger = logger;
-            _cache = cache;
             _settings = options.Value;
             _trafficEventQueue = trafficEventQueue;
             _plazaContextService = plazaContextService;
             _legacyLaneInteractionService = legacyLaneInteractionService;
             _trafficEventApplicationService = trafficEventApplicationService;
             _notificationApplicationService = notificationApplicationService;
+            _legacyWindowCoordinator = legacyWindowCoordinator;
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, object status, CancellationToken cancellationToken = default)
@@ -62,14 +62,14 @@ namespace Uixe.Watcher.Services
             {
                 frm.Invoke(() =>
                 {
-                    var tco = _cache.GetOrCreate($"{nameof(frmWeightTCOCall)}_{plazaId}", _ =>
+                    var tco = _legacyWindowCoordinator.GetOrCreateWeightTcoWindow(plazaId, frm, () =>
                     {
                         var wtco = new frmWeightTCOCall(frm.GetPlaza(plazaId), frm._runtimeSetting, frm.settings, _logger);
                         wtco.LoadInfo();
                         wtco.Hide();
                         return wtco;
                     });
-                    tco.ShowTCOMsg((MsgWeightTCOCALL)message);
+                    ((frmWeightTCOCall)tco).ShowTCOMsg((MsgWeightTCOCALL)message);
                 });
                 Task.Run(PlayUitls.PlayRing);
             }, cancellationToken);
@@ -90,7 +90,7 @@ namespace Uixe.Watcher.Services
             {
                 frm.Invoke(() =>
                 {
-                    var tco = _cache.GetOrCreate<frmShowTCOCall>($"{nameof(frmShowTCOCall)}_{plazaId}", _ => new frmShowTCOCall(frm, frm.GetPlaza(plazaId)));
+                    var tco = (frmShowTCOCall)_legacyWindowCoordinator.GetOrCreateTcoCallWindow(plazaId, frm, () => new frmShowTCOCall(frm, frm.GetPlaza(plazaId)));
                     tco.TCOCallxxx = (TCOCall)message;
                     tco.Show();
                     Task.Run(PlayUitls.PlayRing);
@@ -143,12 +143,11 @@ namespace Uixe.Watcher.Services
                 }
 
                 string laneid = $"650{msg.Head.NetNo}{msg.Head.PlazaNo}{msg.Head.LaneID}";
-                if (_cache.TryGetValue(laneid, out Lanespecial _))
+                if (!_legacyWindowCoordinator.TryEnterLaneSpecialThrottle(laneid, msg, TimeSpan.FromSeconds(3)))
                 {
                     return;
                 }
 
-                _cache.Set(laneid, msg, TimeSpan.FromSeconds(3));
                 frm.Invoke(() => frm.Alert(msg.Title, msg.Context));
                 if (frm.settings?.laneVideoMute == false)
                 {
@@ -225,7 +224,7 @@ namespace Uixe.Watcher.Services
 
         private frmPlaza GetPlazaForm(string plazaId)
         {
-            return _plazaContextService.GetPlazaHost(plazaId) as frmPlaza ?? _cache.Get<frmPlaza>($"{nameof(frmPlaza)}_{plazaId}");
+            return _plazaContextService.GetPlazaHost(plazaId) as frmPlaza;
         }
 
         private async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ExecuteLegacyInteractionAsync<TLegacy>(
