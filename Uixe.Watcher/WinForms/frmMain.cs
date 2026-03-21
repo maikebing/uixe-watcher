@@ -17,9 +17,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Uixe.Copilot.Application.Abstractions;
 using Uixe.Watcher.Controls;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Extensions;
+using Uixe.Watcher.Services;
 using Uixe.Watcher.Uitls;
 using Uixe.Watcher.WinForms;
 
@@ -36,10 +38,11 @@ namespace Uixe.Watcher
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger _logger;
         private readonly ConnectionString _connection;
+        private readonly IPlazaContextService _plazaContextService;
         private CougarClockRepositoryItem repositoryItem = new CougarClockRepositoryItem();
         private CougarClockContainer control = new CougarClockContainer();
         private BarEditItem barEditItem = new BarEditItem();
-        public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option,  ILogger<frmMain>  logger, IMemoryCache cache , ILoggerFactory loggerFactory, LiteDB.ConnectionString connection)
+        public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option,  ILogger<frmMain>  logger, IMemoryCache cache , ILoggerFactory loggerFactory, LiteDB.ConnectionString connection, IPlazaContextService plazaContextService)
         {
             InitializeComponent();
             this.scopeFactor = scopeFactor;
@@ -48,6 +51,7 @@ namespace Uixe.Watcher
             _scope = scopeFactor.CreateScope();
             _cache = cache;
             _loggerFactory = loggerFactory;
+            _plazaContextService = plazaContextService;
             repositoryItem.ControlType = control.GetType();
             barEditItem.Edit = repositoryItem;
             barEditItem.EditHeight = control.Height;
@@ -122,6 +126,7 @@ namespace Uixe.Watcher
                     {
                         who = t.Result.data;
                         _setting.whoiam = who;
+                        _plazaContextService.SetCurrentBoss(who.ToBossInfo());
                         _setting.SaveUserAppSetting();
                         _logger.LogInformation("信息已保存。");
                     }
@@ -179,6 +184,7 @@ namespace Uixe.Watcher
 
         public void LoadPlaza(T_Boss tb)
         {
+            _plazaContextService.SetCurrentBoss(tb.ToBossInfo());
             string name = $"{nameof(frmPlaza)}_{tb.Id}";
             var frm = _cache.GetOrCreate(name, f =>
             {
@@ -191,6 +197,7 @@ namespace Uixe.Watcher
             tb.Plazas.ForEach(p =>
             {
                 _cache.Set($"{nameof(frmPlaza)}_{p.Id}",frm);
+                _plazaContextService.RegisterPlazaHost(p.Id, frm);
             } );
             frm.MdiParent = this;
             frm.Show();

@@ -5,15 +5,23 @@ namespace Uixe.Copilot.Application.Services;
 
 public sealed class TrafficEventWorkflowService : ITrafficEventWorkflowService
 {
+    private readonly IPlazaContextService _plazaContextService;
+
+    public TrafficEventWorkflowService(IPlazaContextService plazaContextService)
+    {
+        _plazaContextService = plazaContextService;
+    }
+
     public Task<bool> EnqueueAsync(TrafficEventPushRequestDto request, IReadOnlyCollection<PlazaInfo> plazas, CancellationToken cancellationToken = default)
     {
-        if (request is null || string.IsNullOrWhiteSpace(request.LaneNo) || plazas.Count == 0)
+        var effectivePlazas = plazas.Count == 0 ? _plazaContextService.GetPlazas() : plazas;
+        if (request is null || string.IsNullOrWhiteSpace(request.LaneNo) || effectivePlazas.Count == 0)
         {
             return Task.FromResult(false);
         }
 
         var normalizedLane = NormalizeLaneToken(request.LaneNo);
-        var matched = plazas.Any(plaza => plaza.Lanes.Any(lane => IsLaneMatch(normalizedLane, lane)));
+        var matched = effectivePlazas.Any(plaza => plaza.Lanes.Any(lane => IsLaneMatch(normalizedLane, lane)));
         return Task.FromResult(matched);
     }
 

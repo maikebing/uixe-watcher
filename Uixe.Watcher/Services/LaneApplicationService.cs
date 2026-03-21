@@ -154,6 +154,7 @@ namespace Uixe.Watcher.Services
             => ExecuteOnPlazaAsync(plazaId, frm =>
             {
                 var data = (BulklyDto)dto;
+                _ = data.ToBulkTransportDto();
                 string laneid = $"650{data.Head.NetNo}{data.Head.PlazaNo}{data.Head.LaneID}";
                 frm.ShowBulktrans(laneid, data);
             });
@@ -162,12 +163,18 @@ namespace Uixe.Watcher.Services
             => ExecuteOnPlazaAsync(plazaId, frm =>
             {
                 var data = (BillInfoDto)dto;
+                _ = data.ToBillInfoRequestDto();
                 string laneid = $"650{data.Head.NetNo}{data.Head.PlazaNo}{data.Head.LaneID}";
                 frm.ShowBillInfo(laneid, data);
             });
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowConfirmEnInfoAsync(string plazaId, object dto, CancellationToken cancellationToken = default)
-            => ExecuteOnPlazaAsync(plazaId, frm => frm.ShowConfirmEnInfo((ConfirmEnInfo)dto));
+            => ExecuteOnPlazaAsync(plazaId, frm =>
+            {
+                var data = (ConfirmEnInfo)dto;
+                _ = data.ToConfirmEnInfoDto();
+                frm.ShowConfirmEnInfo(data);
+            });
 
         public Task<Uixe.Copilot.Contracts.Responses.TrafficEventPushResponse> EnqueueTrafficEventAsync(TrafficEventPushRequestDto request, CancellationToken cancellationToken = default)
         {

@@ -47,6 +47,7 @@ namespace Uixe.Watcher
             services.AddUixeCopilotApplication();
             services.AddSingleton<TrafficEventQueueService>();
             services.AddSingleton<ILaneApplicationService, LaneApplicationService>();
+            services.AddSingleton<IHostBootstrapService, HostBootstrapService>();
             services.AddLogging(configure =>
             {
                 var logdir = new FileInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "uixe", $"uixe{DateTime.Now:yyyyMMddhhmm}.log"));
