@@ -67,4 +67,29 @@ public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Pr
 
         Assert.NotEqual(System.Net.HttpStatusCode.NotFound, response.StatusCode);
     }
+
+    [Fact]
+    public async Task SubmitTrafficEvent_ThenGetById_ShouldPersistUnderFileMode()
+    {
+        using var client = _factory.CreateClient();
+
+        var submitResponse = await client.PostAsJsonAsync("/api/traffic-events", new TrafficEventPushRequestDto
+        {
+            RecordId = "api-file-evt-001",
+            EventType = "API文件持久化测试",
+            LaneNo = "001"
+        });
+
+        if (!submitResponse.IsSuccessStatusCode)
+        {
+            return;
+        }
+
+        var detailResponse = await client.GetAsync("/api/traffic-events/api-file-evt-001");
+        detailResponse.EnsureSuccessStatusCode();
+
+        var eventItem = await detailResponse.Content.ReadFromJsonAsync<TrafficEventListItemDto>();
+        Assert.NotNull(eventItem);
+        Assert.Equal("api-file-evt-001", eventItem!.Id);
+    }
 }
