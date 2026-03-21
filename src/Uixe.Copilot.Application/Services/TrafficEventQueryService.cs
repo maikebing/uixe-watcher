@@ -25,9 +25,10 @@ public sealed class TrafficEventQueryService : ITrafficEventQueryService
     public async Task<TrafficEventHistoryResponseDto> GetHistoryAsync(TrafficEventHistoryQueryDto query, CancellationToken cancellationToken = default)
     {
         var items = (await _trafficEventRepository.QueryAsync(query, cancellationToken)).ToList();
+        var total = await _trafficEventRepository.CountAsync(query, cancellationToken);
         return new TrafficEventHistoryResponseDto
         {
-            Total = items.Count,
+            Total = total,
             PageNo = query.PageNo,
             PageSize = query.PageSize,
             Items = items

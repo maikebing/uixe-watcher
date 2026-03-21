@@ -122,6 +122,33 @@ LIMIT $limit OFFSET $offset;";
         return items.AsReadOnly();
     }
 
+    public async Task<int> CountAsync(TrafficEventHistoryQueryDto query, CancellationToken cancellationToken = default)
+    {
+        await using var connection = new SqliteConnection(_connectionString);
+        await connection.OpenAsync(cancellationToken);
+
+        var command = connection.CreateCommand();
+        command.CommandText = @"
+SELECT COUNT(1) FROM TrafficEvents
+WHERE ($startTime IS NULL OR OccurredAt >= $startTime)
+  AND ($endTime IS NULL OR OccurredAt <= $endTime)
+  AND ($plazaName = '' OR PlazaName LIKE $plazaLike)
+  AND ($eventType = '' OR Title LIKE $eventLike)
+  AND ($status = '' OR Status LIKE $statusLike);";
+
+        command.Parameters.AddWithValue("$startTime", query.StartTime?.ToString("O") ?? (object)DBNull.Value);
+        command.Parameters.AddWithValue("$endTime", query.EndTime?.ToString("O") ?? (object)DBNull.Value);
+        command.Parameters.AddWithValue("$plazaName", query.PlazaName ?? string.Empty);
+        command.Parameters.AddWithValue("$eventType", query.EventType ?? string.Empty);
+        command.Parameters.AddWithValue("$status", query.Status ?? string.Empty);
+        command.Parameters.AddWithValue("$plazaLike", $"%{query.PlazaName ?? string.Empty}%");
+        command.Parameters.AddWithValue("$eventLike", $"%{query.EventType ?? string.Empty}%");
+        command.Parameters.AddWithValue("$statusLike", $"%{query.Status ?? string.Empty}%");
+
+        var result = await command.ExecuteScalarAsync(cancellationToken);
+        return Convert.ToInt32(result);
+    }
+
     private async Task Initialize()
     {
         await using var connection = new SqliteConnection(_connectionString);

@@ -11,4 +11,6 @@ public interface ITrafficEventRepository
     Task<TrafficEventListItemDto?> GetByIdAsync(string eventId, CancellationToken cancellationToken = default);
 
     Task<IReadOnlyCollection<TrafficEventListItemDto>> QueryAsync(TrafficEventHistoryQueryDto query, CancellationToken cancellationToken = default);
+
+    Task<int> CountAsync(TrafficEventHistoryQueryDto query, CancellationToken cancellationToken = default);
 }

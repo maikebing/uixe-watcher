@@ -63,19 +63,20 @@ public sealed class FileTrafficEventRepository : ITrafficEventRepository
         var pageNo = query.PageNo <= 0 ? 1 : query.PageNo;
         var pageSize = query.PageSize <= 0 ? 20 : query.PageSize;
 
-        var events = await ReadEntitiesAsync(cancellationToken);
+        var events = ApplyFilter(await ReadEntitiesAsync(cancellationToken), query);
         return events
-            .Where(x => !query.StartTime.HasValue || x.OccurredAt >= query.StartTime.Value)
-            .Where(x => !query.EndTime.HasValue || x.OccurredAt <= query.EndTime.Value)
-            .Where(x => string.IsNullOrWhiteSpace(query.PlazaName) || x.PlazaName.Contains(query.PlazaName, StringComparison.OrdinalIgnoreCase))
-            .Where(x => string.IsNullOrWhiteSpace(query.EventType) || x.Title.Contains(query.EventType, StringComparison.OrdinalIgnoreCase))
-            .Where(x => string.IsNullOrWhiteSpace(query.Status) || x.Status.Contains(query.Status, StringComparison.OrdinalIgnoreCase))
             .OrderByDescending(x => x.OccurredAt)
             .Skip((pageNo - 1) * pageSize)
             .Take(pageSize)
             .Select(x => x.ToListItemDto())
             .ToList()
             .AsReadOnly();
+    }
+
+    public async Task<int> CountAsync(TrafficEventHistoryQueryDto query, CancellationToken cancellationToken = default)
+    {
+        var events = await ReadEntitiesAsync(cancellationToken);
+        return ApplyFilter(events, query).Count();
     }
 
     private async Task<List<TrafficEvent>> ReadEntitiesAsync(CancellationToken cancellationToken)
@@ -94,5 +95,15 @@ public sealed class FileTrafficEventRepository : ITrafficEventRepository
     {
         await using var stream = File.Create(_storagePath);
         await JsonSerializer.SerializeAsync(stream, events, cancellationToken: cancellationToken);
+    }
+
+    private static IEnumerable<TrafficEvent> ApplyFilter(IEnumerable<TrafficEvent> events, TrafficEventHistoryQueryDto query)
+    {
+        return events
+            .Where(x => !query.StartTime.HasValue || x.OccurredAt >= query.StartTime.Value)
+            .Where(x => !query.EndTime.HasValue || x.OccurredAt <= query.EndTime.Value)
+            .Where(x => string.IsNullOrWhiteSpace(query.PlazaName) || x.PlazaName.Contains(query.PlazaName, StringComparison.OrdinalIgnoreCase))
+            .Where(x => string.IsNullOrWhiteSpace(query.EventType) || x.Title.Contains(query.EventType, StringComparison.OrdinalIgnoreCase))
+            .Where(x => string.IsNullOrWhiteSpace(query.Status) || x.Status.Contains(query.Status, StringComparison.OrdinalIgnoreCase));
     }
 }

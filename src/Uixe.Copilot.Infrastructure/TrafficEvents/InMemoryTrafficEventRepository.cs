@@ -37,13 +37,10 @@ public sealed class InMemoryTrafficEventRepository : ITrafficEventRepository
         var pageNo = query.PageNo <= 0 ? 1 : query.PageNo;
         var pageSize = query.PageSize <= 0 ? 20 : query.PageSize;
 
-        var items = _events.Values
+        var items = ApplyFilter(_events.Values, query)
             .Where(x => !query.StartTime.HasValue || x.OccurredAt >= query.StartTime.Value)
             .Where(x => !query.EndTime.HasValue || x.OccurredAt <= query.EndTime.Value)
             .Select(x => x.ToListItemDto())
-            .Where(x => string.IsNullOrWhiteSpace(query.PlazaName) || x.PlazaName.Contains(query.PlazaName, StringComparison.OrdinalIgnoreCase))
-            .Where(x => string.IsNullOrWhiteSpace(query.EventType) || x.Title.Contains(query.EventType, StringComparison.OrdinalIgnoreCase))
-            .Where(x => string.IsNullOrWhiteSpace(query.Status) || x.Status.Contains(query.Status, StringComparison.OrdinalIgnoreCase))
             .OrderByDescending(x => x.Time)
             .Skip((pageNo - 1) * pageSize)
             .Take(pageSize)
@@ -51,5 +48,21 @@ public sealed class InMemoryTrafficEventRepository : ITrafficEventRepository
             .AsReadOnly();
 
         return Task.FromResult<IReadOnlyCollection<TrafficEventListItemDto>>(items);
+    }
+
+    public Task<int> CountAsync(TrafficEventHistoryQueryDto query, CancellationToken cancellationToken = default)
+    {
+        var total = ApplyFilter(_events.Values, query).Count();
+        return Task.FromResult(total);
+    }
+
+    private static IEnumerable<Uixe.Copilot.Domain.Entities.TrafficEvent> ApplyFilter(IEnumerable<Uixe.Copilot.Domain.Entities.TrafficEvent> events, TrafficEventHistoryQueryDto query)
+    {
+        return events
+            .Where(x => !query.StartTime.HasValue || x.OccurredAt >= query.StartTime.Value)
+            .Where(x => !query.EndTime.HasValue || x.OccurredAt <= query.EndTime.Value)
+            .Where(x => string.IsNullOrWhiteSpace(query.PlazaName) || x.PlazaName.Contains(query.PlazaName, StringComparison.OrdinalIgnoreCase))
+            .Where(x => string.IsNullOrWhiteSpace(query.EventType) || x.Title.Contains(query.EventType, StringComparison.OrdinalIgnoreCase))
+            .Where(x => string.IsNullOrWhiteSpace(query.Status) || x.Status.Contains(query.Status, StringComparison.OrdinalIgnoreCase));
     }
 }
