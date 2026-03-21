@@ -60,6 +60,31 @@ export async function submitTrafficEvent(payload: Record<string, unknown>) {
   return { ok: response.ok, data }
 }
 
+export async function fetchSystemSettings() {
+  const response = await fetch(`${baseUrl}/api/system-settings`)
+  if (!response.ok) {
+    throw new Error('无法加载系统配置')
+  }
+
+  return response.json()
+}
+
+export async function saveSystemSettings(payload: Record<string, unknown>) {
+  const response = await fetch(`${baseUrl}/api/system-settings`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+
+  if (!response.ok) {
+    throw new Error('无法保存系统配置')
+  }
+
+  return response.json()
+}
+
 export function createTrafficEventsConnection() {
   if (trafficEventsConnection) {
     return trafficEventsConnection
