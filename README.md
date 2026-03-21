@@ -718,3 +718,41 @@ D:\Uixe\uixe-watcher\
 - 保留本地能力扩展口
 - 界面风格更适合监控与告警场景
 - 落地风险可控，适合渐进式迁移
+
+---
+
+## 十五、当前实施进展补充
+
+### 1. 新后端工程
+
+当前仓库已新增 `Uixe.Copilot` 分层后端骨架：
+
+- `src/Uixe.Copilot.Api`
+- `src/Uixe.Copilot.Application`
+- `src/Uixe.Copilot.Contracts`
+- `src/Uixe.Copilot.Domain`
+- `src/Uixe.Copilot.Infrastructure`
+
+### 2. 新 Web UI 工程
+
+按照本文档前端规划，已新增新的 Web UI 骨架：
+
+- `web/Uixe.Copilot.Web`
+
+当前已落地页面骨架：
+
+- 监控总览
+- 收费站监控
+- 事件中心
+- 事件详情
+- 历史查询
+- 系统配置
+
+当前 UI 采用：
+
+- `Vue 3 + TypeScript + Vite`
+- `Arco Design Vue`
+- `Tailwind CSS`
+- `ECharts`
+
+并采用深色监控风格布局，后续逐步接入 `Uixe.Copilot.Api` 与 `SignalR`。
