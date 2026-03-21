@@ -28,6 +28,8 @@ public sealed class TrafficEventQueryService : ITrafficEventQueryService
         return new TrafficEventHistoryResponseDto
         {
             Total = items.Count,
+            PageNo = query.PageNo,
+            PageSize = query.PageSize,
             Items = items
         };
     }

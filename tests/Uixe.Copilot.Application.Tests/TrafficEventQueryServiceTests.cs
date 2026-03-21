@@ -47,4 +47,27 @@ public sealed class TrafficEventQueryServiceTests
         Assert.Equal("https://example.com/test.jpg", eventItem.ImageUrl);
         Assert.Equal("https://example.com/test.mp4", eventItem.VideoUrl);
     }
+
+    [Fact]
+    public async Task GetHistoryAsync_ShouldSupportPaging()
+    {
+        var repository = new InMemoryTrafficEventRepository();
+
+        for (var i = 0; i < 3; i++)
+        {
+            await repository.SaveAsync(new TrafficEventPushRequestDto
+            {
+                RecordId = $"evt-page-{i}",
+                EventType = "·ÖÒ³²âÊÔ",
+                LaneNo = $"00{i}"
+            });
+        }
+
+        var service = new TrafficEventQueryService(repository);
+        var result = await service.GetHistoryAsync(new TrafficEventHistoryQueryDto { PageNo = 2, PageSize = 1 });
+
+        Assert.Equal(1, result.Items.Count);
+        Assert.Equal(2, result.PageNo);
+        Assert.Equal(1, result.PageSize);
+    }
 }

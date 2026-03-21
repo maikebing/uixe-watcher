@@ -11,4 +11,8 @@ public sealed class TrafficEventHistoryQueryDto
     public DateTime? StartTime { get; set; }
 
     public DateTime? EndTime { get; set; }
+
+    public int PageNo { get; set; } = 1;
+
+    public int PageSize { get; set; } = 20;
 }
