@@ -9,15 +9,18 @@ public sealed class TrafficEventApplicationService : ITrafficEventApplicationSer
     private readonly ITrafficEventWorkflowService _workflowService;
     private readonly IPlazaContextService _plazaContextService;
     private readonly IRealtimePushService _realtimePushService;
+    private readonly ITrafficEventRepository _trafficEventRepository;
 
     public TrafficEventApplicationService(
         ITrafficEventWorkflowService workflowService,
         IPlazaContextService plazaContextService,
-        IRealtimePushService realtimePushService)
+        IRealtimePushService realtimePushService,
+        ITrafficEventRepository trafficEventRepository)
     {
         _workflowService = workflowService;
         _plazaContextService = plazaContextService;
         _realtimePushService = realtimePushService;
+        _trafficEventRepository = trafficEventRepository;
     }
 
     public async Task<TrafficEventPushResponse> SubmitAsync(TrafficEventPushRequestDto request, CancellationToken cancellationToken = default)
@@ -38,6 +41,7 @@ public sealed class TrafficEventApplicationService : ITrafficEventApplicationSer
             return CreateResponse(1, $"未匹配到车道：{request.LaneNo}");
         }
 
+        await _trafficEventRepository.SaveAsync(request, cancellationToken);
         await _realtimePushService.PublishTrafficEventSubmittedAsync(request, cancellationToken);
         return CreateResponse(0, "推送成功");
     }

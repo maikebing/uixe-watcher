@@ -257,6 +257,100 @@
 - 内部逐步映射到新的应用服务
 - 短期允许适配层存在
 
+---
+
+## 六、当前实施进度（2026-03-21）
+
+### 1. 已完成
+
+#### 架构与工程骨架
+
+- 已新增并接入新的后端分层项目：
+  - `src/Uixe.Copilot.Api`
+  - `src/Uixe.Copilot.Application`
+  - `src/Uixe.Copilot.Contracts`
+  - `src/Uixe.Copilot.Domain`
+  - `src/Uixe.Copilot.Infrastructure`
+- 已新增测试项目：
+  - `tests/Uixe.Copilot.Api.Tests`
+  - `tests/Uixe.Copilot.Application.Tests`
+- 已形成 `Uixe.Copilot` 命名体系，并纳入现有解决方案。
+
+#### 第一阶段解耦
+
+- `LaneController` 已改为通过 `ILaneApplicationService` 调用，不再直接承担主要业务编排。
+- `TrafficEventQueueService` 已引入展示处理抽象，避免继续直接绑定具体窗体实现。
+- 已建立兼容适配层与映射扩展，覆盖部分旧 DTO 到新契约的转换。
+- 已把部分窗体/宿主上下文整理为应用层可消费的上下文服务，如 `IPlazaContextService`。
+
+#### TrafficEvent 主链路第一版
+
+- 已新增 `TrafficEventsController`：
+  - `GET /api/traffic-events/overview`
+  - `GET /api/traffic-events/{eventId}`
+  - `POST /api/traffic-events`
+- 已新增 `TrafficEventApplicationService`，具备基础校验、车道匹配、实时推送触发能力。
+- 已新增 `TrafficEventQueryService`，当前提供内存/示例态总览与详情数据。
+
+#### Web 前端一期
+
+- `src/Uixe.Copilot.Web` 已存在并可作为新 UI 一期工程。
+- 已接入监控总览、事件中心、事件详情、收费站监控、历史查询、系统配置等页面骨架。
+- 前端已开始对接真实后端接口，而不只是静态 mock。
+
+#### 实时通信第一版
+
+- 已新增 `TrafficEventsHub`。
+- 已新增 `SignalRTrafficEventPushService`。
+- 前端已建立 SignalR 连接，并在交通事件提交后触发刷新。
+
+#### 工程治理
+
+- 已补充 `.gitignore`，忽略 `bin`、`obj`、`TestResults` 等产物。
+- 新增后端测试项目已可运行，最近一次 `Uixe.Copilot.Application.Tests` 测试通过。
+
+### 2. 进行中
+
+- `LaneApplicationService` 仍是兼容编排入口，内部还保留部分 WinForms/宿主相关协作逻辑。
+- `TrafficEvent` 主链路已通，但查询仍基于内存/示例数据，尚未进入真实持久化。
+- Web 前端虽然已联通，但历史查询、系统配置、媒体链路仍处于骨架或占位阶段。
+
+### 3. 尚未完成
+
+#### 第二阶段：实时与存储
+
+- 事件持久化能力未完成。
+- 站点/车道状态缓存体系未完成。
+- 历史查询真实读模型未完成。
+- 更丰富的 SignalR 消息契约与订阅粒度未完成。
+
+#### 第三阶段后半段：Web 前端深化
+
+- 历史查询页面尚未对接真实后端。
+- 系统配置页面尚未接入真实配置模型。
+- 媒体预览链路尚未落地。
+
+#### 第四阶段：Agent 兼容层
+
+- `Uixe.Watcher.Agent` 尚未创建。
+- 本地通知、语音、VNC、WebView 承载等能力尚未迁移到独立 Agent 形态。
+
+#### 联调与灰度
+
+- 尚未完成上游联调回归清单。
+- 尚未完成灰度切换方案与回滚预案验证。
+
+### 4. 当前建议的直接下一步
+
+按迁移计划，下一步优先进入“第二阶段：实时与存储”的第一批实现：
+
+1. 为 `TrafficEvent` 建立应用层事件仓储抽象。
+2. 将提交成功的事件保存到内存仓储中，替代当前纯示例查询数据。
+3. 让 `overview` / `detail` 基于真实提交结果返回。
+4. 为后续接入数据库保留基础边界。
+
+这一步完成后，新后端链路会从“演示型接口”进入“可积累、可查询、可回放”的真实业务形态。
+
 ### 第一批优先改造文件
 
 按优先级执行：
