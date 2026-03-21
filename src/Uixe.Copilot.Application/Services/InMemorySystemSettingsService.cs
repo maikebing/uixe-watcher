@@ -11,6 +11,12 @@ public sealed class InMemorySystemSettingsService : ISystemSettingsService
         EnableVoiceBroadcast = true,
         EnableLocalNotification = true,
         EnableDarkTheme = true,
+        EnableDesktopToast = true,
+        EnableVncLaunch = true,
+        EnableTrafficEventAudio = true,
+        PreferredVoiceName = "Ä¬ÈÏ²¥±¨Ô±",
+        PreferredTheme = "dark",
+        TrafficEventStorageMode = "PostgreSQL",
         CurrentPhase = "Phase 2",
         PhaseMilestones = new List<string>
         {
@@ -46,6 +52,12 @@ public sealed class InMemorySystemSettingsService : ISystemSettingsService
             EnableVoiceBroadcast = source.EnableVoiceBroadcast,
             EnableLocalNotification = source.EnableLocalNotification,
             EnableDarkTheme = source.EnableDarkTheme,
+            EnableDesktopToast = source.EnableDesktopToast,
+            EnableVncLaunch = source.EnableVncLaunch,
+            EnableTrafficEventAudio = source.EnableTrafficEventAudio,
+            PreferredVoiceName = source.PreferredVoiceName,
+            PreferredTheme = source.PreferredTheme,
+            TrafficEventStorageMode = source.TrafficEventStorageMode,
             CurrentPhase = source.CurrentPhase,
             PhaseMilestones = source.PhaseMilestones.ToList()
         };

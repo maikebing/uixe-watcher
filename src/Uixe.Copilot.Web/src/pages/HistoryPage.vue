@@ -6,7 +6,10 @@
       <a-input v-model="filters.eventType" placeholder="输入事件类型" />
       <a-input v-model="filters.status" placeholder="输入状态" />
       <a-range-picker v-model="timeRange" show-time />
-      <a-button type="primary" @click="loadHistory">查询</a-button>
+      <div class="flex gap-2">
+        <a-button type="primary" @click="loadHistory">查询</a-button>
+        <a-button @click="exportHistory">导出 CSV</a-button>
+      </div>
     </div>
 
     <a-table :data="items" :pagination="pagination" @page-change="handlePageChange" class="mt-6">
@@ -62,6 +65,22 @@ async function loadHistory() {
 async function handlePageChange(page: number) {
   pagination.current = page
   await loadHistory()
+}
+
+function exportHistory() {
+  const headers = ['事件ID', '事件类型', '收费站', '车道', '级别', '状态', '时间']
+  const rows = items.value.map(item => [item.id, item.title, item.plazaName, item.laneNo, item.level, item.status, item.time])
+  const csv = [headers, ...rows]
+    .map(row => row.map(cell => `"${String(cell ?? '').replace(/"/g, '""')}"`).join(','))
+    .join('\n')
+
+  const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' })
+  const url = URL.createObjectURL(blob)
+  const anchor = document.createElement('a')
+  anchor.href = url
+  anchor.download = `traffic-event-history-${Date.now()}.csv`
+  anchor.click()
+  URL.revokeObjectURL(url)
 }
 
 onMounted(loadHistory)

@@ -1,4 +1,4 @@
-﻿# Uixe.Watcher 改造实施说明（正式版）
+﻿# Uixe.Watcher 改造为前后端分离的Web项目Uixe.Copilot的实施说明（正式版）
 
 ## 一、项目定位
 
@@ -69,6 +69,11 @@
 - `src/Uixe.Copilot.Domain`
 - `src/Uixe.Copilot.Infrastructure`
 
+#### Agent
+
+- `src/Uixe.Copilot.Agent`
+- `src/Uixe.Copilot.Agent.Core`
+
 #### 前端
 
 - `src/Uixe.Copilot.Web`
@@ -82,11 +87,22 @@
 
 - `Uixe.Copilot.Api` 已提供健康检查和事件总览业务接口
 - `Uixe.Copilot.Web` 已提供深色监控首页、事件中心、详情页，并已开始对接真实后端接口
+- `Uixe.Copilot.Agent` 已提供跨平台宿主骨架，并通过 `Core + 单宿主内平台适配` 分层封装托盘、通知、语音、VNC 与 WebView 能力接口；当前宿主按桌面 GUI 方式构建，支持在 Windows 和 Linux 下以双击方式启动
+- `Uixe.Copilot.Agent` 已内置本地 HTTP 指令服务，可接收并执行通知、语音播报、VNC 打开和 Web 地址打开等命令
+- `Uixe.Copilot.Web` 已新增 `agentApi.ts`，并在系统配置页接入本地 Agent 调试入口，可直接通过 `POST http://127.0.0.1:17173/commands` 调用通知、语音和 VNC 能力
 - 旧 `WinForms` 与新 `Web` 仍保持并行迁移模式
+
+Agent 本地 HTTP 服务当前默认监听 `http://127.0.0.1:17173/commands`，`Uixe.Copilot.Web` 或其他本机业务可直接以 `POST` JSON 调用，例如：
+
+- 弹窗通知：`{"commandType":"notification","title":"交通事件","message":"X02 车道发现异常车辆"}`
+- 弹窗并播报：`{"commandType":"notification","title":"超限提醒","message":"请处理超限车辆","playSpeech":true}`
+- 语音播报：`{"commandType":"speech","text":"X02 车道发现异常事件","voiceName":"Microsoft Xiaoxiao Desktop"}`
+- 打开 VNC：`{"commandType":"vnc","host":"192.168.1.10","port":5900,"password":"kissme","vncTitle":"X02 车道远程桌面"}`
+- 打开 Web：`{"commandType":"web","url":"http://127.0.0.1:5173","webTitle":"Uixe.Copilot"}`
 
 #### 可选兼容层
 
-- `Uixe.Watcher.Agent`
+- `Uixe.Copilot.Agent`
 - 本地通知
 - 本地语音播报
 - 本地 `VNC` 调起
@@ -259,138 +275,16 @@
 
 ---
 
-## 六、当前实施进度（2026-03-21）
+## 六、实施路线图与当前进展
 
-### 0. 当前阶段统一判断
+动态进展、完成百分比、已完成 / 进行中 / 尚未完成项、优先改造文件与下一步计划，已迁移到独立路线图文档：
 
-基于当前代码与迁移文档，现阶段进展统一认定为：
+- `roadmap.md`
 
-- **第 0 阶段：已完成**
-- **第 1 阶段：主体已完成，已进入后半段/收尾阶段**
-- **第 2 阶段：部分能力已提前落地**
-- **第 3 阶段：前端一期骨架已启动并已有真实联通**
+说明：
 
-当前最准确的项目状态描述不是“刚开始解耦”，而是：
-
-> 已完成新后端分层骨架、控制器主链路解耦与部分持久化/查询能力建设，当前重点是继续清理旧 `WinForms` 宿主中的剩余展示与编排耦合。
-
-### 1. 已完成
-
-#### 架构与工程骨架
-
-- 已新增并接入新的后端分层项目：
-  - `src/Uixe.Copilot.Api`
-  - `src/Uixe.Copilot.Application`
-  - `src/Uixe.Copilot.Contracts`
-  - `src/Uixe.Copilot.Domain`
-  - `src/Uixe.Copilot.Infrastructure`
-- 已新增测试项目：
-  - `tests/Uixe.Copilot.Api.Tests`
-  - `tests/Uixe.Copilot.Application.Tests`
-- 已形成 `Uixe.Copilot` 命名体系，并纳入现有解决方案。
-
-#### 第一阶段解耦
-
-- `LaneController` 已改为通过 `ILaneApplicationService` 调用，不再直接依赖 `frmPlaza`，控制器已基本收敛为“接收参数 + 调用应用服务 + 返回结果”的薄层。
-- `TrafficEventQueueService` 已引入 `ITrafficEventDisplayHandler` 展示处理抽象，队列服务本体已不再直接绑定具体窗体类型。
-- 已建立兼容适配层与映射扩展，覆盖部分旧 DTO 到新契约的转换。
-- 已把部分窗体/宿主上下文整理为应用层可消费的上下文服务，如 `IPlazaContextService`。
-- `Startup.cs` 已将 `Uixe.Copilot.Application`、`ILaneApplicationService`、`ILegacyLaneInteractionService`、`ILegacyTcoInteractionService`、`ILegacyWindowCoordinator` 等新旧桥接依赖接入当前旧宿主。
-- 旧宿主仍通过 `Program.cs` 维持 `WinForms + 进程内 ASP.NET Core` 的兼容运行模式，说明部署形态仍处于过渡期而非最终独立后端形态。
-
-#### TrafficEvent 主链路第一版
-
-- 已新增 `TrafficEventsController`：
-  - `GET /api/traffic-events/overview`
-  - `GET /api/traffic-events/{eventId}`
-  - `POST /api/traffic-events`
-- 已新增 `TrafficEventApplicationService`，具备基础校验、车道匹配、实时推送触发能力。
-- 已新增 `TrafficEventQueryService`，当前已基于内存仓储返回真实提交后的总览与详情数据。
-- 已新增 `TrafficEvent` 领域实体，并将内存事件仓储下沉到 `Uixe.Copilot.Infrastructure`。
-
-#### Web 前端一期
-
-- `src/Uixe.Copilot.Web` 已存在并可作为新 UI 一期工程。
-- 已接入监控总览、事件中心、事件详情、收费站监控、历史查询、系统配置等页面骨架。
-- 前端已开始对接真实后端接口，而不只是静态 mock。
-- 历史查询页面已接入后端 `history` 接口，可按收费站、事件类型、状态进行基础过滤。
-- 历史查询页面已支持基础分页与时间范围过滤。
-- 系统配置页面已接入后端 `system-settings` 接口，可读取并保存基础播报/通知/主题配置。
-- 事件详情页已接入基础媒体预览，可展示事件图片与视频地址。
-
-#### 实时通信第一版
-
-- 已新增 `TrafficEventsHub`。
-- 已新增 `SignalRTrafficEventPushService`。
-- 前端已建立 SignalR 连接，并在交通事件提交后触发刷新。
-
-#### 工程治理
-
-- 已补充 `.gitignore`，忽略 `bin`、`obj`、`TestResults` 等产物。
-- 新增后端测试项目已可运行，最近一次 `Uixe.Copilot.Application.Tests` 测试通过。
-
-### 2. 进行中
-
-- `LaneApplicationService` 仍是兼容编排入口，但已开始把收费站 UI 直接调用收敛到 `ILegacyPlazaUiBridge` 适配层，逐步减少对 WinForms 宿主细节的直接耦合。
-- `frmMain` 仍承担收费站窗体创建、宿主缓存注册、Plaza Host 装配等职责，尚未完全降级为纯展示壳层。
-- `frmPlaza` 仍集中承载弹窗展示、语音播报、部分窗口协调与媒体提醒等宿主能力，说明剩余 WinForms 依赖当前主要集中在该层及其桥接实现。
-- `TrafficEvent` 主链路已通，查询已支持内存仓储、文件持久化仓储、SQLite 数据库仓储与 PostgreSQL 仓储实现；其中文件/SQLite 仅用于过渡验证，当前统一目标数据库为 PostgreSQL。
-- 已抽出 SQL 方言无关的 `DbTrafficEventStore` 共享读取/过滤基础逻辑，并补齐 PostgreSQL 仓储骨架与切换入口。
-- `PostgresTrafficEventRepository` 已补齐真实 SQL 实现代码，当前只受目标环境与连接串可用性约束。
-- `TrafficEvent` 主链路已完成 API 层文件持久化模式联通验证，可在不依赖外部数据库服务时完成过渡期基本落盘与回查，但正式环境仍以 PostgreSQL 为准。
-- Web 前端已完成历史查询、系统配置、媒体预览的基础联通，但仍缺少导出、完整配置域、专用媒体组件与多媒体增强能力。
-
-### 3. 尚未完成
-
-#### 第二阶段：实时与存储
-
-- 事件持久化已具备文件模式、SQLite 模式与 PostgreSQL 模式实现，后续重点转向 PostgreSQL 环境验证与读写稳定性增强。
-- PostgreSQL 驱动依赖已恢复，仓储真实实现已补齐；当前仍需可用 PostgreSQL 实例与连接串来完成运行验证。
-- 站点/车道状态缓存体系未完成。
-- 历史查询接口已支持基础分页与时间范围，但导出与更复杂筛选仍未完成。
-- 历史查询接口已修正分页总数语义，当前 `Total` 为符合筛选条件的总记录数。
-- 更丰富的 SignalR 消息契约与订阅粒度未完成。
-
-#### 第三阶段后半段：Web 前端深化
-
-- 历史查询页面已对接真实后端，并支持基础筛选、分页和时间范围。
-- 系统配置页面已接入基础真实配置模型，但尚未扩展到完整系统配置域。
-- 媒体预览链路已完成基础版，但尚未按最终要求落到更完整的专用媒体组件与多媒体列表能力。
-
-#### 第四阶段：Agent 兼容层
-
-- `Uixe.Watcher.Agent` 尚未创建。
-- 本地通知、语音、VNC、WebView 承载等能力尚未迁移到独立 Agent 形态。
-
-#### 联调与灰度
-
-- 尚未完成上游联调回归清单。
-- 尚未完成灰度切换方案与回滚预案验证。
-
-### 4. 当前建议的直接下一步
-
-按当前统一判断，下一步不再是重复搭建主骨架，而是继续完成第 1 阶段剩余清尾项，并为第 2 阶段稳定落地扫清边界：
-
-1. 继续梳理 `frmMain.cs` 中宿主装配、窗体缓存、收费站 Host 注册职责，明确哪些可迁入桥接层或宿主协调器。
-2. 继续收敛 `frmPlaza.cs` 中的弹窗、语音播报、VNC、媒体提醒等宿主能力，减少窗体直接承担业务编排。
-3. 核查并补齐 `ILegacyPlazaUiBridge` 与相关桥接实现的覆盖面，让旧 UI 能力通过统一接口暴露，而不是继续散落在窗体方法里。
-4. 在保持旧接口与旧界面可运行的前提下，逐步把剩余展示驱动逻辑从 `LaneApplicationService` 等应用服务中继续抽离到清晰的兼容边界。
-5. 在上述边界稳定后，再继续推进 PostgreSQL 运行验证、状态缓存体系和更细粒度实时消息契约。
-
-### 第一批优先改造文件
-
-按优先级执行：
-
-1. `WinForms/frmMain.cs`
-  - 继续清理窗体创建、宿主注册、Plaza Host 装配等非纯展示职责
-2. `WinForms/frmPlaza.cs`
-  - 继续清理弹窗、播报、媒体提醒、窗口协调等宿主编排职责
-3. `Application` 下桥接与宿主协调相关实现
-  - 补齐 `ILegacyPlazaUiBridge`、窗口协调器等兼容边界覆盖
-4. `Program.cs` / `Startup.cs`
-  - 维持兼容运行模式，同时持续为独立后端部署做准备
-5. `Infrastructure/Persistence/TrafficEvents/*`
-  - 在第 1 阶段边界更稳后，继续推进 PostgreSQL 运行验证与稳定性增强
+- `README.md` 仅保留项目介绍、技术框架、长期约束、目录建议和实施方法。
+- 当前推进状态与每轮动态变化统一在路线图文档中维护。
 
 ### 输出要求
 

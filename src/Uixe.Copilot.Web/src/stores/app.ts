@@ -39,6 +39,17 @@ export interface App {
   events: EventItem[]
 }
 
+interface OverviewResponse {
+  onlineStations: number
+  totalStations: number
+  activeAlerts: number
+  todayEvents: number
+  realtimeMessages: number
+  trend: number[]
+  plazas: PlazaStatusItem[]
+  events: EventItem[]
+}
+
 export const useAppStore = defineStore('app', {
   state: (): App => ({
     overview: {
@@ -57,7 +68,7 @@ export const useAppStore = defineStore('app', {
   },
   actions: {
     async loadOverview() {
-      const data = await fetchOverview()
+      const data = (await fetchOverview()) as OverviewResponse
       this.overview = {
         onlineStations: data.onlineStations,
         totalStations: data.totalStations,
