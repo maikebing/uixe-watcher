@@ -8,6 +8,7 @@
         <div>车道：{{ event.laneNo }}</div>
         <div>时间：{{ event.time }}</div>
         <div>状态：{{ event.status }}</div>
+        <a-button type="outline" @click="refresh">刷新详情</a-button>
       </div>
     </div>
     <div class="glass-panel rounded-3xl p-6">
@@ -33,4 +34,8 @@ onMounted(async () => {
     await store.loadEvent(String(route.params.id))
   }
 })
+
+async function refresh() {
+  await store.refreshEvent(String(route.params.id))
+}
 </script>

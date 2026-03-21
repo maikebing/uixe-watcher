@@ -11,6 +11,8 @@ export interface TrafficEventOverviewResponse {
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5057'
 
+// SignalR 接入预留：后续迁移到实时推送时统一在此处初始化连接
+
 export async function fetchOverview(): Promise<TrafficEventOverviewResponse> {
   const response = await fetch(`${baseUrl}/api/traffic-events/overview`)
   if (!response.ok) {

@@ -100,6 +100,9 @@ export const useAppStore = defineStore('app', {
       }
 
       return event
+    },
+    async refreshEvent(eventId: string) {
+      return this.loadEvent(eventId)
     }
   }
 })

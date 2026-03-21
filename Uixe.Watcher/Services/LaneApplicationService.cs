@@ -26,6 +26,7 @@ namespace Uixe.Watcher.Services
         private readonly INotificationApplicationService _notificationApplicationService;
         private readonly ILegacyWindowCoordinator _legacyWindowCoordinator;
         private readonly ITcoWindowApplicationService _tcoWindowApplicationService;
+        private readonly ILegacyTcoInteractionService _legacyTcoInteractionService;
 
         public LaneApplicationService(
             ILogger<LaneApplicationService> logger,
@@ -36,7 +37,8 @@ namespace Uixe.Watcher.Services
             ITrafficEventApplicationService trafficEventApplicationService,
             INotificationApplicationService notificationApplicationService,
             ILegacyWindowCoordinator legacyWindowCoordinator,
-            ITcoWindowApplicationService tcoWindowApplicationService)
+            ITcoWindowApplicationService tcoWindowApplicationService,
+            ILegacyTcoInteractionService legacyTcoInteractionService)
         {
             _logger = logger;
             _settings = options.Value;
@@ -47,6 +49,7 @@ namespace Uixe.Watcher.Services
             _notificationApplicationService = notificationApplicationService;
             _legacyWindowCoordinator = legacyWindowCoordinator;
             _tcoWindowApplicationService = tcoWindowApplicationService;
+            _legacyTcoInteractionService = legacyTcoInteractionService;
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, object status, CancellationToken cancellationToken = default)
@@ -56,28 +59,8 @@ namespace Uixe.Watcher.Services
         {
             await _notificationApplicationService.ShowWeightMessageAsync(plazaId, message, cancellationToken);
             await _tcoWindowApplicationService.ShowWeightMessageAsync(plazaId, message, cancellationToken);
-            var frm = GetPlazaForm(plazaId);
-            if (frm == null)
-            {
-                return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.NotFound, $"没有找到{plazaId}的收费站ID");
-            }
-
-            await Task.Run(() =>
-            {
-                frm.Invoke(() =>
-                {
-                    var tco = _legacyWindowCoordinator.GetOrCreateWeightTcoWindow(plazaId, frm, () =>
-                    {
-                        var wtco = new frmWeightTCOCall(frm.GetPlaza(plazaId), frm._runtimeSetting, frm.settings, _logger);
-                        wtco.LoadInfo();
-                        wtco.Hide();
-                        return wtco;
-                    });
-                    ((frmWeightTCOCall)tco).ShowTCOMsg((MsgWeightTCOCALL)message);
-                });
-                Task.Run(PlayUitls.PlayRing);
-            }, cancellationToken);
-
+            await _legacyTcoInteractionService.ShowWeightMessageAsync(plazaId, message, cancellationToken);
+            Task.Run(PlayUitls.PlayRing);
             return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.OK, "OK");
         }
 
@@ -85,23 +68,8 @@ namespace Uixe.Watcher.Services
         {
             await _notificationApplicationService.ShowTcoConfirmAsync(plazaId, message, cancellationToken);
             await _tcoWindowApplicationService.ShowTcoConfirmAsync(plazaId, message, cancellationToken);
-            var frm = GetPlazaForm(plazaId);
-            if (frm == null)
-            {
-                return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.NotFound, $"没有找到{plazaId}的收费站ID");
-            }
-
-            await Task.Run(() =>
-            {
-                frm.Invoke(() =>
-                {
-                    var tco = (frmShowTCOCall)_legacyWindowCoordinator.GetOrCreateTcoCallWindow(plazaId, frm, () => new frmShowTCOCall(frm, frm.GetPlaza(plazaId)));
-                    tco.TCOCallxxx = (TCOCall)message;
-                    tco.Show();
-                    Task.Run(PlayUitls.PlayRing);
-                });
-            }, cancellationToken);
-
+            await _legacyTcoInteractionService.ShowTcoConfirmAsync(plazaId, message, cancellationToken);
+            Task.Run(PlayUitls.PlayRing);
             return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.OK, "OK");
         }
 
