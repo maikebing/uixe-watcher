@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { mockAppState } from '@/api/mock'
+import { fetchEventById, fetchOverview } from '@/api/mock'
 
 export interface OverviewMetrics {
   onlineStations: number
@@ -36,8 +36,70 @@ export interface App {
 }
 
 export const useAppStore = defineStore('app', {
-  state: (): App => mockAppState,
+  state: (): App => ({
+    overview: {
+      onlineStations: 0,
+      totalStations: 0,
+      activeAlerts: 0,
+      todayEvents: 0,
+      realtimeMessages: 0
+    },
+    trend: [],
+    plazas: [],
+    events: []
+  }),
   getters: {
     eventById: (state) => (id: string) => state.events.find((item) => item.id === id)
+  },
+  actions: {
+    async loadOverview() {
+      const data = await fetchOverview()
+      this.overview = {
+        onlineStations: data.onlineStations,
+        totalStations: data.totalStations,
+        activeAlerts: data.activeAlerts,
+        todayEvents: data.todayEvents,
+        realtimeMessages: data.realtimeMessages
+      }
+      this.trend = data.trend
+      this.plazas = data.plazas.map((item) => ({
+        id: item.id,
+        name: item.name,
+        status: item.status as 'online' | 'warning' | 'offline',
+        lanesOnline: item.lanesOnline,
+        lanesTotal: item.lanesTotal,
+        alerts: item.alerts
+      }))
+      this.events = data.events.map((item) => ({
+        id: item.id,
+        title: item.title,
+        plazaName: item.plazaName,
+        laneNo: item.laneNo,
+        level: item.level as 'high' | 'medium' | 'low',
+        time: item.time,
+        status: item.status
+      }))
+    },
+    async loadEvent(eventId: string) {
+      const event = await fetchEventById(eventId)
+      if (!event) {
+        return null
+      }
+
+      const exists = this.events.some((item) => item.id === event.id)
+      if (!exists) {
+        this.events.push({
+          id: event.id,
+          title: event.title,
+          plazaName: event.plazaName,
+          laneNo: event.laneNo,
+          level: event.level as 'high' | 'medium' | 'low',
+          time: event.time,
+          status: event.status
+        })
+      }
+
+      return event
+    }
   }
 })

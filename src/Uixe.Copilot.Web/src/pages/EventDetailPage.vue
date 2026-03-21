@@ -20,11 +20,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 
 const route = useRoute()
 const store = useAppStore()
 const event = computed(() => store.eventById(String(route.params.id)))
+
+onMounted(async () => {
+  if (!event.value) {
+    await store.loadEvent(String(route.params.id))
+  }
+})
 </script>

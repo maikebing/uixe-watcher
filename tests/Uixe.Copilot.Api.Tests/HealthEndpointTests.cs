@@ -20,4 +20,13 @@ public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Pr
 
         response.EnsureSuccessStatusCode();
     }
+
+    [Fact]
+    public async Task GetTrafficOverview_ShouldReturnOk()
+    {
+        using var client = _factory.CreateClient();
+        var response = await client.GetAsync("/api/traffic-events/overview");
+
+        response.EnsureSuccessStatusCode();
+    }
 }

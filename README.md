@@ -57,6 +57,33 @@
 - `ECharts`
 - `SignalR JavaScript Client`
 
+### 3. 当前已落地的新项目
+
+当前仓库已新增并落地以下项目：
+
+#### 后端
+
+- `src/Uixe.Copilot.Api`
+- `src/Uixe.Copilot.Application`
+- `src/Uixe.Copilot.Contracts`
+- `src/Uixe.Copilot.Domain`
+- `src/Uixe.Copilot.Infrastructure`
+
+#### 前端
+
+- `src/Uixe.Copilot.Web`
+
+#### 测试
+
+- `tests/Uixe.Copilot.Api.Tests`
+- `tests/Uixe.Copilot.Application.Tests`
+
+当前说明：
+
+- `Uixe.Copilot.Api` 已提供健康检查和事件总览业务接口
+- `Uixe.Copilot.Web` 已提供深色监控首页、事件中心、详情页，并已开始对接真实后端接口
+- 旧 `WinForms` 与新 `Web` 仍保持并行迁移模式
+
 #### 可选兼容层
 
 - `Uixe.Watcher.Agent`
@@ -318,6 +345,55 @@ D:\Uixe\uixe-watcher\
 │  │  ├─ Jobs\
 │  │  ├─ Messaging\
 │  │  └─ DependencyInjection.cs
+
+---
+
+## 七、当前已实现的 Web UI 一期
+
+当前 Web UI 已按一期范围启动，项目位置：
+
+- `src/Uixe.Copilot.Web`
+
+已完成页面：
+
+- 监控总览
+- 收费站监控
+- 事件中心
+- 事件详情
+- 历史查询（骨架）
+- 系统配置（骨架）
+
+已完成内容：
+
+- 深色科技风布局
+- Arco Design Vue + Tailwind CSS 样式骨架
+- Pinia 状态管理
+- Vue Router 路由
+- 对接 `Uixe.Copilot.Api` 的事件总览与详情接口
+
+当前后端接口：
+
+- `GET /api/health`
+- `GET /api/traffic-events/overview`
+- `GET /api/traffic-events/{eventId}`
+
+前端启动方式：
+
+1. 启动后端：
+
+`dotnet run --project src/Uixe.Copilot.Api/Uixe.Copilot.Api.csproj`
+
+2. 启动前端：
+
+进入 `src/Uixe.Copilot.Web` 目录后执行：
+
+`npm install`
+
+`npm run dev`
+
+如需修改 API 地址，可配置：
+
+- `VITE_API_BASE_URL`
 │  │
 │  ├─ Uixe.Watcher.Contracts\
 │  │  ├─ Requests\

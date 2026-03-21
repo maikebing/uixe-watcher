@@ -32,11 +32,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import VChart from 'vue-echarts'
 import { useAppStore } from '@/stores/app'
 
 const store = useAppStore()
+
+onMounted(async () => {
+  await store.loadOverview()
+})
 
 const cards = computed(() => [
   { label: 'ÔÚÏßÕ¾µã', value: `${store.overview.onlineStations}/${store.overview.totalStations}` },
