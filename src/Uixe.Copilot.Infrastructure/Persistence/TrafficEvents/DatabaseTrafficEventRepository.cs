@@ -189,23 +189,7 @@ CREATE TABLE IF NOT EXISTS TrafficEvents (
         return items.AsReadOnly();
     }
 
-    private static TrafficEventListItemDto ReadItem(SqliteDataReader reader)
-    {
-        return new TrafficEventListItemDto
-        {
-            Id = reader.GetString(reader.GetOrdinal("Id")),
-            Title = reader.GetString(reader.GetOrdinal("Title")),
-            PlazaName = reader.GetString(reader.GetOrdinal("PlazaName")),
-            LaneNo = reader.GetString(reader.GetOrdinal("LaneNo")),
-            Level = reader.GetString(reader.GetOrdinal("Level")),
-            Status = reader.GetString(reader.GetOrdinal("Status")),
-            ImageUrl = reader.IsDBNull(reader.GetOrdinal("ImageUrl")) ? null : reader.GetString(reader.GetOrdinal("ImageUrl")),
-            VideoUrl = reader.IsDBNull(reader.GetOrdinal("VideoUrl")) ? null : reader.GetString(reader.GetOrdinal("VideoUrl")),
-            ImageUrls = JsonSerializer.Deserialize<List<string>>(reader.GetString(reader.GetOrdinal("ImageUrlsJson"))) ?? new List<string>(),
-            VideoUrls = JsonSerializer.Deserialize<List<string>>(reader.GetString(reader.GetOrdinal("VideoUrlsJson"))) ?? new List<string>(),
-            Time = DateTime.Parse(reader.GetString(reader.GetOrdinal("OccurredAt"))).ToString("HH:mm:ss")
-        };
-    }
+    private static TrafficEventListItemDto ReadItem(SqliteDataReader reader) => DbTrafficEventStore.ReadItem(reader);
 
     private static string NormalizeConnectionString(string connectionString)
     {

@@ -9,4 +9,6 @@ public sealed class InfrastructureOptions
     public string TrafficEventStoragePath { get; set; } = "App_Data/traffic-events.json";
 
     public string TrafficEventConnectionString { get; set; } = "Data Source=App_Data/traffic-events.db";
+
+    public string TrafficEventPostgresConnectionString { get; set; } = "Host=localhost;Port=5432;Database=uixe_copilot;Username=postgres;Password=postgres";
 }

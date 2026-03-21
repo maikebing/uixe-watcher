@@ -16,6 +16,11 @@ public static class ServiceCollectionExtensions
         services.AddOptions<InfrastructureOptions>();
         services.AddSingleton<InMemoryTrafficEventRepository>();
         services.AddSingleton<DatabaseTrafficEventRepository>();
+        services.AddSingleton<PostgresTrafficEventRepository>(serviceProvider =>
+        {
+            var options = serviceProvider.GetService<IOptions<InfrastructureOptions>>()?.Value ?? new InfrastructureOptions();
+            return new PostgresTrafficEventRepository(options);
+        });
         services.AddSingleton<FileTrafficEventRepository>(serviceProvider =>
         {
             var options = serviceProvider.GetService<IOptions<InfrastructureOptions>>()?.Value ?? new InfrastructureOptions();
@@ -27,6 +32,11 @@ public static class ServiceCollectionExtensions
             if (string.Equals(options.TrafficEventRepositoryMode, "Database", StringComparison.OrdinalIgnoreCase))
             {
                 return serviceProvider.GetRequiredService<DatabaseTrafficEventRepository>();
+            }
+
+            if (string.Equals(options.TrafficEventRepositoryMode, "Postgres", StringComparison.OrdinalIgnoreCase))
+            {
+                return serviceProvider.GetRequiredService<PostgresTrafficEventRepository>();
             }
 
             if (string.Equals(options.TrafficEventRepositoryMode, "File", StringComparison.OrdinalIgnoreCase))
