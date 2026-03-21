@@ -9,10 +9,12 @@ namespace Uixe.Copilot.Api.Controllers;
 public sealed class TrafficEventsController : ControllerBase
 {
     private readonly ITrafficEventQueryService _queryService;
+    private readonly ITrafficEventApplicationService _applicationService;
 
-    public TrafficEventsController(ITrafficEventQueryService queryService)
+    public TrafficEventsController(ITrafficEventQueryService queryService, ITrafficEventApplicationService applicationService)
     {
         _queryService = queryService;
+        _applicationService = applicationService;
     }
 
     [HttpGet("overview")]
@@ -26,5 +28,12 @@ public sealed class TrafficEventsController : ControllerBase
     {
         var eventItem = await _queryService.GetByIdAsync(eventId, cancellationToken);
         return eventItem is null ? NotFound() : Ok(eventItem);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<TrafficEventPushResponse>> Submit([FromBody] TrafficEventPushRequestDto request, CancellationToken cancellationToken)
+    {
+        var response = await _applicationService.SubmitAsync(request, cancellationToken);
+        return response.Code == 0 ? Ok(response) : BadRequest(response);
     }
 }

@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Testing;
+using System.Net.Http.Json;
+using Uixe.Copilot.Contracts.Dtos;
 using Xunit;
 
 namespace Uixe.Copilot.Api.Tests;
@@ -28,5 +30,14 @@ public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Pr
         var response = await client.GetAsync("/api/traffic-events/overview");
 
         response.EnsureSuccessStatusCode();
+    }
+
+    [Fact]
+    public async Task SubmitTrafficEvent_ShouldReturnBadRequest_WhenLaneMissing()
+    {
+        using var client = _factory.CreateClient();
+        var response = await client.PostAsJsonAsync("/api/traffic-events", new TrafficEventPushRequestDto());
+
+        Assert.False(response.IsSuccessStatusCode);
     }
 }

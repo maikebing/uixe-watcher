@@ -23,6 +23,7 @@ namespace Uixe.Watcher.Services
         private readonly TrafficEventQueueService _trafficEventQueue;
         private readonly IPlazaContextService _plazaContextService;
         private readonly ILegacyLaneInteractionService _legacyLaneInteractionService;
+        private readonly ITrafficEventApplicationService _trafficEventApplicationService;
 
         public LaneApplicationService(
             ILogger<LaneApplicationService> logger,
@@ -30,7 +31,8 @@ namespace Uixe.Watcher.Services
             IOptions<AppSettings> options,
             TrafficEventQueueService trafficEventQueue,
             IPlazaContextService plazaContextService,
-            ILegacyLaneInteractionService legacyLaneInteractionService)
+            ILegacyLaneInteractionService legacyLaneInteractionService,
+            ITrafficEventApplicationService trafficEventApplicationService)
         {
             _logger = logger;
             _cache = cache;
@@ -38,6 +40,7 @@ namespace Uixe.Watcher.Services
             _trafficEventQueue = trafficEventQueue;
             _plazaContextService = plazaContextService;
             _legacyLaneInteractionService = legacyLaneInteractionService;
+            _trafficEventApplicationService = trafficEventApplicationService;
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, object status, CancellationToken cancellationToken = default)
@@ -174,26 +177,7 @@ namespace Uixe.Watcher.Services
             => ExecuteLegacyInteractionAsync(plazaId, dto, static data => data.PlazaId ?? string.Empty, (service, host, _, data, ct) => service.ShowConfirmEnInfoAsync(host, data, ct), ((ConfirmEnInfo)dto).ToConfirmEnInfoDto(), cancellationToken);
 
         public Task<Uixe.Copilot.Contracts.Responses.TrafficEventPushResponse> EnqueueTrafficEventAsync(TrafficEventPushRequestDto request, CancellationToken cancellationToken = default)
-        {
-            if (request == null)
-            {
-                return Task.FromResult(CreateTrafficEventResponse(1, "请求体不能为空"));
-            }
-
-            if (string.IsNullOrWhiteSpace(request.LaneNo))
-            {
-                return Task.FromResult(CreateTrafficEventResponse(1, "LaneNo不能为空"));
-            }
-
-            if (!TryResolveTrafficEventTarget(request, out var handler, out var plaza, out var lane, out var formRequest))
-            {
-                _logger.LogWarning("交通事件未匹配到车道，LaneNo={LaneNo}, RecordId={RecordId}", request.LaneNo, request.RecordId);
-                return Task.FromResult(CreateTrafficEventResponse(1, $"未匹配到车道：{request.LaneNo}"));
-            }
-
-            _trafficEventQueue.Enqueue(handler, plaza, lane, formRequest);
-            return Task.FromResult(CreateTrafficEventResponse(0, "推送成功"));
-        }
+            => _trafficEventApplicationService.SubmitAsync(request, cancellationToken);
 
         private bool TryResolveTrafficEventTarget(TrafficEventPushRequestDto request, out ITrafficEventDisplayHandler handler, out T_Plaza plaza, out T_Lane lane, out TrafficEventPushRequest formRequest)
         {
