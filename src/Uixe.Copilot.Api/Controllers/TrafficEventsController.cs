@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Uixe.Copilot.Application.Abstractions;
 using Uixe.Copilot.Contracts.Dtos;
+using Uixe.Copilot.Contracts.Responses;
 
 namespace Uixe.Copilot.Api.Controllers;
 

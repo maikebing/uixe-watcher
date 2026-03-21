@@ -24,6 +24,7 @@ namespace Uixe.Watcher.Services
         private readonly IPlazaContextService _plazaContextService;
         private readonly ILegacyLaneInteractionService _legacyLaneInteractionService;
         private readonly ITrafficEventApplicationService _trafficEventApplicationService;
+        private readonly INotificationApplicationService _notificationApplicationService;
 
         public LaneApplicationService(
             ILogger<LaneApplicationService> logger,
@@ -32,7 +33,8 @@ namespace Uixe.Watcher.Services
             TrafficEventQueueService trafficEventQueue,
             IPlazaContextService plazaContextService,
             ILegacyLaneInteractionService legacyLaneInteractionService,
-            ITrafficEventApplicationService trafficEventApplicationService)
+            ITrafficEventApplicationService trafficEventApplicationService,
+            INotificationApplicationService notificationApplicationService)
         {
             _logger = logger;
             _cache = cache;
@@ -41,6 +43,7 @@ namespace Uixe.Watcher.Services
             _plazaContextService = plazaContextService;
             _legacyLaneInteractionService = legacyLaneInteractionService;
             _trafficEventApplicationService = trafficEventApplicationService;
+            _notificationApplicationService = notificationApplicationService;
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, object status, CancellationToken cancellationToken = default)
@@ -48,6 +51,7 @@ namespace Uixe.Watcher.Services
 
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowWeightMessageAsync(string plazaId, object message, CancellationToken cancellationToken = default)
         {
+            await _notificationApplicationService.ShowWeightMessageAsync(plazaId, message, cancellationToken);
             var frm = GetPlazaForm(plazaId);
             if (frm == null)
             {
@@ -75,6 +79,7 @@ namespace Uixe.Watcher.Services
 
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowTcoConfirmAsync(string plazaId, object message, CancellationToken cancellationToken = default)
         {
+            await _notificationApplicationService.ShowTcoConfirmAsync(plazaId, message, cancellationToken);
             var frm = GetPlazaForm(plazaId);
             if (frm == null)
             {
@@ -100,6 +105,7 @@ namespace Uixe.Watcher.Services
 
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowOverloadAlarmAsync(string plazaId, string title, string context, bool playSpeech, CancellationToken cancellationToken = default)
         {
+            await _notificationApplicationService.ShowOverloadAlarmAsync(plazaId, title, context, playSpeech, cancellationToken);
             var frm = GetPlazaForm(plazaId);
             if (frm == null)
             {
@@ -120,6 +126,7 @@ namespace Uixe.Watcher.Services
 
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneSpecialAsync(string plazaId, object message, CancellationToken cancellationToken = default)
         {
+            await _notificationApplicationService.ShowLaneSpecialAsync(plazaId, message, cancellationToken);
             var frm = GetPlazaForm(plazaId);
             if (frm == null)
             {
