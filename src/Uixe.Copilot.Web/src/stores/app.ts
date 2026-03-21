@@ -28,6 +28,8 @@ export interface EventItem {
   status: string
   imageUrl?: string
   videoUrl?: string
+  imageUrls?: string[]
+  videoUrls?: string[]
 }
 
 export interface App {
@@ -81,7 +83,9 @@ export const useAppStore = defineStore('app', {
         time: item.time,
         status: item.status,
         imageUrl: item.imageUrl,
-        videoUrl: item.videoUrl
+        videoUrl: item.videoUrl,
+        imageUrls: item.imageUrls,
+        videoUrls: item.videoUrls
       }))
     },
     async loadEvent(eventId: string) {
@@ -101,7 +105,9 @@ export const useAppStore = defineStore('app', {
           time: event.time,
           status: event.status,
           imageUrl: event.imageUrl,
-          videoUrl: event.videoUrl
+          videoUrl: event.videoUrl,
+          imageUrls: event.imageUrls,
+          videoUrls: event.videoUrls
         })
       }
 

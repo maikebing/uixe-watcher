@@ -19,6 +19,8 @@ internal static class TrafficEventMappingExtensions
             Status = "´ý´¦Àí",
             ImageUrl = ResolveFirstMedia(request.ImageList),
             VideoUrl = ResolveFirstMedia(request.VideoList),
+            ImageUrls = ResolveMediaList(request.ImageList),
+            VideoUrls = ResolveMediaList(request.VideoList),
             OccurredAt = occurredAt
         };
     }
@@ -35,20 +37,27 @@ internal static class TrafficEventMappingExtensions
             Time = entity.OccurredAt.ToString("HH:mm:ss"),
             Status = entity.Status,
             ImageUrl = entity.ImageUrl,
-            VideoUrl = entity.VideoUrl
+            VideoUrl = entity.VideoUrl,
+            ImageUrls = entity.ImageUrls,
+            VideoUrls = entity.VideoUrls
         };
     }
 
-    private static string? ResolveFirstMedia(string? raw)
+    private static List<string> ResolveMediaList(string? raw)
     {
         if (string.IsNullOrWhiteSpace(raw))
         {
-            return null;
+            return new List<string>();
         }
 
         return raw
             .Split(new[] { ',', ';', '|', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .FirstOrDefault();
+            .ToList();
+    }
+
+    private static string? ResolveFirstMedia(string? raw)
+    {
+        return ResolveMediaList(raw).FirstOrDefault();
     }
 
     private static string ResolveLevel(string? eventType)

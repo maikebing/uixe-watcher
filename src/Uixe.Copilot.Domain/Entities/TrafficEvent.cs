@@ -18,5 +18,9 @@ public sealed class TrafficEvent
 
     public string? VideoUrl { get; set; }
 
+    public List<string> ImageUrls { get; set; } = new();
+
+    public List<string> VideoUrls { get; set; } = new();
+
     public DateTime OccurredAt { get; set; }
 }

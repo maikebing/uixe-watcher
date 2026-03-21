@@ -35,8 +35,8 @@ public sealed class TrafficEventQueryServiceTests
             RecordId = "evt-202",
             EventType = "入口确认",
             LaneNo = "008",
-            ImageList = "https://example.com/test.jpg",
-            VideoList = "https://example.com/test.mp4"
+            ImageList = "https://example.com/test.jpg,https://example.com/test-2.jpg",
+            VideoList = "https://example.com/test.mp4,https://example.com/test-2.mp4"
         });
 
         var service = new TrafficEventQueryService(repository);
@@ -46,6 +46,8 @@ public sealed class TrafficEventQueryServiceTests
         Assert.Equal("008", eventItem!.LaneNo);
         Assert.Equal("https://example.com/test.jpg", eventItem.ImageUrl);
         Assert.Equal("https://example.com/test.mp4", eventItem.VideoUrl);
+        Assert.Equal(2, eventItem.ImageUrls.Count);
+        Assert.Equal(2, eventItem.VideoUrls.Count);
     }
 
     [Fact]

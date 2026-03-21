@@ -19,4 +19,8 @@ public sealed class TrafficEventListItemDto
     public string? ImageUrl { get; set; }
 
     public string? VideoUrl { get; set; }
+
+    public List<string> ImageUrls { get; set; } = new();
+
+    public List<string> VideoUrls { get; set; } = new();
 }
