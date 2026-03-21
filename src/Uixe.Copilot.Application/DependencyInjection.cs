@@ -14,6 +14,7 @@ public static class DependencyInjection
         services.AddScoped<ITrafficEventApplicationService, TrafficEventApplicationService>();
         services.AddScoped<ITrafficEventQueryService, TrafficEventQueryService>();
         services.AddScoped<ITrafficEventWorkflowService, TrafficEventWorkflowService>();
+        services.AddScoped<IRealtimePushService, NoOpRealtimePushService>();
         return services;
     }
 }

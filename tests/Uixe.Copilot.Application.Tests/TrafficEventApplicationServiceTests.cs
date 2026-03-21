@@ -11,7 +11,7 @@ public sealed class TrafficEventApplicationServiceTests
     {
         var context = new InMemoryPlazaContextService();
         var workflow = new TrafficEventWorkflowService(context);
-        var service = new TrafficEventApplicationService(workflow, context);
+        var service = new TrafficEventApplicationService(workflow, context, new NoOpRealtimePushService());
 
         var response = await service.SubmitAsync(new TrafficEventPushRequestDto());
 
@@ -37,7 +37,7 @@ public sealed class TrafficEventApplicationServiceTests
             }
         });
         var workflow = new TrafficEventWorkflowService(context);
-        var service = new TrafficEventApplicationService(workflow, context);
+        var service = new TrafficEventApplicationService(workflow, context, new NoOpRealtimePushService());
 
         var response = await service.SubmitAsync(new TrafficEventPushRequestDto { LaneNo = "001" });
 

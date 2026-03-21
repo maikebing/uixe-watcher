@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { fetchEventById, fetchOverview } from '@/api/mock'
+import { createTrafficEventsConnection, fetchEventById, fetchOverview } from '@/api/mock'
 
 export interface OverviewMetrics {
   onlineStations: number
@@ -103,6 +103,17 @@ export const useAppStore = defineStore('app', {
     },
     async refreshEvent(eventId: string) {
       return this.loadEvent(eventId)
+    },
+    async connectRealtime() {
+      const connection = createTrafficEventsConnection()
+      connection.off('trafficEventSubmitted')
+      connection.on('trafficEventSubmitted', async () => {
+        await this.loadOverview()
+      })
+
+      if (connection.state === 'Disconnected') {
+        await connection.start()
+      }
     }
   }
 })

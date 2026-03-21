@@ -1,3 +1,5 @@
+import * as signalR from '@microsoft/signalr'
+
 export interface TrafficEventOverviewResponse {
   onlineStations: number
   totalStations: number
@@ -11,7 +13,7 @@ export interface TrafficEventOverviewResponse {
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5057'
 
-// SignalR 接入预留：后续迁移到实时推送时统一在此处初始化连接
+let trafficEventsConnection: signalR.HubConnection | null = null
 
 export async function fetchOverview(): Promise<TrafficEventOverviewResponse> {
   const response = await fetch(`${baseUrl}/api/traffic-events/overview`)
@@ -46,4 +48,17 @@ export async function submitTrafficEvent(payload: Record<string, unknown>) {
 
   const data = await response.json()
   return { ok: response.ok, data }
+}
+
+export function createTrafficEventsConnection() {
+  if (trafficEventsConnection) {
+    return trafficEventsConnection
+  }
+
+  trafficEventsConnection = new signalR.HubConnectionBuilder()
+    .withUrl(`${baseUrl}/hubs/traffic-events`)
+    .withAutomaticReconnect()
+    .build()
+
+  return trafficEventsConnection
 }

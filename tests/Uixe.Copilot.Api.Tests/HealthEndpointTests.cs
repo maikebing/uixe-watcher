@@ -40,4 +40,13 @@ public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Pr
 
         Assert.False(response.IsSuccessStatusCode);
     }
+
+    [Fact]
+    public async Task GetTrafficEventsHub_NegotiatePathShouldExist()
+    {
+        using var client = _factory.CreateClient();
+        var response = await client.PostAsync("/hubs/traffic-events/negotiate?negotiateVersion=1", null);
+
+        Assert.NotEqual(System.Net.HttpStatusCode.NotFound, response.StatusCode);
+    }
 }
