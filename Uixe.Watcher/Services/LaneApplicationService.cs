@@ -2,7 +2,6 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,7 +9,6 @@ using Uixe.Copilot.Application.Abstractions;
 using Uixe.Copilot.Contracts.Dtos;
 using Uixe.Watcher.Dtos;
 using Uixe.Watcher.Msg;
-using Uixe.Watcher.Ring;
 using Uixe.Watcher.TCO;
 
 namespace Uixe.Watcher.Services
@@ -21,6 +19,7 @@ namespace Uixe.Watcher.Services
         private readonly AppSettings _settings;
         private readonly TrafficEventQueueService _trafficEventQueue;
         private readonly IPlazaContextService _plazaContextService;
+        private readonly ILegacyPlazaUiBridge _legacyPlazaUiBridge;
         private readonly ILegacyLaneInteractionService _legacyLaneInteractionService;
         private readonly ITrafficEventApplicationService _trafficEventApplicationService;
         private readonly INotificationApplicationService _notificationApplicationService;
@@ -33,6 +32,7 @@ namespace Uixe.Watcher.Services
             IOptions<AppSettings> options,
             TrafficEventQueueService trafficEventQueue,
             IPlazaContextService plazaContextService,
+            ILegacyPlazaUiBridge legacyPlazaUiBridge,
             ILegacyLaneInteractionService legacyLaneInteractionService,
             ITrafficEventApplicationService trafficEventApplicationService,
             INotificationApplicationService notificationApplicationService,
@@ -44,6 +44,7 @@ namespace Uixe.Watcher.Services
             _settings = options.Value;
             _trafficEventQueue = trafficEventQueue;
             _plazaContextService = plazaContextService;
+            _legacyPlazaUiBridge = legacyPlazaUiBridge;
             _legacyLaneInteractionService = legacyLaneInteractionService;
             _trafficEventApplicationService = trafficEventApplicationService;
             _notificationApplicationService = notificationApplicationService;
@@ -53,14 +54,14 @@ namespace Uixe.Watcher.Services
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, object status, CancellationToken cancellationToken = default)
-            => ExecuteOnPlazaAsync(plazaId, frm => frm.ShowLaneInfor(plazaId, laneNo, (LaneStatus)status));
+            => _legacyPlazaUiBridge.ShowLaneStatusAsync(plazaId, laneNo, status, cancellationToken);
 
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowWeightMessageAsync(string plazaId, object message, CancellationToken cancellationToken = default)
         {
             await _notificationApplicationService.ShowWeightMessageAsync(plazaId, message, cancellationToken);
             await _tcoWindowApplicationService.ShowWeightMessageAsync(plazaId, message, cancellationToken);
             await _legacyTcoInteractionService.ShowWeightMessageAsync(plazaId, message, cancellationToken);
-            Task.Run(PlayUitls.PlayRing);
+            _legacyPlazaUiBridge.PlayAlertRing();
             return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.OK, "OK");
         }
 
@@ -69,73 +70,23 @@ namespace Uixe.Watcher.Services
             await _notificationApplicationService.ShowTcoConfirmAsync(plazaId, message, cancellationToken);
             await _tcoWindowApplicationService.ShowTcoConfirmAsync(plazaId, message, cancellationToken);
             await _legacyTcoInteractionService.ShowTcoConfirmAsync(plazaId, message, cancellationToken);
-            Task.Run(PlayUitls.PlayRing);
+            _legacyPlazaUiBridge.PlayAlertRing();
             return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.OK, "OK");
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowMessageAsync(string plazaId, object message, CancellationToken cancellationToken = default)
-            => ExecuteOnPlazaAsync(plazaId, frm => frm.ShowMessageView((MsgInfo)message));
+            => _legacyPlazaUiBridge.ShowMessageAsync(plazaId, message, cancellationToken);
 
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowOverloadAlarmAsync(string plazaId, string title, string context, bool playSpeech, CancellationToken cancellationToken = default)
         {
             await _notificationApplicationService.ShowOverloadAlarmAsync(plazaId, title, context, playSpeech, cancellationToken);
-            var frm = GetPlazaForm(plazaId);
-            if (frm == null)
-            {
-                return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.NotFound, $"没有找到{plazaId}的收费站ID");
-            }
-
-            await Task.Run(() =>
-            {
-                frm.Invoke(() => frm.Alert(title, context));
-                if (playSpeech && frm.settings?.laneVideoMute == false)
-                {
-                    SpeechUtils.Speecher.SpeakAsync(title);
-                }
-            }, cancellationToken);
-
-            return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.OK, "OK");
+            return await _legacyPlazaUiBridge.ShowOverloadAlarmAsync(plazaId, title, context, playSpeech, cancellationToken);
         }
 
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneSpecialAsync(string plazaId, object message, CancellationToken cancellationToken = default)
         {
             await _notificationApplicationService.ShowLaneSpecialAsync(plazaId, message, cancellationToken);
-            var frm = GetPlazaForm(plazaId);
-            if (frm == null)
-            {
-                return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.NotFound, $"没有找到{plazaId}的收费站ID");
-            }
-
-            var msg = (Lanespecial)message;
-            await Task.Run(() =>
-            {
-                var canShow = frm.settings?.Only6769 != true || msg.SubHead.StaffID == "777777" || msg.SubHead.StaffID == "999999";
-                if (!canShow || frm.settings?.Lanespecial != true)
-                {
-                    return;
-                }
-
-                string laneid = $"650{msg.Head.NetNo}{msg.Head.PlazaNo}{msg.Head.LaneID}";
-                if (!_legacyWindowCoordinator.TryEnterLaneSpecialThrottle(laneid, msg, TimeSpan.FromSeconds(3)))
-                {
-                    return;
-                }
-
-                frm.Invoke(() => frm.Alert(msg.Title, msg.Context));
-                if (frm.settings?.laneVideoMute == false)
-                {
-                    if (int.Parse(msg.MsgT_Lanespecial_Waste.SPECIAL_TYPE) == 175)
-                    {
-                        SpeechUtils.Speecher.SpeakAsync(msg.Context);
-                    }
-                    else
-                    {
-                        SpeechUtils.Speecher.SpeakAsync(msg.Title);
-                    }
-                }
-            }, cancellationToken);
-
-            return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.OK, "OK");
+            return await _legacyPlazaUiBridge.ShowLaneSpecialAsync(plazaId, message, cancellationToken);
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowBulkTransAsync(string plazaId, object dto, CancellationToken cancellationToken = default)
@@ -165,39 +116,25 @@ namespace Uixe.Watcher.Services
             lane = null;
             formRequest = null;
 
-            var plazas = _plazaContextService.GetPlazas();
-            if (request == null || string.IsNullOrWhiteSpace(request.LaneNo) || plazas.Count == 0)
+            var resolved = _legacyPlazaUiBridge.TryResolveTrafficEventTarget(request);
+            if (resolved == null)
             {
                 return false;
             }
 
-            foreach (var currentPlaza in plazas)
+            if (resolved.DisplayHost is not frmPlaza currentForm
+                || resolved.Plaza is not T_Plaza resolvedPlaza
+                || resolved.Lane is not T_Lane resolvedLane
+                || resolved.FormRequest is not TrafficEventPushRequest resolvedRequest)
             {
-                var currentLane = currentPlaza?.Lanes?.FirstOrDefault(item => IsLaneMatch(item?.LaneNo, item?.LaneId, request.LaneNo));
-                if (currentLane == null)
-                {
-                    continue;
-                }
-
-                var currentForm = GetPlazaForm(currentPlaza.Id);
-                if (currentForm == null)
-                {
-                    continue;
-                }
-
-                handler = new PlazaTrafficEventDisplayHandler(currentForm);
-                plaza = new T_Plaza { Id = currentPlaza.Id, StationId = currentPlaza.StationId, StationName = currentPlaza.StationName, Lanes = currentPlaza.Lanes?.Select(x => new T_Lane { Id = x.Id, LaneId = x.LaneId, LaneNo = x.LaneNo }).ToList() };
-                lane = new T_Lane { Id = currentLane.Id, LaneId = currentLane.LaneId, LaneNo = currentLane.LaneNo };
-                formRequest = MapRequest(request);
-                return true;
+                return false;
             }
 
-            return false;
-        }
-
-        private frmPlaza GetPlazaForm(string plazaId)
-        {
-            return _plazaContextService.GetPlazaHost(plazaId) as frmPlaza;
+            handler = new PlazaTrafficEventDisplayHandler(currentForm);
+            plaza = resolvedPlaza;
+            lane = resolvedLane;
+            formRequest = resolvedRequest;
+            return true;
         }
 
         private async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ExecuteLegacyInteractionAsync<TLegacy>(
@@ -219,71 +156,6 @@ namespace Uixe.Watcher.Services
             return success
                 ? new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.OK, "OK")
                 : new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.BadRequest, $"兼容处理失败: {originalDto.GetType().Name}");
-        }
-
-        private Task<Uixe.Copilot.Contracts.Responses.ApiResult> ExecuteOnPlazaAsync(string plazaId, Action<frmPlaza> action)
-        {
-            var frm = GetPlazaForm(plazaId);
-            if (frm == null)
-            {
-                return Task.FromResult(new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.NotFound, $"没有找到{plazaId}的收费站ID"));
-            }
-
-            return Task.Run(() =>
-            {
-                action(frm);
-                return new Uixe.Copilot.Contracts.Responses.ApiResult(Uixe.Copilot.Contracts.Responses.ApiCode.OK, "OK");
-            });
-        }
-
-        private static bool IsLaneMatch(string laneNoValue, string laneIdValue, string laneNo)
-        {
-            if (string.IsNullOrWhiteSpace(laneNo))
-            {
-                return false;
-            }
-
-            return IsLaneTokenMatch(laneNo, laneNoValue)
-                || IsLaneTokenMatch(laneNo, laneIdValue);
-        }
-
-        private static bool IsLaneTokenMatch(string left, string right)
-        {
-            var leftValue = NormalizeLaneToken(left);
-            var rightValue = NormalizeLaneToken(right);
-            if (string.IsNullOrEmpty(leftValue) || string.IsNullOrEmpty(rightValue))
-            {
-                return false;
-            }
-
-            return leftValue == rightValue || leftValue.EndsWith(rightValue) || rightValue.EndsWith(leftValue);
-        }
-
-        private static string NormalizeLaneToken(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return string.Empty;
-            }
-
-            return new string(value.Where(c => !char.IsWhiteSpace(c) && c != '-' && c != '_').ToArray()).ToUpperInvariant();
-        }
-
-        private static TrafficEventPushRequest MapRequest(TrafficEventPushRequestDto request)
-        {
-            return new TrafficEventPushRequest
-            {
-                RecordId = request.RecordId,
-                EventType = request.EventType,
-                LaneNo = request.LaneNo,
-                CapTime = request.CapTime,
-                StartTime = request.StartTime,
-                Period = request.Period,
-                PeriodByMili = request.PeriodByMili,
-                MaxQueueLen = request.MaxQueueLen,
-                ImageList = request.ImageList,
-                VideoList = request.VideoList
-            };
         }
 
         private static Uixe.Copilot.Contracts.Responses.TrafficEventPushResponse CreateTrafficEventResponse(int code, string message)
@@ -330,7 +202,7 @@ namespace Uixe.Watcher.Services
                                     return;
                                 }
 
-                                FormClosedEventHandler closedHandler = null;
+                                FormClosedEventHandler? closedHandler = null;
                                 closedHandler = delegate
                                 {
                                     trafficForm.FormClosed -= closedHandler;

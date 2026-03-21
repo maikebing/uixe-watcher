@@ -15,7 +15,11 @@ public static class ServiceCollectionExtensions
         services.AddUixeCopilotApplication();
         services.AddOptions<InfrastructureOptions>();
         services.AddSingleton<InMemoryTrafficEventRepository>();
-        services.AddSingleton<DatabaseTrafficEventRepository>();
+        services.AddSingleton<DatabaseTrafficEventRepository>(serviceProvider =>
+        {
+            var options = serviceProvider.GetService<IOptions<InfrastructureOptions>>()?.Value ?? new InfrastructureOptions();
+            return new DatabaseTrafficEventRepository(options);
+        });
         services.AddSingleton<PostgresTrafficEventRepository>(serviceProvider =>
         {
             var options = serviceProvider.GetService<IOptions<InfrastructureOptions>>()?.Value ?? new InfrastructureOptions();

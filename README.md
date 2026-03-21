@@ -43,7 +43,7 @@
 - `Quartz`
 - `Swagger / OpenAPI`
 - `MemoryCache` 或 `Redis`
-- `PostgreSQL` 或 `SQL Server`
+- `PostgreSQL`
 
 #### 前端
 
@@ -316,11 +316,11 @@
 
 ### 2. 进行中
 
-- `LaneApplicationService` 仍是兼容编排入口，内部还保留部分 WinForms/宿主相关协作逻辑，尚未完全收敛为纯兼容外壳。
-- `TrafficEvent` 主链路已通，查询已支持内存仓储、文件持久化仓储与 SQLite 数据库仓储三种模式，后续再继续演进到 PostgreSQL / SQL Server。
+- `LaneApplicationService` 仍是兼容编排入口，但已开始把收费站 UI 直接调用收敛到 `ILegacyPlazaUiBridge` 适配层，逐步减少对 WinForms 宿主细节的直接耦合。
+- `TrafficEvent` 主链路已通，查询已支持内存仓储、文件持久化仓储、SQLite 数据库仓储与 PostgreSQL 仓储实现；其中文件/SQLite 仅用于过渡验证，当前统一目标数据库为 PostgreSQL。
 - 已抽出 SQL 方言无关的 `DbTrafficEventStore` 共享读取/过滤基础逻辑，并补齐 PostgreSQL 仓储骨架与切换入口。
 - `PostgresTrafficEventRepository` 已补齐真实 SQL 实现代码，当前只受目标环境与连接串可用性约束。
-- `TrafficEvent` 主链路已完成 API 层文件持久化模式联通验证，可在不依赖外部数据库服务时完成基本落盘与回查。
+- `TrafficEvent` 主链路已完成 API 层文件持久化模式联通验证，可在不依赖外部数据库服务时完成过渡期基本落盘与回查，但正式环境仍以 PostgreSQL 为准。
 - Web 前端已完成历史查询、系统配置、媒体预览的基础联通，但仍缺少导出、完整配置域、专用媒体组件与多媒体增强能力。
 
 ### 3. 尚未完成
@@ -328,7 +328,7 @@
 #### 第二阶段：实时与存储
 
 - 事件持久化能力未完成。
-- 事件持久化已具备文件模式与 SQLite 模式最小实现，但 PostgreSQL / SQL Server 正式实现仍未完成。
+- 事件持久化已具备文件模式、SQLite 模式与 PostgreSQL 模式实现，后续重点转向 PostgreSQL 环境验证与读写稳定性增强。
 - PostgreSQL 仓储骨架与配置入口已建立，但当前受驱动依赖拉取失败影响，尚未完成真实可运行实现。
 - PostgreSQL 驱动依赖已恢复，仓储真实实现已补齐；当前仍需可用 PostgreSQL 实例与连接串来完成运行验证。
 - 站点/车道状态缓存体系未完成。
@@ -697,8 +697,7 @@ D:\Uixe\uixe-watcher\
 
 建议演进到：
 
-- `PostgreSQL`：性价比高，适合事件类数据
-- `SQL Server`：如果现场更偏微软栈
+- `PostgreSQL`：作为当前项目唯一目标数据库，承接事件类数据存储与历史查询
 
 ---
 

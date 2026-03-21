@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http.Json;
+using Uixe.Copilot.Application.Abstractions;
+using Uixe.Copilot.Application.Services;
 using Uixe.Copilot.Contracts.Dtos;
 using Xunit;
 
@@ -77,7 +80,7 @@ public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Pr
         var submitResponse = await client.PostAsJsonAsync("/api/traffic-events", new TrafficEventPushRequestDto
         {
             RecordId = "api-file-evt-001",
-            EventType = "API文件持久化测试",
+            EventType = "API???????",
             LaneNo = "001"
         });
 
@@ -112,12 +115,14 @@ public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Pr
 
         using var client = factory.CreateClient();
 
+        SeedLaneContext(factory.Services);
+
         for (var i = 0; i < 3; i++)
         {
             await client.PostAsJsonAsync("/api/traffic-events", new TrafficEventPushRequestDto
             {
                 RecordId = $"sqlite-api-{i}",
-                EventType = "SQLite API 测试",
+                EventType = "SQLite API ??",
                 LaneNo = "001"
             });
         }
@@ -129,10 +134,76 @@ public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Pr
         Assert.NotNull(history);
         Assert.Equal(3, history!.Total);
         Assert.Equal(2, history.Items.Count);
+    }
 
-        if (File.Exists(dbPath))
+    [Fact]
+    public async Task SubmitTrafficEvent_ThenGetById_ShouldWorkUnderPostgresMode_WhenConnectionProvided()
+    {
+        var connectionString = Environment.GetEnvironmentVariable("UIXE_TEST_POSTGRES_CONNECTION");
+        if (string.IsNullOrWhiteSpace(connectionString))
         {
-            File.Delete(dbPath);
+            return;
         }
+
+        var recordId = $"pg-api-{Guid.NewGuid():N}";
+        var factory = _factory.WithWebHostBuilder(builder =>
+        {
+            builder.ConfigureAppConfiguration((_, config) =>
+            {
+                config.AddInMemoryCollection(new Dictionary<string, string?>
+                {
+                    ["Infrastructure:TrafficEventRepositoryMode"] = "Postgres",
+                    ["Infrastructure:TrafficEventPostgresConnectionString"] = connectionString
+                });
+            });
+        });
+
+        using var client = factory.CreateClient();
+
+        SeedLaneContext(factory.Services);
+
+        var submitResponse = await client.PostAsJsonAsync("/api/traffic-events", new TrafficEventPushRequestDto
+        {
+            RecordId = recordId,
+            EventType = "PostgreSQL API ??",
+            LaneNo = "001"
+        });
+
+        submitResponse.EnsureSuccessStatusCode();
+
+        var detailResponse = await client.GetAsync($"/api/traffic-events/{recordId}");
+        detailResponse.EnsureSuccessStatusCode();
+
+        var eventItem = await detailResponse.Content.ReadFromJsonAsync<TrafficEventListItemDto>();
+        Assert.NotNull(eventItem);
+        Assert.Equal(recordId, eventItem!.Id);
+        Assert.Equal("001", eventItem.LaneNo);
+    }
+
+    private static void SeedLaneContext(IServiceProvider services)
+    {
+        var plazaContext = services.GetRequiredService<IPlazaContextService>();
+        if (plazaContext is not InMemoryPlazaContextService inMemoryContext)
+        {
+            return;
+        }
+
+        inMemoryContext.SetCurrentBoss(new BossInfo
+        {
+            Id = "boss-api-tests",
+            Name = "API Test Boss",
+            Plazas = new List<PlazaInfo>
+            {
+                new()
+                {
+                    Id = "P1",
+                    StationName = "API Test Plaza",
+                    Lanes = new List<LaneInfo>
+                    {
+                        new() { LaneNo = "001" }
+                    }
+                }
+            }
+        });
     }
 }
