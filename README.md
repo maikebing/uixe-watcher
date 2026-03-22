@@ -263,10 +263,17 @@
 当前约定：
 
 - `PostgreSQL` 通过 compose 启动，默认库为 `uixe_copilot`
-- `Api` 在 compose 中默认切换为 `TrafficEventRepositoryMode=Postgres`
+- `Api` 当前默认配置与 compose 运行态均以 `TrafficEventRepositoryMode=Postgres` 作为默认口径
 - `Web` 在 compose 中默认通过 `VITE_API_BASE_URL=http://localhost:5057` 访问本机映射出的 API
 - `Agent` **不纳入 compose**，如需联调由你手动启动
 - `postgres`、`api`、`web` 当前都已补上健康检查，`web` 会等待 `api` 健康后再启动
+
+当前 PostgreSQL 默认化也已开始收口：
+
+- `src/Uixe.Copilot.Api/appsettings.json` 当前已将 `TrafficEventRepositoryMode` 默认切到 `Postgres`
+- `src/.env.example` 当前已补入 `TRAFFIC_EVENT_REPOSITORY_MODE=Postgres`
+- `src/docker-compose.yml` 当前通过 `.env` 与默认值共同收口为 PostgreSQL 默认联调口径
+- `SettingsPage` 中的默认存储模式与开发联调环境当前都统一指向 `PostgreSQL`
 
 建议开发启动方式：
 

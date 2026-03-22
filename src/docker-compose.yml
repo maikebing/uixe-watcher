@@ -36,7 +36,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
       ASPNETCORE_URLS: http://0.0.0.0:5057
-      Infrastructure__TrafficEventRepositoryMode: Postgres
+      Infrastructure__TrafficEventRepositoryMode: ${TRAFFIC_EVENT_REPOSITORY_MODE:-Postgres}
       Infrastructure__TrafficEventPostgresConnectionString: Host=postgres;Port=5432;Database=${POSTGRES_DB:-uixe_copilot};Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD:-postgres}
     ports:
       - "${API_PORT:-5057}:5057"
