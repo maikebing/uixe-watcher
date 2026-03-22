@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: ./src/Uixe.Copilot.Api/Dockerfile
+
+  web:
+    build:
+      context: ./Uixe.Copilot.Web
+      dockerfile: Dockerfile
+    volumes:
+      - ./Uixe.Copilot.Web:/app
+      - uixe-copilot-web-node-modules:/app/node_modules

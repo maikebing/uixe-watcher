@@ -94,6 +94,24 @@
         {{ agentResultText }}
       </div>
     </div>
+
+    <div class="glass-panel rounded-3xl p-6 lg:col-span-2">
+      <div class="mb-5 text-lg font-medium text-white">现场联动入口摘要</div>
+      <div class="grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4 text-sm text-slate-300">
+          <div class="font-medium text-white">监控页</div>
+          <div class="mt-3 text-xs leading-6">可演示车道状态、掉线上报、Agent 通知/播报、快速测试事件。</div>
+        </div>
+        <div class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4 text-sm text-slate-300">
+          <div class="font-medium text-white">事件中心</div>
+          <div class="mt-3 text-xs leading-6">可按收费站筛选事件，并直接触发本地通知、语音播报和视频播放。</div>
+        </div>
+        <div class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4 text-sm text-slate-300">
+          <div class="font-medium text-white">系统配置</div>
+          <div class="mt-3 text-xs leading-6">可统一调试 TrafficEvent、通知、语音、VNC 和视频播放能力。</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

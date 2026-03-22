@@ -133,7 +133,41 @@
 - 当前监控页中的测试事件链路也已补充分阶段状态提示，便于现场快速判断问题出在提交、Agent 联动还是页面刷新
 - 当前监控页结果区已升级为阶段卡片展示，现场演示时可更直观看到各步骤成功或失败状态
 - 当前测试事件主演示链也已细化为三步状态条，便于快速定位卡在哪个阶段
+- 当前监控页中的 Agent 联动反馈和车道操作反馈也已改为结构化小状态卡，结果面板风格更统一
+- 当前事件中心也已支持直接触发 Agent 本地通知、语音播报与视频播放，系统配置页补入了现场联动入口摘要
+- 当前按 `roadmap.md` 核对，`V0` 必做项已全部完成；后续重点转向旧桥接压缩、职责核销、Agent 正式接入规范与 PostgreSQL 真实环境验证
 - 当前 `EventCenterPage` 也已支持接收监控页传入的关键字筛选，用于快速查看指定收费站相关事件
+- 当前阶段已从“V0 初步运行版收口”切换到“V1 / 正式替代阶段准备”，后续重点不再是补演示入口，而是旧桥接压缩、旧宿主职责核销、Agent 正式接入协议、PostgreSQL 真实环境验证与正式切换策略
+
+当前 V1 下一阶段计划已明确为：
+
+1. 收口旧桥接最内层实现，继续压缩 `Uixe.Watcher` 参与范围
+2. 梳理 `frmMain.cs`、`frmPlaza.cs` 剩余职责，形成迁移核销清单
+3. 明确 Agent 与中心后端之间的注册发现、配置同步、命令下发规范
+4. 推进 PostgreSQL 真实环境验证
+5. 继续准备 V1 / 正式替代阶段的回归与切换策略
+
+其中当前已识别的 V1 收口依据包括：
+
+- `frmMain` 当前主要保留站点身份加载、旧宿主创建、主窗体生命周期与 `libvlc` 本地依赖初始化
+- `frmPlaza` 当前仍保留车道视图装配、消息流装配、播报/铃声控制、心跳发送、掉线/消息/状态展示与宿主菜单行为
+- Agent 当前已具备托盘启动、站点身份解析、本地 HTTP 命令入口和通知/语音/VNC/Web/视频五类命令执行能力，但尚未形成中心统一注册与调度协议
+- PostgreSQL 当前已具备仓储实现与配置切换能力，但仍缺少真实环境的联调、异常、稳定性和回归验证闭环
+
+当前已进入第一批“已迁能力对应旧入口清理”阶段，优先对象包括：
+
+- `frmPlaza.ShowBulktrans(...)` → `PlazaMonitorPage + BulkTransportConfirmPanel`
+- `frmPlaza.ShowBillInfo(...)` → `PlazaMonitorPage + BillInfoConfirmPanel`
+- `frmPlaza.ShowConfirmEnInfo(...)` → `PlazaMonitorPage + ConfirmEnInfoPanel`
+- `frmPlaza.btnVnc_ItemClick(...)` → `openVncByAgent(...)`
+- `frmPlaza.btnTest_ItemClick(...)` / 播报员菜单 → `SettingsPage + speakByAgent(...)`
+- `messageView` 摘要展示 → `LaneActivityTimeline + PlazaMonitorPage`
+
+当前策略是：
+
+- 旧 `Uixe.Watcher` 不再作为继续改造对象，后续只把它当作参考源码
+- 对已存在明确 Web / Agent 替代面的能力，只继续增强新系统入口，不再回头优化旧入口
+- 对车道状态、掉线、交通事件弹窗这类仍需补强的能力，只作为新系统待补强对照项记录，不再以修改旧项目为手段推进
 
 当前按 `roadmap.md` 最新整理结果估算：
 
@@ -144,6 +178,64 @@
 - 阶段 4：`48%`
 - 阶段 5：`5%`
 - **整体完成度约 `59%`**
+
+当前进度口径需要明确区分为：
+
+- `V0` 初步运行版：**已完成（100%）**
+- 整体项目：**约 59%**
+- 当前状态：**进入 V1 / 正式替代阶段准备与收口，不代表整体项目已完成**
+
+## 当前 V1 直接开发任务
+
+按当前最新口径，`V1` 只针对新系统推进，直接任务清单为：
+
+1. 补齐 `src/docker-compose.yml`，统一启动 `Api + Web + PostgreSQL (+后续需要的中间件)`
+2. 让 `Uixe.Copilot.Api` 默认具备 PostgreSQL 联调能力
+3. 继续增强 `PlazaMonitorPage`、`EventCenterPage`、`SettingsPage` 三个主页面
+4. 继续压缩新系统对旧桥接和旧模型的依赖
+5. 明确 Agent 配置与调用边界，但 Agent 仍按手动方式单独启动
+
+## Docker Compose 联调方式
+
+当前用于开发联调的 compose 文件已调整到：
+
+- `src/docker-compose.yml`
+- `src/docker-compose.override.yml`
+- `src/.env.example`
+
+其中：
+
+- `docker-compose.yml` 负责基础服务定义与环境约定
+- `docker-compose.override.yml` 负责开发期 `build` 与前端源码挂载
+- `.env.example` 提供本地环境变量模板，可复制为 `.env` 后按需调整端口、数据库和前端变量
+
+组合后用于启动：
+
+- `postgres`
+- `api`
+- `web`
+
+其中：
+
+- `src/Uixe.Copilot.Api/Dockerfile` 已补齐，`api` 的构建放在 `docker-compose.override.yml`
+- `src/Uixe.Copilot.Web/Dockerfile` 继续用于前端开发容器，其构建与源码挂载也放在 `docker-compose.override.yml`
+
+当前约定：
+
+- `PostgreSQL` 通过 compose 启动，默认库为 `uixe_copilot`
+- `Api` 在 compose 中默认切换为 `TrafficEventRepositoryMode=Postgres`
+- `Web` 在 compose 中默认通过 `VITE_API_BASE_URL=http://localhost:5057` 访问本机映射出的 API
+- `Agent` **不纳入 compose**，如需联调由你手动启动
+- `postgres`、`api`、`web` 当前都已补上健康检查，`web` 会等待 `api` 健康后再启动
+
+建议开发启动方式：
+
+1. 先复制 `src/.env.example` 为 `src/.env`，按需调整配置
+2. 在 `src` 目录启动 compose（默认会自动叠加 `docker-compose.override.yml`）
+2. 如需本地能力联调，再手动启动 `Uixe.Copilot.Agent`
+3. 浏览器打开：
+  - Web：`http://localhost:5173`
+  - API Swagger：`http://localhost:5057/swagger`
 
 ## 当前 V0 运行方式
 

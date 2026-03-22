@@ -210,6 +210,34 @@
               <div class="mt-2 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">{{ step.message }}</div>
             </div>
           </div>
+          <div v-else-if="card.key === 'agent'" class="mt-4 space-y-3">
+            <div
+              v-for="step in agentSteps"
+              :key="step.key"
+              class="rounded-xl border p-3"
+              :class="step.toneClass"
+            >
+              <div class="flex items-center justify-between gap-3">
+                <div class="text-xs font-medium text-white">{{ step.title }}</div>
+                <a-tag size="small" :color="step.tagColor">{{ step.statusText }}</a-tag>
+              </div>
+              <div class="mt-2 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">{{ step.message }}</div>
+            </div>
+          </div>
+          <div v-else-if="card.key === 'lane'" class="mt-4 space-y-3">
+            <div
+              v-for="step in laneActionSteps"
+              :key="step.key"
+              class="rounded-xl border p-3"
+              :class="step.toneClass"
+            >
+              <div class="flex items-center justify-between gap-3">
+                <div class="text-xs font-medium text-white">{{ step.title }}</div>
+                <a-tag size="small" :color="step.tagColor">{{ step.statusText }}</a-tag>
+              </div>
+              <div class="mt-2 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">{{ step.message }}</div>
+            </div>
+          </div>
           <div v-else class="mt-3 text-xs leading-6 text-slate-300 whitespace-pre-wrap">{{ card.message }}</div>
         </div>
       </div>
@@ -392,6 +420,51 @@ const quickEventSteps = computed(() => {
       '步骤 3：刷新页面数据',
       refreshSuccess ? '页面事件与监控数据已刷新完成。' : refreshFailed ? stage : agentSuccess || submitSuccess ? '等待或正在刷新页面数据。' : '需先完成前置步骤。',
       refreshSuccess ? 'success' : refreshFailed ? 'error' : stage.includes('阶段 3/3') ? 'running' : agentSuccess || submitSuccess ? 'pending' : 'idle'
+    )
+  ]
+})
+
+const agentSteps = computed(() => {
+  const hasAgentMessage = agentFeedback.value.length > 0
+  const success = agentFeedback.value.includes('成功')
+  const failed = agentFeedback.value.includes('失败')
+
+  return [
+    buildQuickStep(
+      'agent-dispatch',
+      'Agent 指令下发',
+      hasAgentMessage ? agentFeedback.value : '尚未触发 Agent 指令。',
+      success ? 'success' : failed ? 'error' : 'idle'
+    ),
+    buildQuickStep(
+      'agent-scene',
+      '现场反馈观察',
+      hasAgentMessage
+        ? '请结合现场机器确认通知气泡、语音播报或视频播放是否已真正执行。'
+        : '等待触发本地通知、播报或视频播放。',
+      hasAgentMessage ? 'pending' : 'idle'
+    )
+  ]
+})
+
+const laneActionSteps = computed(() => {
+  const hasLaneMessage = selectedLaneNotice.value.length > 0
+  const laneFailed = selectedLaneNotice.value.includes('失败') || selectedLaneNotice.value.includes('无法')
+
+  return [
+    buildQuickStep(
+      'lane-selection',
+      '车道操作反馈',
+      hasLaneMessage ? selectedLaneNotice.value : '尚未触发车道点击、掉线上报或其它车道操作。',
+      hasLaneMessage ? (laneFailed ? 'error' : 'success') : 'idle'
+    ),
+    buildQuickStep(
+      'lane-followup',
+      '后续观察',
+      hasLaneMessage
+        ? '如执行了掉线上报，请继续观察车道卡片、消息流和快照视图是否同步更新。'
+        : '等待从监控页触发车道相关操作。',
+      hasLaneMessage ? 'pending' : 'idle'
     )
   ]
 })

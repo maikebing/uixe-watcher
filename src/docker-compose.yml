@@ -1,0 +1,77 @@
+version: "3.9"
+
+name: uixe-copilot-dev
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: uixe-copilot-postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-uixe_copilot}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      TZ: Asia/Shanghai
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - uixe-copilot-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d uixe_copilot"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    image: uixe-copilot-api:dev
+    container_name: uixe-copilot-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
+      ASPNETCORE_URLS: http://0.0.0.0:5057
+      Infrastructure__TrafficEventRepositoryMode: Postgres
+      Infrastructure__TrafficEventPostgresConnectionString: Host=postgres;Port=5432;Database=${POSTGRES_DB:-uixe_copilot};Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "${API_PORT:-5057}:5057"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5057/api/Health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  web:
+    image: uixe-copilot-web:dev
+    container_name: uixe-copilot-web
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:5057}
+      VITE_AGENT_BASE_URL: ${VITE_AGENT_BASE_URL:-http://host.docker.internal:17173}
+      CHOKIDAR_USEPOLLING: ${CHOKIDAR_USEPOLLING:-true}
+    ports:
+      - "${WEB_PORT:-5173}:5173"
+    volumes:
+      - ./Uixe.Copilot.Web:/app
+      - uixe-copilot-web-node-modules:/app/node_modules
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:5173 >/dev/null 2>&1 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+volumes:
+  uixe-copilot-postgres-data:
+  uixe-copilot-web-node-modules:

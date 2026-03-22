@@ -17,6 +17,8 @@
           <div class="flex items-center gap-3">
             <a-tag :color="event.level === 'high' ? 'red' : event.level === 'medium' ? 'orange' : 'green'">{{ event.level }}</a-tag>
             <span class="text-sm text-slate-300">{{ event.status }}</span>
+            <a-button size="mini" @click="notifyEvent(event)">本地通知</a-button>
+            <a-button size="mini" @click="speakEvent(event)">语音播报</a-button>
             <a-button v-if="getPreferredVideo(event)" size="mini" type="outline" @click="playEventVideo(event)">播放视频</a-button>
           </div>
         </div>
@@ -25,7 +27,7 @@
     <div v-if="!filteredEvents.length" class="mt-4 rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4 text-sm text-slate-400">
       当前没有匹配的事件记录。
     </div>
-    <div v-if="agentPlayResult" class="mt-4 rounded-2xl border border-sky-500/10 bg-slate-900/40 p-3 text-sm text-slate-300">
+    <div v-if="agentPlayResult" class="mt-4 rounded-2xl border border-sky-500/10 bg-slate-900/40 p-3 text-sm text-slate-300 whitespace-pre-wrap">
       {{ agentPlayResult }}
     </div>
   </div>
@@ -34,7 +36,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { playVideoByAgent } from '@/api/agentApi'
+import { notifyByAgent, playVideoByAgent, speakByAgent } from '@/api/agentApi'
 import { useAppStore, type EventItem } from '@/stores/app'
 
 const store = useAppStore()
@@ -95,6 +97,26 @@ async function playEventVideo(event: EventItem) {
     agentPlayResult.value = `视频播放调用成功：${result.message}`
   } catch (error) {
     agentPlayResult.value = `视频播放调用失败：${error instanceof Error ? error.message : String(error)}`
+  }
+}
+
+async function notifyEvent(event: EventItem) {
+  try {
+    const result = await notifyByAgent('事件中心提醒', `${event.plazaName} ${event.laneNo} 车道：${event.title}`, {
+      playSpeech: false
+    })
+    agentPlayResult.value = `本地通知调用成功：${result.message}`
+  } catch (error) {
+    agentPlayResult.value = `本地通知调用失败：${error instanceof Error ? error.message : String(error)}`
+  }
+}
+
+async function speakEvent(event: EventItem) {
+  try {
+    const result = await speakByAgent(`${event.plazaName}${event.laneNo}车道，${event.title}`)
+    agentPlayResult.value = `语音播报调用成功：${result.message}`
+  } catch (error) {
+    agentPlayResult.value = `语音播报调用失败：${error instanceof Error ? error.message : String(error)}`
   }
 }
 </script>
