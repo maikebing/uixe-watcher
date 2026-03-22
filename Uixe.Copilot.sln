@@ -8,8 +8,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8B3B5CF7-AB25-4026-889F-C797AAF428D7}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
 		GitVersion.yml = GitVersion.yml
 		README.md = README.md
+		roadmap.md = roadmap.md
 		docs\交通事件管理接口文档.md = docs\交通事件管理接口文档.md
 	EndProjectSection
 EndProject
@@ -28,8 +30,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uixe.Copilot.Application.Tests", "tests\Uixe.Copilot.Application.Tests\Uixe.Copilot.Application.Tests.csproj", "{EA32B868-402D-4E49-AE44-8F44706F74B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uixe.Copilot.Api.Tests", "tests\Uixe.Copilot.Api.Tests\Uixe.Copilot.Api.Tests.csproj", "{FD3A5621-0E8E-4404-B4B8-F62608790D86}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uixe.Copilot.Agent.Core", "src\Uixe.Copilot.Agent.Core\Uixe.Copilot.Agent.Core.csproj", "{4E9FB193-C663-4D3B-A4A2-6E942579946E}"
 EndProject
@@ -181,12 +181,8 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{4E9FB193-C663-4D3B-A4A2-6E942579946E} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
-		{2DDD1EF3-06E5-4132-843C-71CFD169D49A} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {339573ED-4417-48E7-A437-BC3549DD7DD3}
 		RESX_SaveFilesImmediatelyUponChange = False
+		SolutionGuid = {339573ED-4417-48E7-A437-BC3549DD7DD3}
 	EndGlobalSection
 EndGlobal
