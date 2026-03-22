@@ -71,6 +71,12 @@
               </div>
             </div>
           </div>
+          <div class="mt-3 grid grid-cols-2 gap-2 text-[11px] text-slate-400">
+            <div>收费员：{{ lane.collectorName || '未知' }}</div>
+            <div>模式：{{ lane.workMode || '未知' }}</div>
+            <div>网络：{{ lane.networkStatus ? '正常' : '异常' }}</div>
+            <div>相机：{{ lane.cameraStatus ? '正常' : '异常' }}</div>
+          </div>
           <div class="mt-3 text-xs text-slate-400">{{ lane.lastMessage }}</div>
         </div>
       </div>

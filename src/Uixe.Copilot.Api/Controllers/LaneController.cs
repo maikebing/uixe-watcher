@@ -24,7 +24,7 @@ public sealed class LaneController : ControllerBase
     {
         try
         {
-            var result = await _laneApplicationService.ShowLaneStatusAsync(plazaid, laneno, status, cancellationToken);
+            var result = await _laneApplicationService.ShowLaneStatusAsync(plazaid, laneno, status.ToLaneStatusDto(), cancellationToken);
             return Ok(new ApiResult(ApiCode.OK, result.msg ?? "OK"));
         }
         catch (Exception ex)
@@ -69,7 +69,7 @@ public sealed class LaneController : ControllerBase
     {
         try
         {
-            var result = await _laneApplicationService.ShowMessageAsync(plazaid, msg, cancellationToken);
+            var result = await _laneApplicationService.ShowMessageAsync(plazaid, msg.ToLaneMessageDto(), cancellationToken);
             return Ok(new ApiResult(ApiCode.OK, result.msg ?? "OK"));
         }
         catch (Exception ex)
@@ -84,7 +84,7 @@ public sealed class LaneController : ControllerBase
     {
         try
         {
-            var result = await _laneApplicationService.ShowOverloadAlarmAsync(plazaid, warn, true, cancellationToken);
+            var result = await _laneApplicationService.ShowOverloadAlarmAsync(plazaid, warn.ToOverloadWarningDto(), true, cancellationToken);
             return Ok(new ApiResult(ApiCode.OK, result.msg ?? "OK"));
         }
         catch (Exception ex)
@@ -99,7 +99,7 @@ public sealed class LaneController : ControllerBase
     {
         try
         {
-            var result = await _laneApplicationService.ShowLaneSpecialAsync(plazaid, msg, cancellationToken);
+            var result = await _laneApplicationService.ShowLaneSpecialAsync(plazaid, msg.ToLaneSpecialDto(), cancellationToken);
             return Ok(new ApiResult(ApiCode.OK, result.msg ?? "OK"));
         }
         catch (Exception ex)

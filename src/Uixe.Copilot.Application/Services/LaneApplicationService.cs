@@ -6,6 +6,7 @@ namespace Uixe.Copilot.Application.Services;
 public sealed class LaneApplicationService : ILaneApplicationService
 {
     private readonly IPlazaContextService _plazaContextService;
+    private readonly ILaneStatusSnapshotStore _laneStatusSnapshotStore;
     private readonly ILegacyPlazaUiBridge _legacyPlazaUiBridge;
     private readonly ITrafficEventApplicationService _trafficEventApplicationService;
     private readonly INotificationApplicationService _notificationApplicationService;
@@ -14,6 +15,7 @@ public sealed class LaneApplicationService : ILaneApplicationService
 
     public LaneApplicationService(
         IPlazaContextService plazaContextService,
+        ILaneStatusSnapshotStore laneStatusSnapshotStore,
         ILegacyPlazaUiBridge legacyPlazaUiBridge,
         ITrafficEventApplicationService trafficEventApplicationService,
         INotificationApplicationService notificationApplicationService,
@@ -21,6 +23,7 @@ public sealed class LaneApplicationService : ILaneApplicationService
         ILegacyTcoInteractionService legacyTcoInteractionService)
     {
         _plazaContextService = plazaContextService;
+        _laneStatusSnapshotStore = laneStatusSnapshotStore;
         _legacyPlazaUiBridge = legacyPlazaUiBridge;
         _trafficEventApplicationService = trafficEventApplicationService;
         _notificationApplicationService = notificationApplicationService;
@@ -29,7 +32,12 @@ public sealed class LaneApplicationService : ILaneApplicationService
     }
 
     public Task<ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, LaneStatusDto status, CancellationToken cancellationToken = default)
-        => _legacyPlazaUiBridge.ShowLaneStatusAsync(plazaId, laneNo, status, cancellationToken);
+    {
+        var plaza = _plazaContextService.GetPlazas().FirstOrDefault(item => string.Equals(item.Id, plazaId, StringComparison.OrdinalIgnoreCase));
+        var lane = plaza?.Lanes.FirstOrDefault(item => string.Equals(item.LaneNo, laneNo, StringComparison.OrdinalIgnoreCase));
+        _laneStatusSnapshotStore.Upsert(plazaId, laneNo, status, plaza, lane);
+        return _legacyPlazaUiBridge.ShowLaneStatusAsync(plazaId, laneNo, status, cancellationToken);
+    }
 
     public async Task<ApiResult> ShowWeightMessageAsync(string plazaId, TcoWeightMessageDto message, CancellationToken cancellationToken = default)
     {

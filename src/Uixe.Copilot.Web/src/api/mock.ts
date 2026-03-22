@@ -11,6 +11,31 @@ export interface TrafficEventOverviewResponse {
   events: Array<{ id: string; title: string; plazaName: string; laneNo: string; level: string; time: string; status: string; imageUrl?: string; videoUrl?: string }>
 }
 
+export interface PlazaLaneSnapshotResponse {
+  plazaId: string
+  plazaName: string
+  lanesOnline: number
+  lanesTotal: number
+  alerts: number
+  lanes: Array<{
+    plazaId: string
+    plazaName: string
+    laneId: string
+    laneNo: string
+    status: string
+    hasWarning: boolean
+    lastMessage: string
+    lastHeartbeat: string
+    collectorName?: string
+    workMode?: string
+    videoRtsp?: string
+    networkStatus: boolean
+    cameraStatus: boolean
+    printerStatus: boolean
+    barrierStatus: boolean
+  }>
+}
+
 const baseUrl = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5057'
 
 let trafficEventsConnection: signalR.HubConnection | null = null
@@ -19,6 +44,15 @@ export async function fetchOverview(): Promise<TrafficEventOverviewResponse> {
   const response = await fetch(`${baseUrl}/api/traffic-events/overview`)
   if (!response.ok) {
     throw new Error('无法加载事件总览数据')
+  }
+
+  return response.json()
+}
+
+export async function fetchLaneStatusSnapshots(): Promise<PlazaLaneSnapshotResponse[]> {
+  const response = await fetch(`${baseUrl}/api/lane-status/plazas`)
+  if (!response.ok) {
+    throw new Error('无法加载车道状态快照')
   }
 
   return response.json()

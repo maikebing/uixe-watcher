@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { createTrafficEventsConnection, fetchEventById, fetchOverview } from '@/api/mock'
+import { createTrafficEventsConnection, fetchEventById, fetchLaneStatusSnapshots, fetchOverview, type PlazaLaneSnapshotResponse } from '@/api/mock'
 
 export interface OverviewMetrics {
   onlineStations: number
@@ -27,6 +27,13 @@ export interface LaneStatusItem {
   lastMessage: string
   lastHeartbeat: string
   hasWarning: boolean
+  collectorName?: string
+  workMode?: string
+  videoRtsp?: string
+  networkStatus?: boolean
+  cameraStatus?: boolean
+  printerStatus?: boolean
+  barrierStatus?: boolean
 }
 
 export interface EventItem {
@@ -102,8 +109,9 @@ export const useAppStore = defineStore('app', {
         lanesOnline: item.lanesOnline,
         lanesTotal: item.lanesTotal,
         alerts: item.alerts,
-        laneDetails: createLaneDetails(item)
+        laneDetails: []
       }))
+      await this.loadLaneStatusSnapshots()
       this.events = data.events.map((item) => ({
         id: item.id,
         title: item.title,
@@ -160,6 +168,12 @@ export const useAppStore = defineStore('app', {
     async refreshEvent(eventId: string) {
       return this.loadEvent(eventId)
     },
+    async loadLaneStatusSnapshots() {
+      const snapshots = await fetchLaneStatusSnapshots()
+      const snapshotMap = new Map(snapshots.map((item) => [item.plazaId, item]))
+
+      this.plazas = this.plazas.map((item) => applyLaneSnapshot(item, snapshotMap.get(item.id)))
+    },
     async connectRealtime() {
       const connection = createTrafficEventsConnection()
       connection.off('trafficEventSubmitted')
@@ -174,22 +188,35 @@ export const useAppStore = defineStore('app', {
   }
 })
 
-function createLaneDetails(item: PlazaStatusItem): LaneStatusItem[] {
-  const total = Math.max(item.lanesTotal, 1)
-
-  return Array.from({ length: total }, (_, index) => {
-    const laneNo = String(index + 1).padStart(3, '0')
-    const isOnline = index < item.lanesOnline
-    const hasWarning = item.status === 'warning' && index === 0
-
+function applyLaneSnapshot(item: PlazaStatusItem, snapshot?: PlazaLaneSnapshotResponse): PlazaStatusItem {
+  if (!snapshot) {
     return {
-      id: `${item.id}-${laneNo}`,
-      laneNo,
-      status: hasWarning ? 'warning' : isOnline ? 'online' : 'offline',
-      vehicleCount: hasWarning ? 3 : isOnline ? 1 : 0,
-      lastMessage: hasWarning ? '存在待处理告警' : isOnline ? '车道心跳正常' : '等待上线',
-      lastHeartbeat: isOnline ? '刚刚' : '3 分钟前',
-      hasWarning
+      ...item,
+      laneDetails: []
     }
-  })
+  }
+
+  return {
+    ...item,
+    status: (snapshot.alerts > 0 ? 'warning' : snapshot.lanesOnline > 0 ? 'online' : 'offline') as 'online' | 'warning' | 'offline',
+    lanesOnline: snapshot.lanesOnline,
+    lanesTotal: snapshot.lanesTotal,
+    alerts: snapshot.alerts,
+    laneDetails: snapshot.lanes.map((lane) => ({
+      id: lane.laneId || `${snapshot.plazaId}-${lane.laneNo}`,
+      laneNo: lane.laneNo,
+      status: lane.status as 'online' | 'warning' | 'offline',
+      vehicleCount: lane.hasWarning ? 1 : lane.status === 'online' ? 1 : 0,
+      lastMessage: lane.lastMessage,
+      lastHeartbeat: lane.lastHeartbeat,
+      hasWarning: lane.hasWarning,
+      collectorName: lane.collectorName,
+      workMode: lane.workMode,
+      videoRtsp: lane.videoRtsp,
+      networkStatus: lane.networkStatus,
+      cameraStatus: lane.cameraStatus,
+      printerStatus: lane.printerStatus,
+      barrierStatus: lane.barrierStatus
+    }))
+  }
 }

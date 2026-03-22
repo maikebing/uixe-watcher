@@ -1,4 +1,5 @@
 using Uixe.Copilot.Application.Abstractions;
+using Uixe.Copilot.Contracts.Dtos;
 using Uixe.Copilot.Contracts.Responses;
 
 namespace Uixe.Copilot.Application.Services;
