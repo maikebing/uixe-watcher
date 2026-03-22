@@ -58,6 +58,9 @@ public sealed class LegacyPlazaUiBridge : ILegacyPlazaUiBridge
             VideoRtsp = status.VideoRtsp
         }));
 
+    public Task<ApiResult> ShowLaneLostAsync(string plazaId, string laneNo, CancellationToken cancellationToken = default)
+        => ExecuteOnPlazaAsync(plazaId, frm => frm.ShowLaneLost(plazaId, laneNo));
+
     public Task<ApiResult> ShowMessageAsync(string plazaId, LaneMessageDto message, CancellationToken cancellationToken = default)
         => ExecuteOnPlazaAsync(plazaId, frm => frm.ShowMessageView(new MsgInfo
         {

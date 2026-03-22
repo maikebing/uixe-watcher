@@ -53,6 +53,9 @@ namespace Uixe.Watcher.Services
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, object status, CancellationToken cancellationToken = default)
             => _legacyPlazaUiBridge.ShowLaneStatusAsync(plazaId, laneNo, status, cancellationToken);
 
+        public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneLostAsync(string plazaId, string laneNo, CancellationToken cancellationToken = default)
+            => _legacyPlazaUiBridge.ShowLaneLostAsync(plazaId, laneNo, cancellationToken);
+
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowWeightMessageAsync(string plazaId, object message, CancellationToken cancellationToken = default)
         {
             await _notificationApplicationService.ShowWeightMessageAsync(plazaId, message, cancellationToken);

@@ -41,6 +41,20 @@ namespace Uixe.Watcher.Controllers
         }
 
         [HttpPost]
+        public async Task<ActionResult<ApiResult>> emrc_main_lost(string plazaid, string laneno)
+        {
+            try
+            {
+                var result = await _laneApplicationService.ShowLaneLostAsync(plazaid, laneno);
+                return Ok(new ApiResult(ApiCode.OK, result.msg ?? "OK"));
+            }
+            catch (Exception)
+            {
+                return BadRequest(new ApiResult(ApiCode.BadRequst, "OK"));
+            }
+        }
+
+        [HttpPost]
         public async Task<ActionResult<ApiResult>> emrc_main_tco_weightAsync(string plazaid, MsgWeightTCOCALL msgWeight)
         {
             try
