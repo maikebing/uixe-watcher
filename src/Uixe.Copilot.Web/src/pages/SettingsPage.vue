@@ -157,6 +157,46 @@ async function submit() {
   })
 
   resultText.value = `${result.ok ? '成功' : '失败'}：${JSON.stringify(result.data)}`
+
+  if (result.ok && settings.enableTrafficEventAudio) {
+    const videoSource = getTrafficEventVideoSource(result.data)
+    if (videoSource) {
+      try {
+        const agentResult = await playVideoByAgent(
+          videoSource,
+          `${agentForm.title} 自动播放`,
+          1280,
+          720,
+          `submit-${form.recordId}`
+        )
+
+        agentResultText.value = `事件提交后自动播放成功：${agentResult.message}`
+      } catch (error) {
+        agentResultText.value = `事件提交后自动播放失败：${error instanceof Error ? error.message : String(error)}`
+      }
+    }
+  }
+}
+
+function getTrafficEventVideoSource(payload: unknown): string | undefined {
+  if (!payload || typeof payload !== 'object') {
+    return undefined
+  }
+
+  const record = payload as Record<string, unknown>
+  const videoUrls = record.videoUrls
+  if (Array.isArray(videoUrls)) {
+    const first = videoUrls.find((item): item is string => typeof item === 'string' && item.length > 0)
+    if (first) {
+      return first
+    }
+  }
+
+  if (typeof record.videoUrl === 'string' && record.videoUrl.length > 0) {
+    return record.videoUrl
+  }
+
+  return undefined
 }
 
 async function sendAgentNotification() {
