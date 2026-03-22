@@ -67,11 +67,13 @@
         <a-input v-model="agentForm.message" placeholder="通知内容 / 播报内容" />
         <a-input v-model="agentForm.vncHost" placeholder="VNC Host" />
         <a-input v-model="agentForm.vncPassword" placeholder="VNC Password" />
+        <a-input v-model="agentForm.videoUrl" placeholder="Video URL / File Path" class="lg:col-span-2" />
       </div>
       <div class="mt-4 flex flex-wrap gap-3">
         <a-button type="primary" @click="sendAgentNotification">发送本地告警</a-button>
         <a-button @click="sendAgentSpeech">本地语音播报</a-button>
         <a-button status="warning" @click="openAgentVnc">打开 VNC</a-button>
+        <a-button status="success" @click="playAgentVideo">播放视频</a-button>
       </div>
       <div class="mt-4 rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4 text-sm text-slate-300">
         {{ agentResultText }}
@@ -83,7 +85,7 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
 import { fetchSystemSettings, saveSystemSettings, submitTrafficEvent } from '@/api/mock'
-import { notifyByAgent, openVncByAgent, speakByAgent } from '@/api/agentApi'
+import { notifyByAgent, openVncByAgent, playVideoByAgent, speakByAgent } from '@/api/agentApi'
 
 const settings = reactive({
   enableVoiceBroadcast: true,
@@ -109,7 +111,8 @@ const agentForm = reactive({
   title: '交通事件提醒',
   message: 'X02 车道发现异常车辆',
   vncHost: '127.0.0.1',
-  vncPassword: 'kissme'
+  vncPassword: 'kissme',
+  videoUrl: 'D:/media/test.mp4'
 })
 
 const resultText = ref('尚未提交')
@@ -188,6 +191,15 @@ async function openAgentVnc() {
     agentResultText.value = `VNC 调用成功：${result.message}`
   } catch (error) {
     agentResultText.value = `VNC 调用失败：${error instanceof Error ? error.message : String(error)}`
+  }
+}
+
+async function playAgentVideo() {
+  try {
+    const result = await playVideoByAgent(agentForm.videoUrl, `${agentForm.title} 视频`)
+    agentResultText.value = `视频调用成功：${result.message}`
+  } catch (error) {
+    agentResultText.value = `视频调用失败：${error instanceof Error ? error.message : String(error)}`
   }
 }
 

@@ -14,6 +14,7 @@ public static class WindowsDependencyInjection
         services.AddSingleton<IVncLauncher, WindowsVncLauncher>();
         services.AddSingleton<IWebViewService, WindowsWebViewService>();
         services.AddSingleton<IVideoPlayerService, WindowsVideoPlayerService>();
+        services.AddSingleton<WindowsLibVlcDeploymentService>();
         services.AddSingleton<IWindowsNativeHost, WindowsNativeHost>();
         return services;
     }

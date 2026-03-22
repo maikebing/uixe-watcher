@@ -6,4 +6,5 @@ public sealed record VideoPlaybackRequest(
     int Width = 1280,
     int Height = 720,
     bool AutoPlay = true,
-    bool KeepWindowOpen = false);
+    bool KeepWindowOpen = false,
+    string? WindowKey = null);

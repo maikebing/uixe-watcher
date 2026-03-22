@@ -96,9 +96,12 @@
 - `Uixe.Copilot.Web` 已提供深色监控首页、事件中心、详情页，并已开始对接真实后端接口
 - `Uixe.Copilot.Agent` 已提供跨平台宿主骨架，并通过 `Core + 单宿主内平台适配` 分层封装托盘、通知、语音、VNC 与 WebView 能力接口；当前宿主按桌面 GUI 方式构建，支持在 Windows 和 Linux 下以双击方式启动
 - `libvlc_zip` 现阶段已明确作为 Agent 侧本地视频播放能力依赖，用于承接旧本地媒体播放场景
-- `Uixe.Copilot.Agent` 已内置本地 HTTP 指令服务，可接收并执行通知、语音播报、VNC 打开和 Web 地址打开等命令
+- `Uixe.Copilot.Agent` 已内置本地 HTTP 指令服务，可接收并执行通知、语音播报、VNC 打开、Web 地址打开和视频播放等命令
+- Windows 侧 `video` 指令已切换为先解压 `libvlc_zip` 内嵌运行库，再使用本地 WinForms 宿主窗口承载 `libvlc` 嵌入式播放
+- Agent 视频命令已支持 `videoWindowKey`，同一事件可复用/替换本地播放窗口，避免重复堆积多个同类播放窗体
 - `Uixe.Copilot.Agent` 启动时会向 `Agent:LaneBossServer` 配置的内网服务发起 `POST /guesswhoiam`，把当前收费站识别结果缓存在 Agent 内存中；Debug 构建下可通过 `Agent:ForceLocalhostInDebugBuild=true` 将返回的主机地址统一改写为 `localhost`
 - `Uixe.Copilot.Web` 已新增 `agentApi.ts`，并在系统配置页接入本地 Agent 调试入口，可直接通过 `POST http://127.0.0.1:17173/commands` 调用通知、语音和 VNC 能力
+- `Uixe.Copilot.Web` 已进一步接入 Agent 视频播放入口，系统配置页和事件详情页可直接触发 `video` 指令调用本地播放
 - `Uixe.Copilot.Web` 当前前端工具链已明确要求 Node.js LTS `22.12.0+`，并通过 `.nvmrc`、`.node-version`、`package.json engines` 与 `Dockerfile` 统一宿主机和容器环境基线
 - 旧 `Uixe.Watcher` 当前仅作为迁移参考源码，不再作为正式兼容运行目标
 
@@ -109,6 +112,7 @@ Agent 本地 HTTP 服务当前默认监听 `http://127.0.0.1:17173/commands`，`
 - 语音播报：`{"commandType":"speech","text":"X02 车道发现异常事件","voiceName":"Microsoft Xiaoxiao Desktop"}`
 - 打开 VNC：`{"commandType":"vnc","host":"192.168.1.10","port":5900,"password":"kissme","vncTitle":"X02 车道远程桌面"}`
 - 打开 Web：`{"commandType":"web","url":"http://127.0.0.1:5173","webTitle":"Uixe.Copilot"}`
+- 播放视频：`{"commandType":"video","videoSource":"D:/media/test.mp4","videoTitle":"事件视频","width":1280,"height":720}`
 
 ### Agent 发布说明
 

@@ -14,21 +14,26 @@
     <div class="glass-panel rounded-3xl p-6">
       <div class="text-lg font-medium text-white">????</div>
       <div class="mt-5">
-        <MediaPreviewPanel :image-urls="event?.imageUrls ?? []" :video-urls="event?.videoUrls ?? []" />
+        <MediaPreviewPanel :image-urls="event?.imageUrls ?? []" :video-urls="event?.videoUrls ?? []" @play-video="playVideoByAgentFromDetail" />
+      </div>
+      <div v-if="agentPlayResult" class="mt-4 rounded-2xl border border-sky-500/10 bg-slate-900/40 p-3 text-sm text-slate-300">
+        {{ agentPlayResult }}
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 import MediaPreviewPanel from '@/components/MediaPreviewPanel.vue'
+import { playVideoByAgent } from '@/api/agentApi'
 
 const route = useRoute()
 const store = useAppStore()
 const event = computed(() => store.eventById(String(route.params.id)))
+const agentPlayResult = ref('')
 
 onMounted(async () => {
   if (!event.value) {
@@ -38,5 +43,20 @@ onMounted(async () => {
 
 async function refresh() {
   await store.refreshEvent(String(route.params.id))
+}
+
+async function playVideoByAgentFromDetail(videoUrl: string) {
+  try {
+    const result = await playVideoByAgent(
+      videoUrl,
+      event.value?.title ? `${event.value.title} 视频` : '事件视频',
+      1280,
+      720,
+      event.value?.id ? `event-${event.value.id}` : 'event-detail-video'
+    )
+    agentPlayResult.value = `视频播放调用成功：${result.message}`
+  } catch (error) {
+    agentPlayResult.value = `视频播放调用失败：${error instanceof Error ? error.message : String(error)}`
+  }
 }
 </script>

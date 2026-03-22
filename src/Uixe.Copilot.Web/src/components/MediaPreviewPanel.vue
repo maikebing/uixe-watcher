@@ -21,6 +21,9 @@
       <div class="grid gap-3">
         <div v-for="video in videoUrls" :key="video" class="overflow-hidden rounded-xl border border-slate-700/60 bg-slate-950/50 p-2">
           <video :src="video" controls class="max-h-72 w-full rounded-xl" />
+          <div class="mt-2 flex justify-end">
+            <a-button size="mini" type="outline" @click="emit('play-video', video)">?? Agent ??</a-button>
+          </div>
           <div class="truncate px-1 pt-2 text-xs text-slate-400">{{ video }}</div>
         </div>
       </div>
@@ -36,5 +39,9 @@
 defineProps<{
   imageUrls: string[]
   videoUrls: string[]
+}>()
+
+const emit = defineEmits<{
+  (e: 'play-video', videoUrl: string): void
 }>()
 </script>

@@ -97,7 +97,8 @@ public sealed class AgentInstructionDispatcher(
                         request.Width ?? 1280,
                         request.Height ?? 720,
                         request.AutoPlay,
-                        request.KeepWindowOpen),
+                        request.KeepWindowOpen,
+                        request.VideoWindowKey),
                     cancellationToken);
                 break;
 

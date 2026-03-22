@@ -34,6 +34,8 @@ public sealed class AgentInstructionRequest
 
     public string? VideoTitle { get; set; }
 
+    public string? VideoWindowKey { get; set; }
+
     public int? Width { get; set; }
 
     public int? Height { get; set; }

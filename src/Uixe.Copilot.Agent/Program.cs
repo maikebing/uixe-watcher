@@ -44,6 +44,7 @@ static AgentCommand ParseCommand(string[] args, IConfiguration configuration)
     var webTitle = GetArgument(args, "--web-title") ?? "Uixe.Copilot";
     var videoSource = GetArgument(args, "--video-source");
     var videoTitle = GetArgument(args, "--video-title") ?? "Uixe.Copilot Video";
+    var videoWindowKey = GetArgument(args, "--video-window-key");
 
     LocalNotificationRequest? notification = null;
     if (!string.IsNullOrWhiteSpace(notificationTitle) && !string.IsNullOrWhiteSpace(notificationMessage))
@@ -72,7 +73,7 @@ static AgentCommand ParseCommand(string[] args, IConfiguration configuration)
     VideoPlaybackRequest? video = null;
     if (!string.IsNullOrWhiteSpace(videoSource))
     {
-        video = new VideoPlaybackRequest(videoSource, videoTitle);
+        video = new VideoPlaybackRequest(videoSource, videoTitle, WindowKey: videoWindowKey);
     }
 
     return new AgentCommand(keepRunning, notification, speech, vnc, webView, video);

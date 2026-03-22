@@ -1,5 +1,5 @@
 export interface AgentCommandRequest {
-  commandType: 'notification' | 'speech' | 'vnc' | 'web'
+  commandType: 'notification' | 'speech' | 'vnc' | 'web' | 'video'
   title?: string
   message?: string
   text?: string
@@ -13,6 +13,9 @@ export interface AgentCommandRequest {
   vncTitle?: string
   url?: string
   webTitle?: string
+  videoSource?: string
+  videoTitle?: string
+  videoWindowKey?: string
   width?: number
   height?: number
   keepRunning?: boolean
@@ -77,5 +80,16 @@ export function openWebByAgent(url: string, webTitle?: string) {
     commandType: 'web',
     url,
     webTitle
+  })
+}
+
+export function playVideoByAgent(videoSource: string, videoTitle?: string, width = 1280, height = 720, videoWindowKey?: string) {
+  return postAgentCommand({
+    commandType: 'video',
+    videoSource,
+    videoTitle,
+    videoWindowKey,
+    width,
+    height
   })
 }
