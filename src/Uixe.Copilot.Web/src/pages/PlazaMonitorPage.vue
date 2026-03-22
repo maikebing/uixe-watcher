@@ -1,10 +1,21 @@
 <template>
   <div class="grid gap-6 xl:grid-cols-[1.2fr_1fr]">
+    <div v-if="pageError" class="glass-panel rounded-3xl p-4 xl:col-span-2 text-sm text-red-200">
+      {{ pageError }}
+    </div>
+
+    <div v-if="isLoading" class="glass-panel rounded-3xl p-4 xl:col-span-2 text-sm text-slate-300">
+      正在加载收费站监控数据...
+    </div>
+
     <div class="glass-panel rounded-3xl p-6">
       <div class="mb-5 flex items-center justify-between gap-3">
         <div class="text-lg font-medium text-white">收费站监控</div>
-        <div class="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">
-          {{ statusText }}
+        <div class="flex items-center gap-2">
+          <div class="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">
+            {{ statusText }}
+          </div>
+          <a-button size="mini" @click="refreshMonitor">刷新监控</a-button>
         </div>
       </div>
       <a-table :data="store.plazas" :pagination="false">
@@ -25,6 +36,7 @@
               <div class="flex flex-wrap gap-2">
                 <a-button size="mini" @click="openPlazaVnc(record)">打开 VNC</a-button>
                 <a-button size="mini" status="warning" @click="focusPlazaEvents(record)">事件详情</a-button>
+                <a-button size="mini" type="outline" @click="openPlazaEventCenter(record)">事件中心</a-button>
               </div>
             </template>
           </a-table-column>
@@ -104,6 +116,28 @@
 
     <LaneActivityTimeline :items="activityFeed" />
 
+    <div class="glass-panel rounded-3xl p-6 xl:col-span-2">
+      <div class="mb-5 flex items-center justify-between gap-3">
+        <div class="text-lg font-medium text-white">最近联动入口</div>
+        <div class="text-xs text-slate-400">用于快速从监控页跳转到事件中心与详情</div>
+      </div>
+      <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <div
+          v-for="item in linkedActivityItems"
+          :key="item.id"
+          class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4"
+        >
+          <div class="text-sm font-medium text-white">{{ item.title }}</div>
+          <div class="mt-2 text-xs text-slate-400">{{ item.detail }}</div>
+          <div class="mt-3 text-[11px] text-slate-500">{{ item.time }}</div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <a-button size="mini" type="primary" @click="openActivityEvent(item.relatedEventId)">查看事件</a-button>
+            <a-button size="mini" @click="openEventCenterByKeyword(item.keyword)">事件中心</a-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <BulkTransportConfirmPanel :model-value="bulkTransportDraft" @confirm="confirmBulkTransport" @cancel="resetBulkTransport" />
 
     <BillInfoConfirmPanel :model-value="billInfoDraft" @confirm="confirmBillInfo" @cancel="resetBillInfo" />
@@ -158,7 +192,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { fetchSystemSettings, submitBillInfo, submitBulkTransport, submitConfirmEnInfo, submitLaneLost } from '@/api/mock'
 import { openVncByAgent, playVideoByAgent } from '@/api/agentApi'
@@ -173,6 +207,8 @@ const router = useRouter()
 const plazaId = '3301001'
 const selectedPlazaId = ref(plazaId)
 const selectedLaneNotice = ref('')
+const isLoading = ref(false)
+const pageError = ref('')
 
 const plazaPreferences = reactive({
   preferredVoiceName: '',
@@ -227,6 +263,19 @@ const activityFeed = computed(() => {
 })
 
 const recentEvents = computed(() => store.events.slice(0, 3))
+const linkedActivityItems = computed(() => {
+  const eventMap = new Map(store.events.map((event) => [event.id, event]))
+
+  return activityFeed.value.slice(0, 3).map((item) => {
+    const matchedEvent = Array.from(eventMap.values()).find((event) => item.title.includes(event.plazaName) || item.title.includes(event.laneNo))
+
+    return {
+      ...item,
+      relatedEventId: matchedEvent?.id,
+      keyword: matchedEvent?.plazaName || selectedPlaza.value?.name || ''
+    }
+  })
+})
 const selectedPlaza = computed(() => store.plazas.find((item) => item.id === selectedPlazaId.value) ?? store.plazas[0])
 const selectedLaneDetails = computed<LaneStatusItem[]>(() => {
   const current = selectedPlaza.value
@@ -290,6 +339,33 @@ const bulkTransportResult = ref('')
 const billInfoResult = ref('')
 const confirmEnInfoResult = ref('')
 
+onMounted(async () => {
+  await initializePage()
+})
+
+async function initializePage() {
+  isLoading.value = true
+  pageError.value = ''
+
+  try {
+    if (!store.plazas.length || !store.events.length) {
+      await store.loadOverview()
+    } else {
+      await store.loadLaneStatusSnapshots()
+    }
+
+    if (!selectedPlazaId.value && store.plazas.length > 0) {
+      selectedPlazaId.value = store.plazas[0].id
+    }
+
+    await loadPlazaPreferences()
+  } catch (error) {
+    pageError.value = `收费站监控数据加载失败：${error instanceof Error ? error.message : String(error)}`
+  } finally {
+    isLoading.value = false
+  }
+}
+
 async function confirmBulkTransport() {
   const result = await submitBulkTransport(plazaId, {
     vehId: bulkTransportDraft.vehId,
@@ -345,8 +421,6 @@ function resetConfirmEnInfo() {
   confirmEnInfoResult.value = '已取消本次入口信息确认。'
 }
 
-void loadPlazaPreferences()
-
 async function loadPlazaPreferences() {
   try {
     const data = await fetchSystemSettings()
@@ -369,6 +443,10 @@ async function openPlazaVnc(record: PlazaStatusItem) {
   }
 }
 
+async function refreshMonitor() {
+  await initializePage()
+}
+
 function focusPlazaEvents(record: PlazaStatusItem) {
   const match = store.events.find((event) => event.plazaName.includes(record.name))
   if (match) {
@@ -379,8 +457,35 @@ function focusPlazaEvents(record: PlazaStatusItem) {
   confirmEnInfoResult.value = `${record.name} 当前暂无可跳转的事件记录。`
 }
 
+function openPlazaEventCenter(record: PlazaStatusItem) {
+  router.push({
+    path: '/events',
+    query: {
+      keyword: record.name
+    }
+  })
+}
+
 function openEventDetail(eventId: string) {
   router.push(`/events/${eventId}`)
+}
+
+function openActivityEvent(eventId?: string) {
+  if (!eventId) {
+    confirmEnInfoResult.value = '当前活动项还未关联到具体事件，可先进入事件中心查看。'
+    return
+  }
+
+  openEventDetail(eventId)
+}
+
+function openEventCenterByKeyword(keyword: string) {
+  router.push({
+    path: '/events',
+    query: {
+      keyword
+    }
+  })
 }
 
 async function playEventVideo(event: EventItem) {

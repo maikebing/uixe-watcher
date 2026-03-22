@@ -125,6 +125,8 @@
 - `外部请求 -> Uixe.Copilot.Api -> Application -> Web 监控页 -> Agent 本地能力`
 - 优先保证 `PlazaMonitorPage`、常用 `LaneController` 入口、交通事件提交流程与 Agent 单条本地能力链路可以稳定演示
 - 完整替代旧 `frmMain` / `frmPlaza` 与 PostgreSQL 正式切换仍放在 V0 之后继续推进
+- 当前已补齐 `PlazaMonitorPage` 的主动加载与 V0 启动/演示说明；下一步重点转向“监控页 -> 事件中心 -> Agent”更贴近现场使用的联动入口
+- 当前 `PlazaMonitorPage` 已可直接刷新监控、跳转事件中心，并基于最近活动项快速跳往事件详情或事件中心筛选视图
 
 当前按 `roadmap.md` 最新整理结果估算：
 
@@ -135,6 +137,20 @@
 - 阶段 4：`48%`
 - 阶段 5：`5%`
 - **整体完成度约 `59%`**
+
+## 当前 V0 运行方式
+
+当前建议先以 V0 初步运行版进行联调，最小链路为：
+
+`Uixe.Copilot.Api -> Uixe.Copilot.Web -> Uixe.Copilot.Agent`
+
+推荐演示入口：
+
+- 监控主页面：`#/plaza-monitor`
+- 事件中心：`#/events`
+- 系统配置与 TrafficEvent 调试：`#/settings`
+
+详细启动步骤与演示脚本见 `docs/v0-runbook.md`。
 
 Agent 本地 HTTP 服务当前默认监听 `http://127.0.0.1:17173/commands`，`Uixe.Copilot.Web` 或其他本机业务可直接以 `POST` JSON 调用，例如：
 
