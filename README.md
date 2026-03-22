@@ -101,6 +101,23 @@ Agent 本地 HTTP 服务当前默认监听 `http://127.0.0.1:17173/commands`，`
 - 打开 VNC：`{"commandType":"vnc","host":"192.168.1.10","port":5900,"password":"kissme","vncTitle":"X02 车道远程桌面"}`
 - 打开 Web：`{"commandType":"web","url":"http://127.0.0.1:5173","webTitle":"Uixe.Copilot"}`
 
+### Agent 发布说明
+
+- `src/Uixe.Copilot.Agent` 当前已收敛为单目标框架 `net10.0`，平台能力通过运行时判断 `OperatingSystem.IsWindows()` / `OperatingSystem.IsLinux()` 选择注册，而不是通过条件编译区分。
+- GitHub Actions 发布工作流位于 `.github/workflows/publish-agent.yml`，支持 `workflow_dispatch` 手动触发和 `release.published` 自动触发。
+- 当前发布产物为 3 个 Native AOT 包：
+  - `uixe-copilot-agent-win-x64.zip`
+  - `uixe-copilot-agent-ubuntu-22.04-x64.tar.gz`
+  - `uixe-copilot-agent-centos-stream-9-x64.tar.gz`
+- Windows 侧不再发布 `net10.0-windows7.0` 或面向 Windows 7 的包，因为 `.NET 10` 已不支持 Windows 7；当前统一发布 `win-x64` AOT 产物。
+- Linux 侧按 `.NET 10` 支持基线分别在 `Ubuntu 22.04` 与 `CentOS Stream 9` 环境内进行 `linux-x64` AOT 发布，以降低运行时兼容性风险。
+- Linux AOT 依赖 `clang` 和 `zlib` 开发包，工作流已在容器内安装；如果本地手动发布，也需要先准备对应依赖。
+
+本地手动发布可参考：
+
+- Windows：`dotnet publish src/Uixe.Copilot.Agent/Uixe.Copilot.Agent.csproj -c Release -r win-x64 --self-contained true -p:PublishAot=true`
+- Linux：`dotnet publish src/Uixe.Copilot.Agent/Uixe.Copilot.Agent.csproj -c Release -r linux-x64 --self-contained true -p:PublishAot=true`
+
 #### 可选兼容层
 
 - `Uixe.Copilot.Agent`

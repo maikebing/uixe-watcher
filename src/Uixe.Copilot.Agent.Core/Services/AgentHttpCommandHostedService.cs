@@ -66,7 +66,7 @@ public sealed class AgentHttpCommandHostedService(
         {
             using var reader = new StreamReader(context.Request.InputStream, context.Request.ContentEncoding);
             var body = await reader.ReadToEndAsync(cancellationToken);
-            var request = JsonSerializer.Deserialize<AgentInstructionRequest>(body, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+            var request = JsonSerializer.Deserialize(body, AgentJsonSerializerContext.Default.AgentInstructionRequest);
             if (request is null)
             {
                 await WriteAsync(context.Response, 400, new AgentInstructionResponse(false, "Invalid request."), cancellationToken);
@@ -86,7 +86,7 @@ public sealed class AgentHttpCommandHostedService(
     {
         response.StatusCode = statusCode;
         response.ContentType = "application/json";
-        var json = JsonSerializer.Serialize(result);
+        var json = JsonSerializer.Serialize(result, AgentJsonSerializerContext.Default.AgentInstructionResponse);
         var bytes = Encoding.UTF8.GetBytes(json);
         response.ContentLength64 = bytes.Length;
         await response.OutputStream.WriteAsync(bytes, cancellationToken);
