@@ -109,6 +109,8 @@
           <div class="mt-3 text-xs text-slate-400">{{ lane.lastMessage }}</div>
           <div class="mt-3 flex flex-wrap gap-2">
             <a-button size="mini" status="danger" @click.stop="markLaneLost(lane)">标记掉线</a-button>
+            <a-button size="mini" type="outline" @click.stop="notifyLaneAlert(lane)">本地通知</a-button>
+            <a-button size="mini" @click.stop="broadcastLaneStatus(lane)">语音播报</a-button>
           </div>
         </div>
       </div>
@@ -149,6 +151,11 @@
         <div class="text-lg font-medium text-white">交通事件快捷入口</div>
         <div class="text-xs text-slate-400">继续承接旧 `frmTrafficEvent` / `frmPlaza` 联动职责</div>
       </div>
+      <div class="mb-4 grid gap-3 md:grid-cols-[1fr_1fr_auto]">
+        <a-input v-model="quickEventForm.recordId" placeholder="recordId" />
+        <a-input v-model="quickEventForm.laneNo" placeholder="laneNo" />
+        <a-button type="primary" @click="submitQuickTrafficEvent">快速触发测试事件</a-button>
+      </div>
       <div class="grid gap-4 md:grid-cols-3">
         <div
           v-for="event in recentEvents"
@@ -173,20 +180,25 @@
       </div>
     </div>
 
-    <div v-if="bulkTransportResult" class="glass-panel rounded-3xl p-4 xl:col-span-2 text-sm text-slate-300">
-      {{ bulkTransportResult }}
-    </div>
-
-    <div v-if="billInfoResult" class="glass-panel rounded-3xl p-4 xl:col-span-2 text-sm text-slate-300">
-      {{ billInfoResult }}
-    </div>
-
-    <div v-if="confirmEnInfoResult" class="glass-panel rounded-3xl p-4 xl:col-span-2 text-sm text-slate-300">
-      {{ confirmEnInfoResult }}
-    </div>
-
-    <div v-if="selectedLaneNotice" class="glass-panel rounded-3xl p-4 xl:col-span-2 text-sm text-slate-300">
-      {{ selectedLaneNotice }}
+    <div class="glass-panel rounded-3xl p-6 xl:col-span-2">
+      <div class="mb-5 flex items-center justify-between gap-3">
+        <div class="text-lg font-medium text-white">链路结果面板</div>
+        <div class="text-xs text-slate-400">以阶段卡片展示当前监控页联调结果</div>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div
+          v-for="card in resultCards"
+          :key="card.key"
+          class="rounded-2xl border p-4"
+          :class="card.toneClass"
+        >
+          <div class="flex items-center justify-between gap-3">
+            <div class="text-sm font-medium text-white">{{ card.title }}</div>
+            <a-tag :color="card.tagColor">{{ card.statusText }}</a-tag>
+          </div>
+          <div class="mt-3 text-xs leading-6 text-slate-300 whitespace-pre-wrap">{{ card.message }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -194,8 +206,8 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { fetchSystemSettings, submitBillInfo, submitBulkTransport, submitConfirmEnInfo, submitLaneLost } from '@/api/mock'
-import { openVncByAgent, playVideoByAgent } from '@/api/agentApi'
+import { fetchSystemSettings, submitBillInfo, submitBulkTransport, submitConfirmEnInfo, submitLaneLost, submitTrafficEvent } from '@/api/mock'
+import { notifyByAgent, openVncByAgent, playVideoByAgent, speakByAgent } from '@/api/agentApi'
 import BillInfoConfirmPanel from '@/components/BillInfoConfirmPanel.vue'
 import ConfirmEnInfoPanel from '@/components/ConfirmEnInfoPanel.vue'
 import BulkTransportConfirmPanel from '@/components/BulkTransportConfirmPanel.vue'
@@ -282,6 +294,63 @@ const selectedLaneDetails = computed<LaneStatusItem[]>(() => {
   return current?.laneDetails ?? []
 })
 
+const resultCards = computed(() => {
+  const cards = [
+    {
+      key: 'quick-event',
+      title: '测试事件提交',
+      message: quickEventResult.value || '尚未触发测试事件。',
+      statusText: quickEventResult.value ? (quickEventResult.value.includes('成功') ? '成功' : '失败') : '待执行',
+      tagColor: quickEventResult.value ? (quickEventResult.value.includes('成功') ? 'green' : 'red') : 'gray',
+      toneClass: quickEventResult.value
+        ? (quickEventResult.value.includes('成功') ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-red-500/20 bg-red-500/5')
+        : 'border-slate-700/50 bg-slate-950/30'
+    },
+    {
+      key: 'quick-stage',
+      title: '阶段状态',
+      message: quickEventStageResult.value || '将按“提交 -> Agent -> 刷新”显示链路阶段。',
+      statusText: quickEventStageResult.value
+        ? (quickEventStageResult.value.includes('异常') || quickEventStageResult.value.includes('未通过') ? '异常' : quickEventStageResult.value.includes('阶段完成') ? '完成' : '进行中')
+        : '待执行',
+      tagColor: quickEventStageResult.value
+        ? (quickEventStageResult.value.includes('异常') || quickEventStageResult.value.includes('未通过') ? 'red' : quickEventStageResult.value.includes('阶段完成') ? 'green' : 'arcoblue')
+        : 'gray',
+      toneClass: quickEventStageResult.value
+        ? (quickEventStageResult.value.includes('异常') || quickEventStageResult.value.includes('未通过') ? 'border-red-500/20 bg-red-500/5' : quickEventStageResult.value.includes('阶段完成') ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-sky-500/20 bg-sky-500/5')
+        : 'border-slate-700/50 bg-slate-950/30'
+    },
+    {
+      key: 'agent',
+      title: 'Agent 联动',
+      message: agentFeedback.value || '尚未触发 Agent 联动。',
+      statusText: agentFeedback.value ? (agentFeedback.value.includes('成功') ? '成功' : '失败') : '待执行',
+      tagColor: agentFeedback.value ? (agentFeedback.value.includes('成功') ? 'green' : 'red') : 'gray',
+      toneClass: agentFeedback.value
+        ? (agentFeedback.value.includes('成功') ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-red-500/20 bg-red-500/5')
+        : 'border-slate-700/50 bg-slate-950/30'
+    },
+    {
+      key: 'lane',
+      title: '车道操作反馈',
+      message: selectedLaneNotice.value || '尚未触发车道相关操作。',
+      statusText: selectedLaneNotice.value ? '已反馈' : '待执行',
+      tagColor: selectedLaneNotice.value ? 'arcoblue' : 'gray',
+      toneClass: selectedLaneNotice.value ? 'border-sky-500/20 bg-sky-500/5' : 'border-slate-700/50 bg-slate-950/30'
+    },
+    {
+      key: 'bulk',
+      title: '确认类表单反馈',
+      message: bulkTransportResult.value || billInfoResult.value || confirmEnInfoResult.value || '尚未触发确认类表单提交。',
+      statusText: bulkTransportResult.value || billInfoResult.value || confirmEnInfoResult.value ? '已反馈' : '待执行',
+      tagColor: bulkTransportResult.value || billInfoResult.value || confirmEnInfoResult.value ? 'purple' : 'gray',
+      toneClass: bulkTransportResult.value || billInfoResult.value || confirmEnInfoResult.value ? 'border-purple-500/20 bg-purple-500/5' : 'border-slate-700/50 bg-slate-950/30'
+    }
+  ]
+
+  return cards
+})
+
 const bulkTransportDraft = reactive({
   vehId: '浙A12345',
   vehColor: 2,
@@ -338,6 +407,15 @@ const confirmEnInfoDraft = reactive({
 const bulkTransportResult = ref('')
 const billInfoResult = ref('')
 const confirmEnInfoResult = ref('')
+const agentFeedback = ref('')
+const quickEventResult = ref('')
+const quickEventStageResult = ref('')
+
+const quickEventForm = reactive({
+  recordId: 'plaza-quick-evt-001',
+  laneNo: '001',
+  eventType: '45'
+})
 
 onMounted(async () => {
   await initializePage()
@@ -506,6 +584,54 @@ async function playEventVideo(event: EventItem) {
   }
 }
 
+async function submitQuickTrafficEvent() {
+  try {
+    quickEventStageResult.value = '阶段 1/3：正在提交测试事件...'
+    const result = await submitTrafficEvent({
+      recordId: quickEventForm.recordId,
+      eventType: quickEventForm.eventType,
+      LaneNo: quickEventForm.laneNo
+    })
+
+    quickEventResult.value = `${result.ok ? '测试事件提交成功' : '测试事件提交失败'}：${JSON.stringify(result.data)}`
+    confirmEnInfoResult.value = quickEventResult.value
+
+    if (result.ok) {
+      quickEventStageResult.value = '阶段 2/3：测试事件已提交，正在联动 Agent...'
+
+      try {
+        const notifyResult = await notifyByAgent(
+          '测试交通事件已触发',
+          `记录号 ${quickEventForm.recordId} 已提交，车道 ${quickEventForm.laneNo}`,
+          {
+            playSpeech: plazaPreferences.enableTrafficEventAudio,
+            text: `${selectedPlaza.value?.name || '当前收费站'} ${quickEventForm.laneNo} 车道测试事件已触发`,
+            voiceName: plazaPreferences.preferredVoiceName || undefined
+          }
+        )
+        agentFeedback.value = `测试事件联动 Agent 成功：${notifyResult.message}`
+      } catch (agentError) {
+        agentFeedback.value = `测试事件提交成功，但 Agent 联动失败：${agentError instanceof Error ? agentError.message : String(agentError)}`
+      }
+
+      quickEventStageResult.value = '阶段 3/3：正在刷新页面事件与监控数据...'
+
+      try {
+        await store.loadOverview()
+        quickEventStageResult.value = '阶段完成：测试事件提交、Agent 联动、页面刷新均已完成。'
+      } catch (refreshError) {
+        quickEventStageResult.value = `阶段异常：测试事件已提交，但页面刷新失败：${refreshError instanceof Error ? refreshError.message : String(refreshError)}`
+      }
+    } else {
+      quickEventStageResult.value = '阶段结束：测试事件提交未通过，未继续执行 Agent 联动与页面刷新。'
+    }
+  } catch (error) {
+    quickEventResult.value = `测试事件提交失败：${error instanceof Error ? error.message : String(error)}`
+    confirmEnInfoResult.value = quickEventResult.value
+    quickEventStageResult.value = `阶段异常：测试事件提交阶段失败：${error instanceof Error ? error.message : String(error)}`
+  }
+}
+
 function focusLane(lane: LaneStatusItem) {
   const lostText = lane.isLost ? '，当前处于掉线状态' : ''
   selectedLaneNotice.value = `${selectedPlaza.value?.name || '当前收费站'} ${lane.laneNo} 车道：${lane.lastMessage}，最近心跳 ${lane.lastHeartbeat}${lostText}`
@@ -521,5 +647,33 @@ async function markLaneLost(lane: LaneStatusItem) {
   const result = await submitLaneLost(currentPlazaId, lane.laneNo)
   selectedLaneNotice.value = `${result.ok ? '掉线上报成功' : '掉线上报失败'}：${JSON.stringify(result.data)}`
   await store.loadLaneStatusSnapshots()
+}
+
+async function notifyLaneAlert(lane: LaneStatusItem) {
+  const plazaName = selectedPlaza.value?.name || '当前收费站'
+  const message = `${plazaName} ${lane.laneNo} 车道状态：${lane.lastMessage || '请关注现场状态'}`
+
+  try {
+    const result = await notifyByAgent('收费站监控提醒', message, {
+      playSpeech: false
+    })
+    agentFeedback.value = `本地通知发送成功：${result.message}`
+  } catch (error) {
+    agentFeedback.value = `本地通知发送失败：${error instanceof Error ? error.message : String(error)}`
+  }
+}
+
+async function broadcastLaneStatus(lane: LaneStatusItem) {
+  const plazaName = selectedPlaza.value?.name || '当前收费站'
+  const text = `${plazaName}${lane.laneNo}车道，${lane.isLost ? '当前掉线，请及时处理。' : lane.lastMessage || '请关注现场状态。'}`
+
+  try {
+    const result = await speakByAgent(text, {
+      voiceName: plazaPreferences.preferredVoiceName || undefined
+    })
+    agentFeedback.value = `语音播报成功：${result.message}`
+  } catch (error) {
+    agentFeedback.value = `语音播报失败：${error instanceof Error ? error.message : String(error)}`
+  }
 }
 </script>

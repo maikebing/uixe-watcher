@@ -32,11 +32,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { playVideoByAgent } from '@/api/agentApi'
 import { useAppStore, type EventItem } from '@/stores/app'
 
 const store = useAppStore()
+const route = useRoute()
 const agentPlayResult = ref('')
 const searchKeyword = ref('')
 
@@ -54,10 +56,24 @@ const filteredEvents = computed(() => {
 })
 
 onMounted(async () => {
+  syncKeywordFromRoute()
+
   if (!store.events.length) {
     await store.loadOverview()
   }
 })
+
+watch(
+  () => route.query.keyword,
+  () => {
+    syncKeywordFromRoute()
+  }
+)
+
+function syncKeywordFromRoute() {
+  const keyword = route.query.keyword
+  searchKeyword.value = typeof keyword === 'string' ? keyword : ''
+}
 
 async function reloadEvents() {
   await store.loadOverview()
