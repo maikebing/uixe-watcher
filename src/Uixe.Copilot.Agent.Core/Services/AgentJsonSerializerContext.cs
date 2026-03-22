@@ -7,6 +7,7 @@ namespace Uixe.Copilot.Agent.Core.Services;
 [JsonSourceGenerationOptions(JsonSerializerDefaults.Web)]
 [JsonSerializable(typeof(AgentInstructionRequest))]
 [JsonSerializable(typeof(AgentInstructionResponse))]
+[JsonSerializable(typeof(LegacyBossApiResult))]
 internal sealed partial class AgentJsonSerializerContext : JsonSerializerContext
 {
 }

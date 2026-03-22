@@ -10,6 +10,8 @@ public sealed class AgentOptions
 
     public string WebDashboardUrl { get; set; } = "http://127.0.0.1:9999";
 
+    public string LaneBossServer { get; set; } = "http://127.0.0.1/";
+
     public string LinuxTrayCommand { get; set; } = "zenity";
 
     public string LinuxSpeechCommand { get; set; } = "spd-say";
@@ -19,4 +21,6 @@ public sealed class AgentOptions
     public string LinuxBrowserCommand { get; set; } = "xdg-open";
 
     public string LinuxVncCommand { get; set; } = "xdg-open";
+
+    public bool ForceLocalhostInDebugBuild { get; set; } = true;
 }

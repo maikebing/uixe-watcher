@@ -39,10 +39,11 @@ namespace Uixe.Watcher
         private readonly ILogger _logger;
         private readonly ConnectionString _connection;
         private readonly IPlazaContextService _plazaContextService;
+        private readonly ILegacyPlazaHostBootstrapService _legacyPlazaHostBootstrapService;
         private CougarClockRepositoryItem repositoryItem = new CougarClockRepositoryItem();
         private CougarClockContainer control = new CougarClockContainer();
         private BarEditItem barEditItem = new BarEditItem();
-        public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option,  ILogger<frmMain>  logger, IMemoryCache cache , ILoggerFactory loggerFactory, LiteDB.ConnectionString connection, IPlazaContextService plazaContextService)
+        public frmMain(IServiceScopeFactory scopeFactor, IOptions<AppSettings> option,  ILogger<frmMain>  logger, IMemoryCache cache , ILoggerFactory loggerFactory, LiteDB.ConnectionString connection, IPlazaContextService plazaContextService, ILegacyPlazaHostBootstrapService legacyPlazaHostBootstrapService)
         {
             InitializeComponent();
             this.scopeFactor = scopeFactor;
@@ -52,6 +53,7 @@ namespace Uixe.Watcher
             _cache = cache;
             _loggerFactory = loggerFactory;
             _plazaContextService = plazaContextService;
+            _legacyPlazaHostBootstrapService = legacyPlazaHostBootstrapService;
             repositoryItem.ControlType = control.GetType();
             barEditItem.Edit = repositoryItem;
             barEditItem.EditHeight = control.Height;
@@ -186,19 +188,26 @@ namespace Uixe.Watcher
         {
             _plazaContextService.SetCurrentBoss(tb.ToBossInfo());
             string name = $"{nameof(frmPlaza)}_{tb.Id}";
-            var frm = _cache.GetOrCreate(name, f =>
-            {
-                var _log = _loggerFactory.CreateLogger(name);
-                var frm = new frmPlaza() { Name = name, _logger = _log, _loggerFactory = _loggerFactory, _cache = _cache, settings = _setting, _connection = _connection };
-                frm.FormClosed += Frm_FormClosed;
-                frm.Boss = tb;
-                return frm;
-            });
-            tb.Plazas.ForEach(p =>
-            {
-                _cache.Set($"{nameof(frmPlaza)}_{p.Id}",frm);
-                _plazaContextService.RegisterPlazaHost(p.Id, frm);
-            } );
+            var frm = _legacyPlazaHostBootstrapService.GetOrCreateHost(
+                name,
+                tb.Plazas.Select(static plaza => plaza.Id ?? string.Empty),
+                () =>
+                {
+                    var formLogger = _loggerFactory.CreateLogger(name);
+                    var form = new frmPlaza()
+                    {
+                        Name = name,
+                        _logger = formLogger,
+                        _loggerFactory = _loggerFactory,
+                        _cache = _cache,
+                        settings = _setting,
+                        _connection = _connection
+                    };
+
+                    form.FormClosed += Frm_FormClosed;
+                    form.Boss = tb;
+                    return form;
+                });
             frm.MdiParent = this;
             frm.Show();
         }
