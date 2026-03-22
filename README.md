@@ -90,6 +90,7 @@
 - `Uixe.Copilot.Agent` 已提供跨平台宿主骨架，并通过 `Core + 单宿主内平台适配` 分层封装托盘、通知、语音、VNC 与 WebView 能力接口；当前宿主按桌面 GUI 方式构建，支持在 Windows 和 Linux 下以双击方式启动
 - `Uixe.Copilot.Agent` 已内置本地 HTTP 指令服务，可接收并执行通知、语音播报、VNC 打开和 Web 地址打开等命令
 - `Uixe.Copilot.Web` 已新增 `agentApi.ts`，并在系统配置页接入本地 Agent 调试入口，可直接通过 `POST http://127.0.0.1:17173/commands` 调用通知、语音和 VNC 能力
+- `Uixe.Copilot.Web` 当前前端工具链已明确要求 Node.js LTS `22.12.0+`，并通过 `.nvmrc`、`.node-version`、`package.json engines` 与 `Dockerfile` 统一宿主机和容器环境基线
 - 旧 `WinForms` 与新 `Web` 仍保持并行迁移模式
 
 Agent 本地 HTTP 服务当前默认监听 `http://127.0.0.1:17173/commands`，`Uixe.Copilot.Web` 或其他本机业务可直接以 `POST` JSON 调用，例如：

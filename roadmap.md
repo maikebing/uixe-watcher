@@ -99,6 +99,7 @@
 - Agent 已内置本地 HTTP 指令服务，可通过 `POST /commands` 接收并执行通知、语音、VNC 打开、Web 地址打开等本地能力命令。
 - Agent 本地 HTTP 指令模型已开始向旧 `frmPlaza` 使用习惯对齐，现已支持“弹窗通知 + 可选语音播报”组合调用，以及 VNC 标题透传。
 - Web 前端已新增 `agentApi.ts` 封装，并在系统配置页提供本地 Agent 调试入口，开始逐步把旧告警、语音、VNC 操作切到本地 Agent HTTP 接口。
+- Web 前端当前已明确 Node.js 环境基线：宿主机与容器统一使用 Node LTS `22.12.0+`，避免 `vite@7` 在旧 Node 环境下构建失败。
 
 ## 4. 进行中
 
