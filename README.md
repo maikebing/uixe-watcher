@@ -120,6 +120,22 @@
 - `Uixe.Copilot.Web` 当前前端工具链已明确要求 Node.js LTS `22.12.0+`，并通过 `.nvmrc`、`.node-version`、`package.json engines` 与 `Dockerfile` 统一宿主机和容器环境基线
 - 旧 `Uixe.Watcher` 当前仅作为迁移参考源码，不再作为正式兼容运行目标
 
+当前推进策略已进一步明确为优先形成 `V0` 初步运行版，即先收口：
+
+- `外部请求 -> Uixe.Copilot.Api -> Application -> Web 监控页 -> Agent 本地能力`
+- 优先保证 `PlazaMonitorPage`、常用 `LaneController` 入口、交通事件提交流程与 Agent 单条本地能力链路可以稳定演示
+- 完整替代旧 `frmMain` / `frmPlaza` 与 PostgreSQL 正式切换仍放在 V0 之后继续推进
+
+当前按 `roadmap.md` 最新整理结果估算：
+
+- 阶段 0：`100%`
+- 阶段 1：`82%`
+- 阶段 2：`58%`
+- 阶段 3：`61%`
+- 阶段 4：`48%`
+- 阶段 5：`5%`
+- **整体完成度约 `59%`**
+
 Agent 本地 HTTP 服务当前默认监听 `http://127.0.0.1:17173/commands`，`Uixe.Copilot.Web` 或其他本机业务可直接以 `POST` JSON 调用，例如：
 
 - 弹窗通知：`{"commandType":"notification","title":"交通事件","message":"X02 车道发现异常车辆"}`
