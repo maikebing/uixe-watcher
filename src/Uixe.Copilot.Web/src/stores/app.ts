@@ -16,6 +16,17 @@ export interface PlazaStatusItem {
   lanesOnline: number
   lanesTotal: number
   alerts: number
+  laneDetails?: LaneStatusItem[]
+}
+
+export interface LaneStatusItem {
+  id: string
+  laneNo: string
+  status: 'online' | 'warning' | 'offline'
+  vehicleCount: number
+  lastMessage: string
+  lastHeartbeat: string
+  hasWarning: boolean
 }
 
 export interface EventItem {
@@ -26,6 +37,13 @@ export interface EventItem {
   level: 'high' | 'medium' | 'low'
   time: string
   status: string
+  recordId?: string
+  eventType?: string
+  capTime?: string
+  startTime?: string
+  durationText?: string
+  queueLengthText?: string
+  summary?: string
   imageUrl?: string
   videoUrl?: string
   imageUrls?: string[]
@@ -83,7 +101,8 @@ export const useAppStore = defineStore('app', {
         status: item.status as 'online' | 'warning' | 'offline',
         lanesOnline: item.lanesOnline,
         lanesTotal: item.lanesTotal,
-        alerts: item.alerts
+        alerts: item.alerts,
+        laneDetails: createLaneDetails(item)
       }))
       this.events = data.events.map((item) => ({
         id: item.id,
@@ -93,6 +112,13 @@ export const useAppStore = defineStore('app', {
         level: item.level as 'high' | 'medium' | 'low',
         time: item.time,
         status: item.status,
+        recordId: item.recordId,
+        eventType: item.eventType,
+        capTime: item.capTime,
+        startTime: item.startTime,
+        durationText: item.durationText,
+        queueLengthText: item.queueLengthText,
+        summary: item.summary,
         imageUrl: item.imageUrl,
         videoUrl: item.videoUrl,
         imageUrls: item.imageUrls,
@@ -115,6 +141,13 @@ export const useAppStore = defineStore('app', {
           level: event.level as 'high' | 'medium' | 'low',
           time: event.time,
           status: event.status,
+          recordId: event.recordId,
+          eventType: event.eventType,
+          capTime: event.capTime,
+          startTime: event.startTime,
+          durationText: event.durationText,
+          queueLengthText: event.queueLengthText,
+          summary: event.summary,
           imageUrl: event.imageUrl,
           videoUrl: event.videoUrl,
           imageUrls: event.imageUrls,
@@ -140,3 +173,23 @@ export const useAppStore = defineStore('app', {
     }
   }
 })
+
+function createLaneDetails(item: PlazaStatusItem): LaneStatusItem[] {
+  const total = Math.max(item.lanesTotal, 1)
+
+  return Array.from({ length: total }, (_, index) => {
+    const laneNo = String(index + 1).padStart(3, '0')
+    const isOnline = index < item.lanesOnline
+    const hasWarning = item.status === 'warning' && index === 0
+
+    return {
+      id: `${item.id}-${laneNo}`,
+      laneNo,
+      status: hasWarning ? 'warning' : isOnline ? 'online' : 'offline',
+      vehicleCount: hasWarning ? 3 : isOnline ? 1 : 0,
+      lastMessage: hasWarning ? '存在待处理告警' : isOnline ? '车道心跳正常' : '等待上线',
+      lastHeartbeat: isOnline ? '刚刚' : '3 分钟前',
+      hasWarning
+    }
+  })
+}

@@ -22,7 +22,17 @@
           <a-switch v-model="settings.enableTrafficEventAudio" />
         </a-form-item>
         <a-form-item label="首选播报员">
-          <a-input v-model="settings.preferredVoiceName" placeholder="例如：默认播报员" />
+          <a-select v-model="settings.preferredVoiceName" allow-create placeholder="例如：Microsoft Xiaoxiao Desktop">
+            <a-option v-for="voice in voiceOptions" :key="voice" :value="voice">{{ voice }}</a-option>
+          </a-select>
+        </a-form-item>
+        <a-form-item label="铃声策略">
+          <a-select v-model="settings.preferredRing">
+            <a-option v-for="ring in ringOptions" :key="ring" :value="ring">{{ ring }}</a-option>
+          </a-select>
+        </a-form-item>
+        <a-form-item label="特情语音播报">
+          <a-switch v-model="settings.enableLaneSpecialBroadcast" />
         </a-form-item>
         <a-form-item label="首选主题">
           <a-select v-model="settings.preferredTheme">
@@ -38,6 +48,7 @@
           </a-select>
         </a-form-item>
         <a-button type="primary" @click="save">保存配置</a-button>
+        <a-button class="ml-3" @click="previewVoice">测试播报</a-button>
       </a-form>
     </div>
     <div class="glass-panel rounded-3xl p-6">
@@ -68,12 +79,16 @@
         <a-input v-model="agentForm.vncHost" placeholder="VNC Host" />
         <a-input v-model="agentForm.vncPassword" placeholder="VNC Password" />
         <a-input v-model="agentForm.videoUrl" placeholder="Video URL / File Path" class="lg:col-span-2" />
+        <a-select v-model="agentForm.ring" placeholder="铃声策略">
+          <a-option v-for="ring in ringOptions" :key="ring" :value="ring">{{ ring }}</a-option>
+        </a-select>
       </div>
       <div class="mt-4 flex flex-wrap gap-3">
         <a-button type="primary" @click="sendAgentNotification">发送本地告警</a-button>
         <a-button @click="sendAgentSpeech">本地语音播报</a-button>
         <a-button status="warning" @click="openAgentVnc">打开 VNC</a-button>
         <a-button status="success" @click="playAgentVideo">播放视频</a-button>
+        <a-button status="normal" @click="previewRingMessage">铃声联动测试</a-button>
       </div>
       <div class="mt-4 rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4 text-sm text-slate-300">
         {{ agentResultText }}
@@ -95,11 +110,16 @@ const settings = reactive({
   enableVncLaunch: true,
   enableTrafficEventAudio: true,
   preferredVoiceName: '',
+  preferredRing: '默认铃声',
+  enableLaneSpecialBroadcast: true,
   preferredTheme: 'dark',
   trafficEventStorageMode: 'PostgreSQL',
   currentPhase: 'Phase 2',
   phaseMilestones: [] as string[]
 })
+
+const voiceOptions = ['Microsoft Xiaoxiao Desktop', 'Microsoft Yunxi Desktop', '默认播报员']
+const ringOptions = ['默认铃声', '紧急提醒', '超限告警', '交通事件']
 
 const form = reactive({
   recordId: 'debug-evt-001',
@@ -112,7 +132,8 @@ const agentForm = reactive({
   message: 'X02 车道发现异常车辆',
   vncHost: '127.0.0.1',
   vncPassword: 'kissme',
-  videoUrl: 'D:/media/test.mp4'
+  videoUrl: 'D:/media/test.mp4',
+  ring: '默认铃声'
 })
 
 const resultText = ref('尚未提交')
@@ -127,6 +148,8 @@ async function loadSettings() {
   settings.enableVncLaunch = data.enableVncLaunch
   settings.enableTrafficEventAudio = data.enableTrafficEventAudio
   settings.preferredVoiceName = data.preferredVoiceName
+  settings.preferredRing = typeof data.preferredRing === 'string' ? data.preferredRing : '默认铃声'
+  settings.enableLaneSpecialBroadcast = typeof data.enableLaneSpecialBroadcast === 'boolean' ? data.enableLaneSpecialBroadcast : true
   settings.preferredTheme = data.preferredTheme
   settings.trafficEventStorageMode = data.trafficEventStorageMode
   settings.currentPhase = data.currentPhase
@@ -142,11 +165,25 @@ async function save() {
   settings.enableVncLaunch = data.enableVncLaunch
   settings.enableTrafficEventAudio = data.enableTrafficEventAudio
   settings.preferredVoiceName = data.preferredVoiceName
+  settings.preferredRing = typeof data.preferredRing === 'string' ? data.preferredRing : settings.preferredRing
+  settings.enableLaneSpecialBroadcast = typeof data.enableLaneSpecialBroadcast === 'boolean' ? data.enableLaneSpecialBroadcast : settings.enableLaneSpecialBroadcast
   settings.preferredTheme = data.preferredTheme
   settings.trafficEventStorageMode = data.trafficEventStorageMode
   settings.currentPhase = data.currentPhase
   settings.phaseMilestones = data.phaseMilestones
   resultText.value = '配置保存成功'
+}
+
+async function previewVoice() {
+  try {
+    const result = await speakByAgent(agentForm.message, {
+      voiceName: settings.preferredVoiceName || undefined
+    })
+
+    resultText.value = `播报测试成功：${result.message}`
+  } catch (error) {
+    resultText.value = `播报测试失败：${error instanceof Error ? error.message : String(error)}`
+  }
 }
 
 async function submit() {
@@ -240,6 +277,20 @@ async function playAgentVideo() {
     agentResultText.value = `视频调用成功：${result.message}`
   } catch (error) {
     agentResultText.value = `视频调用失败：${error instanceof Error ? error.message : String(error)}`
+  }
+}
+
+async function previewRingMessage() {
+  try {
+    const result = await notifyByAgent(`${agentForm.title} · ${agentForm.ring}`, agentForm.message, {
+      playSpeech: settings.enableLaneSpecialBroadcast,
+      text: `${agentForm.ring}，${agentForm.message}`,
+      voiceName: settings.preferredVoiceName || undefined
+    })
+
+    agentResultText.value = `铃声联动测试成功：${result.message}`
+  } catch (error) {
+    agentResultText.value = `铃声联动测试失败：${error instanceof Error ? error.message : String(error)}`
   }
 }
 

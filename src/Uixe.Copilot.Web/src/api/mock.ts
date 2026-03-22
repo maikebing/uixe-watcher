@@ -85,6 +85,45 @@ export async function saveSystemSettings(payload: Record<string, unknown>) {
   return response.json()
 }
 
+export async function submitBulkTransport(plazaId: string, payload: Record<string, unknown>) {
+  const response = await fetch(`${baseUrl}/Lane/Bulktrans?plazaid=${encodeURIComponent(plazaId)}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+
+  const data = await response.json()
+  return { ok: response.ok, data }
+}
+
+export async function submitBillInfo(plazaId: string, payload: Record<string, unknown>) {
+  const response = await fetch(`${baseUrl}/Lane/bill_info?plazaid=${encodeURIComponent(plazaId)}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+
+  const data = await response.json()
+  return { ok: response.ok, data }
+}
+
+export async function submitConfirmEnInfo(plazaId: string, payload: Record<string, unknown>) {
+  const response = await fetch(`${baseUrl}/Lane/ConfirmEnInfo?plazaId=${encodeURIComponent(plazaId)}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+
+  const data = await response.json()
+  return { ok: response.ok, data }
+}
+
 export function createTrafficEventsConnection() {
   if (trafficEventsConnection) {
     return trafficEventsConnection
