@@ -42,6 +42,8 @@ static AgentCommand ParseCommand(string[] args, IConfiguration configuration)
     var vncPassword = GetArgument(args, "--vnc-password");
     var webUrl = GetArgument(args, "--web-url") ?? configuration[$"{AgentOptions.SectionName}:WebDashboardUrl"];
     var webTitle = GetArgument(args, "--web-title") ?? "Uixe.Copilot";
+    var videoSource = GetArgument(args, "--video-source");
+    var videoTitle = GetArgument(args, "--video-title") ?? "Uixe.Copilot Video";
 
     LocalNotificationRequest? notification = null;
     if (!string.IsNullOrWhiteSpace(notificationTitle) && !string.IsNullOrWhiteSpace(notificationMessage))
@@ -67,7 +69,13 @@ static AgentCommand ParseCommand(string[] args, IConfiguration configuration)
         webView = new WebViewRequest(webUrl, webTitle);
     }
 
-    return new AgentCommand(keepRunning, notification, speech, vnc, webView);
+    VideoPlaybackRequest? video = null;
+    if (!string.IsNullOrWhiteSpace(videoSource))
+    {
+        video = new VideoPlaybackRequest(videoSource, videoTitle);
+    }
+
+    return new AgentCommand(keepRunning, notification, speech, vnc, webView, video);
 }
 
 static string? GetArgument(string[] args, string optionName)

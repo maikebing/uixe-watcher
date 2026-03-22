@@ -5,7 +5,8 @@ public sealed record AgentCommand(
     LocalNotificationRequest? Notification,
     SpeechRequest? Speech,
     VncLaunchRequest? Vnc,
-    WebViewRequest? WebView)
+    WebViewRequest? WebView,
+    VideoPlaybackRequest? Video)
 {
-    public bool HasOperations => Notification is not null || Speech is not null || Vnc is not null || WebView is not null;
+    public bool HasOperations => Notification is not null || Speech is not null || Vnc is not null || WebView is not null || Video is not null;
 }

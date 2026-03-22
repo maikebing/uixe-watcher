@@ -13,6 +13,7 @@ public static class WindowsDependencyInjection
         services.AddSingleton<ISpeechService, WindowsSpeechService>();
         services.AddSingleton<IVncLauncher, WindowsVncLauncher>();
         services.AddSingleton<IWebViewService, WindowsWebViewService>();
+        services.AddSingleton<IVideoPlayerService, WindowsVideoPlayerService>();
         services.AddSingleton<IWindowsNativeHost, WindowsNativeHost>();
         return services;
     }

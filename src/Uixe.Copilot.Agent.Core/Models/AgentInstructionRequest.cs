@@ -30,9 +30,17 @@ public sealed class AgentInstructionRequest
 
     public string? WebTitle { get; set; }
 
+    public string? VideoSource { get; set; }
+
+    public string? VideoTitle { get; set; }
+
     public int? Width { get; set; }
 
     public int? Height { get; set; }
+
+    public bool AutoPlay { get; set; } = true;
+
+    public bool KeepWindowOpen { get; set; }
 
     public bool KeepRunning { get; set; } = true;
 }

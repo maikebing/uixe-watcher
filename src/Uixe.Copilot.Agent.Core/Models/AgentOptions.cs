@@ -22,5 +22,7 @@ public sealed class AgentOptions
 
     public string LinuxVncCommand { get; set; } = "xdg-open";
 
+    public string LinuxVideoPlayerCommand { get; set; } = "xdg-open";
+
     public bool ForceLocalhostInDebugBuild { get; set; } = true;
 }

@@ -13,6 +13,7 @@ public static class LinuxDependencyInjection
         services.AddSingleton<ISpeechService, LinuxSpeechService>();
         services.AddSingleton<IVncLauncher, LinuxVncLauncher>();
         services.AddSingleton<IWebViewService, LinuxWebViewService>();
+        services.AddSingleton<IVideoPlayerService, LinuxVideoPlayerService>();
         return services;
     }
 }

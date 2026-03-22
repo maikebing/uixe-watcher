@@ -21,11 +21,61 @@ public sealed class LegacyPlazaUiBridge : ILegacyPlazaUiBridge
         _plazaContextService = plazaContextService;
     }
 
-    public Task<ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, object status, CancellationToken cancellationToken = default)
-        => ExecuteOnPlazaAsync(plazaId, frm => frm.ShowLaneInfor(plazaId, laneNo, (LaneStatus)status));
+    public Task<ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, LaneStatusDto status, CancellationToken cancellationToken = default)
+        => ExecuteOnPlazaAsync(plazaId, frm => frm.ShowLaneInfor(plazaId, laneNo, new LaneStatus
+        {
+            LaneNo = status.LaneNo,
+            CollName = status.CollName,
+            CollNo = status.CollNo,
+            ClientMsg = status.ClientMsg,
+            CarType = status.CarType,
+            Money = status.Money,
+            CarKind = status.CarKind,
+            WrokMode = status.WrokMode,
+            JobBeginTime = status.JobBeginTime,
+            YuPengDengStatus = status.YuPengDengStatus,
+            JiaoTongDengStatus = status.JiaoTongDengStatus,
+            LanGanStatus = status.LanGanStatus,
+            Coil1Status = status.Coil1Status,
+            Coil2Status = status.Coil2Status,
+            Coil3Status = status.Coil3Status,
+            Coil4Status = status.Coil4Status,
+            PrinterStatus = status.PrinterStatus,
+            NetworkStatus = status.NetworkStatus,
+            RSUStatus = status.RSUStatus,
+            ReaderStatus = status.ReaderStatus,
+            WeightStatus = status.WeightStatus,
+            VPRStatus = status.VPRStatus,
+            CameraStatus = status.CameraStatus,
+            YellowStatus = status.YellowStatus,
+            QRPayStatus = status.QRPayStatus,
+            BaoJingStatus = status.BaoJingStatus,
+            LWDStatus = status.LWDStatus,
+            CarBoxID = status.CarBoxID,
+            CarBoxNow = status.CarBoxNow,
+            CarBoxMax = status.CarBoxMax,
+            terminalId = status.TerminalId,
+            VideoRtsp = status.VideoRtsp
+        }));
 
-    public Task<ApiResult> ShowMessageAsync(string plazaId, object message, CancellationToken cancellationToken = default)
-        => ExecuteOnPlazaAsync(plazaId, frm => frm.ShowMessageView((MsgInfo)message));
+    public Task<ApiResult> ShowMessageAsync(string plazaId, LaneMessageDto message, CancellationToken cancellationToken = default)
+        => ExecuteOnPlazaAsync(plazaId, frm => frm.ShowMessageView(new MsgInfo
+        {
+            LaneNo = message.LaneNo,
+            MsgType = message.MsgType,
+            OccDateTime = message.OccDateTime,
+            CollNo = message.CollNo,
+            CarKind = message.CarKind,
+            CarType = message.CarType,
+            PayType = message.PayType,
+            Cash = message.Cash,
+            Receipt = message.Receipt,
+            Exception = message.Exception,
+            Peccancy = message.Peccancy,
+            DevStatus = message.DevStatus,
+            PromptMsg = message.PromptMsg,
+            PlazaId = message.PlazaId
+        }));
 
     public Task<ApiResult> ShowBulkTransportAsync(string plazaId, BulkTransportDto dto, CancellationToken cancellationToken = default)
         => ExecuteOnPlazaAsync(plazaId, frm =>
@@ -148,7 +198,7 @@ public sealed class LegacyPlazaUiBridge : ILegacyPlazaUiBridge
             });
         });
 
-    public async Task<ApiResult> ShowOverloadAlarmAsync(string plazaId, string title, string context, bool playSpeech, CancellationToken cancellationToken = default)
+    public async Task<ApiResult> ShowOverloadAlarmAsync(string plazaId, OverloadWarningDto warning, bool playSpeech, CancellationToken cancellationToken = default)
     {
         var frm = _plazaContextService.GetPlazaHost(plazaId) as frmPlaza;
         if (frm == null)
@@ -156,11 +206,11 @@ public sealed class LegacyPlazaUiBridge : ILegacyPlazaUiBridge
             return new ApiResult(ApiCode.NotFound, $"没有找到{plazaId}的收费站ID");
         }
 
-        await Task.Run(() => frm.Invoke(() => frm.Alert(title, context)), cancellationToken);
+        await Task.Run(() => frm.Invoke(() => frm.Alert(warning.Title ?? string.Empty, warning.Context ?? string.Empty)), cancellationToken);
         return new ApiResult(ApiCode.OK, "OK");
     }
 
-    public async Task<ApiResult> ShowLaneSpecialAsync(string plazaId, object message, CancellationToken cancellationToken = default)
+    public async Task<ApiResult> ShowLaneSpecialAsync(string plazaId, LaneSpecialDto message, CancellationToken cancellationToken = default)
     {
         var frm = _plazaContextService.GetPlazaHost(plazaId) as frmPlaza;
         if (frm == null)
@@ -168,8 +218,7 @@ public sealed class LegacyPlazaUiBridge : ILegacyPlazaUiBridge
             return new ApiResult(ApiCode.NotFound, $"没有找到{plazaId}的收费站ID");
         }
 
-        var msg = (Lanespecial)message;
-        await Task.Run(() => frm.Invoke(() => frm.Alert(msg.Title, msg.Context)), cancellationToken);
+        await Task.Run(() => frm.Invoke(() => frm.Alert(message.Title ?? string.Empty, message.Context ?? string.Empty)), cancellationToken);
         return new ApiResult(ApiCode.OK, "OK");
     }
 

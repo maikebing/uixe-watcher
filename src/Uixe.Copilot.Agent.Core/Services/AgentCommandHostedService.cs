@@ -10,6 +10,7 @@ public sealed class AgentCommandHostedService(
     ISpeechService speechService,
     IVncLauncher vncLauncher,
     IWebViewService webViewService,
+    IVideoPlayerService videoPlayerService,
     IHostApplicationLifetime applicationLifetime) : IHostedService
 {
     public Task StartAsync(CancellationToken cancellationToken)
@@ -48,6 +49,11 @@ public sealed class AgentCommandHostedService(
         if (command.WebView is not null)
         {
             await webViewService.OpenAsync(command.WebView, cancellationToken);
+        }
+
+        if (command.Video is not null)
+        {
+            await videoPlayerService.PlayAsync(command.Video, cancellationToken);
         }
 
         if (!command.KeepRunning)

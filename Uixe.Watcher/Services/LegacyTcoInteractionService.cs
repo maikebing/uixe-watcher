@@ -1,6 +1,6 @@
 using Uixe.Copilot.Application.Abstractions;
+using Uixe.Copilot.Contracts.Dtos;
 using Uixe.Copilot.Contracts.Responses;
-using Uixe.Watcher.Msg;
 using Uixe.Watcher.TCO;
 
 namespace Uixe.Watcher.Services;
@@ -16,7 +16,7 @@ public sealed class LegacyTcoInteractionService : ILegacyTcoInteractionService
         _legacyWindowCoordinator = legacyWindowCoordinator;
     }
 
-    public Task<ApiResult> ShowWeightMessageAsync(string plazaId, object message, CancellationToken cancellationToken = default)
+    public Task<ApiResult> ShowWeightMessageAsync(string plazaId, TcoWeightMessageDto message, CancellationToken cancellationToken = default)
     {
         var frm = _plazaContextService.GetPlazaHost(plazaId) as frmPlaza;
         if (frm == null)
@@ -33,13 +33,13 @@ public sealed class LegacyTcoInteractionService : ILegacyTcoInteractionService
                 wtco.Hide();
                 return wtco;
             });
-            window.ShowTCOMsg((MsgWeightTCOCALL)message);
+            window.ShowTCOMsg(message.ToLegacyMsgWeightTcoCall());
         });
 
         return Task.FromResult(new ApiResult(ApiCode.OK, "OK"));
     }
 
-    public Task<ApiResult> ShowTcoConfirmAsync(string plazaId, object message, CancellationToken cancellationToken = default)
+    public Task<ApiResult> ShowTcoConfirmAsync(string plazaId, TcoConfirmRequestDto message, CancellationToken cancellationToken = default)
     {
         var frm = _plazaContextService.GetPlazaHost(plazaId) as frmPlaza;
         if (frm == null)
@@ -50,7 +50,7 @@ public sealed class LegacyTcoInteractionService : ILegacyTcoInteractionService
         frm.Invoke(() =>
         {
             var window = (frmShowTCOCall)_legacyWindowCoordinator.GetOrCreateTcoCallWindow(plazaId, frm, () => new frmShowTCOCall(frm, frm.GetPlaza(plazaId)));
-            window.TCOCallxxx = (TCOCall)message;
+            window.TCOCallxxx = message.ToLegacyTcoCall();
             window.Show();
         });
 

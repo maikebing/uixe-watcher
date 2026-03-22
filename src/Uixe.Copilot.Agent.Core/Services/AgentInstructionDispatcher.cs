@@ -9,6 +9,7 @@ public sealed class AgentInstructionDispatcher(
     ISpeechService speechService,
     IVncLauncher vncLauncher,
     IWebViewService webViewService,
+    IVideoPlayerService videoPlayerService,
     IHostApplicationLifetime applicationLifetime) : IAgentInstructionDispatcher
 {
     public async Task<AgentInstructionResponse> DispatchAsync(AgentInstructionRequest request, CancellationToken cancellationToken = default)
@@ -79,6 +80,24 @@ public sealed class AgentInstructionDispatcher(
                         request.WebTitle ?? "Uixe.Copilot",
                         request.Width ?? 1280,
                         request.Height ?? 800),
+                    cancellationToken);
+                break;
+
+            case "video":
+                var videoSource = request.VideoSource ?? request.Url;
+                if (string.IsNullOrWhiteSpace(videoSource))
+                {
+                    return new AgentInstructionResponse(false, "VideoSource or Url is required.");
+                }
+
+                await videoPlayerService.PlayAsync(
+                    new VideoPlaybackRequest(
+                        videoSource,
+                        request.VideoTitle ?? request.WebTitle ?? "Uixe.Copilot Video",
+                        request.Width ?? 1280,
+                        request.Height ?? 720,
+                        request.AutoPlay,
+                        request.KeepWindowOpen),
                     cancellationToken);
                 break;
 

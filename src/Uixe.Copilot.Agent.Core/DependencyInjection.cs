@@ -38,6 +38,7 @@ public static class DependencyInjection
             LinuxNotificationCommand = section[nameof(AgentOptions.LinuxNotificationCommand)] ?? "notify-send",
             LinuxBrowserCommand = section[nameof(AgentOptions.LinuxBrowserCommand)] ?? "xdg-open",
             LinuxVncCommand = section[nameof(AgentOptions.LinuxVncCommand)] ?? "xdg-open",
+            LinuxVideoPlayerCommand = section[nameof(AgentOptions.LinuxVideoPlayerCommand)] ?? "xdg-open",
             ForceLocalhostInDebugBuild = bool.TryParse(forceLocalhostSetting, out var forceLocalhostInDebugBuild)
                 ? forceLocalhostInDebugBuild
                 : true

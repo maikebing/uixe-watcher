@@ -1,8 +1,10 @@
-﻿# Uixe.Watcher 改造为前后端分离的Web项目Uixe.Copilot的实施说明（正式版）
+﻿# Uixe.Copilot 项目说明
 
 ## 一、项目定位
 
-`Uixe.Watcher` 当前不是普通的 Web 项目，而是以下混合结构：
+本仓库当前已经进入 **以 `Uixe.Copilot.Web + Uixe.Copilot.Api` 完整替代 `Uixe.Watcher`** 的实施阶段。
+
+`Uixe.Watcher` 的历史形态是以下混合结构：
 
 - `WinForms` 主程序
 - 进程内自托管 `ASP.NET Core`
@@ -14,11 +16,13 @@
 
 `外部系统 -> 本机内嵌 API -> WinForms 窗体`
 
-这意味着本项目不能一次性硬重写，必须遵循：
+当前策略已经调整为：
 
-- 先兼容，后替换
-- 先解耦，后迁移
-- 先独立后端，再逐步切换 UI
+- 不再以旧 `WinForms` 宿主兼容运行为目标
+- 旧 `Watcher` 仅作为迁移参考源码保留
+- 展示功能统一迁入 `Uixe.Copilot.Web`
+- 后端能力统一迁入 `Uixe.Copilot.Api`
+- 本地桌面能力按需收敛到 `Uixe.Copilot.Agent`
 
 ---
 
@@ -30,7 +34,7 @@
 
 `外部系统 -> 中心后端 API -> Application Service -> 数据存储/缓存 -> SignalR -> Web 前端`
 
-如需保留本地能力，则补充兼容链路：
+如需保留本地能力，则补充扩展链路：
 
 `中心后端 -> Agent -> 本地弹窗/语音/VNC/设备能力`
 
@@ -73,6 +77,7 @@
 
 - `src/Uixe.Copilot.Agent`
 - `src/Uixe.Copilot.Agent.Core`
+- `libvlc_zip`
 
 #### 前端
 
@@ -85,14 +90,17 @@
 
 当前说明：
 
-- `Uixe.Copilot.Api` 已提供健康检查和事件总览业务接口
+- `Uixe.Copilot.Api` 已提供健康检查、系统配置与交通事件相关接口骨架
+- `Uixe.Copilot.Api` 已新增旧 `LaneController` 路由接管控制器，开始承接车道状态、TCO、普通消息、超限告警、特情、大件运输、发票、入口确认与旧 `TrafficEvent` 兼容入口
+- 简单展示类旧 DTO 已开始迁入 `Uixe.Copilot.Contracts`，当前车道状态、普通消息、超限告警、车道特情链路已改为新契约强类型传递
 - `Uixe.Copilot.Web` 已提供深色监控首页、事件中心、详情页，并已开始对接真实后端接口
 - `Uixe.Copilot.Agent` 已提供跨平台宿主骨架，并通过 `Core + 单宿主内平台适配` 分层封装托盘、通知、语音、VNC 与 WebView 能力接口；当前宿主按桌面 GUI 方式构建，支持在 Windows 和 Linux 下以双击方式启动
+- `libvlc_zip` 现阶段已明确作为 Agent 侧本地视频播放能力依赖，用于承接旧本地媒体播放场景
 - `Uixe.Copilot.Agent` 已内置本地 HTTP 指令服务，可接收并执行通知、语音播报、VNC 打开和 Web 地址打开等命令
 - `Uixe.Copilot.Agent` 启动时会向 `Agent:LaneBossServer` 配置的内网服务发起 `POST /guesswhoiam`，把当前收费站识别结果缓存在 Agent 内存中；Debug 构建下可通过 `Agent:ForceLocalhostInDebugBuild=true` 将返回的主机地址统一改写为 `localhost`
 - `Uixe.Copilot.Web` 已新增 `agentApi.ts`，并在系统配置页接入本地 Agent 调试入口，可直接通过 `POST http://127.0.0.1:17173/commands` 调用通知、语音和 VNC 能力
 - `Uixe.Copilot.Web` 当前前端工具链已明确要求 Node.js LTS `22.12.0+`，并通过 `.nvmrc`、`.node-version`、`package.json engines` 与 `Dockerfile` 统一宿主机和容器环境基线
-- 旧 `WinForms` 与新 `Web` 仍保持并行迁移模式
+- 旧 `Uixe.Watcher` 当前仅作为迁移参考源码，不再作为正式兼容运行目标
 
 Agent 本地 HTTP 服务当前默认监听 `http://127.0.0.1:17173/commands`，`Uixe.Copilot.Web` 或其他本机业务可直接以 `POST` JSON 调用，例如：
 
@@ -119,13 +127,12 @@ Agent 本地 HTTP 服务当前默认监听 `http://127.0.0.1:17173/commands`，`
 - Windows：`dotnet publish src/Uixe.Copilot.Agent/Uixe.Copilot.Agent.csproj -c Release -r win-x64 --self-contained true -p:PublishAot=true`
 - Linux：`dotnet publish src/Uixe.Copilot.Agent/Uixe.Copilot.Agent.csproj -c Release -r linux-x64 --self-contained true -p:PublishAot=true`
 
-#### 可选兼容层
+#### 可选本地能力扩展
 
 - `Uixe.Copilot.Agent`
 - 本地通知
 - 本地语音播报
 - 本地 `VNC` 调起
-- 旧接口兼容转发
 - `WebView` 承载新 Web 前端
 
 ---
@@ -158,11 +165,11 @@ Agent 本地 HTTP 服务当前默认监听 `http://127.0.0.1:17173/commands`，`
 
 ---
 
-## 四、核心改造原则
+## 四、当前实施原则
 
-### 1. 先兼容旧接口，不先强制改上游,不直接删除现有内容。 现有界面和新web界面可以并存，可以切换。 
+### 1. 以新系统接管旧系统，不再以兼容旧宿主为目标
 
-优先兼容当前请求契约，减少联调成本。现阶段重点兼容以下入口：
+现阶段重点不是继续维持旧 `Watcher` 运行，而是按功能清单完成接管。当前优先接管以下入口：
 
 - `LaneController`
 - `TrafficEvent([FromBody] TrafficEventPushRequest)`
@@ -193,14 +200,65 @@ Agent 本地 HTTP 服务当前默认监听 `http://127.0.0.1:17173/commands`，`
 - 播报策略
 - 推送通知
 
-### 4. `WinForms` 降级为展示端或 Agent 能力层
+### 4. 旧 `WinForms` 仅作为迁移参考源码
 
-后续 `WinForms` 不再承担核心业务编排，只保留：
+后续 `WinForms` 不再作为正式交付目标：
 
-- 本地展示
-- 本地操作入口
-- 兼容适配
-- 本地设备能力
+- 不再新增功能
+- 不再作为兼容壳层继续演进
+- 仅用于对照旧逻辑、旧页面和旧交互
+- 待迁移完成后可进一步归档或移出主线
+
+### 5. 先接管路由，再逐步去旧化
+
+当前后端接管策略分两步推进：
+
+- 先由 `Uixe.Copilot.Api` 接管旧接口路由和调用入口
+- 再逐步把旧 `Uixe.Watcher` 中的 DTO、桥接与服务实现迁移到 `Contracts`、`Application`、`Infrastructure`
+
+因此当前阶段允许新 API 通过项目引用短期复用旧模型，但这只是过渡方案，不是最终形态。
+
+当前已完成的第一轮去旧化范围：
+
+- `LaneStatus -> LaneStatusDto`
+- `MsgInfo -> LaneMessageDto`
+- `OverloadWarning -> OverloadWarningDto`
+- `Lanespecial -> LaneSpecialDto`
+
+当前已完成的第二轮去旧化范围：
+
+- `BulklyDto -> BulkTransportDto`
+- `BillInfoDto -> BillInfoRequestDto`
+- `ConfirmEnInfo -> ConfirmEnInfoDto`
+
+下一轮将继续处理：
+
+- 旧 `LegacyTcoInteractionService` 内部桥接
+- 旧 TCO WinForms 交互适配层
+
+当前已完成的第三轮去旧化范围：
+
+- `TCOCall -> TcoConfirmRequestDto`
+- `MsgWeightTCOCALL -> TcoWeightMessageDto`
+- `WATCHER_TYPE -> WatcherType`
+- `DlgType -> TcoDialogType`
+- `MsgTcoTran -> TcoTranDto`
+
+当前已完成的第四轮去旧化范围：
+
+- `LegacyTcoInteractionService` 改为接收 `TcoWeightMessageDto` / `TcoConfirmRequestDto`
+- TCO 桥接层内部再转换为旧 WinForms 模型，而不是让应用层继续直接传旧对象
+
+当前已完成的第五轮去旧化范围：
+
+- `Uixe.Copilot.Api/LaneController` 中简单请求模型、业务请求模型、TCO 请求模型已全部切换为 `Contracts` DTO 入参
+- 旧 `TrafficEventPushRequest` / `TrafficEventPushResponse` 兼容入口已改为使用 `Contracts` 请求 DTO 和新的兼容响应 DTO
+
+当前已完成的第六轮依赖收缩范围：
+
+- `Contracts` 层中依赖旧 `Uixe.Watcher` 类型的兼容映射已迁回 `Uixe.Watcher` 最内层桥接实现
+- `Uixe.Copilot.Api.csproj` 已移除对 `Uixe.Watcher.csproj` 的直接项目引用
+- `libvlc_zip` 当前归属已明确收口到 Agent 侧，用于本地视频播放能力
 
 ---
 
