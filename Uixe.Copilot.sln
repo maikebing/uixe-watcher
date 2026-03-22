@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uixe.Copilot.Agent.Core", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uixe.Copilot.Agent", "src\Uixe.Copilot.Agent\Uixe.Copilot.Agent.csproj", "{2DDD1EF3-06E5-4132-843C-71CFD169D49A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Uixe.Copilot.Web", "src\Uixe.Copilot.Web\Uixe.Copilot.Web.esproj", "{AF0EE648-8F88-46AC-87CD-5E92F2C06A8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -177,12 +181,21 @@ Global
 		{2DDD1EF3-06E5-4132-843C-71CFD169D49A}.Release|x64.Build.0 = Release|Any CPU
 		{2DDD1EF3-06E5-4132-843C-71CFD169D49A}.Release|x86.ActiveCfg = Release|Any CPU
 		{2DDD1EF3-06E5-4132-843C-71CFD169D49A}.Release|x86.Build.0 = Release|Any CPU
+		{AF0EE648-8F88-46AC-87CD-5E92F2C06A8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0EE648-8F88-46AC-87CD-5E92F2C06A8B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AF0EE648-8F88-46AC-87CD-5E92F2C06A8B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AF0EE648-8F88-46AC-87CD-5E92F2C06A8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0EE648-8F88-46AC-87CD-5E92F2C06A8B}.Release|x64.ActiveCfg = Release|Any CPU
+		{AF0EE648-8F88-46AC-87CD-5E92F2C06A8B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AF0EE648-8F88-46AC-87CD-5E92F2C06A8B} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_SaveFilesImmediatelyUponChange = False
 		SolutionGuid = {339573ED-4417-48E7-A437-BC3549DD7DD3}
+		RESX_SaveFilesImmediatelyUponChange = False
 	EndGlobalSection
 EndGlobal

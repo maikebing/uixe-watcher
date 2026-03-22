@@ -1,8 +1,0 @@
-assembly-versioning-scheme: MajorMinorPatch
-assembly-file-versioning-scheme: MajorMinorPatch
-mode: ContinuousDeployment
-next-version: 5.0
-patch-version-bump-message: '\+semver:\s?(fix|patch)'
-branches: {}
-ignore:
-  sha: []
