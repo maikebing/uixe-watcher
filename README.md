@@ -102,6 +102,7 @@
 - `Uixe.Copilot.Agent` 启动时会向 `Agent:LaneBossServer` 配置的内网服务发起 `POST /guesswhoiam`，把当前收费站识别结果缓存在 Agent 内存中；Debug 构建下可通过 `Agent:ForceLocalhostInDebugBuild=true` 将返回的主机地址统一改写为 `localhost`
 - `Uixe.Copilot.Web` 已新增 `agentApi.ts`，并在系统配置页接入本地 Agent 调试入口，可直接通过 `POST http://127.0.0.1:17173/commands` 调用通知、语音和 VNC 能力
 - `Uixe.Copilot.Web` 已进一步接入 Agent 视频播放入口，系统配置页和事件详情页可直接触发 `video` 指令调用本地播放
+- `Uixe.Copilot.Web` 的事件中心与历史页也已补齐本地视频播放入口，可直接从列表记录触发 Agent 播放对应视频
 - `Uixe.Copilot.Web` 当前前端工具链已明确要求 Node.js LTS `22.12.0+`，并通过 `.nvmrc`、`.node-version`、`package.json engines` 与 `Dockerfile` 统一宿主机和容器环境基线
 - 旧 `Uixe.Watcher` 当前仅作为迁移参考源码，不再作为正式兼容运行目标
 

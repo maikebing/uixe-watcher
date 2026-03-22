@@ -21,13 +21,23 @@
         <a-table-column title="级别" data-index="level" />
         <a-table-column title="状态" data-index="status" />
         <a-table-column title="时间" data-index="time" />
+        <a-table-column title="操作">
+          <template #cell="{ record }">
+            <a-button v-if="record.videoUrl" size="mini" type="outline" @click="playHistoryVideo(record)">播放视频</a-button>
+            <span v-else class="text-xs text-slate-500">无视频</span>
+          </template>
+        </a-table-column>
       </template>
     </a-table>
+    <div v-if="agentPlayResult" class="mt-4 rounded-2xl border border-sky-500/10 bg-slate-900/40 p-3 text-sm text-slate-300">
+      {{ agentPlayResult }}
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
+import { playVideoByAgent } from '@/api/agentApi'
 import { fetchHistory } from '@/api/mock'
 
 const filters = reactive({
@@ -38,7 +48,10 @@ const filters = reactive({
 
 const timeRange = ref([])
 
-const items = ref<Array<Record<string, string>>>([])
+type HistoryItem = Record<string, string>
+
+const items = ref<Array<HistoryItem>>([])
+const agentPlayResult = ref('')
 const pagination = reactive({
   total: 0,
   current: 1,
@@ -81,6 +94,21 @@ function exportHistory() {
   anchor.download = `traffic-event-history-${Date.now()}.csv`
   anchor.click()
   URL.revokeObjectURL(url)
+}
+
+async function playHistoryVideo(record: HistoryItem) {
+  const videoUrl = record.videoUrl
+  if (!videoUrl) {
+    agentPlayResult.value = '当前记录没有可播放的视频'
+    return
+  }
+
+  try {
+    const result = await playVideoByAgent(videoUrl, `${record.title ?? record.id} 视频`, 1280, 720, `history-${record.id ?? Date.now()}`)
+    agentPlayResult.value = `视频播放调用成功：${result.message}`
+  } catch (error) {
+    agentPlayResult.value = `视频播放调用失败：${error instanceof Error ? error.message : String(error)}`
+  }
 }
 
 onMounted(loadHistory)
