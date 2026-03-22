@@ -1,5 +1,32 @@
 <template>
   <div class="grid gap-6 lg:grid-cols-2">
+    <div class="glass-panel rounded-3xl p-6 lg:col-span-2">
+      <div class="mb-5 flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+        <div>
+          <div class="text-lg font-medium text-white">配置与联调中心</div>
+          <div class="mt-1 text-xs text-slate-400">统一承接系统配置、存储模式、TrafficEvent 调试与 Agent 本地能力联调</div>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+            <div class="text-[11px] text-slate-400">当前环境</div>
+            <div class="mt-2 text-sm font-medium text-white">{{ environmentSummary }}</div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+            <div class="text-[11px] text-slate-400">存储模式</div>
+            <div class="mt-2 text-sm font-medium text-white">{{ settings.trafficEventStorageMode }}</div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+            <div class="text-[11px] text-slate-400">Agent 地址</div>
+            <div class="mt-2 text-sm font-medium text-white break-all">{{ agentEndpointText }}</div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+            <div class="text-[11px] text-slate-400">当前关注点</div>
+            <div class="mt-2 text-sm font-medium text-white">{{ settingsFocusText }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="glass-panel rounded-3xl p-6">
       <div class="mb-5 text-lg font-medium text-white">播报与通知策略</div>
       <a-form layout="vertical">
@@ -96,19 +123,76 @@
     </div>
 
     <div class="glass-panel rounded-3xl p-6 lg:col-span-2">
+      <div class="mb-5 flex items-center justify-between gap-3">
+        <div class="text-lg font-medium text-white">联调结果面板</div>
+        <div class="text-xs text-slate-400">统一展示配置保存、TrafficEvent 提交与 Agent 本地调用结果</div>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4">
+          <div class="text-sm font-medium text-white">配置操作</div>
+          <div class="mt-3 text-xs leading-6 text-slate-300 whitespace-pre-wrap">{{ settingsResultText }}</div>
+        </div>
+        <div class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4">
+          <div class="text-sm font-medium text-white">TrafficEvent 调试</div>
+          <div class="mt-3 text-xs leading-6 text-slate-300 whitespace-pre-wrap">{{ resultText }}</div>
+        </div>
+        <div class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4">
+          <div class="text-sm font-medium text-white">Agent 联调</div>
+          <div class="mt-3 text-xs leading-6 text-slate-300 whitespace-pre-wrap">{{ agentResultText }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass-panel rounded-3xl p-6 lg:col-span-2">
+      <div class="mb-5 flex items-center justify-between gap-3">
+        <div class="text-lg font-medium text-white">运行态摘要</div>
+        <div class="text-xs text-slate-400">统一配置中心当前运行态、联调态与当前关注点</div>
+      </div>
+      <div class="grid gap-4 md:grid-cols-4">
+        <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+          <div class="text-[11px] text-slate-400">配置中心状态</div>
+          <div class="mt-2 text-sm font-medium text-white">{{ settingsCenterStatus }}</div>
+        </div>
+        <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+          <div class="text-[11px] text-slate-400">配置反馈</div>
+          <div class="mt-2 text-sm font-medium text-white">{{ settingsResultSummary }}</div>
+        </div>
+        <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+          <div class="text-[11px] text-slate-400">事件调试反馈</div>
+          <div class="mt-2 text-sm font-medium text-white">{{ trafficEventSummary }}</div>
+        </div>
+        <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+          <div class="text-[11px] text-slate-400">Agent 调试反馈</div>
+          <div class="mt-2 text-sm font-medium text-white">{{ agentDebugSummary }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass-panel rounded-3xl p-6 lg:col-span-2">
       <div class="mb-5 text-lg font-medium text-white">现场联动入口摘要</div>
       <div class="grid gap-4 md:grid-cols-3">
         <div class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4 text-sm text-slate-300">
           <div class="font-medium text-white">监控页</div>
           <div class="mt-3 text-xs leading-6">可演示车道状态、掉线上报、Agent 通知/播报、快速测试事件。</div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <a-button size="mini" @click="goScenario('plaza-monitor')">进入监控页</a-button>
+            <a-button size="mini" type="outline" @click="goWarningScenario">告警场景</a-button>
+          </div>
         </div>
         <div class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4 text-sm text-slate-300">
           <div class="font-medium text-white">事件中心</div>
           <div class="mt-3 text-xs leading-6">可按收费站筛选事件，并直接触发本地通知、语音播报和视频播放。</div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <a-button size="mini" @click="goScenario('events')">进入事件中心</a-button>
+            <a-button size="mini" type="outline" @click="goTrafficEventScenario">测试事件场景</a-button>
+          </div>
         </div>
         <div class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4 text-sm text-slate-300">
           <div class="font-medium text-white">系统配置</div>
           <div class="mt-3 text-xs leading-6">可统一调试 TrafficEvent、通知、语音、VNC 和视频播放能力。</div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <a-button size="mini" type="primary" @click="goScenario('settings')">当前页</a-button>
+          </div>
         </div>
       </div>
     </div>
@@ -116,7 +200,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { fetchSystemSettings, saveSystemSettings, submitTrafficEvent } from '@/api/mock'
 import { notifyByAgent, openVncByAgent, playVideoByAgent, speakByAgent } from '@/api/agentApi'
 
@@ -135,6 +220,8 @@ const settings = reactive({
   currentPhase: 'Phase 2',
   phaseMilestones: [] as string[]
 })
+
+const router = useRouter()
 
 const voiceOptions = ['Microsoft Xiaoxiao Desktop', 'Microsoft Yunxi Desktop', '默认播报员']
 const ringOptions = ['默认铃声', '紧急提醒', '超限告警', '交通事件']
@@ -156,6 +243,30 @@ const agentForm = reactive({
 
 const resultText = ref('尚未提交')
 const agentResultText = ref('尚未调用本地 Agent')
+const settingsResultText = ref('尚未执行配置操作')
+
+const environmentSummary = computed(() => settings.currentPhase || '未知阶段')
+const agentEndpointText = computed(() => import.meta.env.VITE_AGENT_BASE_URL ?? 'http://127.0.0.1:17173')
+const settingsFocusText = computed(() => {
+  if (agentResultText.value !== '尚未调用本地 Agent') {
+    return '最近有 Agent 联调结果'
+  }
+
+  if (resultText.value !== '尚未提交') {
+    return '最近有 TrafficEvent 调试结果'
+  }
+
+  if (settingsResultText.value !== '尚未执行配置操作') {
+    return '最近有配置保存结果'
+  }
+
+  return '当前无额外联调反馈'
+})
+
+const settingsCenterStatus = computed(() => '配置中心可用')
+const settingsResultSummary = computed(() => settingsResultText.value)
+const trafficEventSummary = computed(() => resultText.value)
+const agentDebugSummary = computed(() => agentResultText.value)
 
 async function loadSettings() {
   const data = await fetchSystemSettings()
@@ -189,7 +300,7 @@ async function save() {
   settings.trafficEventStorageMode = data.trafficEventStorageMode
   settings.currentPhase = data.currentPhase
   settings.phaseMilestones = data.phaseMilestones
-  resultText.value = '配置保存成功'
+  settingsResultText.value = '配置保存成功'
 }
 
 async function previewVoice() {
@@ -310,6 +421,29 @@ async function previewRingMessage() {
   } catch (error) {
     agentResultText.value = `铃声联动测试失败：${error instanceof Error ? error.message : String(error)}`
   }
+}
+
+function goScenario(target: 'plaza-monitor' | 'events' | 'settings') {
+  router.push(`/${target}`)
+}
+
+function goWarningScenario() {
+  router.push({
+    path: '/events',
+    query: {
+      status: 'warning'
+    }
+  })
+}
+
+function goTrafficEventScenario() {
+  router.push({
+    path: '/events',
+    query: {
+      keyword: form.recordId,
+      lane: form.laneNo
+    }
+  })
 }
 
 onMounted(loadSettings)

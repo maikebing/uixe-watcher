@@ -8,6 +8,33 @@
       正在加载收费站监控数据...
     </div>
 
+    <div class="glass-panel rounded-3xl p-6 xl:col-span-2">
+      <div class="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+        <div>
+          <div class="text-lg font-medium text-white">监控运行状态</div>
+          <div class="mt-1 text-xs text-slate-400">用于替代旧宿主首页的运行态、刷新态与联调态摘要</div>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+            <div class="text-[11px] text-slate-400">当前运行态</div>
+            <div class="mt-2 text-sm font-medium text-white">{{ statusText }}</div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+            <div class="text-[11px] text-slate-400">最近刷新</div>
+            <div class="mt-2 text-sm font-medium text-white">{{ lastRefreshText }}</div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+            <div class="text-[11px] text-slate-400">数据覆盖</div>
+            <div class="mt-2 text-sm font-medium text-white">{{ dataCoverageText }}</div>
+          </div>
+          <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+            <div class="text-[11px] text-slate-400">当前关注点</div>
+            <div class="mt-2 text-sm font-medium text-white">{{ focusSummaryText }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="glass-panel rounded-3xl p-6">
       <div class="mb-5 flex items-center justify-between gap-3">
         <div class="text-lg font-medium text-white">收费站监控</div>
@@ -49,15 +76,36 @@
         <div class="text-lg font-medium text-white">车道视图</div>
         <div class="text-xs text-slate-400">继续承接旧 `lanView` 状态监控</div>
       </div>
-      <a-select v-model="selectedPlazaId" class="mb-4" placeholder="选择收费站">
-        <a-option v-for="item in store.plazas" :key="item.id" :value="item.id">{{ item.name }}</a-option>
-      </a-select>
+      <div class="mb-4 grid gap-3 md:grid-cols-4">
+        <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+          <div class="text-[11px] text-slate-400">当前收费站</div>
+          <div class="mt-2 text-sm font-medium text-white">{{ selectedPlaza?.name || '未选择' }}</div>
+        </div>
+        <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+          <div class="text-[11px] text-slate-400">在线车道</div>
+          <div class="mt-2 text-sm font-medium text-white">{{ onlineLaneCount }}/{{ selectedPlaza?.lanesTotal ?? 0 }}</div>
+        </div>
+        <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+          <div class="text-[11px] text-slate-400">告警车道</div>
+          <div class="mt-2 text-sm font-medium text-white">{{ warningLaneCount }}</div>
+        </div>
+        <div class="rounded-2xl border border-slate-700/50 bg-slate-950/40 px-4 py-3">
+          <div class="text-[11px] text-slate-400">掉线车道</div>
+          <div class="mt-2 text-sm font-medium text-white">{{ lostLaneCount }}</div>
+        </div>
+      </div>
+      <div class="mb-4 grid gap-3 md:grid-cols-[220px_1fr]">
+        <a-select v-model="selectedPlazaId" placeholder="选择收费站">
+          <a-option v-for="item in store.plazas" :key="item.id" :value="item.id">{{ item.name }}</a-option>
+        </a-select>
+        <a-input-search v-model="laneKeyword" allow-clear placeholder="按车道号 / 收费员 / 状态筛选当前收费站车道" />
+      </div>
       <div class="mb-4 text-xs text-slate-400">
-        当前查看：{{ selectedPlaza?.name || '未选择收费站' }}，在线车道 {{ selectedPlaza?.lanesOnline ?? 0 }}/{{ selectedPlaza?.lanesTotal ?? 0 }}
+        当前查看：{{ selectedPlaza?.name || '未选择收费站' }}，在线车道 {{ filteredLaneDetails.length }}/{{ selectedPlaza?.lanesTotal ?? 0 }}，关键字：{{ laneKeyword || '未筛选' }}
       </div>
       <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         <div
-          v-for="lane in selectedLaneDetails"
+          v-for="lane in filteredLaneDetails"
           :key="lane.id"
           class="rounded-2xl border border-sky-500/10 bg-slate-900/40 p-4"
           @click="focusLane(lane)"
@@ -114,6 +162,9 @@
           </div>
         </div>
       </div>
+      <div v-if="!filteredLaneDetails.length" class="mt-4 rounded-2xl border border-slate-700/40 bg-slate-950/40 p-4 text-sm text-slate-400">
+        当前收费站下没有匹配筛选条件的车道。
+      </div>
     </div>
 
     <LaneActivityTimeline :items="activityFeed" />
@@ -137,6 +188,21 @@
             <a-button size="mini" @click="openEventCenterByKeyword(item.keyword)">事件中心</a-button>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="glass-panel rounded-3xl p-6 xl:col-span-2">
+      <div class="mb-5 flex items-center justify-between gap-3">
+        <div class="text-lg font-medium text-white">站点事件联动</div>
+        <div class="text-xs text-slate-400">按当前收费站与车道状态快速进入事件中心工作台</div>
+      </div>
+      <div class="grid gap-3 md:grid-cols-3">
+        <a-button type="outline" @click="openEventCenterByKeyword(selectedPlaza?.name || '')">查看当前收费站全部事件</a-button>
+        <a-button type="outline" status="warning" @click="openWarningLaneEvents">查看告警车道相关事件</a-button>
+        <a-button type="outline" status="danger" @click="openLostLaneEvents">查看掉线车道相关事件</a-button>
+      </div>
+      <div class="mt-4 text-xs text-slate-400">
+        当前聚焦收费站：{{ selectedPlaza?.name || '未选择收费站' }}；告警车道 {{ warningLaneCount }} 条，掉线车道 {{ lostLaneCount }} 条。
       </div>
     </div>
 
@@ -183,7 +249,7 @@
     <div class="glass-panel rounded-3xl p-6 xl:col-span-2">
       <div class="mb-5 flex items-center justify-between gap-3">
         <div class="text-lg font-medium text-white">链路结果面板</div>
-        <div class="text-xs text-slate-400">以阶段卡片展示当前监控页联调结果</div>
+        <div class="text-xs text-slate-400">以运行态 / 联调态卡片展示当前监控主链路结果</div>
       </div>
       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         <div
@@ -260,9 +326,11 @@ const store = useAppStore()
 const router = useRouter()
 const plazaId = '3301001'
 const selectedPlazaId = ref(plazaId)
+const laneKeyword = ref('')
 const selectedLaneNotice = ref('')
 const isLoading = ref(false)
 const pageError = ref('')
+const lastRefreshAt = ref('')
 
 const plazaPreferences = reactive({
   preferredVoiceName: '',
@@ -273,11 +341,41 @@ const plazaPreferences = reactive({
 
 const statusText = computed(() => {
   const warnings = store.plazas.filter((item) => item.status === 'warning').length
+  const offline = store.plazas.filter((item) => item.status === 'offline').length
+
+  if (offline > 0) {
+    return `有 ${offline} 个站点离线`
+  }
+
   if (warnings > 0) {
     return `当前有 ${warnings} 个站点需要关注`
   }
 
   return '系统运行正常'
+})
+
+const lastRefreshText = computed(() => lastRefreshAt.value || '尚未刷新')
+
+const dataCoverageText = computed(() => {
+  const plazaCount = store.plazas.length
+  const laneCount = store.plazas.reduce((sum, item) => sum + (item.laneDetails?.length ?? 0), 0)
+  return `${plazaCount} 个收费站 / ${laneCount} 条车道`
+})
+
+const focusSummaryText = computed(() => {
+  if (pageError.value) {
+    return '需优先处理加载错误'
+  }
+
+  if (selectedLaneNotice.value) {
+    return '存在最近车道操作反馈'
+  }
+
+  if (quickEventResult.value) {
+    return '存在最近事件链路反馈'
+  }
+
+  return '当前无额外待处理项'
 })
 
 const activityFeed = computed(() => {
@@ -335,6 +433,23 @@ const selectedLaneDetails = computed<LaneStatusItem[]>(() => {
   const current = selectedPlaza.value
   return current?.laneDetails ?? []
 })
+
+const filteredLaneDetails = computed<LaneStatusItem[]>(() => {
+  const keyword = laneKeyword.value.trim().toLowerCase()
+  if (!keyword) {
+    return selectedLaneDetails.value
+  }
+
+  return selectedLaneDetails.value.filter((lane) => {
+    return [lane.laneNo, lane.collectorName, lane.status, lane.workMode, lane.lastMessage]
+      .filter((item): item is string => typeof item === 'string' && item.length > 0)
+      .some((item) => item.toLowerCase().includes(keyword))
+  })
+})
+
+const onlineLaneCount = computed(() => selectedLaneDetails.value.filter((lane) => lane.status === 'online').length)
+const warningLaneCount = computed(() => selectedLaneDetails.value.filter((lane) => lane.hasWarning).length)
+const lostLaneCount = computed(() => selectedLaneDetails.value.filter((lane) => lane.isLost).length)
 
 const resultCards = computed(() => {
   const cards = [
@@ -572,6 +687,7 @@ async function initializePage() {
     }
 
     await loadPlazaPreferences()
+    lastRefreshAt.value = new Date().toLocaleString('zh-CN', { hour12: false })
   } catch (error) {
     pageError.value = `收费站监控数据加载失败：${error instanceof Error ? error.message : String(error)}`
   } finally {
@@ -674,7 +790,9 @@ function openPlazaEventCenter(record: PlazaStatusItem) {
   router.push({
     path: '/events',
     query: {
-      keyword: record.name
+      keyword: record.name,
+      plaza: record.name,
+      status: record.status
     }
   })
 }
@@ -693,10 +811,51 @@ function openActivityEvent(eventId?: string) {
 }
 
 function openEventCenterByKeyword(keyword: string) {
+  if (!keyword) {
+    confirmEnInfoResult.value = '当前没有可用于跳转事件中心的关键字。'
+    return
+  }
+
   router.push({
     path: '/events',
     query: {
       keyword
+    }
+  })
+}
+
+function openWarningLaneEvents() {
+  const lane = selectedLaneDetails.value.find((item) => item.hasWarning)
+  if (!lane) {
+    confirmEnInfoResult.value = '当前收费站没有告警车道可用于联动查询。'
+    return
+  }
+
+  router.push({
+    path: '/events',
+    query: {
+      keyword: lane.laneNo,
+      plaza: selectedPlaza.value?.name || '',
+      lane: lane.laneNo,
+      status: 'warning'
+    }
+  })
+}
+
+function openLostLaneEvents() {
+  const lane = selectedLaneDetails.value.find((item) => item.isLost)
+  if (!lane) {
+    confirmEnInfoResult.value = '当前收费站没有掉线车道可用于联动查询。'
+    return
+  }
+
+  router.push({
+    path: '/events',
+    query: {
+      keyword: lane.laneNo,
+      plaza: selectedPlaza.value?.name || '',
+      lane: lane.laneNo,
+      status: 'offline'
     }
   })
 }
