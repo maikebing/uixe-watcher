@@ -196,7 +196,21 @@
             <div class="text-sm font-medium text-white">{{ card.title }}</div>
             <a-tag :color="card.tagColor">{{ card.statusText }}</a-tag>
           </div>
-          <div class="mt-3 text-xs leading-6 text-slate-300 whitespace-pre-wrap">{{ card.message }}</div>
+          <div v-if="card.key === 'quick-stage'" class="mt-4 space-y-3">
+            <div
+              v-for="step in quickEventSteps"
+              :key="step.key"
+              class="rounded-xl border p-3"
+              :class="step.toneClass"
+            >
+              <div class="flex items-center justify-between gap-3">
+                <div class="text-xs font-medium text-white">{{ step.title }}</div>
+                <a-tag size="small" :color="step.tagColor">{{ step.statusText }}</a-tag>
+              </div>
+              <div class="mt-2 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">{{ step.message }}</div>
+            </div>
+          </div>
+          <div v-else class="mt-3 text-xs leading-6 text-slate-300 whitespace-pre-wrap">{{ card.message }}</div>
         </div>
       </div>
     </div>
@@ -350,6 +364,54 @@ const resultCards = computed(() => {
 
   return cards
 })
+
+const quickEventSteps = computed(() => {
+  const stage = quickEventStageResult.value
+  const submitSuccess = quickEventResult.value.includes('成功')
+  const submitFailed = quickEventResult.value.includes('失败')
+  const agentSuccess = agentFeedback.value.includes('成功')
+  const agentFailed = agentFeedback.value.includes('失败')
+  const refreshSuccess = stage.includes('阶段完成')
+  const refreshFailed = stage.includes('页面刷新失败')
+
+  return [
+    buildQuickStep(
+      'submit',
+      '步骤 1：提交测试事件',
+      submitSuccess ? '提交成功，已收到接口返回。' : submitFailed ? quickEventResult.value : '尚未开始提交。',
+      submitSuccess ? 'success' : submitFailed ? 'error' : stage.includes('阶段 1/3') ? 'running' : 'idle'
+    ),
+    buildQuickStep(
+      'agent',
+      '步骤 2：联动 Agent',
+      agentSuccess ? agentFeedback.value : agentFailed ? agentFeedback.value : submitSuccess ? '等待或正在执行 Agent 联动。' : '需先完成事件提交。',
+      agentSuccess ? 'success' : agentFailed ? 'error' : stage.includes('阶段 2/3') ? 'running' : submitSuccess ? 'pending' : 'idle'
+    ),
+    buildQuickStep(
+      'refresh',
+      '步骤 3：刷新页面数据',
+      refreshSuccess ? '页面事件与监控数据已刷新完成。' : refreshFailed ? stage : agentSuccess || submitSuccess ? '等待或正在刷新页面数据。' : '需先完成前置步骤。',
+      refreshSuccess ? 'success' : refreshFailed ? 'error' : stage.includes('阶段 3/3') ? 'running' : agentSuccess || submitSuccess ? 'pending' : 'idle'
+    )
+  ]
+})
+
+function buildQuickStep(key: string, title: string, message: string, state: 'idle' | 'pending' | 'running' | 'success' | 'error') {
+  const config = {
+    idle: { statusText: '待执行', tagColor: 'gray', toneClass: 'border-slate-700/50 bg-slate-950/30' },
+    pending: { statusText: '待继续', tagColor: 'gray', toneClass: 'border-slate-700/50 bg-slate-950/30' },
+    running: { statusText: '进行中', tagColor: 'arcoblue', toneClass: 'border-sky-500/20 bg-sky-500/5' },
+    success: { statusText: '成功', tagColor: 'green', toneClass: 'border-emerald-500/20 bg-emerald-500/5' },
+    error: { statusText: '失败', tagColor: 'red', toneClass: 'border-red-500/20 bg-red-500/5' }
+  }[state]
+
+  return {
+    key,
+    title,
+    message,
+    ...config
+  }
+}
 
 const bulkTransportDraft = reactive({
   vehId: '浙A12345',
