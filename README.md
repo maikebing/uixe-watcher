@@ -115,6 +115,7 @@
 - `LaneMessage`、车道掉线、特情和超限告警当前也已开始沉淀到车道快照读模型，收费站监控页已补齐最近消息、最近告警和掉线提示展示
 - `LaneLost` 当前已补上正式 API 输入入口 `emrc_main_lost`，收费站监控页中的消息流也已拆为独立组件 `LaneActivityTimeline.vue`
 - 旧 `LegacyPlazaUiBridge.ShowLaneLostAsync` 当前也已补齐，正式掉线上报现已可同时驱动旧 WinForms 车道掉线展示和新 Web 车道快照视图
+- 旧侧 `LaneApplicationService` 中消息、特情、超限三条兼容链路当前也已统一转换为新 Contracts DTO 后再进入 `LegacyPlazaUiBridge`，旧侧与新侧口径进一步对齐
 - `frmTrafficEvent` 对应的 Web 承载已继续增强，事件详情页已补齐更完整的摘要字段、记录号、时长、排队长度与媒体信息展示
 - `Uixe.Copilot.Web` 当前前端工具链已明确要求 Node.js LTS `22.12.0+`，并通过 `.nvmrc`、`.node-version`、`package.json engines` 与 `Dockerfile` 统一宿主机和容器环境基线
 - 旧 `Uixe.Watcher` 当前仅作为迁移参考源码，不再作为正式兼容运行目标

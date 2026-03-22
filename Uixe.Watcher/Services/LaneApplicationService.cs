@@ -51,7 +51,7 @@ namespace Uixe.Watcher.Services
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, object status, CancellationToken cancellationToken = default)
-            => _legacyPlazaUiBridge.ShowLaneStatusAsync(plazaId, laneNo, status, cancellationToken);
+            => _legacyPlazaUiBridge.ShowLaneStatusAsync(plazaId, laneNo, ((LaneStatus)status).ToLaneStatusDto(), cancellationToken);
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneLostAsync(string plazaId, string laneNo, CancellationToken cancellationToken = default)
             => _legacyPlazaUiBridge.ShowLaneLostAsync(plazaId, laneNo, cancellationToken);
@@ -75,18 +75,25 @@ namespace Uixe.Watcher.Services
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowMessageAsync(string plazaId, object message, CancellationToken cancellationToken = default)
-            => _legacyPlazaUiBridge.ShowMessageAsync(plazaId, message, cancellationToken);
+            => _legacyPlazaUiBridge.ShowMessageAsync(plazaId, ((MsgInfo)message).ToLaneMessageDto(), cancellationToken);
 
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowOverloadAlarmAsync(string plazaId, string title, string context, bool playSpeech, CancellationToken cancellationToken = default)
         {
-            await _notificationApplicationService.ShowOverloadAlarmAsync(plazaId, title, context, playSpeech, cancellationToken);
-            return await _legacyPlazaUiBridge.ShowOverloadAlarmAsync(plazaId, title, context, playSpeech, cancellationToken);
+            var dto = new OverloadWarningDto
+            {
+                Title = title,
+                Context = context
+            };
+
+            await _notificationApplicationService.ShowOverloadAlarmAsync(plazaId, dto, playSpeech, cancellationToken);
+            return await _legacyPlazaUiBridge.ShowOverloadAlarmAsync(plazaId, dto, playSpeech, cancellationToken);
         }
 
         public async Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowLaneSpecialAsync(string plazaId, object message, CancellationToken cancellationToken = default)
         {
-            await _notificationApplicationService.ShowLaneSpecialAsync(plazaId, message, cancellationToken);
-            return await _legacyPlazaUiBridge.ShowLaneSpecialAsync(plazaId, message, cancellationToken);
+            var dto = ((Lanespecial)message).ToLaneSpecialDto();
+            await _notificationApplicationService.ShowLaneSpecialAsync(plazaId, dto, cancellationToken);
+            return await _legacyPlazaUiBridge.ShowLaneSpecialAsync(plazaId, dto, cancellationToken);
         }
 
         public Task<Uixe.Copilot.Contracts.Responses.ApiResult> ShowBulkTransAsync(string plazaId, object dto, CancellationToken cancellationToken = default)
