@@ -33,6 +33,20 @@ export interface PlazaLaneSnapshotResponse {
     cameraStatus: boolean
     printerStatus: boolean
     barrierStatus: boolean
+    isLost: boolean
+    lastMessageType?: string
+    lastMessageTime?: string
+    messages: Array<{
+      type: string
+      content: string
+      time: string
+    }>
+    alerts: Array<{
+      category: string
+      title: string
+      content: string
+      time: string
+    }>
   }>
 }
 
@@ -56,6 +70,15 @@ export async function fetchLaneStatusSnapshots(): Promise<PlazaLaneSnapshotRespo
   }
 
   return response.json()
+}
+
+export async function submitLaneLost(plazaId: string, laneNo: string) {
+  const response = await fetch(`${baseUrl}/api/Lane/emrc_main_lost?plazaid=${encodeURIComponent(plazaId)}&laneno=${encodeURIComponent(laneNo)}`, {
+    method: 'POST'
+  })
+
+  const data = await response.json()
+  return { ok: response.ok, data }
 }
 
 export async function fetchEventById(eventId: string) {

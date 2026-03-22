@@ -59,6 +59,9 @@
               {{ lane.status }}
             </a-tag>
           </div>
+          <div v-if="lane.isLost" class="mt-3 rounded-xl border border-red-500/20 bg-red-500/10 px-3 py-2 text-xs text-red-200">
+            车道掉线，请检查网络或设备心跳。
+          </div>
           <div class="mt-4 grid grid-cols-2 gap-3 text-xs text-slate-300">
             <div class="rounded-xl bg-slate-950/40 p-3">
               <div class="text-slate-400">车流</div>
@@ -77,23 +80,29 @@
             <div>网络：{{ lane.networkStatus ? '正常' : '异常' }}</div>
             <div>相机：{{ lane.cameraStatus ? '正常' : '异常' }}</div>
           </div>
+          <div v-if="lane.alerts?.length" class="mt-3 rounded-xl border border-orange-500/10 bg-orange-500/5 p-3 text-xs text-orange-100">
+            <div class="mb-2 font-medium">最近告警</div>
+            <div v-for="alert in lane.alerts.slice(0, 2)" :key="`${lane.id}-${alert.time}-${alert.category}`" class="mb-2 last:mb-0">
+              <div>{{ alert.title }}</div>
+              <div class="mt-1 text-[11px] text-orange-200/80">{{ alert.content }} · {{ alert.time }}</div>
+            </div>
+          </div>
+          <div v-if="lane.messages?.length" class="mt-3 rounded-xl border border-sky-500/10 bg-sky-500/5 p-3 text-xs text-slate-200">
+            <div class="mb-2 font-medium">最近消息</div>
+            <div v-for="message in lane.messages.slice(0, 2)" :key="`${lane.id}-${message.time}-${message.type}`" class="mb-2 last:mb-0">
+              <div>{{ message.type }} · {{ message.content }}</div>
+              <div class="mt-1 text-[11px] text-slate-400">{{ message.time }}</div>
+            </div>
+          </div>
           <div class="mt-3 text-xs text-slate-400">{{ lane.lastMessage }}</div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <a-button size="mini" status="danger" @click.stop="markLaneLost(lane)">标记掉线</a-button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="glass-panel rounded-3xl p-6">
-      <div class="mb-5 flex items-center justify-between gap-3">
-        <div class="text-lg font-medium text-white">消息流</div>
-        <div class="text-xs text-slate-400">对应旧 `messageView` 与状态播报入口</div>
-      </div>
-      <a-timeline>
-        <a-timeline-item v-for="item in activityFeed" :key="item.id" :label="item.time">
-          <div class="text-sm text-white">{{ item.title }}</div>
-          <div class="mt-1 text-xs text-slate-400">{{ item.detail }}</div>
-        </a-timeline-item>
-      </a-timeline>
-    </div>
+    <LaneActivityTimeline :items="activityFeed" />
 
     <BulkTransportConfirmPanel :model-value="bulkTransportDraft" @confirm="confirmBulkTransport" @cancel="resetBulkTransport" />
 
@@ -151,12 +160,12 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { fetchSystemSettings } from '@/api/mock'
-import { submitBillInfo, submitBulkTransport, submitConfirmEnInfo } from '@/api/mock'
+import { fetchSystemSettings, submitBillInfo, submitBulkTransport, submitConfirmEnInfo, submitLaneLost } from '@/api/mock'
 import { openVncByAgent, playVideoByAgent } from '@/api/agentApi'
 import BillInfoConfirmPanel from '@/components/BillInfoConfirmPanel.vue'
 import ConfirmEnInfoPanel from '@/components/ConfirmEnInfoPanel.vue'
 import BulkTransportConfirmPanel from '@/components/BulkTransportConfirmPanel.vue'
+import LaneActivityTimeline from '@/components/LaneActivityTimeline.vue'
 import { useAppStore, type EventItem, type LaneStatusItem, type PlazaStatusItem } from '@/stores/app'
 
 const store = useAppStore()
@@ -182,12 +191,26 @@ const statusText = computed(() => {
 })
 
 const activityFeed = computed(() => {
-  const result = store.events.slice(0, 5).map((event) => ({
+  const laneMessages = store.plazas
+    .flatMap((plaza) => (plaza.laneDetails ?? []).flatMap((lane) =>
+      (lane.messages ?? []).slice(0, 1).map((message) => ({
+        id: `${lane.id}-${message.time}-${message.type}`,
+        time: message.time,
+        title: `${plaza.name} ${lane.laneNo} 车道 ${message.type}`,
+        detail: message.content
+      }))
+    ))
+
+  const eventMessages = store.events.slice(0, 5).map((event) => ({
     id: event.id,
     time: event.time,
     title: `${event.plazaName} ${event.laneNo} 车道 ${event.title}`,
     detail: event.summary || event.status
   }))
+
+  const result = [...laneMessages, ...eventMessages]
+    .sort((a, b) => b.time.localeCompare(a.time))
+    .slice(0, 5)
 
   if (result.length > 0) {
     return result
@@ -379,6 +402,19 @@ async function playEventVideo(event: EventItem) {
 }
 
 function focusLane(lane: LaneStatusItem) {
-  selectedLaneNotice.value = `${selectedPlaza.value?.name || '当前收费站'} ${lane.laneNo} 车道：${lane.lastMessage}，最近心跳 ${lane.lastHeartbeat}`
+  const lostText = lane.isLost ? '，当前处于掉线状态' : ''
+  selectedLaneNotice.value = `${selectedPlaza.value?.name || '当前收费站'} ${lane.laneNo} 车道：${lane.lastMessage}，最近心跳 ${lane.lastHeartbeat}${lostText}`
+}
+
+async function markLaneLost(lane: LaneStatusItem) {
+  const currentPlazaId = selectedPlaza.value?.id
+  if (!currentPlazaId) {
+    selectedLaneNotice.value = '未找到当前收费站，无法标记掉线。'
+    return
+  }
+
+  const result = await submitLaneLost(currentPlazaId, lane.laneNo)
+  selectedLaneNotice.value = `${result.ok ? '掉线上报成功' : '掉线上报失败'}：${JSON.stringify(result.data)}`
+  await store.loadLaneStatusSnapshots()
 }
 </script>

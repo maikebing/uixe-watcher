@@ -39,6 +39,14 @@ public sealed class LaneApplicationService : ILaneApplicationService
         return _legacyPlazaUiBridge.ShowLaneStatusAsync(plazaId, laneNo, status, cancellationToken);
     }
 
+    public Task<ApiResult> ShowLaneLostAsync(string plazaId, string laneNo, CancellationToken cancellationToken = default)
+    {
+        var plaza = _plazaContextService.GetPlazas().FirstOrDefault(item => string.Equals(item.Id, plazaId, StringComparison.OrdinalIgnoreCase));
+        var lane = plaza?.Lanes.FirstOrDefault(item => string.Equals(item.LaneNo, laneNo, StringComparison.OrdinalIgnoreCase));
+        _laneStatusSnapshotStore.MarkLaneLost(plazaId, laneNo, plaza, lane);
+        return _legacyPlazaUiBridge.ShowLaneLostAsync(plazaId, laneNo, cancellationToken);
+    }
+
     public async Task<ApiResult> ShowWeightMessageAsync(string plazaId, TcoWeightMessageDto message, CancellationToken cancellationToken = default)
     {
         await _notificationApplicationService.ShowWeightMessageAsync(plazaId, message, cancellationToken);
@@ -58,16 +66,26 @@ public sealed class LaneApplicationService : ILaneApplicationService
     }
 
     public Task<ApiResult> ShowMessageAsync(string plazaId, LaneMessageDto message, CancellationToken cancellationToken = default)
-        => _legacyPlazaUiBridge.ShowMessageAsync(plazaId, message, cancellationToken);
+    {
+        var plaza = _plazaContextService.GetPlazas().FirstOrDefault(item => string.Equals(item.Id, plazaId, StringComparison.OrdinalIgnoreCase));
+        var lane = plaza?.Lanes.FirstOrDefault(item => string.Equals(item.LaneNo, message.LaneNo, StringComparison.OrdinalIgnoreCase));
+        _laneStatusSnapshotStore.AddMessage(plazaId, message, plaza, lane);
+        return _legacyPlazaUiBridge.ShowMessageAsync(plazaId, message, cancellationToken);
+    }
 
     public async Task<ApiResult> ShowOverloadAlarmAsync(string plazaId, OverloadWarningDto warning, bool playSpeech, CancellationToken cancellationToken = default)
     {
+        var plaza = _plazaContextService.GetPlazas().FirstOrDefault(item => string.Equals(item.Id, plazaId, StringComparison.OrdinalIgnoreCase));
+        _laneStatusSnapshotStore.AddOverloadAlert(plazaId, warning, plaza, null);
         await _notificationApplicationService.ShowOverloadAlarmAsync(plazaId, warning, playSpeech, cancellationToken);
         return await _legacyPlazaUiBridge.ShowOverloadAlarmAsync(plazaId, warning, playSpeech, cancellationToken);
     }
 
     public async Task<ApiResult> ShowLaneSpecialAsync(string plazaId, LaneSpecialDto message, CancellationToken cancellationToken = default)
     {
+        var plaza = _plazaContextService.GetPlazas().FirstOrDefault(item => string.Equals(item.Id, plazaId, StringComparison.OrdinalIgnoreCase));
+        var lane = plaza?.Lanes.FirstOrDefault(item => string.Equals(item.LaneId, message.LaneId, StringComparison.OrdinalIgnoreCase));
+        _laneStatusSnapshotStore.AddLaneSpecial(plazaId, message, plaza, lane);
         await _notificationApplicationService.ShowLaneSpecialAsync(plazaId, message, cancellationToken);
         return await _legacyPlazaUiBridge.ShowLaneSpecialAsync(plazaId, message, cancellationToken);
     }

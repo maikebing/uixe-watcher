@@ -18,6 +18,8 @@ public interface ILegacyPlazaUiBridge
 {
     Task<ApiResult> ShowLaneStatusAsync(string plazaId, string laneNo, LaneStatusDto status, CancellationToken cancellationToken = default);
 
+    Task<ApiResult> ShowLaneLostAsync(string plazaId, string laneNo, CancellationToken cancellationToken = default);
+
     Task<ApiResult> ShowMessageAsync(string plazaId, LaneMessageDto message, CancellationToken cancellationToken = default);
 
     Task<ApiResult> ShowBulkTransportAsync(string plazaId, BulkTransportDto dto, CancellationToken cancellationToken = default);

@@ -35,6 +35,21 @@ public sealed class LaneController : ControllerBase
     }
 
     [HttpPost]
+    public async Task<ActionResult<ApiResult>> emrc_main_lost(string plazaid, string laneno, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var result = await _laneApplicationService.ShowLaneLostAsync(plazaid, laneno, cancellationToken);
+            return Ok(new ApiResult(ApiCode.OK, result.msg ?? "OK"));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "处理车道掉线失败，PlazaId={PlazaId}, LaneNo={LaneNo}", plazaid, laneno);
+            return BadRequest(new ApiResult(ApiCode.BadRequest, ex.Message));
+        }
+    }
+
+    [HttpPost]
     public async Task<ActionResult<ApiResult>> emrc_main_tco_weightAsync(string plazaid, TcoWeightMessageDto msgWeight, CancellationToken cancellationToken)
     {
         try

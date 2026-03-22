@@ -34,6 +34,20 @@ export interface LaneStatusItem {
   cameraStatus?: boolean
   printerStatus?: boolean
   barrierStatus?: boolean
+  isLost?: boolean
+  lastMessageType?: string
+  lastMessageTime?: string
+  messages?: Array<{
+    type: string
+    content: string
+    time: string
+  }>
+  alerts?: Array<{
+    category: string
+    title: string
+    content: string
+    time: string
+  }>
 }
 
 export interface EventItem {
@@ -216,7 +230,12 @@ function applyLaneSnapshot(item: PlazaStatusItem, snapshot?: PlazaLaneSnapshotRe
       networkStatus: lane.networkStatus,
       cameraStatus: lane.cameraStatus,
       printerStatus: lane.printerStatus,
-      barrierStatus: lane.barrierStatus
+      barrierStatus: lane.barrierStatus,
+      isLost: lane.isLost,
+      lastMessageType: lane.lastMessageType,
+      lastMessageTime: lane.lastMessageTime,
+      messages: lane.messages,
+      alerts: lane.alerts
     }))
   }
 }
