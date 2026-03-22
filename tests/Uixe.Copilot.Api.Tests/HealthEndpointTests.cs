@@ -30,6 +30,7 @@ public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Pr
     [Fact]
     public async Task GetTrafficOverview_ShouldReturnOk()
     {
+        SeedLaneContext(_factory.Services);
         using var client = _factory.CreateClient();
         var response = await client.GetAsync("/api/traffic-events/overview");
 
@@ -39,6 +40,7 @@ public sealed class HealthEndpointTests : IClassFixture<WebApplicationFactory<Pr
     [Fact]
     public async Task GetTrafficHistory_ShouldReturnOk()
     {
+        SeedLaneContext(_factory.Services);
         using var client = _factory.CreateClient();
         var response = await client.GetAsync("/api/traffic-events/history");
 

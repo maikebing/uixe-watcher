@@ -11,6 +11,10 @@ public static class DependencyInjection
         services.AddSingleton<IPlazaContextService, InMemoryPlazaContextService>();
         services.AddSingleton<ILaneStatusSnapshotStore, InMemoryLaneStatusSnapshotStore>();
         services.AddSingleton<ISystemSettingsService, InMemorySystemSettingsService>();
+        services.AddSingleton<ILocalAgentCommandForwarder, NoOpLocalAgentCommandForwarder>();
+        services.AddSingleton<IAgentRegistryService, InMemoryAgentRegistryService>();
+        services.AddSingleton<ILegacyPlazaUiBridge, NoOpLegacyPlazaUiBridge>();
+        services.AddSingleton<ILegacyTcoInteractionService, NoOpLegacyTcoInteractionService>();
         services.AddScoped<ILaneApplicationService, LaneApplicationService>();
         services.AddScoped<ILaneStatusQueryService, LaneStatusQueryService>();
         services.AddScoped<INotificationApplicationService, NotificationApplicationService>();

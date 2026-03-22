@@ -11,9 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<InfrastructureOptions>(builder.Configuration.GetSection(InfrastructureOptions.SectionName));
+builder.Services.Configure<LocalAgentForwardingOptions>(builder.Configuration.GetSection(LocalAgentForwardingOptions.SectionName));
 builder.Services.AddUixeCopilotInfrastructure();
 builder.Services.AddSignalR();
 builder.Services.AddScoped<IRealtimePushService, SignalRTrafficEventPushService>();
+builder.Services.AddHttpClient<ILocalAgentCommandForwarder, HttpLocalAgentCommandForwarder>();
 
 var app = builder.Build();
 

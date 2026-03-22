@@ -173,16 +173,16 @@
 
 - 阶段 0：`100%`
 - 阶段 1：`82%`
-- 阶段 2：`58%`
-- 阶段 3：`61%`
-- 阶段 4：`48%`
+- 阶段 2：`60%`
+- 阶段 3：`64%`
+- 阶段 4：`50%`
 - 阶段 5：`5%`
-- **整体完成度约 `59%`**
+- **整体完成度约 `61%`**
 
 当前进度口径需要明确区分为：
 
 - `V0` 初步运行版：**已完成（100%）**
-- 整体项目：**约 59%**
+- 整体项目：**约 61%**
 - 当前状态：**进入 V1 / 正式替代阶段准备与收口，不代表整体项目已完成**
 
 ## 当前 V1 直接开发任务
@@ -274,6 +274,36 @@
 - `src/.env.example` 当前已补入 `TRAFFIC_EVENT_REPOSITORY_MODE=Postgres`
 - `src/docker-compose.yml` 当前通过 `.env` 与默认值共同收口为 PostgreSQL 默认联调口径
 - `SettingsPage` 中的默认存储模式与开发联调环境当前都统一指向 `PostgreSQL`
+
+当前 Agent 正式接入也已形成第 1 版协议草案，已明确四类模型：
+
+- 注册发现
+- 配置同步
+- 命令下发
+- 回执状态
+
+当前阶段仍保持：
+
+- `Agent` 手动启动
+- `Web` / `Api` 可继续直连本地 Agent HTTP 接口
+- 后续再平滑演进到中心统一调度模式
+
+当前第一批 Agent 协议骨架也已开始落地：
+
+- `Uixe.Copilot.Contracts` 已新增 Agent 注册、心跳、配置、命令、回执 DTO
+- `Uixe.Copilot.Application` 已新增 `IAgentRegistryService`
+- `Uixe.Copilot.Application` 已新增 `InMemoryAgentRegistryService` 作为当前过渡实现
+- `Uixe.Copilot.Api` 已新增 `AgentsController`，补齐注册、心跳、配置、命令、回执接口骨架
+- `Uixe.Copilot.Api` 已新增本地 Agent HTTP 转发实现，当前 `POST /api/agents/commands` 会尝试把命令真实转发到本地 Agent `/commands`
+
+这意味着当前阶段已经从“只写协议文档”进入“中心侧契约与接口骨架已开始成形”。
+
+今天的收口状态：
+
+- `Api -> Agent` 转发链路第一版已落地
+- Agent 接口测试已补上基础覆盖
+- 前端仍未完成整体切换，当前仍以“直连 Agent 为主、Api 转发已可用”为阶段状态
+- 下一步将把前端逐步收口到通过 `Api` 转发调用 Agent
 
 建议开发启动方式：
 
